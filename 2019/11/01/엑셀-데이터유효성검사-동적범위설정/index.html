@@ -1,108 +1,146 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<html lang="ko">
 
-  
-  <title>엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정 | STEM with</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기 데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,  학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면">
-<meta property="og:type" content="article">
-<meta property="og:title" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정">
-<meta property="og:url" content="http://stemwith.github.io/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/index.html">
-<meta property="og:site_name" content="STEM with">
-<meta property="og:description" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기 데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,  학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면">
-<meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic01.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic02.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic03.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic04.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic05.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic06.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic07.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic08.png">
-<meta property="og:image" content="http://stemwith.github.io/image/dynamic09.png">
-<meta property="article:published_time" content="2019-11-01T10:27:53.000Z">
-<meta property="article:modified_time" content="2020-02-09T14:08:37.275Z">
-<meta property="article:author" content="K. Jun Lee">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://stemwith.github.io/image/dynamic01.png">
-  
-    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.png" />
+    
+
+    <title>
+        
+          엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정 - STEM with
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-151970975-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">STEM with</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
-      </div>
-    </div>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/">
+    <img src="/favicon.png">
+    <span>STEM WITH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <p>de la Cruz a la fecha<br>
+<br></p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/categories/Arduino">Arduino</a></li>
+<li><a href="/categories/ESP32">ESP32</a></li>
+<li><a href="/categories/Science">ScienceEx</a></li>
+<li><a href="/tags/IoT">Blynk, IoT</a></li>
+<li><a href="/categories/Drone/">Drone</a></li>
+<li><a href="/tags/RC">RC</a></li>
+<li><a href="/categories/excel/">Excel, Office</a></li>
+<li><a href="/categories/DIY/">Do It Yourself</a></li>
+</ul>
+
+</div>
+
+
+<script src="/js/book-menu.js"></script>
+
   </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-엑셀-데이터유효성검사-동적범위설정" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/" class="article-date">
-  <time datetime="2019-11-01T10:27:53.000Z" itemprop="datePublished">2019-11-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/excel/">excel</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="엑셀-데이터-유효성-검사의-목록-구성시-동적으로-범위-설정하기">엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기</h1>
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="엑셀-데이터-유효성-검사의-목록-구성시-동적으로-범위-설정하기">엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기</h1>
 <p>데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,</p>
 <p><img src="/image/dynamic01.png" alt=""></p>
 <p>학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면 7~9학년,  고등을 선택하면 10~12학년을 선택할 수 있는 목록이 표시되도록 하는 것을 의미합니다. 또 학년마다 학급수가 다르기 때문에 각 학년을 선택하였을 때, 그 학년의 학급수만큼 학급 목록이 뜨도록 하면 더 좋겠죠. 이렇게 상황에 따라 목록이 유동적으로 표시되도록 하면, 데이터를 취합하는 입장에서 오류를 줄일 수 있는 상황을 기대할 수 있습니다.</p>
@@ -200,151 +238,84 @@
 <h2 id="예시파일-첨부">예시파일 첨부</h2>
 <p><a href="/image/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95.xls">데이터유효성검사 동적범위설정.xls</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/" data-id="ckfzmur9s0025x8kg9ijfasqj" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
+</div>
+
+
+  <div class="book-comments">
     
-<nav id="article-nav">
-  
-    <a href="/2019/11/19/ESP32-OpenWeatherMap/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">최신</strong>
-      <div class="article-nav-title">
-        
-          ESP32 OpenWeatherMap에서 실시간 날씨 정보 받기
-        
+
+
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
       </div>
-    </a>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
   
-  
-    <a href="/2019/10/30/4WD-Bluetooth/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">이전</strong>
-      <div class="article-nav-title">4WD Bluetooth</div>
-    </a>
-  
-</nav>
+    <div class="book-post-meta">
 
-  
-</article>
+  <div class="author">
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">카테고리</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="K"
+          style="background-color: #3b4351;">
+        </figure>
+      
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그 클라우드</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    <!-- Author title -->
+    <div class="author-title">
+      <div>K. Jun Lee</div>
+      <div>2019-11-01</div>
     </div>
   </div>
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">아카이브</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/categories/excel/">excel</a>
+
+      
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">최근 포스트</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/08/menu/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
   
-</aside>
-        
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/js/book-toc.js"></script>
+
+</div>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 K. Jun Lee<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>
+
+
+<script src="/js/book.js"></script>

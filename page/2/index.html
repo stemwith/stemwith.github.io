@@ -1,1909 +1,215 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<html lang="ko">
 
-  
-  <title>STEM with</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="for stem education">
-<meta property="og:type" content="website">
-<meta property="og:title" content="STEM with">
-<meta property="og:url" content="http://stemwith.github.io/page/2/index.html">
-<meta property="og:site_name" content="STEM with">
-<meta property="og:description" content="for stem education">
-<meta property="og:locale" content="ko_KR">
-<meta property="article:author" content="K. Jun Lee">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.png" />
+    
+
+    <title>
+        
+          STEM with
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-151970975-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">STEM with</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
-      </div>
-    </div>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/">
+    <img src="/favicon.png">
+    <span>STEM WITH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <p>de la Cruz a la fecha<br>
+<br></p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/categories/Arduino">Arduino</a></li>
+<li><a href="/categories/ESP32">ESP32</a></li>
+<li><a href="/categories/Science">ScienceEx</a></li>
+<li><a href="/tags/IoT">Blynk, IoT</a></li>
+<li><a href="/categories/Drone/">Drone</a></li>
+<li><a href="/tags/RC">RC</a></li>
+<li><a href="/categories/excel/">Excel, Office</a></li>
+<li><a href="/categories/DIY/">Do It Yourself</a></li>
+</ul>
+
+</div>
+
+
+<script src="/js/book-menu.js"></script>
+
   </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
 </header>
-      <div class="outer">
-        <section id="main">
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
   
-    <article id="post-Arduino-Bluetooth-페어링" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/" class="article-date">
-  <time datetime="2019-10-26T15:24:07.000Z" itemprop="datePublished">2019-10-27</time>
-</a>
+</div>
+
+
+  <div class="book-comments">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">Arduino, Bluetooth 페어링</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bluetooth-페어링">Bluetooth 페어링</h1>
-<p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
-<br>
-<h2 id="Bluetooth-module-선택">Bluetooth module 선택</h2>
-<ul>
-<li>
-<p><strong>아이폰</strong> : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)</p>
-<p>HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 <strong>Both NL &amp; CR</strong> 모드를 선택해주어야 하는 것입니다.</p>
-</li>
-</ul>
-<p><img src="/image/BT-01.jpg" alt=""></p>
-<ul>
-<li><strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
-</ul>
-<p><img src="/image/BT-02.jpg" alt=""></p>
-<blockquote>
-<p>※ 요즘은 잘 사용하지 않지만, HC-05를 사용하기도 합니다. 생김새가 거의 비슷하지만, 몇가지 차이점이 있는데요. 보통 HC-06과 구별하기 위하여, HC-05에는 칩 위에 V형태로 체크를 해두거나, 화이트로 하얀색 점을 찍어두는 경우가 많습니다. 그리고, 가장 큰 차이점은 HC-05의 경우 6개의 핀이 모두 존재해요.</p>
-<p><img src="/image/BT-05.jpg" alt=""></p>
-</blockquote>
-<blockquote>
-<p>※ 예전에는 HC-05는 Master, HC-06은 Slave로 나누어 쓰는 경우가 많았지만, HC-06의 버전이 1.7이상인 경우 Master, Slave를 선택하여 사용할 수 있게 되면서 HC-05는 잘 사용하지 않게 되었습니다.</p>
-</blockquote>
-<br>
-<h2 id="MLT-BT05-HC-06을-사용하는-경우">MLT-BT05, HC-06을 사용하는 경우</h2>
-<br>
-<h3 id="Pin-Map">Pin Map</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th style="text-align:center"></th>
-<th>Arduino Uno</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>STATE</td>
-<td style="text-align:center">(실제 핀 없거나 미사용)</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>RXD</td>
-<td style="text-align:center">Receive Data (수신)</td>
-<td>3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>TXD</td>
-<td style="text-align:center">Transmit Data (송신)</td>
-<td>2</td>
-</tr>
-<tr>
-<td>4</td>
-<td>GND</td>
-<td style="text-align:center">GND</td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>VCC</td>
-<td style="text-align:center">+5V</td>
-<td>+5V</td>
-</tr>
-<tr>
-<td>6</td>
-<td>KEY</td>
-<td style="text-align:center">(실제 핀 없거나 미사용)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<br>
-<h3 id="schematic">schematic</h3>
-<p><img src="/image/BT-03.jpg" alt=""></p>
-<br>
-<h3 id="sketch">sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect MLT-BT05 or HC-06 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">9600</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">    Serial.write(BTSerial.read());</span><br><span class="line">  <span class="keyword">if</span> (Serial.available())</span><br><span class="line">    BTSerial.write(Serial.read());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<h2 id="HC-05를-사용하는-경우">HC-05를 사용하는 경우</h2>
-<br>
-<h3 id="Pin-Map-v2">Pin Map</h3>
-<table>
-<thead>
-<tr>
-<th>HC-05 Pin</th>
-<th></th>
-<th style="text-align:center"></th>
-<th>Arduino Uno</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>STATE</td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>RXD</td>
-<td style="text-align:center">Receive Data</td>
-<td>3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>TXD</td>
-<td style="text-align:center">Transmit Date</td>
-<td>7</td>
-</tr>
-<tr>
-<td>4</td>
-<td>GND</td>
-<td style="text-align:center">GND</td>
-<td>GND</td>
-</tr>
-<tr>
-<td>5</td>
-<td>VCC</td>
-<td style="text-align:center">+5V</td>
-<td>+5V</td>
-</tr>
-<tr>
-<td>6</td>
-<td>KEY (ENABLE)</td>
-<td style="text-align:center">AT command 진입을 위한 핀</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>※ TXD로 UNO의 7번핀을 사용했으나, HC-06처럼 2번핀을 사용해도 됩니다. 단, schematic과 sketch도 2번 핀에 맞추어 수정해주세요.</p>
-</blockquote>
-<br>
-<h3 id="schematic-v2">schematic</h3>
-<p><img src="/image/BT-04" alt=""></p>
-<br>
-<h3 id="sketch-v2">sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> KEY 8</span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">7</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect HC-05 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   pinMode(KEY, OUTPUT);       <span class="comment">//for HC-05</span></span><br><span class="line">   digitalWrite(KEY, HIGH);</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">38400</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">     Serial.write(BTSerial.read());</span><br><span class="line">   <span class="keyword">if</span> (Serial.available())</span><br><span class="line">     BTSerial.write(Serial.read());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<br>
-<h2 id="블루투스-모듈을-처음-사용하는-경우">블루투스 모듈을 처음 사용하는 경우</h2>
-<p>모듈을 처음 사용한다면, AT 명령어 세트를 사용하여 세팅을 해주어야 합니다. 또한 이전에 사용한 경험이 있더라도 블루투스 모듈ID, 페어링 암호 등을 새롭게 세팅할 필요가 있는 경우에도 동일합니다.</p>
-<br>
-<h3 id="MLT-BT05-AT-09-의-AT-Command">MLT-BT05(AT-09)의 AT Command</h3>
-<table>
-<thead>
-<tr>
-<th>명령어</th>
-<th style="text-align:center">Serial Monitor 출력 결과</th>
-<th>의미</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AT</td>
-<td style="text-align:center">OK</td>
-<td>접속상태 확인</td>
-</tr>
-<tr>
-<td>AT+NAMESKS100</td>
-<td style="text-align:center">OKsetname</td>
-<td>블루투스 모듈ID 지정 (default MLT-BT05)</td>
-</tr>
-<tr>
-<td>AT+PIN</td>
-<td style="text-align:center">PASSWORD 출력</td>
-<td>패스워드 확인</td>
-</tr>
-<tr>
-<td>AT+PIN1234</td>
-<td style="text-align:center">OKsetPIN</td>
-<td>페어링 암호 설정 (default: <strong>123456</strong>)</td>
-</tr>
-<tr>
-<td>AT+BAUD4</td>
-<td style="text-align:center">OK9600</td>
-<td>통신속도 설정 (4 → 9600bps) (default: 0 → 115200bps)</td>
-</tr>
-<tr>
-<td>AT+VERSION</td>
-<td style="text-align:center">OKVERSION=4.0</td>
-<td>MLT-BT05 버전 확인</td>
-</tr>
-<tr>
-<td>AT+LADDR</td>
-<td style="text-align:center">+LADDR=(MAC Address)</td>
-<td>MAC Address 확인</td>
-</tr>
-<tr>
-<td>AT+ROLE=0</td>
-<td style="text-align:center">OK+ROLE:0</td>
-<td>SLAVE mode (default)</td>
-</tr>
-<tr>
-<td>AT+ROLE=1</td>
-<td style="text-align:center">OK+ROLE:1</td>
-<td>MASTER mode</td>
-</tr>
-<tr>
-<td>AT+ROLE=2</td>
-<td style="text-align:center">OK+ROLE:2</td>
-<td>sensor mode</td>
-</tr>
-<tr>
-<td>AT+ROLE=3</td>
-<td style="text-align:center">OK+ROLE:3</td>
-<td>iBeacon mode</td>
-</tr>
-<tr>
-<td>AT+ROLE=4</td>
-<td style="text-align:center">OK+ROLE:4</td>
-<td>WeChat mode</td>
-</tr>
-<tr>
-<td>AT+ROLE</td>
-<td style="text-align:center">OK+ROLE:</td>
-<td>Role 확인</td>
-</tr>
-</tbody>
-</table>
-<p>※ <a href="/attach/MLT-BT05.pdf">AT Command set 다운로드</a></p>
-<br>
-<h3 id="HC-06의-AT-Command">HC-06의 AT Command</h3>
-<table>
-<thead>
-<tr>
-<th>명령어</th>
-<th style="text-align:center">Serial Monitor 출력 결과</th>
-<th>의미</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AT</td>
-<td style="text-align:center">OK</td>
-<td>접속상태 확인</td>
-</tr>
-<tr>
-<td>AT+NAMESKS100</td>
-<td style="text-align:center">OKsetname</td>
-<td>블루투스 모듈ID 지정 (SKS100)</td>
-</tr>
-<tr>
-<td>AT+PIN</td>
-<td style="text-align:center">PASSWORD출력</td>
-<td>패스워드 확인</td>
-</tr>
-<tr>
-<td>AT+PIN1234</td>
-<td style="text-align:center">OKsetPIN</td>
-<td>페어링 암호 설정 (default: <strong>1234</strong>)</td>
-</tr>
-<tr>
-<td>AT+BAUD4</td>
-<td style="text-align:center">OK9600</td>
-<td>통신속도 설정 (4 → 9600bps) (default: 4 → 9600bps)</td>
-</tr>
-<tr>
-<td>AT+VERSION</td>
-<td style="text-align:center">OKlinvorV1.8</td>
-<td>HC-06 버전 확인</td>
-</tr>
-<tr>
-<td>AT+ROLE=S</td>
-<td style="text-align:center">OK+ROLE:S</td>
-<td>SLAVE 역할</td>
-</tr>
-<tr>
-<td>AT+ROLE=M</td>
-<td style="text-align:center">OK+ROLE:M</td>
-<td>MASTER 역할 (v1.7 이상만 가능)</td>
-</tr>
-<tr>
-<td>AT+ROLE</td>
-<td style="text-align:center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
-</tr>
-</tbody>
-</table>
-<br>
-<h3 id="HC-05의-AT-Command">HC-05의 AT Command</h3>
-<blockquote>
-<p>※ HC-05는 AT Command를 사용하는 경우, KEY(Enable) 핀을 연결해주어야 합니다. (schematic 참고)</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>명령어</th>
-<th style="text-align:center">Serial Monitor 출력 결과</th>
-<th>의미</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AT</td>
-<td style="text-align:center">OK</td>
-<td>접속상태 확인</td>
-</tr>
-<tr>
-<td>AT+NAMESKS100</td>
-<td style="text-align:center">OKsetname</td>
-<td>블루투스 모듈ID 지정 (SKS100)</td>
-</tr>
-<tr>
-<td>AT+PSWD=0000</td>
-<td style="text-align:center">OKsetPIN</td>
-<td>페어링 암호 설정 (0000)</td>
-</tr>
-<tr>
-<td>AT+BAUD6</td>
-<td style="text-align:center">OK9600</td>
-<td>통신속도 설정 (6 → 38400bps)</td>
-</tr>
-<tr>
-<td>AT+VERSION</td>
-<td style="text-align:center">OKlinvorV1.8</td>
-<td>HC-06 버전 확인</td>
-</tr>
-<tr>
-<td>AT+ROLE=0</td>
-<td style="text-align:center">OK+ROLE:0</td>
-<td>SLAVE 역할</td>
-</tr>
-<tr>
-<td>AT+ROLE=1</td>
-<td style="text-align:center">OK+ROLE:1</td>
-<td>MASTER 역할</td>
-</tr>
-<tr>
-<td>AT+ROLE=?</td>
-<td style="text-align:center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-<h1 id="스마트폰과의-페어링-과정">스마트폰과의 페어링 과정</h1>
-<br>
-<h2 id="시리얼모니터에서">시리얼모니터에서</h2>
-<p>HC-06과의 페어링 과정을 보도록 하겠습니다. (다른 블루투스 모듈도 유사하게 진행하면 됩니다.)</p>
-<br>
-<ol>
-<li>먼저 아두이노IDE의 시리얼 모니터를 엽니다.</li>
-</ol>
-<blockquote>
-<p>※ 이때, 주의할 점이 있는데요. <strong>시리얼 모니터를 열기 전에 스마트폰과 HC-06의 블루투스 연결은 해제된 상태</strong>여야 합니다. 기존에 HC-06과 스마트폰을 연결한 적이 있다면, 자기도 모르게 블루투스 연결이 자동으로 되어 있을 수 있는데요. 이런 경우에는 시리얼 모니터가 열리지 않아요.</p>
-</blockquote>
-<ul>
-<li><strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
-<li><strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
-<li><strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
-</ul>
-<br>
-<ol start="2">
-<li>위 스케치를 <strong>사용하는 모듈에 맞게 선택하여</strong> 아두이노에 업로드 한 상태에서 시리얼 모니터를 열면, Hello! 라는 글자가 뜹니다. (업로드한 스케치에 따라 Hello!는 안나올 수도 있음)<br>
-<img src="/image/BT-06.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="3">
-<li>AT를 입력하고,<br>
-<img src="/image/BT-07.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="4">
-<li>전송을 누르면 OK가 뜹니다. 이것은 아두이노IDE를 통해 블루투스 모듈과 연결이 정상적으로 되었음을 의미해요.<br>
-<img src="/image/BT-08.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="5">
-<li>블루투스 모듈ID를 설정해보겠습니다. SKS100이라는 ID로 지정하기 위해 <strong>AT+NAMESKS100</strong>이라고 입력한 뒤, 전송을 누릅니다. (모듈ID는 본인이 사용할 이름으로 바꾸어 지정합니다.)<br>
-<img src="/image/BT-09.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="6">
-<li>그러면 OKsetname이라고 출력이 되면서, 블루투스 모듈ID가 SKS100으로 셋팅이 됩니다.<br>
-<img src="/image/BT-09-1.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="7">
-<li>이번에는 페어링 암호 설정입니다. AT+PIN0000을 입력하고 전송을 누르면<br>
-<img src="/image/BT-10.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="8">
-<li>OKsetPIN이 출력되면서 페어링 암호가 0000으로 설정됩니다.<br>
-<img src="/image/BT-11.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="9">
-<li>통신속도 설정입니다. HC-06은 주로 9600bps를 사용하며, 이를 위해 AT+BAUD4를 입력한 뒤 전송을 누릅니다. (HC-06의 경우 default 속도가 9600bps이므로 이 과정은 생략 가능하며, 다른 모듈을 사용하는 경우에는 각 모듈의 AT Command를 확인하여 통신속도를 변경해주어야 합니다.)<br>
-<img src="/image/BT-12.jpg" alt=""></li>
-</ol>
-<br>
-<ol start="10">
-<li>OK9600이 출력되요.<br>
-<img src="/image/BT-13.jpg" alt=""></li>
-</ol>
-<br>
-<p>여기까지 진행하면 대체적으로 HC-06을 사용할 준비가 된 것입니다.</p>
-<br>
-<h2 id="스마트폰에서">스마트폰에서</h2>
-<ol>
-<li>이제 스마트폰에서 블루투스 모드를 켜세요. (아래 화면은 스마트폰 기종마다 조금은 다를 수 있습니다. 화면이 다르더라도 거의 비슷할 거에요.) 그리고 새로고침을 통해 블루투스 기기를 찾습니다.<br>
-<img src="/image/BT-14.png" alt="" width="432" height="768"></li>
-</ol>
-<br>
-<ol start="2">
-<li>‘거의 이용하지 않는 기기’ 하나를 찾았네요. 그곳을 누르면 조금전에 설정한 블루투스 모듈ID인 SKS100이 보입니다. 여기를 누르세요.<br>
-<img src="/image/BT-15.png" alt="" width="432" height="768"></li>
-</ol>
-<br>
-<ol start="3">
-<li>블루투스 모듈과 페어링을 하기 위한 암호 입력화면이 나오고, 여기에 AT명령어를 통해 입력한 암호를 넣어줍니다.<br>
-<img src="/image/BT-14-1.png" alt="" width="432" height="768"></li>
-</ol>
-<br>
-<ol start="4">
-<li>그러면 스마트폰이 SKS100 모듈에 페어링을 시도합니다.<br>
-<img src="/image/BT-16.png" alt="" width="432" height="768"></li>
-</ol>
-<br>
-<ol start="5">
-<li>거의 이용하지 않는 블루투스 기기 부분을 누르면<br>
-<img src="/image/BT-17.png" alt="" width="432" height="768"></li>
-</ol>
-<br>
-<ol start="6">
-<li>페어링된 기기 목록에 SKS100이 뜹니다. 여기까지 진행하면, 스마트폰과 블루투스 모듈이 페어링 완료된 거에요.<br>
-<img src="/image/BT-18.png" alt="" width="432" height="768"></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/" data-id="ckfzmur8i0006x8kgav0991qv" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-    <article id="post-ESP32-BLE-Blynk-Gauge" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/23/ESP32-BLE-Blynk-Gauge/" class="article-date">
-  <time datetime="2019-10-23T13:33:48.000Z" itemprop="datePublished">2019-10-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/23/ESP32-BLE-Blynk-Gauge/">ESP32 BLE, Blynk Gauge</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ESP32에서-Blynk로-센서값-보내기">ESP32에서 Blynk로 센서값 보내기</h1>
-<p>Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)</p>
-<ul>
-<li>ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
-<li>새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
-</ul>
-<br>
-<h2 id="schematic">schematic</h2>
-<p><img src="/image/blynk-adc-01.png" alt=""></p>
-<br>
-<h2 id="sketch">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;WUAeS6P57T3XNaIGyLK1-OUv........&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Potentiometer Pin</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIN_POTENTIOMETER A0                       <span class="comment">// Potentiometer GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resist, Voltage</span></span><br><span class="line"><span class="keyword">int</span> value_Potentiometer; </span><br><span class="line"><span class="keyword">int</span> value_R;</span><br><span class="line"><span class="keyword">float</span> value_V;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  value_Potentiometer = analogRead(PIN_POTENTIOMETER);  <span class="comment">// 12bit ADC (0~4095)</span></span><br><span class="line">  value_V = <span class="built_in">map</span>(value_Potentiometer, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">3300</span>, <span class="number">0</span>); <span class="comment">// 0~3300mV</span></span><br><span class="line">  value_R = <span class="built_in">map</span>(value_V, <span class="number">0</span>, <span class="number">3300</span>, <span class="number">10000</span>, <span class="number">0</span>);            <span class="comment">// 0~10kΩ</span></span><br><span class="line">  </span><br><span class="line">  Blynk.run();</span><br><span class="line">  </span><br><span class="line">  Serial.print(<span class="string">&quot;Resist : &quot;</span>); Serial.print(value_R); Serial.println(<span class="string">&quot;Ω&quot;</span>);</span><br><span class="line">  Serial.print(<span class="string">&quot;Voltage: &quot;</span>); Serial.print(value_V); Serial.println(<span class="string">&quot;mV&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V1)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V1, value_R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V2)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V2, value_V);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<ul>
-<li>Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
-<li>Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
-</ul>
-<br>
-<h2 id="Blynk-설정">Blynk 설정</h2>
-<ol>
-<li>새로운 프로젝트를 생성한다.
-<ul>
-<li>NAME : ESP32_Potentiometer</li>
-<li>CHOOSE DEVICE : ESP32 Dev Board</li>
-<li>CONNECTION TYPE : BLE</li>
-</ul>
-</li>
-</ol>
-<p><img src="/image/blynk-adc-02.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="2">
-<li>이메일로 발송된 토큰을 복사한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-03.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="3">
-<li>+버튼을 눌러 위젯을 추가할 수 있는 화면으로 진입한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-04.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="4">
-<li>먼저 BLE 위젯을 선택하여 ESP32와 Blynk간의 통신 방법을 지정한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-05.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="5">
-<li>블루투스 모양의 위젯 버튼을 눌러 Blynk와의 통신을 준비한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-06.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="6">
-<li>Connect BLE device</li>
-</ol>
-<p><img src="/image/blynk-adc-07.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="7">
-<li>연결하고자 하는 BLE 장비를 선택하면,</li>
-</ol>
-<p><img src="/image/blynk-adc-08.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="8">
-<li>연결 확인!</li>
-</ol>
-<p><img src="/image/blynk-adc-09.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="9">
-<li>+버튼을 눌러 출력 위젯 2개를 추가한다. (Gauge, Labeled value)</li>
-</ol>
-<p><img src="/image/blynk-adc-10.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="10">
-<li>먼저 Gauge 위젯을 선택한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-11.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="11">
-<li>Gauge 위젯이 추가되면 육각형 모양의 아이콘을 눌러 GAUGE Setting 화면으로 진입한다.</li>
-</ol>
-<p><img src="/image/blynk-adc-12.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-adc-13.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="12">
-<li>설정화면에서 다음 4가지를 설정한다.
-<ul>
-<li>NAME : 저항</li>
-<li>INPUT : V1, 0~1000</li>
-<li>LABEL : (단위를 표시하기 위해) x10 Ohm 을 적는다.</li>
-<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
-</ul>
-</li>
-</ol>
-<p><img src="/image/blynk-adc-14.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="13">
-<li>Labeled Value 위젯을 추가하고, 다음과 같이 설정한다.
-<ul>
-<li>NAME : 저항</li>
-<li>INPUT : V2, 0~3300</li>
-<li>LABEL : (단위를 표시하기 위해) mV 를 적는다.</li>
-<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
-</ul>
-</li>
-</ol>
-<p><img src="/image/blynk-adc-15.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="14">
-<li>상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</li>
-</ol>
-<p><img src="/image/blynk-adc-16.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="15">
-<li>여기서 플레이버튼을 누르면,</li>
-</ol>
-<p><img src="/image/blynk-adc-17.png" alt="" width="432" height="768"></p>
-<br>
-<p>저항과 전압의 측정이 시작된다. (시리얼 모니터에서도 관찰 가능)</p>
-<p><img src="/image/blynk-adc-18.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-adc-19.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="16">
-<li>가변 저항을 돌릴 때마다 저항과 전압이 바뀐다.</li>
-</ol>
-<p><img src="/image/blynk-adc-20.png" alt="" width="432" height="768"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/23/ESP32-BLE-Blynk-Gauge/" data-id="ckfzmur95001bx8kgdcwxczbl" class="article-share-link">공유</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-    <article id="post-ESP32-BLE-Blynk-Slider-PWM" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/" class="article-date">
-  <time datetime="2019-10-22T15:55:21.000Z" itemprop="datePublished">2019-10-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/">ESP32 BLE, Blynk Slider (PWM)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ESP32와-Blynk에서의-PWM-사용">ESP32와 Blynk에서의 PWM 사용</h1>
-<p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p>
-<ul>
-<li>Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
-<li>Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
-<li>ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
-</ul>
-<br>
-<h2 id="schematic">schematic</h2>
-<p><img src="/image/blynk-pwm-01.png" alt=""></p>
-<p>※ LED모듈을 사용하는 경우 저항이 필요없다.</p>
-<br>
-<h2 id="sketch">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_FREQ        5000 <span class="comment">// Hz</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_CHANNEL_0   0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_RESOLUTION  12   <span class="comment">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// led Pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">19</span>;</span><br><span class="line">    </span><br><span class="line">BLYNK_WRITE(V5)           <span class="comment">// widget virtual pin5 -&gt; ESP32</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> value_V5 = param.asInt();</span><br><span class="line">  ledcWrite(LEDC_CHANNEL_0, value_V5);</span><br><span class="line">  Serial.print(<span class="string">&quot;V5 value: &quot;</span>); Serial.println(value_V5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the same channel to the GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(pin_ledR, LEDC_CHANNEL_0);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<h2 id="sketch-분석">sketch 분석</h2>
-<p>Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.</p>
-<br>
-<ol>
-<li>LED가 연결되어 있는 ESP32 핀</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">19</span>;</span><br></pre></td></tr></table></figure>
-<br>
-<ol start="2">
-<li>Blynk App에서 ESP32로 신호를 보내는 Virtual 핀</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_WRITE(V5) &#123;                          <span class="comment">// widget virtual pin(V5) -&gt; ESP32</span></span><br><span class="line">  <span class="keyword">int</span> value_V5 = param.asInt();            <span class="comment">// V5로 지정된 위젯의 값을 읽고</span></span><br><span class="line">  ledcWrite(LEDC_CHANNEL_0, value_V5);     <span class="comment">// PWM 채널0으로 보냄</span></span><br><span class="line">  Serial.print(<span class="string">&quot;V5 value: &quot;</span>); Serial.println(value_V5);     <span class="comment">// 시리얼모니터에 출력</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<ol start="3">
-<li>LED에 PWM 신호 출력 (밝기 조절)</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">ledcSetup(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);</span><br><span class="line"></span><br><span class="line"><span class="comment">// attach the same channel to the GPIO to be controlled</span></span><br><span class="line">ledcAttachPin(pin_ledR, LEDC_CHANNEL_0);</span><br></pre></td></tr></table></figure>
-<br>
-<h2 id="Blynk-App-설정">Blynk App 설정</h2>
-<ol>
-<li>Button 위젯을 삭제한다. (그냥 두어도 관계없음)</li>
-</ol>
-<p><img src="/image/blynk-pwm-02.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-pwm-03.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-pwm-04.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="2">
-<li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Slider 위젯을 추가한다.</li>
-</ol>
-<p><img src="/image/blynk-pwm-05.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="3">
-<li>프로젝트 바탕화면의 Slider 위젯을 누른다.</li>
-</ol>
-<p><img src="/image/blynk-pwm-06.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="4">
-<li>Slider 설정화면이 나오면,</li>
-</ol>
-<p><img src="/image/blynk-pwm-07.png" alt="" width="432" height="768"></p>
-<br>
-<p>PIN을 누르고 사용할 Virual 핀을 선택한 뒤 OK버튼을 누른다. (여기서는 V5선택)</p>
-<p><img src="/image/blynk-pwm-08.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-pwm-09.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="5">
-<li>다음 3가지를 추가로 설정한다.
-<ul>
-<li>OUTPUT 범위 : 0 ~ 4095 (12bit 사용시)</li>
-<li>SEND ON RELEASE : OFF (OFF 선택시 Slide를 조절하는 즉시 실시간으로 출력값 반영되며, ON 선택시 Slide에서 손가락을 떼면 출력값이 반영된다.)</li>
-<li>WRITE INTERVAL : SEND ON RELEASE를 OFF로 선택시 나타나며, 100ms가 가장 작은 값이다.</li>
-</ul>
-</li>
-</ol>
-<br>
-<p><img src="/image/blynk-pwm-10.png" alt="" width="432" height="768"></p>
-<br>
-<p>설정을 모두 마치면 상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</p>
-<br>
-<ol start="6">
-<li>Slider 위젯을 1초이상 누르고 있으면 위젯의 위치와 크기를 조절할 수 있다. 위젯의 위치를 아래로 내리고 가로폭의 크기를 늘려본다.</li>
-</ol>
-<p><img src="/image/blynk-pwm-11.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-pwm-12.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="7">
-<li>이제 플레이(▷) 버튼을 누르고 Slide를 조절해본다.</li>
-</ol>
-<p><img src="/image/blynk-pwm-13.png" alt="" width="432" height="768"></p>
-<br>
-<p>Slide값에 따라 LED의 밝기가 조절된다.</p>
-<p><img src="/image/blynk-pwm-14.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-pwm-15.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="8">
-<li>Slider를 조절하는 동안 Arduino IDE의 시리얼 모니터값을 확인해볼 수 있다.</li>
-</ol>
-<p><img src="/image/blynk-pwm-16.png" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/" data-id="ckfzmur97001ex8kg8fak9cwq" class="article-share-link">공유</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP32-BLE-Blynk-Button" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/21/ESP32-BLE-Blynk-Button/" class="article-date">
-  <time datetime="2019-10-21T15:12:58.000Z" itemprop="datePublished">2019-10-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/21/ESP32-BLE-Blynk-Button/">ESP32 BLE, Blynk Button</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Blynk를-처음-사용하는-경우">Blynk를 처음 사용하는 경우</h1>
-<br>
-<h2 id="Blynk-라이브러리-설치하기">Blynk 라이브러리 설치하기</h2>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://docs.blynk.cc">docs.blynk.cc</a> 접속 – Downloads – Blynk Library</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a>
-<ul>
-<li>Blynk_Release_v0.6.1.zip 다운로드</li>
-</ul>
-</li>
-<li>압축을 풀면 libraries, tools 폴더가 보임</li>
-<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함
-<ul>
-<li>기존의 libraries 폴더와 합쳐짐</li>
-<li>기본 스케치북 위치 확인 방법
-<ul>
-<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<br>
-<h2 id="스마트폰에-Blynk-App-설치하기">스마트폰에 Blynk App 설치하기</h2>
-<ul>
-<li>아이폰 : 애플 앱스토어</li>
-<li>안드로이드 : 구글 플레이스토어</li>
-</ul>
-<br>
-<br>
-<h1 id="버튼-위젯을-이용한-LED-On-Off-하기">버튼 위젯을 이용한 LED On/Off 하기</h1>
-<br>
-<h2 id="schematic">schematic</h2>
-<p><img src="/image/blynk-01.png" alt=""></p>
-<p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
-<br>
-<h2 id="Blynk-설정">Blynk 설정</h2>
-<ol>
-<li>Blynk App 실행</li>
-</ol>
-<p><img src="/image/blynk-02.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="2">
-<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성 (계정이 이미 생성되어 있는 경우에는 Log In)</li>
-</ol>
-<p><img src="/image/blynk-03.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-04.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="3">
-<li>New Project 생성 : ESP32_LED</li>
-</ol>
-<p><img src="/image/blynk-05.png" alt="" width="432" height="768"></p>
-<br>
-<ul>
-<li>프로젝트명 : ESP32_LED</li>
-<li>CHOOSE DEVICE : ESP32 Dev Board</li>
-<li>CONNECTION TYPE : BLE</li>
-</ul>
-<br>
-<p><img src="/image/blynk-06.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="4">
-<li>Create를 누르면 Blynk 가입시 계정으로 사용한 이메일로 Auth Token 발송된다.</li>
-</ol>
-<p><img src="/image/blynk-07.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="5">
-<li>OK버튼을 누르면 프로젝트가 생성된다.</li>
-</ol>
-<p><img src="/image/blynk-08.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="6">
-<li>컴퓨터를 사용하여 이메일 계정에 로그인 한 후, Auth Token을 복사한다. (복잡한 형태의 토큰을 코딩시 사용할 것이므로, 스마트폰인 아닌 컴퓨터에서 확인하여 복사하는 것이 좋다.)</li>
-</ol>
-<p><img src="/image/blynk-09.png" alt=""></p>
-<br>
-<ol start="7">
-<li>Blynk 위젯 설정 : 생성된 프로젝트(ESP32_LED) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 &quot;ESP32_LED&quot;로 바뀐다.</li>
-</ol>
-<p><img src="/image/blynk-10.png" alt="" width="432" height="768"></p>
-<br>
-<p>만약, 아래와 같이 초록색 메뉴바의 이름이 &quot;Blynk&quot;로 되어있다면, 프로젝트 바탕화면으로 진입하지 못한 것이다. 이때에는 검은색 바탕화면의 &quot;ESP32_LED&quot;프로젝트명을 확인한 후 터치하면 해당프로젝트로 진입할 수 있다. 기존에 다른 프로젝트를 만들어 둔 적이 있다면 검은색 바탕화면의 프로젝트명이 &quot;ESP32_LED&quot;가 아닐 수도 있다. 이런 경우에는 스마트폰 화면을 좌우로 스크롤하여 프로젝트명을 변경한 후 진입한다.</p>
-<p><img src="/image/blynk-11.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="8">
-<li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Button 위젯과 BLE 위젯을 눌러 추가한다.</li>
-</ol>
-<p><img src="/image/blynk-12.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-13.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-14.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="9">
-<li>프로젝트 바탕화면에 두개의 위젯이 표시된다.</li>
-</ol>
-<p><img src="/image/blynk-15.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="10">
-<li>BUTTON 위젯을 누르면 Buttom Settings 화면이 나타난다. 여기서 PIN부분을 누른다.</li>
-</ol>
-<p><img src="/image/blynk-16.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="11">
-<li>LED를 연결한 PIN을 선택한다. 여기서는 Digital GP19를 선택하였다.</li>
-</ol>
-<p><img src="/image/blynk-17.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="12">
-<li>OK버튼을 누르면 OUTPUT 버튼이 GP19로 설정된다. Mode는 SWITCH로 설정한다.</li>
-</ol>
-<p><img src="/image/blynk-18.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="13">
-<li>Blynk App 상단의 뒤로가기 버튼을 누른뒤 프로젝트 바탕화면으로 간다.</li>
-</ol>
-<p><img src="/image/blynk-19.png" alt="" width="432" height="768"></p>
-<br>
-<h2 id="Blynk-연결하기">Blynk 연결하기</h2>
-<ol>
-<li>Arduino IDE에서 예제를 로드한다. <strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>Blynk</strong>&gt; <strong>Boards_Bluetooth</strong>&gt; <strong>ESP32_BLE</strong></li>
-</ol>
-<p><img src="/image/blynk-20.png" alt=""></p>
-<br>
-<ol start="2">
-<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
-</ol>
-<p><img src="/image/blynk-21.png" alt=""></p>
-<br>
-<p><img src="/image/blynk-22.png" alt=""></p>
-<br>
-<ol start="3">
-<li>예제의 <strong>Blynk.setDeviceName(“Blynk”);</strong> 부분을 찾아 따옴표 안의 BLE Device 이름을 적당한 이름으로 바꿔준다. (※이름을 바꿔주지 않으면 주변의 다른 기기와 중복되어 오작동할 소지가 있으므로 반드시 다른 이름으로 바꿔주어야 한다.)</li>
-</ol>
-<p><img src="/image/blynk-23.png" alt=""></p>
-<br>
-<p>Device Name을 &quot;Blynk-t&quot;로 수정하였다.</p>
-<p><img src="/image/blynk-24.png" alt=""></p>
-<br>
-<ol start="4">
-<li>ESP32에 스케치를 업로드한다. (업로드 시간이 Arduino에 비해 오래 걸림)</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz.........&quot;</span>;    <span class="comment">// Edit Your Auth Token!!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);                     <span class="comment">// Edit Your ESP32 Name!!!</span></span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<p><img src="/image/blynk-25.png" alt=""></p>
-<br>
-<ol start="5">
-<li>이제 스마트폰의 Bluetooth기능을 키고, 위의 코드에서 수정한 Device Name을 찾아 연결한다.</li>
-</ol>
-<p><img src="/image/blynk-26.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-27.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="6">
-<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양)을 누른다.</li>
-</ol>
-<p><img src="/image/blynk-28.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="7">
-<li>Connect BLE device 버튼을 누른다.</li>
-</ol>
-<p><img src="/image/blynk-29.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="8">
-<li>연결할 Device(여기서는 Blynk-t)를 선택하고 OK를 누른다.</li>
-</ol>
-<p><img src="/image/blynk-30.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="9">
-<li>Connected 메세지가 나오면 연결 설정이 완료된 것이다.</li>
-</ol>
-<p><img src="/image/blynk-31.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="10">
-<li>Blynk App 상단의 뒤로 돌아가기 버튼을 눌러 프로젝트 바탕화면으로 돌아간다.</li>
-</ol>
-<p><img src="/image/blynk-32.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="11">
-<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누른다.</li>
-</ol>
-<p><img src="/image/blynk-33.png" alt="" width="432" height="768"></p>
-<br>
-<p>플레이버튼을 눌렀을 때, App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미한다. 잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된다.</p>
-<p><img src="/image/blynk-34.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="12">
-<li>현재 Button은 OFF 되어 있으며, 이에 따라 GPIO 19에 연결되어 있는 LED도 OFF되어 있다.</li>
-</ol>
-<p><img src="/image/blynk-35.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="13">
-<li>Button을 누르면 ON 상태로 바뀌면서, LED가 ON 상태로 점등된다.</li>
-</ol>
-<p><img src="/image/blynk-36.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="14">
-<li>다시 Button을 누르면 OFF 상태로 바뀌면서, LED가 OFF 상태로 소등된다.</li>
-</ol>
-<p><img src="/image/blynk-37.png" alt="" width="432" height="768"></p>
-<br>
-<ol start="15">
-<li>정지버튼을 누르면 플레이상태가 정지상태로 바뀌면서 프로젝트 바탕화면으로 돌아간다.</li>
-</ol>
-<p><img src="/image/blynk-38.png" alt="" width="432" height="768"></p>
-<br>
-<p><img src="/image/blynk-39.png" alt="" width="432" height="768"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/" data-id="ckfzmur940017x8kgeo8pd73p" class="article-share-link">공유</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Arduino-Bluetooth-Blynk" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/20/Arduino-Bluetooth-Blynk/" class="article-date">
-  <time datetime="2019-10-20T15:10:53.000Z" itemprop="datePublished">2019-10-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/20/Arduino-Bluetooth-Blynk/">Arduino, Bluetooth, Blynk</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bluetooth-module-설정">Bluetooth module 설정</h1>
-<p>Arduino, Blutooth 페어링 문서를 참고하세요.</p>
-<br>
-<br>
-<h1 id="Blynk-설정">Blynk 설정</h1>
-<br>
-<h2 id="Blynk-라이브러리-설치">Blynk 라이브러리 설치</h2>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://docs.blynk.cc">docs.blynk.cc</a> 접속 – Downloads – Blynk Library</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a>
-<ul>
-<li>Blynk_Release_v0.6.1.zip 다운로드</li>
-</ul>
-</li>
-<li>압축을 풀면 libraries, tools 폴더가 보임</li>
-<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함
-<ul>
-<li>기존의 libraries 폴더와 합쳐짐</li>
-<li>기본 스케치북 위치 확인 방법
-<ul>
-<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<br>
-<h2 id="스마트폰에-Blynk-App-다운로드-하여-설치하기">스마트폰에 Blynk App 다운로드 하여 설치하기</h2>
-<ul>
-<li>아이폰 : 애플 앱스토어</li>
-<li>안드로이드 : 구글 플레이스토어</li>
-</ul>
-<br>
-<br>
-<h1 id="버튼-위젯을-이용한-LED-On-Off-하기">버튼 위젯을 이용한 LED On/Off 하기</h1>
-<br>
-<h2 id="Blynk-계정생성-및-Auth-Token-받기">Blynk 계정생성 및 Auth Token 받기</h2>
-<ol>
-<li>Blynk App 실행</li>
-<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
-<li>Blynk에서 New Project 생성
-<ul>
-<li>아이폰용 MLT-BT05의 경우
-<ul>
-<li>Project Name 설정: BLE Test</li>
-<li>CHOOSE DEVICE: Arduino UNO</li>
-<li>CONNECTION TYPE: BLE</li>
-<li>설정 후 Create 버튼</li>
-</ul>
-</li>
-<li>안드로이드용 HC-06의 경우
-<ul>
-<li>Project Name 설정: HC-06 Test</li>
-<li>CHOOSE DEVICE: Arduino UNO</li>
-<li>CONNECTION TYPE: Bluetooth</li>
-<li>설정 후 Create 버튼</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Auth Token 확인
-<ul>
-<li>가입시 지정한 이메일로 로그인하여 토큰 확인</li>
-<li>(매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
-<li>스마트폰으로 확인하는 것은 무의미함</li>
-</ul>
-</li>
-</ol>
-<br>
-<h2 id="Blynk-위젯-설정">Blynk 위젯 설정</h2>
-<ol>
-<li>아이폰용 MLT-BT05를 사용할 경우
-<ul>
-<li>생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
-<li>여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
-<li>추가된 BUTTON 위젯 선택 후 설정
-<ul>
-<li>OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>안드로이드용 HC-06를 사용할 경우
-<ul>
-<li>생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
-<li>여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
-<li>추가된 BUTTON 위젯 선택 후 설정
-<ul>
-<li>OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<br>
-<h2 id="Blynk-연결하기">Blynk 연결하기</h2>
-<ol>
-<li>아두이노 스케치 예제 불러오기
-<ul>
-<li>파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
-<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
-</ul>
-</li>
-<li>아두이노 UNO에 스케치 업로드</li>
-<li>스마트폰의 블루투스 기능을 키고,
-<ul>
-<li>아이폰용 MLT-BT05의 경우
-<ul>
-<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
-<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
-<li>연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
-<li>MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
-</ul>
-</li>
-<li>안드로이드용 HC-06의 경우
-<ul>
-<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
-<li>Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
-<li>연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
-<li>HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Blynk App 상단의 뒤로 돌아가기 버튼을 누른 뒤, App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름
-<ul>
-<li>App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
-<li>잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
-</ul>
-</li>
-<li>BUTTON 아이콘을 눌러 ON/OFF → 아두이노 Built-in LED ON/OFF</li>
-<li>Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
-</ol>
-<br>
-<br>
-<h1 id="슬라이더-위젯을-이용한-LED-밝기-제어">슬라이더 위젯을 이용한 LED 밝기 제어</h1>
-<p>Built-in LED가 사용하는 13번핀은 PWM이 지원되지 않으므로, 11번핀을 사용한다.</p>
-<p><img src="/image/BT-19.jpg" alt=""></p>
-<br>
-<h2 id="sketch">sketch</h2>
-<p>아두이노 스케치는 그대로 사용 (위의 “Blynk 연결하기” 부분 스케치 참고)</p>
-<br>
-<h2 id="Blynk-앱-설정">Blynk 앱 설정</h2>
-<ol>
-<li>버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
-<li>Slider 위젯 추가: OUTPUT D11</li>
-<li>Slider 위젯의 위치/크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치/크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
-<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
-<li>슬라이드를 조절하여 LED의 밝기 조절 확인</li>
-</ol>
-<br>
-<br>
-<h1 id="과제">과제</h1>
-<p>3색 RGB LED를 zeRGBa 위젯으로 조정하여 여러 가지 색깔 만들어보기 (스케치는 위의 스케치를 그대로 사용)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/20/Arduino-Bluetooth-Blynk/" data-id="ckfzmur8g0005x8kgai898ijh" class="article-share-link">공유</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP32-ADC" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/20/ESP32-ADC/" class="article-date">
-  <time datetime="2019-10-19T17:59:54.000Z" itemprop="datePublished">2019-10-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/20/ESP32-ADC/">ESP32 ADC</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ESP32-ADC">ESP32 ADC</h1>
-<ul>
-<li>ESP32는 18개의 12bit ADC 입력핀을 사용할 수 있다. (0~4095)</li>
-<li>아두이노의 경우 10bit를 사용한다. (0~1023)</li>
-<li>0V ~ 3.3V의 전압을 0~4095(0xFFF)까지의 디지털값으로 AD 변환한다.</li>
-<li>Arduino IDE 환경에서는 ESP32의 ADC 관련 레지스터를 조작하지 않고 analogRead() 함수를 사용하여 ESP32의 ADC 입력핀의 전압값을 가져올 수 있다.</li>
-</ul>
-<br>
-<br>
-<h1 id="Potentiometer-저항값-출력하기">Potentiometer 저항값 출력하기</h1>
-<br>
-<h2 id="schematic">schematic</h2>
-<p><img src="/image/esp32-adc-01.png" alt=""></p>
-<br>
-<h2 id="sketch">sketch</h2>
-<p>가변저항의 저항을 A0(ADC1_CH0, GPIO36)로 읽고 전압값으로 변환한 뒤 시리얼 모니터로 출력한다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 ADC test</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> analogPin A0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// read the input on analog pin GPIO36 (ADC1_CH0):</span></span><br><span class="line">  <span class="keyword">int</span> sensorValue = analogRead(analogPin);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Convert the analog (12bit ADC :  0 - 4095) to a voltage (0 - 3.3V):</span></span><br><span class="line">  <span class="keyword">float</span> voltage = (sensorValue /<span class="number">4095.0</span>) * <span class="number">3.3</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// print out the value you read:</span></span><br><span class="line">  Serial.println(voltage);</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<br>
-<h1 id="Potentiometer로-LED-밝기-조절하기">Potentiometer로 LED 밝기 조절하기</h1>
-<br>
-<h2 id="schematic-v2">schematic</h2>
-<p><img src="/image/esp32-adc-02.png" alt=""></p>
-<br>
-<ul>
-<li>LED : R → GPIO19 / G → GPIO18 / B → GPIO17 / GND</li>
-<li>저항 : R → 150Ω / G → 100Ω / B → 100Ω</li>
-<li>Potentiometer: Left 5V, Center AO(IO36), Right GND</li>
-</ul>
-<br>
-<h2 id="sketch-v2">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RED_LED 19       <span class="comment">// GPIO 19</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> analogPin A0     <span class="comment">// Sensor VP, GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> freq = <span class="number">5000</span>;         <span class="comment">// 주파수</span></span><br><span class="line"><span class="keyword">int</span> ledChannel = <span class="number">0</span>;      <span class="comment">// 채널 (0 ~ 15 선택)</span></span><br><span class="line"><span class="keyword">int</span> resolution = <span class="number">10</span>;     <span class="comment">// 해상도 (1 ~ 16bit resolution 선택)</span></span><br><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);    <span class="comment">// 지정된 채널, 주파수 및 해상도 설정</span></span><br><span class="line">  ledcAttachPin(RED_LED, ledChannel);         <span class="comment">// LED 핀과 채널 연결</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> raw = analogRead(analogPin);</span><br><span class="line">  R = <span class="built_in">map</span>(raw, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">0</span>, <span class="number">1023</span>);             <span class="comment">// 12bit -&gt; 10bit</span></span><br><span class="line"></span><br><span class="line">  Serial.print(R); Serial.println(<span class="string">&quot; ohm&quot;</span>);</span><br><span class="line">  ledcWrite(ledChannel, R);</span><br><span class="line">  delay(<span class="number">7</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/20/ESP32-ADC/" data-id="ckfzmur900010x8kg6i7b4wcs" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP32-PWM-제어" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/" class="article-date">
-  <time datetime="2019-10-19T14:41:02.000Z" itemprop="datePublished">2019-10-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/">ESP32 PWM제어</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="PWM-제어-방법">PWM 제어 방법</h1>
-<p>원문: <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/esp32-pwm-arduino-ide/">https://randomnerdtutorials.com/esp32-pwm-arduino-ide/</a></p>
-<br>
-<p>PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.</p>
-<p><img src="/image/esp32-pwm-01.png" alt=""></p>
-<br>
-<p>duty 값은 한 주기 내에서 ON 시간과 OFF 시간의 '비율’을 결정하는 값이다. PWM 주파수가 다르면 같은 duty 값이라도 ON 되어 있는 시간이 달라진다. 다만 전체적으로 ON 시간의 합과 OFF 시간의 합의 비율은 동일하다.</p>
-<p><img src="/image/esp32-pwm-02.png" alt=""></p>
-<br>
-<p>이런 방법을 LED의 점등에 적용하면, 1의 값을 갖는 시간이 짧을 수록 사람 눈에는 LED가 어둡게 보이고, 1의 값을 갖는 시간이 길 수록 밝아 보이게 된다.</p>
-<p><img src="/image/esp32-pwm-03.png" alt=""></p>
-<br>
-<h2 id="ESP32에서-PWM의-설정">ESP32에서 PWM의 설정</h2>
-<p>ESP32에는 16 개의 독립적인 채널을 가진 LED PWM 컨트롤러가 있으며 다른 속성으로도 PWM 신호를 생성하도록 구성할 수 있다. Arduino IDE를 사용하여 PWM으로 LED의 밝기를 조절해보도록 한다. 우선 PWM을 사용하기 위해 다음의 4가지를 설정해야 한다.</p>
-<br>
-<h3 id="Channel">Channel</h3>
-<p>0에서 15까지 16 개의 채널 중 적당한 PWM 채널을 선택한다.</p>
-<br>
-<h3 id="Frequency">Frequency</h3>
-<p>PWM 신호 주파수를 설정한다. (LED의 경우 5000Hz의 주파수를 사용)</p>
-<br>
-<h3 id="Resolution">Resolution</h3>
-<p>해상도는 output을 위한 값의 범위를 지정하는데 사용하며, 1~16비트 범위에서 선택한다.</p>
-<ul>
-<li>만약 8비트 해상도를 사용한다면 0~255 사이의 dutyCycle 값을 사용하여 LED 밝기를 제어할 수 있다.</li>
-<li>10비트를 사용하면 0~1023범위,</li>
-<li>16비트로 사용한다면 0~65535 범위에서 세밀한 제어를 할 수 있도록 지정된다.</li>
-<li>참고: 아두이노 우노의 경우, analogWrite()의 해상도는 8비트, 즉 0~255로 고정되어 있다.</li>
-</ul>
-<br>
-<h3 id="GPIO">GPIO</h3>
-<p>신호가 표시 될 GPIO를 지정한다.</p>
-<br>
-<h3 id="코드-적용">코드 적용</h3>
-<p>이러한 설정은 void setup()에서 다음의 코드로 지정한다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">ledcAttachPin(ledPin, ledChannel);</span><br></pre></td></tr></table></figure>
-<br>
-<br>
-<h1 id="LED-Dimming">LED Dimming</h1>
-<br>
-<h2 id="schematic">schematic</h2>
-<p><img src="/image/esp32-pwm-04.png" alt=""></p>
-<br>
-<h2 id="sketch">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin = <span class="number">19</span>;  <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the channel to the GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(ledPin, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness (8bit 0~255)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<br>
-<h1 id="RGB-LED-Dimming">RGB LED Dimming</h1>
-<p>같은 channel에 있는 3개의 서로 다른 GPIO에는 같은 값의 signal을 줄 수 있다.</p>
-<br>
-<h2 id="schematic-v2">schematic</h2>
-<p><img src="/image/esp32-pwm-05.png" alt=""></p>
-<br>
-<h2 id="sketch-v2">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin = <span class="number">19</span>;  <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin2 = <span class="number">18</span>; <span class="comment">// corresponds to GPIO 18</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin3 = <span class="number">17</span>; <span class="comment">// corresponds to GPIO 17</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the same channel to the 3 GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(ledPin, ledChannel);</span><br><span class="line">  ledcAttachPin(ledPin2, ledChannel);</span><br><span class="line">  ledcAttachPin(ledPin3, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line">     </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<br>
-<h1 id="Servo-Motor-제어">Servo Motor 제어</h1>
-<p>서보모터는 보통 20ms의 주기를 갖는다. (단, RC용 서보모터의 경우 5ms의 주기를 갖기도 함) 20ms 주기에서 HIGH 펄스 폭이 갖는 시간에 따라 각도가 조절된다. 타이머의 PWM, 타이머 주기 조정, GPIO를 통해 반복구동 등의 방법을 통하여 구현할 수 있다.</p>
-<p>모터는 0º에서 180º까지 회전하는데 1초도 걸리지 않으므로, 만약 현재 0º의 위치에서 180º의 위치까지 이동시키려면, 위의 출력을 1초동안 지속해야한다. 이때 HIGH 펄스 폭은 정확히 맞추어야하며 주기는 약간의 오차가 있어도 된다.</p>
-<p><img src="/image/esp32-pwm-06.png" alt=""></p>
-<br>
-<h2 id="ESP32에서-Servo-Motor-제어하기">ESP32에서 Servo Motor 제어하기</h2>
-<ol>
-<li>ESP32는 16개의 PWM채널이 있으므로, 최대 16개의 서보모터를 동시에 제어할 수 있다.</li>
-<li>대부분의 서보모터는 위의 그림처럼 20ms가 1주기가 되므로, PWM frequency를 50Hz로 설정한다.</li>
-<li>20ms가 1주기이고, HIGH 펄스가 2ms 지속될 때 180º 회전을 한다.</li>
-<li>그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</li>
-<li>Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</li>
-<li>16비트 해상도에서 duty값에 따른 회전 각도
-<ul>
-<li>3277 → 0º</li>
-<li>4915 → 90º</li>
-<li>6554 → 180º</li>
-<li>duty = (deg × 18.2) + 3277</li>
-</ul>
-</li>
-</ol>
-<br>
-<h2 id="sketch-v3">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  ledcSetup(<span class="number">0</span>, <span class="number">50</span>, <span class="number">16</span>);    <span class="comment">// PWM CH0, Frequncy. 50 Hz, 16bit resolution</span></span><br><span class="line">  ledcAttach(<span class="number">19</span>, <span class="number">0</span>);       <span class="comment">// PWM CH0을 GPIO 19번으로 출력</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deg는 0~180도 까지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">servoWrite</span><span class="params">(<span class="keyword">int</span> ch, <span class="keyword">int</span> deg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> duty = deg*<span class="number">18.2</span> + <span class="number">3277</span>;</span><br><span class="line">  ledcWrite(ch, duty);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  servoWrite(<span class="number">0</span>, <span class="number">90</span>);   <span class="comment">// CH 0에 연결된 서보를 90도로</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/" data-id="ckfzmur9a001lx8kgg3zg0128" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP32-LED" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/19/ESP32-LED/" class="article-date">
-  <time datetime="2019-10-19T09:30:04.000Z" itemprop="datePublished">2019-10-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/ESP32-LED/">ESP32 LED</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Blink">Blink</h1>
-<br>
-<h2 id="회로도">회로도</h2>
-<p><img src="/image/esp32-led.png" alt=""></p>
-<table>
-<thead>
-<tr>
-<th>ESP32 GPIO</th>
-<th>19</th>
-<th>GND</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>저항</td>
-<td>150Ω</td>
-<td></td>
-</tr>
-<tr>
-<td>LED</td>
-<td>(+)극</td>
-<td>(-)극</td>
-</tr>
-</tbody>
-</table>
-<br>
-<h2 id="sketch">sketch</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RED_LED refers to ESP32 GPIO 19</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RED_LED 19</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the setup function runs once when you press reset or power the board</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// initialize digital pin ledPin as an output.</span></span><br><span class="line">  pinMode(RED_LED, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the loop function runs over and over again forever</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(RED_LED, HIGH);   <span class="comment">// turn the LED on (HIGH is the voltage level)</span></span><br><span class="line">  delay(<span class="number">1000</span>);                   <span class="comment">// wait for a second</span></span><br><span class="line">  digitalWrite(RED_LED, LOW);    <span class="comment">// turn the LED off by making the voltage LOW</span></span><br><span class="line">  delay(<span class="number">1000</span>);                   <span class="comment">// wait for a second</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/19/ESP32-LED/" data-id="ckfzmur98001ix8kgej3g2sbd" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP32-Arduino-IDE에서-사용하기" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="article-date">
-  <time datetime="2019-10-19T07:22:37.000Z" itemprop="datePublished">2019-10-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">ESP32를 Arduino IDE에서 사용하기</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ESP32를-Arduino-IDE에서-사용하기">ESP32를 Arduino IDE에서 사용하기</h1>
-<p>원문: <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/">https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/</a></p>
-<br>
-<h2 id="Driver-설치-처음-설치하는-경우">Driver 설치: 처음 설치하는 경우</h2>
-<p>ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를 사용한다. <a target="_blank" rel="noopener" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">제조사 홈페이지</a>에서 자신이 사용하는 OS에 알맞는 CP210x 드라이버를 다운받아 설치한다.</p>
-<br>
-<h2 id="Arduino-IDE-설정">Arduino IDE 설정</h2>
-<ol>
-<li>Arduino IDE에서 <strong>파일</strong>&gt; <strong>환경설정</strong>&gt; <strong>설정</strong> (<strong>File</strong>&gt; <strong>Preferences</strong>&gt; <strong>Settings</strong>)</li>
-</ol>
-<p><img src="/image/esp32-ide-01.jpg" alt=""></p>
-<br>
-<ul>
-<li>추가적인 보드 매니저 URLs에 아래 내용을 추가한다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;dl.espressif.com&#x2F;dl&#x2F;package_esp32_index.json</span><br></pre></td></tr></table></figure>
-<br>
-<ul>
-<li>ESP8266에 대한 URLs를 사용하고 있었다면, comma를 사용하여 구분하면 두가지를 모두 사용할 수 있다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;dl.espressif.com&#x2F;dl&#x2F;package_esp32_index.json, http:&#x2F;&#x2F;arduino.esp8266.com&#x2F;stable&#x2F;package_esp8266com_index.json</span><br></pre></td></tr></table></figure>
-<br>
-<ol start="2">
-<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; <strong>보드 매니저</strong>… <strong>Tools</strong>&gt; <strong>Board</strong>&gt; <strong>Board Manager</strong>…</li>
-</ol>
-<p><img src="/image/esp32-ide-02.jpg" alt=""></p>
-<br>
-<ol start="3">
-<li>보드 매니저에서 &quot;ESP32&quot;를 검색하여 설치 (혹은 업데이트)</li>
-</ol>
-<p><img src="/image/esp32-ide-03.jpg" alt=""></p>
-<br>
-<h2 id="Testing-Installation">Testing Installation</h2>
-<ol>
-<li>ESP32를 컴퓨터에 연결한 뒤, <strong>툴</strong>&gt; <strong>보드</strong> 에서 ESP32 Dev Module 선택</li>
-</ol>
-<p><img src="/image/esp32-ide-04.jpg" alt=""></p>
-<br>
-<ol start="2">
-<li><strong>툴</strong>&gt; <strong>포트</strong> 에서 포트 선택 (단, ESP32용 포트가 선택이 되지 않으면  <a target="_blank" rel="noopener" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP210x USB to UART Bridge VCP Drivers</a>를 설치하여야 한다. Windows, Mac 등 사용하고 있는 OS에 적합한 드라이버를 클릭하여 설치한다.</li>
-</ol>
-<br>
-<ol start="3">
-<li>예제 선택: <strong>파일</strong> &gt; <strong>예제</strong> &gt; <strong>WiFi (ESP32)</strong> &gt; <strong>WiFiScan</strong></li>
-</ol>
-<p><img src="/image/esp32-ide-05.png" alt=""></p>
-<p>※ 주의: ESP32보드를 연결한 상태에서만 위 예제를 선택할 수 있다.</p>
-<br>
-<ol start="4">
-<li><strong>업로드</strong></li>
-</ol>
-<p>아두이노에 비하여 업로드 시간이 많이 걸린다. &quot;업로드 완료&quot;라는 메세지가 나타날때까지 잠시 기다린다.</p>
-<p><img src="/image/esp32-ide-06.png" alt=""></p>
-<br>
-<ol start="5">
-<li>아두이노 IDE의 시리얼 모니터를 열고 Baud rate를 115200으로 설정하면 주변의 접속 가능한 WiFi의 SSID가 표시된다. 여기까지 진행이 되면 ESP32가 잘 설치된 것이다.</li>
-</ol>
-<p><img src="/image/esp32-ide-07.png" alt=""></p>
-<br>
-<h2 id="Troubleshooting">Troubleshooting</h2>
-<p>업로드시, &quot;A fatal error occurred: Failed to connect to ESP32: Timed out… Connecting…&quot;이라는 메세지가 나오면서 업로드가 진행되지 않는다면, 우선 IDE의 보드와 포트가 알맞게 선택되어 있는지 확인해본다. 그럼에도 문제가 해결되지 않는다면 아래의 방법을 따른다. (※상기 문제가 해결되어 나온 보드의 경우에는 관계없음)</p>
-<ul>
-<li>ESP32 보드에 있는 Boot버튼을 누른채로 업로드 버튼을 클릭하고, <strong>Connecting….</strong> 이라는 메세지가 나오면 Boot버튼에서 손가락을 뗀다.</li>
-<li>일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “<strong>ENABLE</strong>”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.</li>
-<li>이러한 문제를 해결하기 위해서는 ESP32보드의 <strong>EN핀</strong>과 <strong>GND</strong>를 10uF 컨덴서를 사용하여 연결해주면 된다.</li>
-</ul>
-<p><img src="/image/esp32-ide-08.png" alt="" width="400" height="364"></p>
-<br>
-<h2 id="Mac-OS-X-Linux">Mac OS X &amp; Linux</h2>
-<p>전체적인 설치방법은 Windows와 동일하다. 단, 첫번째 설치가 아닌 재설치 과정을 수행하는한 경우에는 다음의 과정을 통해 espressif폴더를 지운 후 설치과정을 시작하여야 한다.</p>
-<ol>
-<li><strong>Arduino</strong>&gt; <strong>Preferences</strong>&gt; <strong>Sketchbook Location</strong>에 표기되어 있는 폴더를 복사하여 해당 디렉토리로 진입한 후,</li>
-</ol>
-<p><img src="/image/esp32-ide-09.png" alt=""></p>
-<br>
-<ol start="2">
-<li><strong>Hardware</strong> 폴더 안에 있는 <strong>espressif</strong> 폴더를 삭제한다.</li>
-</ol>
-<br>
-<ol start="3">
-<li>이후 Windows 설치과정과 유사한 과정을 통해 ESP32를 설치한다.</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" data-id="ckfzmur920013x8kg2uok4pw8" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ESP-WROOM-32D-DevkitC-V4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/19/ESP-WROOM-32D-DevkitC-V4/" class="article-date">
-  <time datetime="2019-10-18T17:58:29.000Z" itemprop="datePublished">2019-10-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/ESP-WROOM-32D-DevkitC-V4/">ESP32-WROOM-32D DevkitC V4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ESP32-WROOM-32D-DevKitC-V4">ESP32-WROOM-32D-DevKitC V4</h1>
-<br>
-<h2 id="Pinout">Pinout</h2>
-<p><img src="/image/esp32-pinout.png" alt=""></p>
-<p><a href="/attach/ESP32-Pinout.hwp">핀아웃 다운로드</a></p>
-<br>
-<ul>
-<li>녹색핀: 사용에 적합한 핀</li>
-<li>노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
-<li>빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
-<li>보라색: Wifi사용시 사용불가한 analog핀</li>
-<li>GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
-<li>ADC: 0~3.3V (0~4095) (0~0.15V구간과 3.1~3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
-<li>I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
-<li>RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
-<li>Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
-<li>High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
-</ul>
-<br>
-<h2 id="Peripheral">Peripheral</h2>
-<p>ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI, PWM등의 기능은 어느 핀에 사용할지 결정해서 코드에서 지정해 줘야 한다. 소프트웨어에서 핀의 속성을 정의해 줄 수 있지만, 각 핀들은 디폴트로 지정되어 있는 기능들이 있다. (Pinout 참고)</p>
-<table>
-<thead>
-<tr>
-<th>Pheripheral</th>
-<th>ADC Channel</th>
-<th>SP</th>
-<th>UART</th>
-<th>I2C</th>
-<th>PWM</th>
-<th>DAC</th>
-<th>I2S</th>
-<th>Capacitive touch GPIO</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>개수</td>
-<td>18</td>
-<td>3</td>
-<td>3</td>
-<td>2</td>
-<td>16</td>
-<td>2</td>
-<td>2</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-<br>
-<h3 id="PWM-Pulse-Width-Modulation">PWM(Pulse Width Modulation)</h3>
-<p>ESP32는 16개의 독립적인 채널을 통해 각각 다른 속성의 PWM 신호를 만들 수 있다. 출력으로 사용할 수 있는 모든 핀은 PWM으로 사용할 수 있으며, GPIO 34~39는 Input only핀이므로 PWM으로 사용할 수 없다. PWM신호를 만들기 위해 코드상에 4개의 파라미터를 정해주어야 한다.</p>
-<ul>
-<li>Signal Frequency</li>
-<li>Duty Cycle</li>
-<li>PWM Channel</li>
-<li>신호를 출력할 GPIO핀</li>
-</ul>
-<br>
-<h3 id="I2C">I2C</h3>
-<p>I2C를 디폴트가 아닌 다른 핀을 사용할 경우,</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wire.begin(SDA, SCL);</span><br></pre></td></tr></table></figure>
-<br>
-<h3 id="Interrupts">Interrupts</h3>
-<p>모든 GPIO핀은 인터럽트로 사용할 수 있다.</p>
-<br>
-<h3 id="EN-Enable">EN (Enable)</h3>
-<p>풀업되어 있는 3.3V 레귤레이터의 enable 핀이다. GND에 연결하면 3.3V 레귤레이터가 비활성화된다. 이 핀을 푸쉬버튼에 연결하면 ESP32를 재시동하는데 사용할 수 있다.</p>
-<br>
-<h3 id="GPIO-Current-draw">GPIO Current draw</h3>
-<p>권장 동작 조건에 따라 GPIO마다 최대 40mA의 전류를 흘릴 수 있다.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/" data-id="ckfzmur8z000xx8kg0p7oarhw" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&amp;laquo; 이전</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">다음 &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">카테고리</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
-    </div>
   </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
-    </div>
-  </div>
 
+<script src="/js/book-post.js"></script>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그 클라우드</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">아카이브</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">최근 포스트</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/08/menu/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+        </div>
       </div>
-      <footer id="footer">
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 K. Jun Lee<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="K"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>K. Jun Lee</div>
+      <div></div>
     </div>
   </div>
-</footer>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/js/book-toc.js"></script>
+
+</div>
+      </div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
   </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
 </body>
 </html>
+
+
+<script src="/js/book.js"></script>

@@ -1,98 +1,146 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<html lang="ko">
 
-  
-  <title>Processing 기초 | STEM with</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Processing  processing.org 에서 다운로드 (다운로드 페이지) arduino sketch는 C++기반이고, processing sketch는 java기반입니다.   processing sketch 예제   예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력  12345678910111213141">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Processing 기초">
-<meta property="og:url" content="http://stemwith.github.io/2018/11/30/Processing-%EA%B8%B0%EC%B4%88/index.html">
-<meta property="og:site_name" content="STEM with">
-<meta property="og:description" content="Processing  processing.org 에서 다운로드 (다운로드 페이지) arduino sketch는 C++기반이고, processing sketch는 java기반입니다.   processing sketch 예제   예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력  12345678910111213141">
-<meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2018-11-30T10:27:53.000Z">
-<meta property="article:modified_time" content="2019-11-12T06:58:11.133Z">
-<meta property="article:author" content="K. Jun Lee">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.png" />
+    
+
+    <title>
+        
+          Processing 기초 - STEM with
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-151970975-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">STEM with</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
-      </div>
-    </div>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/">
+    <img src="/favicon.png">
+    <span>STEM WITH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <p>de la Cruz a la fecha<br>
+<br></p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/categories/Arduino">Arduino</a></li>
+<li><a href="/categories/ESP32">ESP32</a></li>
+<li><a href="/categories/Science">ScienceEx</a></li>
+<li><a href="/tags/IoT">Blynk, IoT</a></li>
+<li><a href="/categories/Drone/">Drone</a></li>
+<li><a href="/tags/RC">RC</a></li>
+<li><a href="/categories/excel/">Excel, Office</a></li>
+<li><a href="/categories/DIY/">Do It Yourself</a></li>
+</ul>
+
+</div>
+
+
+<script src="/js/book-menu.js"></script>
+
   </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-Processing-기초" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/30/Processing-%EA%B8%B0%EC%B4%88/" class="article-date">
-  <time datetime="2018-11-30T10:27:53.000Z" itemprop="datePublished">2018-11-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Processing 기초
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Processing">Processing</h1>
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Processing">Processing</h1>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://processing.org">processing.org</a> 에서 다운로드 (<a target="_blank" rel="noopener" href="https://processing.org/download/">다운로드 페이지</a>)</li>
 <li>arduino sketch는 C++기반이고, processing sketch는 java기반입니다.</li>
@@ -173,151 +221,84 @@
 <h2 id="processing-sketch-그라데이션-가변저항">processing sketch : 그라데이션 가변저항</h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cc.arduino.*;</span><br><span class="line"><span class="keyword">import</span> org.firmata.*;</span><br><span class="line"><span class="keyword">import</span> processing.serial.*;</span><br><span class="line"></span><br><span class="line">Arduino arduino;</span><br><span class="line"><span class="keyword">int</span> ledPin = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;width; i++) &#123;</span><br><span class="line">    stroke(map(i, <span class="number">0</span>, width-<span class="number">1</span>, <span class="number">0</span>, <span class="number">255</span>)); <span class="comment">// 색깔을 점차 변화시키면서</span></span><br><span class="line">    line(i, <span class="number">0</span>, i, height);              <span class="comment">// 선을 그려, 그라데이션 효과를 만들어 냄</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  println(Arduino.list());</span><br><span class="line">  arduino = <span class="keyword">new</span> Arduino(<span class="keyword">this</span>, Arduino.list()[<span class="number">0</span>], <span class="number">57600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  arduino.analogWrite(ledPin, <span class="keyword">int</span>(map(mouseX, <span class="number">0</span>, width-<span class="number">1</span>, <span class="number">0</span>, <span class="number">255</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://stemwith.github.io/2018/11/30/Processing-%EA%B8%B0%EC%B4%88/" data-id="ckfzmur9b001nx8kg0agnhqu4" class="article-share-link">공유</a>
-      
-      
-    </footer>
-  </div>
-  
+</div>
+
+
+  <div class="book-comments">
     
-<nav id="article-nav">
-  
-    <a href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">최신</strong>
-      <div class="article-nav-title">
-        
-          hexo를 이용하여 Github에 블로그 만들기
-        
+
+
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
       </div>
-    </a>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
   
-  
-    <a href="/2018/11/01/%EB%93%9C%EB%A1%A0%EC%9D%98-%EB%B9%84%ED%96%89-%EC%9B%90%EB%A6%AC/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">이전</strong>
-      <div class="article-nav-title">드론의 비행 원리</div>
-    </a>
-  
-</nav>
+    <div class="book-post-meta">
 
-  
-</article>
+  <div class="author">
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">카테고리</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="K"
+          style="background-color: #3b4351;">
+        </figure>
+      
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">태그 클라우드</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    <!-- Author title -->
+    <div class="author-title">
+      <div>K. Jun Lee</div>
+      <div>2018-11-30</div>
     </div>
   </div>
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">아카이브</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/categories/Arduino/">Arduino</a>
+
+      
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">최근 포스트</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/08/menu/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/08/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
   
-</aside>
-        
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/js/book-toc.js"></script>
+
+</div>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 K. Jun Lee<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>
+
+
+<script src="/js/book.js"></script>
