@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Arduino, 라인트레이서, L298N | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="라인트레이서 만들기 검은색 라인을 따라 움직이는 라인트레이서 자동차를 만들어보겠습니다.  TCRT5000 IR reflective sensor 라인트레이서 제작시 가장 널리 사용되는 IR 센서입니다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용합니다.   장애물이 없는 경우">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino, 라인트레이서, L298N">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/28/Arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-L298N/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="라인트레이서 만들기 검은색 라인을 따라 움직이는 라인트레이서 자동차를 만들어보겠습니다.  TCRT5000 IR reflective sensor 라인트레이서 제작시 가장 널리 사용되는 IR 센서입니다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용합니다.   장애물이 없는 경우">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/tcrt5000.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-02.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-05.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-06.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-07.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-08.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-09.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-10.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-11.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-12.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-13.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-14.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-15.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-16.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-17.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-18.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-19.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-20.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-21.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-22.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-23.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-24.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-25.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-26.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-27.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-28.png">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-29.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/LT-30.png">
+<meta property="article:published_time" content="2019-10-28T14:48:56.000Z">
+<meta property="article:modified_time" content="2019-11-29T02:39:52.568Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta property="article:tag" content="RC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/LT-03.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Arduino-라인트레이서-L298N" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/28/Arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-L298N/" class="article-date">
+  <time datetime="2019-10-28T14:48:56.000Z" itemprop="datePublished">2019-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Arduino, 라인트레이서, L298N
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="라인트레이서-만들기">라인트레이서 만들기</h1>
+<p>검은색 라인을 따라 움직이는 라인트레이서 자동차를 만들어보겠습니다.</p>
+<br>
+<h2 id="TCRT5000-IR-reflective-sensor">TCRT5000 IR reflective sensor</h2>
+<p>라인트레이서 제작시 가장 널리 사용되는 IR 센서입니다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용합니다.</p>
+<p><img src="/image/LT-03.png" alt=""></p>
+<ul>
+<li>장애물이 없는 경우: 1 반환</li>
+<li>센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
+<li>센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
+<li>검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
+<li>10~12mm 정도의 거리에서 측정하는 것을 추천</li>
+<li>AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
+</ul>
+<blockquote>
+<p>(위 스펙과는 별도로) 라인트레이서 제작시에는 경험상 센서가 바닥면으로부터 2cm정도 떨어지도록 설치하는 것을 추천합니다.</p>
+</blockquote>
+<br>
+<h3 id="schematic">schematic</h3>
+<p><img src="/image/tcrt5000.png" alt=""></p>
+<br>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> pin_sensor = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  pinMode(pin_sensor, INPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	i = digitalRead(pin_sensor)</span><br><span class="line">    Serial.println(i);                 <span class="comment">// 검은색(1), 밝은색(0) 출력</span></span><br><span class="line">    delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h2 id="모터드라이버-L298N">모터드라이버 L298N</h2>
+<p>자동차 구동에 있어 가장 중요한 것이 모터일 것입니다. 그런데, 대부분의 모터는 구동을 위한 전력값이 커서 아두이노의 자체 출력으로는 구동이 불가능합니다. 그러므로 건전지, SMPS 등의 외부 전원을 사용하여 모터에 충분한 전력을 공급하고, 이를 제어하기위한 모터드라이버를 반드시 사용해야 합니다.</p>
+<p>많은 종류의 모터드라이버가 있으나, 아두이노에서 사용하는 대표적인 모터드라이브는 L298N, TB6612FNG 등이 있으며, 여기서는 2CH의 2A출력이 가능한 L298N을 사용하여 간단한 라인트레이서를 제작해보겠습니다.</p>
+<p><img src="/image/LT-01.png" alt="" width="638" height="550"></p>
+<br>
+<h3 id="Pinout">Pinout</h3>
+<ul>
+<li>
+<p>모터A 출력 : 왼쪽 모터를 연결한다.</p>
+</li>
+<li>
+<p>모터B 출력 : 오른쪽 모터를 연결한다.</p>
+</li>
+<li>
+<p>12V (입력) : 외부전원을 입력한다. (5~35V)</p>
+<ul>
+<li>12V 이상의 외부전원을 입력하는 경우, 레귤레이터 보호를 위해 5V 점퍼선을 제거해야 함</li>
+</ul>
+</li>
+<li>
+<p>5V (입력/출력)</p>
+<ul>
+<li>점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
+<li>점퍼핀 없는 경우 5V 입력을 통해 L298N에 전원 인가</li>
+</ul>
+</li>
+<li>
+<p>Enable 모터A : 왼쪽 모터 PWM (점퍼를 제거하고, INPUT핀 양옆의 핀에 PWM신호 입력)</p>
+</li>
+<li>
+<p>Enable 모터B : 오른쪽 모터 PWM (점퍼를 제거하고, INPUT핀 양옆의 핀에 PWM신호 입력)</p>
+</li>
+<li>
+<p>PWM을 사용하는 경우 모터에 인가하는 전원이 6V(AA*4개)인 경우 PWM값이 낮으면 모터가 회전하지 않으므로 코딩시 주의한다.</p>
+</li>
+<li>
+<p>INPUT : IN1, IN2, IN3, IN4</p>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>IN1</th>
+<th>IN2</th>
+<th>IN3</th>
+<th>IN4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go</td>
+<td>HIGH</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Back</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Brake</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Left_Turn</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Right_Turn</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Left_Back_Turn</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Right_Back_Turm</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<br>
+<h3 id="Jumper">Jumper</h3>
+<ul>
+<li>Enable 모터A
+<ul>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+</ul>
+</li>
+<li>Enable 모터B
+<ul>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+</ul>
+</li>
+<li>5V (※ Pinout의 5V 부분 참고)</li>
+</ul>
+<br>
+<h2 id="전원">전원</h2>
+<ul>
+<li>대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
+<li>But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 불가능합니다.</li>
+<li>AA건전지 6개를 직렬로 연결하여 9V정도를 공급하는 것을 추천하며 (사용시간 10~15분정도 가능)</li>
+<li>18650 리튬이온전지 2개를 연결하여 7.4V를 공급하면 가장 좋습니다.</li>
+</ul>
+<br>
+<h2 id="모터">모터</h2>
+<p>아두이노 기초 실습용으로 많이 쓰이는 이름없는 중국산 모터입니다.</p>
+<p><img src="/image/LT-02.jpg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>기어비 48:1</th>
+<th>RPM(무부하)</th>
+<th>전류 mA (무부하)</th>
+<th>토크(kg·cm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3V</td>
+<td>120</td>
+<td>40</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>6V</td>
+<td>240</td>
+<td>70</td>
+<td>5.5</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<h1 id="프레임-조립">프레임 조립</h1>
+<br>
+<h2 id="준비물">준비물</h2>
+<p><img src="/image/LT-04.png" alt=""></p>
+<br>
+<h2 id="조립과정">조립과정</h2>
+<ol>
+<li>모터 4개와 M-F형태의 8가닥 리드선을 준비하고 모터에 리드선을 납땜할 준비를 합니다.</li>
+</ol>
+<p><img src="/image/LT-05.jpg" alt=""></p>
+<br>
+<ol start="2">
+<li>DC모터를 보면 양쪽에 (+)(-)극을 연결하는 단자가 있습니다.</li>
+</ol>
+<p><img src="/image/LT-06.jpg" alt=""></p>
+<br>
+<ol start="3">
+<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1/2의 길이만큼 나누어 준비한뒤,</li>
+</ol>
+<p><img src="/image/LT-07.jpg" alt=""></p>
+<br>
+<ol start="4">
+<li>2개의 가닥 중 한 부분을 모터의 (+)(-)단자에 끼우고,</li>
+</ol>
+<p><img src="/image/LT-08.jpg" alt=""></p>
+<br>
+<ol start="5">
+<li>각각을 납땜합니다. 총 4개의 모터를 납땜하여 아래 모습처럼 만듭니다.</li>
+</ol>
+<p><img src="/image/LT-09.jpg" alt=""></p>
+<br>
+<p>※ (주의) 납땜시, 아래 그림처럼 리드선이 모터의 본체에 닿으면 안됩니다.</p>
+<p><img src="/image/LT-10.jpg" alt=""></p>
+<br>
+<p>​     처음 납땜할 때부터 닿지 않도록 하는 것이 좋지만, 납땜을 이미 진행한 후에 리드선이 본체에 닿아 있다면 아래의 그림처럼 끝 부분을 살짝 휘어두거나, 니퍼로 잘라내도록 합니다.</p>
+<p><img src="/image/LT-11.jpg" alt=""></p>
+<br>
+<ol start="6">
+<li>외부 전원으로 사용할 건전지소켓을 준비합니다. (사진상에는 1.5V AA건전지 4개가 직렬로 연결되는 건전지소켓을 사용하였지만, 4개의 모터를 구동하기 위해서는 1.5V AA건전지를 6개 직렬로 연결하여 9V 전압을 사용하는 것을 추천합니다. 단, 9V사각전지(6F22) 1개로 사용하는 것은 전류가 약하므로 사용불가!)</li>
+</ol>
+<p><img src="/image/LT-12.jpg" alt=""></p>
+<br>
+<p>​    건전지소켓에 나와있는 리드선의 끝부분을 스트리퍼를 사용하여 피복을 조금더 벗겨냅니다. 또한 빨간색과 검은색 점퍼선 2개를 별로로 준비한뒤, 한쪽 단자를 잘라내고, 스트리퍼로 피복을 벗겨냅니다.</p>
+<br>
+<ol start="7">
+<li>건전지소켓의 리드선과 점퍼선을 붙여 떨어지지 않도록 단단히 납땜한 후,</li>
+</ol>
+<p><img src="/image/LT-13.jpg" alt=""></p>
+<br>
+<ol start="8">
+<li>합선되지 않도록 절연테이프나 열수축튜브로 각각을 잘 감싸둡니다.</li>
+</ol>
+<p><img src="/image/LT-14.jpg" alt=""></p>
+<br>
+<ol start="9">
+<li>이제 아크릴판을 준비합니다.</li>
+</ol>
+<p><img src="/image/LT-15.jpg" alt=""></p>
+<br>
+<ol start="10">
+<li>아래 그림의 Step1~2과정과 같이 모터를 고정할 아크릴 조각을 끼울 것입니다.</li>
+</ol>
+<p><img src="/image/LT-16.png" alt=""></p>
+<br>
+<p>​    우선, 모터를 고정할 아크릴 조각 2개를 고정할 위치를 확인합니다. 총 4개의 모터를 고정할 것이므로 아크릴 조각 8개가 필요합니다.</p>
+<p><img src="/image/LT-17.jpg" alt=""></p>
+<br>
+<ol start="11">
+<li>모터고정 아크릴 조각을 아래 사진처럼 끼웁니다. 하나는 구멍에 집어 넣고, 나머지 하나는 측면의 홈에 살짝 걸쳐둡니다.</li>
+</ol>
+<p><img src="/image/LT-18.jpg" alt=""></p>
+<br>
+<ol start="12">
+<li>이제 모터를 설치하겠습니다.</li>
+</ol>
+<p><img src="/image/LT-19.png" alt=""></p>
+<br>
+<p><img src="/image/LT-20.png" alt=""></p>
+<br>
+<p>​    나사와 너트를 2개씩 준비한 후</p>
+<p><img src="/image/LT-21.jpg" alt=""></p>
+<br>
+<p>​    아크릴 조각 2개 사이에 모터를 위치시킨 후, 모터 몸체이 있는 나사 구멍에 나사 2개를 통과시켜</p>
+<p><img src="/image/LT-22.jpg" alt=""></p>
+<br>
+<p>​    아래 사진 같이 고정합니다.</p>
+<p><img src="/image/LT-23.jpg" alt=""></p>
+<br>
+<p>13. 모터를 고정한 후, 바퀴축의 안쪽 부분에 바퀴의 균형을 잡아줄 동그란 아크릴 조각을 끼워줍니다.</p>
+<p><img src="/image/LT-24.jpg" alt=""></p>
+<br>
+<p>​     4개의 모터를 같은 방법으로 고정시켜 아래와 같은 형태를 만듭니다. 주의할 것은 모터의 단자가 위치한 은색부분의 모터본체 부분이 서로 맞닿는 형태로 조립을 해야 합니다.</p>
+<p><img src="/image/LT-25.jpg" alt=""></p>
+<br>
+<ol start="14">
+<li>바퀴를 끼웁니다.</li>
+</ol>
+<p><img src="/image/LT-26.png" alt=""></p>
+<br>
+<ol start="15">
+<li>금속기둥을 세우고 상판을 덮습니다. (아크릴상판이 없는 경우는 생략 가능)</li>
+</ol>
+<p><img src="/image/LT-27.png" alt=""></p>
+<br>
+<p><img src="/image/LT-28.png" alt=""></p>
+<br>
+<ol start="16">
+<li>기판 아래면에 모터가 위치하도록 위아래를 뒤집은 후에, 기판 윗면에 TCRT5000 IR Reflective Sensor, 아두이노, 브레드보드, L298N 모터드라이브, 9V 전지소켓을 차례대로 올리고 나사볼트와 절연테이프 등으로 고정합니다. 대략 아래 사진과 비슷하게 고정하면 됩니다.</li>
+</ol>
+<p><img src="/image/LT-29.jpg" alt=""></p>
+<br>
+<h2 id="아두이노와의-연결">아두이노와의 연결</h2>
+<br>
+<h3 id="schematic-v2">schematic</h3>
+<p><img src="/image/LT-30.png" alt=""></p>
+<br>
+<h3 id="회로연결">회로연결</h3>
+<br>
+<h4 id="모터-↔-모터드라이버">모터 ↔ 모터드라이버</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>L/F 모터 U단자</th>
+<th>L/F 모터 D단자</th>
+<th>L/R 모터 U단자</th>
+<th>L/R 모터 D단자</th>
+<th>R/F 모터 U단자</th>
+<th>R/F 모터 D단자</th>
+<th>R/R 모터 U단자</th>
+<th>R/R모터 D단자</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L298N OUT1</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L298N OUT2</td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L298N OUT3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+</tr>
+<tr>
+<td>L298N OUT4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="모터드라이버-↔-전지소켓-↔-아두이노">모터드라이버 ↔ 전지소켓 ↔ 아두이노</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>전지소켓 (+)</th>
+<th>전지소켓(-)</th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L298N 12V</td>
+<td>○</td>
+<td></td>
+<td>Vin</td>
+</tr>
+<tr>
+<td>L298N GND</td>
+<td></td>
+<td>GND (아두이노)</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>L298N 5V</td>
+<td></td>
+<td></td>
+<td>5V</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="모터드라이브-ENABLE-INPUT-↔-아두이노">모터드라이브 ENABLE &amp; INPUT ↔ 아두이노</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L298N EN(A)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>L298N IN1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>L298N IN2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>L298N IN3</td>
+<td>10</td>
+</tr>
+<tr>
+<td>L298N IN4</td>
+<td>11</td>
+</tr>
+<tr>
+<td>L298N EN(B)</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="TCRT5000-Sensor-↔-아두이노">TCRT5000 Sensor ↔ 아두이노</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#1 TCRT5000 VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 DO</td>
+<td>2</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 AO</td>
+<td>–</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 DO</td>
+<td>3</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 AO</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="sketch-v2">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* L298N - 2CH Motor Driver</span></span><br><span class="line"><span class="comment">Direction         IN1    IN2    IN3    IN4</span></span><br><span class="line"><span class="comment">-------------------------------------------</span></span><br><span class="line"><span class="comment">GO                HIGH   HIGH   LOW    LOW</span></span><br><span class="line"><span class="comment">BACK              LOW    LOW    HIGH   HIGH</span></span><br><span class="line"><span class="comment">BRAKE             LOW    LOW    LOW    LOW</span></span><br><span class="line"><span class="comment">LEFT_TURN         HIGH   LOW    LOW    LOW</span></span><br><span class="line"><span class="comment">RIGHT_TURN        LOW    HIGH   LOW    LOW</span></span><br><span class="line"><span class="comment">LEFT_BACK_TURN    LOW    LOW    HIGH   LOW</span></span><br><span class="line"><span class="comment">RIGHT_BACK_TURN   LOW    LOW    LOW    HIGH</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PWM: 6V시 최소값 200이상은 되야 바퀴회전 가능 (너무 낮은 전압에서 회전 안됨)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_전진컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_motor_IN1 = <span class="number">8</span>;       <span class="comment">// IN1</span></span><br><span class="line"><span class="keyword">int</span> Right_motor_IN2 = <span class="number">9</span>;      <span class="comment">// IN2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_후진컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_motor_IN3 = <span class="number">10</span>;      <span class="comment">// IN3</span></span><br><span class="line"><span class="keyword">int</span> Right_motor_IN4 = <span class="number">11</span>;     <span class="comment">// IN4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_속도컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_PWM = <span class="number">5</span>;               <span class="comment">// 왼쪽모터 속도</span></span><br><span class="line"><span class="keyword">int</span> Right_PWM = <span class="number">6</span>;              <span class="comment">// 오른쪽모터 속도</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// IR Sensor</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Left_Sensor = <span class="number">2</span>;    <span class="comment">// 왼쪽센서</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Right_Sensor = <span class="number">3</span>;   <span class="comment">// 오른쪽센서</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Left_Sensor_Value;        <span class="comment">// 검은색:1</span></span><br><span class="line"><span class="keyword">int</span> Right_Sensor_Value;       <span class="comment">// 흰색:0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  pinMode(Left_motor_IN1, OUTPUT);      <span class="comment">// PIN 8</span></span><br><span class="line">  pinMode(Right_motor_IN2, OUTPUT);     <span class="comment">// PIN 9</span></span><br><span class="line">  </span><br><span class="line">  pinMode(Left_motor_IN3, OUTPUT);      <span class="comment">// PIN 10</span></span><br><span class="line">  pinMode(Right_motor_IN4, OUTPUT);     <span class="comment">// PIN 11</span></span><br><span class="line"></span><br><span class="line">  pinMode(Left_PWM, OUTPUT);            <span class="comment">// PIN 5</span></span><br><span class="line">  pinMode(Right_PWM, OUTPUT);           <span class="comment">// PIN 6</span></span><br><span class="line">  </span><br><span class="line">  pinMode(Left_Sensor, INPUT);          <span class="comment">// 왼쪽센서</span></span><br><span class="line">  pinMode(Right_Sensor, INPUT);         <span class="comment">// 오른쪽센서</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 전진</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, HIGH);   <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, HIGH);  <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_회전</span></span><br><span class="line">  </span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);          <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 후진</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">back</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, HIGH);   <span class="comment">// 왼쪽모터   후진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, HIGH);  <span class="comment">// 오른쪽모터 후진_회전</span></span><br><span class="line">  </span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);          <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 정지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">brake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line">  delay(<span class="number">5</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 좌회전</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_left</span><span class="params">()</span></span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, HIGH);  <span class="comment">// 오론쪽모터 전진_회전</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line"></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 우회전</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, HIGH);   <span class="comment">// 왼쪽모터   전진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line"></span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//신호가 있으면(흰색) LOW,  신호가 없으면(검은색) HIGH</span></span><br><span class="line">  Right_Sensor_Value = digitalRead(Right_Sensor);</span><br><span class="line">  Left_Sensor_Value = digitalRead(Left_Sensor);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 전진: 왼쪽센서 검은색, 오른쪽센서 검은색</span></span><br><span class="line">  <span class="keyword">if</span> (Left_Sensor_Value == HIGH &amp;&amp; Right_Sensor_Value == HIGH)</span><br><span class="line">    go();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 좌회전: 왼쪽센서 검은색, 오른쪽센서 흰색</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (Left_Sensor_Value == HIGH &amp; Right_Sensor_Value == LOW)</span><br><span class="line">    turn_left();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 우회전: 왼쪽센서 흰색, 오른쪽센서 검은색</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (Left_Sensor_Value == LOW &amp; Right_Sensor_Value == HIGH) </span><br><span class="line">    turn_right();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 정지: 왼쪽센서 흰색, 오른쪽센서 흰색</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    brake();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="센서-감도-조정">센서 감도 조정</h3>
+<ul>
+<li>센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/28/Arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-L298N/" data-id="ckfzmur8q000gx8kg70yq2jcj" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/29/DC%EB%AA%A8%ED%84%B0-4WD-%EC%9E%90%EB%8F%99%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          DC모터 4WD 자동차 만들기 (TB6612FNG)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, Bluetooth 페어링</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

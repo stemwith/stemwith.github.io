@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ESP32 BLE, Blynk Gauge | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ESP32에서 Blynk로 센서값 보내기 Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)  ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다. 새로운 프로젝트">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32 BLE, Blynk Gauge">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/23/ESP32-BLE-Blynk-Gauge/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="ESP32에서 Blynk로 센서값 보내기 Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)  ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다. 새로운 프로젝트">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-09.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-10.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-11.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-12.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-13.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-14.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-15.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-16.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-17.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-18.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-19.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-adc-20.png">
+<meta property="article:published_time" content="2019-10-23T13:33:48.000Z">
+<meta property="article:modified_time" content="2019-11-13T12:24:08.896Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/blynk-adc-01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ESP32-BLE-Blynk-Gauge" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/23/ESP32-BLE-Blynk-Gauge/" class="article-date">
+  <time datetime="2019-10-23T13:33:48.000Z" itemprop="datePublished">2019-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP32 BLE, Blynk Gauge
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ESP32에서-Blynk로-센서값-보내기">ESP32에서 Blynk로 센서값 보내기</h1>
+<p>Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)</p>
+<ul>
+<li>ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
+<li>새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
+</ul>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/blynk-adc-01.png" alt=""></p>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;WUAeS6P57T3XNaIGyLK1-OUv........&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Potentiometer Pin</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIN_POTENTIOMETER A0                       <span class="comment">// Potentiometer GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resist, Voltage</span></span><br><span class="line"><span class="keyword">int</span> value_Potentiometer; </span><br><span class="line"><span class="keyword">int</span> value_R;</span><br><span class="line"><span class="keyword">float</span> value_V;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  value_Potentiometer = analogRead(PIN_POTENTIOMETER);  <span class="comment">// 12bit ADC (0~4095)</span></span><br><span class="line">  value_V = <span class="built_in">map</span>(value_Potentiometer, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">3300</span>, <span class="number">0</span>); <span class="comment">// 0~3300mV</span></span><br><span class="line">  value_R = <span class="built_in">map</span>(value_V, <span class="number">0</span>, <span class="number">3300</span>, <span class="number">10000</span>, <span class="number">0</span>);            <span class="comment">// 0~10kΩ</span></span><br><span class="line">  </span><br><span class="line">  Blynk.run();</span><br><span class="line">  </span><br><span class="line">  Serial.print(<span class="string">&quot;Resist : &quot;</span>); Serial.print(value_R); Serial.println(<span class="string">&quot;Ω&quot;</span>);</span><br><span class="line">  Serial.print(<span class="string">&quot;Voltage: &quot;</span>); Serial.print(value_V); Serial.println(<span class="string">&quot;mV&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V1)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V1, value_R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V2)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V2, value_V);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
+<li>Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
+</ul>
+<br>
+<h2 id="Blynk-설정">Blynk 설정</h2>
+<ol>
+<li>새로운 프로젝트를 생성한다.
+<ul>
+<li>NAME : ESP32_Potentiometer</li>
+<li>CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>CONNECTION TYPE : BLE</li>
+</ul>
+</li>
+</ol>
+<p><img src="/image/blynk-adc-02.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="2">
+<li>이메일로 발송된 토큰을 복사한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-03.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="3">
+<li>+버튼을 눌러 위젯을 추가할 수 있는 화면으로 진입한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-04.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="4">
+<li>먼저 BLE 위젯을 선택하여 ESP32와 Blynk간의 통신 방법을 지정한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-05.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="5">
+<li>블루투스 모양의 위젯 버튼을 눌러 Blynk와의 통신을 준비한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-06.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="6">
+<li>Connect BLE device</li>
+</ol>
+<p><img src="/image/blynk-adc-07.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="7">
+<li>연결하고자 하는 BLE 장비를 선택하면,</li>
+</ol>
+<p><img src="/image/blynk-adc-08.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="8">
+<li>연결 확인!</li>
+</ol>
+<p><img src="/image/blynk-adc-09.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="9">
+<li>+버튼을 눌러 출력 위젯 2개를 추가한다. (Gauge, Labeled value)</li>
+</ol>
+<p><img src="/image/blynk-adc-10.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="10">
+<li>먼저 Gauge 위젯을 선택한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-11.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="11">
+<li>Gauge 위젯이 추가되면 육각형 모양의 아이콘을 눌러 GAUGE Setting 화면으로 진입한다.</li>
+</ol>
+<p><img src="/image/blynk-adc-12.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-adc-13.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="12">
+<li>설정화면에서 다음 4가지를 설정한다.
+<ul>
+<li>NAME : 저항</li>
+<li>INPUT : V1, 0~1000</li>
+<li>LABEL : (단위를 표시하기 위해) x10 Ohm 을 적는다.</li>
+<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
+</ul>
+</li>
+</ol>
+<p><img src="/image/blynk-adc-14.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="13">
+<li>Labeled Value 위젯을 추가하고, 다음과 같이 설정한다.
+<ul>
+<li>NAME : 저항</li>
+<li>INPUT : V2, 0~3300</li>
+<li>LABEL : (단위를 표시하기 위해) mV 를 적는다.</li>
+<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
+</ul>
+</li>
+</ol>
+<p><img src="/image/blynk-adc-15.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="14">
+<li>상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p><img src="/image/blynk-adc-16.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="15">
+<li>여기서 플레이버튼을 누르면,</li>
+</ol>
+<p><img src="/image/blynk-adc-17.png" alt="" width="432" height="768"></p>
+<br>
+<p>저항과 전압의 측정이 시작된다. (시리얼 모니터에서도 관찰 가능)</p>
+<p><img src="/image/blynk-adc-18.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-adc-19.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="16">
+<li>가변 저항을 돌릴 때마다 저항과 전압이 바뀐다.</li>
+</ol>
+<p><img src="/image/blynk-adc-20.png" alt="" width="432" height="768"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/23/ESP32-BLE-Blynk-Gauge/" data-id="ckfzmur95001bx8kgdcwxczbl" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Arduino, Bluetooth 페어링
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">ESP32 BLE, Blynk Slider (PWM)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

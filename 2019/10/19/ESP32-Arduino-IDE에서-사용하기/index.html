@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ESP32를 Arduino IDE에서 사용하기 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ESP32를 Arduino IDE에서 사용하기 원문: https:&#x2F;&#x2F;randomnerdtutorials.com&#x2F;installing-the-esp32-board-in-arduino-ide-windows-instructions&#x2F;  Driver 설치: 처음 설치하는 경우 ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32를 Arduino IDE에서 사용하기">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="ESP32를 Arduino IDE에서 사용하기 원문: https:&#x2F;&#x2F;randomnerdtutorials.com&#x2F;installing-the-esp32-board-in-arduino-ide-windows-instructions&#x2F;  Driver 설치: 처음 설치하는 경우 ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-01.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-02.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-03.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-04.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-ide-09.png">
+<meta property="article:published_time" content="2019-10-19T07:22:37.000Z">
+<meta property="article:modified_time" content="2020-10-04T04:38:39.895Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/esp32-ide-01.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ESP32-Arduino-IDE에서-사용하기" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="article-date">
+  <time datetime="2019-10-19T07:22:37.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP32를 Arduino IDE에서 사용하기
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ESP32를-Arduino-IDE에서-사용하기">ESP32를 Arduino IDE에서 사용하기</h1>
+<p>원문: <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/">https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/</a></p>
+<br>
+<h2 id="Driver-설치-처음-설치하는-경우">Driver 설치: 처음 설치하는 경우</h2>
+<p>ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를 사용한다. <a target="_blank" rel="noopener" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">제조사 홈페이지</a>에서 자신이 사용하는 OS에 알맞는 CP210x 드라이버를 다운받아 설치한다.</p>
+<br>
+<h2 id="Arduino-IDE-설정">Arduino IDE 설정</h2>
+<ol>
+<li>Arduino IDE에서 <strong>파일</strong>&gt; <strong>환경설정</strong>&gt; <strong>설정</strong> (<strong>File</strong>&gt; <strong>Preferences</strong>&gt; <strong>Settings</strong>)</li>
+</ol>
+<p><img src="/image/esp32-ide-01.jpg" alt=""></p>
+<br>
+<ul>
+<li>추가적인 보드 매니저 URLs에 아래 내용을 추가한다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;dl.espressif.com&#x2F;dl&#x2F;package_esp32_index.json</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>ESP8266에 대한 URLs를 사용하고 있었다면, comma를 사용하여 구분하면 두가지를 모두 사용할 수 있다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;dl.espressif.com&#x2F;dl&#x2F;package_esp32_index.json, http:&#x2F;&#x2F;arduino.esp8266.com&#x2F;stable&#x2F;package_esp8266com_index.json</span><br></pre></td></tr></table></figure>
+<br>
+<ol start="2">
+<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; <strong>보드 매니저</strong>… <strong>Tools</strong>&gt; <strong>Board</strong>&gt; <strong>Board Manager</strong>…</li>
+</ol>
+<p><img src="/image/esp32-ide-02.jpg" alt=""></p>
+<br>
+<ol start="3">
+<li>보드 매니저에서 &quot;ESP32&quot;를 검색하여 설치 (혹은 업데이트)</li>
+</ol>
+<p><img src="/image/esp32-ide-03.jpg" alt=""></p>
+<br>
+<h2 id="Testing-Installation">Testing Installation</h2>
+<ol>
+<li>ESP32를 컴퓨터에 연결한 뒤, <strong>툴</strong>&gt; <strong>보드</strong> 에서 ESP32 Dev Module 선택</li>
+</ol>
+<p><img src="/image/esp32-ide-04.jpg" alt=""></p>
+<br>
+<ol start="2">
+<li><strong>툴</strong>&gt; <strong>포트</strong> 에서 포트 선택 (단, ESP32용 포트가 선택이 되지 않으면  <a target="_blank" rel="noopener" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP210x USB to UART Bridge VCP Drivers</a>를 설치하여야 한다. Windows, Mac 등 사용하고 있는 OS에 적합한 드라이버를 클릭하여 설치한다.</li>
+</ol>
+<br>
+<ol start="3">
+<li>예제 선택: <strong>파일</strong> &gt; <strong>예제</strong> &gt; <strong>WiFi (ESP32)</strong> &gt; <strong>WiFiScan</strong></li>
+</ol>
+<p><img src="/image/esp32-ide-05.png" alt=""></p>
+<p>※ 주의: ESP32보드를 연결한 상태에서만 위 예제를 선택할 수 있다.</p>
+<br>
+<ol start="4">
+<li><strong>업로드</strong></li>
+</ol>
+<p>아두이노에 비하여 업로드 시간이 많이 걸린다. &quot;업로드 완료&quot;라는 메세지가 나타날때까지 잠시 기다린다.</p>
+<p><img src="/image/esp32-ide-06.png" alt=""></p>
+<br>
+<ol start="5">
+<li>아두이노 IDE의 시리얼 모니터를 열고 Baud rate를 115200으로 설정하면 주변의 접속 가능한 WiFi의 SSID가 표시된다. 여기까지 진행이 되면 ESP32가 잘 설치된 것이다.</li>
+</ol>
+<p><img src="/image/esp32-ide-07.png" alt=""></p>
+<br>
+<h2 id="Troubleshooting">Troubleshooting</h2>
+<p>업로드시, &quot;A fatal error occurred: Failed to connect to ESP32: Timed out… Connecting…&quot;이라는 메세지가 나오면서 업로드가 진행되지 않는다면, 우선 IDE의 보드와 포트가 알맞게 선택되어 있는지 확인해본다. 그럼에도 문제가 해결되지 않는다면 아래의 방법을 따른다. (※상기 문제가 해결되어 나온 보드의 경우에는 관계없음)</p>
+<ul>
+<li>ESP32 보드에 있는 Boot버튼을 누른채로 업로드 버튼을 클릭하고, <strong>Connecting….</strong> 이라는 메세지가 나오면 Boot버튼에서 손가락을 뗀다.</li>
+<li>일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “<strong>ENABLE</strong>”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.</li>
+<li>이러한 문제를 해결하기 위해서는 ESP32보드의 <strong>EN핀</strong>과 <strong>GND</strong>를 10uF 컨덴서를 사용하여 연결해주면 된다.</li>
+</ul>
+<p><img src="/image/esp32-ide-08.png" alt="" width="400" height="364"></p>
+<br>
+<h2 id="Mac-OS-X-Linux">Mac OS X &amp; Linux</h2>
+<p>전체적인 설치방법은 Windows와 동일하다. 단, 첫번째 설치가 아닌 재설치 과정을 수행하는한 경우에는 다음의 과정을 통해 espressif폴더를 지운 후 설치과정을 시작하여야 한다.</p>
+<ol>
+<li><strong>Arduino</strong>&gt; <strong>Preferences</strong>&gt; <strong>Sketchbook Location</strong>에 표기되어 있는 폴더를 복사하여 해당 디렉토리로 진입한 후,</li>
+</ol>
+<p><img src="/image/esp32-ide-09.png" alt=""></p>
+<br>
+<ol start="2">
+<li><strong>Hardware</strong> 폴더 안에 있는 <strong>espressif</strong> 폴더를 삭제한다.</li>
+</ol>
+<br>
+<ol start="3">
+<li>이후 Windows 설치과정과 유사한 과정을 통해 ESP32를 설치한다.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/19/ESP32-Arduino-IDE%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" data-id="ckfzmur920013x8kg2uok4pw8" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/19/ESP32-LED/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          ESP32 LED
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/19/ESP-WROOM-32D-DevkitC-V4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">ESP32-WROOM-32D DevkitC V4</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

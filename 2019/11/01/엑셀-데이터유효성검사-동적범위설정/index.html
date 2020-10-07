@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기 데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,  학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면">
+<meta property="og:type" content="article">
+<meta property="og:title" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정">
+<meta property="og:url" content="http://stemwith.github.io/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기 데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,  학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/dynamic09.png">
+<meta property="article:published_time" content="2019-11-01T10:27:53.000Z">
+<meta property="article:modified_time" content="2020-02-09T14:08:37.275Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/dynamic01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-엑셀-데이터유효성검사-동적범위설정" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/" class="article-date">
+  <time datetime="2019-11-01T10:27:53.000Z" itemprop="datePublished">2019-11-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/excel/">excel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="엑셀-데이터-유효성-검사의-목록-구성시-동적으로-범위-설정하기">엑셀, 데이터 유효성 검사의 목록 구성시 동적으로 범위 설정하기</h1>
+<p>데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,</p>
+<p><img src="/image/dynamic01.png" alt=""></p>
+<p>학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1~6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면 7~9학년,  고등을 선택하면 10~12학년을 선택할 수 있는 목록이 표시되도록 하는 것을 의미합니다. 또 학년마다 학급수가 다르기 때문에 각 학년을 선택하였을 때, 그 학년의 학급수만큼 학급 목록이 뜨도록 하면 더 좋겠죠. 이렇게 상황에 따라 목록이 유동적으로 표시되도록 하면, 데이터를 취합하는 입장에서 오류를 줄일 수 있는 상황을 기대할 수 있습니다.</p>
+<br>
+<br>
+<h2 id="목록-구성-설정">목록 구성 설정</h2>
+<p>먼저 <strong>설정</strong> 시트를 만들고 조건으로 사용할 목록을 구성해보겠습니다. 여기서는 두가지가 필요한데</p>
+<ul>
+<li>학교급에 따른 학년범위 설정 :  초등은 1~6학년, 중등은 7~9학년, 고등은 10~12학년, 국제와 유치는 학년개념이 없으므로 그대로 국제와 유치로 설정</li>
+<li>학년에 따른 학급범위 설정 : 국제는 국제반, 유치는 토끼/사슴/기린반으로 나뉘고 그밖의 1~12학년까지 각 학년별 학급수를 나타냅니다.</li>
+</ul>
+<p><img src="/image/dynamic02.png" alt=""></p>
+<br>
+<br>
+<h2 id="이름-만들기">이름 만들기</h2>
+<p>예를 들어서 설명하는 것이 가장 좋을 것 같네요. <strong>수식</strong>&gt; <strong>이름 관리자</strong>를 클릭한 후 <strong>새로 만들기</strong>를 클릭</p>
+<p><img src="/image/dynamic03.png" alt=""></p>
+<ul>
+<li>이름 : <strong>학교급_초등</strong></li>
+<li>참조 대상 : <strong>설정!$C$3:$C$8</strong></li>
+</ul>
+<p>즉, C2셀을 이름으로 하고, 학년의 범위를 나타내는 C3~C8셀까지를 참조 대상으로 하는 이름을 만드는 것이죠.</p>
+<br>
+<h4 id="반복하여-이름-만들기">반복하여 이름 만들기</h4>
+<p>이제 같은 방법으로, A2, B2, D2, E2, A11~N11 셀을 이름으로 반복하여 새 이름을 만듭니다.</p>
+<br>
+<h4 id="※-이름-만들기-할-때-고려할-점">※ 이름 만들기 할 때 고려할 점</h4>
+<p>예를 들어 6학년의 경우 1~4반까지 있지만, 차기 학년도에 학급수가 6개반으로 증가하게 되면 참조 대상을 다시 수정해주어야 하는 불편한 점이 생길 수 있습니다. 그러므로 학급수 같이 유동적인 데이터는 참조 대상을 여유있게 지정해두는 것이 좋습니다.</p>
+<ul>
+<li>이름 : <strong>학년6_반</strong></li>
+<li>참조 대상 : <strong>설정!$H$12:$H$22</strong>   (<strong>설정!$H$12:$H$15</strong> 로 지정하지말고 여유있게 지정하는 것을 추천)</li>
+</ul>
+<br>
+<br>
+<h2 id="적용">적용</h2>
+<p>실제 적용될 부분을 만듭니다. 여기서는 J4~L6 부분이 되겠네요.</p>
+<p><img src="/image/dynamic04.png" alt=""></p>
+<br>
+<h3 id="데이터-유효성-검사">데이터 유효성 검사</h3>
+<h4 id="학교급">학교급</h4>
+<ol>
+<li>J4셀 : <strong>학교급</strong>이라는 제목을 쓰고</li>
+<li>J5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
+</ol>
+<p><img src="/image/dynamic05.png" alt=""></p>
+<ul>
+<li>제한 대상 : <strong>목록</strong></li>
+<li>원본 : <strong>국제,유치,초등,중등,고등</strong></li>
+</ul>
+<ol start="3">
+<li>J6셀 : <strong>=“학교급_”&amp;$J$5</strong>  (J5셀이 초등으로 선택이 되면, <strong>학교급_초등</strong> 으로 바꿔주는 수식입니다.)</li>
+</ol>
+<br>
+<h4 id="학년">학년</h4>
+<ol>
+<li>K4셀 : <strong>학년</strong>이라는 제목을 쓰고</li>
+<li>K5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
+</ol>
+<p><img src="/image/dynamic06.png" alt=""></p>
+<ul>
+<li>제한 대상 : <strong>목록</strong></li>
+<li>원본 : <strong>=INDIRECT($J$6)</strong><br>
+- J5셀이 <strong>초등</strong>으로 선택되면 J6셀이 <strong>학교급_초등</strong>으로 바뀌는데, J6셀을 목록 원본으로 지정하므로 이름 지정시 <strong>학교급_초등</strong>의 참조범위인 C3~C8 부분을 목록으로 불러옵니다.
+<ul>
+<li>그러므로, 아래와 같은 형태로 목록이 뜨게 됩니다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/dynamic07.png" alt=""></p>
+<ol start="3">
+<li>K6셀 : <strong>=“학교급_”&amp;$K$5</strong> (K5셀이 <strong>6</strong>으로 선택이 되면, <strong>학년6_반</strong> 으로 바꿔주는 수식입니다.)</li>
+</ol>
+<br>
+<h4 id="반">반</h4>
+<ol>
+<li>L4셀 : <strong>반</strong>이라는 제목을 쓰고</li>
+<li>L5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
+</ol>
+<p><img src="/image/dynamic08.png" alt=""></p>
+<ul>
+<li>제한 대상 : <strong>목록</strong></li>
+<li>원본 : <strong>=INDIRECT($K$6)</strong>
+<ul>
+<li>K5셀이 <strong>6</strong>으로 선택되면 K6셀이 <strong>학년6_반</strong>으로 바뀌는데, K6셀을 목록 원본으로 지정하므로 이름 지정시 <strong>학년_반</strong>의 참조범위인 H12~H22 부분을 목록으로 불러옵니다.</li>
+<li>그러므로, 아래와 같은 형태로 목록이 뜨게 됩니다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/dynamic09.png" alt=""></p>
+<ol start="3">
+<li>(선택사항) L6셀 : <strong>=K6&amp;L5</strong> (K6셀이 <strong>6</strong>, L5셀이 <strong>1</strong>로 선택이 되면, <strong>학년6_반1</strong> 과 같이 바꿔주는 수식입니다.)</li>
+</ol>
+<br>
+<br>
+<h2 id="예시파일-첨부">예시파일 첨부</h2>
+<p><a href="/image/%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95.xls">데이터유효성검사 동적범위설정.xls</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/" data-id="ckfzmur9s0025x8kg9ijfasqj" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/19/ESP32-OpenWeatherMap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          ESP32 OpenWeatherMap에서 실시간 날씨 정보 받기
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/30/4WD-Bluetooth/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">4WD Bluetooth</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

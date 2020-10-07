@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Arduino, 1602LCD (I2C) | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1602 LCD (I2C)  schematic      1602 LCD SDA SCL VCC GND     Arduino A4 A5 5V GND     라이브러리 설치하기 스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리  Wire : 기본 내장 라이브러리 LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino, 1602LCD (I2C)">
+<meta property="og:url" content="http://stemwith.github.io/2018/09/03/Arduino-1602-LCD-I2C/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="1602 LCD (I2C)  schematic      1602 LCD SDA SCL VCC GND     Arduino A4 A5 5V GND     라이브러리 설치하기 스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리  Wire : 기본 내장 라이브러리 LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/1602lcd.png">
+<meta property="og:image" content="http://stemwith.github.io/image/1602lcd-ds18b20.png">
+<meta property="article:published_time" content="2018-09-02T16:42:00.000Z">
+<meta property="article:modified_time" content="2020-02-12T05:37:45.332Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/1602lcd.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Arduino-1602-LCD-I2C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/03/Arduino-1602-LCD-I2C/" class="article-date">
+  <time datetime="2018-09-02T16:42:00.000Z" itemprop="datePublished">2018-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Arduino, 1602LCD (I2C)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1602-LCD-I2C">1602 LCD (I2C)</h1>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/1602lcd.png" alt=""></p>
+<br>
+<table>
+<thead>
+<tr>
+<th>1602 LCD</th>
+<th>SDA</th>
+<th>SCL</th>
+<th>VCC</th>
+<th>GND</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arduino</td>
+<td>A4</td>
+<td>A5</td>
+<td>5V</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h2 id="라이브러리-설치하기">라이브러리 설치하기</h2>
+<p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong></p>
+<ul>
+<li>Wire : 기본 내장 라이브러리</li>
+<li>LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
+</ul>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// I2C 1602 LCD (연결핀을 바꿀 수 없음)</span></span><br><span class="line"><span class="comment">// VCC-5V / GND-GND / SDA-A4 / SCL-A5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// i2c address 는 칩에 따라 0x20~0x27 혹은 0x3F값을 가짐</span></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x27</span>, <span class="number">16</span>, <span class="number">2</span>)</span></span>;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  lcd.init();               <span class="comment">// lcd 초기화</span></span><br><span class="line">  lcd.backlight();</span><br><span class="line"></span><br><span class="line">  lcd.print(<span class="string">&quot;I Love Steam!!&quot;</span>);   <span class="comment">// LCD창에 메시지 출력</span></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 문자열의 길이 13개를 왼쪽으로 스크롤</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> pCount = <span class="number">0</span>; pCount &lt; <span class="number">13</span>; pCount++) &#123;  </span><br><span class="line">    lcd.scrollDisplayLeft();         <span class="comment">// 왼쪽으로 스크롤</span></span><br><span class="line">    delay(<span class="number">700</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 문자열 길이 13열 + 기본 16열 = 29개 위치를 오른쪽으로 스크롤</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> pCount = <span class="number">0</span>; pCount &lt; <span class="number">29</span>; pCount++) &#123; </span><br><span class="line">    lcd.scrollDisplayRight();       <span class="comment">// 오른쪽으로 스크롤</span></span><br><span class="line">    delay(<span class="number">700</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 왼쪽으로 16개 위치 스크롤하여 처음 위치로 이동</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> pCount = <span class="number">0</span>; pCount &lt; <span class="number">16</span>; pCount++) &#123;</span><br><span class="line">    lcd.scrollDisplayLeft();         <span class="comment">// 왼쪽으로 스크롤</span></span><br><span class="line">    delay(<span class="number">700</span>);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="여러-가지-문자열-출력해보기">여러 가지 문자열 출력해보기</h2>
+<ul>
+<li>첫 번째 행에 I Love Steam!!</li>
+<li>두 번째 행에 본인의 영문이름을 써서 스크롤 해보기</li>
+<li>두 번째 행에 출력하는 방법 : lcd.setCursor(0,1);</li>
+</ul>
+<br>
+<br>
+<h1 id="1602LCD에-온도-출력하기">1602LCD에 온도 출력하기</h1>
+<br>
+<h2 id="schematic-v2">schematic</h2>
+<p><img src="/image/1602lcd-ds18b20.png" alt=""></p>
+<br>
+<h2 id="sketch-v2">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DS16b20 Temperature Sensor</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;OneWire.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;DallasTemperature.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEMP_PIN 2</span></span><br><span class="line"></span><br><span class="line"><span class="function">OneWire <span class="title">oneWire</span><span class="params">(TEMP_PIN)</span></span>;</span><br><span class="line"><span class="function">DallasTemperature <span class="title">sensors</span><span class="params">(&amp;oneWire)</span></span>;</span><br><span class="line"><span class="keyword">float</span> celciusTemperature;</span><br><span class="line"></span><br><span class="line"><span class="comment">// I2C 1602 LCD (연결핀을 바꿀 수 없음)</span></span><br><span class="line"><span class="comment">// VCC-5V / GND-GND / SDA-A4 / SCL-A5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// i2c address 는 칩에 따라 0x27, 0x3F값을 가짐</span></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x27</span>, <span class="number">16</span>, <span class="number">2</span>)</span></span>;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);  </span><br><span class="line">  Serial.println(<span class="string">&quot;DallasTemperature IC Control&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start up the Temperature Sensor library</span></span><br><span class="line">  sensors.begin();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// lcd 초기화</span></span><br><span class="line">  lcd.init();    </span><br><span class="line">  lcd.backlight();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  sensors.requestTemperatures();</span><br><span class="line">  celciusTemperature = sensors.getTempCByIndex(<span class="number">0</span>);</span><br><span class="line">  Serial.print(<span class="string">&quot;Temperature is: &quot;</span>);</span><br><span class="line">  Serial.println(celciusTemperature);</span><br><span class="line"></span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;Temperature : &quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">  lcd.print(celciusTemperature);</span><br><span class="line">  lcd.print(<span class="string">&quot;℃&quot;</span>);</span><br><span class="line">  delay(<span class="number">2000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2018/09/03/Arduino-1602-LCD-I2C/" data-id="ckfzmur8e0003x8kg9h27ccy5" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Arduino, IR 리모컨
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/02/Arduino-TM1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, TM1637 모듈 사용하기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ESP32 BLE, Blynk Button | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Blynk를 처음 사용하는 경우  Blynk 라이브러리 설치하기  docs.blynk.cc 접속 – Downloads – Blynk Library https:&#x2F;&#x2F;github.com&#x2F;blynkkk&#x2F;blynk-library&#x2F;releases&#x2F;tag&#x2F;v0.6.1  Blynk_Release_v0.6.1.zip 다운로드   압축을 풀면 libraries, tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32 BLE, Blynk Button">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="Blynk를 처음 사용하는 경우  Blynk 라이브러리 설치하기  docs.blynk.cc 접속 – Downloads – Blynk Library https:&#x2F;&#x2F;github.com&#x2F;blynkkk&#x2F;blynk-library&#x2F;releases&#x2F;tag&#x2F;v0.6.1  Blynk_Release_v0.6.1.zip 다운로드   압축을 풀면 libraries, tools">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-09.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-10.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-11.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-12.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-13.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-14.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-15.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-16.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-17.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-18.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-19.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-20.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-21.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-22.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-23.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-24.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-25.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-26.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-27.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-28.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-29.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-30.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-31.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-32.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-33.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-34.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-35.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-36.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-37.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-38.png">
+<meta property="og:image" content="http://stemwith.github.io/image/blynk-39.png">
+<meta property="article:published_time" content="2019-10-21T15:12:58.000Z">
+<meta property="article:modified_time" content="2019-11-13T12:20:35.137Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/blynk-01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ESP32-BLE-Blynk-Button" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/21/ESP32-BLE-Blynk-Button/" class="article-date">
+  <time datetime="2019-10-21T15:12:58.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP32 BLE, Blynk Button
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Blynk를-처음-사용하는-경우">Blynk를 처음 사용하는 경우</h1>
+<br>
+<h2 id="Blynk-라이브러리-설치하기">Blynk 라이브러리 설치하기</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://docs.blynk.cc">docs.blynk.cc</a> 접속 – Downloads – Blynk Library</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a>
+<ul>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
+</ul>
+</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함
+<ul>
+<li>기존의 libraries 폴더와 합쳐짐</li>
+<li>기본 스케치북 위치 확인 방법
+<ul>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<h2 id="스마트폰에-Blynk-App-설치하기">스마트폰에 Blynk App 설치하기</h2>
+<ul>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
+</ul>
+<br>
+<br>
+<h1 id="버튼-위젯을-이용한-LED-On-Off-하기">버튼 위젯을 이용한 LED On/Off 하기</h1>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/blynk-01.png" alt=""></p>
+<p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
+<br>
+<h2 id="Blynk-설정">Blynk 설정</h2>
+<ol>
+<li>Blynk App 실행</li>
+</ol>
+<p><img src="/image/blynk-02.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="2">
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성 (계정이 이미 생성되어 있는 경우에는 Log In)</li>
+</ol>
+<p><img src="/image/blynk-03.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-04.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="3">
+<li>New Project 생성 : ESP32_LED</li>
+</ol>
+<p><img src="/image/blynk-05.png" alt="" width="432" height="768"></p>
+<br>
+<ul>
+<li>프로젝트명 : ESP32_LED</li>
+<li>CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>CONNECTION TYPE : BLE</li>
+</ul>
+<br>
+<p><img src="/image/blynk-06.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="4">
+<li>Create를 누르면 Blynk 가입시 계정으로 사용한 이메일로 Auth Token 발송된다.</li>
+</ol>
+<p><img src="/image/blynk-07.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="5">
+<li>OK버튼을 누르면 프로젝트가 생성된다.</li>
+</ol>
+<p><img src="/image/blynk-08.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="6">
+<li>컴퓨터를 사용하여 이메일 계정에 로그인 한 후, Auth Token을 복사한다. (복잡한 형태의 토큰을 코딩시 사용할 것이므로, 스마트폰인 아닌 컴퓨터에서 확인하여 복사하는 것이 좋다.)</li>
+</ol>
+<p><img src="/image/blynk-09.png" alt=""></p>
+<br>
+<ol start="7">
+<li>Blynk 위젯 설정 : 생성된 프로젝트(ESP32_LED) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 &quot;ESP32_LED&quot;로 바뀐다.</li>
+</ol>
+<p><img src="/image/blynk-10.png" alt="" width="432" height="768"></p>
+<br>
+<p>만약, 아래와 같이 초록색 메뉴바의 이름이 &quot;Blynk&quot;로 되어있다면, 프로젝트 바탕화면으로 진입하지 못한 것이다. 이때에는 검은색 바탕화면의 &quot;ESP32_LED&quot;프로젝트명을 확인한 후 터치하면 해당프로젝트로 진입할 수 있다. 기존에 다른 프로젝트를 만들어 둔 적이 있다면 검은색 바탕화면의 프로젝트명이 &quot;ESP32_LED&quot;가 아닐 수도 있다. 이런 경우에는 스마트폰 화면을 좌우로 스크롤하여 프로젝트명을 변경한 후 진입한다.</p>
+<p><img src="/image/blynk-11.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="8">
+<li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Button 위젯과 BLE 위젯을 눌러 추가한다.</li>
+</ol>
+<p><img src="/image/blynk-12.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-13.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-14.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="9">
+<li>프로젝트 바탕화면에 두개의 위젯이 표시된다.</li>
+</ol>
+<p><img src="/image/blynk-15.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="10">
+<li>BUTTON 위젯을 누르면 Buttom Settings 화면이 나타난다. 여기서 PIN부분을 누른다.</li>
+</ol>
+<p><img src="/image/blynk-16.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="11">
+<li>LED를 연결한 PIN을 선택한다. 여기서는 Digital GP19를 선택하였다.</li>
+</ol>
+<p><img src="/image/blynk-17.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="12">
+<li>OK버튼을 누르면 OUTPUT 버튼이 GP19로 설정된다. Mode는 SWITCH로 설정한다.</li>
+</ol>
+<p><img src="/image/blynk-18.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="13">
+<li>Blynk App 상단의 뒤로가기 버튼을 누른뒤 프로젝트 바탕화면으로 간다.</li>
+</ol>
+<p><img src="/image/blynk-19.png" alt="" width="432" height="768"></p>
+<br>
+<h2 id="Blynk-연결하기">Blynk 연결하기</h2>
+<ol>
+<li>Arduino IDE에서 예제를 로드한다. <strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>Blynk</strong>&gt; <strong>Boards_Bluetooth</strong>&gt; <strong>ESP32_BLE</strong></li>
+</ol>
+<p><img src="/image/blynk-20.png" alt=""></p>
+<br>
+<ol start="2">
+<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
+</ol>
+<p><img src="/image/blynk-21.png" alt=""></p>
+<br>
+<p><img src="/image/blynk-22.png" alt=""></p>
+<br>
+<ol start="3">
+<li>예제의 <strong>Blynk.setDeviceName(“Blynk”);</strong> 부분을 찾아 따옴표 안의 BLE Device 이름을 적당한 이름으로 바꿔준다. (※이름을 바꿔주지 않으면 주변의 다른 기기와 중복되어 오작동할 소지가 있으므로 반드시 다른 이름으로 바꿔주어야 한다.)</li>
+</ol>
+<p><img src="/image/blynk-23.png" alt=""></p>
+<br>
+<p>Device Name을 &quot;Blynk-t&quot;로 수정하였다.</p>
+<p><img src="/image/blynk-24.png" alt=""></p>
+<br>
+<ol start="4">
+<li>ESP32에 스케치를 업로드한다. (업로드 시간이 Arduino에 비해 오래 걸림)</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz.........&quot;</span>;    <span class="comment">// Edit Your Auth Token!!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);                     <span class="comment">// Edit Your ESP32 Name!!!</span></span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p><img src="/image/blynk-25.png" alt=""></p>
+<br>
+<ol start="5">
+<li>이제 스마트폰의 Bluetooth기능을 키고, 위의 코드에서 수정한 Device Name을 찾아 연결한다.</li>
+</ol>
+<p><img src="/image/blynk-26.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-27.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="6">
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양)을 누른다.</li>
+</ol>
+<p><img src="/image/blynk-28.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="7">
+<li>Connect BLE device 버튼을 누른다.</li>
+</ol>
+<p><img src="/image/blynk-29.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="8">
+<li>연결할 Device(여기서는 Blynk-t)를 선택하고 OK를 누른다.</li>
+</ol>
+<p><img src="/image/blynk-30.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="9">
+<li>Connected 메세지가 나오면 연결 설정이 완료된 것이다.</li>
+</ol>
+<p><img src="/image/blynk-31.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="10">
+<li>Blynk App 상단의 뒤로 돌아가기 버튼을 눌러 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p><img src="/image/blynk-32.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="11">
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누른다.</li>
+</ol>
+<p><img src="/image/blynk-33.png" alt="" width="432" height="768"></p>
+<br>
+<p>플레이버튼을 눌렀을 때, App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미한다. 잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된다.</p>
+<p><img src="/image/blynk-34.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="12">
+<li>현재 Button은 OFF 되어 있으며, 이에 따라 GPIO 19에 연결되어 있는 LED도 OFF되어 있다.</li>
+</ol>
+<p><img src="/image/blynk-35.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="13">
+<li>Button을 누르면 ON 상태로 바뀌면서, LED가 ON 상태로 점등된다.</li>
+</ol>
+<p><img src="/image/blynk-36.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="14">
+<li>다시 Button을 누르면 OFF 상태로 바뀌면서, LED가 OFF 상태로 소등된다.</li>
+</ol>
+<p><img src="/image/blynk-37.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="15">
+<li>정지버튼을 누르면 플레이상태가 정지상태로 바뀌면서 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p><img src="/image/blynk-38.png" alt="" width="432" height="768"></p>
+<br>
+<p><img src="/image/blynk-39.png" alt="" width="432" height="768"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/" data-id="ckfzmur940017x8kgeo8pd73p" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          ESP32 BLE, Blynk Slider (PWM)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/Arduino-Bluetooth-Blynk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, Bluetooth, Blynk</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

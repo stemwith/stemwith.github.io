@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>4WD Bluetooth | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="4WD Bluetooth 지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.  schematic   Bluetooth Serial Controller 설정 여기서는 4WD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4WD Bluetooth">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/30/4WD-Bluetooth/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="4WD Bluetooth 지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.  schematic   Bluetooth Serial Controller 설정 여기서는 4WD">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-17.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-09.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-10.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-11.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-12.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-13.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-14.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-15.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-16.png">
+<meta property="og:image" content="http://stemwith.github.io/image/4wd-bt-18.png">
+<meta property="article:published_time" content="2019-10-30T10:27:53.000Z">
+<meta property="article:modified_time" content="2019-11-13T12:31:55.390Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta property="article:tag" content="RC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/4wd-bt-17.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-4WD-Bluetooth" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/30/4WD-Bluetooth/" class="article-date">
+  <time datetime="2019-10-30T10:27:53.000Z" itemprop="datePublished">2019-10-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      4WD Bluetooth
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4WD-Bluetooth">4WD Bluetooth</h1>
+<p>지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.</p>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/4wd-bt-17.png" alt=""></p>
+<br>
+<h2 id="Bluetooth-Serial-Controller-설정">Bluetooth Serial Controller 설정</h2>
+<p>여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.</p>
+<br>
+<ol>
+<li>먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.)  아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.</li>
+</ol>
+<p><img src="/image/4wd-bt-01.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="2">
+<li>PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여</li>
+</ol>
+<p><img src="/image/4wd-bt-02.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="3">
+<li>9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.</li>
+</ol>
+<p><img src="/image/4wd-bt-03.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="4">
+<li>그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-04.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="5">
+<li>다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-05.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="6">
+<li>button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘전진’, ‘왼쪽’, ‘정지’, ‘오른쪽’, '후진’이라고 이름을 붙여줍니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-06.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="7">
+<li>다시 PREFERENCE에서 Command를 누르세요.</li>
+</ol>
+<p><img src="/image/4wd-bt-07.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="8">
+<li>Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘F’, ‘L’, ‘O’, ‘R’, 'B’이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-08.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="9">
+<li>이제 Visibility로 갑니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-09.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="10">
+<li>여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-10.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="11">
+<li>그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-11.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="12">
+<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-12.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="13">
+<li>모듈ID인 SKS100을 누르면 페어링을 시도하고요.</li>
+</ol>
+<p><img src="/image/4wd-bt-13.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="14">
+<li>만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-14.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="15">
+<li>페어링을 시도하는 중이네요.</li>
+</ol>
+<p><img src="/image/4wd-bt-15.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="16">
+<li>페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.</li>
+</ol>
+<p><img src="/image/4wd-bt-16.png" alt="" width="432" height="768"></p>
+<br>
+<br>
+<h2 id="4WD-블루투스-초음파센서-자동차">4WD 블루투스 초음파센서 자동차</h2>
+<p>위 회로에 초음파 센서 하나만 덧붙여봅니다. 50cm 이내에 물체가 접근하면 후진했다가 정지하도록 되어있습니다. (실제로는 50cm보다 훨씬 짧은 거리내에서 후진을 시작하네요.)</p>
+<br>
+<h3 id="schematic-v2">schematic</h3>
+<p><img src="/image/4wd-bt-18.png" alt=""></p>
+<br>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Initialize Bluetooth</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">7</span>, <span class="number">3</span>)</span></span>;  <span class="comment">// HC-06 TX,RX</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize TB6612FNG Motor drive</span></span><br><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;  <span class="comment">// STBY pin on TB6612FNG. Must be HIGH to enable motor</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;  <span class="comment">// Left motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">9</span>;  <span class="comment">// Left motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">8</span>;  <span class="comment">// Left motor - HIGH should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_PWM = <span class="number">6</span>;  <span class="comment">// Right motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> B_IN1 = <span class="number">11</span>; <span class="comment">// Right motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_IN2 = <span class="number">12</span>; <span class="comment">// Right motor - HIGH should go forward</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> L_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> LR_Direct = <span class="number">0</span>;      <span class="comment">//for Direction (0:clockwise, 1:count-clockwise)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize Ultrasonic Sensor</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRIG 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO 4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> val;</span><br><span class="line"><span class="keyword">long</span> val_distance;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(A_PWM, OUTPUT);                        <span class="comment">// Motor</span></span><br><span class="line">  pinMode(A_IN1, OUTPUT);</span><br><span class="line">  pinMode(A_IN2, OUTPUT);</span><br><span class="line">  pinMode(B_PWM, OUTPUT);</span><br><span class="line">  pinMode(B_IN1, OUTPUT);</span><br><span class="line">  pinMode(B_IN2, OUTPUT);</span><br><span class="line">  pinMode(STBY, OUTPUT);</span><br><span class="line">  </span><br><span class="line">  pinMode(TRIG, OUTPUT);                         <span class="comment">// Ultrasonic Sensor</span></span><br><span class="line">  pinMode(ECHO, INPUT);</span><br><span class="line">  </span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  BTSerial.begin(<span class="number">9600</span>);                          <span class="comment">// Start Bluetooth</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!BTSerial.available()) &#123;                <span class="comment">// 처음 입력이 있을때까지</span></span><br><span class="line">  stop();                                        <span class="comment">// 정지</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  distance();                                    <span class="comment">// 거리 측정</span></span><br><span class="line">  Serial.println(val_distance);                 <span class="comment">// 거리 출력</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (BTSerial.available()) &#123;                    <span class="comment">// Check for Bluetooth input</span></span><br><span class="line">    val = BTSerial.read();                       <span class="comment">// 입력값 val에 저장</span></span><br><span class="line">    Serial.println(val);                        <span class="comment">// 입력값 출력</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (val_distance &gt; <span class="number">50</span>) &#123;  <span class="comment">// 거리가 50cm 이상이면 입력값 실행</span></span><br><span class="line">    parseCommand(val);                           <span class="comment">// parse the input</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;                                       <span class="comment">// 거리가 50cm 이내이면 </span></span><br><span class="line">    stop();</span><br><span class="line">    delay(<span class="number">20</span>);</span><br><span class="line">    b_stop();                                    <span class="comment">// 거리가 50cm 이상이 될 때까지 후진 후, 정지</span></span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">parseCommand</span><span class="params">(<span class="keyword">char</span> input)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (input) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;F&#x27;</span>:</span><br><span class="line">      go_forward();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:  </span><br><span class="line">      go_backward();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;L&#x27;</span>:  </span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        go_f_left();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        go_b_left();</span><br><span class="line">      &#125;     </span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        go_f_right();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        go_b_right();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">      stop();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;  </span><br><span class="line">  delay(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">distance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(TRIG, LOW);                       <span class="comment">// Start Ultrasonic sensor</span></span><br><span class="line">  delayMicroseconds(<span class="number">2</span>);</span><br><span class="line">  digitalWrite(TRIG, HIGH);</span><br><span class="line">  delayMicroseconds(<span class="number">10</span>);</span><br><span class="line">  digitalWrite(TRIG, LOW);</span><br><span class="line"></span><br><span class="line">  val_distance = pulseIn(ECHO, HIGH) / <span class="number">58.2</span>;     <span class="comment">// 거리 측정</span></span><br><span class="line">&#125;       </span><br><span class="line"></span><br><span class="line"><span class="comment">// Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">// motor: A(Left) -&gt; 0, B(Right) -&gt; 1</span></span><br><span class="line"><span class="comment">// speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">// direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motorLR, <span class="keyword">int</span> speed, boolean inPin1, boolean inPin2)</span> </span>&#123;</span><br><span class="line">  digitalWrite(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">0</span>) &#123;</span><br><span class="line">    analogWrite(A_PWM, speed);</span><br><span class="line">    digitalWrite(A_IN1, inPin1);</span><br><span class="line">    digitalWrite(A_IN2, inPin2);   </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">1</span>) &#123;</span><br><span class="line">    analogWrite(B_PWM, speed);</span><br><span class="line">    digitalWrite(B_IN1, inPin1);</span><br><span class="line">    digitalWrite(B_IN2, inPin2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_forward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  LR_Direct = <span class="number">0</span>;              <span class="comment">// Forward</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_backward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  LR_Direct = <span class="number">1</span>;              <span class="comment">// Backward</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F_L&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">b_stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_STOP&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> (val_distance &lt; <span class="number">50</span>) &#123;                    <span class="comment">// 거리가 50cm 이내인 경우 반복</span></span><br><span class="line">    go_backward();                               <span class="comment">// 후진</span></span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">    distance();                                  <span class="comment">// 거리를 다시 측정</span></span><br><span class="line">    delay(<span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (!BTSerial.available()) &#123;                <span class="comment">// 입력이 없으면</span></span><br><span class="line">    stop();                                      <span class="comment">// 정지상태 유지</span></span><br><span class="line">  &#125;</span><br><span class="line">  LR_Direct = <span class="number">0</span>;                                 <span class="comment">// 앞으로 갈 준비</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;STOP&quot;</span>);</span><br><span class="line">  digitalWrite(STBY, LOW);                       <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/30/4WD-Bluetooth/" data-id="ckfzmur890001x8kg3mx27ude" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/01/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/29/DC%EB%AA%A8%ED%84%B0-4WD-%EC%9E%90%EB%8F%99%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">DC모터 4WD 자동차 만들기 (TB6612FNG)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

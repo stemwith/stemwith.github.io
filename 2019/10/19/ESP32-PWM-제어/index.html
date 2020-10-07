@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ESP32 PWM제어 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PWM 제어 방법 원문: https:&#x2F;&#x2F;randomnerdtutorials.com&#x2F;esp32-pwm-arduino-ide&#x2F;  PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.   duty 값은 한 주기 내에서 ON 시">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32 PWM제어">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="PWM 제어 방법 원문: https:&#x2F;&#x2F;randomnerdtutorials.com&#x2F;esp32-pwm-arduino-ide&#x2F;  PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.   duty 값은 한 주기 내에서 ON 시">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/esp32-pwm-06.png">
+<meta property="article:published_time" content="2019-10-19T14:41:02.000Z">
+<meta property="article:modified_time" content="2019-12-16T10:43:58.959Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/esp32-pwm-01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ESP32-PWM-제어" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/" class="article-date">
+  <time datetime="2019-10-19T14:41:02.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ESP32/">ESP32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP32 PWM제어
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PWM-제어-방법">PWM 제어 방법</h1>
+<p>원문: <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/esp32-pwm-arduino-ide/">https://randomnerdtutorials.com/esp32-pwm-arduino-ide/</a></p>
+<br>
+<p>PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.</p>
+<p><img src="/image/esp32-pwm-01.png" alt=""></p>
+<br>
+<p>duty 값은 한 주기 내에서 ON 시간과 OFF 시간의 '비율’을 결정하는 값이다. PWM 주파수가 다르면 같은 duty 값이라도 ON 되어 있는 시간이 달라진다. 다만 전체적으로 ON 시간의 합과 OFF 시간의 합의 비율은 동일하다.</p>
+<p><img src="/image/esp32-pwm-02.png" alt=""></p>
+<br>
+<p>이런 방법을 LED의 점등에 적용하면, 1의 값을 갖는 시간이 짧을 수록 사람 눈에는 LED가 어둡게 보이고, 1의 값을 갖는 시간이 길 수록 밝아 보이게 된다.</p>
+<p><img src="/image/esp32-pwm-03.png" alt=""></p>
+<br>
+<h2 id="ESP32에서-PWM의-설정">ESP32에서 PWM의 설정</h2>
+<p>ESP32에는 16 개의 독립적인 채널을 가진 LED PWM 컨트롤러가 있으며 다른 속성으로도 PWM 신호를 생성하도록 구성할 수 있다. Arduino IDE를 사용하여 PWM으로 LED의 밝기를 조절해보도록 한다. 우선 PWM을 사용하기 위해 다음의 4가지를 설정해야 한다.</p>
+<br>
+<h3 id="Channel">Channel</h3>
+<p>0에서 15까지 16 개의 채널 중 적당한 PWM 채널을 선택한다.</p>
+<br>
+<h3 id="Frequency">Frequency</h3>
+<p>PWM 신호 주파수를 설정한다. (LED의 경우 5000Hz의 주파수를 사용)</p>
+<br>
+<h3 id="Resolution">Resolution</h3>
+<p>해상도는 output을 위한 값의 범위를 지정하는데 사용하며, 1~16비트 범위에서 선택한다.</p>
+<ul>
+<li>만약 8비트 해상도를 사용한다면 0~255 사이의 dutyCycle 값을 사용하여 LED 밝기를 제어할 수 있다.</li>
+<li>10비트를 사용하면 0~1023범위,</li>
+<li>16비트로 사용한다면 0~65535 범위에서 세밀한 제어를 할 수 있도록 지정된다.</li>
+<li>참고: 아두이노 우노의 경우, analogWrite()의 해상도는 8비트, 즉 0~255로 고정되어 있다.</li>
+</ul>
+<br>
+<h3 id="GPIO">GPIO</h3>
+<p>신호가 표시 될 GPIO를 지정한다.</p>
+<br>
+<h3 id="코드-적용">코드 적용</h3>
+<p>이러한 설정은 void setup()에서 다음의 코드로 지정한다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">ledcAttachPin(ledPin, ledChannel);</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="LED-Dimming">LED Dimming</h1>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/esp32-pwm-04.png" alt=""></p>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin = <span class="number">19</span>;  <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the channel to the GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(ledPin, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness (8bit 0~255)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="RGB-LED-Dimming">RGB LED Dimming</h1>
+<p>같은 channel에 있는 3개의 서로 다른 GPIO에는 같은 값의 signal을 줄 수 있다.</p>
+<br>
+<h2 id="schematic-v2">schematic</h2>
+<p><img src="/image/esp32-pwm-05.png" alt=""></p>
+<br>
+<h2 id="sketch-v2">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin = <span class="number">19</span>;  <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin2 = <span class="number">18</span>; <span class="comment">// corresponds to GPIO 18</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin3 = <span class="number">17</span>; <span class="comment">// corresponds to GPIO 17</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the same channel to the 3 GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(ledPin, ledChannel);</span><br><span class="line">  ledcAttachPin(ledPin2, ledChannel);</span><br><span class="line">  ledcAttachPin(ledPin3, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line">     </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="Servo-Motor-제어">Servo Motor 제어</h1>
+<p>서보모터는 보통 20ms의 주기를 갖는다. (단, RC용 서보모터의 경우 5ms의 주기를 갖기도 함) 20ms 주기에서 HIGH 펄스 폭이 갖는 시간에 따라 각도가 조절된다. 타이머의 PWM, 타이머 주기 조정, GPIO를 통해 반복구동 등의 방법을 통하여 구현할 수 있다.</p>
+<p>모터는 0º에서 180º까지 회전하는데 1초도 걸리지 않으므로, 만약 현재 0º의 위치에서 180º의 위치까지 이동시키려면, 위의 출력을 1초동안 지속해야한다. 이때 HIGH 펄스 폭은 정확히 맞추어야하며 주기는 약간의 오차가 있어도 된다.</p>
+<p><img src="/image/esp32-pwm-06.png" alt=""></p>
+<br>
+<h2 id="ESP32에서-Servo-Motor-제어하기">ESP32에서 Servo Motor 제어하기</h2>
+<ol>
+<li>ESP32는 16개의 PWM채널이 있으므로, 최대 16개의 서보모터를 동시에 제어할 수 있다.</li>
+<li>대부분의 서보모터는 위의 그림처럼 20ms가 1주기가 되므로, PWM frequency를 50Hz로 설정한다.</li>
+<li>20ms가 1주기이고, HIGH 펄스가 2ms 지속될 때 180º 회전을 한다.</li>
+<li>그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</li>
+<li>Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</li>
+<li>16비트 해상도에서 duty값에 따른 회전 각도
+<ul>
+<li>3277 → 0º</li>
+<li>4915 → 90º</li>
+<li>6554 → 180º</li>
+<li>duty = (deg × 18.2) + 3277</li>
+</ul>
+</li>
+</ol>
+<br>
+<h2 id="sketch-v3">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  ledcSetup(<span class="number">0</span>, <span class="number">50</span>, <span class="number">16</span>);    <span class="comment">// PWM CH0, Frequncy. 50 Hz, 16bit resolution</span></span><br><span class="line">  ledcAttach(<span class="number">19</span>, <span class="number">0</span>);       <span class="comment">// PWM CH0을 GPIO 19번으로 출력</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deg는 0~180도 까지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">servoWrite</span><span class="params">(<span class="keyword">int</span> ch, <span class="keyword">int</span> deg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> duty = deg*<span class="number">18.2</span> + <span class="number">3277</span>;</span><br><span class="line">  ledcWrite(ch, duty);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  servoWrite(<span class="number">0</span>, <span class="number">90</span>);   <span class="comment">// CH 0에 연결된 서보를 90도로</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/19/ESP32-PWM-%EC%A0%9C%EC%96%B4/" data-id="ckfzmur9a001lx8kgg3zg0128" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/ESP32-ADC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          ESP32 ADC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/19/ESP32-LED/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">ESP32 LED</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

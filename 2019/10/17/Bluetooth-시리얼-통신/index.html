@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bluetooth Serial Controller 앱 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Bluetooth 시리얼 통신 Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 Bluetooth 페어링 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.  schematic   sketch 12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bluetooth Serial Controller 앱">
+<meta property="og:url" content="http://stemwith.github.io/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="Bluetooth 시리얼 통신 Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 Bluetooth 페어링 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.  schematic   sketch 12345">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/BT-03.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-01.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-02.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-03.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-04.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-05.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-06.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-07.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-08.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-09.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-10.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-11.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-12.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-13.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-14.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-15.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-16.png">
+<meta property="og:image" content="http://stemwith.github.io/image/BTserialapp-17.jpg">
+<meta property="article:published_time" content="2019-10-17T10:27:53.000Z">
+<meta property="article:modified_time" content="2019-11-13T12:15:08.972Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/BT-03.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Bluetooth-시리얼-통신" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/" class="article-date">
+  <time datetime="2019-10-17T10:27:53.000Z" itemprop="datePublished">2019-10-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bluetooth Serial Controller 앱
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bluetooth-시리얼-통신">Bluetooth 시리얼 통신</h1>
+<p>Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 <a href="2018/10/09/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81">Bluetooth 페어링</a> 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.</p>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/BT-03.jpg" alt=""></p>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect HC-06 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">9600</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">     Serial.write(BTSerial.read());</span><br><span class="line">   <span class="keyword">if</span> (Serial.available())</span><br><span class="line">     BTSerial.write(Serial.read());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="스마트폰에-Bluetooth-Serial-Controller-앱-설치하기">스마트폰에 Bluetooth Serial Controller 앱 설치하기</h2>
+<ol>
+<li>이제 Google Playstore를 통해서 스마트폰에 Bluetooth Serial Controller 앱을 설치합니다. (iOS는 유사한 프로그램으로 설치)</li>
+</ol>
+<p><img src="/image/BTserialapp-01.png" alt="" width="432" height="768"></p>
+<p>​    비슷한 역할을 하는 수많은 앱들이 있는데, 여러 앱을 설치하고 사용해본 결과, 이 앱이 사용하기에 유연함을 갖고 있는 것 같더군요.</p>
+<br>
+<p>​    설치되었습니다.</p>
+<p><img src="/image/BTserialapp-02.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="2">
+<li>설치 후 처음 실행을 하면, LANDSCAPE 모드(가로모드)로 실행이 되는데요. 그대로 사용해도 무방하지만 PORTRAIT 모드(세로 모드)로 바꿔보겠습니다. 먼저 PREFERENCE를 누르세요.</li>
+</ol>
+<p><img src="/image/BTserialapp-03.png" alt="" width="768" height="432"></p>
+<br>
+<ol start="3">
+<li>그러면 아래 화면이 뜹니다. 아무곳이나 누르고 위로 스크롤을 하면 아래에 숨겨져 있는 메뉴가 나타나게 되는데요.</li>
+</ol>
+<p><img src="/image/BTserialapp-04.png" alt="" width="768" height="432"></p>
+<br>
+<ol start="4">
+<li>OPTION - Orientation을 선택한 뒤,</li>
+</ol>
+<p><img src="/image/BTserialapp-05.png" alt="" width="768" height="432"></p>
+<br>
+<ol start="5">
+<li>PORTRAIT를 누릅니다.</li>
+</ol>
+<p><img src="/image/BTserialapp-06.png" alt="" width="768" height="432"></p>
+<br>
+<ol start="6">
+<li>이제 세로모드로 나타나요. 이제 HC-06모듈과 스마트폰과의 Serial 통신을 해보도록 하겠습니다. 다시 PREFERENCE를 누르고, TERMINAL MODE를 활성화 시키세요.</li>
+</ol>
+<p><img src="/image/BTserialapp-07.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="7">
+<li>아래 화면이 TERMINAL Mode 화면입니다. 여기서 돋보기 모양을 누르고,</li>
+</ol>
+<p><img src="/image/BTserialapp-08.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="8">
+<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다.</li>
+</ol>
+<p><img src="/image/BTserialapp-09.png" alt="" width="432" height="768"></p>
+<br>
+<p>​    만일, 아래와 같이 Paired Devices 목록이 없으면, Scan for devices를 눌러 HC-06을 찾아보세요.</p>
+<p><img src="/image/BTserialapp-10.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="9">
+<li>TERMINAL이 SKS100에 접속을 시도합니다.</li>
+</ol>
+<p><img src="/image/BTserialapp-11.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="10">
+<li>접속 완료!</li>
+</ol>
+<p><img src="/image/BTserialapp-12.png" alt="" width="432" height="768"></p>
+<br>
+<h2 id="터미널과-Serial-통신하기">터미널과 Serial 통신하기</h2>
+<ol>
+<li>이제 터미널 창에 Test를 입력하고 SEND를 눌러보세요.</li>
+</ol>
+<p><img src="/image/BTserialapp-13.png" alt="" width="432" height="768"></p>
+<br>
+<ol start="2">
+<li>그러면 화면에 Test가 출력됨과 동시에,</li>
+</ol>
+<p><img src="/image/BTserialapp-14.png" alt="" width="432" height="768"></p>
+<br>
+<p>​     시리얼 모니터에 Test가 출력됩니다. 즉, TERMINAL에서 입력한 Test라는 글자가 HC-06을 통해, 아두이노와 연결되어 있는 컴퓨터의 시리얼 모니터에 출력된 것이에요.</p>
+<p><img src="/image/BTserialapp-15.jpg" alt=""></p>
+<br>
+<ol start="3">
+<li>이번에는 반대로 시리얼 모니터에 Good morning! 을 입력하고 전송을 누르면</li>
+</ol>
+<p><img src="/image/BTserialapp-16.png" alt="" width="432" height="768"></p>
+<br>
+<p>​    스마트폰의 TERMINAL에 Good morning! 이 출력됩니다.</p>
+<p><img src="/image/BTserialapp-17.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/" data-id="ckfzmur930015x8kg80zn62sm" class="article-share-link">공유</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/18/Blynk%EC%97%90-%EC%84%BC%EC%84%9C%EA%B0%92-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Blynk에 센서값 출력하기
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">hexo를 이용하여 Github에 블로그 만들기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

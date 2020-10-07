@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Arduino, IR 리모컨 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IR 리모컨 무선 신호를 통해 아두이노를 컨트롤하는 여러 방법 중, 가장 기본이면서 생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아보겠습니다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요합니다.  schematic  위 그림에서">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino, IR 리모컨">
+<meta property="og:url" content="http://stemwith.github.io/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="IR 리모컨 무선 신호를 통해 아두이노를 컨트롤하는 여러 방법 중, 가장 기본이면서 생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아보겠습니다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요합니다.  schematic  위 그림에서">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/remote.jpg">
+<meta property="og:image" content="http://stemwith.github.io/image/remote-servo.jpg">
+<meta property="article:published_time" content="2018-09-06T03:12:00.000Z">
+<meta property="article:modified_time" content="2019-11-13T12:43:57.203Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/remote.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Arduino-IR-리모컨" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/" class="article-date">
+  <time datetime="2018-09-06T03:12:00.000Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Arduino, IR 리모컨
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IR-리모컨">IR 리모컨</h1>
+<p>무선 신호를 통해 아두이노를 컨트롤하는 여러 방법 중, 가장 기본이면서 생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아보겠습니다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요합니다.</p>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/remote.jpg" alt=""></p>
+<p>위 그림에서 IR 리시버에 있는 핀은, IR모듈이 아닌 단일 부품형태의 리시버 일때 핀의 순서이다.</p>
+<p>보통 아두이노 학습용으로 판매하는 IR 리시버는 브레드보드에 바로 붙일 수 있도록 조그만 PCB가 달린 모듈의 형태로 판매되는 경우가 많으며, 이 경우에는 PCB보드에 써있는 글씨를 보고 각 핀에 맞게 아두이노에 연결한다.</p>
+<br>
+<h2 id="Pin-Map">Pin Map</h2>
+<table>
+<thead>
+<tr>
+<th>Arduino</th>
+<th>IR Reciever</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>S (Signal)</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h2 id="라이브러리-준비하기">라이브러리 준비하기</h2>
+<p>1. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong></p>
+<ul>
+<li>검색어 irremote 입력</li>
+<li>“IRremote by shirriff” 라이브러리 설치/업데이트</li>
+</ul>
+<br>
+<p>2. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>IRremote</strong> 를 선택하면, IR remote 기능을 사용하는데 필요한 4가지 라이브러리가 스케치에 include 된다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_lego_PF_BitStreamEncoder.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="IR-리모컨-버튼의-HEX값-알아내기">IR 리모컨 버튼의 HEX값 알아내기</h2>
+<p>리모컨을 Arduino의 제어 장치로 사용하기 위해서, 리모컨 버튼마다 각기 다른 고유값(HEX)을 알아내야 한다.</p>
+<ol>
+<li>예제&gt; IRremote&gt; IRrecvDumpV2를 열고, 9번째 라인에 있는</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> recvPin = <span class="number">13</span>; <span class="comment">// 각 핀의 번호에 알맞게 변경</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>
+<p>시리얼 모니터 열고,</p>
+</li>
+<li>
+<p>리모컨버튼을 IR수신부를 향하여 누르면, 여러 복잡한 값들이 출력됨</p>
+</li>
+<li>
+<p>이때 맨 마지막 줄에 출력되는, unsigned int data값을 기록한다.</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = **<span class="number">0xFF6897</span>**;</span><br></pre></td></tr></table></figure>
+<p>여기서 &quot;0xFF6897&quot;이 현재 누른 버튼의 HEX값이므로 이것을 기록하면 된다. <a href="/attach/ir-remote-hex.pdf">다운로드</a></p>
+<br>
+<h3 id="HEX값만-추출하는-경우">HEX값만 추출하는 경우</h3>
+<p>혹은, 아래 스케치를 이용하면 간단하게 HEX값만 출력된다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RECV_PIN  = <span class="number">11</span>;                      <span class="comment">// IR 리시버 핀 설정</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;                 <span class="comment">// IR 리시버 선언</span></span><br><span class="line">decode_results results;                  <span class="comment">// 수신결과 저장</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  irrecv.enableIRIn();                   <span class="comment">// IR 리시버 시작</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(irrecv.decode(&amp;results)) &#123;          <span class="comment">// 리시버가 받은 값이 있으면</span></span><br><span class="line">    Serial.print(<span class="string">&quot;0x&quot;</span>);</span><br><span class="line">    Serial.println(results.value, HEX);  <span class="comment">// 버튼 HEX값을 콘솔에 출력</span></span><br><span class="line">    delay(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">    irrecv.resume();                     <span class="comment">// 다음 값을 받기 위해 준비</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p>보유하고 있는 리모컨(XA5-14) 제품의 경우, 리모컨 타입은 NEC타입이며 각 버튼별 HEX값은 아래와 같다.</p>
+<table>
+<thead>
+<tr>
+<th>Remote Button</th>
+<th>unsigned int data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0xFFA25D</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0XFF629D</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0XFFE21D</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0XFF22DD</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0XFF02FD</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0XFFC23D</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0XFFE01F</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0XFFA857</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0XFF906F</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0XFF9867</td>
+</tr>
+<tr>
+<td>*</td>
+<td>0XFF6897</td>
+</tr>
+<tr>
+<td>#</td>
+<td>0XFFB04F</td>
+</tr>
+<tr>
+<td>▲</td>
+<td>0XFF18E7</td>
+</tr>
+<tr>
+<td>▼</td>
+<td>0XFFA4B5</td>
+</tr>
+<tr>
+<td>◀</td>
+<td>0XFF10EF</td>
+</tr>
+<tr>
+<td>▶</td>
+<td>0XFF5AA5</td>
+</tr>
+<tr>
+<td>OK</td>
+<td>0XFF38C7</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h2 id="스케치에서-리모컨-버튼-정의하기">스케치에서 리모컨 버튼 정의하기</h2>
+<p>각 버튼의 Code값을 알아냈으면 스케치에서 리모컨의 버튼을 정의한다. 예를 들어, 리모컨 버튼 중에서 &quot;1&quot;을 눌렀을 때, 출력되는 HEX값이 “0xFFA25D” 였다면,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_1 0xFFA25D</span></span><br></pre></td></tr></table></figure>
+<p>리모컨에 있는 모든 버튼을 위와 같은 방법으로 정의한다. 버튼이 보통 10~20개 정도 되므로 상당히 귀찮은 작업이지만 사용하려는 버튼은 모두 정의를 해야한다. 배열을 통해 정의할 수도 있다. 또한 별도의 리모컨이 없으면 집에서 사용하는 리모컨을 사용해도 된다.</p>
+<br>
+<h2 id="리모컨-버튼값-시리얼모니터에-출력하기">리모컨 버튼값 시리얼모니터에 출력하기</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_CH_M       0xFF6897  <span class="comment">// CH- Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_CH         0xFFB04F  <span class="comment">// CH Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_CH_P       0xFF18E7  <span class="comment">// CH+ Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_PREV       0xFF4AB5  <span class="comment">// PREV Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_NEXT       0xFF10EF  <span class="comment">// NEXT Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_PLAY_PAUSE 0xFF5AA5  <span class="comment">// PLAY PAUSE Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_M          0xFF38C7  <span class="comment">// - (VOL-) Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_P          0xFF38C8  <span class="comment">// + (VOL+) Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_EQ         0xFF38C9  <span class="comment">// EQ Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_100P       0xFF38CA  <span class="comment">// 100+ Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_200P       0xFF38CB  <span class="comment">// 100- Button</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_0 0xFF9867</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_1 0xFFA25D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_2 0xFF629D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_3 0xFFE21D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_4 0xFF22DD</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_5 0xFF02FD</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_6 0xFFC23D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_7 0xFFE01F</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_8 0xFFA857</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_9 0xFF906F</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> recvPin = <span class="number">13</span>;</span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(recvPin)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  irrecv.enableIRIn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  decode_results results;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(irrecv.decode(&amp;results)) &#123;</span><br><span class="line">    <span class="keyword">switch</span>(results.value) &#123;</span><br><span class="line">      <span class="keyword">case</span> BTN_CH_M :</span><br><span class="line">        Serial.println(<span class="string">&quot;CH-&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_CH :</span><br><span class="line">        Serial.println(<span class="string">&quot;CH&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_CH_P :</span><br><span class="line">        Serial.println(<span class="string">&quot;CH+&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_PREV :</span><br><span class="line">        Serial.println(<span class="string">&quot;PREV&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_NEXT :</span><br><span class="line">        Serial.println(<span class="string">&quot;NEXT&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_PLAY_PAUSE :</span><br><span class="line">        Serial.println(<span class="string">&quot;PLAY/PAUSE&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_M :</span><br><span class="line">        Serial.println(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> BTN_P :</span><br><span class="line">        Serial.println(<span class="string">&quot;+&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_EQ :</span><br><span class="line">        Serial.println(<span class="string">&quot;EQ&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_100P :</span><br><span class="line">        Serial.println(<span class="string">&quot;100+&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_200P :</span><br><span class="line">        Serial.println(<span class="string">&quot;200+&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> BTN_0 :</span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_1 :</span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_2 :</span><br><span class="line">        Serial.println(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_3 :</span><br><span class="line">        Serial.println(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> BTN_4 :</span><br><span class="line">        Serial.println(<span class="string">&quot;4&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_5 :</span><br><span class="line">        Serial.println(<span class="string">&quot;5&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_6 :</span><br><span class="line">        Serial.println(<span class="string">&quot;6&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_7 :</span><br><span class="line">        Serial.println(<span class="string">&quot;7&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> BTN_8 :</span><br><span class="line">        Serial.println(<span class="string">&quot;8&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_9 :</span><br><span class="line">        Serial.println(<span class="string">&quot;9&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    delay(<span class="number">500</span>);</span><br><span class="line">    irrecv.resume();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="과제-리모컨-계산기-만들기">과제: 리모컨 계산기 만들기</h2>
+<br>
+<br>
+<h1 id="리모컨으로-서보모터-회전시키기">리모컨으로 서보모터 회전시키기</h1>
+<p>3개의 리모컨 버튼을 정의하여 각 버튼을 통해 서버모터를 회전시켜 본다.</p>
+<ul>
+<li>Left 버튼을 누르면 5도 감소</li>
+<li>Right 버튼을 누르면 5도 증가</li>
+<li>OK 버튼을 누르면 0도 위치로 이동</li>
+</ul>
+<br>
+<h2 id="schematic-v2">schematic</h2>
+<p><img src="/image/remote-servo.jpg" alt=""></p>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line">Servo servomotor;</span><br><span class="line"><span class="keyword">int</span> servomotorPin = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_1 0xFFA25D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_2 0xFF629D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_3 0xFFE21D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_4 0xFF22DD</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_5 0xFF02FD</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_6 0xFFC23D</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_7 0xFFE01F</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_8 0xFFA857</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_9 0xFF906F</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_0 0xFF9867</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_A 0xFF6897  <span class="comment">// * Asterisk Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_P 0xFFB04F  <span class="comment">// # Pound Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_U 0xFF18E7  <span class="comment">// Up Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_D 0xFF4AB5  <span class="comment">// Down Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_L 0xFF10EF  <span class="comment">// Left Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_R 0xFF5AA5  <span class="comment">// Right Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_O 0xFF38C7  <span class="comment">// OK Button</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> recvPin = <span class="number">11</span>;       <span class="comment">// IR signal 핀</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(recvPin)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  servomotor.attach(servomotorPin);</span><br><span class="line">  irrecv.enableIRIn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  decode_results results;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(irrecv.decode(&amp;results)) &#123;</span><br><span class="line">    <span class="keyword">switch</span>(results.value) &#123;</span><br><span class="line">      <span class="keyword">case</span> BTN_O :       <span class="comment">// OK버튼을 누르면 0도 위치로</span></span><br><span class="line">        a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_L :</span><br><span class="line">        <span class="keyword">if</span>(a &gt; <span class="number">5</span>) &#123;</span><br><span class="line">          a = a - <span class="number">5</span>;     <span class="comment">// L버튼을 누르면 서버모터 5도씩 감소</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          a = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BTN_R :</span><br><span class="line">        <span class="keyword">if</span>(a &lt; <span class="number">175</span>) &#123;</span><br><span class="line">          a = a + <span class="number">5</span>;     <span class="comment">// R버튼을 누르면 서버모터 5도씩 증가</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          a = <span class="number">180</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    servomotor.write(a);</span><br><span class="line">    delay(<span class="number">500</span>);</span><br><span class="line">    irrecv.resume();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/" data-id="ckfzmur8n000bx8kg0sl3f6dx" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/07/Arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Arduino, 키패드 사용하기
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/03/Arduino-1602-LCD-I2C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, 1602LCD (I2C)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

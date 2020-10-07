@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Arduino 시작하기 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Arduino   Arduino Pinout   arduino에서 사용하는 PWM은 8bit로 0~255의 범위를 사용한다. 아날로그 신호는 ADC 10bit를 사용하므로 0~1023의 범위를 사용할 수 있다. 스케치 업로드 중에는 0번핀(RX), 1번핀(TX)을 사용할 수 없다.   전원부 V_in  input으로 사용  기본적으로 파워잭을 사용하는 것과">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino 시작하기">
+<meta property="og:url" content="http://stemwith.github.io/2018/09/01/Arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="Arduino   Arduino Pinout   arduino에서 사용하는 PWM은 8bit로 0~255의 범위를 사용한다. 아날로그 신호는 ADC 10bit를 사용하므로 0~1023의 범위를 사용할 수 있다. 스케치 업로드 중에는 0번핀(RX), 1번핀(TX)을 사용할 수 없다.   전원부 V_in  input으로 사용  기본적으로 파워잭을 사용하는 것과">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-01uno.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-02unopin.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-04arduino.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-03breadboard.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-05parts.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-ch341.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-06ide.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-07link.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-08board.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-09comport.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-10rgbled.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-11potentiometer.png">
+<meta property="og:image" content="http://stemwith.github.io/image/arduino-12rgbled_potentiometer.png">
+<meta property="article:published_time" content="2018-09-01T08:00:00.000Z">
+<meta property="article:modified_time" content="2019-11-11T06:25:10.516Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/arduino-01uno.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Arduino-시작하기" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/01/Arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/" class="article-date">
+  <time datetime="2018-09-01T08:00:00.000Z" itemprop="datePublished">2018-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Arduino 시작하기
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Arduino">Arduino</h1>
+<p><img src="/image/arduino-01uno.png" alt=""></p>
+<br>
+<h2 id="Arduino-Pinout">Arduino Pinout</h2>
+<p><img src="/image/arduino-02unopin.png" alt=""></p>
+<ul>
+<li>arduino에서 사용하는 PWM은 <strong>8bit</strong>로 <strong>0~255</strong>의 범위를 사용한다.</li>
+<li>아날로그 신호는 ADC <strong>10bit</strong>를 사용하므로 <strong>0~1023</strong>의 범위를 사용할 수 있다.</li>
+<li>스케치 업로드 중에는 0번핀(RX), 1번핀(TX)을 사용할 수 없다.</li>
+</ul>
+<br>
+<h2 id="전원부-V-in">전원부 V_in</h2>
+<br>
+<h3 id="input으로-사용">input으로 사용</h3>
+<ul>
+<li>기본적으로 파워잭을 사용하는 것과 같음</li>
+<li>아두이노에 전원을 공급 (6.6V~12V 범위에서 가능)</li>
+<li>외부전원이 Vin을 통해 공급되면, USB포트에서 나오는 전원공급은 자동으로 차단됨</li>
+<li>최소 전압은 6.6V이나, 다이오드에서의 전압 강하로 인해, 최소 7.2V가 공급되어야 USB포트에서의 전원이 차단되고, 외부전원으로 아두이노가 전원을 공급받기 시작함</li>
+</ul>
+<br>
+<h3 id="output으로-사용">output으로 사용</h3>
+<ul>
+<li>파워잭으로 전원을 공급하면, Vin은 자동으로 OUTPUT용도가 됨</li>
+<li>5V보다 큰 전압, 전류를 필요로 하는 장치(모터 등)를 연결할 경우, 파워잭으로 전원을 공급하고 Vin으로 출력</li>
+</ul>
+<br>
+<h2 id="Arduino-보드의-종류">Arduino 보드의 종류</h2>
+<p><img src="/image/arduino-04arduino.png" alt=""></p>
+<br>
+<h2 id="브레드-보드-점퍼선">브레드 보드 &amp; 점퍼선</h2>
+<p><img src="/image/arduino-03breadboard.png" alt=""></p>
+<br>
+<h2 id="부품-센서-모듈-쉴드">부품, 센서, 모듈, 쉴드</h2>
+<p><img src="/image/arduino-05parts.png" alt=""></p>
+<br>
+<br>
+<h1 id="Arduino-IDE-설치하기">Arduino IDE 설치하기</h1>
+<br>
+<h2 id="Arduino-홈페이지">Arduino 홈페이지</h2>
+<p><a target="_blank" rel="noopener" href="http://www.arduino.cc">http://www.arduino.cc</a></p>
+<br>
+<h2 id="Arduino-IDE">Arduino IDE</h2>
+<ul>
+<li>2019.09.20. 현재 최신버전 1.8.10</li>
+<li><a target="_blank" rel="noopener" href="https://www.arduino.cc/en/Main/Software">아두이노 홈페이지</a> 에서 다운로드 받아 설치</li>
+<li>설치 경로에 한글이 포함되지 않도록 한다.</li>
+<li>설치 완료 후, 아두이노 IDE를 실행하면 arduino driver가 설치된다. 모두 설치</li>
+<li>호환칩(CH340 or CH341)을 사용하는 경우, <a target="_blank" rel="noopener" href="http://www.wch.cn/download/CH341SER_ZIP.html">칩제조사 홈페이지</a>에서 별도의 driver를 다운로드 받은 후 추가로 설치해야 한다.</li>
+</ul>
+<br>
+<blockquote>
+<p>CH340/341 호환칩을 사용하는 아두이노 우노보드의 경우 빨간색으로 된 표시된 부분의 칩이 직사각형인 형태로 되어 있는 경우가 많다. 정품의 경우 FT232칩을 사용하며, 대부분의 경우 동일한 위치에 정사각형 모양을 하고 있는 경우가 많다.</p>
+</blockquote>
+<p><img src="/image/arduino-ch341.png" alt=""></p>
+<br>
+<h2 id="Arduino-IDE의-기본-구성">Arduino IDE의 기본 구성</h2>
+<p><img src="/image/arduino-06ide.png" alt=""></p>
+<br>
+<h3 id="Arduino-연결하기">Arduino 연결하기</h3>
+<ol>
+<li>USB A(M)-B(M) 케이블을 사용하여 PC와 아두이노를 연결한다.<br>
+<img src="/image/arduino-07link.png" alt=""></li>
+</ol>
+<br>
+<ol start="2">
+<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; 에서 Arduino 보드를 선택한다. → Arduino/Genuino Uno<br>
+<img src="/image/arduino-08board.png" alt=""></li>
+</ol>
+<br>
+<ol start="3">
+<li><strong>툴</strong>&gt; <strong>포트</strong>&gt; 에서 Arduino에 연결되어 있는 포트를 선택한다. → COMx (Arduino/Genuino Uno)<br>
+<img src="/image/arduino-09comport.png" alt=""></li>
+</ol>
+<br>
+<br>
+<h1 id="Arduino-스케치">Arduino 스케치</h1>
+<br>
+<h2 id="기본-구조">기본 구조</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">‘I’                <span class="comment">// 라이브러리, 변수 선언</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;     <span class="comment">// 아두이노 켜질 때 딱 한번 실행</span></span><br><span class="line">‘II’               <span class="comment">// 초기화, pinMode …   </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;      <span class="comment">// setup 이후 계속 반복 실행</span></span><br><span class="line">‘III’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="Blink-예제">Blink 예제</h2>
+<p><strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>01.Basics</strong>&gt; <strong>Blink</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> led = <span class="number">13</span>;               <span class="comment">// default variable: LED_BUILTIN -&gt; 13pin</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(led, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(led, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(led, LOW);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="int-led-13">int led = 13;</h3>
+<ul>
+<li>led 라는 integer (정수) 변수를 선언</li>
+<li>led 변수의 값을 13으로 지정</li>
+<li>; (세미콜론)은 문장이 끝났음을 선언</li>
+</ul>
+<br>
+<h3 id="pinMode-led-OUTPUT">pinMode(led, OUTPUT);</h3>
+<ul>
+<li>특정 핀을 출력 또는 입력 모드로 설정</li>
+<li>digitalRead, digitalWrite를 사용하는 핀에만 선언</li>
+<li>즉, 0과 1의 입출력에만 사용하는 핀에 선언하며, PWM사용핀은 pinMode 선언이 불필요하다.</li>
+<li>INPUT은 입력핀으로 사용시, OUTPUT은 출력핀으로 사용시</li>
+</ul>
+<br>
+<h3 id="digitalWrite-led-HIGH">digitalWrite(led, HIGH);</h3>
+<ul>
+<li>디지털 핀의 전압을 LOW(0의 값) 또는 HIGH(1의 값)로 설정
+<ul>
+<li>LOW : 0V (전기가 통하지 않음)</li>
+<li>HIGH : 5V (전기가 통함)</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="delay-1000">delay(1000);</h3>
+<ul>
+<li>특정 시간 동안 아두이노를 멈추게 하는 명령
+<ul>
+<li>1초 : 1000</li>
+<li>5초 : 5000</li>
+</ul>
+</li>
+</ul>
+<br>
+<h2 id="ANALOG-IN-A0-A5-핀의-역할">ANALOG IN(A0~A5) 핀의 역할</h2>
+<ol>
+<li>아날로그 입력으로 사용 : analogRead()
+<ul>
+<li>analogRead()는 pinMode 선언 불필요</li>
+<li>예를들어, pinMode(A0, INPUT); → 불필요한 선언임</li>
+</ul>
+</li>
+<li>PWM을 사용하는 디지털 입력으로 사용 : analogRead()
+<ul>
+<li>analogRead() : 10bit를 사용하므로 0~1023 범위에서 센서값을 읽음</li>
+</ul>
+</li>
+</ol>
+<br>
+<h2 id="Arduino-PWM-출력">Arduino PWM 출력</h2>
+<ul>
+<li><strong>analogWrite()</strong> : 8bit를 사용하므로 <strong>0~255</strong> 범위에서 센서값을 출력</li>
+<li>PWM 출력이 가능한 디지털핀(<strong>3,5,6,9,10,11</strong>)을 사용하여 출력</li>
+<li><strong>pinMode 선언 불필요</strong> (analogWrite()에 pinMode선언이 포함되어 있음)</li>
+<li>예를들어, pinMode(9, OUTPUT); → 9번 핀으로 PWM 출력을 한다면 불필요한 선언임</li>
+</ul>
+<br>
+<h2 id="Exercise">Exercise</h2>
+<ol>
+<li>멈추는 시간을 5초로 설정해본다.</li>
+<li>RGB LED를 사용하여 3색을 교대로 ON/OFF 해본다.</li>
+</ol>
+<br>
+<h3 id="schematic">schematic</h3>
+<p><img src="/image/arduino-10rgbled.png" alt=""></p>
+<br>
+<h3 id="scketch">scketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(pin_ledR, OUTPUT);</span><br><span class="line">	pinMode(pin_ledG, OUTPUT);</span><br><span class="line">	pinMode(pin_ledB, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(pin_ledR, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledR, LOW);</span><br><span class="line">	digitalWrite(pin_ledG, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledG, LOW);</span><br><span class="line">	digitalWrite(pin_ledB, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledB, LOW);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="가변저항-값을-시리얼모니터에-출력하기">가변저항 값을 시리얼모니터에 출력하기</h1>
+<br>
+<h2 id="schematic-v2">schematic</h2>
+<p><img src="/image/arduino-11potentiometer.png" alt=""></p>
+<br>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> value_potentiometer = <span class="number">0</span>;      <span class="comment">// potentiometer value</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   value_potentiometer = analogRead(A0);       <span class="comment">// 10bit (0~1023)</span></span><br><span class="line">   value_potentiometer = <span class="built_in">map</span>(value_potentiometer, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">0</span>, <span class="number">10000</span>);</span><br><span class="line">   Serial.print(<span class="string">&quot;Resistance(Ω): &quot;</span>);</span><br><span class="line">   Serial.println(value_potentiometer);</span><br><span class="line">   delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="가변저항-값에-따라-LED-밝기-조절하기">가변저항 값에 따라 LED 밝기 조절하기</h1>
+<br>
+<h2 id="schematic-v3">schematic</h2>
+<p><img src="/image/arduino-12rgbled_potentiometer.png" alt=""></p>
+<br>
+<h2 id="sketch-v2">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>;   <span class="comment">// Blue LED for PWM</span></span><br><span class="line"><span class="keyword">int</span> value_potentiometer = <span class="number">0</span>;      <span class="comment">// potentiometer value</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   value_potentiometer = analogRead(A0);           <span class="comment">// 10bit (0~1023)</span></span><br><span class="line">   value_potentiometer = <span class="built_in">map</span>(value_potentiometer, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">0</span>, <span class="number">255</span>);  <span class="comment">// 10bit → 8bit (for PWM)</span></span><br><span class="line">   analogWrite(pin_ledB, value_potentiometer);</span><br><span class="line">   Serial.print(<span class="string">&quot;illumination level: &quot;</span>); </span><br><span class="line">   Serial.println(value_potentiometer);</span><br><span class="line">   delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2018/09/01/Arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/" data-id="ckfzmur8u000px8kgf1o2b52n" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/02/Arduino-%EC%98%A8%EB%8F%84%EC%B8%A1%EC%A0%95-DS18b20/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Arduino, 온도측정(DS18b20)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/01/%EC%97%91%EC%85%80-%EB%8B%A4%EC%A4%91%EC%A1%B0%EA%B1%B4%EB%9E%AD%ED%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">엑셀, 다중조건을 사용하여 랭킹 구하기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

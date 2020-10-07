@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Arduino, 키패드 사용하기 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="4×4 매트릭스 키보드 키패드 입력값을 시리얼 모니터로 출력해보자.  schematic   Pin Map    Arduino Keypad 일부 Keypad의 경우     2 1 8   3 2 7   4 3 6   5 4 5   6 5 4   7 6 3   8 7 2   9 8 1     주의 : Keypad 제조회사에 따라 통상적인 배선 순서와는 반대로 해">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino, 키패드 사용하기">
+<meta property="og:url" content="http://stemwith.github.io/2018/09/07/Arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="4×4 매트릭스 키보드 키패드 입력값을 시리얼 모니터로 출력해보자.  schematic   Pin Map    Arduino Keypad 일부 Keypad의 경우     2 1 8   3 2 7   4 3 6   5 4 5   6 5 4   7 6 3   8 7 2   9 8 1     주의 : Keypad 제조회사에 따라 통상적인 배선 순서와는 반대로 해">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/image/keypad-01.jpg">
+<meta property="article:published_time" content="2018-09-07T05:23:00.000Z">
+<meta property="article:modified_time" content="2019-11-11T06:26:30.341Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/image/keypad-01.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Arduino-키패드-사용하기" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/07/Arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="article-date">
+  <time datetime="2018-09-07T05:23:00.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arduino/">Arduino</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Arduino, 키패드 사용하기
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4×4-매트릭스-키보드">4×4 매트릭스 키보드</h1>
+<p>키패드 입력값을 시리얼 모니터로 출력해보자.</p>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/keypad-01.jpg" alt=""></p>
+<br>
+<h2 id="Pin-Map">Pin Map</h2>
+<table>
+<thead>
+<tr>
+<th>Arduino</th>
+<th>Keypad</th>
+<th>일부 Keypad의 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>7</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>주의 : Keypad 제조회사에 따라 통상적인 배선 순서와는 반대로 해야하는 경우도 있다. 키패드의 단자에 단자번호가 적혀있지 않으므로, 일단 통상적인 배선순서에 따라 연결해보고 시리얼 모니터를 통해 출력되는 값을 보고 확인해야 한다.</p>
+</blockquote>
+<br>
+<h2 id="라이브러리-추가하기">라이브러리 추가하기</h2>
+<p>Keypad 라이브러리는 아두이노 IDE에 기본으로 포함되어 있지 않으므로, 컴파일 전에 라이브러리를 추가한다.</p>
+<p>1. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong></p>
+<ul>
+<li>검색창에서 keypad 검색</li>
+<li>Keypad by Mark Stanley, Alexander Brevig 라이브러리 설치</li>
+</ul>
+<p>2. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong> 에서 Keypad를 선택하면</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Keypad.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>라이브러리가 스케치에 추가된다.</li>
+</ul>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Keypad.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> byte ROWS = <span class="number">4</span>;      <span class="comment">//배열</span></span><br><span class="line"><span class="keyword">const</span> byte COLS = <span class="number">4</span>;      <span class="comment">//배열</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> keys[ROWS][COLS] = &#123; <span class="comment">//배열</span></span><br><span class="line">  &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;A&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>,<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;B&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="string">&#x27;7&#x27;</span>,<span class="string">&#x27;8&#x27;</span>,<span class="string">&#x27;9&#x27;</span>,<span class="string">&#x27;C&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="string">&#x27;*&#x27;</span>,<span class="string">&#x27;0&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;D&#x27;</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line">byte rowPins[ROWS] = &#123;<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>&#125;; <span class="comment">//핀 지정</span></span><br><span class="line">byte colPins[COLS] = &#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>&#125;; <span class="comment">//핀 지정</span></span><br><span class="line"></span><br><span class="line">Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);  <span class="comment">//시리얼 통신 9600</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> key = keypad.getKey();  <span class="comment">//읽어온 값을 key에 저장</span></span><br><span class="line">  <span class="keyword">if</span> (key)&#123;</span><br><span class="line">    Serial.println(key);  <span class="comment">//key값을 시리얼 모니터에 출력한다</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p><strong>툴</strong>&gt; <strong>시리얼 모니터</strong>(혹은 Ctrl-Shift-M) 에서 확인한다.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2018/09/07/Arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" data-id="ckfzmur8x000tx8kgfcpchwby" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/08/Arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Arduino, 서보모터
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, IR 리모컨</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

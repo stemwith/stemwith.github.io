@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ESP32, 중력 가속도 측정 | STEM with</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="중력 가속도 측정  중력(Gravitational Force) 뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다. F&#x3D;GMmr2&#x3D;mia&#x3D;mgF &#x3D; G \frac{Mm}{r^2} &#x3D; m_i a &#x3D; mg F&#x3D;Gr2Mm​&#x3D;mi​a&#x3D;mg (지구의">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32, 중력 가속도 측정">
+<meta property="og:url" content="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/index.html">
+<meta property="og:site_name" content="STEM with">
+<meta property="og:description" content="중력 가속도 측정  중력(Gravitational Force) 뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다. F&#x3D;GMmr2&#x3D;mia&#x3D;mgF &#x3D; G \frac{Mm}{r^2} &#x3D; m_i a &#x3D; mg F&#x3D;Gr2Mm​&#x3D;mi​a&#x3D;mg (지구의">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/image/Gravitational_Acceleration01.png">
+<meta property="og:image" content="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/image/Gravitational_Acceleration02.png">
+<meta property="og:image" content="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/image/Gravitational_Acceleration03.png">
+<meta property="article:published_time" content="2020-10-06T09:57:00.000Z">
+<meta property="article:modified_time" content="2020-10-07T16:54:50.640Z">
+<meta property="article:author" content="K. Jun Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/image/Gravitational_Acceleration01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="STEM with" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">STEM with</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="검색"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://stemwith.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-STEM-중력-가속도-측정" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/" class="article-date">
+  <time datetime="2020-10-06T09:57:00.000Z" itemprop="datePublished">2020-10-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Science/">Science</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP32, 중력 가속도 측정
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="중력-가속도-측정">중력 가속도 측정</h2>
+<br>
+<h3 id="중력-Gravitational-Force">중력(Gravitational Force)</h3>
+<p>뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>=</mo><mi>G</mi><mfrac><mrow><mi>M</mi><mi>m</mi></mrow><msup><mi>r</mi><mn>2</mn></msup></mfrac><mo>=</mo><msub><mi>m</mi><mi>i</mi></msub><mi>a</mi><mo>=</mo><mi>m</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">F = G \frac{Mm}{r^2} = m_i a = mg
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord mathdefault">G</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>지구의 질량</mtext><mo stretchy="false">)</mo><mtext> </mtext><mi>M</mi><mo>=</mo><mn>5.072</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>24</mn></msup><mtext> </mtext><mi>k</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">(지구의~질량)~M=5.072 \times 10^{24}~kg
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord hangul_fallback">지</span><span class="mord hangul_fallback">구</span><span class="mord hangul_fallback">의</span><span class="mspace nobreak"> </span><span class="mord hangul_fallback">질</span><span class="mord hangul_fallback">량</span><span class="mclose">)</span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mord">.</span><span class="mord">0</span><span class="mord">7</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0585479999999998em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>지구 반지름</mtext><mo stretchy="false">)</mo><mtext> </mtext><mi>r</mi><mo>=</mo><mn>6371</mn><mtext> </mtext><mi>k</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">(지구~반지름)~r = 6371~km
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord hangul_fallback">지</span><span class="mord hangul_fallback">구</span><span class="mspace nobreak"> </span><span class="mord hangul_fallback">반</span><span class="mord hangul_fallback">지</span><span class="mord hangul_fallback">름</span><span class="mclose">)</span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">3</span><span class="mord">7</span><span class="mord">1</span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">m</span></span></span></span></span></p>
+<p>만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mn>6.67259</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup><mtext> </mtext><mi>N</mi><mo>⋅</mo><msup><mi>m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>k</mi><msup><mi>g</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">G = 6.67259 \times 10^{-11}~N \cdot m^2 /kg^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mord">.</span><span class="mord">6</span><span class="mord">7</span><span class="mord">2</span><span class="mord">5</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.864108em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>만유인력이 지상의 물체에 작용되는 경우, 이때 작용하는 힘을 중력이라고 한다.</p>
+<br>
+<h3 id="중력-가속도-Gravitational-Acceleration">중력 가속도(Gravitational Acceleration)</h3>
+<p>위 식에서 관성 질량(m_i)과 중력 질량(m)이 같다는 등가원리를 적용하면 중력 가속도는 작은 물체의 질량 m에 무관하게 된다.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>g</mi><mo>=</mo><mi>G</mi><mfrac><mi>M</mi><msup><mi>r</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">a = g = G \frac{M}{r^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord mathdefault">G</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>지구의 질량 M과 지구 반지름 R은 지표면의 물체에 비해 매우 크고, 거의 구에 가까우므로, 위 식을 사용하여 지구 표면에서의 중력 가속도 g 값을 구할 수 있다.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mn>9.80665</mn><mtext> </mtext><mi>m</mi><mi mathvariant="normal">/</mi><msup><mi>s</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">g = 9.80665~m/s^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mord">.</span><span class="mord">8</span><span class="mord">0</span><span class="mord">6</span><span class="mord">6</span><span class="mord">5</span><span class="mspace nobreak"> </span><span class="mord mathdefault">m</span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<br>
+<h4 id="등가속도-직선-운동">등가속도 직선 운동</h4>
+<p>가속도의 크기와 방향이 일정한 직선 운동으로, 속도가 일정하게 증가하거나 감속하는 직선 운동을 의미한다. 자유낙하의 경우 초기속도가 0인 물체를 중력장에 낙하시킬 때 중력가속도를 받으며 낙하하는 물체의 운동이며, 공기의 저항이 없다고 가정할 경우 등가속도 직선 운동이 된다.</p>
+<p>등가속도 직선 운동과 관련된 공식은 다음과 같다.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><msub><mi>v</mi><mn>0</mn></msub><mo>+</mo><mi>a</mi><mi>t</mi><mtext>   </mtext><mo>⋯</mo><mtext>   ①</mtext></mrow><annotation encoding="application/x-tex">v = v_0 + at~~~\cdots~~~①
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">①</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup><mtext>   </mtext><mo>⋯</mo><mtext>   ②</mtext></mrow><annotation encoding="application/x-tex">s=v_0t + \frac{1}{2}at^2~~~\cdots~~~②
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">②</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>a</mi><mi>s</mi><mo>=</mo><msup><mi>v</mi><mn>2</mn></msup><mo>−</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mtext>   </mtext><mo>⋯</mo><mtext>   ③</mtext></mrow><annotation encoding="application/x-tex">2as = v^2 - v_0^2~~~\cdots~~~③
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">③</span></span></span></span></span></p>
+<p>이 3가지 기본 공식을 통해 다양한 형태의 공식을 유도할 수도 있다.</p>
+<p>①, ②식을 조합하면</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false">(</mo><msub><mi>v</mi><mn>0</mn></msub><mo>+</mo><mi>v</mi><mo stretchy="false">)</mo><mi>t</mi><mtext>   </mtext><mo>⋯</mo><mtext>   ④</mtext></mrow><annotation encoding="application/x-tex">s = \frac{1}{2}(v_0+v)t~~~\cdots~~~④
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">④</span></span></span></span></span></p>
+<p>③식에서 초기속도(v_0)가 0인 경우</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><msqrt><mrow><mn>2</mn><mi>a</mi><mi>s</mi></mrow></msqrt><mtext>   </mtext><mo>⋯</mo><mtext>   ⑤</mtext></mrow><annotation encoding="application/x-tex">v=\sqrt{2as}~~~\cdots~~~⑤
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.08390500000000001em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.956095em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span></span></span><span style="top:-2.916095em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.08390500000000001em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">⑤</span></span></span></span></span></p>
+<p>②식을 변형하면</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mo stretchy="false">(</mo><mi>s</mi><mo>−</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="false">)</mo></mrow><msup><mi>t</mi><mn>2</mn></msup></mfrac><mtext>   </mtext><mo>⋯</mo><mtext>   ⑥</mtext></mrow><annotation encoding="application/x-tex">a=\frac{2(s-v_0t)}{t^2}~~~\cdots~~~⑥
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">⑥</span></span></span></span></span></p>
+<br>
+<h4 id="중력-가속도-계산">중력 가속도 계산</h4>
+<ul>
+<li>
+<p>이번 실험에서는 2m 길이의 파이프에 25cm 간격으로 센서를 배치하고, 낙하하는 물체가 센서를 지날때마다 시간을 기록할 것이다. 변위와 시간을 측정할 수 있으므로 초기속도(v_0)값만 알면 ⑥을 이용하여 중력 가속도를 계산할 수 있다.</p>
+</li>
+<li>
+<p>가장 쉬운 방법은 <strong>초기 속도가 0이 되도록 하기 위해 첫번째 센서를 파이프의 최상단에 배치</strong>하는 것이다. 단, 이렇게 할 경우 실험 과정에서 낙하시킬 물체를 놓을 때 물체를 잡고 있는 손가락의 영향을 제거하기 어려우며, 이 문제에 기인하는 오차는 큰 편이라고 할 수 있다.</p>
+</li>
+<li>
+<p>그래서 첫번째 센서를 최상단으로부터 12.5cm 정도 아래로 내려 설치하였다. 센서가 측정하는 시간은 온전히 자유낙하하는 상태에서 측정되므로 비교적 정확하게 측정할 수 있다. 문제는 <strong>첫번째 센서 위치에서의 초기 속도(v_0)값</strong>이 0이 아니므로 이 값을 별도로 계산하여야 한다.</p>
+</li>
+<li>
+<p>이 값은 ③으로부터 계산할 수 있는데,</p>
+</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>a</mi><mi>s</mi><mo>=</mo><msup><mi>v</mi><mn>2</mn></msup><mo>−</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mtext>   </mtext><mo>⋯</mo><mtext>   ③</mtext></mrow><annotation encoding="application/x-tex">2as = v^2 - v_0^2~~~\cdots~~~③
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mspace nobreak"> </span><span class="mord">③</span></span></span></span></span></p>
+<ul>
+<li>파이프 최상단에서의 초기 속도(v_0)는 이므로, 12.5cm만큼 낙하하여 첫번째 센서에 반응할 때의 속도(v)값은 ⑤로 부터 구할 수 있다.</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><msqrt><mrow><mn>2</mn><mi>a</mi><mi>s</mi></mrow></msqrt><mo>=</mo><msqrt><mrow><mn>2</mn><mo>×</mo><mn>9.80665</mn><mo>×</mo><mn>0.125</mn></mrow></msqrt><mo>=</mo><mn>1.5658</mn><mtext> </mtext><mi>m</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">v=\sqrt{2as} = \sqrt{2\times9.80665\times0.125}=1.5658~m/s
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.08390500000000001em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.956095em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span></span></span><span style="top:-2.916095em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.08390500000000001em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.12556999999999996em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9144300000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">9</span><span class="mord">.</span><span class="mord">8</span><span class="mord">0</span><span class="mord">6</span><span class="mord">6</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span><span class="mord">2</span><span class="mord">5</span></span></span><span style="top:-2.8744300000000003em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.12556999999999996em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mord">6</span><span class="mord">5</span><span class="mord">8</span><span class="mspace nobreak"> </span><span class="mord mathdefault">m</span><span class="mord">/</span><span class="mord mathdefault">s</span></span></span></span></span></p>
+<ul>
+<li>이 값이 12.5cm 위치에 첫번째 센서를 설치한 실험기구를 사용하는 경우, ⑥에서의 초기 속도(v_0)값이 된다. 파이프에 설치한 센서의 번호를 n이라고 하면, ⑥은 다음과 같이 쓸 수 있다.</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mo stretchy="false">(</mo><msub><mi>s</mi><mi>n</mi></msub><mo>−</mo><mn>1.5658</mn><msub><mi>t</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><msubsup><mi>t</mi><mi>n</mi><mn>2</mn></msubsup></mfrac></mrow><annotation encoding="application/x-tex">a_n=\frac{2(s_n-1.5658t_n)}{t_n^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3600000000000003em;vertical-align:-0.933em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mord">6</span><span class="mord">5</span><span class="mord">8</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.933em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<ul>
+<li>s는 각 센서가 위치한 곳까지 물체가 이동한 변위이며, 8개의 센서를 사용하여 낙하하는 물체가 센서와 반응하는 시간(t_n)을 측정하고, 이를 ⑥에 대입하면 가속도(a_n)를 계산할 수 있다. 각 지점에서의 가속도를 평균계산하여 중력가속도를 구한다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>센서</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s_n (m)</td>
+<td>0.125</td>
+<td>0.375</td>
+<td>0.625</td>
+<td>0.875</td>
+<td>1.125</td>
+<td>1.375</td>
+<td>1.625</td>
+<td>1.875</td>
+</tr>
+<tr>
+<td>t_n</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>a_n</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3 id="이-실험의-한계">이 실험의 한계</h3>
+<ul>
+<li>이 실험의 목적은 자유 낙하하는 물체를 통해 중력 가속도를 측정하는 것이다. 그런데, 중력 가속도를 계산하는 중간 과정 ⑤에서, 초기 속도(v_0=1.5658m/s) 값을 계산하기 위해 이미 중력 가속도 값인 9.80665m/s²를 사용한 것은 이 실험의 목적을 벗어나는 것이라고 볼 수 있다.</li>
+<li>그렇지만, 여기서는 각 센서를 통해 측정되는 값으로 계산해낸 중력 가속도의 평균 값이 어느 정도되는지 확인해보고, 실제값과 어느 정도의 오차를 보이는지를 확인하는 교육 목적을 갖고 사용하는 것임을 감안할 필요가 있다. 이를 근거로 중력 가속도 값을 이용하여 계산한 첫번째 센서위치에서의 초기 속도 값을 기본 보정값의 개념으로 사용하고자 한다.</li>
+<li>이러한 방법이 합당하지 않다고 생각한다면, 초기 속도(v_0)가 0이 되도록 센서를 파이프의 최상단에 배치하고, 물체가 손에서 떨어짐과 동시에 첫번째 센서에 반응하도록 낙하시키는 위치를 정확하게 조절하며 실험해야 한다.</li>
+</ul>
+<br>
+<br>
+<h2 id="실험-장치-만들기">실험 장치 만들기</h2>
+<br>
+<h4 id="파이프-준비">파이프 준비</h4>
+<ul>
+<li>길이 2m 투명 아크릴 파이프(내경 3.5cm)에 <strong>구간 거리가</strong> **0.25m(=25cm)**가 되도록 일정하게 IR LED를 배치하고 고정한다.</li>
+</ul>
+<p><img src="./image/Gravitational_Acceleration01.png" alt=""></p>
+<br>
+<h4 id="센서-장착">센서 장착</h4>
+<ul>
+<li>
+<p>맨 위쪽과 아래쪽에는 12.5cm정도 띄우고 IR LED와 Phototransistor를 배치함</p>
+<ul>
+<li>손에서 낙하물을 놓을 때, 낙하물이 바닥에 닿을 때, 낙하시간에 영향을 주는 요소를 제거하기 위함</li>
+</ul>
+</li>
+<li>
+<p>IR LED와 Phototransistor가 서로 정확하게 마주 볼 수 있는 위치에 유성펜을 사용하여 표시한다.</p>
+</li>
+<li>
+<p>드릴을 이용하여 아크릴 파이프에 지름 5mm의 구멍을 뚫는다.</p>
+<ul>
+<li>아크릴이 파손되지 않도록 유의한다. 이를 위해 먼저 작은 지름(1~2mm)의 드릴비트를 이용하여 작은 구멍을 뚫은 뒤, 그 구멍에 5mm 드릴비트를 사용하여 LED가 들어갈 구멍을 다시 뚫는 것이 좋다.</li>
+</ul>
+</li>
+<li>
+<p>IR LED와 Phototransistor를 구멍에 넣고 글루건을 사용하여 고정한다.</p>
+<ul>
+<li>글루건이 IR LED와 Phototransistor의 앞부분에 뭍지 않도록 주의</li>
+<li>글루건이 손에 뭍으면 화상을 입을 수 있으므로 주의</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="배선">배선</h4>
+<ul>
+<li>각 센서 층마다 저항과 전원선과 데이터선을 다음과 같이 연결한다.</li>
+</ul>
+<p><img src="./image/Gravitational_Acceleration02.png" alt=""></p>
+<br>
+<ul>
+<li>
+<p>IR LED</p>
+<ul>
+<li>
+<p>부품번호 및 제조회사가 표기되어 있지 않아 정확히 어떤 제품인지 알 수 없어, Everlight사의 IR333-A (940nm, 직경5mm)의 Datasheet를 참고하였다.</p>
+</li>
+<li>
+<p>Forward Current 100mA, Forward Voltage 1.5V</p>
+</li>
+<li>
+<p>5V를 전원으로 사용하는 경우</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><mn>1.5</mn><mo stretchy="false">)</mo><mi>V</mi></mrow><mrow><mn>0.1</mn><mi>A</mi></mrow></mfrac><mo>=</mo><mn>35</mn><mtext> Ω</mtext></mrow><annotation encoding="application/x-tex">R = \frac{(5-1.5)V}{0.1A} = 35~Ω
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">1</span><span class="mord mathdefault">A</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">5</span><span class="mspace nobreak"> </span><span class="mord">Ω</span></span></span></span></span></p>
+<p>그러므로 35Ω보다 약간 큰 47Ω저항을 연결한다. 100Ω정도의 저항도 사용할 수 있으나, 너무 큰 저항을 사용할 경우 IR의 세기가 작아지게 되므로, 실험이 잘 안될 수 있다.</p>
+</li>
+<li>
+<p>이 IR LED는 가격이 매우 저렴하지만, 실외에서는 태양광에 포함된 적외선의 영향도 받게 되므로 사용장소가 실내로 제한된다.</p>
+</li>
+</ul>
+ <br>
+</li>
+<li>
+<p>Phototransistor</p>
+<ul>
+<li>
+<p>적외선이 닿으면 전류를 흐르게 하는 스위치 역할을 한다.</p>
+</li>
+<li>
+<p>콜렉터(Collector)의 역할을 하는 긴다리와 에미터(Emitter)의 역할을 하는 짧은 다리, 총 2개의 다리가 붙어가 있지만 적외선 빛이 베이스(Base)의 역할을 하는 트렌지스터이다.</p>
+</li>
+<li>
+<p>스위치의 역할을 하므로, 1MΩ의 풀업 저항을 긴다리에 부착한다. 10k옴을 써도 무방하지만 센서의 감도가 떨어지게 됨</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="schematic">schematic</h2>
+<br>
+<ul>
+<li>8세트의 IR LED와 Phototransistor를 사용하기 위해 아날로그 입력이 총 8개 필요하다. 그러므로 여기서는 많은 아날로그 입력핀을 갖고 있는 <strong>ESP32</strong>를 사용하도록 한다. 장치의 특성상, 최종 사용시에는 USB선을 분리한 상태에서 사용할 수 있도록 하는 것이 좋으므로, 18650 배터리 홀더가 내장된 ESP32를 사용하는 것도 좋은 방법이다.</li>
+</ul>
+<p><img src="./image/Gravitational_Acceleration03.png" alt=""></p>
+<br>
+<p>※ 아두이노 UNO의 경우 아날로그 입력이 총 6개이고, 여기에 SDA, SCL과 같은 I2C 통신포트를 사용한다면 실제 사용가능한 아날로그 포트가 4개밖에 남지 않는다. 아두이노 UNO를 사용해야한다면 CD4051BE와 같은 멀티플렉서 IC를 추가로 사용하여야 한다. 혹은 아날로그 입력 포트를 많이 가지고 있는 아두이노 MEGA를 사용한다.</p>
+<br>
+<br>
+<h2 id="sketch-센서-테스트">sketch: 센서 테스트</h2>
+<br>
+<ul>
+<li>모든 센서의 배선이 완료되면, 센서가 잘 작동하는지 테스트하기 위한 스케치를 업로드하여 센서를 점검한다.</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Potentiometer is connected to GPIO 34 (Analog ADC1_CH6) </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ir_Pin[<span class="number">8</span>] = &#123;<span class="number">36</span>, <span class="number">39</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">32</span>, <span class="number">33</span>, <span class="number">4</span>, <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// variable for storing the potentiometer value</span></span><br><span class="line"><span class="keyword">int</span> ir_Value[<span class="number">8</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Print the header:</span></span><br><span class="line">  Serial.println(<span class="string">&quot;Y0\tY1\tY2\tY3\tY4\tY5\tY6\tY7&quot;</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;---\t---\t---\t---\t---\t---\t---\t---&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Loop through all eight pins.</span></span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">0</span>; pin&lt;=<span class="number">7</span>; pin++) &#123;</span><br><span class="line">    ir_Value[pin] = analogRead(ir_Pin[pin]);</span><br><span class="line">    Serial.print(String(ir_Value[pin]) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Serial.println();</span><br><span class="line">  delay(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<ul>
+<li>센서값이 4095으로 출력되는 센서는 배선 자체의 연결에 문제가 있는 것이므로, 배선이 연결되어야 하는 부분에 정확하게 연결이 되었는지 우선 점검한다.</li>
+<li>초기 상태의 센서값이 모두 0에 근접하는 값으로 표시될 수 있도록 하는 것이 좋으며, 초기값이 0에서 많이 벗어나는 경우에는 LED와 Phototransistor가 서로 정확하게 마주 볼 수 있도록 조절해준다. 조절 후에도 센서값이 0이 되지 않을 수 있다. 이때는 0에 가장 가까운 값이 만들어지도록 최대한 조절한다. 이 상태에서 물체를 떨어뜨려 모든 센서가 물체에 반응하는지 살펴본 뒤, 물체에 반응하는 센서값의 최소값을 점검한다.</li>
+</ul>
+<br>
+<br>
+<h2 id="sketch">sketch</h2>
+<br>
+<ul>
+<li>테스트 sketch를 통해 센서의 반응 정도를 파악한 뒤에, 메인 스케치를 업로드 한다.</li>
+<li>업로드 전에 아래 부분을 찾아, 각 센서에 따라으로 물체에 반응하는 센서의 최소값(센서 테스트시 점검할 것!)으로 바꿔준다.  민감도의 범위는 0~4095이며, 값이 작을 수록 떨어지는 물체에 민감하게 반응한다. 기본값은 모두 100으로 설정되어 있다.</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The smaller the value, the more sensitive (0~4095)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> min_Sensitive[<span class="number">8</span>] = &#123;<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>&#125;;</span><br></pre></td></tr></table></figure>
+<br>
+<h4 id="메인-스케치">메인 스케치</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****** ESP32 SKETCH FOR GRAVITATIONAL ACCELERATION ******</span></span><br><span class="line"><span class="comment">   Author: K. Jun, Lee</span></span><br><span class="line"><span class="comment">   Blog: https://stemwith.github.io         2020-10-06</span></span><br><span class="line"><span class="comment">*********************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// GPIO of connecting with 8 Phototransistors</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ir_Pin[<span class="number">8</span>] = &#123;<span class="number">36</span>, <span class="number">39</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">32</span>, <span class="number">33</span>, <span class="number">4</span>, <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// variable for storing the potentiometer value</span></span><br><span class="line"><span class="keyword">int</span> ir_Value[<span class="number">8</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// variable for IR Phototransistors&#x27; sensitivity</span></span><br><span class="line"><span class="keyword">int</span> ir_Sensitivity[<span class="number">8</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The smaller the value, the more sensitive (0~4095)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> min_Sensitive[<span class="number">8</span>] = &#123;<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for recording of sensing time by micros()</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> nowTime[<span class="number">8</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for distance of 8 sensors in micrometer unit</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ir_Distance[<span class="number">8</span>] = &#123;<span class="number">125000</span>, <span class="number">250000</span>, <span class="number">250000</span>, <span class="number">250000</span>, <span class="number">250000</span>, <span class="number">250000</span>, <span class="number">250000</span>, <span class="number">250000</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for displacemence of 8 sensors in micrometer unit</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ir_Displacemence[<span class="number">8</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for interval acceleration</span></span><br><span class="line"><span class="keyword">float</span> acceleration[<span class="number">8</span>] = &#123;<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for times number</span></span><br><span class="line"><span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Gravitational Acceleration</span></span><br><span class="line"><span class="keyword">float</span> g = <span class="number">9.80665</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Print the header:</span></span><br><span class="line">  t++;</span><br><span class="line">  <span class="keyword">float</span> sum_Accel = <span class="number">0.0</span>;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> initTime = <span class="number">0</span>;</span><br><span class="line">  Serial.println();</span><br><span class="line">  Serial.print(<span class="string">&quot;Interval #&quot;</span>); Serial.println(t);</span><br><span class="line">  Serial.println(<span class="string">&quot;\t\tY0\t\tY1\t\tY2\t\tY3\t\tY4\t\tY5\t\tY6\t\tY7&quot;</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;\t\t---\t\t---\t\t---\t\t---\t\t---\t\t---\t\t---\t\t---&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initializing 8 IR Phototransistors&#x27; Sensitivity:</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> s=<span class="number">0</span>; s&lt;<span class="number">101</span>; s++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (byte pin=<span class="number">0</span>; pin&lt;=<span class="number">7</span>; pin++) &#123;</span><br><span class="line">      ir_Sensitivity[pin] = ir_Sensitivity[pin] + analogRead(ir_Pin[pin]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.print(<span class="string">&quot;IR_Sensivitity\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">0</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    ir_Sensitivity[pin] = ir_Sensitivity[pin] / <span class="number">100</span>; <span class="comment">// average of Initial Senser value</span></span><br><span class="line">    Serial.print(String(ir_Sensitivity[pin]) + <span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Loop through #0~7 pins.</span></span><br><span class="line">  Serial.print(<span class="string">&quot;IR_Value\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">0</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (ir_Value[pin] &lt;= ir_Sensitivity[pin] + min_Sensitive[pin]) &#123;</span><br><span class="line">      <span class="keyword">if</span>(pin==<span class="number">0</span>) &#123;</span><br><span class="line">        initTime = micros();</span><br><span class="line">      &#125;</span><br><span class="line">      nowTime[pin] = micros() - initTime;</span><br><span class="line">      ir_Value[pin] = analogRead(ir_Pin[pin]);</span><br><span class="line">    &#125;</span><br><span class="line">    Serial.print(String(ir_Value[pin]) + <span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;Now Time(ms)\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">0</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    Serial.print(String(nowTime[pin]) + <span class="string">&quot;\t\t&quot;</span>);</span><br><span class="line">    ir_Value[pin] = <span class="number">0</span>;</span><br><span class="line">    ir_Sensitivity[pin] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;Distance(m)\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">1</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    Serial.print(<span class="string">&quot;     &quot;</span> + String(ir_Distance[pin]) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;Displacemence(m)\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">1</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    ir_Displacemence[pin] = ir_Displacemence[pin<span class="number">-1</span>] + ir_Distance[pin];</span><br><span class="line">    Serial.print(<span class="string">&quot;     &quot;</span> + String(ir_Displacemence[pin]) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;Accel.(m/s^2)\t\t&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">1</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    acceleration[pin] = (<span class="number">2.0</span>*((<span class="keyword">float</span>)ir_Displacemence[pin]-(<span class="built_in">sqrt</span>(<span class="number">2.0</span>*g*((<span class="keyword">float</span>)ir_Displacemence[<span class="number">0</span>]/<span class="number">1000000.0</span>)))*(<span class="keyword">float</span>)nowTime[pin]))/((<span class="keyword">float</span>)nowTime[pin]*(<span class="keyword">float</span>)nowTime[pin]);</span><br><span class="line">    Serial.print(<span class="string">&quot;     &quot;</span> + String(acceleration[pin]) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (byte pin=<span class="number">1</span>; pin&lt;<span class="number">8</span>; pin++) &#123;</span><br><span class="line">    sum_Accel = sum_Accel + acceleration[pin];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">float</span> ave_Accel = sum_Accel / <span class="number">7.0</span>;</span><br><span class="line">  Serial.print(<span class="string">&quot;Gravitational Acceleration = &quot;</span>);</span><br><span class="line">  Serial.print(ave_Accel); Serial.println(<span class="string">&quot; m/s^2&quot;</span>);</span><br><span class="line">  Serial.println();  Serial.println();</span><br><span class="line">  delay(<span class="number">2000</span>);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p>※ 스케치 내부에서 사용하는 시간과 거리의 단위는 소수 자리수 계산의 편의를 위해 microsecond, micrometer를 사용하며, 출력시에 second, meter 단위로 변환한다.</p>
+<br>
+<br>
+<h2 id="실험-결과">실험 결과</h2>
+<p>(to be continued)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://stemwith.github.io/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/" data-id="ckfzmur9c001px8kg5t14doyu" class="article-share-link">공유</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/08/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">최신</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/23/Arduino-Geiger-Counter/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">이전</strong>
+      <div class="article-nav-title">Arduino, Geiger Counter</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">카테고리</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arduino/">Arduino</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drone/">Drone</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ESP32/">ESP32</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Science/">Science</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/excel/">excel</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IoT/" rel="tag">IoT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RC/" rel="tag">RC</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">태그 클라우드</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IoT/" style="font-size: 20px;">IoT</a> <a href="/tags/RC/" style="font-size: 10px;">RC</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">아카이브</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">10월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">8월 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">11월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">10월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">9월 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">11월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">10월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">9월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">6월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">1월 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">11월 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">10월 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">최근 포스트</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/08/menu/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/home/">Welcome to &#34;STEM with&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/23/Arduino-Geiger-Counter/">Arduino, Geiger Counter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 K. Jun Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
