@@ -186,7 +186,8 @@ d:\dev\nvm 입력</p>
 <li>
 <p>환경 변수 구성 : <strong>제어판&gt; 고급 시스템 설정 보기&gt; 시스템 속성&gt; 고급&gt; 환경 변수</strong>를 열고, <strong>사용자 변수</strong>에 다음을 새로만들기 혹은 추가</p>
 <ul>
-<li>새로만들기
+<li>
+<p>새로만들기</p>
 <ul>
 <li>변수이름 NVM_HOME, 변수값 D:\dev\nvm</li>
 </ul>
@@ -194,7 +195,8 @@ d:\dev\nvm 입력</p>
 <li>변수이름 NVM_SYMLINK, 변수값 D:\dev\nodejs</li>
 </ul>
 </li>
-<li>추가 (다른 PATH가 이미 지정되어 있는 경우, 끝부분에 추가)
+<li>
+<p>추가 (다른 PATH가 이미 지정되어 있는 경우, 끝부분에 추가)</p>
 <ul>
 <li>PATH : %NVM_HOME%; %NVM_SYMLINK%</li>
 </ul>
@@ -411,12 +413,19 @@ d:\dev\nvm 입력</p>
 <p>첨부할 사진 파일 위치 : 사진 파일을 d:/dev/stemwith/source/image/ 폴더에 복사</p>
 </li>
 <li>
-<p>마크다운 파일에서 파일 위치 지정시 지정하면 됨</p>
+<p>마크다운 파일에서 파일 위치를 다음과 같이 지정함 지정함</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![사진첨부파일설명](&#x2F;image&#x2F;~~~.jpg)</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>사진 출력시 사이즈 조정이 필요할 경우, 아래와 같이 하면 화면에 출력되는 크기를 조정할 수 있음</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![사진첨부파일설명](&#x2F;image&#x2F;~~~.png &#x3D;432x768)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>주의 사항</p>
+<ul>
+<li>사진이 위치한 폴더를 지정할 때, /image/ 폴더 앞에 점(.) 같은 것을 추가하면 안됨</li>
+<li>파일이름에 언더바(_)가 포함되면 안됨. 대시(-)는 가능</li>
+</ul>
 </li>
 </ol>
 
