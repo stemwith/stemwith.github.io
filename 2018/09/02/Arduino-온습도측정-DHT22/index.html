@@ -11,7 +11,7 @@
 
     <title>
         
-          STEM with
+          Arduino, 온도 및 습도 측정 (DHT22) - STEM with
         
     </title>
 
@@ -139,168 +139,78 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Categories</h1>
-  
+          <div class="book-post">
+  <h1 id="DS18b20-온도센서">DS18b20 온도센서</h1>
+<h1 id="온습도-센서-DHT22">온습도 센서 DHT22</h1>
+<p>DHT22 센서를 이용하여 온도와 습도를 측정한다.</p>
+<table>
+<thead>
+<tr>
+<th>센서</th>
+<th>DHT11</th>
+<th>DHT22 (AM2302)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사진</td>
+<td><img src="/image/dht22-02.png" alt="DHT11"></td>
+<td><img src="/image/dht22-01.png" alt="DHT22" style="zoom:50%;" /></td>
+</tr>
+<tr>
+<td>온도</td>
+<td>0 ~ 50℃ (오차범위 ±2℃)</td>
+<td>-40 ~ 100℃ (오차범위 ±0.5℃) (해상도 0.1℃)</td>
+</tr>
+<tr>
+<td>습도</td>
+<td>20 ~ 90% (오차범위 ±5%)</td>
+<td>0 ~ 100% (오차범위 ±2~5%) (해상도 0.1%)</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="Pinout">Pinout</h4>
+<br>
+<h2 id="schematic">schematic</h2>
+<p><img src="/image/dht22-05.png" alt=""></p>
+<br>
+<br>
+<h2 id="라이브러리-준비하기">라이브러리 준비하기</h2>
+<p>2개의 라이브러리가 필요합니다.</p>
+<ul>
+<li>
+<p>먼저 DHT sensor library (by Adafruit)를 검색하여 설치를 클릭합니다.</p>
+<p><img src="/image/dht22-03.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li>
+<p>그러면 Dependencies for library DHT sensor library 창이 나타나는데, 이때 Install all을 클릭하면 2개의 라이브러리가 동시에 설치됩니다.</p>
+<p><img src="/image/dht22-04.png" alt=""></p>
+</li>
+</ul>
+<p>두 개의 라이브러리를 설치하기만 하면 되기때문에, 순서가 바뀌어도 관계없습니다.</p>
+<br>
+<br>
+<h2 id="sketch">sketch</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;DHT.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DHTPIN    8       <span class="comment">// data pin</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DHTTYPE   DHT22   <span class="comment">// change to DHT1 if you&#x27;re using the DHT11</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DHT <span class="title">dht</span><span class="params">(DHTPIN, DHTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  dht.begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> temperature = dht.readTemperature();</span><br><span class="line">  <span class="keyword">float</span> humidity = dht.readHumidity();</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;Temperature: &quot;</span>);</span><br><span class="line">  Serial.print(temperature);</span><br><span class="line"></span><br><span class="line">  Serial.print(<span class="string">&quot;, Humidity: &quot;</span>);</span><br><span class="line">  Serial.println(humidity);</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  
-    <!-- Split post by year -->
-    
-  
-
-  
-      <div class="years">
-          <h2>2019</h2>
-          <ul class="archive-list-item">
-          
-              <li>
-                <span>2019-10-30</span>
-                <a href="/2019/10/30/4WD-Bluetooth/">
-                  4WD Bluetooth
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-29</span>
-                <a href="/2019/10/29/DC모터-4WD-자동차-만들기/">
-                  DC모터 4WD 자동차 만들기 (TB6612FNG)
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-28</span>
-                <a href="/2019/10/28/Arduino-라인트레이서-L298N/">
-                  Arduino, 라인트레이서, L298N
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-26</span>
-                <a href="/2019/10/26/Arduino-Bluetooth-페어링/">
-                  Arduino, Bluetooth 페어링
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-20</span>
-                <a href="/2019/10/20/Arduino-Bluetooth-Blynk/">
-                  Arduino, Bluetooth, Blynk
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-18</span>
-                <a href="/2019/10/18/Blynk에-센서값-출력하기/">
-                  Blynk에 센서값 출력하기
-                </a>
-              </li>
-          
-              <li>
-                <span>2019-10-17</span>
-                <a href="/2019/10/17/Bluetooth-시리얼-통신/">
-                  Bluetooth Serial Controller 앱
-                </a>
-              </li>
-          
-          </ul>
-      </div>
-  
-      <div class="years">
-          <h2>2018</h2>
-          <ul class="archive-list-item">
-          
-              <li>
-                <span>2018-11-30</span>
-                <a href="/2018/11/30/Processing-기초/">
-                  Processing 기초
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-10-02</span>
-                <a href="/2018/10/02/1602-LCD-Display/">
-                  1602 LCD, 조도, 초음파, 온습도
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-10-01</span>
-                <a href="/2018/10/01/7-Segment-FND-사용하기/">
-                  7 Segment (FND) 사용하기
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-08</span>
-                <a href="/2018/09/08/Arduino-스테핑모터/">
-                  Arduino, 스테핑모터
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-08</span>
-                <a href="/2018/09/08/Arduino-서보모터/">
-                  Arduino, 서보모터
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-07</span>
-                <a href="/2018/09/07/Arduino-키패드-사용하기/">
-                  Arduino, 키패드 사용하기
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-06</span>
-                <a href="/2018/09/06/Arduino-IR-리모컨/">
-                  Arduino, IR 리모컨
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-02</span>
-                <a href="/2018/09/02/Arduino-1602-LCD-I2C/">
-                  Arduino, 1602LCD (I2C)
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-02</span>
-                <a href="/2018/09/02/Arduino-TM1637-모듈-사용하기/">
-                  Arduino, TM1637 모듈 사용하기
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-02</span>
-                <a href="/2018/09/02/Arduino-온습도측정-DHT22/">
-                  Arduino, 온도 및 습도 측정 (DHT22)
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-01</span>
-                <a href="/2018/09/01/Arduino-온도측정-DS18b20/">
-                  Arduino, 온도측정(DS18b20)
-                </a>
-              </li>
-          
-              <li>
-                <span>2018-09-01</span>
-                <a href="/2018/09/01/Arduino-시작하기/">
-                  Arduino 시작하기, RGB LED, PWM
-                </a>
-              </li>
-          
-          </ul>
-      </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
@@ -324,10 +234,19 @@ function sidebar_toggle() {
     <!-- Author title -->
     <div class="author-title">
       <div>K. Jun Lee</div>
-      <div></div>
+      <div>2018-09-02</div>
     </div>
   </div>
 
+  
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/categories/Arduino/">Arduino</a>
+
+      
+    </div>
+    
   
 
   <div class="divider"></div>
