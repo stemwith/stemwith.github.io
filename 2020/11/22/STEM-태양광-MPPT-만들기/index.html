@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.png" />
+    
+
+    <title>
+        
+          ESP-32 태양광 MPPT 만들기 - STEM with
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-151970975-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/">
+    <img src="/favicon.png">
+    <span>STEM WITH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <p>de la Cruz a la fecha<br>
+<br></p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/categories/Arduino">Arduino</a></li>
+<li><a href="/categories/ESP32">ESP32</a></li>
+<li><a href="/categories/Science">ScienceEx</a></li>
+<li><a href="/tags/IoT">Blynk, IoT</a></li>
+<li><a href="/categories/Drone/">Drone</a></li>
+<li><a href="/tags/RC">RC</a></li>
+<li><a href="/categories/excel/">Excel, Office</a></li>
+<li><a href="/categories/DIY/">Do It Yourself</a></li>
+</ul>
+
+</div>
+
+
+<script src="/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="ESP32-태양광-MPPT-만들기">ESP32 태양광 MPPT 만들기</h1>
+<br>
+<h3 id="schematic">schematic</h3>
+<p><img src="../image/SolarMPPT01.png" alt=""></p>
+<br>
+<br>
+<h2 id="라이브러리-준비하기">라이브러리 준비하기</h2>
+<h4 id="Case1-위-사진과-같은-형태의-DHT22-모듈을-사용하는-경우">Case1: 위 사진과 같은 형태의 DHT22 모듈을 사용하는 경우</h4>
+<ul>
+<li>라이브러리 매니저검색창에 검색어로 'AM2302’를 입력
+<ul>
+<li>Groove Temperature And Humidity Sensor (by Seeed Studio) 설치</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="Case2-위-라이브러리로-동작하지-않는-경우">Case2: 위 라이브러리로 동작하지 않는 경우</h4>
+<p>2개의 라이브러리가 필요합니다.</p>
+<ul>
+<li>
+<p>먼저 DHT sensor library (by Adafruit)를 검색하여 설치를 클릭합니다.</p>
+<p><img src="/image/dht22-03.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li>
+<p>그러면 Dependencies for library DHT sensor library 창이 나타나는데, 이때 Install all을 클릭하면 2개의 라이브러리가 동시에 설치됩니다.</p>
+<p><img src="/image/dht22-04.png" alt=""></p>
+</li>
+</ul>
+<p>두 개의 라이브러리를 설치하기만 하면 되기때문에, 순서가 바뀌어도 관계없습니다.</p>
+<br>
+<br>
+<h3 id="schematic-v2">schematic</h3>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> volts_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> val = analogRead(<span class="number">32</span>);</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line">    <span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>; </span><br><span class="line">    volts_sum = volts_sum + volts;</span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  volts_sum = volts_sum / <span class="number">10</span>;</span><br><span class="line">  Serial.print(<span class="string">&quot;V = &quot;</span>);</span><br><span class="line">  Serial.print(volts_sum);</span><br><span class="line">  Serial.println(<span class="string">&quot; mV&quot;</span>);</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p>MPPT모듈을 만들기 전, 태양광패널에서 만들어지는 전기의 전압을 측정해본다. ESP32의 경우 내부전압 3.3V, 12bit ADC이므로</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line"><span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+<p>를 사용한다.</p>
+<br>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="K"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>K. Jun Lee</div>
+      <div>2020-11-22</div>
+    </div>
+  </div>
+
+  
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/categories/Science/">Science</a>
+
+      
+    </div>
+    
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/js/book.js"></script>
