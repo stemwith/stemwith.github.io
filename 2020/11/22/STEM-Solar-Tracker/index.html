@@ -11,7 +11,7 @@
 
     <title>
         
-          ESP-32 태양광 MPPT 만들기 - STEM with
+          ESP-32 Solar Tracker - STEM with
         
     </title>
 
@@ -140,47 +140,70 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="ESP32-태양광-MPPT-만들기">ESP32 태양광 MPPT 만들기</h1>
+  <h1 id="ESP32-Solar-Tracker">ESP32 Solar Tracker</h1>
+<p>팬(도리도리) &amp; 틸트(끄덕끄덕)가 가능한 2축 서보모터 거치대와 2개의 서보모터를 사용하여 Solar Tracker를 만들어 보자.</p>
 <br>
-<h3 id="schematic">schematic</h3>
-<p><img src="../image/SolarMPPT01.png" alt=""></p>
+<h3 id="단계1-Solar-Tracker-Frame-3D-Printing">단계1: Solar Tracker Frame 3D Printing</h3>
+<p><img src="/image/SolarTracker01.png" alt=""></p>
+<p><a href="/attach/Sun_Tracker_Gnomon_B.stl">.stl 파일</a>  <a href="/attach/Sun_Tracker_Gnomon_B.gcode">.gcode 파일</a></p>
+<p>3D 프린팅 후, 5mm 드릴을 이용하여 4곳에 구멍을 뚫는다.</p>
 <br>
 <br>
-<h2 id="라이브러리-준비하기">라이브러리 준비하기</h2>
-<h4 id="Case1-위-사진과-같은-형태의-DHT22-모듈을-사용하는-경우">Case1: 위 사진과 같은 형태의 DHT22 모듈을 사용하는 경우</h4>
+<h3 id="단계2-조도센서-조립하기">단계2: 조도센서 조립하기</h3>
+<br>
+<h4 id="조도센서-삽입">조도센서 삽입</h4>
+<p><img src="/image/SolarTracker02.png" alt=""></p>
+<p>4개의 조도센서를 구멍에 넣은 뒤,</p>
+<p><img src="/image/SolarTracker03.png" alt=""></p>
+<p>뒤쪽에 글루건을 쏘아 고정시킨다. (조도센서는 극성을 구분할 필요가 없으므로, 서로 선이 맞닿지만 않으면 된다.)</p>
+<br>
+<h4 id="10k-저항-연결">10k 저항 연결</h4>
+<p>아래 그림과 같이 연결한다.</p>
+<p><img src="/image/SolarTracker04.png" alt=""></p>
 <ul>
-<li>라이브러리 매니저검색창에 검색어로 'AM2302’를 입력
-<ul>
-<li>Groove Temperature And Humidity Sensor (by Seeed Studio) 설치</li>
+<li>각 조도센서에 연결된 2개의 선 중 하나를 골라 10k 저항을 연결하고 한 뒤, 저항의 다른 쪽 끝을 모두 맞붙여서 GND에 연결한다.</li>
+<li>조도센서의 다른 한쪽 끝을 모두 맞붙여서 ESP32의 3.3V에 연결한다.</li>
 </ul>
-</li>
-</ul>
-<br>
-<h4 id="Case2-위-라이브러리로-동작하지-않는-경우">Case2: 위 라이브러리로 동작하지 않는 경우</h4>
-<p>2개의 라이브러리가 필요합니다.</p>
+<p><img src="/image/SolarTracker05.png" alt=""></p>
 <ul>
 <li>
-<p>먼저 DHT sensor library (by Adafruit)를 검색하여 설치를 클릭합니다.</p>
-<p><img src="/image/dht22-03.png" alt=""></p>
+<p>GND와 3.3로 연결되는 선들이 서로 붙지 않도록 절연테이프를 붙여준다.</p>
+<p><img src="/image/SolarTracker06.png" alt=""></p>
+</li>
+<li>
+<p>각 조도센서와 10k 저항의 사이에 ESP32에 연결할 GPIO선을 하나씩 납땜하여 연결한다.</p>
 </li>
 </ul>
+<p><img src="/image/SolarTracker07.png" alt=""></p>
 <ul>
 <li>
-<p>그러면 Dependencies for library DHT sensor library 창이 나타나는데, 이때 Install all을 클릭하면 2개의 라이브러리가 동시에 설치됩니다.</p>
-<p><img src="/image/dht22-04.png" alt=""></p>
+<p>ESP32의 3.3V와 GND에 연결할 선도 함께 납땜하여 연결한다.</p>
+<p><img src="/image/SolarTracker08.png" alt=""></p>
+</li>
+<li>
+<p>선 모양을 잡아 정리한다. (위 사진에는 하트 모양처럼 양 옆으로 선이 나와 있지만, 추후 거치대 장착을 위해서는 아래 사진처럼 모두 오무려주어야 한다.)</p>
+<p><img src="/image/SolarTracker09.png" alt=""></p>
 </li>
 </ul>
-<p>두 개의 라이브러리를 설치하기만 하면 되기때문에, 순서가 바뀌어도 관계없습니다.</p>
 <br>
 <br>
-<h3 id="schematic-v2">schematic</h3>
-<h3 id="sketch">sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> volts_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> val = analogRead(<span class="number">32</span>);</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line">    <span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>; </span><br><span class="line">    volts_sum = volts_sum + volts;</span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  volts_sum = volts_sum / <span class="number">10</span>;</span><br><span class="line">  Serial.print(<span class="string">&quot;V = &quot;</span>);</span><br><span class="line">  Serial.print(volts_sum);</span><br><span class="line">  Serial.println(<span class="string">&quot; mV&quot;</span>);</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="단계3-2축-서보모터-거치대에-장착하기">단계3: 2축 서보모터 거치대에 장착하기</h3>
+<p><img src="/image/SolarTracker10.png" alt=""></p>
 <br>
+<br>
+<br>
+<h2 id="태양광-패널의-전압-측정하기">태양광 패널의 전압 측정하기</h2>
 <p>MPPT모듈을 만들기 전, 태양광패널에서 만들어지는 전기의 전압을 측정해본다. ESP32의 경우 내부전압 3.3V, 12bit ADC이므로</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line"><span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
 <p>를 사용한다.</p>
+<br>
+<h3 id="schematic">schematic</h3>
+<p><img src="/image/SolarMPPT01.png" alt=""></p>
+<br>
+<br>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> volts_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> val = analogRead(<span class="number">32</span>);</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line">    <span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>; </span><br><span class="line">    volts_sum = volts_sum + volts;</span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  volts_sum = volts_sum / <span class="number">10</span>;</span><br><span class="line">  Serial.print(<span class="string">&quot;V = &quot;</span>);</span><br><span class="line">  Serial.print(volts_sum);</span><br><span class="line">  Serial.println(<span class="string">&quot; mV&quot;</span>);</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
 
 </div>
