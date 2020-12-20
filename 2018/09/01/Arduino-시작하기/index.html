@@ -147,7 +147,7 @@ function sidebar_toggle() {
 <p><img src="/image/arduino-02unopin.png" alt=""></p>
 <ul>
 <li>arduino에서 사용하는 PWM은 <strong>8bit</strong>로 <strong>0~255</strong>의 범위를 사용한다.</li>
-<li>아날로그 신호는 ADC <strong>10bit</strong>를 사용하므로 <strong>0~1023</strong>의 범위를 사용할 수 있다.</li>
+<li>Analog Input은 ADC <strong>10bit</strong>를 사용하므로 <strong>0~1023</strong>의 범위를 사용할 수 있다.</li>
 <li>스케치 업로드 중에는 0번핀(RX), 1번핀(TX)을 사용할 수 없다.</li>
 </ul>
 <br>
@@ -219,28 +219,32 @@ function sidebar_toggle() {
 <h1 id="Arduino-스케치">Arduino 스케치</h1>
 <br>
 <h2 id="기본-구조">기본 구조</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">‘I’                <span class="comment">// 라이브러리, 변수 선언</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;     <span class="comment">// 아두이노 켜질 때 딱 한번 실행</span></span><br><span class="line">‘II’               <span class="comment">// 초기화, pinMode …   </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;      <span class="comment">// setup 이후 계속 반복 실행</span></span><br><span class="line">‘III’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">블록‘I’             <span class="comment">// 블록I은 라이브러리, 변수 선언 (필요없는 경우 생략가능)</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;     <span class="comment">// 블록II 부분을 아두이노 켜질 때 딱 한번 실행</span></span><br><span class="line">	블록‘II’        <span class="comment">// 초기화, pinMode …   </span></span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;      <span class="comment">// 블록III 부분을 반복 실행</span></span><br><span class="line">	블록‘III’</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
-<h2 id="Blink-예제">Blink 예제</h2>
-<p><strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>01.Basics</strong>&gt; <strong>Blink</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> led = <span class="number">13</span>;               <span class="comment">// default variable: LED_BUILTIN -&gt; 13pin</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(led, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(led, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(led, LOW);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
-<h3 id="int-led-13">int led = 13;</h3>
+<h2 id="Exercise-1">Exercise 1:</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 처음 해보는 아두이노 코딩</span></span><br><span class="line"><span class="comment">   LED 깜박이기 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(<span class="number">13</span>, OUTPUT);      <span class="comment">// digitalWrite 사용시 pinMode 설정해야함. (플로팅 방지)</span></span><br><span class="line">  digitalWrite(<span class="number">13</span>, HIGH);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">  digitalWrite(<span class="number">13</span>, LOW);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>led 라는 integer (정수) 변수를 선언</li>
-<li>led 변수의 값을 13으로 지정</li>
+<li>void setup에 모든 명령어가 위치</li>
 <li>; (세미콜론)은 문장이 끝났음을 선언</li>
+<li>**처음 컴파일하는 경우 파일을 저장하는 절차가 수행되며, 이를 위해 파일 이름을 지정해주어야 함 **</li>
+<li>주석문 사용 방법 (컴파일시 skip)
+<ul>
+<li>// ~~~~              1개의 라인만 주석문 처리</li>
+<li>/* ~~~~*/          여러개의 라인을 /** */ 안에 넣어서 주석문을 만들 수 있음</li>
+</ul>
+</li>
 </ul>
 <br>
-<h3 id="pinMode-led-OUTPUT">pinMode(led, OUTPUT);</h3>
+<h4 id="pinMode-13-OUTPUT">pinMode(13, OUTPUT);</h4>
 <ul>
-<li>특정 핀을 출력 또는 입력 모드로 설정</li>
-<li>digitalRead, digitalWrite를 사용하는 핀에만 선언</li>
+<li>13번 핀을 출력 모드로 설정 (※입력 모드로 사용하려면 OUTPUT 대신 INPUT or INPUT_PULLUP 사용)</li>
+<li>pinMode는 digitalRead, digitalWrite를 사용하는 핀에만 선언</li>
 <li>즉, 0과 1의 입출력에만 사용하는 핀에 선언하며, PWM사용핀은 pinMode 선언이 불필요하다.</li>
 <li>INPUT은 입력핀으로 사용시, OUTPUT은 출력핀으로 사용시</li>
 </ul>
 <br>
-<h3 id="digitalWrite-led-HIGH">digitalWrite(led, HIGH);</h3>
+<h4 id="digitalWrite-led-HIGH">digitalWrite(led, HIGH);</h4>
 <ul>
 <li>디지털 핀의 전압을 LOW(0의 값) 또는 HIGH(1의 값)로 설정
 <ul>
@@ -250,15 +254,263 @@ function sidebar_toggle() {
 </li>
 </ul>
 <br>
-<h3 id="delay-1000">delay(1000);</h3>
+<h4 id="delay-1000">delay(1000);</h4>
 <ul>
-<li>특정 시간 동안 아두이노를 멈추게 하는 명령
+<li>특정 시간 동안 아두이노를 멈추게 하는 명령 (ms 단위)
 <ul>
 <li>1초 : 1000</li>
 <li>5초 : 5000</li>
 </ul>
 </li>
 </ul>
+<br>
+<ul>
+<li>그러므로 위 예제는,
+<ul>
+<li>아두이노 보드에 있는 13번 LED가 1초가 켜졌다가 꺼짐</li>
+<li>void loop에서 수행할 반복 명령이 없으므로, LED가 꺼진 상태를 그대로 유지</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="Exercise-2">Exercise 2:</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(<span class="number">13</span>, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(<span class="number">13</span>, HIGH);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">  digitalWrite(<span class="number">13</span>, LOW);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>void setup
+<ul>
+<li>pinMode는 digitalWrite를 사용하는 pin을 설정하여 플로팅을 방지하는 선언이므로, 한번만 실행하면 됨</li>
+</ul>
+</li>
+<li>void loop에 의해
+<ul>
+<li>1초간 켜졌다가, 1초간 꺼지는 것을 반복</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="Exercise-3-변수-설정">Exercise 3: 변수 설정</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> led = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(led, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	digitalWrite(led, HIGH);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">   	digitalWrite(led, LOW);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="int-led-13">int led = 13;</h3>
+<ul>
+<li>led 라는 integer (정수) 변수를 선언</li>
+<li>led 변수의 값을 13으로 지정</li>
+</ul>
+<br>
+<br>
+<h2 id="Exercise-4-상수로-설정하는-경우-1">Exercise 4: 상수로 설정하는 경우(1)</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> led 13</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(led, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	digitalWrite(led, HIGH);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">   	digitalWrite(led, LOW);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="define-led-13">#define led 13</h3>
+<ul>
+<li>int led = 13; 을 사용하는 대신 #define으로 상수 선언을 해도 됨</li>
+<li>상수 형태로 선언하면 컴파일시에 정의된 값을 참조하여 대체하므로 메모리를 차지하지 않음</li>
+<li><strong>#define을 사용하는 경우, 문장 종료 기호인 ;(세미콜론)을 사용하지 않음!</strong></li>
+</ul>
+<br>
+<br>
+<h2 id="Exercise-5-상수로-설정하는-경우-2">Exercise 5: 상수로 설정하는 경우(2)</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> led = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(led, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	digitalWrite(led, HIGH);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">   	digitalWrite(led, LOW);</span><br><span class="line">   	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="const-int-led-13">const int led = 13;</h3>
+<ul>
+<li>const int led = 13; 형태로 상수 선언을 해도 됨</li>
+<li>단, <strong>문장종료 기호인 ;(세미콜론)을 사용함!</strong></li>
+</ul>
+<br>
+<br>
+<h2 id="Blink-예제">Blink 예제</h2>
+<p><strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>01.Basics</strong>&gt; <strong>Blink</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   (주석문 생략)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the setup function runs once when you press reset or power the board</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// initialize digital pin LED_BUILTIN as an output.</span></span><br><span class="line">  pinMode(LED_BUILTIN, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the loop function runs over and over again forever</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(LED_BUILTIN, HIGH);   <span class="comment">// turn the LED on (HIGH is the voltage level)</span></span><br><span class="line">  delay(<span class="number">1000</span>);                       <span class="comment">// wait for a second</span></span><br><span class="line">  digitalWrite(LED_BUILTIN, LOW);    <span class="comment">// turn the LED off by making the voltage LOW</span></span><br><span class="line">  delay(<span class="number">1000</span>);                       <span class="comment">// wait for a second</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h2 id="Exercise">Exercise</h2>
+<ol>
+<li>켜고 끄는 시간을 시간을 2초로 설정해본다.</li>
+</ol>
+<br>
+<br>
+<br>
+<h1 id="RGB-LED">RGB LED</h1>
+<br>
+<h2 id="RGB-LED의-3색을-교대로-점멸하기">RGB LED의 3색을 교대로 점멸하기</h2>
+<br>
+<h3 id="schematic">schematic</h3>
+<p><img src="/image/arduino-10rgbled.png" alt=""></p>
+<br>
+<h3 id="sketch">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(pin_ledR, OUTPUT);</span><br><span class="line">	pinMode(pin_ledG, OUTPUT);</span><br><span class="line">	pinMode(pin_ledB, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(pin_ledR, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledR, LOW);</span><br><span class="line">	digitalWrite(pin_ledG, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledG, LOW);</span><br><span class="line">	digitalWrite(pin_ledB, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledB, LOW);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="주의사항">주의사항</h3>
+<ul>
+<li>RGB LED 모듈의 핀이 (GND,R,G,B)형태로 구성되어 있는 경우: 위 스케치를 사용하면 됨
+<ul>
+<li>digitalWrite를 사용하는 경우: HIGH 켜짐, LOW 꺼짐</li>
+<li>analogWrite를 사용하는 경우: 0 꺼짐, 255 켜짐</li>
+</ul>
+</li>
+<li>RGB LED 모듈의 핀이 (VCC,R,G,B)형태로 구성되어 있는 경우: 값을 반대로 주어야 함 (사용시 주의!)
+<ul>
+<li>digitalWrite를 사용하는 경우: HIGH 꺼짐, LOW 켜짐</li>
+<li>analogWrite를 사용하는 경우: 0 켜짐, 255 꺼짐</li>
+</ul>
+</li>
+</ul>
+<img src="/image/arduino-14rgbled.png" style="zoom:50%;" />
+<p>위 제품의 경우 RGB LED 모듈의 핀이 (VCC,R,G,B)형태로 구성되어 있으므로, digitalWrite에서 LOW값이 켜지고, HIGH값을 주면 꺼짐. 마찬가지로 analogWrite에서도 0이 켜지고, 255가 꺼짐. 그러므로 sketch도 아래와 같이 변경해야 함.</p>
+<br>
+<h3 id="수정된-sketch-VCC-R-G-B로-구성된-모듈의-경우">(수정된) sketch: (<strong>VCC</strong>,R,G,B로 구성된 모듈의 경우)</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(pin_ledR, OUTPUT);</span><br><span class="line">	pinMode(pin_ledG, OUTPUT);</span><br><span class="line">	pinMode(pin_ledB, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(pin_ledR, LOW);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledR, HIGH);</span><br><span class="line">	digitalWrite(pin_ledG, LOW);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledG, HIGH);</span><br><span class="line">	digitalWrite(pin_ledB, LOW);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledB, HIGH);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h1 id="PWM">PWM</h1>
+<br>
+<h2 id="Arduino-PWM-출력">Arduino PWM 출력</h2>
+<ul>
+<li><strong>analogWrite()</strong> : 8bit를 사용하므로 <strong>0~255</strong> 범위에서 센서값을 출력</li>
+<li><strong>VCC</strong>,R,G,B로 구성된 모듈의 경우<br>
+*   analogWrite(pin_ledR, <strong>0</strong>);           pin_ledR에 연결된 LED를 <strong>끔</strong><br>
+*   analogWrite(pin_ledR, <strong>255</strong>);       pin_ledR에 연결된 LED를 <strong>켬</strong></li>
+<li><strong>GND</strong>,R,G,B로 구성된 모듈의 경우<br>
+*   analogWrite(pin_ledR, <strong>0</strong>);           pin_ledR에 연결된 LED를 <strong>켬</strong><br>
+*   analogWrite(pin_ledR, <strong>255</strong>);       pin_ledR에 연결된 LED를 <strong>끔</strong></li>
+<li>PWM 출력이 가능한 디지털핀(<strong>3,5,6,9,10,11</strong>)을 사용하여 출력</li>
+<li><strong>pinMode 선언 불필요</strong>
+<ul>
+<li>예를들어, pinMode(9, OUTPUT); → 9번 핀으로 PWM 출력을 한다면 불필요한 선언임</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="수정된-sketch-VCC-R-G-B로-구성된-모듈의-경우-v2">(수정된) sketch: (<strong>VCC</strong>,R,G,B로 구성된 모듈의 경우)</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;      <span class="comment">// pinMode 필요없음</span></span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">0</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledB, <span class="number">0</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledB, <span class="number">255</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h2 id="여러가지-색깔-만들어보기">여러가지 색깔 만들어보기</h2>
+<br>
+<h3 id="16진수-및-10진수-Color-Table">16진수 및 10진수 Color Table</h3>
+<p><img src="/image/color_table01.png" alt=""></p>
+<p><img src="/image/color_table02.png" alt=""></p>
+<p><img src="/image/color_table03.png" alt=""></p>
+<p><img src="/image/color_table04.png" alt=""></p>
+<p>※ 색깔이 미묘하게 다를 수 있다.</p>
+<br>
+<h3 id="sketch-v2">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">102</span>);</span><br><span class="line">	analogWrite(pin_ledB, <span class="number">153</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<h3 id="수정된-sketch-VCC-R-G-B로-구성된-모듈의-경우-v3">(수정된) sketch: (<strong>VCC</strong>,R,G,B로 구성된 모듈의 경우)</h3>
+<p>※ 단, RGB LED모듈이 **(VCC,R,G,B)**형태인 경우는 <strong>255에서 각 Color 코드값을 뺀 값</strong>으로 사용해야 한다!!!</p>
+<ul>
+<li>예를 들어, 006699 (R:000, G:102, B:153) 색깔을 만들고 싶다면,
+<ul>
+<li>R:<strong>255</strong>, G:<strong>153</strong>, B:<strong>102</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">153</span>);</span><br><span class="line">	analogWrite(pin_ledB, <span class="number">102</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h3 id="Exercise-VCC-R-G-B-모듈로-무지개-색깔-만들기">Exercise: (<strong>VCC</strong>,R,G,B)모듈로 무지개 색깔 만들기</h3>
+<ul>
+<li>
+<p>1초마다 빨-주-노-초-파-남-보 순서대로 색깔이 출력되도록 만들어 본다. (색상표에서 가장 비슷한 색깔 선택)</p>
+</li>
+<li>
+<p>각 색깔을 출력한 뒤</p>
+<ul>
+<li>delay(1000); 을 추가하여야 1초간 해당 색깔이 유지된다.</li>
+</ul>
+</li>
+<li>
+<p>빨 (R:0, G:255, B:255)</p>
+</li>
+<li>
+<p>주 (R:0, G:153, B:255)</p>
+</li>
+<li>
+<p>노 (R:0, G:0, B:255)</p>
+</li>
+<li>
+<p>초 (R:255, G:0, B:255)</p>
+</li>
+<li>
+<p>파 (R:255, G:255, B:0)</p>
+</li>
+<li>
+<p>남 (R:255, G:255, B:204)</p>
+</li>
+<li>
+<p>보 (R:0, G:255, B:0)</p>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="RGB-Gradation-그라데이션-효과를-주어-색깔-바꿔보기">RGB Gradation: 그라데이션 효과를 주어 색깔 바꿔보기</h2>
+<ul>
+<li>빨간색 (R:0, G:255, B:255)에서 초록색 (R:255, G:0, B:255)으로 색깔 바꾸기
+<ul>
+<li>R값이 0에서 시작하여 255까지 증가하는 동안</li>
+<li>G값은 255에서 시작하여 0까지 감소하면 된다.</li>
+<li>B는 255 유지</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="for문-사용하기">for문 사용하기</h3>
+<ul>
+<li>
+<p>기본 문법</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(초기값; 조건; 증감) &#123;</span><br><span class="line">    반복처리문;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>예를들어</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">0</span>; R&lt;<span class="number">256</span>; R++) &#123;</span><br><span class="line">    반복처리문;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>R값이 0부터</li>
+<li>256보다 작은 값(255)이 될때까지</li>
+<li>R값을 1씩 증가시키면서</li>
+<li>반복처리문을 실행</li>
+<li>즉, 반복처리문을 256회 실행</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="Color값-변화시키기">Color값 변화시키기</h3>
+<ul>
+<li>
+<p>먼저 변화하는 값을 저장할 변수를 설정하고, 초기값으로 0을 지정 (초기값은 지정하지 않아도 됨)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> G = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> B = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>R값을 0부터 255까지 증가시키면서, G값은 255에서 0까지 감소시킴</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">0</span>; R&lt;<span class="number">256</span>; R++) &#123;</span><br><span class="line">    G = <span class="number">255</span> - R;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>여기에 analogWrite를 추가하고, 색깔이 일정한 시간동안 나타난 뒤 바뀌도록 delay를 추가</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">0</span>; R&lt;<span class="number">256</span>; R++) &#123;</span><br><span class="line">    G = <span class="number">255</span> - R;</span><br><span class="line">    analogWrite(pin_ledR, R);</span><br><span class="line">    analogWrite(pin_ledG, G);</span><br><span class="line">    analogWrite(pin_legB, <span class="number">255</span>)</span><br><span class="line">    delay(<span class="number">30</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="빨간색-초록색-그라데이션-코드-완성하기">빨간색&gt;초록색 그라데이션 코드 완성하기</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> G = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(R=<span class="number">0</span>; R&lt;<span class="number">256</span>; R++) &#123;</span><br><span class="line">    	G = <span class="number">255</span> - R;</span><br><span class="line">    	analogWrite(pin_ledR, R);</span><br><span class="line">    	analogWrite(pin_ledG, G);</span><br><span class="line">    	analogWrite(pin_ledB, <span class="number">255</span>);</span><br><span class="line">		delay(<span class="number">30</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h3 id="Exercise-빨간색-초록색-파란색-빨-초-파-그라데이션">Exercise: 빨간색&gt;초록색&gt;파란색&gt;빨&gt;초&gt;파&gt;&gt; 그라데이션</h3>
+<br>
+<br>
+<br>
+<h1 id="시리얼-모니터-사용하기">시리얼 모니터 사용하기</h1>
+<br>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Serial.begin(<span class="number">9600</span>);         <span class="comment">// 시리얼 모니터 사용 선언, 출력속도 지정 9600 Baud rate</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Serial.print(<span class="string">&quot;A&quot;</span>);          <span class="comment">// print   출력</span></span><br><span class="line">    Serial.println(<span class="string">&quot;B&quot;</span>);        <span class="comment">// println 출력 후 줄바꾸기</span></span><br><span class="line">    Serial.print(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">    Serial.println(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">    Serial.println();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;<span class="number">11</span>; i++) &#123;</span><br><span class="line">        Serial.println(i);      <span class="comment">// 변수값 출력</span></span><br><span class="line">    &#125;</span><br><span class="line">    delay(<span class="number">5000</span>);</span><br><span class="line">    </span><br><span class="line">    Serial.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<br>
+<h1 id="가변저항-값을-시리얼모니터에-출력하기">가변저항 값을 시리얼모니터에 출력하기</h1>
 <br>
 <h2 id="ANALOG-IN-A0-A5-핀의-역할">ANALOG IN(A0~A5) 핀의 역할</h2>
 <ol>
@@ -268,49 +520,20 @@ function sidebar_toggle() {
 <li>예를들어, pinMode(A0, INPUT); → 불필요한 선언임</li>
 </ul>
 </li>
-<li>PWM을 사용하는 디지털 입력으로 사용 : analogRead()
+<li>PWM을 사용하는 디지털 입력으로 사용 :</li>
+<li>analogRead()
 <ul>
 <li>analogRead() : 10bit를 사용하므로 0~1023 범위에서 센서값을 읽음</li>
 </ul>
 </li>
 </ol>
 <br>
-<h2 id="Arduino-PWM-출력">Arduino PWM 출력</h2>
-<ul>
-<li><strong>analogWrite()</strong> : 8bit를 사용하므로 <strong>0~255</strong> 범위에서 센서값을 출력</li>
-<li>PWM 출력이 가능한 디지털핀(<strong>3,5,6,9,10,11</strong>)을 사용하여 출력</li>
-<li><strong>pinMode 선언 불필요</strong> (analogWrite()에 pinMode선언이 포함되어 있음)</li>
-<li>예를들어, pinMode(9, OUTPUT); → 9번 핀으로 PWM 출력을 한다면 불필요한 선언임</li>
-</ul>
-<br>
-<h2 id="Exercise">Exercise</h2>
-<ol>
-<li>멈추는 시간을 5초로 설정해본다.</li>
-<li>RGB LED를 사용하여 3색을 교대로 ON/OFF 해본다.</li>
-</ol>
-<br>
-<h3 id="schematic">schematic</h3>
-<p><img src="/image/arduino-10rgbled.png" alt=""></p>
-<br>
-<h3 id="sketch">sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pinMode(pin_ledR, OUTPUT);</span><br><span class="line">	pinMode(pin_ledG, OUTPUT);</span><br><span class="line">	pinMode(pin_ledB, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	digitalWrite(pin_ledR, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledR, LOW);</span><br><span class="line">	digitalWrite(pin_ledG, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledG, LOW);</span><br><span class="line">	digitalWrite(pin_ledB, HIGH);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	digitalWrite(pin_ledB, LOW);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<h3 id="주의사항">주의사항</h3>
-<p>RGB LED모듈을 몇차례 구입하여 사용해본 결과, 몇몇 제품은 HIGH와 LOW값을 반대로 주어야 하는 경우도 있으므로, 사용시 주의해야 함.</p>
-<img src="/image/arduino-14rgbled.png" style="zoom:50%;" />
-<p>위 제품의 경우 digitalWrite에서 LOW값이 켜지고, HIGH값을 주면 꺼짐. 마찬가지로 analogWrite에서도 0이 켜지고, 255가 꺼짐. 그러므로 sketch도 아래와 같이 변경해야 함.</p>
-<br>
-<h3 id="수정된-sketch">(수정된) sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledR = <span class="number">9</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledG = <span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">255</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">255</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">255</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">0</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">255</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">0</span>);</span><br><span class="line">	analogWrite(pin_ledR, <span class="number">220</span>);</span><br><span class="line">	analogWrite(pin_ledG, <span class="number">255</span>);</span><br><span class="line">	delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<br>
-<h1 id="가변저항-값을-시리얼모니터에-출력하기">가변저항 값을 시리얼모니터에 출력하기</h1>
 <br>
 <h2 id="schematic-v2">schematic</h2>
 <p><img src="/image/arduino-11potentiometer.png" alt=""></p>
 <br>
-<h3 id="sketch-v2">sketch</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> value_potentiometer = <span class="number">0</span>;      <span class="comment">// potentiometer value</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Serial.begin(<span class="number">9600</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	value_potentiometer = analogRead(A0);       <span class="comment">// 10bit (0~1023)</span></span><br><span class="line">	value_potentiometer = <span class="built_in">map</span>(value_potentiometer, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">0</span>, <span class="number">10000</span>);</span><br><span class="line">	Serial.print(<span class="string">&quot;Resistance(Ω): &quot;</span>);</span><br><span class="line">	Serial.println(value_potentiometer);</span><br><span class="line">	delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="sketch-v3">sketch</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> value_potentiometer = <span class="number">0</span>;      <span class="comment">// potentiometer value</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Serial.begin(<span class="number">9600</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	value_potentiometer = analogRead(A0);       <span class="comment">// 10bit (0~1023)</span></span><br><span class="line">	Serial.println(value_potentiometer);</span><br><span class="line">	delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
 <br>
 <h1 id="가변저항-값에-따라-LED-밝기-조절하기">가변저항 값에 따라 LED 밝기 조절하기</h1>
@@ -318,8 +541,10 @@ function sidebar_toggle() {
 <h2 id="schematic-v3">schematic</h2>
 <p><img src="/image/arduino-12rgbled_potentiometer.png" alt=""></p>
 <br>
-<h2 id="sketch-v3">sketch</h2>
+<h2 id="sketch-v4">sketch</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pin_ledB = <span class="number">11</span>;                <span class="comment">// Blue LED for PWM</span></span><br><span class="line"><span class="keyword">int</span> value_potentiometer = <span class="number">0</span>;      <span class="comment">// potentiometer value</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Serial.begin(<span class="number">9600</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	value_potentiometer = analogRead(A0);                             <span class="comment">// 10bit (0~1023)</span></span><br><span class="line">	value_potentiometer = <span class="built_in">map</span>(value_potentiometer, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">0</span>, <span class="number">255</span>);  <span class="comment">// 10bit → 8bit</span></span><br><span class="line">    analogWrite(pin_ledB, value_potentiometer);</span><br><span class="line">	Serial.print(<span class="string">&quot;illumination level: &quot;</span>); </span><br><span class="line">	Serial.println(value_potentiometer);</span><br><span class="line">	delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
 
 </div>
 
