@@ -145,7 +145,7 @@ function sidebar_toggle() {
 <h2 id="스위치-값을-시리얼모니터에-출력하기">스위치 값을 시리얼모니터에 출력하기</h2>
 <br>
 <h3 id="Tact-Switch">Tact Switch</h3>
-<p><img src="../image/tact_switch.png" alt=""></p>
+<p><img src="/image/tact_switch.png" alt=""></p>
 <br>
 <h3 id="Pull-down">Pull-down</h3>
 <table>
@@ -172,7 +172,7 @@ function sidebar_toggle() {
 <br>
 <h4 id="schematic-Pull-down">schematic : Pull-down</h4>
 <p>저항(10k 이상)을 GND에 연결한 경우: Pull-down 회로</p>
-<p><img src="../image/switch01.png" alt=""></p>
+<p><img src="/image/switch01.png" alt=""></p>
 <br>
 <h4 id="sketch-Pull-down">sketch: Pull-down</h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == HIGH) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -203,7 +203,7 @@ function sidebar_toggle() {
 <br>
 <h4 id="schematic-Pull-up">schematic : Pull-up</h4>
 <p>저항(10k 이상)을 5V에 연결한 경우: Pull-up 회로</p>
-<p><img src="../image/switch02.png" alt=""></p>
+<p><img src="/image/switch02.png" alt=""></p>
 <br>
 <h4 id="sketch-Pull-up">sketch: Pull-up</h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == HIGH) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -222,8 +222,8 @@ function sidebar_toggle() {
 </thead>
 <tbody>
 <tr>
-<td><img src="../image/switch03.png" style="zoom:75%;" /></td>
-<td><img src="../image/switch04.png" style="zoom:75%;" /></td>
+<td><img src="/image/switch03.png" style="zoom:75%;" /></td>
+<td><img src="/image/switch04.png" style="zoom:75%;" /></td>
 </tr>
 <tr>
 <td>스위치를 누르면 HIGH, 스위치를 떼면 LOW ?</td>
@@ -239,19 +239,19 @@ function sidebar_toggle() {
 <br>
 <h3 id="Floating의-해결-그리고-또-다른-문제-발생-아래-그림대로-연결-절대-금지">Floating의 해결, 그리고 또 다른 문제 발생 (아래 그림대로 연결 절대 금지!)</h3>
 <p>그렇다면 위 그림 2개를 조합하여, 회로를 만들어보면 어떨까요?</p>
-<p><img src="../image/switch05.png" alt=""></p>
+<p><img src="/image/switch05.png" alt=""></p>
 <p>스위치를 누르면 HIGH, 스위치를 누르지 않으면 LOW ?</p>
  <br>
 <p>그렇지만 위 그림과 같이 연결하면 또다른 심각한 문제가 생깁니다. (<strong>그림대로 연결 절대 금지!</strong>)</p>
-<p><img src="../image/switch06.png" alt=""></p>
+<p><img src="/image/switch06.png" alt=""></p>
 <p>스위치를 누르는 순간, 5V와 GND가 직접 연결되어 전기적으로 합선(쇼트)이 되기때문에 아두이노 보드가 망가지거나 심한 경우, 아두이노가 연결된 컴퓨터가 망가질 수도 있습니다.</p>
 <p>이 그림은 마치 건전지 양극을 도선으로 그대로 연결한 것과 마찬가지인 상황입니다.</p>
-<p><img src="../image/switch07.png" alt=""></p>
+<p><img src="/image/switch07.png" alt=""></p>
 <p>실제로 건전지에 이렇게 선을 연결하면 건전지가 과열되어 녹거나 심하면 불이 날수도 있습니다.</p>
 <br>
 <h3 id="문제-해결-방법">문제 해결 방법</h3>
 <p>이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 됩니다.</p>
-<p><img src="../image/switch08.png" alt=""></p>
+<p><img src="/image/switch08.png" alt=""></p>
 <br>
 <p>이를 응용하여 스위치의 한쪽에 저항을 하나 추가로 연결하는 것이고, 이것이 바로 풀다운 저항 혹은 풀업 저항을 구성해야하는 이유가 됩니다.</p>
 <br>
@@ -271,7 +271,7 @@ function sidebar_toggle() {
 </ul>
 <br>
 <h4 id="schematic">schematic</h4>
-<p><img src="../image/switch04.png" alt=""></p>
+<p><img src="/image/switch04.png" alt=""></p>
  <br>
 <h4 id="sketch">sketch</h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT_PULLUP);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == LOW) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -282,7 +282,7 @@ function sidebar_toggle() {
 <p>위에서 구성한 풀업 회로에 RGB LED를 추가하여, 스위치를 누를 때 빨간색 LED가 점등되도록 구성해봅시다.</p>
 <br>
 <h4 id="schematic-v2">schematic</h4>
-<p><img src="../image/switch10.png" alt=""></p>
+<p><img src="/image/switch10.png" alt=""></p>
 <br>
 <h4 id="sketch-v2">sketch</h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT_PULLUP);</span><br><span class="line">  pinMode(pin_ledR, OUTPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == LOW) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">        digitalWrite(pin_ledR, HIGH);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">        digitalWrite(pin_ledR, LOW);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
