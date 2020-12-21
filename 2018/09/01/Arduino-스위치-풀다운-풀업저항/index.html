@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.png" />
+    
+
+    <title>
+        
+          Arduino 스위치, 풀다운저항, 풀업저항 - STEM with
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-151970975-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/">
+    <img src="/favicon.png">
+    <span>STEM WITH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <p>de la Cruz a la fecha<br>
+<br></p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/categories/Arduino">Arduino</a></li>
+<li><a href="/categories/ESP32">ESP32</a></li>
+<li><a href="/categories/Science">ScienceEx</a></li>
+<li><a href="/tags/IoT">Blynk, IoT</a></li>
+<li><a href="/categories/Drone/">Drone</a></li>
+<li><a href="/tags/RC">RC</a></li>
+<li><a href="/categories/excel/">Excel, Office</a></li>
+<li><a href="/categories/DIY/">Do It Yourself</a></li>
+</ul>
+
+</div>
+
+
+<script src="/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Arduino-스위치-풀다운저항-풀업저항">Arduino 스위치, 풀다운저항, 풀업저항</h1>
+<br>
+<h2 id="스위치-값을-시리얼모니터에-출력하기">스위치 값을 시리얼모니터에 출력하기</h2>
+<br>
+<h3 id="Tact-Switch">Tact Switch</h3>
+<p><img src="../image/tact_switch.png" alt=""></p>
+<br>
+<h3 id="Pull-down">Pull-down</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>동작</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>스위치를 누르면</td>
+<td>ON</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>스위치에서 손을 떼면</td>
+<td>OFF</td>
+<td>LOW</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="schematic-Pull-down">schematic : Pull-down</h4>
+<p>저항(10k 이상)을 GND에 연결한 경우: Pull-down 회로</p>
+<p><img src="../image/switch01.png" alt=""></p>
+<br>
+<h4 id="sketch-Pull-down">sketch: Pull-down</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == HIGH) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<h3 id="Pull-up">Pull-up</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>동작</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>스위치를 누르면</td>
+<td>OFF</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>스위치에서 손을 떼면</td>
+<td>ON</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4 id="schematic-Pull-up">schematic : Pull-up</h4>
+<p>저항(10k 이상)을 5V에 연결한 경우: Pull-up 회로</p>
+<p><img src="../image/switch02.png" alt=""></p>
+<br>
+<h4 id="sketch-Pull-up">sketch: Pull-up</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == HIGH) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<br>
+<h2 id="※-스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유">※ 스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유</h2>
+<br>
+<h3 id="Floating-문제">Floating 문제</h3>
+<table>
+<thead>
+<tr>
+<th>5V에 연결한 경우</th>
+<th>GND에 연결한 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../image/switch03.png" style="zoom:75%;" /></td>
+<td><img src="../image/switch04.png" style="zoom:75%;" /></td>
+</tr>
+<tr>
+<td>스위치를 누르면 HIGH, 스위치를 떼면 LOW ?</td>
+<td>스위치를 누르면 LOW, 스위치를 떼면 HIGH ?</td>
+</tr>
+<tr>
+<td>실제로는 스위치를 누른 상태에는 HIGH이지만, 스위치를 뗀 상태에는 <strong>HIGH와 LOW가 섞여서 들어옵니다.</strong></td>
+<td>실제로는 스위치를 누른 상태에는 LOW이지만, 스위치를 뗀 상태에는 <strong>LOW와 HIGH가 섞여서 들어옵니다.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>즉, 스위치를 누른 상태에서는 어떤 값을 가져야 하는지 확실하지만, 스위치를 뗀 상태에서는 어떤 값을 가져야 하는지 불확실하기 때문에 이러한 문제가 발생하는 것입니다.</p>
+<br>
+<h3 id="Floating의-해결-그리고-또-다른-문제-발생-아래-그림대로-연결-절대-금지">Floating의 해결, 그리고 또 다른 문제 발생 (아래 그림대로 연결 절대 금지!)</h3>
+<p>그렇다면 위 그림 2개를 조합하여, 회로를 만들어보면 어떨까요?</p>
+<p><img src="../image/switch05.png" alt=""></p>
+<p>스위치를 누르면 HIGH, 스위치를 누르지 않으면 LOW ?</p>
+ <br>
+<p>그렇지만 위 그림과 같이 연결하면 또다른 심각한 문제가 생깁니다. (<strong>그림대로 연결 절대 금지!</strong>)</p>
+<p><img src="../image/switch06.png" alt=""></p>
+<p>스위치를 누르는 순간, 5V와 GND가 직접 연결되어 전기적으로 합선(쇼트)이 되기때문에 아두이노 보드가 망가지거나 심한 경우, 아두이노가 연결된 컴퓨터가 망가질 수도 있습니다.</p>
+<p>이 그림은 마치 건전지 양극을 도선으로 그대로 연결한 것과 마찬가지인 상황입니다.</p>
+<p><img src="../image/switch07.png" alt=""></p>
+<p>실제로 건전지에 이렇게 선을 연결하면 건전지가 과열되어 녹거나 심하면 불이 날수도 있습니다.</p>
+<br>
+<h3 id="문제-해결-방법">문제 해결 방법</h3>
+<p>이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 됩니다.</p>
+<p><img src="../image/switch08.png" alt=""></p>
+<br>
+<p>이를 응용하여 스위치의 한쪽에 저항을 하나 추가로 연결하는 것이고, 이것이 바로 풀다운 저항 혹은 풀업 저항을 구성해야하는 이유가 됩니다.</p>
+<br>
+<br>
+<br>
+<h2 id="아두이노-보드에-내장된-풀업저항-사용하기">아두이노 보드에 내장된 풀업저항 사용하기</h2>
+<p>스위치를 사용하는 경우 풀다운 저항 혹은 풀업 저항을 사용해야한다는 것을 배웠습니다. 스위치를 구성할 때마다 10k~100k 정도의 저항을 별도로 준비해서 회로를 구성해야 하는 것이죠. 매우 중요한 문제이지만, 매우 귀찮기도 합니다.</p>
+<p>그래서…친절하게도 아두이노 보드는 자체에 풀업 저항을 내장해두었습니다. 당연한 이야기이지만 아두이노 보드에 내장된 풀업 저항을 사용한다면, 별도의 저항을 준비하지 않아도 되기때문에 회로를 간단하게 구성할 수 있습니다.</p>
+<ul>
+<li>
+<p>기본적으로 <strong>풀업</strong> 회로이므로 <strong>스위치가 눌리지 않은 상태가 HIGH</strong>이며, <strong>스위치가 눌린 상태에서 LOW</strong>값을 갖습니다.</p>
+</li>
+<li>
+<p>pinMode 선언시, <strong>INPUT_PULLUP</strong>을 사용합니다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pinMode (<span class="number">2</span>, INPUT_PULLUP);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<br>
+<h4 id="schematic">schematic</h4>
+<p><img src="../image/switch04.png" alt=""></p>
+ <br>
+<h4 id="sketch">sketch</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT_PULLUP);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == LOW) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<br>
+<br>
+<h2 id="스위치를-눌러-LED-켜기">스위치를 눌러 LED 켜기</h2>
+<p>위에서 구성한 풀업 회로에 RGB LED를 추가하여, 스위치를 누를 때 빨간색 LED가 점등되도록 구성해봅시다.</p>
+<br>
+<h4 id="schematic-v2">schematic</h4>
+<p><img src="../image/switch10.png" alt=""></p>
+<br>
+<h4 id="sketch-v2">sketch</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> switch_R = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(switch_R, INPUT_PULLUP);</span><br><span class="line">  pinMode(pin_ledR, OUTPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = digitalRead(switch_R);</span><br><span class="line">    <span class="keyword">if</span>(i == LOW) &#123;                  <span class="comment">// 스위치를 누르면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">        digitalWrite(pin_ledR, HIGH);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                           <span class="comment">// 스위치에서 손을 떼면</span></span><br><span class="line">        Serial.println(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">        digitalWrite(pin_ledR, LOW);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="K"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>K. Jun Lee</div>
+      <div>2018-09-01</div>
+    </div>
+  </div>
+
+  
+    <div class="divider"></div>
+
+    <div class="link">
+      <a class="category-link" href="/categories/Arduino/">Arduino</a>
+
+      
+    </div>
+    
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/js/book.js"></script>
