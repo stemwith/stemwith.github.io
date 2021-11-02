@@ -12,7 +12,7 @@
     "version": "5.4.0"
   },
   "dependencies": {
-    "bulma-stylus": "^0.8.0",
+    "bulma-stylus": "^0.9.1",
     "hexo": "^5.0.0",
     "hexo-auto-canonical": "^0.1.1",
     "hexo-autonofollow": "^1.0.1",
