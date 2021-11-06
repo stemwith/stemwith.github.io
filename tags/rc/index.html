@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>태그: rc - stemwith</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="stemwith"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="stemwith"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="for stem education"><meta property="og:type" content="blog"><meta property="og:title" content="stemwith"><meta property="og:url" content="http://stemwith.github.io/"><meta property="og:site_name" content="stemwith"><meta property="og:description" content="for stem education"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/img/og_image.png"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io"},"headline":"stemwith","image":["http://stemwith.github.io/img/og_image.png"],"author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"stemwith","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"for stem education"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151970975-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="stemwith" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">태그</a></li><li class="is-active"><a href="#" aria-current="page">rc</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-11-01T09:27:53.000Z" title="2021. 11. 1. 오후 5:27:53">2021-11-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-05T12:18:24.431Z" title="2021. 11. 5. 오후 8:18:24">2021-11-05</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">ESP32</a></span><span class="level-item">13분안에 읽기 (약 1938 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></h1><div class="content"><h3 id="DC모터-사용하기"><a href="#DC모터-사용하기" class="headerlink" title="DC모터 사용하기"></a>DC모터 사용하기</h3><p>아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.</p>
+<br>
+
+<h4 id="TB6612FNG"><a href="#TB6612FNG" class="headerlink" title="TB6612FNG"></a>TB6612FNG</h4><h5 id="기본-핀-배열"><a href="#기본-핀-배열" class="headerlink" title="기본 핀 배열"></a>기본 핀 배열</h5><table>
+<thead>
+<tr>
+<th align="center">VM<br>VCC<br>GND(*)<br>AOUT1<br>AOUT2<br>BOUT2<br>BOUT1<br>GND</th>
+<th align="center"><img src="/image/t/tb6612fng-01.png" style="zoom:50%;"></th>
+<th align="center">PWMA<br>AIN2<br>AIN1<br>STBY<br>BIN1<br>BIN2<br>PWMB<br>GND</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"><img src="/image/t/tb6612fng-02.png" style="zoom: 42%;"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<br>
+
+<h5 id="핀-배열이-다른-경우"><a href="#핀-배열이-다른-경우" class="headerlink" title="핀 배열이 다른 경우"></a>핀 배열이 다른 경우</h5><table>
+<thead>
+<tr>
+<th align="center">GND<br>VCC<br>AOUT1<br>AOUT2<br>BOUT2<br>BOUT1<br>VM<br>GND</th>
+<th align="center"><img src="/image/t/tb6612fng-03.png" style="zoom:75%;"></th>
+<th align="center">PWMA<br>AIN2<br>AIN1<br>NC (=STBY)<br>BIN1<br>BIN2<br>PWMB<br>GND</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"><img src="/image/t/tb6612fng-04.png" style="zoom: 50%;"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>VM (모터 전압) = 15V max</li>
+<li>VCC (로직 전압) = 2.7 ~ 5.5V</li>
+<li><strong>GND</strong><ul>
+<li>TB6612FNG 모듈을 여러개 테스트한 결과, 기본 핀 배열을 가진 모듈의 <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li>
+<li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li>
+</ul>
+</li>
+<li>출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임)</li>
+<li>모터 제어모드: CW, CCW, short-brake, STOP, stand-by</li>
+<li>두개의 모터 출력을 개별 제어하며, <strong>100kHz</strong>의 PWM으로 속도 제어</li>
+<li>써멀 셧다운 및 저전압 감지회로 내장</li>
+</ul>
+<br>
+
+<h5 id="Pin의-사용"><a href="#Pin의-사용" class="headerlink" title="Pin의 사용"></a>Pin의 사용</h5><p>ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀을 구성한 Pinmap이므로, 필요에 따라 수정하여 사용할 수 있다. (아래표는 참고만 할 것!)</p>
+<table>
+<thead>
+<tr>
+<th>핀번호</th>
+<th>TB6612FNG 모터드라이브 (기본 핀 배열)</th>
+<th>ESP32 DEVKIT_C V4 사용시</th>
+<th>ESP32 DEVKIT V1 사용시</th>
+<th>외부전원</th>
+<th>모터 / 역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>VM</td>
+<td></td>
+<td></td>
+<td>(+) (DC모터에 사용하는 전압 사용)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>VCC</td>
+<td>+3.3V</td>
+<td>+3.3V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>GND (사용 비추천)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>A_OUT1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A_OUT2</td>
+<td></td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>6</td>
+<td>B_OUT2</td>
+<td></td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>7</td>
+<td>B_OUT1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GND</td>
+<td></td>
+<td></td>
+<td>(-)</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>GND</td>
+<td>GND</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>B_PWM</td>
+<td>12</td>
+<td>13</td>
+<td></td>
+<td>모터B 속도제어</td>
+</tr>
+<tr>
+<td>11</td>
+<td>B_IN2</td>
+<td>14</td>
+<td>12</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>12</td>
+<td>B_IN1</td>
+<td>27</td>
+<td>14</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>13</td>
+<td>STBY</td>
+<td>26</td>
+<td>27</td>
+<td></td>
+<td>모터 상태신호</td>
+</tr>
+<tr>
+<td>14</td>
+<td>A_IN1</td>
+<td>25</td>
+<td>26</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>15</td>
+<td>A_IN2</td>
+<td>33</td>
+<td>25</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>16</td>
+<td>A_PWM</td>
+<td>32</td>
+<td>33</td>
+<td></td>
+<td>모터A 속도제어</td>
+</tr>
+</tbody></table>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>ESP32 DEVKIT V4 사용시</th>
+<th><img src="/image/t/ESP32-RC-04.png"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ESP32 DEVKIT V1 사용시</td>
+<td><img src="/image/t/ESP32-RC-05.png"></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h3 id="모터-1개-컨트롤하기"><a href="#모터-1개-컨트롤하기" class="headerlink" title="모터 1개 컨트롤하기"></a>모터 1개 컨트롤하기</h3><table>
+<thead>
+<tr>
+<th>(기어박스를 포함한) 일반 DC모터</th>
+<th>(엔코더 모듈을 포함한) 엔코더 DC모터</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>아두이노를 사용한 스마트카 실습용으로 많이 사용됨</td>
+<td>Hall sensor를 통해 회전수를 정밀하게 측정가능</td>
+</tr>
+<tr>
+<td>(+)와 (-), 2P 단자가 있음</td>
+<td>5P or 6P 단자가 있음 (여기서는 (+)와 (-) 2P만 사용)</td>
+</tr>
+<tr>
+<td><img src="/image/4wd-01.jpg" style="zoom:80%;"></td>
+<td><img src="/image/t/ESP32-RC-07.png" style="zoom: 67%;"></td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><h5 id="ESP32와-컴퓨터를-USB선으로-연결하여-사용할-경우-단-모터-외부전원은-사용"><a href="#ESP32와-컴퓨터를-USB선으로-연결하여-사용할-경우-단-모터-외부전원은-사용" class="headerlink" title="ESP32와 컴퓨터를 USB선으로 연결하여 사용할 경우 (단, 모터 외부전원은 사용)"></a>ESP32와 컴퓨터를 USB선으로 연결하여 사용할 경우 (단, 모터 외부전원은 사용)</h5><p><img src="/image/t/ESP32-RC-01.png"></p>
+<br>
+
+<h5 id="ESP32와-컴퓨터의-연결없이-외부전원을-사용하여-단독으로-사용할-경우"><a href="#ESP32와-컴퓨터의-연결없이-외부전원을-사용하여-단독으로-사용할-경우" class="headerlink" title="ESP32와 컴퓨터의 연결없이, 외부전원을 사용하여 단독으로 사용할 경우"></a>ESP32와 컴퓨터의 연결없이, 외부전원을 사용하여 단독으로 사용할 경우</h5><ul>
+<li><p>18650 2S 외부전원(7.4V)을 DC컨버터 모듈에 연결</p>
+<ul>
+<li>입력: 8~36V</li>
+<li>출력: 1.25~32V 및 USB 5V 출력</li>
+<li>75W내 사용 권장, 전류량 최대 5A (4.5A 이내 사용 권장)</li>
+</ul>
+<p><img src="/image/t/ESP32-RC-03.png"></p>
+</li>
+<li><p>여기서는 서보모터 추가 연결을 위해서, 왼쪽 가변 저항을 사용하여 출력 전압을 5V로 세팅하여 사용</p>
+</li>
+<li><p>USB 출력단자는 ESP32의 microUSB 단자에 연결</p>
+</li>
+</ul>
+<p><img src="/image/t/ESP32-RC-02.png"></p>
+<br>
+
+<h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32D DEVKIT_C V4 left side pin order</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMA = <span class="number">32</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN1 = <span class="number">33</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN2 = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_STBY = <span class="number">26</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN1 = <span class="number">27</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN2 = <span class="number">14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMB = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32 left side pin order</span></span><br><span class="line"><span class="comment">const int PIN_PWMA = 33;  </span></span><br><span class="line"><span class="comment">const int PIN_AIN1 = 25;</span></span><br><span class="line"><span class="comment">const int PIN_AIN2 = 26;</span></span><br><span class="line"><span class="comment">const int PIN_STBY = 27;</span></span><br><span class="line"><span class="comment">const int PIN_BIN1 = 14;</span></span><br><span class="line"><span class="comment">const int PIN_BIN2 = 12;</span></span><br><span class="line"><span class="comment">const int PIN_PWMB = 13;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PWM Channel setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMA = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMB = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// PWM frequency and bit resolution setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pwmFrequency = <span class="number">10000</span>;  <span class="comment">// Hz</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> bitResolution = <span class="number">8</span>;     <span class="comment">// pwm value: 0~255</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_LED = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_LED, OUTPUT);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// tb6612fng setting</span></span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_STBY,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN1,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN2,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMA,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN1,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN2,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMB,OUTPUT);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// motor output(PWM) setting (channel, frequency, bit)</span></span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMA, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMB, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMA, CH_PWMA);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMB, CH_PWMB);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// channel setting (GPIO pin, channel)</span></span><br><span class="line">  <span class="comment">// if STBY(CH0) = LOW, Standby states.</span></span><br><span class="line">  <span class="comment">// if STBY(CH0) = HIGH, and INA1&amp;INA2 have different value</span></span><br><span class="line">  <span class="comment">// and PWMA has some value, CW or CCW rotation is made.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Channel      CW   CCW  Stanby Stop Brake1 Brake2 Brake3</span></span><br><span class="line">  <span class="comment">// PIN_STBY (0) HIGH HIGH LOW    HIGH  HIGH  HIGH   HIGH</span></span><br><span class="line">  <span class="comment">// PIN_INA1 (1) HIGH LOW  *      LOW   HIGH  LOW    HIGH</span></span><br><span class="line">  <span class="comment">// PIN_INA2 (2) LOW  HIGH *      LOW   HIGH  HIGH   LOW</span></span><br><span class="line">  <span class="comment">// CH_PWMA  (3) PWM  PWM  *      HIGH  *     LOW    LOW  </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Motor A : CW</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, HIGH); 	<span class="comment">// STBY</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_AIN1, HIGH); 	<span class="comment">// AIN1</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_AIN2, LOW);   	<span class="comment">// AIN2</span></span><br><span class="line">  <span class="built_in">ledcWrite</span>(CH_PWMA, <span class="number">255</span>); 			<span class="comment">// PWMA</span></span><br><span class="line">  <span class="comment">// Motor B : CW</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_BIN1, HIGH); 	<span class="comment">// BIN1</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_BIN2, LOW);   	<span class="comment">// BIN2</span></span><br><span class="line">  <span class="built_in">ledcWrite</span>(CH_PWMB, <span class="number">255</span>); 			<span class="comment">// PWMB</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Motor : Stand-by</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, LOW); 		<span class="comment">// STBY</span></span><br><span class="line">  <span class="comment">//delay(1000);</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//LED Blink</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, HIGH);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Motor A : CCW</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, HIGH); 	<span class="comment">// STBY</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_AIN1, LOW); 		<span class="comment">// AIN1</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_AIN2, HIGH);   	<span class="comment">// AIN2</span></span><br><span class="line">  <span class="built_in">ledcWrite</span>(CH_PWMA, <span class="number">255</span>); 			<span class="comment">// PWMA</span></span><br><span class="line">  <span class="comment">// Motor B : CCW</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_BIN1, LOW); 		<span class="comment">// BIN1</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_BIN2, HIGH);   	<span class="comment">// BIN2</span></span><br><span class="line">  <span class="built_in">ledcWrite</span>(CH_PWMB, <span class="number">255</span>); 			<span class="comment">// PWMB</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Motor : Stand-by</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, LOW); 		<span class="comment">// STBY</span></span><br><span class="line">  <span class="comment">//delay(1000);</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//LED Blink</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_LED, LOW);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_LED, HIGH);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_LED, LOW);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h4><h5 id="스케치-중간에-있는-stand-by가-있거나-없거나-동일한-운동을-보일-것-같지만-실제로는-완전히-다르다"><a href="#스케치-중간에-있는-stand-by가-있거나-없거나-동일한-운동을-보일-것-같지만-실제로는-완전히-다르다" class="headerlink" title="스케치 중간에 있는 stand-by가 있거나 없거나 동일한 운동을 보일 것 같지만, 실제로는 완전히 다르다."></a>스케치 중간에 있는 stand-by가 있거나 없거나 동일한 운동을 보일 것 같지만, 실제로는 완전히 다르다.</h5><ul>
+<li><p>stand-by가 있는 경우</p>
+<ul>
+<li>3초간 CW회전 후 정지 → 3.5초 대기 → 0.5초 LED켜졌다가 꺼짐 → 3초간 CCW회전 후 정지→ 3.5초 대기 → 0.5초 LED켜졌다가 꺼짐</li>
+</ul>
+</li>
+<li><p>stand-by가 없는 경우:</p>
+<ul>
+<li>모터<ul>
+<li>모터의 delay 시간(회전시간)이 3초로 되어 있어도 stand-by 상태로 들어가지 않으므로, <strong>실제로는 7초간 회전</strong> 후 방향을 바꿈 </li>
+<li>7초간 CW회전 후 → (정지하지 않고) 곧바로 7초간 CCW회전 (반복)</li>
+</ul>
+</li>
+<li>LED<ul>
+<li>꺼짐: 6.5초간 꺼져있다가 (모터의 delay 시간 3초 + led low delay 시간 3.5초)</li>
+<li>켜짐:  0.5초간 켜짐 (반복)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>그러므로, 각 상황에 따라 stand-by를 걸어야 할지, 말아야할지를 결정해야 함.</p>
+<ul>
+<li>stand-by를 걸지 않은 상태에서 멈추려면 PWMA or PWMB를 0으로 주면 됨.</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h5 id="회전-방향이-생각했던-방향과-반대로-회전하는-경우"><a href="#회전-방향이-생각했던-방향과-반대로-회전하는-경우" class="headerlink" title="회전 방향이 (생각했던 방향과) 반대로 회전하는 경우"></a>회전 방향이 (생각했던 방향과) 반대로 회전하는 경우</h5><p>AIN1핀과 AIN2 핀의 번호를 바꿔준다. 즉, 위 스케치에서</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> AIN2 = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> AIN1 = <span class="number">26</span>;</span><br></pre></td></tr></table></figure>
+
+<p>부분을</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> AIN2 = <span class="number">26</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> AIN1 = <span class="number">25</span>;</span><br></pre></td></tr></table></figure>
+
+<p>로 바꿔준다.</p>
+<br>
+
+<br>
+
+<h3 id="모터-2개-컨트롤하기"><a href="#모터-2개-컨트롤하기" class="headerlink" title="모터 2개 컨트롤하기"></a>모터 2개 컨트롤하기</h3><p><img src="/image/t/ESP32-RC-06.png"><br></p>
+<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><p>위의 ‘’모터 1개 컨트롤하기’’ 스케치와 동일함.</p>
+<br>
+
+<br>
+
+<h3 id="스케치-최적화"><a href="#스케치-최적화" class="headerlink" title="스케치 최적화"></a>스케치 최적화</h3><p>move(), stop()을 만들어서 스케치 최적화</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32D DEVKIT_C V4 left side pin order</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMA = <span class="number">32</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN1 = <span class="number">33</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN2 = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_STBY = <span class="number">26</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN1 = <span class="number">27</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN2 = <span class="number">14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMB = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32 left side pin order</span></span><br><span class="line"><span class="comment">const int PIN_PWMA = 33;  </span></span><br><span class="line"><span class="comment">const int PIN_AIN1 = 25;</span></span><br><span class="line"><span class="comment">const int PIN_AIN2 = 26;</span></span><br><span class="line"><span class="comment">const int PIN_STBY = 27;</span></span><br><span class="line"><span class="comment">const int PIN_BIN1 = 14;</span></span><br><span class="line"><span class="comment">const int PIN_BIN2 = 12;</span></span><br><span class="line"><span class="comment">const int PIN_PWMB = 13;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PWM Channel setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMA = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMB = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// PWM frequency and bit resolution setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pwmFrequency = <span class="number">10000</span>;  <span class="comment">// Hz</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> bitResolution = <span class="number">8</span>;     <span class="comment">// pwm value: 0~255</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_LED = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_LED, OUTPUT);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// tb6612fng setting</span></span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_STBY,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN1,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN2,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMA,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN1,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN2,OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMB,OUTPUT);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// motor output(PWM) setting (channel, frequency, bit)</span></span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMA, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMB, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMA, CH_PWMA);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMB, CH_PWMB);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// channel setting (GPIO pin, channel)</span></span><br><span class="line">  <span class="comment">// if STBY(CH0) = LOW, Standby states.</span></span><br><span class="line">  <span class="comment">// if STBY(CH0) = HIGH, and INA1&amp;INA2 have different value</span></span><br><span class="line">  <span class="comment">// and PWMA has some value, CW or CCW rotation is made.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Channel      CW   CCW  Stanby Stop Brake1 Brake2 Brake3</span></span><br><span class="line">  <span class="comment">// PIN_STBY (0) HIGH HIGH LOW    HIGH  HIGH  HIGH   HIGH</span></span><br><span class="line">  <span class="comment">// PIN_INA1 (1) HIGH LOW  *      LOW   HIGH  LOW    HIGH</span></span><br><span class="line">  <span class="comment">// PIN_INA2 (2) LOW  HIGH *      LOW   HIGH  HIGH   LOW</span></span><br><span class="line">  <span class="comment">// CH_PWMA  (3) PWM  PWM  *      HIGH  *     LOW    LOW  </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">128</span>, <span class="number">0</span>);               <span class="comment">// motor A(right wheels), half speed, moving forward</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">2</span>, <span class="number">255</span>, <span class="number">0</span>);               <span class="comment">// motor B(left wheels), full speed, moving forward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">stop</span>();						 <span class="comment">// Motor : Stand-by</span></span><br><span class="line">  <span class="comment">//delay(1000);</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//LED Blink</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, HIGH);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">255</span>, <span class="number">1</span>);               <span class="comment">// motor A(right wheels), full speed, moving backward</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">2</span>, <span class="number">128</span>, <span class="number">1</span>);               <span class="comment">// motor B(left wheels), half speed, moving backward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">stop</span>();						 <span class="comment">// Motor : Stand-by</span></span><br><span class="line">  <span class="comment">//delay(1000);</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//LED Blink</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">3500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, HIGH);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(ledPin, LOW);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motor, <span class="keyword">int</span> speed, <span class="keyword">int</span> direction)</span> </span>&#123;   <span class="comment">//Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">//motor: A(Right) -&gt; 1, B(Left) -&gt; 2</span></span><br><span class="line"><span class="comment">//speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">//direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, HIGH);         <span class="comment">// move</span></span><br><span class="line"></span><br><span class="line">  boolean inPin1 = HIGH;            	<span class="comment">// Defalut(direction=0) - Clockwise</span></span><br><span class="line">  boolean inPin2 = LOW;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(direction == <span class="number">1</span>) &#123;             		<span class="comment">// Count-clockwise</span></span><br><span class="line">    inPin1 = LOW;</span><br><span class="line">    inPin2 = HIGH;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(motor == <span class="number">1</span>)&#123;                 		<span class="comment">// if motor == 1, right wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_AIN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_AIN2, inPin2);</span><br><span class="line">    <span class="built_in">ledcWrite</span>(CH_PWMA, speed);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;                         		<span class="comment">// if motor is not 1, left wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_BIN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_BIN2, inPin2);</span><br><span class="line">    <span class="built_in">ledcWrite</span>(CH_PWMB, speed);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, LOW);          <span class="comment">// stand-by = stop</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-30T09:27:53.000Z" title="2019. 10. 30. 오후 5:27:53">2019-10-30</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-20T11:38:45.116Z" title="2021. 9. 20. 오후 7:38:45">2021-09-20</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">10분안에 읽기 (약 1491 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/30/4WD-Bluetooth/">4WD Bluetooth</a></h1><div class="content"><p>지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.</p>
+<br>
+
+<h2 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h2><p><img src="/image/4wd-bt-17.png"></p>
+<br>
+
+<h2 id="Bluetooth-Serial-Controller-설정"><a href="#Bluetooth-Serial-Controller-설정" class="headerlink" title="Bluetooth Serial Controller 설정"></a>Bluetooth Serial Controller 설정</h2><p>여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.</p>
+<br>
+
+<ol>
+<li>먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.)  아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.</li>
+</ol>
+<p>![](/image/4wd-bt-01.png =432x768)</p>
+<br>
+
+<ol start="2">
+<li>PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여</li>
+</ol>
+<p>![](/image/4wd-bt-02.png =432x768)</p>
+<br>
+
+<ol start="3">
+<li>9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.</li>
+</ol>
+<p>![](/image/4wd-bt-03.png =432x768)</p>
+<br>
+
+<ol start="4">
+<li>그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.</li>
+</ol>
+<p>![](/image/4wd-bt-04.png =432x768)</p>
+<br>
+
+<ol start="5">
+<li>다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.</li>
+</ol>
+<p>![](/image/4wd-bt-05.png =432x768)</p>
+<br>
+
+<ol start="6">
+<li>button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘전진’, ‘왼쪽’, ‘정지’, ‘오른쪽’, ‘후진’이라고 이름을 붙여줍니다.</li>
+</ol>
+<p>![](/image/4wd-bt-06.png =432x768)</p>
+<br>
+
+<ol start="7">
+<li>다시 PREFERENCE에서 Command를 누르세요.</li>
+</ol>
+<p>![](/image/4wd-bt-07.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘F’, ‘L’, ‘O’, ‘R’, ‘B’이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.</li>
+</ol>
+<p>![](/image/4wd-bt-08.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>이제 Visibility로 갑니다.</li>
+</ol>
+<p>![](/image/4wd-bt-09.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.</li>
+</ol>
+<p>![](/image/4wd-bt-10.png =432x768)</p>
+<br>
+
+<ol start="11">
+<li>그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.</li>
+</ol>
+<p>![](/image/4wd-bt-11.png =432x768)</p>
+<br>
+
+<ol start="12">
+<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다. </li>
+</ol>
+<p>![](/image/4wd-bt-12.png =432x768)</p>
+<br>
+
+<ol start="13">
+<li>모듈ID인 SKS100을 누르면 페어링을 시도하고요.</li>
+</ol>
+<p>![](/image/4wd-bt-13.png =432x768)</p>
+<br>
+
+<ol start="14">
+<li>만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.</li>
+</ol>
+<p>![](/image/4wd-bt-14.png =432x768)</p>
+<br>
+
+<ol start="15">
+<li>페어링을 시도하는 중이네요.</li>
+</ol>
+<p>![](/image/4wd-bt-15.png =432x768)</p>
+<br>
+
+<ol start="16">
+<li>페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.</li>
+</ol>
+<p>![](/image/4wd-bt-16.png =432x768)</p>
+<br>
+
+<br>
+
+<h2 id="4WD-블루투스-초음파센서-자동차"><a href="#4WD-블루투스-초음파센서-자동차" class="headerlink" title="4WD 블루투스 초음파센서 자동차"></a>4WD 블루투스 초음파센서 자동차</h2><p>위 회로에 초음파 센서 하나만 덧붙여봅니다. 50cm 이내에 물체가 접근하면 후진했다가 정지하도록 되어있습니다. (실제로는 50cm보다 훨씬 짧은 거리내에서 후진을 시작하네요.)</p>
+<br>
+
+<h3 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h3><p><img src="/image/4wd-bt-18.png"></p>
+<br>
+
+<h3 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Initialize Bluetooth</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">7</span>, <span class="number">3</span>)</span></span>;  <span class="comment">// HC-06 TX,RX</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize TB6612FNG Motor drive</span></span><br><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;  <span class="comment">// STBY pin on TB6612FNG. Must be HIGH to enable motor</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;  <span class="comment">// Left motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">9</span>;  <span class="comment">// Left motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">8</span>;  <span class="comment">// Left motor - HIGH should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_PWM = <span class="number">6</span>;  <span class="comment">// Right motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> B_IN1 = <span class="number">11</span>; <span class="comment">// Right motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_IN2 = <span class="number">12</span>; <span class="comment">// Right motor - HIGH should go forward</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> L_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> LR_Direct = <span class="number">0</span>;      <span class="comment">//for Direction (0:clockwise, 1:count-clockwise)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize Ultrasonic Sensor</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRIG 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO 4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> val;</span><br><span class="line"><span class="keyword">long</span> val_distance;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(A_PWM, OUTPUT);                        <span class="comment">// Motor</span></span><br><span class="line">  pinMode(A_IN1, OUTPUT);</span><br><span class="line">  pinMode(A_IN2, OUTPUT);</span><br><span class="line">  pinMode(B_PWM, OUTPUT);</span><br><span class="line">  pinMode(B_IN1, OUTPUT);</span><br><span class="line">  pinMode(B_IN2, OUTPUT);</span><br><span class="line">  pinMode(STBY, OUTPUT);</span><br><span class="line">  </span><br><span class="line">  pinMode(TRIG, OUTPUT);                         <span class="comment">// Ultrasonic Sensor</span></span><br><span class="line">  pinMode(ECHO, INPUT);</span><br><span class="line">  </span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  BTSerial.begin(<span class="number">9600</span>);                          <span class="comment">// Start Bluetooth</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!BTSerial.available()) &#123;                <span class="comment">// 처음 입력이 있을때까지</span></span><br><span class="line">  stop();                                        <span class="comment">// 정지</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  distance();                                    <span class="comment">// 거리 측정</span></span><br><span class="line">  Serial.println(val_distance);                 <span class="comment">// 거리 출력</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (BTSerial.available()) &#123;                    <span class="comment">// Check for Bluetooth input</span></span><br><span class="line">    val = BTSerial.read();                       <span class="comment">// 입력값 val에 저장</span></span><br><span class="line">    Serial.println(val);                        <span class="comment">// 입력값 출력</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (val_distance &gt; <span class="number">50</span>) &#123;  <span class="comment">// 거리가 50cm 이상이면 입력값 실행</span></span><br><span class="line">    parseCommand(val);                           <span class="comment">// parse the input</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;                                       <span class="comment">// 거리가 50cm 이내이면 </span></span><br><span class="line">    stop();</span><br><span class="line">    delay(<span class="number">20</span>);</span><br><span class="line">    b_stop();                                    <span class="comment">// 거리가 50cm 이상이 될 때까지 후진 후, 정지</span></span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">parseCommand</span><span class="params">(<span class="keyword">char</span> input)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (input) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;F&#x27;</span>:</span><br><span class="line">      go_forward();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:  </span><br><span class="line">      go_backward();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;L&#x27;</span>:  </span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        go_f_left();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        go_b_left();</span><br><span class="line">      &#125;     </span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        go_f_right();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        go_b_right();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">      stop();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;  </span><br><span class="line">  delay(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">distance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(TRIG, LOW);                       <span class="comment">// Start Ultrasonic sensor</span></span><br><span class="line">  delayMicroseconds(<span class="number">2</span>);</span><br><span class="line">  digitalWrite(TRIG, HIGH);</span><br><span class="line">  delayMicroseconds(<span class="number">10</span>);</span><br><span class="line">  digitalWrite(TRIG, LOW);</span><br><span class="line"></span><br><span class="line">  val_distance = pulseIn(ECHO, HIGH) / <span class="number">58.2</span>;     <span class="comment">// 거리 측정</span></span><br><span class="line">&#125;       </span><br><span class="line"></span><br><span class="line"><span class="comment">// Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">// motor: A(Left) -&gt; 0, B(Right) -&gt; 1</span></span><br><span class="line"><span class="comment">// speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">// direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motorLR, <span class="keyword">int</span> speed, boolean inPin1, boolean inPin2)</span> </span>&#123;</span><br><span class="line">  digitalWrite(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">0</span>) &#123;</span><br><span class="line">    analogWrite(A_PWM, speed);</span><br><span class="line">    digitalWrite(A_IN1, inPin1);</span><br><span class="line">    digitalWrite(A_IN2, inPin2);   </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">1</span>) &#123;</span><br><span class="line">    analogWrite(B_PWM, speed);</span><br><span class="line">    digitalWrite(B_IN1, inPin1);</span><br><span class="line">    digitalWrite(B_IN2, inPin2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_forward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  LR_Direct = <span class="number">0</span>;              <span class="comment">// Forward</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_backward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  LR_Direct = <span class="number">1</span>;              <span class="comment">// Backward</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F_L&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  move(<span class="number">1</span>, R_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  move(<span class="number">0</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  move(<span class="number">1</span>, R_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">b_stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;B_STOP&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> (val_distance &lt; <span class="number">50</span>) &#123;                    <span class="comment">// 거리가 50cm 이내인 경우 반복</span></span><br><span class="line">    go_backward();                               <span class="comment">// 후진</span></span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">    distance();                                  <span class="comment">// 거리를 다시 측정</span></span><br><span class="line">    delay(<span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (!BTSerial.available()) &#123;                <span class="comment">// 입력이 없으면</span></span><br><span class="line">    stop();                                      <span class="comment">// 정지상태 유지</span></span><br><span class="line">  &#125;</span><br><span class="line">  LR_Direct = <span class="number">0</span>;                                 <span class="comment">// 앞으로 갈 준비</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;STOP&quot;</span>);</span><br><span class="line">  digitalWrite(STBY, LOW);                       <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-29T09:27:53.000Z" title="2019. 10. 29. 오후 5:27:53">2019-10-29</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-01T15:22:05.260Z" title="2021. 11. 1. 오후 11:22:05">2021-11-02</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">24분안에 읽기 (약 3608 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/29/DC%EB%AA%A8%ED%84%B0-4WD-%EC%9E%90%EB%8F%99%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">DC모터 + 4WD 자동차 만들기 (TB6612FNG)</a></h1><div class="content"><h3 id="DC모터-사용하기"><a href="#DC모터-사용하기" class="headerlink" title="DC모터 사용하기"></a>DC모터 사용하기</h3><p>아두이노의 5V, 3.3V핀으로는 모터에 필요한 충분한 전압과 전류를 공급하기 어렵다. 그러므로 사용하려는 모터에 맞는 전압과 전류의 공급을 위한 모터드라이버를 사용해야 한다. 아두이노에서 주로 사용하는 모듈은 L293D, L298N와 TB6612FNG 등이 있으며, 여기서는 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 별도의 외부전원을 사용한다. <del>외부 전원으로는 모터를 위한 1.5V AA*4개와 함께 아두이노 단독사용을 위한 9V 사각전지(6F22)를 추가로 연결하였다.</del> </p>
+<blockquote>
+<p>1.5V AA 6개 혹은 3.7V 18650 2개를 직렬로 연결하여 사용하면, 9V 사각전지(6F22)가 필요하지 않으므로 이 방법을 추천한다. 또한 AA 건전지를 사용하는 경우 4WD기준 연속사용시간은 10분 정도뿐일 정도로 전지 소모가 매우 빠르므로, 충전이 가능한 18650 사용을 추천한다.</p>
+</blockquote>
+<br>
+
+<h4 id="TB6612FNG"><a href="#TB6612FNG" class="headerlink" title="TB6612FNG"></a>TB6612FNG</h4><table>
+<thead>
+<tr>
+<th align="center">VM<br>VCC<br>GND(*)<br>AOUT1<br>AOUT2<br>BOUT2<br>BOUT1<br>GND</th>
+<th align="center"><img src="/image/t/tb6612fng-01.png"></th>
+<th align="center">PWMA<br>AIN2<br>AIN1<br>STBY<br>BIN1<br>BIN2<br>PWMB<br>GND</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"><img src="/image/t/tb6612fng-02.png" style="zoom:80%;"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>VM (모터 전압) = 15V max</li>
+<li>VCC (로직 전압) = 2.7 ~ 5.5V</li>
+<li><strong>GND</strong><ul>
+<li>TB6612fng 모듈을 여러개 테스트한 결과, <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li>
+<li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li>
+</ul>
+</li>
+<li>출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임)</li>
+<li>모터 제어모드: CW, CCW, short-brake, STOP, stand-by</li>
+<li>두개의 모터 출력을 개별 제어하며, <strong>100kHz</strong>의 PWM으로 속도 제어</li>
+<li>써멀 셧다운 및 저전압 감지회로 내장</li>
+</ul>
+<br>
+
+<h5 id="Pin의-사용"><a href="#Pin의-사용" class="headerlink" title="Pin의 사용"></a>Pin의 사용</h5><table>
+<thead>
+<tr>
+<th>핀번호</th>
+<th>모터드라이브1</th>
+<th>아두이노</th>
+<th>외부전원</th>
+<th>모터 / 역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>VM</td>
+<td></td>
+<td>(+) (DC모터에 사용하는 전압 사용)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>VCC</td>
+<td>+5V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>GND (사용 비추천)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>A_OUT1</td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A_OUT2</td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>6</td>
+<td>B_OUT2</td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>7</td>
+<td>B_OUT1</td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GND</td>
+<td></td>
+<td>(-)</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>GND</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>B_PWM</td>
+<td>6</td>
+<td></td>
+<td>모터B 속도제어</td>
+</tr>
+<tr>
+<td>11</td>
+<td>B_IN2</td>
+<td>12</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>12</td>
+<td>B_IN1</td>
+<td>11</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>13</td>
+<td>STBY</td>
+<td>10</td>
+<td></td>
+<td>모터 상태신호</td>
+</tr>
+<tr>
+<td>14</td>
+<td>A_IN1</td>
+<td>9</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>15</td>
+<td>A_IN2</td>
+<td>8</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>16</td>
+<td>A_PWM</td>
+<td>5</td>
+<td></td>
+<td>모터A 속도제어</td>
+</tr>
+</tbody></table>
+<ul>
+<li>속도제어에 사용하는 A_PWM, B_PWM은 아두이노의 PWM이 가능한 핀에 연결하여야 합니다. 여기서는 ~5, ~6번 핀 사용.</li>
+</ul>
+<br>
+
+
+<h5 id="주의-Pin-Map이-다른-모듈의-경우"><a href="#주의-Pin-Map이-다른-모듈의-경우" class="headerlink" title="주의: Pin Map이 다른 모듈의 경우"></a>주의: Pin Map이 다른 모듈의 경우</h5><p>TB6612FNG를 여러 개 구입하여 사용해본 결과, 위의 핀맵과 조금 다른 모듈도 있었다. </p>
+<table>
+<thead>
+<tr>
+<th>핀번호</th>
+<th>모터드라이브1</th>
+<th>아두이노</th>
+<th>외부전원</th>
+<th>모터 / 역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GND</td>
+<td>GND</td>
+<td>(-)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>VCC (2.7~5.5V)</td>
+<td>+5V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>A_OUT1</td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>4</td>
+<td>A_OUT2</td>
+<td></td>
+<td></td>
+<td>모터A</td>
+</tr>
+<tr>
+<td>5</td>
+<td>B_OUT2</td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>6</td>
+<td>B_OUT1</td>
+<td></td>
+<td></td>
+<td>모터B</td>
+</tr>
+<tr>
+<td>7</td>
+<td>VM (15V max)</td>
+<td></td>
+<td>(+) (DC모터 요구 전압 사용)</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>GND</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>GND</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>B_PWM</td>
+<td>6</td>
+<td></td>
+<td>모터B 속도제어</td>
+</tr>
+<tr>
+<td>11</td>
+<td>B_IN2</td>
+<td>12</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>12</td>
+<td>B_IN1</td>
+<td>11</td>
+<td></td>
+<td>모터B 방향제어</td>
+</tr>
+<tr>
+<td>13</td>
+<td>NC(STBY)</td>
+<td>10</td>
+<td></td>
+<td>모터 상태신호</td>
+</tr>
+<tr>
+<td>14</td>
+<td>A_IN1</td>
+<td>9</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>15</td>
+<td>A_IN2</td>
+<td>8</td>
+<td></td>
+<td>모터A 방향제어</td>
+</tr>
+<tr>
+<td>16</td>
+<td>A_PWM</td>
+<td>5</td>
+<td></td>
+<td>모터A 속도제어</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="TB6612FNG와-DC모터의-연결"><a href="#TB6612FNG와-DC모터의-연결" class="headerlink" title="TB6612FNG와 DC모터의 연결"></a>TB6612FNG와 DC모터의 연결</h4><h5 id="Pin-Map"><a href="#Pin-Map" class="headerlink" title="Pin Map"></a>Pin Map</h5><p>TB6612FNG 모터드라이브는 2채널 형태이며, 만일 2WD 자동차를 만든다면 디지털핀 7개가 필요하다. 4개의 DC모터를 사용하여 4WD 자동차를 만드는 방법은 3가지로 나눠 생각해볼 수 있는데, 모든 바퀴를 각각 컨트롤 하는 방법, 왼쪽 바퀴와 오른쪽 바퀴로 나누어 컨트롤 하는 방법, 앞 바퀴와 뒷 바퀴로 나누어 컨트롤 하는 방법 등이 있다.</p>
+<ul>
+<li>모든 바퀴를 각각 컨트롤 하는 경우 : 모터드라이브 2개와 디지털핀 14개 사용<ul>
+<li>그런데, 아두이노에서 실제 사용할 수 있는 디지털핀의 개수가 12개(2~13번)이므로, 2개의 디지털핀이 부족하다.<ul>
+<li>아날로그핀을 디지털핀과 동일하게 사용할 수 있으므로, 2개의 아날로그핀을 추가로 사용한다.</li>
+<li>또는 스케치 업로드시에만 0,1번 핀을 빼두었다가, 스케치 업로드가 끝나면 0,1번 핀을 사용한다. 이렇게 사용하면 0~13번까지 총 14개의 디지털핀을 확보할 수 있다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>왼쪽과 오른쪽 바퀴로 나누어 컨트롤</strong> 하는 방법 : 디지털핀 7개 사용 (아래 본문에서 사용한 방법)</li>
+<li>앞과 뒷 바퀴로 나누어 컨트롤 하는 방법 : 디지털핀 7개 사용. (단, 조향을 위한 추가적인 방법을 고려해야 함.)  </li>
+</ul>
+<br>
+
+<h4 id="H-SW-Control-Function"><a href="#H-SW-Control-Function" class="headerlink" title="H-SW Control Function"></a>H-SW Control Function</h4><table>
+<thead>
+<tr>
+<th>Input</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Output</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN1</td>
+<td>IN2</td>
+<td>PWM</td>
+<td>STBY</td>
+<td>OUT1</td>
+<td>OUT2</td>
+<td>Mode</td>
+</tr>
+<tr>
+<td>H</td>
+<td>H</td>
+<td>H/L</td>
+<td>H</td>
+<td>L</td>
+<td>L</td>
+<td>Short Brake</td>
+</tr>
+<tr>
+<td>L</td>
+<td>H</td>
+<td>H</td>
+<td>H</td>
+<td>L</td>
+<td>H</td>
+<td>Count-Clockwise</td>
+</tr>
+<tr>
+<td>L</td>
+<td>H</td>
+<td>L</td>
+<td>H</td>
+<td>L</td>
+<td>L</td>
+<td>Short Brake</td>
+</tr>
+<tr>
+<td>H</td>
+<td>L</td>
+<td>H</td>
+<td>H</td>
+<td>H</td>
+<td>L</td>
+<td>Clockwise</td>
+</tr>
+<tr>
+<td>H</td>
+<td>L</td>
+<td>L</td>
+<td>H</td>
+<td>L</td>
+<td>L</td>
+<td>Short Brake</td>
+</tr>
+<tr>
+<td>L</td>
+<td>L</td>
+<td>H</td>
+<td>H</td>
+<td>OFF(High impedance)</td>
+<td>OFF(High impedance)</td>
+<td>Stop</td>
+</tr>
+<tr>
+<td>H/L</td>
+<td>H/L</td>
+<td>H/L</td>
+<td>L</td>
+<td>OFF(High impedance)</td>
+<td>OFF(High impedance)</td>
+<td>Standby</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>출력 결과는 아래와 같으며,</p>
+<ul>
+<li>IN1이 LOW, IN2가 HIGH, PWM으로 신호를 출력할 경우 시계 반대 방향(CCW)으로 회전</li>
+<li>IN1이 HIGH, IN2가 LOW, PWM으로 신호를 출력할 경우 시계 방향(CW)으로 회전</li>
+<li>그 밖의 경우는 모두 stop 상태로 해석하면 된다.</li>
+</ul>
+<br>
+
+<h3 id="모터-1개-컨트롤하기"><a href="#모터-1개-컨트롤하기" class="headerlink" title="모터 1개 컨트롤하기"></a>모터 1개 컨트롤하기</h3><p>여기서 사용하는 DC모터는 아래의 형태를 가진 기어드모터이며, 아두이노를 사용하여 자동차를 만드는데 많이 사용되는 저렴이 모터이다.</p>
+<p><img src="/image/4wd-01.jpg"></p>
+<br>
+
+<h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><h5 id="UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우"><a href="#UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우" class="headerlink" title="UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우"></a>UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우</h5><p><img src="/image/4wd-02.png"></p>
+<br>
+
+<h5 id="UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우"><a href="#UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우" class="headerlink" title="UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우"></a>UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우</h5><ul>
+<li>UNO 보드의 Vin에 외부전원(7.4V) (+)에 연결: 6.6V~12V 범위의 전원 연결 가능 (7.2V 이상 추천)</li>
+<li>UNO 보드의 GND를 TB6612fng 모듈의 GND에 연결</li>
+</ul>
+<p><img src="/image/4wd-03.png"></p>
+<br>
+
+<h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;            <span class="comment">// Standby</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Motor A</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;            <span class="comment">// Speed Control</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(STBY, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN2, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">128</span>, <span class="number">0</span>);          <span class="comment">// motor A(right wheels), half speed, moving forward</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);              <span class="comment">// go for 1 second</span></span><br><span class="line">  <span class="built_in">stop</span>();                   <span class="comment">// stop</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">250</span>);               <span class="comment">// hold for 250ms until move again</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">128</span>, <span class="number">1</span>);          <span class="comment">// motor A(right wheels), half speed, moving backward</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">stop</span>();</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">250</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motor, <span class="keyword">int</span> speed, <span class="keyword">int</span> direction)</span> </span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">- Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">- motor: A -&gt; 1</span></span><br><span class="line"><span class="comment">- speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">= direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line"></span><br><span class="line">  boolean inPin1 = LOW;            <span class="comment">// Defalut(direction=0) - Clockwise</span></span><br><span class="line">  boolean inPin2 = HIGH;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(direction == <span class="number">1</span>) &#123;             <span class="comment">// Count-clockwise</span></span><br><span class="line">    inPin1 = HIGH;</span><br><span class="line">    inPin2 = LOW;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(motor == <span class="number">1</span>)&#123;                  <span class="comment">// if motor == 1, right wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN2, inPin2);</span><br><span class="line">    <span class="built_in">analogWrite</span>(A_PWM, speed);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;                           <span class="comment">// if motor is not 1, left wheel</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">stop</span>() &#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, LOW);         <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="회전-방향이-생각했던-방향과-반대로-회전하는-경우"><a href="#회전-방향이-생각했던-방향과-반대로-회전하는-경우" class="headerlink" title="회전 방향이 (생각했던 방향과) 반대로 회전하는 경우"></a>회전 방향이 (생각했던 방향과) 반대로 회전하는 경우</h5><p>A_IN1핀과 A_IN2 핀의 번호를 바꿔준다. 즉, 위 스케치에서</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">9</span>;</span><br></pre></td></tr></table></figure>
+
+<p>부분을</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+
+<p>로 바꿔준다.</p>
+<br>
+
+<h3 id="4WD-자동차-만들기"><a href="#4WD-자동차-만들기" class="headerlink" title="4WD 자동차 만들기"></a>4WD 자동차 만들기</h3><h4 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h4><h5 id="UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-1"><a href="#UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-1" class="headerlink" title="UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우"></a>UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우</h5><p><img src="/image/4wd-04.png"></p>
+<br>
+
+<h5 id="UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-1"><a href="#UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-1" class="headerlink" title="UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우"></a>UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우</h5><ul>
+<li>UNO 보드의 Vin에 외부전원(7.4V) (+)에 연결: 6.6V~12V 범위의 전원 연결 가능 (7.2V 이상 추천)</li>
+<li>UNO 보드의 GND를 TB6612fng 모듈의 GND에 연결</li>
+</ul>
+<p><img src="/image/4wd-05.png"></p>
+<br>
+
+<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// front wheel : B1 - A1</span></span><br><span class="line"><span class="comment">// rear  wheel : B2 - A2 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;            <span class="comment">// Standby</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Motor A 1 &amp; 2(Right)</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;             <span class="comment">// Speed Control</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Motor B 1 &amp; 2(Left)</span></span><br><span class="line"><span class="keyword">int</span> B_PWM = <span class="number">6</span>;             <span class="comment">// Speed Control</span></span><br><span class="line"><span class="keyword">int</span> B_IN1 = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> B_IN2 = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(STBY, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN2, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">128</span>, <span class="number">0</span>);                  <span class="comment">// motor A(right wheels), half speed, moving forward</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">2</span>, <span class="number">128</span>, <span class="number">0</span>);                  <span class="comment">// motor B(left wheels), half speed, moving forward</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);                      <span class="comment">// go for 1 second</span></span><br><span class="line">  <span class="built_in">stop</span>();                           <span class="comment">// stop</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">250</span>);                       <span class="comment">// hold for 250ms until move again</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, <span class="number">128</span>, <span class="number">1</span>);                  <span class="comment">// motor A(right wheels), half speed, moving backward</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">2</span>, <span class="number">128</span>, <span class="number">1</span>);                  <span class="comment">// motor B(left wheels), half speed, moving backward</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">stop</span>();</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">250</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motor, <span class="keyword">int</span> speed, <span class="keyword">int</span> direction)</span> </span>&#123;   <span class="comment">//Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">//motor: A(Right) -&gt; 1, B(Left) -&gt; 2</span></span><br><span class="line"><span class="comment">//speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">//direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line"></span><br><span class="line">  boolean inPin1 = LOW;            <span class="comment">// Defalut(direction=0) - Clockwise</span></span><br><span class="line">  boolean inPin2 = HIGH;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(direction == <span class="number">1</span>) &#123;             <span class="comment">// Count-clockwise</span></span><br><span class="line">    inPin1 = HIGH;</span><br><span class="line">    inPin2 = LOW;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(motor == <span class="number">1</span>)&#123;                  <span class="comment">// if motor == 1, right wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN2, inPin2);</span><br><span class="line">    <span class="built_in">analogWrite</span>(A_PWM, speed);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;                         <span class="comment">// if motor is not 1, left wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN2, inPin2);</span><br><span class="line">    <span class="built_in">analogWrite</span>(B_PWM, speed);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, LOW);        <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="IR-리모컨으로-4WD-컨트롤하기"><a href="#IR-리모컨으로-4WD-컨트롤하기" class="headerlink" title="IR 리모컨으로 4WD 컨트롤하기"></a>IR 리모컨으로 4WD 컨트롤하기</h3><p>IR리모컨을 사용하여 RC카를 컨트롤 하기 위해서는 모터와 회로에서 발생하는 노이즈를 제거하기 위한 104 케패시터(0.1uF)를 사용하는 것이 원칙입니다. 반드시 사용해야 하는 것은 아니지만, 회로보호를 위해 캐패시터가 있는 경우에는 IR 수신부의 (+)와 (-)에 병렬연결하세요. 이에 더하여 후진시 방향전환도 가능하도록 수정해 봅니다.</p>
+<br>
+
+<h4 id="schematic-2"><a href="#schematic-2" class="headerlink" title="schematic"></a>schematic</h4><h5 id="UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-2"><a href="#UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-2" class="headerlink" title="UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우"></a>UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우</h5><p><img src="/image/4wd-06.png"></p>
+<br>
+
+<h5 id="UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-2"><a href="#UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-2" class="headerlink" title="UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우"></a>UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우</h5><p><img src="/image/4wd-07.png"></p>
+<br>
+
+<br>
+
+<h4 id="IRremote-라이브러리-추가하기"><a href="#IRremote-라이브러리-추가하기" class="headerlink" title="IRremote 라이브러리 추가하기"></a>IRremote 라이브러리 추가하기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="사용할-리모컨-버튼-HEX값"><a href="#사용할-리모컨-버튼-HEX값" class="headerlink" title="사용할 리모컨 버튼 HEX값"></a>사용할 리모컨 버튼 HEX값</h4><table>
+<thead>
+<tr>
+<th>Remote Button</th>
+<th>unsigned int data</th>
+<th>define</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>▲ (전진 / 속도 증가)</td>
+<td>0XFF18E7</td>
+<td>BTN_U</td>
+</tr>
+<tr>
+<td>▼ (후진 / 속도 감소)</td>
+<td>0XFFA4B5</td>
+<td>BTN_D</td>
+</tr>
+<tr>
+<td>◀ (좌회전 / 좌회전각 증가)</td>
+<td>0XFF10EF</td>
+<td>BTN_L</td>
+</tr>
+<tr>
+<td>▶ (우회전 / 우회전각 증가)</td>
+<td>0XFF5AA5</td>
+<td>BTN_R</td>
+</tr>
+<tr>
+<td>OK (정지)</td>
+<td>0XFF38C7</td>
+<td>BTN_O</td>
+</tr>
+</tbody></table>
+<p>보유하고 있는 리모컨의 종류마다 HEX값이 다르므로, HEX값은 다를 수 있습니다. HEX값을 알아내는 방법은 IR Remote를 다루는 페이지를 참고하세요.</p>
+<br>
+
+<h4 id="sketch-2"><a href="#sketch-2" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Initialize IR remote</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RECV_PIN = <span class="number">13</span>;              <span class="comment">// IR Signal pin</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;</span><br><span class="line">decode_results results;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_F 0xFF18E7  <span class="comment">// Forward Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_B 0xFF4AB5  <span class="comment">// Backward Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_L 0xFF10EF  <span class="comment">// Left Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_R 0xFF5AA5  <span class="comment">// Right Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_O 0xFF38C7  <span class="comment">// OK Button</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize TB6612FNG Motor drive</span></span><br><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;  <span class="comment">// STBY pin on TB6612FNG. Must be HIGH to enable motor</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;  <span class="comment">// Right motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">9</span>;  <span class="comment">// Right motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">8</span>;  <span class="comment">// Right motor - HIGH should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_PWM = <span class="number">6</span>;  <span class="comment">// Left motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> B_IN1 = <span class="number">11</span>; <span class="comment">// Left motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_IN2 = <span class="number">12</span>; <span class="comment">// Left motor - HIGH should go forward</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> R_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> LR_Direct = <span class="number">0</span>;      <span class="comment">//for Direction</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(A_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(STBY, OUTPUT);</span><br><span class="line">  </span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">  irrecv.<span class="built_in">enableIRIn</span>();                           <span class="comment">// Start the receiver</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (irrecv.<span class="built_in">decode</span>(&amp;results)) &#123;                 <span class="comment">// Read IR remote control</span></span><br><span class="line">    <span class="comment">//Serial.println(results.value, HEX);        // for debug</span></span><br><span class="line">    irrecv.<span class="built_in">resume</span>();                             <span class="comment">// Receive the next value</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in"><span class="keyword">switch</span></span>(results.value) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">case</span> BTN_F:</span><br><span class="line">      <span class="built_in">go_forward</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_B:  </span><br><span class="line">      <span class="built_in">go_backward</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_L:  </span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">go_f_left</span>();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">go_b_left</span>();</span><br><span class="line">      &#125;     </span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_R:</span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">go_f_right</span>();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">go_b_right</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_O:</span><br><span class="line">      <span class="built_in">stop</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">// motor: A(Right) -&gt; 0, B(Left) -&gt; 1</span></span><br><span class="line"><span class="comment">// speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">// direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motorLR, <span class="keyword">int</span> speed, boolean inPin1, boolean inPin2)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">analogWrite</span>(A_PWM, speed);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN2, inPin2);   </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">analogWrite</span>(B_PWM, speed);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN2, inPin2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_forward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  LR_Direct = <span class="number">0</span>;              <span class="comment">// Forward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_backward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  LR_Direct = <span class="number">1</span>;              <span class="comment">// Backward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_L&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;STOP&quot;</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, LOW);    <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="초음파-센서-장착"><a href="#초음파-센서-장착" class="headerlink" title="초음파 센서 장착"></a>초음파 센서 장착</h3><p>초음파 센서를 장착하여 전진시 일정한 거리 내에  장애물이 있으면 자동차를 멈춰보도록 하겠습니다. Trig는 아두이노 2번핀, Echo는 4번핀에 연결하였습니다.</p>
+<br>
+
+<h4 id="schematic-3"><a href="#schematic-3" class="headerlink" title="schematic"></a>schematic</h4><h5 id="UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-3"><a href="#UNO보드와-컴퓨터를-USB선으로-연결하여-사용할-경우-3" class="headerlink" title="UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우"></a>UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우</h5><p><img src="/image/4wd-08.png"></p>
+<br>
+
+<h5 id="UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-3"><a href="#UNO보드와-컴퓨터의-연결없이-Vin핀을-사용하여-단독으로-사용할-경우-3" class="headerlink" title="UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우"></a>UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우</h5><p><img src="/image/4wd-09.png"></p>
+<br>
+
+<h4 id="sketch-3"><a href="#sketch-3" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Initialize IR remote</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boarddefs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremoteInt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ir_Lego_PF_BitStreamEncoder.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RECV_PIN = <span class="number">13</span>;       <span class="comment">// IR Signal pin</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;</span><br><span class="line">decode_results results;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_F 0xFF18E7  <span class="comment">// Forward Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_B 0xFF4AB5  <span class="comment">// Backward Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_L 0xFF10EF  <span class="comment">// Left Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_R 0xFF5AA5  <span class="comment">// Right Button</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BTN_O 0xFF38C7  <span class="comment">// OK Button</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize TB6612FNG Motor drive</span></span><br><span class="line"><span class="keyword">int</span> STBY = <span class="number">10</span>;  <span class="comment">// STBY pin on TB6612FNG. Must be HIGH to enable motor</span></span><br><span class="line"><span class="keyword">int</span> A_PWM = <span class="number">5</span>;  <span class="comment">// Right motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> A_IN1 = <span class="number">9</span>;  <span class="comment">// Right motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> A_IN2 = <span class="number">8</span>;  <span class="comment">// Right motor - HIGH should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_PWM = <span class="number">6</span>;  <span class="comment">// Left motor speed control using analogWrite() function. Value between 0 - 255</span></span><br><span class="line"><span class="keyword">int</span> B_IN1 = <span class="number">11</span>; <span class="comment">// Left motor - LOW should go forward</span></span><br><span class="line"><span class="keyword">int</span> B_IN2 = <span class="number">12</span>; <span class="comment">// Left motor - HIGH should go forward</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> R_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_MaxSpeed = <span class="number">255</span>;   <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> R_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"><span class="keyword">int</span> L_TurnSpeed = <span class="number">128</span>;  <span class="comment">//set motor speed to max speed</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> LR_Direct = <span class="number">0</span>;      <span class="comment">//for Direction</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize Ultrasonic Sensor</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRIG 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO 4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(A_PWM, OUTPUT);                        <span class="comment">// Motor</span></span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(A_IN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_PWM, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(B_IN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(STBY, OUTPUT);</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">pinMode</span>(TRIG, OUTPUT);                         <span class="comment">// Ultrasonic Sensor</span></span><br><span class="line">  <span class="built_in">pinMode</span>(ECHO, INPUT);</span><br><span class="line"></span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">  irrecv.<span class="built_in">enableIRIn</span>();                           <span class="comment">// Start the receiver</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(TRIG, LOW);                       <span class="comment">// Start Ultrasonic sensor</span></span><br><span class="line">  <span class="built_in">delayMicroseconds</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(TRIG, HIGH);</span><br><span class="line">  <span class="built_in">delayMicroseconds</span>(<span class="number">10</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(TRIG, LOW);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">long</span> distance = <span class="built_in">pulseIn</span>(ECHO, HIGH) / <span class="number">58.2</span>;    <span class="comment">// 거리 측정</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (irrecv.<span class="built_in">decode</span>(&amp;results)) &#123;                 <span class="comment">// Read IR remote control</span></span><br><span class="line">    <span class="comment">//Serial.println(results.value, HEX);        // for debug</span></span><br><span class="line">    irrecv.<span class="built_in">resume</span>(); <span class="comment">// Receive the next value</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (distance &lt; <span class="number">10</span>) &#123;                            <span class="comment">// 거리가 10cm 이내이면 정지</span></span><br><span class="line">    <span class="built_in">stop</span>();</span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;                                          <span class="comment">// 거리가 10cm 이상이면,</span></span><br><span class="line">  	<span class="built_in"><span class="keyword">switch</span></span>(results.value) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">case</span> BTN_F:</span><br><span class="line">      <span class="built_in">go_forward</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_B:  </span><br><span class="line">      <span class="built_in">go_backward</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_L:  </span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">go_f_left</span>();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">go_b_left</span>();</span><br><span class="line">      &#125;     </span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_R:</span><br><span class="line">      <span class="keyword">if</span>(LR_Direct==<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">go_f_right</span>();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(LR_Direct==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">go_b_right</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">case</span> BTN_O:</span><br><span class="line">      <span class="built_in">stop</span>();</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">// motor: A(Right) -&gt; 0, B(Left) -&gt; 1</span></span><br><span class="line"><span class="comment">// speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">// direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motorLR, <span class="keyword">int</span> speed, boolean inPin1, boolean inPin2)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, HIGH);        <span class="comment">// Disable Standby</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">analogWrite</span>(A_PWM, speed);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(A_IN2, inPin2);   </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (motorLR == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">analogWrite</span>(B_PWM, speed);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(B_IN2, inPin2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_forward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  LR_Direct = <span class="number">0</span>;              <span class="comment">// Forward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_backward</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line"></span><br><span class="line">  LR_Direct = <span class="number">1</span>;              <span class="comment">// Backward</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_L&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_left</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_f_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;F_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_TurnSpeed, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// Right motor, Right Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// Left motor, Left Speed, forward(0,1)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go_b_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;B_R&quot;</span>);</span><br><span class="line">  <span class="built_in">move</span>(<span class="number">0</span>, R_TurnSpeed, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// Right motor, Right Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">move</span>(<span class="number">1</span>, L_MaxSpeed, <span class="number">1</span>, <span class="number">0</span>);  <span class="comment">// Left motor, Left Speed, backward(1,0)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;STOP&quot;</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(STBY, LOW);    <span class="comment">// Enable Standby</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-28T13:48:56.000Z" title="2019. 10. 28. 오후 9:48:56">2019-10-28</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T00:59:22.862Z" title="2021. 9. 19. 오전 8:59:22">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">22분안에 읽기 (약 3270 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/28/Arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-L298N/">Arduino, 라인트레이서, L298N</a></h1><div class="content"><h1 id="라인트레이서-만들기"><a href="#라인트레이서-만들기" class="headerlink" title="라인트레이서 만들기"></a>라인트레이서 만들기</h1><p>검은색 라인을 따라 움직이는 라인트레이서 자동차를 만들어보겠습니다.</p>
+<br>
+
+<h2 id="TCRT5000-IR-reflective-sensor"><a href="#TCRT5000-IR-reflective-sensor" class="headerlink" title="TCRT5000 IR reflective sensor"></a>TCRT5000 IR reflective sensor</h2><p>라인트레이서 제작시 가장 널리 사용되는 IR 센서입니다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용합니다.</p>
+<p><img src="/image/LT-03.png"></p>
+<ul>
+<li>  장애물이 없는 경우: 1 반환</li>
+<li>  센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
+<li>  센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
+<li>  검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
+<li>  10~12mm 정도의 거리에서 측정하는 것을 추천</li>
+<li>  AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
+</ul>
+<blockquote>
+<p>(위 스펙과는 별도로) 라인트레이서 제작시에는 경험상 센서가 바닥면으로부터 2cm정도 떨어지도록 설치하는 것을 추천합니다. </p>
+</blockquote>
+<br>
+
+<h3 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h3><p><img src="/image/tcrt5000.png"></p>
+<br>
+
+<h3 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> pin_sensor = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">9600</span>);</span><br><span class="line">  <span class="built_in">pinMode</span>(pin_sensor, INPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	i = <span class="built_in">digitalRead</span>(pin_sensor)</span><br><span class="line">    Serial.<span class="built_in">println</span>(i);                 <span class="comment">// 검은색(1), 밝은색(0) 출력</span></span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="모터드라이버-L298N"><a href="#모터드라이버-L298N" class="headerlink" title="모터드라이버 L298N"></a>모터드라이버 L298N</h2><p>자동차 구동에 있어 가장 중요한 것이 모터일 것입니다. 그런데, 대부분의 모터는 구동을 위한 전력값이 커서 아두이노의 자체 출력으로는 구동이 불가능합니다. 그러므로 건전지, SMPS 등의 외부 전원을 사용하여 모터에 충분한 전력을 공급하고, 이를 제어하기위한 모터드라이버를 반드시 사용해야 합니다.</p>
+<p>많은 종류의 모터드라이버가 있으나, 아두이노에서 사용하는 대표적인 모터드라이브는 L298N, TB6612FNG 등이 있으며, 여기서는 2CH의 2A출력이 가능한 L298N을 사용하여 간단한 라인트레이서를 제작해보겠습니다.</p>
+<p>![](/image/LT-01.png =638x550)</p>
+<br>
+
+<h3 id="Pinout"><a href="#Pinout" class="headerlink" title="Pinout"></a>Pinout</h3><ul>
+<li><p>모터A 출력 : 왼쪽 모터를 연결한다.</p>
+</li>
+<li><p>모터B 출력 : 오른쪽 모터를 연결한다.</p>
+</li>
+<li><p>12V (입력) : 외부전원을 입력한다. (5~35V)</p>
+<ul>
+<li>12V 이상의 외부전원을 입력하는 경우, 레귤레이터 보호를 위해 5V 점퍼선을 제거해야 함</li>
+</ul>
+</li>
+<li><p>5V (입력/출력)</p>
+<ul>
+<li>  점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
+<li>점퍼핀 없는 경우 5V 입력을 통해 L298N에 전원 인가</li>
+</ul>
+</li>
+<li><p>Enable 모터A : 왼쪽 모터 PWM (점퍼를 제거하고, INPUT핀 양옆의 핀에 PWM신호 입력)</p>
+</li>
+<li><p>Enable 모터B : 오른쪽 모터 PWM (점퍼를 제거하고, INPUT핀 양옆의 핀에 PWM신호 입력)</p>
+</li>
+<li><p>PWM을 사용하는 경우 모터에 인가하는 전원이 6V(AA*4개)인 경우 PWM값이 낮으면 모터가 회전하지 않으므로 코딩시 주의한다.</p>
+</li>
+<li><p>INPUT : IN1, IN2, IN3, IN4</p>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>IN1</th>
+<th>IN2</th>
+<th>IN3</th>
+<th>IN4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Go</td>
+<td>HIGH</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Back</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Brake</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Left_Turn</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Right_Turn</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>LOW</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Left_Back_Turn</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Right_Back_Turm</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>HIGH</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<br>
+
+<h3 id="Jumper"><a href="#Jumper" class="headerlink" title="Jumper"></a>Jumper</h3><ul>
+<li>Enable 모터A<ul>
+<li>  점퍼를 연결시키지 않으면 PWM사용</li>
+<li>  점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+</ul>
+</li>
+<li>Enable 모터B<ul>
+<li>  점퍼를 연결시키지 않으면 PWM사용</li>
+<li>  점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+</ul>
+</li>
+<li>  5V (※ Pinout의 5V 부분 참고)</li>
+</ul>
+<br>
+
+<h2 id="전원"><a href="#전원" class="headerlink" title="전원"></a>전원</h2><ul>
+<li>  대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
+<li>  But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 불가능합니다.</li>
+<li>  AA건전지 6개를 직렬로 연결하여 9V정도를 공급하는 것을 추천하며 (사용시간 10~15분정도 가능)</li>
+<li>  18650 리튬이온전지 2개를 연결하여 7.4V를 공급하면 가장 좋습니다.</li>
+</ul>
+<br>
+
+<h2 id="모터"><a href="#모터" class="headerlink" title="모터"></a>모터</h2><p>아두이노 기초 실습용으로 많이 쓰이는 이름없는 중국산 모터입니다.</p>
+<p><img src="/image/LT-02.jpg"></p>
+<table>
+<thead>
+<tr>
+<th>기어비 48:1</th>
+<th>RPM(무부하)</th>
+<th>전류 mA (무부하)</th>
+<th>토크(kg·cm)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3V</td>
+<td>120</td>
+<td>40</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>6V</td>
+<td>240</td>
+<td>70</td>
+<td>5.5</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h1 id="프레임-조립"><a href="#프레임-조립" class="headerlink" title="프레임 조립"></a>프레임 조립</h1><br>
+
+<h2 id="준비물"><a href="#준비물" class="headerlink" title="준비물"></a>준비물</h2><p><img src="/image/LT-04.png"></p>
+<br>
+
+
+<h2 id="조립과정"><a href="#조립과정" class="headerlink" title="조립과정"></a>조립과정</h2><ol>
+<li>모터 4개와 M-F형태의 8가닥 리드선을 준비하고 모터에 리드선을 납땜할 준비를 합니다.</li>
+</ol>
+<p><img src="/image/LT-05.jpg"></p>
+<br>
+
+<ol start="2">
+<li>DC모터를 보면 양쪽에 (+)(-)극을 연결하는 단자가 있습니다.</li>
+</ol>
+<p><img src="/image/LT-06.jpg"></p>
+<br>
+
+<ol start="3">
+<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1/2의 길이만큼 나누어 준비한뒤,</li>
+</ol>
+<p><img src="/image/LT-07.jpg"></p>
+<br>
+
+<ol start="4">
+<li>2개의 가닥 중 한 부분을 모터의 (+)(-)단자에 끼우고,</li>
+</ol>
+<p><img src="/image/LT-08.jpg"></p>
+<br>
+
+<ol start="5">
+<li>각각을 납땜합니다. 총 4개의 모터를 납땜하여 아래 모습처럼 만듭니다.</li>
+</ol>
+<p><img src="/image/LT-09.jpg"></p>
+<br>
+
+<p>  ※ (주의) 납땜시, 아래 그림처럼 리드선이 모터의 본체에 닿으면 안됩니다.</p>
+<p><img src="/image/LT-10.jpg"></p>
+<br>
+
+<p>​     처음 납땜할 때부터 닿지 않도록 하는 것이 좋지만, 납땜을 이미 진행한 후에 리드선이 본체에 닿아 있다면 아래의 그림처럼 끝 부분을 살짝 휘어두거나, 니퍼로 잘라내도록 합니다.</p>
+<p><img src="/image/LT-11.jpg"></p>
+<br>
+
+<ol start="6">
+<li>외부 전원으로 사용할 건전지소켓을 준비합니다. (사진상에는 1.5V AA건전지 4개가 직렬로 연결되는 건전지소켓을 사용하였지만, 4개의 모터를 구동하기 위해서는 1.5V AA건전지를 6개 직렬로 연결하여 9V 전압을 사용하는 것을 추천합니다. 단, 9V사각전지(6F22) 1개로 사용하는 것은 전류가 약하므로 사용불가!)</li>
+</ol>
+<p><img src="/image/LT-12.jpg"></p>
+<br>
+
+<p>​    건전지소켓에 나와있는 리드선의 끝부분을 스트리퍼를 사용하여 피복을 조금더 벗겨냅니다. 또한 빨간색과 검은색 점퍼선 2개를 별로로 준비한뒤, 한쪽 단자를 잘라내고, 스트리퍼로 피복을 벗겨냅니다.</p>
+<br>
+
+<ol start="7">
+<li>건전지소켓의 리드선과 점퍼선을 붙여 떨어지지 않도록 단단히 납땜한 후,</li>
+</ol>
+<p><img src="/image/LT-13.jpg"></p>
+<br>
+
+<ol start="8">
+<li>합선되지 않도록 절연테이프나 열수축튜브로 각각을 잘 감싸둡니다.</li>
+</ol>
+<p><img src="/image/LT-14.jpg"></p>
+<br>
+
+<ol start="9">
+<li>이제 아크릴판을 준비합니다.</li>
+</ol>
+<p><img src="/image/LT-15.jpg"></p>
+<br>
+
+<ol start="10">
+<li>아래 그림의 Step1~2과정과 같이 모터를 고정할 아크릴 조각을 끼울 것입니다.</li>
+</ol>
+<p><img src="/image/LT-16.png"></p>
+<br>
+
+<p>​    우선, 모터를 고정할 아크릴 조각 2개를 고정할 위치를 확인합니다. 총 4개의 모터를 고정할 것이므로 아크릴 조각 8개가 필요합니다.</p>
+<p><img src="/image/LT-17.jpg"></p>
+<br>
+
+<ol start="11">
+<li>모터고정 아크릴 조각을 아래 사진처럼 끼웁니다. 하나는 구멍에 집어 넣고, 나머지 하나는 측면의 홈에 살짝 걸쳐둡니다.</li>
+</ol>
+<p><img src="/image/LT-18.jpg"></p>
+<br>
+
+<ol start="12">
+<li>이제 모터를 설치하겠습니다.</li>
+</ol>
+<p><img src="/image/LT-19.png"></p>
+<br>
+
+<p><img src="/image/LT-20.png"></p>
+<br>
+
+<p>​    나사와 너트를 2개씩 준비한 후</p>
+<p><img src="/image/LT-21.jpg"></p>
+<br>
+
+<p>​    아크릴 조각 2개 사이에 모터를 위치시킨 후, 모터 몸체이 있는 나사 구멍에 나사 2개를 통과시켜</p>
+<p><img src="/image/LT-22.jpg"></p>
+<br>
+
+<p>​    아래 사진 같이 고정합니다.</p>
+<p><img src="/image/LT-23.jpg"></p>
+<br>
+
+<p>13. 모터를 고정한 후, 바퀴축의 안쪽 부분에 바퀴의 균형을 잡아줄 동그란 아크릴 조각을 끼워줍니다.</p>
+<p><img src="/image/LT-24.jpg"></p>
+<br>
+
+<p>​     4개의 모터를 같은 방법으로 고정시켜 아래와 같은 형태를 만듭니다. 주의할 것은 모터의 단자가 위치한 은색부분의 모터본체 부분이 서로 맞닿는 형태로 조립을 해야 합니다.</p>
+<p><img src="/image/LT-25.jpg"></p>
+<br>
+
+<ol start="14">
+<li>바퀴를 끼웁니다.</li>
+</ol>
+<p><img src="/image/LT-26.png"></p>
+<br>
+
+<ol start="15">
+<li>금속기둥을 세우고 상판을 덮습니다. (아크릴상판이 없는 경우는 생략 가능)</li>
+</ol>
+<p><img src="/image/LT-27.png"></p>
+<br>
+
+<p><img src="/image/LT-28.png"></p>
+<br>
+
+<ol start="16">
+<li>기판 아래면에 모터가 위치하도록 위아래를 뒤집은 후에, 기판 윗면에 TCRT5000 IR Reflective Sensor, 아두이노, 브레드보드, L298N 모터드라이브, 9V 전지소켓을 차례대로 올리고 나사볼트와 절연테이프 등으로 고정합니다. 대략 아래 사진과 비슷하게 고정하면 됩니다.</li>
+</ol>
+<p><img src="/image/LT-29.jpg"></p>
+<br>
+
+
+<h2 id="아두이노와의-연결"><a href="#아두이노와의-연결" class="headerlink" title="아두이노와의 연결"></a>아두이노와의 연결</h2><br>
+
+<h3 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h3><p><img src="/image/LT-30.png"></p>
+<br>
+
+<h3 id="회로연결"><a href="#회로연결" class="headerlink" title="회로연결"></a>회로연결</h3><br>
+
+<h4 id="모터-↔-모터드라이버"><a href="#모터-↔-모터드라이버" class="headerlink" title="모터 ↔ 모터드라이버"></a>모터 ↔ 모터드라이버</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>L/F 모터 U단자</th>
+<th>L/F 모터 D단자</th>
+<th>L/R 모터 U단자</th>
+<th>L/R 모터 D단자</th>
+<th>R/F 모터 U단자</th>
+<th>R/F 모터 D단자</th>
+<th>R/R 모터 U단자</th>
+<th>R/R모터 D단자</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L298N OUT1</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L298N OUT2</td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L298N OUT3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+</tr>
+<tr>
+<td>L298N OUT4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>○</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="모터드라이버-↔-전지소켓-↔-아두이노"><a href="#모터드라이버-↔-전지소켓-↔-아두이노" class="headerlink" title="모터드라이버 ↔ 전지소켓 ↔ 아두이노"></a>모터드라이버 ↔ 전지소켓 ↔ 아두이노</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>전지소켓 (+)</th>
+<th>전지소켓(-)</th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L298N 12V</td>
+<td>○</td>
+<td></td>
+<td>Vin</td>
+</tr>
+<tr>
+<td>L298N GND</td>
+<td></td>
+<td>GND (아두이노)</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>L298N 5V</td>
+<td></td>
+<td></td>
+<td>5V</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="모터드라이브-ENABLE-amp-INPUT-↔-아두이노"><a href="#모터드라이브-ENABLE-amp-INPUT-↔-아두이노" class="headerlink" title="모터드라이브 ENABLE &amp; INPUT ↔ 아두이노"></a>모터드라이브 ENABLE &amp; INPUT ↔ 아두이노</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L298N EN(A)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>L298N IN1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>L298N IN2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>L298N IN3</td>
+<td>10</td>
+</tr>
+<tr>
+<td>L298N IN4</td>
+<td>11</td>
+</tr>
+<tr>
+<td>L298N EN(B)</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="TCRT5000-Sensor-↔-아두이노"><a href="#TCRT5000-Sensor-↔-아두이노" class="headerlink" title="TCRT5000 Sensor ↔ 아두이노"></a>TCRT5000 Sensor ↔ 아두이노</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>#1 TCRT5000 VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 DO</td>
+<td>2</td>
+</tr>
+<tr>
+<td>#1 TCRT5000 AO</td>
+<td>–</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 DO</td>
+<td>3</td>
+</tr>
+<tr>
+<td>#2 TCRT5000 AO</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<br>
+
+<h3 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* L298N - 2CH Motor Driver</span></span><br><span class="line"><span class="comment">Direction         IN1    IN2    IN3    IN4</span></span><br><span class="line"><span class="comment">-------------------------------------------</span></span><br><span class="line"><span class="comment">GO                HIGH   HIGH   LOW    LOW</span></span><br><span class="line"><span class="comment">BACK              LOW    LOW    HIGH   HIGH</span></span><br><span class="line"><span class="comment">BRAKE             LOW    LOW    LOW    LOW</span></span><br><span class="line"><span class="comment">LEFT_TURN         HIGH   LOW    LOW    LOW</span></span><br><span class="line"><span class="comment">RIGHT_TURN        LOW    HIGH   LOW    LOW</span></span><br><span class="line"><span class="comment">LEFT_BACK_TURN    LOW    LOW    HIGH   LOW</span></span><br><span class="line"><span class="comment">RIGHT_BACK_TURN   LOW    LOW    LOW    HIGH</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">PWM: 6V시 최소값 200이상은 되야 바퀴회전 가능 (너무 낮은 전압에서 회전 안됨)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_전진컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_motor_IN1 = <span class="number">8</span>;       <span class="comment">// IN1</span></span><br><span class="line"><span class="keyword">int</span> Right_motor_IN2 = <span class="number">9</span>;      <span class="comment">// IN2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_후진컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_motor_IN3 = <span class="number">10</span>;      <span class="comment">// IN3</span></span><br><span class="line"><span class="keyword">int</span> Right_motor_IN4 = <span class="number">11</span>;     <span class="comment">// IN4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 모터_속도컨트롤</span></span><br><span class="line"><span class="keyword">int</span> Left_PWM = <span class="number">5</span>;               <span class="comment">// 왼쪽모터 속도</span></span><br><span class="line"><span class="keyword">int</span> Right_PWM = <span class="number">6</span>;              <span class="comment">// 오른쪽모터 속도</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// IR Sensor</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Left_Sensor = <span class="number">2</span>;    <span class="comment">// 왼쪽센서</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Right_Sensor = <span class="number">3</span>;   <span class="comment">// 오른쪽센서</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Left_Sensor_Value;        <span class="comment">// 검은색:1</span></span><br><span class="line"><span class="keyword">int</span> Right_Sensor_Value;       <span class="comment">// 흰색:0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  pinMode(Left_motor_IN1, OUTPUT);      <span class="comment">// PIN 8</span></span><br><span class="line">  pinMode(Right_motor_IN2, OUTPUT);     <span class="comment">// PIN 9</span></span><br><span class="line">  </span><br><span class="line">  pinMode(Left_motor_IN3, OUTPUT);      <span class="comment">// PIN 10</span></span><br><span class="line">  pinMode(Right_motor_IN4, OUTPUT);     <span class="comment">// PIN 11</span></span><br><span class="line"></span><br><span class="line">  pinMode(Left_PWM, OUTPUT);            <span class="comment">// PIN 5</span></span><br><span class="line">  pinMode(Right_PWM, OUTPUT);           <span class="comment">// PIN 6</span></span><br><span class="line">  </span><br><span class="line">  pinMode(Left_Sensor, INPUT);          <span class="comment">// 왼쪽센서</span></span><br><span class="line">  pinMode(Right_Sensor, INPUT);         <span class="comment">// 오른쪽센서</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 전진</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, HIGH);   <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, HIGH);  <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_회전</span></span><br><span class="line">  </span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);          <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 후진</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">back</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, HIGH);   <span class="comment">// 왼쪽모터   후진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, HIGH);  <span class="comment">// 오른쪽모터 후진_회전</span></span><br><span class="line">  </span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);          <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 정지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">brake</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line">  delay(<span class="number">5</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 좌회전</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_left</span><span class="params">()</span></span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, LOW);    <span class="comment">// 왼쪽모터   전진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, HIGH);  <span class="comment">// 오론쪽모터 전진_회전</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line"></span><br><span class="line">  analogWrite(Right_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 우회전</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_right</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(Left_motor_IN1, HIGH);   <span class="comment">// 왼쪽모터   전진_회전</span></span><br><span class="line">  digitalWrite(Right_motor_IN2, LOW);   <span class="comment">// 오론쪽모터 전진_정지</span></span><br><span class="line">  </span><br><span class="line">  digitalWrite(Left_motor_IN3, LOW);    <span class="comment">// 왼쪽모터   후진_정지</span></span><br><span class="line">  digitalWrite(Right_motor_IN4, LOW);   <span class="comment">// 오른쪽모터 후진_정지</span></span><br><span class="line"></span><br><span class="line">  analogWrite(Left_PWM, <span class="number">255</span>);           <span class="comment">// PWM값(0~255), 모터 회전속도 조절</span></span><br><span class="line">  delay(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//신호가 있으면(흰색) LOW,  신호가 없으면(검은색) HIGH</span></span><br><span class="line">  Right_Sensor_Value = digitalRead(Right_Sensor);</span><br><span class="line">  Left_Sensor_Value = digitalRead(Left_Sensor);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 전진: 왼쪽센서 검은색, 오른쪽센서 검은색</span></span><br><span class="line">  <span class="keyword">if</span> (Left_Sensor_Value == HIGH &amp;&amp; Right_Sensor_Value == HIGH)</span><br><span class="line">    go();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 좌회전: 왼쪽센서 검은색, 오른쪽센서 흰색</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (Left_Sensor_Value == HIGH &amp; Right_Sensor_Value == LOW)</span><br><span class="line">    turn_left();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 우회전: 왼쪽센서 흰색, 오른쪽센서 검은색</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (Left_Sensor_Value == LOW &amp; Right_Sensor_Value == HIGH) </span><br><span class="line">    turn_right();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 정지: 왼쪽센서 흰색, 오른쪽센서 흰색</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    brake();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="센서-감도-조정"><a href="#센서-감도-조정" class="headerlink" title="센서 감도 조정"></a>센서 감도 조정</h3><ul>
+<li>  센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
+</ul>
+</div></article></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-72x72 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">48</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/esp32/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-06T15:35:51.316Z">2021-11-07</time></p><p class="title"><a href="/2021/11/06/hello-world/">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-09-26T09:27:53.000Z">2021-09-26</time></p><p class="title"><a href="/2021/09/26/ESP32-OLED/">ESP32, OLED (한글 출력 하기)</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">4</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">업데이트 소식 받기</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

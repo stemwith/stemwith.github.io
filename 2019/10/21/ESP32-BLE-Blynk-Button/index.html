@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>esp32 BLE, Blynk Button - stemwith</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="stemwith"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="stemwith"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Blynk를 처음 사용하는 경우   Blynk 라이브러리 설치하기  docs.blynk.cc 접속 – Downloads – Blynk Library https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;blynkkk&amp;#x2F;blynk-library&amp;#x2F;releases&amp;#x2F;tag&amp;#x2F;v0.6.1   Blynk_Release_v0.6.1.zip 다운로드    압축을 풀면 libraries, too"><meta property="og:type" content="blog"><meta property="og:title" content="esp32 BLE, Blynk Button"><meta property="og:url" content="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/"><meta property="og:site_name" content="stemwith"><meta property="og:description" content="Blynk를 처음 사용하는 경우   Blynk 라이브러리 설치하기  docs.blynk.cc 접속 – Downloads – Blynk Library https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;blynkkk&amp;#x2F;blynk-library&amp;#x2F;releases&amp;#x2F;tag&amp;#x2F;v0.6.1   Blynk_Release_v0.6.1.zip 다운로드    압축을 풀면 libraries, too"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/image/blynk-01.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-09.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-20.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-21.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-22.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-23.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-24.png"><meta property="og:image" content="http://stemwith.github.io/image/blynk-25.png"><meta property="article:published_time" content="2019-10-21T14:12:58.000Z"><meta property="article:modified_time" content="2021-09-19T01:03:32.131Z"><meta property="article:author" content="chemidot"><meta property="article:tag" content="iot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/blynk-01.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/"},"headline":"esp32 BLE, Blynk Button","image":["http://stemwith.github.io/image/blynk-01.png","http://stemwith.github.io/image/blynk-09.png","http://stemwith.github.io/image/blynk-20.png","http://stemwith.github.io/image/blynk-21.png","http://stemwith.github.io/image/blynk-22.png","http://stemwith.github.io/image/blynk-23.png","http://stemwith.github.io/image/blynk-24.png","http://stemwith.github.io/image/blynk-25.png"],"datePublished":"2019-10-21T14:12:58.000Z","dateModified":"2021-09-19T01:03:32.131Z","author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"stemwith","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"Blynk를 처음 사용하는 경우   Blynk 라이브러리 설치하기  docs.blynk.cc 접속 – Downloads – Blynk Library https:&#x2F;&#x2F;github.com&#x2F;blynkkk&#x2F;blynk-library&#x2F;releases&#x2F;tag&#x2F;v0.6.1   Blynk_Release_v0.6.1.zip 다운로드    압축을 풀면 libraries, too"}</script><link rel="canonical" href="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151970975-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="stemwith" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-21T14:12:58.000Z" title="2019. 10. 21. 오후 10:12:58">2019-10-21</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T01:03:32.131Z" title="2021. 9. 19. 오전 9:03:32">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">10분안에 읽기 (약 1485 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">esp32 BLE, Blynk Button</h1><div class="content"><h1 id="Blynk를-처음-사용하는-경우"><a href="#Blynk를-처음-사용하는-경우" class="headerlink" title="Blynk를 처음 사용하는 경우"></a>Blynk를 처음 사용하는 경우</h1><br>
+
+
+<h2 id="Blynk-라이브러리-설치하기"><a href="#Blynk-라이브러리-설치하기" class="headerlink" title="Blynk 라이브러리 설치하기"></a>Blynk 라이브러리 설치하기</h2><ol>
+<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
+<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+</ul>
+</li>
+<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
+<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기본 스케치북 위치 확인 방법<ul>
+<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h2 id="스마트폰에-Blynk-App-설치하기"><a href="#스마트폰에-Blynk-App-설치하기" class="headerlink" title="스마트폰에 Blynk App 설치하기"></a>스마트폰에 Blynk App 설치하기</h2><ul>
+<li>  아이폰 : 애플 앱스토어</li>
+<li>  안드로이드 : 구글 플레이스토어</li>
+</ul>
+<br>
+
+<br>
+
+<h1 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h1><br>
+
+
+<h2 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h2><p><img src="/image/blynk-01.png"></p>
+<p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
+<br>
+
+<h2 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h2><ol>
+<li>Blynk App 실행</li>
+</ol>
+<p>![](/image/blynk-02.png =432x768)</p>
+<br>
+
+<ol start="2">
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성 (계정이 이미 생성되어 있는 경우에는 Log In)</li>
+</ol>
+<p>![](/image/blynk-03.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-04.png =432x768)</p>
+<br>
+
+<ol start="3">
+<li>New Project 생성 : ESP32_LED</li>
+</ol>
+<p>![](/image/blynk-05.png =432x768)</p>
+<br>
+
+<ul>
+<li>  프로젝트명 : ESP32_LED</li>
+<li>  CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>  CONNECTION TYPE : BLE</li>
+</ul>
+<br>
+
+<p>![](/image/blynk-06.png =432x768)</p>
+<br>
+
+<ol start="4">
+<li>Create를 누르면 Blynk 가입시 계정으로 사용한 이메일로 Auth Token 발송된다.</li>
+</ol>
+<p>![](/image/blynk-07.png =432x768)</p>
+<br>
+
+<ol start="5">
+<li>OK버튼을 누르면 프로젝트가 생성된다.</li>
+</ol>
+<p>![](/image/blynk-08.png =432x768)</p>
+<br>
+
+<ol start="6">
+<li>컴퓨터를 사용하여 이메일 계정에 로그인 한 후, Auth Token을 복사한다. (복잡한 형태의 토큰을 코딩시 사용할 것이므로, 스마트폰인 아닌 컴퓨터에서 확인하여 복사하는 것이 좋다.)</li>
+</ol>
+<p><img src="/image/blynk-09.png"></p>
+<br>
+
+<ol start="7">
+<li>Blynk 위젯 설정 : 생성된 프로젝트(ESP32_LED) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 “ESP32_LED”로 바뀐다.</li>
+</ol>
+<p>![](/image/blynk-10.png =432x768)</p>
+<br>
+
+<p>만약, 아래와 같이 초록색 메뉴바의 이름이 “Blynk”로 되어있다면, 프로젝트 바탕화면으로 진입하지 못한 것이다. 이때에는 검은색 바탕화면의 “ESP32_LED”프로젝트명을 확인한 후 터치하면 해당프로젝트로 진입할 수 있다. 기존에 다른 프로젝트를 만들어 둔 적이 있다면 검은색 바탕화면의 프로젝트명이 “ESP32_LED”가 아닐 수도 있다. 이런 경우에는 스마트폰 화면을 좌우로 스크롤하여 프로젝트명을 변경한 후 진입한다.</p>
+<p>![](/image/blynk-11.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Button 위젯과 BLE 위젯을 눌러 추가한다.</li>
+</ol>
+<p>![](/image/blynk-12.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-13.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-14.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>프로젝트 바탕화면에 두개의 위젯이 표시된다.</li>
+</ol>
+<p>![](/image/blynk-15.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>BUTTON 위젯을 누르면 Buttom Settings 화면이 나타난다. 여기서 PIN부분을 누른다.</li>
+</ol>
+<p>![](/image/blynk-16.png =432x768)</p>
+<br>
+
+<ol start="11">
+<li>LED를 연결한 PIN을 선택한다. 여기서는 Digital GP19를 선택하였다.</li>
+</ol>
+<p>![](/image/blynk-17.png =432x768)</p>
+<br>
+
+<ol start="12">
+<li>OK버튼을 누르면 OUTPUT 버튼이 GP19로 설정된다. Mode는 SWITCH로 설정한다.</li>
+</ol>
+<p>![](/image/blynk-18.png =432x768)</p>
+<br>
+
+<ol start="13">
+<li>Blynk App 상단의 뒤로가기 버튼을 누른뒤 프로젝트 바탕화면으로 간다.</li>
+</ol>
+<p>![](/image/blynk-19.png =432x768)</p>
+<br>
+
+<h2 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h2><ol>
+<li>Arduino IDE에서 예제를 로드한다. <strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>Blynk</strong>&gt; <strong>Boards_Bluetooth</strong>&gt; <strong>ESP32_BLE</strong></li>
+</ol>
+<p><img src="/image/blynk-20.png"></p>
+<br>
+
+<ol start="2">
+<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
+</ol>
+<p><img src="/image/blynk-21.png"></p>
+<br>
+
+<p><img src="/image/blynk-22.png"></p>
+<br>
+
+<ol start="3">
+<li>예제의 <strong>Blynk.setDeviceName(“Blynk”);</strong> 부분을 찾아 따옴표 안의 BLE Device 이름을 적당한 이름으로 바꿔준다. (※이름을 바꿔주지 않으면 주변의 다른 기기와 중복되어 오작동할 소지가 있으므로 반드시 다른 이름으로 바꿔주어야 한다.)</li>
+</ol>
+<p><img src="/image/blynk-23.png"></p>
+<br>
+
+<p>Device Name을 “Blynk-t”로 수정하였다.</p>
+<p><img src="/image/blynk-24.png"></p>
+<br>
+
+<ol start="4">
+<li>ESP32에 스케치를 업로드한다. (업로드 시간이 Arduino에 비해 오래 걸림)</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz.........&quot;</span>;    <span class="comment">// Edit Your Auth Token!!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);                     <span class="comment">// Edit Your ESP32 Name!!!</span></span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><img src="/image/blynk-25.png"></p>
+<br>
+
+<ol start="5">
+<li>이제 스마트폰의 Bluetooth기능을 키고, 위의 코드에서 수정한 Device Name을 찾아 연결한다.</li>
+</ol>
+<p>![](/image/blynk-26.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-27.png =432x768)</p>
+<br>
+
+<ol start="6">
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양)을 누른다.</li>
+</ol>
+<p>![](/image/blynk-28.png =432x768)</p>
+<br>
+
+<ol start="7">
+<li>Connect BLE device 버튼을 누른다.</li>
+</ol>
+<p>![](/image/blynk-29.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>연결할 Device(여기서는 Blynk-t)를 선택하고 OK를 누른다.</li>
+</ol>
+<p>![](/image/blynk-30.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>Connected 메세지가 나오면 연결 설정이 완료된 것이다.</li>
+</ol>
+<p>![](/image/blynk-31.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>Blynk App 상단의 뒤로 돌아가기 버튼을 눌러 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p>![](/image/blynk-32.png =432x768)</p>
+<br>
+
+<ol start="11">
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누른다.</li>
+</ol>
+<p>![](/image/blynk-33.png =432x768)</p>
+<br>
+
+<p>플레이버튼을 눌렀을 때, App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미한다. 잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된다.</p>
+<p>![](/image/blynk-34.png =432x768)</p>
+<br>
+
+<ol start="12">
+<li>현재 Button은 OFF 되어 있으며, 이에 따라 GPIO 19에 연결되어 있는 LED도 OFF되어 있다.</li>
+</ol>
+<p>![](/image/blynk-35.png =432x768)</p>
+<br>
+
+<ol start="13">
+<li>Button을 누르면 ON 상태로 바뀌면서, LED가 ON 상태로 점등된다.</li>
+</ol>
+<p>![](/image/blynk-36.png =432x768)</p>
+<br>
+
+<ol start="14">
+<li>다시 Button을 누르면 OFF 상태로 바뀌면서, LED가 OFF 상태로 소등된다.</li>
+</ol>
+<p>![](/image/blynk-37.png =432x768)</p>
+<br>
+
+<ol start="15">
+<li>정지버튼을 누르면 플레이상태가 정지상태로 바뀌면서 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p>![](/image/blynk-38.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-39.png =432x768)</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>esp32 BLE, Blynk Button</p><p><a href="http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/">http://stemwith.github.io/2019/10/21/ESP32-BLE-Blynk-Button/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>chemidot</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-10-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-09-19</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/iot/">iot</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">이 글이 마음에 드시나요? 다음을 통해 후원하실 수 있습니다: </h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>커피 한 잔 사주기</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">esp32 BLE, Blynk Slider (PWM)</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/10/20/Arduino-Bluetooth-Blynk/"><span class="level-item">Arduino, Bluetooth, Blynk</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-72x72 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">48</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/esp32/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-06T15:35:51.316Z">2021-11-07</time></p><p class="title"><a href="/2021/11/06/hello-world/">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-09-26T09:27:53.000Z">2021-09-26</time></p><p class="title"><a href="/2021/09/26/ESP32-OLED/">ESP32, OLED (한글 출력 하기)</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">4</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">업데이트 소식 받기</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

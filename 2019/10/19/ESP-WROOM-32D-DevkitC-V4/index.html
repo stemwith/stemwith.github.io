@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>esp32-WROOM-32D DevkitC V4 - stemwith</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="stemwith"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="stemwith"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="ESP32-WROOM-32D DevkitC V4 핀아웃 다운로드      녹색핀: 사용에 적합한 핀   노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)   빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)   보라색: Wi"><meta property="og:type" content="blog"><meta property="og:title" content="esp32-WROOM-32D DevkitC V4"><meta property="og:url" content="http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/"><meta property="og:site_name" content="stemwith"><meta property="og:description" content="ESP32-WROOM-32D DevkitC V4 핀아웃 다운로드      녹색핀: 사용에 적합한 핀   노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)   빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)   보라색: Wi"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/image/esp32-pinout.png"><meta property="og:image" content="http://stemwith.github.io/image/TTGO-T-Energy01.jpg"><meta property="og:image" content="http://stemwith.github.io/image/TTGO-T-Energy02.jpg"><meta property="og:image" content="http://stemwith.github.io/image/TTGO-T-BEAM01.jpg"><meta property="og:image" content="http://stemwith.github.io/image/TTGO-T-BEAM02.jpg"><meta property="article:published_time" content="2019-10-18T16:58:29.000Z"><meta property="article:modified_time" content="2021-10-07T14:41:32.027Z"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/esp32-pinout.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/"},"headline":"esp32-WROOM-32D DevkitC V4","image":["http://stemwith.github.io/image/esp32-pinout.png","http://stemwith.github.io/image/TTGO-T-Energy01.jpg","http://stemwith.github.io/image/TTGO-T-Energy02.jpg","http://stemwith.github.io/image/TTGO-T-BEAM01.jpg","http://stemwith.github.io/image/TTGO-T-BEAM02.jpg"],"datePublished":"2019-10-18T16:58:29.000Z","dateModified":"2021-10-07T14:41:32.027Z","author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"stemwith","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"ESP32-WROOM-32D DevkitC V4 핀아웃 다운로드      녹색핀: 사용에 적합한 핀   노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)   빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)   보라색: Wi"}</script><link rel="canonical" href="http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151970975-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="stemwith" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-18T16:58:29.000Z" title="2019. 10. 19. 오전 12:58:29">2019-10-19</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-10-07T14:41:32.027Z" title="2021. 10. 7. 오후 10:41:32">2021-10-07</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">6분안에 읽기 (약 971 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">esp32-WROOM-32D DevkitC V4</h1><div class="content"><h3 id="ESP32-WROOM-32D-DevkitC-V4"><a href="#ESP32-WROOM-32D-DevkitC-V4" class="headerlink" title="ESP32-WROOM-32D DevkitC V4"></a>ESP32-WROOM-32D DevkitC V4</h3><p><img src="/image/esp32-pinout.png"></p>
+<p><a href="/attach/ESP32-Pinout.hwp">핀아웃 다운로드</a></p>
+<br>
+
+<ul>
+<li>  녹색핀: 사용에 적합한 핀</li>
+<li>  노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
+<li>  빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
+<li>  보라색: Wifi사용시 사용불가한 analog핀</li>
+<li>  GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
+<li>  ADC: 0<del>3.3V (0</del>4095) (0<del>0.15V구간과 3.1</del>3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
+<li>  I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
+<li>  RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
+<li>  Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
+<li>  High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="Peripheral"><a href="#Peripheral" class="headerlink" title="Peripheral"></a>Peripheral</h3><p>ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI, PWM등의 기능은 어느 핀에 사용할지 결정해서 코드에서 지정해 줘야 한다. 소프트웨어에서 핀의 속성을 정의해 줄 수 있지만, 각 핀들은 디폴트로 지정되어 있는 기능들이 있다. (Pinout 참고)</p>
+<table>
+<thead>
+<tr>
+<th>Pheripheral</th>
+<th>ADC Channel</th>
+<th>SP</th>
+<th>UART</th>
+<th>I2C</th>
+<th>PWM</th>
+<th>DAC</th>
+<th>I2S</th>
+<th>Capacitive touch GPIO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>개수</td>
+<td>18</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>16</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<br>
+
+
+<h4 id="PWM-Pulse-Width-Modulation"><a href="#PWM-Pulse-Width-Modulation" class="headerlink" title="PWM(Pulse Width Modulation)"></a>PWM(Pulse Width Modulation)</h4><p>ESP32는 16개의 독립적인 채널을 통해 각각 다른 속성의 PWM 신호를 만들 수 있다. 출력으로 사용할 수 있는 모든 핀은 PWM으로 사용할 수 있으며, GPIO 34~39는 Input only핀이므로 PWM으로 사용할 수 없다. PWM신호를 만들기 위해 코드상에 4개의 파라미터를 정해주어야 한다.</p>
+<ul>
+<li>  Signal Frequency</li>
+<li>  Duty Cycle</li>
+<li>  PWM Channel</li>
+<li>  신호를 출력할 GPIO핀</li>
+</ul>
+<br>
+
+<h4 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h4><p>I2C를 디폴트가 아닌 다른 핀을 사용할 경우, 아래와 같은 코드를 통해 지정한다. (디폴트 SDA 21, SCL 22)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wire.begin(SDA, SCL);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Interrupts"><a href="#Interrupts" class="headerlink" title="Interrupts"></a>Interrupts</h4><p>모든 GPIO핀은 인터럽트로 사용할 수 있다.</p>
+<br>
+
+<h4 id="EN-Enable"><a href="#EN-Enable" class="headerlink" title="EN (Enable)"></a>EN (Enable)</h4><p>풀업되어 있는 3.3V 레귤레이터의 enable 핀이다. GND에 연결하면 3.3V 레귤레이터가 비활성화된다. 이 핀을 푸쉬버튼에 연결하면 ESP32를 재시동하는데 사용할 수 있다.</p>
+<br>
+
+<h4 id="GPIO-Current-draw"><a href="#GPIO-Current-draw" class="headerlink" title="GPIO Current draw"></a>GPIO Current draw</h4><p>권장 동작 조건에 따라 GPIO마다 최대 40mA의 전류를 흘릴 수 있다.</p>
+<br>
+
+<br>
+
+<h3 id="Vin"><a href="#Vin" class="headerlink" title="Vin"></a>Vin</h3><p>ESP32 보드에 전원을 공급하는 방법은 3가지가 있다.</p>
+<ul>
+<li>USB 포트를 통한 공급</li>
+<li>5V/GND 핀을 통한 공급<ul>
+<li>5V핀을 통해서 전원을 공급할 경우, 전압은 5~12V 정도 사용하면 된다.</li>
+<li>최적 공급 전압은 <strong>6~7V</strong> 정도이며, 이보다 높은 전압을 공급할 경우 과열될 수 있다.</li>
+<li>5V 공급시 소비전류는 128mA이며, 10V 공급시 99.9mA 정도를 유지한다. </li>
+</ul>
+</li>
+<li>3.3V/GND핀을 통한 공급<ul>
+<li>3.3V핀을 통해서 전원을 공급할 경우에는, 공급 전압을 <strong>(정확하게) 3.3V</strong>로 유지해야 한다.</li>
+</ul>
+</li>
+</ul>
+<p>위 3가지 중 1가지 방법만으로 전원을 공급해야하며, 동시에 2~3가지 방법을 사용하면 ESP32 보드 자체가 고장날 수 있음에 유의한다.</p>
+<br>
+
+<br>
+
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><h4 id="1-업로드시-error-메세지"><a href="#1-업로드시-error-메세지" class="headerlink" title="1) 업로드시 error 메세지"></a>1) 업로드시 error 메세지</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Warning: Could not auto-detect Flash size (FlashID=0xffffff, SizeID=0xff), defaulting to 4MB</span><br><span class="line">Compressed 8192 bytes to 47...</span><br><span class="line"></span><br><span class="line">A fatal error occurred: Timed out waiting for packet content</span><br><span class="line">A fatal error occurred: Timed out waiting for packet content</span><br></pre></td></tr></table></figure>
+
+<p>GPIO12에 풀업을 넣을 경우 플래시 인식 오류가 발생한다. GPIO12 핀은 사용하지 않는 것이 좋다. </p>
+<br>
+
+<br>
+
+<h3 id="그밖의-보드"><a href="#그밖의-보드" class="headerlink" title="그밖의 보드"></a>그밖의 보드</h3><h4 id="TTGO-T-Energy"><a href="#TTGO-T-Energy" class="headerlink" title="TTGO T-Energy"></a>TTGO T-Energy</h4><p><img src="/image/TTGO-T-Energy01.jpg" alt="TTGO T-Energy"></p>
+<p><img src="/image/TTGO-T-Energy02.jpg" alt="TTGO T-Energy"></p>
+<br>
+
+<h4 id="TTGO-T-BEAM"><a href="#TTGO-T-BEAM" class="headerlink" title="TTGO T-BEAM"></a>TTGO T-BEAM</h4><p><img src="/image/TTGO-T-BEAM01.jpg" alt="TTGO T-BEAM"></p>
+<p><img src="/image/TTGO-T-BEAM02.jpg" alt="TTGO T-BEAM"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>esp32-WROOM-32D DevkitC V4</p><p><a href="http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/">http://stemwith.github.io/2019/10/19/ESP-WROOM-32D-DevkitC-V4/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>chemidot</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-10-19</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-10-07</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">이 글이 마음에 드시나요? 다음을 통해 후원하실 수 있습니다: </h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>커피 한 잔 사주기</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/10/19/ESP32-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">esp32 시작하기</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/10/18/Blynk%EC%97%90-%EC%84%BC%EC%84%9C%EA%B0%92-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/"><span class="level-item">Blynk에 센서값 출력하기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-72x72 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">48</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/esp32/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-06T15:35:51.316Z">2021-11-07</time></p><p class="title"><a href="/2021/11/06/hello-world/">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-09-26T09:27:53.000Z">2021-09-26</time></p><p class="title"><a href="/2021/09/26/ESP32-OLED/">ESP32, OLED (한글 출력 하기)</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">4</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">업데이트 소식 받기</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

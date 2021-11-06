@@ -1,0 +1,1579 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>stemwith</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="stemwith"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="stemwith"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="for stem education"><meta property="og:type" content="blog"><meta property="og:title" content="stemwith"><meta property="og:url" content="http://stemwith.github.io/"><meta property="og:site_name" content="stemwith"><meta property="og:description" content="for stem education"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/img/og_image.png"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io"},"headline":"stemwith","image":["http://stemwith.github.io/img/og_image.png"],"author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"stemwith","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"for stem education"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151970975-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="stemwith" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-21T14:12:58.000Z" title="2019. 10. 21. 오후 10:12:58">2019-10-21</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T01:03:32.131Z" title="2021. 9. 19. 오전 9:03:32">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">10분안에 읽기 (약 1485 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/21/ESP32-BLE-Blynk-Button/">esp32 BLE, Blynk Button</a></h1><div class="content"><h1 id="Blynk를-처음-사용하는-경우"><a href="#Blynk를-처음-사용하는-경우" class="headerlink" title="Blynk를 처음 사용하는 경우"></a>Blynk를 처음 사용하는 경우</h1><br>
+
+
+<h2 id="Blynk-라이브러리-설치하기"><a href="#Blynk-라이브러리-설치하기" class="headerlink" title="Blynk 라이브러리 설치하기"></a>Blynk 라이브러리 설치하기</h2><ol>
+<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
+<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+</ul>
+</li>
+<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
+<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기본 스케치북 위치 확인 방법<ul>
+<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h2 id="스마트폰에-Blynk-App-설치하기"><a href="#스마트폰에-Blynk-App-설치하기" class="headerlink" title="스마트폰에 Blynk App 설치하기"></a>스마트폰에 Blynk App 설치하기</h2><ul>
+<li>  아이폰 : 애플 앱스토어</li>
+<li>  안드로이드 : 구글 플레이스토어</li>
+</ul>
+<br>
+
+<br>
+
+<h1 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h1><br>
+
+
+<h2 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h2><p><img src="/image/blynk-01.png"></p>
+<p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
+<br>
+
+<h2 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h2><ol>
+<li>Blynk App 실행</li>
+</ol>
+<p>![](/image/blynk-02.png =432x768)</p>
+<br>
+
+<ol start="2">
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성 (계정이 이미 생성되어 있는 경우에는 Log In)</li>
+</ol>
+<p>![](/image/blynk-03.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-04.png =432x768)</p>
+<br>
+
+<ol start="3">
+<li>New Project 생성 : ESP32_LED</li>
+</ol>
+<p>![](/image/blynk-05.png =432x768)</p>
+<br>
+
+<ul>
+<li>  프로젝트명 : ESP32_LED</li>
+<li>  CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>  CONNECTION TYPE : BLE</li>
+</ul>
+<br>
+
+<p>![](/image/blynk-06.png =432x768)</p>
+<br>
+
+<ol start="4">
+<li>Create를 누르면 Blynk 가입시 계정으로 사용한 이메일로 Auth Token 발송된다.</li>
+</ol>
+<p>![](/image/blynk-07.png =432x768)</p>
+<br>
+
+<ol start="5">
+<li>OK버튼을 누르면 프로젝트가 생성된다.</li>
+</ol>
+<p>![](/image/blynk-08.png =432x768)</p>
+<br>
+
+<ol start="6">
+<li>컴퓨터를 사용하여 이메일 계정에 로그인 한 후, Auth Token을 복사한다. (복잡한 형태의 토큰을 코딩시 사용할 것이므로, 스마트폰인 아닌 컴퓨터에서 확인하여 복사하는 것이 좋다.)</li>
+</ol>
+<p><img src="/image/blynk-09.png"></p>
+<br>
+
+<ol start="7">
+<li>Blynk 위젯 설정 : 생성된 프로젝트(ESP32_LED) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 “ESP32_LED”로 바뀐다.</li>
+</ol>
+<p>![](/image/blynk-10.png =432x768)</p>
+<br>
+
+<p>만약, 아래와 같이 초록색 메뉴바의 이름이 “Blynk”로 되어있다면, 프로젝트 바탕화면으로 진입하지 못한 것이다. 이때에는 검은색 바탕화면의 “ESP32_LED”프로젝트명을 확인한 후 터치하면 해당프로젝트로 진입할 수 있다. 기존에 다른 프로젝트를 만들어 둔 적이 있다면 검은색 바탕화면의 프로젝트명이 “ESP32_LED”가 아닐 수도 있다. 이런 경우에는 스마트폰 화면을 좌우로 스크롤하여 프로젝트명을 변경한 후 진입한다.</p>
+<p>![](/image/blynk-11.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Button 위젯과 BLE 위젯을 눌러 추가한다.</li>
+</ol>
+<p>![](/image/blynk-12.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-13.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-14.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>프로젝트 바탕화면에 두개의 위젯이 표시된다.</li>
+</ol>
+<p>![](/image/blynk-15.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>BUTTON 위젯을 누르면 Buttom Settings 화면이 나타난다. 여기서 PIN부분을 누른다.</li>
+</ol>
+<p>![](/image/blynk-16.png =432x768)</p>
+<br>
+
+<ol start="11">
+<li>LED를 연결한 PIN을 선택한다. 여기서는 Digital GP19를 선택하였다.</li>
+</ol>
+<p>![](/image/blynk-17.png =432x768)</p>
+<br>
+
+<ol start="12">
+<li>OK버튼을 누르면 OUTPUT 버튼이 GP19로 설정된다. Mode는 SWITCH로 설정한다.</li>
+</ol>
+<p>![](/image/blynk-18.png =432x768)</p>
+<br>
+
+<ol start="13">
+<li>Blynk App 상단의 뒤로가기 버튼을 누른뒤 프로젝트 바탕화면으로 간다.</li>
+</ol>
+<p>![](/image/blynk-19.png =432x768)</p>
+<br>
+
+<h2 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h2><ol>
+<li>Arduino IDE에서 예제를 로드한다. <strong>파일</strong>&gt; <strong>예제</strong>&gt; <strong>Blynk</strong>&gt; <strong>Boards_Bluetooth</strong>&gt; <strong>ESP32_BLE</strong></li>
+</ol>
+<p><img src="/image/blynk-20.png"></p>
+<br>
+
+<ol start="2">
+<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
+</ol>
+<p><img src="/image/blynk-21.png"></p>
+<br>
+
+<p><img src="/image/blynk-22.png"></p>
+<br>
+
+<ol start="3">
+<li>예제의 <strong>Blynk.setDeviceName(“Blynk”);</strong> 부분을 찾아 따옴표 안의 BLE Device 이름을 적당한 이름으로 바꿔준다. (※이름을 바꿔주지 않으면 주변의 다른 기기와 중복되어 오작동할 소지가 있으므로 반드시 다른 이름으로 바꿔주어야 한다.)</li>
+</ol>
+<p><img src="/image/blynk-23.png"></p>
+<br>
+
+<p>Device Name을 “Blynk-t”로 수정하였다.</p>
+<p><img src="/image/blynk-24.png"></p>
+<br>
+
+<ol start="4">
+<li>ESP32에 스케치를 업로드한다. (업로드 시간이 Arduino에 비해 오래 걸림)</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz.........&quot;</span>;    <span class="comment">// Edit Your Auth Token!!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);                     <span class="comment">// Edit Your ESP32 Name!!!</span></span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><img src="/image/blynk-25.png"></p>
+<br>
+
+<ol start="5">
+<li>이제 스마트폰의 Bluetooth기능을 키고, 위의 코드에서 수정한 Device Name을 찾아 연결한다.</li>
+</ol>
+<p>![](/image/blynk-26.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-27.png =432x768)</p>
+<br>
+
+<ol start="6">
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양)을 누른다.</li>
+</ol>
+<p>![](/image/blynk-28.png =432x768)</p>
+<br>
+
+<ol start="7">
+<li>Connect BLE device 버튼을 누른다.</li>
+</ol>
+<p>![](/image/blynk-29.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>연결할 Device(여기서는 Blynk-t)를 선택하고 OK를 누른다.</li>
+</ol>
+<p>![](/image/blynk-30.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>Connected 메세지가 나오면 연결 설정이 완료된 것이다.</li>
+</ol>
+<p>![](/image/blynk-31.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>Blynk App 상단의 뒤로 돌아가기 버튼을 눌러 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p>![](/image/blynk-32.png =432x768)</p>
+<br>
+
+<ol start="11">
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누른다.</li>
+</ol>
+<p>![](/image/blynk-33.png =432x768)</p>
+<br>
+
+<p>플레이버튼을 눌렀을 때, App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미한다. 잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된다.</p>
+<p>![](/image/blynk-34.png =432x768)</p>
+<br>
+
+<ol start="12">
+<li>현재 Button은 OFF 되어 있으며, 이에 따라 GPIO 19에 연결되어 있는 LED도 OFF되어 있다.</li>
+</ol>
+<p>![](/image/blynk-35.png =432x768)</p>
+<br>
+
+<ol start="13">
+<li>Button을 누르면 ON 상태로 바뀌면서, LED가 ON 상태로 점등된다.</li>
+</ol>
+<p>![](/image/blynk-36.png =432x768)</p>
+<br>
+
+<ol start="14">
+<li>다시 Button을 누르면 OFF 상태로 바뀌면서, LED가 OFF 상태로 소등된다.</li>
+</ol>
+<p>![](/image/blynk-37.png =432x768)</p>
+<br>
+
+<ol start="15">
+<li>정지버튼을 누르면 플레이상태가 정지상태로 바뀌면서 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<p>![](/image/blynk-38.png =432x768)</p>
+<br>
+
+<p>![](/image/blynk-39.png =432x768)</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-20T14:10:53.000Z" title="2019. 10. 20. 오후 10:10:53">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-20T11:42:20.286Z" title="2021. 9. 20. 오후 7:42:20">2021-09-20</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">8분안에 읽기 (약 1233 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/Arduino-Bluetooth-Blynk/">Arduino, Bluetooth, Blynk</a></h1><div class="content"><h1 id="Bluetooth-module-설정"><a href="#Bluetooth-module-설정" class="headerlink" title="Bluetooth module 설정"></a>Bluetooth module 설정</h1><p>Arduino, Blutooth 페어링 문서 참고</p>
+<br>
+
+<h1 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h1><br>
+
+<h2 id="Blynk-라이브러리-설치"><a href="#Blynk-라이브러리-설치" class="headerlink" title="Blynk 라이브러리 설치"></a>Blynk 라이브러리 설치</h2><ol>
+<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
+<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+</ul>
+</li>
+<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
+<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기본 스케치북 위치 확인 방법<ul>
+<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h2 id="스마트폰에-Blynk-App-다운로드-하여-설치하기"><a href="#스마트폰에-Blynk-App-다운로드-하여-설치하기" class="headerlink" title="스마트폰에 Blynk App 다운로드 하여 설치하기"></a>스마트폰에 Blynk App 다운로드 하여 설치하기</h2><ul>
+<li>  아이폰 : 애플 앱스토어</li>
+<li>  안드로이드 : 구글 플레이스토어</li>
+</ul>
+<br>
+
+<br>
+
+<h1 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h1><br>
+
+<h2 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h2><ol>
+<li> Blynk App 실행</li>
+<li> Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
+<li>Blynk에서 New Project 생성<ul>
+<li>아이폰용 MLT-BT05의 경우<ul>
+<li>  Project Name 설정: BLE Test</li>
+<li>  CHOOSE DEVICE: Arduino UNO</li>
+<li>  CONNECTION TYPE: BLE</li>
+<li>  설정 후 Create 버튼</li>
+</ul>
+</li>
+<li>안드로이드용 HC-06의 경우<ul>
+<li>  Project Name 설정: HC-06 Test</li>
+<li>  CHOOSE DEVICE: Arduino UNO</li>
+<li>  CONNECTION TYPE: Bluetooth</li>
+<li>  설정 후 Create 버튼</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Auth Token 확인<ul>
+<li>  가입시 지정한 이메일로 로그인하여 토큰 확인</li>
+<li>  (매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
+<li>  스마트폰으로 확인하는 것은 무의미함</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h2 id="Blynk-위젯-설정"><a href="#Blynk-위젯-설정" class="headerlink" title="Blynk 위젯 설정"></a>Blynk 위젯 설정</h2><ol>
+<li>아이폰용 MLT-BT05를 사용할 경우<ul>
+<li>  생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
+<li>  여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
+<li>추가된 BUTTON 위젯 선택 후 설정<ul>
+<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>안드로이드용 HC-06를 사용할 경우<ul>
+<li>  생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
+<li>  여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
+<li>추가된 BUTTON 위젯 선택 후 설정<ul>
+<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h2 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h2><ol>
+<li>아두이노 스케치 예제 불러오기<ul>
+<li>  파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
+<li>  예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
+</ul>
+</li>
+<li> 아두이노 UNO에 스케치 업로드</li>
+<li>스마트폰의 블루투스 기능을 키고,<ul>
+<li>아이폰용 MLT-BT05의 경우<ul>
+<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
+<li>  Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
+<li>  연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
+<li>  MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
+</ul>
+</li>
+<li>안드로이드용 HC-06의 경우<ul>
+<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
+<li>  Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
+<li>  연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
+<li>  HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Blynk App 상단의 뒤로 돌아가기 버튼을 누른 뒤, App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름<ul>
+<li>  App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
+<li>  잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
+</ul>
+</li>
+<li> BUTTON 아이콘을 눌러 ON/OFF → 아두이노 Built-in LED ON/OFF</li>
+<li> Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
+</ol>
+<br>
+
+<br>
+
+
+<h1 id="슬라이더-위젯을-이용한-LED-밝기-제어"><a href="#슬라이더-위젯을-이용한-LED-밝기-제어" class="headerlink" title="슬라이더 위젯을 이용한 LED 밝기 제어"></a>슬라이더 위젯을 이용한 LED 밝기 제어</h1><p>Built-in LED가 사용하는 13번핀은 PWM이 지원되지 않으므로, 11번핀을 사용한다.</p>
+<p><img src="/image/BT-19.jpg"></p>
+<br>
+
+<h2 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h2><p>아두이노 스케치는 그대로 사용 (위의 “Blynk 연결하기” 부분 스케치 참고)</p>
+<br>
+
+<h2 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h2><ol>
+<li> 버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
+<li> Slider 위젯 추가: OUTPUT D11</li>
+<li> Slider 위젯의 위치/크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치/크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
+<li> App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
+<li> 슬라이드를 조절하여 LED의 밝기 조절 확인</li>
+</ol>
+<br>
+
+<br>
+
+<h1 id="과제"><a href="#과제" class="headerlink" title="과제"></a>과제</h1><p>3색 RGB LED를 zeRGBa 위젯으로 조정하여 여러 가지 색깔 만들어보기 (스케치는 위의 스케치를 그대로 사용)</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-19T16:59:54.000Z" title="2019. 10. 20. 오전 12:59:54">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-30T14:39:59.041Z" title="2021. 9. 30. 오후 10:39:59">2021-09-30</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">2분안에 읽기 (약 329 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/ESP32-ADC/">esp32 ADC</a></h1><div class="content"><h3 id="ESP32-ADC"><a href="#ESP32-ADC" class="headerlink" title="ESP32 ADC"></a>ESP32 ADC</h3><ul>
+<li>  ESP32는 18개의 12bit ADC 입력핀을 사용할 수 있다. (0~4095)</li>
+<li>  아두이노의 경우 10bit를 사용한다. (0~1023)</li>
+<li>  0V ~ 3.3V의 전압을 0~4095(0xFFF)까지의 디지털값으로 AD 변환한다.</li>
+<li>  Arduino IDE 환경에서는 ESP32의 ADC 관련 레지스터를 조작하지 않고 analogRead() 함수를 사용하여 ESP32의 ADC 입력핀의 전압값을 가져올 수 있다. </li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="Potentiometer-저항값-출력하기"><a href="#Potentiometer-저항값-출력하기" class="headerlink" title="Potentiometer 저항값 출력하기"></a>Potentiometer 저항값 출력하기</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/esp32-adc-01.png"></p>
+<br>
+
+<h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><p>가변저항의 저항을 A0(ADC1_CH0, GPIO36)로 읽고 전압값으로 변환한 뒤 시리얼 모니터로 출력한다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 ADC test</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> analogPin A0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// read the input on analog pin GPIO36 (ADC1_CH0):</span></span><br><span class="line">  <span class="keyword">int</span> sensorValue = analogRead(analogPin);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Convert the analog (12bit ADC :  0 - 4095) to a voltage (0 - 3.3V):</span></span><br><span class="line">  <span class="keyword">float</span> voltage = (sensorValue /<span class="number">4095.0</span>) * <span class="number">3.3</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// print out the value you read:</span></span><br><span class="line">  Serial.println(voltage);</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="Potentiometer로-LED-밝기-조절하기"><a href="#Potentiometer로-LED-밝기-조절하기" class="headerlink" title="Potentiometer로 LED 밝기 조절하기"></a>Potentiometer로 LED 밝기 조절하기</h3><h4 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/esp32-adc-02.png"></p>
+<br>
+
+<ul>
+<li>  LED : R → GPIO19 / G → GPIO18 / B → GPIO17 / GND</li>
+<li>  저항 : R → 150Ω / G → 100Ω / B → 100Ω</li>
+<li>  Potentiometer: Left 5V, Center AO(IO36), Right GND</li>
+</ul>
+<br>
+
+<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RED_LED 19       <span class="comment">// GPIO 19</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> analogPin A0     <span class="comment">// Sensor VP, GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> freq = <span class="number">5000</span>;         <span class="comment">// 주파수</span></span><br><span class="line"><span class="keyword">int</span> ledChannel = <span class="number">0</span>;      <span class="comment">// 채널 (0 ~ 15 선택)</span></span><br><span class="line"><span class="keyword">int</span> resolution = <span class="number">10</span>;     <span class="comment">// 해상도 (1 ~ 16bit resolution 선택)</span></span><br><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);    <span class="comment">// 지정된 채널, 주파수 및 해상도 설정</span></span><br><span class="line">  ledcAttachPin(RED_LED, ledChannel);         <span class="comment">// LED 핀과 채널 연결</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> raw = analogRead(analogPin);</span><br><span class="line">  R = <span class="built_in">map</span>(raw, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">0</span>, <span class="number">1023</span>);             <span class="comment">// 12bit -&gt; 10bit</span></span><br><span class="line"></span><br><span class="line">  Serial.print(R); Serial.println(<span class="string">&quot; ohm&quot;</span>);</span><br><span class="line">  ledcWrite(ledChannel, R);</span><br><span class="line">  delay(<span class="number">7</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-19T06:22:37.000Z" title="2019. 10. 19. 오후 2:22:37">2019-10-19</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-10-28T06:55:39.548Z" title="2021. 10. 28. 오후 2:55:39">2021-10-28</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">13분안에 읽기 (약 2011 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/19/ESP32-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/">esp32 시작하기</a></h1><div class="content"><h2 id="ESP32-시작하기"><a href="#ESP32-시작하기" class="headerlink" title="ESP32 시작하기"></a>ESP32 시작하기</h2><h3 id="Driver-설치-처음-설치하는-경우"><a href="#Driver-설치-처음-설치하는-경우" class="headerlink" title="Driver 설치: 처음 설치하는 경우"></a>Driver 설치: 처음 설치하는 경우</h3><p>ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를 사용한다. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">제조사 홈페이지</a>에서 자신이 사용하는 OS에 알맞는 CP210x 드라이버를 다운받아 설치한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Arduino-IDE-설치"><a href="#Arduino-IDE-설치" class="headerlink" title="Arduino IDE 설치"></a>Arduino IDE 설치</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.arduino.cc/en/software">Arduino IDE Download</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.arduino.cc/en/software</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Arduino-IDE-설정"><a href="#Arduino-IDE-설정" class="headerlink" title="Arduino IDE 설정"></a>Arduino IDE 설정</h4><ol>
+<li>Arduino IDE에서 <strong>파일</strong>&gt; <strong>환경설정</strong>&gt; <strong>설정</strong> (<strong>File</strong>&gt; <strong>Preferences</strong>&gt; <strong>Settings</strong>)</li>
+</ol>
+<p><img src="/image/esp32-ide-01.jpg"></p>
+<br>
+
+<ul>
+<li>추가적인 보드 매니저 URLs에 아래 내용을 추가한다.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dl.espressif.com/dl/package_esp32_index.json</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>ESP8266에 대한 URLs를 사용하고 있었다면, comma를 사용하여 구분하면 두가지를 모두 사용할 수 있다.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ol start="2">
+<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; <strong>보드 매니저</strong>… <strong>Tools</strong>&gt; <strong>Board</strong>&gt; <strong>Board Manager</strong>…</li>
+</ol>
+<p><img src="/image/esp32-ide-02.jpg"></p>
+<br>
+
+<ol start="3">
+<li>보드 매니저에서 “ESP32”를 검색하여 <strong>INSTALL</strong> (혹은 업데이트)</li>
+</ol>
+<p><img src="/image/esp32-ide-03.jpg"></p>
+<br>
+
+<ol start="4">
+<li>ESP32를 컴퓨터에 연결한 뒤, <strong>툴</strong>&gt; <strong>보드</strong> 에서 ESP32 Dev Module 선택</li>
+</ol>
+<p><img src="/image/esp32-ide-04.jpg"></p>
+<br>
+
+<ol start="5">
+<li><strong>툴</strong>&gt; <strong>포트</strong> 에서 포트 선택 (단, ESP32용 포트가 선택이 되지 않으면  <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP210x USB to UART Bridge VCP Drivers</a>를 설치하여야 한다. Windows, Mac 등 사용하고 있는 OS에 적합한 드라이버를 클릭하여 설치한다.</li>
+</ol>
+<br>
+
+<br>
+
+<h3 id="Testing-Installation"><a href="#Testing-Installation" class="headerlink" title="Testing Installation"></a>Testing Installation</h3><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1."></a>Example 1.</h4><h5 id="LED-Blink"><a href="#LED-Blink" class="headerlink" title="LED Blink"></a>LED Blink</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;Arduino.h&gt;</span><br><span class="line"></span><br><span class="line">const int R_ledPin = 19;</span><br><span class="line"></span><br><span class="line">void setup() &#123;</span><br><span class="line">  // put your setup code here, to run once:</span><br><span class="line">  Serial.begin(115200);</span><br><span class="line">  pinMode(R_ledPin, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void loop() &#123;</span><br><span class="line">  // put your main code here, to run repeatedly:</span><br><span class="line">  digitalWrite(R_ledPin, HIGH);</span><br><span class="line">  Serial.println(&quot;LED is on&quot;);</span><br><span class="line">  delay(1000);</span><br><span class="line">  digitalWrite(R_ledPin, LOW);</span><br><span class="line">  Serial.println(&quot;LED is off&quot;);</span><br><span class="line">  delay(1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th>ESP32 GPIO</th>
+<th>19</th>
+<th>GND</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>저항</td>
+<td>150Ω</td>
+<td></td>
+</tr>
+<tr>
+<td>LED</td>
+<td>(+)극</td>
+<td>(-)극</td>
+</tr>
+</tbody></table>
+<br>
+
+<p><img src="/image/esp32-example-01.png"></p>
+<br>
+
+<h5 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a>Upload</h5><p>스케치 업로드는 아래 3가지 방법 중 하나로 진행할 수 있다.</p>
+<ol>
+<li>단축키: Ctrl-U</li>
+<li>Sketch&gt; Upload</li>
+<li>업로드 아이콘 클릭</li>
+</ol>
+<br>
+
+<p>※ 아두이노에 비해 컴파일 및 업로드 시간이 오래걸림</p>
+<br>
+
+<p><img src="/image/upload-code-esp32-arduino-2-1.png"></p>
+<br>
+
+<h5 id="Serial-Monitor"><a href="#Serial-Monitor" class="headerlink" title="Serial Monitor"></a>Serial Monitor</h5><p><img src="/image/Arduino-2-0-Serial-Monitor-ESP32.png"></p>
+<br>
+
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2."></a>Example 2.</h4><h5 id="WiFiScan"><a href="#WiFiScan" class="headerlink" title="WiFiScan"></a>WiFiScan</h5><p>예제 선택: <strong>파일</strong> &gt; <strong>예제</strong> &gt; <strong>WiFi (ESP32)</strong> &gt; <strong>WiFiScan</strong></p>
+<p><img src="/image/esp32-ide-05.png"></p>
+<p>※ 주의: ESP32보드를 연결한 상태에서만 위 예제를 선택할 수 있다.</p>
+<br>
+
+<h5 id="Upload-1"><a href="#Upload-1" class="headerlink" title="Upload"></a>Upload</h5><p>아두이노에 비하여 업로드 시간이 많이 걸린다. “업로드 완료”라는 메세지가 나타날때까지 잠시 기다린다.</p>
+<p><img src="/image/esp32-ide-06.png"></p>
+<br>
+
+<h5 id="Serial-Monitor-1"><a href="#Serial-Monitor-1" class="headerlink" title="Serial Monitor"></a>Serial Monitor</h5><p>아두이노 IDE의 시리얼 모니터를 열고 Baud rate를 115200으로 설정하면 주변의 접속 가능한 WiFi의 SSID가 표시된다. 여기까지 진행이 되면 ESP32가 잘 설치된 것이다.</p>
+<p><img src="/image/esp32-ide-07.png"></p>
+<br>
+
+<br>
+
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><p>업로드시, “A fatal error occurred: Failed to connect to ESP32: Timed out… Connecting…”이라는 메세지가 나오면서 업로드가 진행되지 않는다면, 우선 IDE의 보드와 포트가 알맞게 선택되어 있는지 확인해본다. 그럼에도 문제가 해결되지 않는다면 아래의 방법을 따른다. (※상기 문제가 해결되어 나온 보드의 경우에는 관계없음)</p>
+<ul>
+<li>  ESP32 보드에 있는 Boot버튼을 누른채로 업로드 버튼을 클릭하고, <strong>Connecting….</strong> 이라는 메세지가 나오면 Boot버튼에서 손가락을 뗀다.</li>
+<li>  일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “<strong>ENABLE</strong>”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.</li>
+<li>  이러한 문제를 해결하기 위해서는 ESP32보드의 <strong>EN핀</strong>과 <strong>GND</strong>를 10uF 컨덴서를 사용하여 연결해주면 된다.</li>
+</ul>
+<p><img src="/image/esp32-ide-08.png"></p>
+<br>
+
+<br>
+
+<h3 id="Mac-OS-X-amp-Linux"><a href="#Mac-OS-X-amp-Linux" class="headerlink" title="Mac OS X &amp; Linux"></a>Mac OS X &amp; Linux</h3><p>전체적인 설치방법은 Windows와 동일하다. 단, 첫번째 설치가 아닌 재설치 과정을 수행하는한 경우에는 다음의 과정을 통해 espressif폴더를 지운 후 설치과정을 시작하여야 한다.</p>
+<ul>
+<li><strong>Arduino</strong>&gt; <strong>Preferences</strong>&gt; <strong>Sketchbook Location</strong>에 표기되어 있는 폴더를 복사하여 해당 디렉토리로 진입한 후,</li>
+</ul>
+<p><img src="/image/esp32-ide-09.png"></p>
+<br>
+
+<ul>
+<li><strong>Hardware</strong> 폴더 안에 있는 <strong>espressif</strong> 폴더를 삭제한다.</li>
+</ul>
+<br>
+
+<ul>
+<li>이후 Windows 설치과정과 유사한 과정을 통해 ESP32를 설치한다.</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="PWM-제어-방법"><a href="#PWM-제어-방법" class="headerlink" title="PWM 제어 방법"></a>PWM 제어 방법</h2><p>원문: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://randomnerdtutorials.com/esp32-pwm-arduino-ide/">https://randomnerdtutorials.com/esp32-pwm-arduino-ide/</a></p>
+<br>
+
+<p>PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.</p>
+<p><img src="/image/esp32-pwm-01.png"></p>
+<br>
+
+<p>duty 값은 한 주기 내에서 ON 시간과 OFF 시간의 ‘비율’을 결정하는 값이다. PWM 주파수가 다르면 같은 duty 값이라도 ON 되어 있는 시간이 달라진다. 다만 전체적으로 ON 시간의 합과 OFF 시간의 합의 비율은 동일하다.</p>
+<p><img src="/image/esp32-pwm-02.png"></p>
+<br>
+
+<p>이런 방법을 LED의 점등에 적용하면, 1의 값을 갖는 시간이 짧을 수록 사람 눈에는 LED가 어둡게 보이고, 1의 값을 갖는 시간이 길 수록 밝아 보이게 된다.</p>
+<p><img src="/image/esp32-pwm-03.png"></p>
+<br>
+
+<br>
+
+<h3 id="ESP32에서-PWM의-설정"><a href="#ESP32에서-PWM의-설정" class="headerlink" title="ESP32에서 PWM의 설정"></a>ESP32에서 PWM의 설정</h3><p>ESP32에는 16 개의 독립적인 채널을 가진 LED PWM 컨트롤러가 있으며 다른 속성으로도 PWM 신호를 생성하도록 구성할 수 있다. Arduino IDE를 사용하여 PWM으로 LED의 밝기를 조절해보도록 한다. 우선 PWM을 사용하기 위해 다음의 4가지를 설정해야 한다.</p>
+<br>
+
+<h4 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h4><p>0~15까지 16 개의 채널 중 적당한 PWM 채널을 선택한다.</p>
+<br>
+
+<h4 id="Frequency"><a href="#Frequency" class="headerlink" title="Frequency"></a>Frequency</h4><p>PWM 신호 주파수를 설정한다. (LED의 경우 5000Hz의 주파수를 사용)</p>
+<br>
+
+<h4 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h4><p>해상도는 output을 위한 값의 범위를 지정하는데 사용하며, 1~16비트 범위에서 선택한다.</p>
+<ul>
+<li>  만약 <strong>8비트 해상도</strong>를 사용한다면 <strong>0~255</strong> 사이의 dutyCycle 값을 사용하여 LED 밝기를 제어할 수 있다.</li>
+<li>  <strong>10비트</strong>를 사용하면 <strong>0~1023</strong>범위,</li>
+<li>  <strong>16비트</strong>로 사용한다면 <strong>0~65535</strong> 범위에서 세밀한 제어를 할 수 있도록 지정된다.</li>
+<li>  참고: 아두이노 우노의 경우, analogWrite()의 해상도는 8비트, 즉 0~255로 고정되어 있다.</li>
+</ul>
+<br>
+
+<h4 id="GPIO"><a href="#GPIO" class="headerlink" title="GPIO"></a>GPIO</h4><p>신호가 표시 될 GPIO를 지정한다.</p>
+<br>
+
+<h4 id="코드-적용"><a href="#코드-적용" class="headerlink" title="코드 적용"></a>코드 적용</h4><p>이러한 설정은 void setup()에서 다음의 코드로 지정한다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ledcSetup(ledChannel, freq, resolution);    <span class="comment">// 출력 채널에서 사용할 주파수와 해상도 지정</span></span><br><span class="line">ledcAttachPin(ledPin, ledChannel);          <span class="comment">// 위에서 설정한 출력 채널을, 지정된 GPIO핀에 매칭</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="출력-강도는-resolution과-dutyCycle-값으로-결정한다"><a href="#출력-강도는-resolution과-dutyCycle-값으로-결정한다" class="headerlink" title="출력 강도는 resolution과 dutyCycle 값으로 결정한다!"></a>출력 강도는 resolution과 dutyCycle 값으로 결정한다!</h4><ul>
+<li>resolution이 8bit이면, 0~255 범위 내에서 dutyCycle을 지정하여 출력강도를 설정하면 됨.</li>
+<li>resolution이 10bit이면, 0~1023 범위 내에서 dutyCycle을 지정하여 출력강도를 설정하면 됨.</li>
+<li>resolution이 16bit이면, 0~65535 범위 내에서 dutyCycle을 지정하여 출력강도를 설정하면 됨.</li>
+</ul>
+<br>
+
+<br>
+
+
+<h3 id="LED-Dimming"><a href="#LED-Dimming" class="headerlink" title="LED Dimming"></a>LED Dimming</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/esp32-example-01.png"></p>
+<br>
+
+<h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the Red LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> R_ledPin = <span class="number">19</span>;     <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;   <span class="comment">// 8bit 0~255</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the channel to the GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(R_ledPin, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness (8bit 0~255)</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="RGB-LED-Dimming"><a href="#RGB-LED-Dimming" class="headerlink" title="RGB LED Dimming"></a>RGB LED Dimming</h3><p>같은 channel에 있는 3개의 서로 다른 GPIO에는 같은 값의 signal을 줄 수 있다.</p>
+<br>
+
+<h4 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/esp32-example-02.png"></p>
+<br>
+
+<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the number of the 3 LED pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> R_ledPin = <span class="number">2</span>;      <span class="comment">// corresponds to GPIO 2</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> G_ledPin = <span class="number">4</span>;      <span class="comment">// corresponds to GPIO 4</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> B_ledPin = <span class="number">17</span>;     <span class="comment">// corresponds to GPIO 17</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">8</span>;    <span class="comment">// 8bit 0~255</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(ledChannel, freq, resolution);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the same channel to the 3 GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(R_ledPin, ledChannel);</span><br><span class="line">  ledcAttachPin(G_ledPin, ledChannel);</span><br><span class="line">  ledcAttachPin(B_ledPin, ledChannel);</span><br><span class="line">&#125;</span><br><span class="line">     </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// increase the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">0</span>; dutyCycle &lt;= <span class="number">255</span>; dutyCycle++)&#123;   </span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// decrease the LED brightness</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> dutyCycle = <span class="number">255</span>; dutyCycle &gt;= <span class="number">0</span>; dutyCycle--)&#123;</span><br><span class="line">    <span class="comment">// changing the LED brightness with PWM</span></span><br><span class="line">    ledcWrite(ledChannel, dutyCycle);   </span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-18T16:58:29.000Z" title="2019. 10. 19. 오전 12:58:29">2019-10-19</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-10-07T14:41:32.027Z" title="2021. 10. 7. 오후 10:41:32">2021-10-07</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">6분안에 읽기 (약 971 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/19/ESP-WROOM-32D-DevkitC-V4/">esp32-WROOM-32D DevkitC V4</a></h1><div class="content"><h3 id="ESP32-WROOM-32D-DevkitC-V4"><a href="#ESP32-WROOM-32D-DevkitC-V4" class="headerlink" title="ESP32-WROOM-32D DevkitC V4"></a>ESP32-WROOM-32D DevkitC V4</h3><p><img src="/image/esp32-pinout.png"></p>
+<p><a href="/attach/ESP32-Pinout.hwp">핀아웃 다운로드</a></p>
+<br>
+
+<ul>
+<li>  녹색핀: 사용에 적합한 핀</li>
+<li>  노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
+<li>  빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
+<li>  보라색: Wifi사용시 사용불가한 analog핀</li>
+<li>  GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
+<li>  ADC: 0<del>3.3V (0</del>4095) (0<del>0.15V구간과 3.1</del>3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
+<li>  I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
+<li>  RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
+<li>  Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
+<li>  High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
+</ul>
+<br>
+
+<br>
+
+<h3 id="Peripheral"><a href="#Peripheral" class="headerlink" title="Peripheral"></a>Peripheral</h3><p>ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI, PWM등의 기능은 어느 핀에 사용할지 결정해서 코드에서 지정해 줘야 한다. 소프트웨어에서 핀의 속성을 정의해 줄 수 있지만, 각 핀들은 디폴트로 지정되어 있는 기능들이 있다. (Pinout 참고)</p>
+<table>
+<thead>
+<tr>
+<th>Pheripheral</th>
+<th>ADC Channel</th>
+<th>SP</th>
+<th>UART</th>
+<th>I2C</th>
+<th>PWM</th>
+<th>DAC</th>
+<th>I2S</th>
+<th>Capacitive touch GPIO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>개수</td>
+<td>18</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>16</td>
+<td>2</td>
+<td>2</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<br>
+
+
+<h4 id="PWM-Pulse-Width-Modulation"><a href="#PWM-Pulse-Width-Modulation" class="headerlink" title="PWM(Pulse Width Modulation)"></a>PWM(Pulse Width Modulation)</h4><p>ESP32는 16개의 독립적인 채널을 통해 각각 다른 속성의 PWM 신호를 만들 수 있다. 출력으로 사용할 수 있는 모든 핀은 PWM으로 사용할 수 있으며, GPIO 34~39는 Input only핀이므로 PWM으로 사용할 수 없다. PWM신호를 만들기 위해 코드상에 4개의 파라미터를 정해주어야 한다.</p>
+<ul>
+<li>  Signal Frequency</li>
+<li>  Duty Cycle</li>
+<li>  PWM Channel</li>
+<li>  신호를 출력할 GPIO핀</li>
+</ul>
+<br>
+
+<h4 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h4><p>I2C를 디폴트가 아닌 다른 핀을 사용할 경우, 아래와 같은 코드를 통해 지정한다. (디폴트 SDA 21, SCL 22)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wire.begin(SDA, SCL);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Interrupts"><a href="#Interrupts" class="headerlink" title="Interrupts"></a>Interrupts</h4><p>모든 GPIO핀은 인터럽트로 사용할 수 있다.</p>
+<br>
+
+<h4 id="EN-Enable"><a href="#EN-Enable" class="headerlink" title="EN (Enable)"></a>EN (Enable)</h4><p>풀업되어 있는 3.3V 레귤레이터의 enable 핀이다. GND에 연결하면 3.3V 레귤레이터가 비활성화된다. 이 핀을 푸쉬버튼에 연결하면 ESP32를 재시동하는데 사용할 수 있다.</p>
+<br>
+
+<h4 id="GPIO-Current-draw"><a href="#GPIO-Current-draw" class="headerlink" title="GPIO Current draw"></a>GPIO Current draw</h4><p>권장 동작 조건에 따라 GPIO마다 최대 40mA의 전류를 흘릴 수 있다.</p>
+<br>
+
+<br>
+
+<h3 id="Vin"><a href="#Vin" class="headerlink" title="Vin"></a>Vin</h3><p>ESP32 보드에 전원을 공급하는 방법은 3가지가 있다.</p>
+<ul>
+<li>USB 포트를 통한 공급</li>
+<li>5V/GND 핀을 통한 공급<ul>
+<li>5V핀을 통해서 전원을 공급할 경우, 전압은 5~12V 정도 사용하면 된다.</li>
+<li>최적 공급 전압은 <strong>6~7V</strong> 정도이며, 이보다 높은 전압을 공급할 경우 과열될 수 있다.</li>
+<li>5V 공급시 소비전류는 128mA이며, 10V 공급시 99.9mA 정도를 유지한다. </li>
+</ul>
+</li>
+<li>3.3V/GND핀을 통한 공급<ul>
+<li>3.3V핀을 통해서 전원을 공급할 경우에는, 공급 전압을 <strong>(정확하게) 3.3V</strong>로 유지해야 한다.</li>
+</ul>
+</li>
+</ul>
+<p>위 3가지 중 1가지 방법만으로 전원을 공급해야하며, 동시에 2~3가지 방법을 사용하면 ESP32 보드 자체가 고장날 수 있음에 유의한다.</p>
+<br>
+
+<br>
+
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><h4 id="1-업로드시-error-메세지"><a href="#1-업로드시-error-메세지" class="headerlink" title="1) 업로드시 error 메세지"></a>1) 업로드시 error 메세지</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Warning: Could not auto-detect Flash size (FlashID=0xffffff, SizeID=0xff), defaulting to 4MB</span><br><span class="line">Compressed 8192 bytes to 47...</span><br><span class="line"></span><br><span class="line">A fatal error occurred: Timed out waiting for packet content</span><br><span class="line">A fatal error occurred: Timed out waiting for packet content</span><br></pre></td></tr></table></figure>
+
+<p>GPIO12에 풀업을 넣을 경우 플래시 인식 오류가 발생한다. GPIO12 핀은 사용하지 않는 것이 좋다. </p>
+<br>
+
+<br>
+
+<h3 id="그밖의-보드"><a href="#그밖의-보드" class="headerlink" title="그밖의 보드"></a>그밖의 보드</h3><h4 id="TTGO-T-Energy"><a href="#TTGO-T-Energy" class="headerlink" title="TTGO T-Energy"></a>TTGO T-Energy</h4><p><img src="/image/TTGO-T-Energy01.jpg" alt="TTGO T-Energy"></p>
+<p><img src="/image/TTGO-T-Energy02.jpg" alt="TTGO T-Energy"></p>
+<br>
+
+<h4 id="TTGO-T-BEAM"><a href="#TTGO-T-BEAM" class="headerlink" title="TTGO T-BEAM"></a>TTGO T-BEAM</h4><p><img src="/image/TTGO-T-BEAM01.jpg" alt="TTGO T-BEAM"></p>
+<p><img src="/image/TTGO-T-BEAM02.jpg" alt="TTGO T-BEAM"></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-18T14:46:21.000Z" title="2019. 10. 18. 오후 10:46:21">2019-10-18</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T01:01:30.210Z" title="2021. 9. 19. 오전 9:01:30">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">8분안에 읽기 (약 1158 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/18/Blynk%EC%97%90-%EC%84%BC%EC%84%9C%EA%B0%92-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/">Blynk에 센서값 출력하기</a></h1><div class="content"><h1 id="Blynk에-센서값-출력하기"><a href="#Blynk에-센서값-출력하기" class="headerlink" title="Blynk에 센서값 출력하기"></a>Blynk에 센서값 출력하기</h1><p>원문: <a target="_blank" rel="external nofollow noopener noreferrer" href="http://help.blynk.cc/en/articles/512056-how-to-display-any-sensor-data-in-blynk-app">http://help.blynk.cc/en/articles/512056-how-to-display-any-sensor-data-in-blynk-app</a></p>
+<br>
+
+<p>센서값을 Blynk로 출력하기 위해서는 Blynk가 연결되지 않은 상태에서 시리얼모니터에 센서값들을 출력할 수 있어야 한다. ​센서값을 출력하는 코드가 완성되면, 그 다음으로 Blynk에 센서값을 보내는 작업을 시작하는 것이 좋다.</p>
+<p>Blynk앱에 센서값을 표시하는 방법에는 크게 두가지 방법이 있으며, 진행중인 프로젝트에 따라 적절한 방법을 선택하면 된다.</p>
+<ul>
+<li>  PULL : 이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
+<li>  PUSH : 이 경우 하드웨어(아두이노 or ESP32 등)는 Blynk가 오프라인 상태일때도 센서값을 Blynk 서버에 저장하고, 앱을 열어 온라인 상태가 되면 앱으로 전송하여 센서값을 보여준다.</li>
+</ul>
+<br>
+
+<br>
+
+<h1 id="PULL"><a href="#PULL" class="headerlink" title="PULL"></a>PULL</h1><p>앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</p>
+<br>
+
+<h2 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h2><ol>
+<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li> Value Display 위젯을 추가한다.</li>
+<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li> Reading Rate를 3초로 설정한다.</li>
+</ol>
+<br>
+
+<h2 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h2><ol>
+<li> Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
+<li> e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
+<li> 하드웨어에 코드를 업로드한다.</li>
+<li> Blynk에서 플레이버튼을 누른다.</li>
+<li> 값이 표시되는 것을 볼 수 있다.</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_READ(V5) &#123; <span class="comment">//Blynk app has something on V5</span></span><br><span class="line">  sensorData = analogRead(A0); <span class="comment">//reading the sensor on A0</span></span><br><span class="line">  Blynk.virtualWrite(V5, sensorData); <span class="comment">//sending to Blynk</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>이 코드는 매시간마다 Blynk가 <code>_READ</code> 요청을 Virtual Pin V5에 보내도록 한다. A0핀에서 센서값을 읽은 후, Blynk에서 Virtual Pin V5에 되돌려 준다.</p>
+<br>
+
+<br>
+
+<h1 id="PUSH"><a href="#PUSH" class="headerlink" title="PUSH"></a>PUSH</h1><p>Virtual Pin을 통하여 일정 주기로 하드웨어로부터 센서값을 전송하고, 이때마다 Blynk가 값을 받아들인다.</p>
+<p><img src="/image/blynk-sensor.png"></p>
+<br>
+
+<h2 id="주의할-점"><a href="#주의할-점" class="headerlink" title="주의할 점"></a>주의할 점</h2><p>void loop() 에서는 센서 값을 보낼 수 없다!!!</p>
+<p>만약 void loop()문 내에 어떤 값을 넣게 되면 MCU가 아주 짧은 시간 간격으로 무한 반복하여 실행하게 되는데, Blynk는 인터넷을 통하여 값을 전송할 것이므로 Blynk 클라우드가 하드웨어로부터 오는 계속적인 데이터를 받게 될 것이다. Blynk 클라우드가 이러한 상황을 감지하면 자동적으로 접속을 끊게 된다.</p>
+<p>그러므로 데이타를 일정 간격으로 보내야하며, 이를 위해 타이머를 사용하는 방법을 취한다. 일정간격으로 데이타를 보내는 방법에는 여러가지가 있지만, 가장 간단한 방법으로 BlynkTimer의 사용을 권장한다. BlynkTimer는 Blynk 라이브러리 패키지안에 포함되어 있으므로, Blynk 라이브러리만 제대로 설치되었다면 별도의 라이브러리를 설치하지 않아도 된다.</p>
+<br>
+
+<h2 id="Blynk-앱-설정-1"><a href="#Blynk-앱-설정-1" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h2><ol>
+<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li> Value Display 위젯을 추가한다.</li>
+<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li> Frequency를 PUSH로 설정한다.</li>
+</ol>
+<br>
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><ol>
+<li>timer라고 하는 BlynkTimer 오브젝트를 만든다.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BlynkTimer timer; <span class="comment">// Announcing the timer</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+
+<ol start="2">
+<li>그 다음으로 일정 간격으로 실행하게 될 함수를 만든다. 이 함수는 A0에 연결된 센서로부터 값을 Virtual Pin V5를 통하여 전송한다.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myTimerEvent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  sensorData = analogRead(A0);</span><br><span class="line">  Blynk.virtualWrite(V5, sensorData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+
+<ol start="3">
+<li>setup()문에서, 서브함수 myTimerEvent()가 매 1000ms, 즉 1초 간격으로 실행되도록 선언할 것이다.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  timer.setInterval(<span class="number">1000L</span>, myTimerEvent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+
+<ol start="4">
+<li>loop문은 다음과 같이 설정한다.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">  timer.run(); <span class="comment">// running timer every second</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-17T09:27:53.000Z" title="2019. 10. 17. 오후 5:27:53">2019-10-17</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T01:01:07.074Z" title="2021. 9. 19. 오전 9:01:07">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">5분안에 읽기 (약 755 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/">Bluetooth Serial Controller 앱</a></h1><div class="content"><h1 id="Bluetooth-시리얼-통신"><a href="#Bluetooth-시리얼-통신" class="headerlink" title="Bluetooth 시리얼 통신"></a>Bluetooth 시리얼 통신</h1><p>Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 <a href="2018/10/09/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81">Bluetooth 페어링</a> 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.</p>
+<br>
+
+<h2 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h2><p><img src="/image/BT-03.jpg"></p>
+<br>
+
+<h2 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect HC-06 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">9600</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">     Serial.write(BTSerial.read());</span><br><span class="line">   <span class="keyword">if</span> (Serial.available())</span><br><span class="line">     BTSerial.write(Serial.read());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="스마트폰에-Bluetooth-Serial-Controller-앱-설치하기"><a href="#스마트폰에-Bluetooth-Serial-Controller-앱-설치하기" class="headerlink" title="스마트폰에 Bluetooth Serial Controller 앱 설치하기"></a>스마트폰에 Bluetooth Serial Controller 앱 설치하기</h2><ol>
+<li>이제 Google Playstore를 통해서 스마트폰에 Bluetooth Serial Controller 앱을 설치합니다. (iOS는 유사한 프로그램으로 설치)</li>
+</ol>
+<p>![](/image/BTserialapp-01.png =432x768)</p>
+<p>​    비슷한 역할을 하는 수많은 앱들이 있는데, 여러 앱을 설치하고 사용해본 결과, 이 앱이 사용하기에 유연함을 갖고 있는 것 같더군요.</p>
+<br>
+
+<p>​    설치되었습니다.</p>
+<p>![](/image/BTserialapp-02.png =432x768)</p>
+<br>
+
+<ol start="2">
+<li>설치 후 처음 실행을 하면, LANDSCAPE 모드(가로모드)로 실행이 되는데요. 그대로 사용해도 무방하지만 PORTRAIT 모드(세로 모드)로 바꿔보겠습니다. 먼저 PREFERENCE를 누르세요.</li>
+</ol>
+<p>![](/image/BTserialapp-03.png =768x432)</p>
+<br>
+
+<ol start="3">
+<li>그러면 아래 화면이 뜹니다. 아무곳이나 누르고 위로 스크롤을 하면 아래에 숨겨져 있는 메뉴가 나타나게 되는데요.</li>
+</ol>
+<p>![](/image/BTserialapp-04.png =768x432)</p>
+<br>
+
+<ol start="4">
+<li>OPTION - Orientation을 선택한 뒤,</li>
+</ol>
+<p>![](/image/BTserialapp-05.png =768x432)</p>
+<br>
+
+<ol start="5">
+<li>PORTRAIT를 누릅니다.</li>
+</ol>
+<p>![](/image/BTserialapp-06.png =768x432)</p>
+<br>
+
+<ol start="6">
+<li>이제 세로모드로 나타나요. 이제 HC-06모듈과 스마트폰과의 Serial 통신을 해보도록 하겠습니다. 다시 PREFERENCE를 누르고, TERMINAL MODE를 활성화 시키세요.</li>
+</ol>
+<p>![](/image/BTserialapp-07.png =432x768)</p>
+<br>
+
+<ol start="7">
+<li>아래 화면이 TERMINAL Mode 화면입니다. 여기서 돋보기 모양을 누르고,</li>
+</ol>
+<p>![](/image/BTserialapp-08.png =432x768)</p>
+<br>
+
+<ol start="8">
+<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다. </li>
+</ol>
+<p>![](/image/BTserialapp-09.png =432x768)</p>
+<br>
+
+<p>​    만일, 아래와 같이 Paired Devices 목록이 없으면, Scan for devices를 눌러 HC-06을 찾아보세요.</p>
+<p>![](/image/BTserialapp-10.png =432x768)</p>
+<br>
+
+<ol start="9">
+<li>TERMINAL이 SKS100에 접속을 시도합니다.</li>
+</ol>
+<p>![](/image/BTserialapp-11.png =432x768)</p>
+<br>
+
+<ol start="10">
+<li>접속 완료!</li>
+</ol>
+<p>![](/image/BTserialapp-12.png =432x768)</p>
+<br>
+
+<h2 id="터미널과-Serial-통신하기"><a href="#터미널과-Serial-통신하기" class="headerlink" title="터미널과 Serial 통신하기"></a>터미널과 Serial 통신하기</h2><ol>
+<li>이제 터미널 창에 Test를 입력하고 SEND를 눌러보세요.</li>
+</ol>
+<p>![](/image/BTserialapp-13.png =432x768)</p>
+<br>
+
+<ol start="2">
+<li>그러면 화면에 Test가 출력됨과 동시에,</li>
+</ol>
+<p>![](/image/BTserialapp-14.png =432x768)</p>
+<br>
+
+<p>​     시리얼 모니터에 Test가 출력됩니다. 즉, TERMINAL에서 입력한 Test라는 글자가 HC-06을 통해, 아두이노와 연결되어 있는 컴퓨터의 시리얼 모니터에 출력된 것이에요.</p>
+<p><img src="/image/BTserialapp-15.jpg"></p>
+<br>
+
+<ol start="3">
+<li>이번에는 반대로 시리얼 모니터에 Good morning! 을 입력하고 전송을 누르면</li>
+</ol>
+<p>![](/image/BTserialapp-16.png =432x768)</p>
+<br>
+
+<p>​    스마트폰의 TERMINAL에 Good morning! 이 출력됩니다.</p>
+<p><img src="/image/BTserialapp-17.jpg"></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-09-01T09:27:53.000Z" title="2019. 9. 1. 오후 5:27:53">2019-09-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-06T16:54:39.680Z" title="2021. 11. 7. 오전 12:54:39">2021-11-07</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/diy/">diy</a></span><span class="level-item">23분안에 읽기 (약 3502 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a></h1><div class="content"><h3 id="필수-요소"><a href="#필수-요소" class="headerlink" title="필수 요소"></a>필수 요소</h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
+<ul>
+<li>git</li>
+<li>github.com에 repository 2개 생성하기<ul>
+<li>사용자ID-archives</li>
+<li>사용자ID.github.io</li>
+</ul>
+</li>
+<li>node.js</li>
+<li>npm</li>
+</ul>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hexo.io/">hexo.io</a> 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영할 수 있는 환경을 가진 사용자는 많지 않을 것이다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d드라이브에 hexo 블로그를 생성하고 운영하는 방법을 차례대로 따라할 수 있도록 정리한 것이다.</p>
+<br>
+
+<h4 id="Git-설치"><a href="#Git-설치" class="headerlink" title="Git 설치"></a>Git 설치</h4><ol>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 에서 <strong>64-bit Git for Windows Setup</strong> 다운로드</li>
+<li>설치 (설치 경로는 바꾸지 않음)</li>
+<li>exe 파일은 삭제</li>
+</ol>
+<br>
+
+<h4 id="nodejs-설치"><a href="#nodejs-설치" class="headerlink" title="nodejs 설치"></a>nodejs 설치</h4><ol>
+<li><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> 에서 Windows Installer (.msi) 64-bit 다운로드</p>
+</li>
+<li><p>설치 (설치 경로는 바꾸지 않음)</p>
+</li>
+<li><p>(선택사항) 설치 중 Tools for Native Modules 에서 Automatically install the necessary tools에 체크</p>
+<ul>
+<li>chocolately, python, visualstudio 등 여러가지 패키지가 설치됨</li>
+<li>설치 후, 리부팅 필요</li>
+</ul>
+</li>
+<li><p>환경 변수 구성: <strong>제어판&gt; 고급 시스템 설정 보기&gt; 고급&gt; 환경 변수</strong>를 열고, <strong>사용자 변수와 시스템 변수</strong>에 다음을 새로만들기 혹은 추가</p>
+<ul>
+<li>PATH 변수에 아래의 변수값 지정되어 있는지 확인 (없으면 새로 만들기)<ul>
+<li>변수값: C:\Program Files\nodejs </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h4 id="git-bash-실행-후-hexo-및-icarus-테마-설치"><a href="#git-bash-실행-후-hexo-및-icarus-테마-설치" class="headerlink" title="git-bash 실행 후, hexo 및 icarus 테마 설치"></a>git-bash 실행 후, hexo 및 icarus 테마 설치</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd d:/dev</span><br><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir myblog</span><br><span class="line">hexo init myblog               // myblog 폴더가 비어 있어야 함.</span><br><span class="line">cd myblog</span><br><span class="line">git clone --depth 1 https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus</span><br><span class="line">hexo config theme icarus</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>아래와 같은 error 메세지가 나오면,</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ERROR Package bulma-stylus is not installed.</span><br><span class="line">ERROR Package hexo-renderer-inferno is not installed.</span><br><span class="line">ERROR Package hexo-component-inferno is not installed.</span><br><span class="line">ERROR Package inferno is not installed.</span><br><span class="line">ERROR Package inferno-create-element is not installed.</span><br><span class="line">ERROR Please install the missing dependencies your Hexo site root directory:</span><br><span class="line">ERROR npm install --save bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3</span><br><span class="line">ERROR or:</span><br><span class="line">ERROR yarn add bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>패키지를 추가 설치한 후</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>다시 실행</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo config theme icarus</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>이후에 아래와 같은 메세지가 나오면  _config.icarus.yml이 생성되면서 완료된다.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">INFO  Validating config</span><br><span class="line">Inferno is in development mode.</span><br><span class="line">INFO  =======================================</span><br><span class="line"> ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗</span><br><span class="line"> ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝</span><br><span class="line"> ██║██║     ███████║██████╔╝██║   ██║███████╗</span><br><span class="line"> ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║</span><br><span class="line"> ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║</span><br><span class="line"> ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝</span><br><span class="line">=============================================</span><br><span class="line">INFO  === Checking package dependencies ===</span><br><span class="line">INFO  === Checking theme configurations ===</span><br><span class="line">WARN  None of the following configuration files is found:</span><br><span class="line">WARN  - D:\dev\stemwith\_config.icarus.yml</span><br><span class="line">WARN  - D:\dev\stemwith\themes\icarus\_config.yml</span><br><span class="line">INFO  Generating theme configuration file...</span><br><span class="line">INFO  D:\dev\stemwith\_config.icarus.yml created successfully.</span><br><span class="line">INFO  To skip configuration generation, use &quot;--icarus-dont-generate-config&quot;.</span><br><span class="line">INFO  === Registering Hexo extensions ===</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>이제 블로그 저장소 주소를 설정 파일(_config.yml)에 적어준다.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">theme: icarus</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/myblog/myblog.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>로컬에서 확인</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --debug</span><br></pre></td></tr></table></figure>
+
+<p>이후, 브라우저에서</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>배포를 위한 hexo-deployer-git 설치</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>이제 hexo generate와 hexo deploy를 사용할 수 있다.</p>
+<br>
+
+<br>
+
+<h3 id="icarus-테마-설정"><a href="#icarus-테마-설정" class="headerlink" title="icarus 테마 설정"></a>icarus 테마 설정</h3><h4 id="Category-list-order-설정-선택사항"><a href="#Category-list-order-설정-선택사항" class="headerlink" title="Category list order 설정 (선택사항)"></a>Category list order 설정 (선택사항)</h4><ul>
+<li>d:/dev/myblog/node-modules/hexo-generator-category/lib/generator.js 수정</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(locals) &#123;</span><br><span class="line">  const config = this.config;</span><br><span class="line">  const perPage = config.category_generator.per_page;</span><br><span class="line">  const paginationDir = config.pagination_dir || &#x27;page&#x27;;</span><br><span class="line">  const orderBy = config.category_generator.order_by || &#x27;+date&#x27;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>orderBy 부분<ul>
+<li>-date : 최근 글 순 (default)</li>
+<li>+date : 오래된 글 순</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h4 id="기본-설정"><a href="#기본-설정" class="headerlink" title="기본 설정"></a>기본 설정</h4><ul>
+<li>Site Configuration: _config.yml 수정</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: myblog</span><br><span class="line">subtitle: <span class="string">&#x27;my first blog&#x27;</span></span><br><span class="line">description: <span class="string">&#x27;life diary&#x27;</span></span><br><span class="line">keywords:</span><br><span class="line">author: anonymous</span><br><span class="line">language: ko</span><br><span class="line">timezone: Asia/Seoul</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">## Set your site url here. For example, <span class="keyword">if</span> you use GitHub Page, set url as <span class="string">&#x27;https://username.github.io/project&#x27;</span></span><br><span class="line">url: http:<span class="comment">//[githubID].github.io</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Localization re-testing</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Alternative-Configuration"><a href="#Alternative-Configuration" class="headerlink" title="Alternative Configuration"></a>Alternative Configuration</h4><p>_config.yml 에서는 가장 기본적인 셋팅과 테마 설정만 하고. 나머지 설정은 _config.[테마명].yml 에서 수행한다. 이를 위해 우선 hexo-theme-next폴더의 기본 설정 _config.yml 파일을 myblog 폴더에 복사한다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd d:/dev/myblog/node-modules</span><br><span class="line">cp ./themes/next/_config.yml _config.next.yml</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="사용-예시"><a href="#사용-예시" class="headerlink" title="사용 예시"></a>사용 예시</h5><p>동일한 설정항목에 대하여 두가지 이상의 설정파일에서 동시에 정의하는 경우, 우선순위에 의해 설정값이 결정된다. 만약 _config.yml, _config.[테마명].yml, themes/[테마명]’/ _config.yml 세가지 설정파일이 동시에 존재하는 경우, 각 파일을 아래와 같이 설정했다면,</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># _config.yml</span><br><span class="line">theme: <span class="string">&quot;my-theme&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># _config.my-theme.yml</span><br><span class="line">bio: <span class="string">&quot;My awesome bio&quot;</span></span><br><span class="line">foo:</span><br><span class="line">  bar: <span class="string">&#x27;a&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># themes/my-theme/_config.yml</span></span><br><span class="line">bio: <span class="string">&quot;Some generic bio&quot;</span></span><br><span class="line">logo: <span class="string">&quot;a-cool-image.png&quot;</span></span><br><span class="line">  foo:</span><br><span class="line">    baz: <span class="string">&#x27;b&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>최종적으로 설정되는 값은 각각 다음과 같다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  bio: <span class="string">&quot;My awesome bio&quot;</span>,</span><br><span class="line">  logo: <span class="string">&quot;a-cool-image.png&quot;</span>,</span><br><span class="line">  foo: &#123;</span><br><span class="line">    bar: <span class="string">&quot;a&quot;</span>,</span><br><span class="line">    baz: <span class="string">&quot;b&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="icarus-테마-셋팅"><a href="#icarus-테마-셋팅" class="headerlink" title="icarus 테마 셋팅"></a>icarus 테마 셋팅</h3><h4 id="폰트-수정"><a href="#폰트-수정" class="headerlink" title="폰트 수정"></a>폰트 수정</h4><figure class="highlight plaintext"><figcaption><span>[layout/common/head.jsx 51 line] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 51 line</span><br><span class="line">const fontCssUrl = &#123;</span><br><span class="line">  default: fontcdn(&quot;Ubuntu:wght@400;600&amp;family=Source+Code+Pro&quot;, &quot;css2&quot;),</span><br><span class="line">  cyberpunk: fontcdn(&quot;Oxanium:wght@300;400;600&amp;family=Roboto+Mono&quot;, &quot;css2&quot;),</span><br><span class="line">  nanumgothic: fontcdn(&quot;Nanum+Gothic:wght@400&amp;family=Roboto&quot;, &quot;css2&quot;),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>[layout/common/head.jsx 151 line] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 151 line</span><br><span class="line">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; /&gt;</span><br><span class="line">&lt;link href=&#123;fontCssUrl[&#x27;nanumgothic&#x27;]&#125; rel=&quot;stylesheet&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>[include/style/base.styl 8 line] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$family-sans-serif ?= &#x27;Nanum Gothic&#x27;, Ubuntu, Roboto, &#x27;Open Sans&#x27;, &#x27;Microsoft YaHei&#x27;, sans-serif</span><br><span class="line">// $family-sans-serif ?= Ubuntu, Roboto,&#x27;Nanum Gothic Coding&#x27;, &#x27;Open Sans&#x27;, &#x27;Microsoft YaHei&#x27;, sans-serif</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>[include/style/article.styl 4 line] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$article-font-size ?= 1.2rem</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hexo server에서는 최신 css 상태를 반영하는데, 그런데 실제로 배포될 때는 css파일이 갱신이 안된다</li>
+<li>그러므로 public/css/default.css 파일을 삭제하고, 다시 <code>hexo generate</code>로 생성한 후 배포한다</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><h4 id="경로의-대소문자-구분-설정"><a href="#경로의-대소문자-구분-설정" class="headerlink" title="경로의 대소문자 구분 설정"></a>경로의 대소문자 구분 설정</h4><p>경로에서 사용하는 폴더나 파일이름의 대소문자 구분 문제로 인해, 파일 인식이 안되는 경우가 발생한다. 특히, generate 시에 아래와 같은 메세지가 여러개 나오면, 대부분 파일이름의 대소문자 구분 문제라고 생각하면 된다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Markdown Image Path does not exists!</span><br></pre></td></tr></table></figure>
+
+<p>이런 경우, 다음과 같은 방법으로 문제를 해결해야 한다.</p>
+<ul>
+<li><p>_config.yml의 filename_case 수정</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Writing</span><br><span class="line">filename_case: 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>0: 대소문자 구분</li>
+<li>1: 경로를 이루는 문자를 모두 소문자로 변경하여 관리</li>
+<li>2: 경로를 이루는 문자를 모두 대문자로 변경하여 관리</li>
+</ul>
+</li>
+<li><p>github.com에 로그인하여 repository의 categories 폴더 삭제</p>
+</li>
+<li><p>d:\dev\myblog\ 폴더의 .deploy_git 폴더 삭제</p>
+</li>
+<li><p>hexo clean 후 재배포</p>
+</li>
+<li><p>재배포시에 다음과 같은 에러가 생길 수 있다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: not a git repository (or any of the parent directories): .git</span><br></pre></td></tr></table></figure>
+
+<p>.deploy_git 폴더의 삭제에 따라, git에 대한 정보를 담은 파일이 없기 때문에 발생하는 에러이며, d:\dev\myblog 폴더에서 다음을 실행한 후,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+<p>이렇게 해도 경로가 인식이 안되는 경우는, Git에서 대소문자를 구분하게 설정하고, 폴더명 및 파일이름의 대소문자를 하나하나 맞춰주어서 해결할 수도 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.ignorecase=false</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="기존-블로그를-복구하는-경우"><a href="#기존-블로그를-복구하는-경우" class="headerlink" title="기존 블로그를 복구하는 경우"></a>기존 블로그를 복구하는 경우</h4><ul>
+<li>기존에 사용하던 블로그 디렉토리가 d:\dev\myblog 인 경우, d:\dev 폴더 전체를 다른 폴더에 복사하여 백업해두고 아래의 과정을 진행한다.</li>
+<li>백업 완료 후, 기존에 사용하던 d:\dev\ 폴더 자체를 삭제한 후, 아래의 과정을 수행하여 모든 설치를 마친 뒤, 백업해둔 myblog 폴더에서 필요한 부분을 복구함.</li>
+</ul>
+<br>
+
+<h4 id="favicon이-안나오는-경우"><a href="#favicon이-안나오는-경우" class="headerlink" title="favicon이 안나오는 경우"></a>favicon이 안나오는 경우</h4><p>로컬 테스트시 favicon이 출력되지만, github 배포시 출력되지 않는다면</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">head:</span><br><span class="line">  # URL or path to the website&#x27;s icon</span><br><span class="line">  favicon: /img/favicon.png?</span><br><span class="line">  # Open Graph metadata</span><br></pre></td></tr></table></figure>
+
+<p>_<em>config.icarus.yml</em> 에서 상단에 favicon을 설정하는 부분에서 favicon.png 끝에 <code>?</code>를 추가한 후, 재배포 한다.</p>
+<br>
+
+<br>
+
+<h3 id="블로그-포스트-생성"><a href="#블로그-포스트-생성" class="headerlink" title="블로그 포스트 생성"></a>블로그 포스트 생성</h3><ol>
+<li><p>test.md 파일을 만든 뒤, d:/dev/stemwith/source/_post/ 폴더에 복사</p>
+<p>test.md 파일의 가장 앞부분에 들어가는 post front-matter는 다음과 같이 구성한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: test 블로그 페이지</span><br><span class="line">date: 2019-09-17 01:32:35</span><br><span class="line">updated: </span><br><span class="line">category:</span><br><span class="line">  - blog</span><br><span class="line">tags:</span><br><span class="line">  - hexo</span><br><span class="line">  - blog</span><br><span class="line">toc: true</span><br><span class="line">thumbnail: /images/preview.jpg</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>toc: true를 추가하면 헤딩 태그(h1~h6)를 통해 목차를 만들어 준다. (icarus 테마의 경우)</li>
+</ul>
+</li>
+<li><p>로컬에서 페이지 확인</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo serve</span><br><span class="line">http://localhost:4000</span><br></pre></td></tr></table></figure></li>
+<li><p>로컬 작업 내용을 github 도메인으로 배포 (push)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
+<li><p>deploy 후에도 오랜시간 업데이트가 안된다면, 페이지 clean 후 재배포</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo deploy --generate</span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+<br>
+
+<h3 id="Syntax-Highlighting"><a href="#Syntax-Highlighting" class="headerlink" title="Syntax Highlighting"></a>Syntax Highlighting</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">``` [language] [title] [url] [link text] [additional options]</span><br><span class="line">code snippet</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">&#123;% codeblock [title] [lang:language] [url] [link text] [additional options] %&#125;</span><br><span class="line">code snippet</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% code [title] [lang:language] [url] [link text] [additional options] %&#125;</span><br><span class="line">code snippet</span><br><span class="line">&#123;% endcode %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h3 id="about-페이지-만들기"><a href="#about-페이지-만들기" class="headerlink" title="about 페이지 만들기"></a>about 페이지 만들기</h3><p>아래 명령을 통해 source/about/index.md을 생성한 후, 파일을 수정하여 사용한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;about&quot;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="사진-첨부-방법"><a href="#사진-첨부-방법" class="headerlink" title="사진 첨부 방법"></a>사진 첨부 방법</h3><ol>
+<li><p>첨부할 사진 파일 위치 : 사진 파일을 d:/dev/stemwith/source/image/ 폴더에 복사</p>
+</li>
+<li><p>마크다운 파일에서 파일 위치를 다음과 같이 지정함 지정함</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![사진첨부파일설명](/image/~~~.jpg)</span><br></pre></td></tr></table></figure></li>
+<li><p>사진 출력시 사이즈 조정이 필요할 경우, 아래와 같이 하면 화면에 출력되는 크기를 조정할 수 있음 (단, icarus, Next 테마를 비롯한 일부 테마에서는 적용 안됨)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![사진첨부파일설명](/image/~~~.png =432x768)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="4">
+<li><p>icarus, next 테마 사용시에는 사진 사이즈 조정이 필요한 경우, img 태그를 사용하여 zoom 수치로 조정하여야 함</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;/image/test.png&quot; style=&quot;zoom:80%;&quot; /&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>주의 사항</p>
+<ul>
+<li>필요한 경우, hexo-image-link-with-display-size 설치</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-image-link-with-display-size</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>사진이 위치한 폴더를 지정할 때, /image/ 폴더 앞에 점(.) 같은 것을 추가하면 안됨</p>
+</li>
+<li><p>파일이름에 언더바(_)가 포함되면 안됨. 대시(-)는 가능</p>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<br>
+
+<h3 id="Github-블로그-구글-검색-노출"><a href="#Github-블로그-구글-검색-노출" class="headerlink" title="Github 블로그 구글 검색 노출"></a>Github 블로그 구글 검색 노출</h3><p>※ 출처: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://chinsun9.github.io/2020/09/23/%EB%82%B4-github-blog-%EA%B8%80%EC%9D%B4-%EA%B5%AC%EA%B8%80-%EA%B2%80%EC%83%89%EC%97%90-%EB%82%98%EC%98%A4%EB%8A%94-%EB%B2%95/">내 github blog 글이 구글 검색에 나오는 법(친성의 블로그)</a></p>
+<br>
+
+<h4 id="blog-설정"><a href="#blog-설정" class="headerlink" title="blog 설정"></a>blog 설정</h4><h5 id="SEO-search-engine-optimization-설정"><a href="#SEO-search-engine-optimization-설정" class="headerlink" title="SEO (search engine optimization) 설정"></a>SEO (search engine optimization) 설정</h5><p>블로그 설치 폴더가 d:\dev\myblog 인 경우, d:\dev\myblog 폴더에서</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-autonofollow</span><br><span class="line">npm i hexo-generator-feed</span><br><span class="line">npm i hexo-generator-seo-friendly-sitemap</span><br><span class="line">npm i hexo-generator-robotstxt</span><br></pre></td></tr></table></figure>
+
+<p>필요한 경우 hexo-auto-canonical과 hexo-component-inferno을 추가로 설치한다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-<span class="keyword">auto</span>-canonical</span><br><span class="line">npm i hexo-component-inferno</span><br></pre></td></tr></table></figure>
+
+<p>설치 후</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm audit fix</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>※ 표준링크 확인 방법</p>
+<ol>
+<li><p>본인 블로그로 접속</p>
+</li>
+<li><p>F12로 개발자도구를 열고</p>
+</li>
+<li><p>개발자도구 상단의 <strong>요소</strong>를 클릭한 뒤,</p>
+</li>
+<li><p>Ctrl-F를 눌러 <strong>canonical</strong>를 검색했을 때, 아래 형태의 링크 태그가 검색이 되면, 이미 표준링크가 생성되고 있는 것임. 이런 경우에는 hexo-auto-canonical은 설치하지 않아도 됨!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;canonical&quot; href=&quot;http://블로그 글 주소/&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>NEXT 테마의 경우, (이미 표준링크를 생성하고 있으므로) hexo-auto-canonical은 설치하지 않아도 됨 </p>
+</li>
+</ol>
+<br>
+
+<h5 id="config-yml-설정"><a href="#config-yml-설정" class="headerlink" title="_config.yml 설정"></a>_config.yml 설정</h5><p>_config.yml 최하단 deploy 설정 아래에 다음을 추가</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">nofollow:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - exclude1.com</span><br><span class="line">    - exclude2.com</span><br><span class="line">feed:</span><br><span class="line">  type: rss2</span><br><span class="line">  path: rss2.xml</span><br><span class="line">  limit: 20</span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">  tag: false</span><br><span class="line">  category: false</span><br><span class="line">robotstxt:</span><br><span class="line">  useragent: &#x27;*&#x27;</span><br><span class="line">  allow:</span><br><span class="line">    - /</span><br><span class="line">  sitemap: https://깃허브유저네임.github.io/sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="생성된-파일-확인하기"><a href="#생성된-파일-확인하기" class="headerlink" title="생성된 파일 확인하기"></a>생성된 파일 확인하기</h5><p>d:\dev\myblog\public\ 디렉터리 하단에 rss2.xml, sitemap.xml, robots.txt 이 3개의 파일이 보이는지 확인한다.</p>
+<br>
+
+<br>
+
+<h4 id="검색-노출"><a href="#검색-노출" class="headerlink" title="검색 노출"></a>검색 노출</h4><h5 id="구글-검색-엔진-등록"><a href="#구글-검색-엔진-등록" class="headerlink" title="구글 검색 엔진 등록"></a>구글 검색 엔진 등록</h5><ol>
+<li><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://search.google.com/search-console/about">Google Search Console</a> 에 접속후 시작하기 클릭</p>
+</li>
+<li><p><strong>URL 접두어</strong>를 선택하고, <strong>자신의 깃헙 주소</strong> (예, <a target="_blank" rel="external nofollow noopener noreferrer" href="https://testblog.github.io)를/">https://testblog.github.io)를</a> 입력한 뒤 <strong>계속</strong> 클릭</p>
+</li>
+<li><p>소유권 확인</p>
+<ol>
+<li>html 파일 다운로드</li>
+<li>(_config.yml 이 위치한) d:\dev\myblog\public\ 디렉토리에 다운 받은 파일을 넣고</li>
+<li>hexo d 로 배포</li>
+<li>잠시 대기 후, 소유권 확인 과정 창의 <strong>확인</strong> 클릭 (확인이 안된다고 나오는 경우에는 잠시 후에 다시 시도 해야 함)</li>
+<li>소유권이 확인되면, <strong>속성으로 이동</strong> 클릭</li>
+</ol>
+</li>
+<li><p>Google Search Console에서</p>
+<ol>
+<li>왼쪽 메뉴의 <strong>sitemaps</strong> 클릭</li>
+<li>새 사이트맵 추가에서 <strong>sitemap.xml</strong> 입력 후 <strong>제출</strong> 클릭</li>
+<li>새 사이트맵 추가에서 <strong>rss2.xml</strong> 입력 후 <strong>제출</strong> 클릭</li>
+<li>두 파일의 제출 상태가 <strong>성공</strong>으로 표시되어야 함 (<strong>가져올 수 없음</strong> 이라고 나오면 잠시 후에 페이지 새로고침을 해보고, 성공으로 표시되는지 확인이 필요함)</li>
+</ol>
+</li>
+<li><p>실제 검색은 하루 정도 지나면 가능</p>
+</li>
+</ol>
+<br>
+
+<h5 id="Naver-검색-노출"><a href="#Naver-검색-노출" class="headerlink" title="Naver 검색 노출"></a>Naver 검색 노출</h5><ol>
+<li>구글과 유사하며, 네이버 웹마스터 도구 (Naver Search Advisor)를 사용하여 등록함</li>
+<li>RSS 제출 메뉴와 사이트맵 제출 메뉴가 분리되어 있으므로, sitemap.xml 및 rss2.xml 등록시 유의</li>
+</ol>
+<br>
+
+<h5 id="Daum-검색-노출"><a href="#Daum-검색-노출" class="headerlink" title="Daum 검색 노출"></a>Daum 검색 노출</h5><ol>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://register.search.daum.net/index.daum">Daum 검색등록</a>으로 들어가서</li>
+<li>신규 등록에 블로그 URL을 등록한 뒤 <strong>확인</strong>을 클릭하여 제출하면, 심사 후 이메일로 등록 결과를 알려줌</li>
+</ol>
+<br>
+
+<br>
+
+<h4 id="Mathjax-amp-KaTeX-설정"><a href="#Mathjax-amp-KaTeX-설정" class="headerlink" title="Mathjax &amp; KaTeX 설정"></a>Mathjax &amp; KaTeX 설정</h4><ul>
+<li>_config.[테마].yml 설정</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">math:</span><br><span class="line">    enable: <span class="literal">false</span></span><br><span class="line">  ...</span><br><span class="line">  katex:</span><br><span class="line">    enable: <span class="literal">true</span></span><br><span class="line">    # See: https:<span class="comment">//github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span></span><br><span class="line">    copy_tex: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>​        math: enable: false 상태에서는 필요한 렌더링이 필요한 페이지의 헤더에 <strong>mathjax: true</strong>를 넣어주어야 한다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Will Render Math</span><br><span class="line">mathjax: <span class="literal">true</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Google-Analytics-설정"><a href="#Google-Analytics-설정" class="headerlink" title="Google Analytics 설정"></a>Google Analytics 설정</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Google Analytics</span><br><span class="line"># See: https:<span class="comment">//analytics.google.com</span></span><br><span class="line">google_analytics:</span><br><span class="line">  tracking_id: UA-*********<span class="number">-1</span>          <span class="comment">// google analytics 계정 s○○○○○○○@○○○○○○○.com</span></span><br></pre></td></tr></table></figure>
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-11-30T09:27:53.000Z" title="2018. 11. 30. 오후 5:27:53">2018-11-30</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-09-19T01:05:44.067Z" title="2021. 9. 19. 오전 9:05:44">2021-09-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">5분안에 읽기 (약 767 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/30/Processing-%EA%B8%B0%EC%B4%88/">Processing 기초</a></h1><div class="content"><h1 id="Processing"><a href="#Processing" class="headerlink" title="Processing"></a>Processing</h1><ul>
+<li>processing.org 에서 다운로드 (<a target="_blank" rel="external nofollow noopener noreferrer" href="https://processing.org/download/">다운로드 페이지</a>)</li>
+<li>arduino sketch는 C++기반이고, processing sketch는 java기반입니다.</li>
+</ul>
+<br>
+
+<h2 id="processing-sketch-예제"><a href="#processing-sketch-예제" class="headerlink" title="processing sketch 예제"></a>processing sketch 예제</h2><br>
+
+<ol>
+<li>예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">  background(<span class="number">100</span>);        <span class="comment">// background(0,255,0);</span></span><br><span class="line">  strokeWeight(<span class="number">10</span>);       <span class="comment">// dot/line width</span></span><br><span class="line">  stroke(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">100</span>);    <span class="comment">// dot/line color and transparency, noStroke();</span></span><br><span class="line">  point(<span class="number">200</span>,<span class="number">200</span>);         <span class="comment">// draw dot</span></span><br><span class="line">  line(<span class="number">0</span>,<span class="number">0</span>,<span class="number">200</span>,<span class="number">150</span>);      <span class="comment">// draw line</span></span><br><span class="line">  ellipse(<span class="number">300</span>,<span class="number">300</span>,<span class="number">50</span>,<span class="number">80</span>); <span class="comment">// draw circle(x,y,xr,yr)</span></span><br><span class="line">  fill(<span class="number">0</span>);                <span class="comment">// rect/text color, nofill();</span></span><br><span class="line">  rect(<span class="number">100</span>,<span class="number">250</span>,<span class="number">150</span>,<span class="number">300</span>);  <span class="comment">// draw rectangle(x1,y1,x2,y2)</span></span><br><span class="line">  </span><br><span class="line">  textSize(<span class="number">20</span>);</span><br><span class="line">  PFont font = createFont(<span class="string">&quot;NanumGothic&quot;</span>, <span class="number">32</span>);</span><br><span class="line">  textFont(font);</span><br><span class="line">  text(<span class="string">&quot;Hello World!&quot;</span>,<span class="number">200</span>,<span class="number">100</span>); <span class="comment">// text(string,x1,y2)</span></span><br><span class="line"></span><br><span class="line">  PImage img = loadImage(<span class="string">&quot;sks.jpg&quot;</span>);  <span class="comment">// file in &#x27;/sketch_XXXXXXa/data/&#x27; folder</span></span><br><span class="line">  image(img,<span class="number">20</span>,<span class="number">50</span>);       <span class="comment">// image(img,x,y,width,height);</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ol start="2">
+<li>예제2 : 마우스와 키보드 이벤트</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mousePressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(mouseButton == LEFT) &#123;</span><br><span class="line">    println(<span class="string">&quot;left button Pressed!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(mouseButton == RIGHT) &#123;</span><br><span class="line">    println(<span class="string">&quot;right button Pressed!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(mouseButton == CENTER) &#123;</span><br><span class="line">    println(<span class="string">&quot;center button Pressed!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">keyPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;key Pressed!&quot;</span>);   <span class="comment">// Key event</span></span><br><span class="line">  println(key);              <span class="comment">// Key String</span></span><br><span class="line">  println(keyCode);          <span class="comment">// ASCII Code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;button Released!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">keyReleased</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;key Released!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;button Clicked!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;mouse Moved!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseDragged</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;mouse Dragged!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseWheel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  println(<span class="string">&quot;mouse Wheel!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ol start="3">
+<li>예제3 : 마우스 움직이는 대로 원 그리기</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ellipse(mouseX,mouseY,<span class="number">50</span>,<span class="number">50</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ol start="4">
+<li>예제4 : 자유선 그리기</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  line(pmouseX,pmouseY,mouseX,mouseY);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h1 id="Arduino와-Processing을-통해-arduino-보드의-기본-led-blink-하기"><a href="#Arduino와-Processing을-통해-arduino-보드의-기본-led-blink-하기" class="headerlink" title="Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기"></a>Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기</h1><br>
+
+<h2 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h2><p>아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.</p>
+<br>
+
+<h2 id="library-등록"><a href="#library-등록" class="headerlink" title="library 등록"></a>library 등록</h2><ol>
+<li><p>아두이노 사이트에서 프로세싱 라이브러리를 다운받은 후</p>
+</li>
+<li><p>압축을 풀었을 때 나오는 arduino폴더를 c:\Users\userID\processing\libraries\ 폴더에 복사한다.</p>
+</li>
+<li><p>프로세싱 프로그램에서 <code>스케치</code> → <code>내부라이브러리</code> → <code>Arduino (firmata)</code>를 선택하면,</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cc.arduino.*;</span><br><span class="line"><span class="keyword">import</span> org.firmata.*;</span><br><span class="line"><span class="keyword">import</span> processing.serial.*;</span><br></pre></td></tr></table></figure>
+
+<p>가 등록된다.</p>
+<br>
+
+<h2 id="processing-sketch"><a href="#processing-sketch" class="headerlink" title="processing sketch"></a>processing sketch</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cc.arduino.*;</span><br><span class="line"><span class="keyword">import</span> org.firmata.*;</span><br><span class="line"><span class="keyword">import</span> processing.serial.*;</span><br><span class="line"></span><br><span class="line">Arduino arduino;</span><br><span class="line"><span class="keyword">int</span> ledPin = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">  println(Arduino.list());</span><br><span class="line">  arduino = <span class="keyword">new</span> Arduino(<span class="keyword">this</span>, Arduino.list()[<span class="number">0</span>], <span class="number">57600</span>); <span class="comment">// Arduino.list()[0] or &quot;COM3&quot;</span></span><br><span class="line">  arduino.pinMode(ledPin, Arduino.OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  arduino.digitalWrite(ledPin, Arduino.HIGH);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">  arduino.digitalWrite(ledPin, Arduino.LOW);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="arduino-sketch"><a href="#arduino-sketch" class="headerlink" title="arduino sketch"></a>arduino sketch</h2><ol>
+<li><p>arduino IDE에서 <code>파일</code> → <code>예제</code> → <code>firmata</code> → <code>standard firmata</code>를 불러들인 후</p>
+</li>
+<li><p>컴파일하고 업로드한다.</p>
+</li>
+</ol>
+<br>
+
+<h2 id="processing에서-실행하기"><a href="#processing에서-실행하기" class="headerlink" title="processing에서 실행하기"></a>processing에서 실행하기</h2><ol>
+<li><p>processing에서 실행버튼을 눌러 실행해보기</p>
+</li>
+<li><p><code>파일</code> → <code>어플리케이션으로 내보내기</code>를 선택하여 윈도우, Mac, Linux용 실행파일을 만들어보기</p>
+</li>
+</ol>
+<p>※ 어플리케이션으로 내보내기를 하기전에 processing sketch를 저장하여야 한다.</p>
+<br>
+
+<br>
+
+<h1 id="Processing으로-led-제어하기"><a href="#Processing으로-led-제어하기" class="headerlink" title="Processing으로 led 제어하기"></a>Processing으로 led 제어하기</h1><br>
+
+<h2 id="processing-sketch-사각형-스위치"><a href="#processing-sketch-사각형-스위치" class="headerlink" title="processing sketch : 사각형 스위치"></a>processing sketch : 사각형 스위치</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cc.arduino.*;</span><br><span class="line"><span class="keyword">import</span> org.firmata.*;</span><br><span class="line"><span class="keyword">import</span> processing.serial.*;</span><br><span class="line"></span><br><span class="line">Arduino arduino;</span><br><span class="line"><span class="keyword">int</span> ledPin = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">  background(<span class="number">0</span>);</span><br><span class="line">  fill(<span class="number">255</span>);</span><br><span class="line">  noStroke();</span><br><span class="line">  rect(width/<span class="number">2</span>, <span class="number">0</span>, width/<span class="number">2</span>, height);</span><br><span class="line">  text(<span class="string">&quot;LED OFF&quot;</span>, <span class="number">30</span>, <span class="number">30</span>);</span><br><span class="line">  fill(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  text(<span class="string">&quot;LED ON&quot;</span>, <span class="number">230</span>, <span class="number">30</span>);</span><br><span class="line">  </span><br><span class="line">  println(Arduino.list());</span><br><span class="line">  arduino = <span class="keyword">new</span> Arduino(<span class="keyword">this</span>, Arduino.list()[<span class="number">0</span>], <span class="number">57600</span>);</span><br><span class="line">  arduino.pinMode(ledPin, Arduino.OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(mouseX &lt; width/<span class="number">2</span>) &#123;</span><br><span class="line">    arduino.digitalWrite(ledPin, Arduino.LOW);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    arduino.digitalWrite(ledPin, Arduino.HIGH);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="processing-sketch-그라데이션-가변저항"><a href="#processing-sketch-그라데이션-가변저항" class="headerlink" title="processing sketch : 그라데이션 가변저항"></a>processing sketch : 그라데이션 가변저항</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cc.arduino.*;</span><br><span class="line"><span class="keyword">import</span> org.firmata.*;</span><br><span class="line"><span class="keyword">import</span> processing.serial.*;</span><br><span class="line"></span><br><span class="line">Arduino arduino;</span><br><span class="line"><span class="keyword">int</span> ledPin = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  size(<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;width; i++) &#123;</span><br><span class="line">    stroke(map(i, <span class="number">0</span>, width-<span class="number">1</span>, <span class="number">0</span>, <span class="number">255</span>)); <span class="comment">// 색깔을 점차 변화시키면서</span></span><br><span class="line">    line(i, <span class="number">0</span>, i, height);              <span class="comment">// 선을 그려, 그라데이션 효과를 만들어 냄</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  println(Arduino.list());</span><br><span class="line">  arduino = <span class="keyword">new</span> Arduino(<span class="keyword">this</span>, Arduino.list()[<span class="number">0</span>], <span class="number">57600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  arduino.analogWrite(ledPin, <span class="keyword">int</span>(map(mouseX, <span class="number">0</span>, width-<span class="number">1</span>, <span class="number">0</span>, <span class="number">255</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-11-01T09:27:53.000Z" title="2018. 11. 1. 오후 5:27:53">2018-11-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-10-19T02:10:02.956Z" title="2021. 10. 19. 오전 10:10:02">2021-10-19</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/drone/">drone</a></span><span class="level-item">19분안에 읽기 (약 2872 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/01/%EB%93%9C%EB%A1%A0%EC%9D%98-%EB%B9%84%ED%96%89-%EC%9B%90%EB%A6%AC/">드론의 비행 원리</a></h1><div class="content"><p>드론의 비행 원리를 이해하기 이전에, 먼저 헬리콥터의 비행원리를 알아보는 것이 좋습니다. </p>
+<br>
+
+<h3 id="헬리콥터의-비행-원리"><a href="#헬리콥터의-비행-원리" class="headerlink" title="헬리콥터의 비행 원리"></a>헬리콥터의 비행 원리</h3><p>헬리콥터의 비행과 관련된 4가지 힘은 그림과 같습니다.</p>
+<ul>
+<li>양력: 로터의 회전에 의해 발생하는 힘으로, 이를 조절하여 상승, 하강, 호버링을 할 수 있습니다.</li>
+<li>추력: 로터 회전면의 기울기를 조절하여 전진하려는 힘인 추력을 발생시키고, 이를 조절하여 가속 또는 감속을 조절합니다.</li>
+<li>항력</li>
+<li>중력</li>
+</ul>
+<p><img src="/image/Drone-01.png"></p>
+<br>
+
+<br>
+
+<h3 id="헬리콥터의-토크와-반토크"><a href="#헬리콥터의-토크와-반토크" class="headerlink" title="헬리콥터의 토크와 반토크"></a>헬리콥터의 토크와 반토크</h3><h4 id="헬리콥터-블레이드의-회전"><a href="#헬리콥터-블레이드의-회전" class="headerlink" title="헬리콥터 블레이드의 회전"></a>헬리콥터 블레이드의 회전</h4><p><strong>반시계</strong> 방향으로 회전하는 블레이드가 있다고 가정합니다. 이 블레이드가 빠른 속도로 회전하면 양력이 발생하여 상승하게 됩니다.</p>
+<p><img src="/image/Drone-02.png"></p>
+<br>
+
+<h4 id="헬리콥터의-토크"><a href="#헬리콥터의-토크" class="headerlink" title="헬리콥터의 토크"></a>헬리콥터의 토크</h4><p>그런데 블레이드 회전에 의해 생기는 토크(회전체에 매달려 있는 물체가 회전체의 반대방향으로 회전하려는 힘)도 함께 발생하죠. 즉, 블레이드가 (반시계방향으로) 빠른속도로 회전하면 양력이 발생하여 상승하게 되는데요. 이때 발생하는 토크(회전체에 매달려 있는 물체가 회전체의 반대방향으로 회전하려는 힘)로 인해 (양력에 의해 상승함과 동시에) 동체는 시계방향으로 회전하며 빙글빙글 돌게 됩니다.</p>
+<p><img src="/image/Drone-03.png"></p>
+<br>
+
+<h4 id="토크에-대한-반토크"><a href="#토크에-대한-반토크" class="headerlink" title="토크에 대한 반토크"></a>토크에 대한 반토크</h4><p>그러므로 동체가 회전하지 않도록 토크를 상쇄할 수 있는 반토크(anti-torque)를 만들어 주어야 합니다. 이를 위해 일반적으로 꼬리쪽에 작은 블레이드를 추가합니다. 꼬리블레이드가 회전하면 반토크를 만들 추진력이 생기고 이 힘으로 반토크를 만들어 낼 수 있습니다. 이렇게 되면 동체가 회전하지 않고 안정적으로 상승이 가능해지게 되는 것입니다.</p>
+<p><img src="/image/Drone-04.png"></p>
+<p>모든 헬리콥터는 토크와 반토크를 조절하여 동체가 회전하지 않고 안정적으로 운용될 수 있도록 하는 것이 가장 중요합니다.</p>
+<br>
+
+<h4 id="동축반전식-헬기"><a href="#동축반전식-헬기" class="headerlink" title="동축반전식 헬기"></a>동축반전식 헬기</h4><p>반토크를 만들어내는 또 다른 방식은 동축반전식 헬기입니다. 두 개의 블레이드를 위아래로 배치하고 서로 반대방향으로 회전시켜 양력을 얻음과 동시에 서로간의 토크를 상쇄하는 방식입니다.</p>
+<p><img src="/image/Drone-05.png"></p>
+<br>
+
+<h4 id="텐덤날개회전식-헬기"><a href="#텐덤날개회전식-헬기" class="headerlink" title="텐덤날개회전식 헬기"></a>텐덤날개회전식 헬기</h4><p>대형 헬리콥터에서는 동체 앞뒤로 2개의 로터로 회전방향을 반대로 하여 서로의 토크를 반토크로 이용하는 텐덤날개회전방식을 이용하기도 합니다.</p>
+<p><img src="/image/Drone-06.png"></p>
+<br>
+
+<h5 id="텐덤날개회전식-헬기의-원리"><a href="#텐덤날개회전식-헬기의-원리" class="headerlink" title="텐덤날개회전식 헬기의 원리"></a>텐덤날개회전식 헬기의 원리</h5><p>이것을 Top View로 나타내면 다음과 같습니다. 두개의 블레이드가 서로 반대방향으로 회전하면서 서로의 토크를 상쇄시켜주게 되는 것이죠.</p>
+<p><img src="/image/Drone-07.png"></p>
+<br>
+
+<br>
+
+<h3 id="드론"><a href="#드론" class="headerlink" title="드론"></a>드론</h3><p>드론의 경우도 마찬가지 입니다. 쿼드콥터 드론은 4개의 프롭를 사용하여 토크-반토크의 균형이 이루어집니다. 이 상태에서 프롭의 회전속도를 빠르게 증가시키면 양력이 발생하여 수직 상승이 이뤄지고 회전속도를 느리게 하면 양력과 중력이 균형을 이루는 호버링 상태를 만들 수 있습니다. 물론 회전속도를 보다 더 느리게 만들면 양력보다 중력이 커지게 되어 수직 하강하게 됩니다.</p>
+<p><img src="/image/Drone-08.png"></p>
+<br>
+
+<p>여기서 한가지 유의할 점은 프롭의 회전방향은 실제 모터의 SPEC에 표기된 회전방향과는 반대라는 것입니다. 즉, 위 그림에서 1,2번 프롭의 회전방향은 CCW이지만 실제로는 CW규격의 모터를 사용해야 합니다. 이것은 모터의 실제 회전방향과 모터에 끼워져있는 프롭의 회전방향을 외부에서 관측하는 방향이 서로 반대이기 때문입니다.</p>
+<br>
+
+<p>옛날에 사용한 단발프롭 비행기를 생각해보세요. 비행기 조종사가 조종석에 앉아 앞쪽의 프롭을 바라볼 때 관측되는 프롭의 회전방향이 실제 모터의 SPEC상 회전방향이며, 이 방향이 CCW라고 가정합니다. 이 상황을 프롭을 비행기에 끼우는 정비사가 (조종석을 마주보며 정면에서) 관측해보면 프롭 회전방향이 CW가 되겠지요. 조종사는 프롭이 CCW로 돈다고 이야기하고(실제 모터의 SPEC상 회전 방향), 프롭을 끼운 사람은 CW로 돌아가는 상태로 보고있으니 같은 상황을 서로 반대가 되는 것입니다.</p>
+<br>
+
+<p>또 다른 이유는 모터를 판매할 때에는 모터캡(프롭너트)이 나사산을 따라 조여지는 방향으로 표기하기 때문입니다. 그러므로 1,2번 모터에 모터캡(프롭너트)을 돌려 끼울때에는 CW방향으로 돌려서 끼워야 하고, 3,4번 모터에 돌려 끼울때에는 CCW방향으로 돌려서 끼워야 합니다. 1,2번 모터가 실제로 CCW방향으로 회전하고, 프롭 나사산은 CW방향으로 돌려서 끼워지기 때문에, 프롭이 회전할 때 절대로 풀릴 위험이 없습니다. 만약 두 방향이 똑같다면 프롭이 고속으로 회전하면서 빠질 위험이 있으므로 주의해야 합니다. 만약 보유하고 있는 4개 모터의 나사산 방향이 모두 똑같다면 두 가지 방법으로 문제를 해결할 수 있습니다. 첫째, 나사산 방향이 반대인 프롭어댑터를 2개 구입하거나, 둘째, 나이록(niloc, nilon)너트 혹은 나이록후렌지 너트를 사용하여 조여주어야 합니다.</p>
+<br>
+
+<p>모터의 한글표기도 주의해야 하는데요. 예를 들어 1,2번 모터에 표기된 SPEC이 CW인데, 이 모터를 한글로 표기하거나 지칭할 때에는 SPEC에 표기된 방향이 아니라 (위에서 내려다 볼 때 보이는) 프롭의 회전방향에 맞춰 ‘역방향모터’라고 부릅니다. 마찬가지로 3,4번 모터를 ‘정방향모터’라고 합니다. 표기방법이 혼란스러운 면이 있다보니 역방향, 정방향을 반대로 표기하는 경우도 많아요. 그러므로 모터 구입시에는 모터에 표기된 SPEC을 보고 구입하는 것이 좋습니다.</p>
+<br>
+
+<p>이와 더불어 드론 조립 시에는 각 모터별로 어떤 모양의 프롭을 사용해야 하는지 유의해야 합니다. 프롭을 모터축에 꼽은 상태에서 프롭면을 보면 프롭면이 위로 올라온 부분과 아래로 내려간 부분이 있는데 이 방향을 주의해서 보아야 합니다. 기본 원칙은 드론의 프롭회전을 위에서 내려다보는 입장에서 프롭면이 위로 올라온 부분으로 회전이 이루어져야 양력이 발생한다는 것입니다. </p>
+<p><img src="/image/Drone-09.png"></p>
+<br>
+
+<h4 id="드론의-운행-모드"><a href="#드론의-운행-모드" class="headerlink" title="드론의 운행 모드"></a>드론의 운행 모드</h4><p>이제 드론의 운행이 어떻게 이루어지는지 알아보겠습니다.</p>
+<ul>
+<li><p>상승(Ascend) 모드: 4개의 모터가 고석으로 회전하면 수직으로 상승</p>
+</li>
+<li><p>호버링(Hovering) : 4개의 모터가 중력과 평형인 양력을 만들어내는 정도의 속력으로 회전하며 상하고도를 안정적으로 유지</p>
+</li>
+<li><p>하강(Descend) 모드: 4개의 모터가 저속으로 회전하면 수직으로 하강</p>
+</li>
+</ul>
+<p>상승, 하강과 같은 수직 운행은 조종기의 왼쪽 스틱인 Throttle을 사용합니다. (Mode2 기준)</p>
+<br>
+
+<h5 id="상승"><a href="#상승" class="headerlink" title="상승"></a>상승</h5><p><img src="/image/Drone-10.png"></p>
+<br>
+
+<h5 id="호버링"><a href="#호버링" class="headerlink" title="호버링"></a>호버링</h5><p><img src="/image/Drone-11.png"></p>
+<br>
+
+<h5 id="하강"><a href="#하강" class="headerlink" title="하강"></a>하강</h5><p><img src="/image/Drone-12.png"></p>
+<br>
+
+<h5 id="전진"><a href="#전진" class="headerlink" title="전진"></a>전진</h5><p>전방의 1,3번 모터보다 후방의 2,4번 모터를 빠르게 회전시키면 토크가 상쇄된 상태에서 후방모터에서 생긴 추력에 의해 전방으로 날아가게 됩니다.</p>
+<p><img src="/image/Drone-13.png"></p>
+<br>
+
+<p>이때 드론의 모습을 측면에서 보면 2,4번 후방모터가 고속으로 회전하며 드론의 동체가 전방으로 기울진 형태가 됩니다. 이렇게 드론면이 기울어지게 되면 드론이 수평을 이루고 있을 때보다 상승하려는 양력이 약해지는데, 이 양력이 중력과 평형을 이루게 되면서 일정한 고도를 유지하게 됩니다. 이때 앞으로 전진하려는 추진력이 남게 되므로 드론이 전방으로 전진하게 되는 것입니다.</p>
+<p><img src="/image/Drone-14.png"></p>
+<p>기울어진 정도를 더 크게 하면 어떻게 될까요? 위로 떠오르려는 양력은 더 작아지고 전진하려는 추력은 커지므로, 하강하면서 더 빠르게 전진하는 형태가 될 것입니다.’ 만약 고도를 유지하며 더 빠른 전진형태를 만들려면 양력을 보충해야 하므로 기울기를 크게 하고 모터의 회전을 더 빠르게 해주면 됩니다.</p>
+<br>
+
+<h5 id="후진"><a href="#후진" class="headerlink" title="후진"></a>후진</h5><p><img src="/image/Drone-15.png"></p>
+<p>전진, 후진 같은 수평 운행은 조종기의 오른쪽 스틱을 위아래로 움직이며, 이를 Pitch(=Elevator)라고 합니다. (Mode2 기준)</p>
+<br>
+
+<h5 id="왼쪽으로-이동-Roll-Left"><a href="#왼쪽으로-이동-Roll-Left" class="headerlink" title="왼쪽으로 이동(Roll Left)"></a>왼쪽으로 이동(Roll Left)</h5><p><img src="/image/Drone-16.png"></p>
+<br>
+
+<h5 id="오른쪽으로-이동-Roll-Right"><a href="#오른쪽으로-이동-Roll-Right" class="headerlink" title="오른쪽으로 이동(Roll Right)"></a>오른쪽으로 이동(Roll Right)</h5><p><img src="/image/Drone-17.png"></p>
+<p>왼쪽, 오른쪽 이동 같은 수평 운행은 조종기의 오른쪽 스틱을 좌우로 움직이며, 이를 Roll(=Aileron)이라고 합니다. (Mode2 기준)</p>
+<br>
+
+<h5 id="좌회전-비행"><a href="#좌회전-비행" class="headerlink" title="좌회전 비행"></a>좌회전 비행</h5><p>CCW로 회전하는 1,2번 모터가 저속으로 회전할 때, CW로 회전하는 3,4번 모터가 고속으로 회전하면 알짜회전이 CW가 되므로, CCW방향으로 토크가 발생하여 드론 동체가 CCW방향으로 회전한다. </p>
+<p><img src="/image/Drone-18.png"></p>
+<br>
+
+<h5 id="우회전-비행"><a href="#우회전-비행" class="headerlink" title="우회전 비행"></a>우회전 비행</h5><p>CW로 회전하는 3,4번 모터가 저속으로 회전할 때, CCW로 회전하는 1,2번 모터가 고속으로 회전하면 알짜회전이 CCW가 되므로, CW방향으로 토크가 발생하므로 드론 동체가 CW방향으로 회전한다. </p>
+<p><img src="/image/Drone-19.png"></p>
+<p>이러한 제자리 회전은 조종기의 왼쪽 스틱을 좌우로 움직이며, 이를 Yaw(=Rudder)라고 합니다. (Mode2 기준)</p>
+<br>
+
+<br>
+
+<h4 id="조종기-MODE"><a href="#조종기-MODE" class="headerlink" title="조종기 MODE"></a>조종기 MODE</h4><p>MODE1은 MODE2와 Throttle과 Pitch가 서로 반대입니다. MODE1은 과거에 많이 사용되었으나 요즘은 MODE2를 주로 사용합니다. 어떤 것이 더 좋다기 보다는 각기 운용의 장단점이 있으므로 사용자가 판단하여 사용하면 됩니다.</p>
+<br>
+
+<p><img src="/image/Drone-20.png"></p>
+<br>
+
+<p><img src="/image/Drone-21.png"></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/default-index/page/2/">이전</a></div><div class="pagination-next"><a href="/default-index/page/4/">다음</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/default-index/">1</a></li><li><a class="pagination-link" href="/default-index/page/2/">2</a></li><li><a class="pagination-link is-current" href="/default-index/page/3/">3</a></li><li><a class="pagination-link" href="/default-index/page/4/">4</a></li><li><a class="pagination-link" href="/default-index/page/5/">5</a></li></ul></nav></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-72x72 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">48</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/esp32/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-06T15:35:51.316Z">2021-11-07</time></p><p class="title"><a href="/2021/11/06/hello-world/">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-09-26T09:27:53.000Z">2021-09-26</time></p><p class="title"><a href="/2021/09/26/ESP32-OLED/">ESP32, OLED (한글 출력 하기)</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">4</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">업데이트 소식 받기</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="구독"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="stemwith" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
