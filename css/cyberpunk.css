@@ -10819,7 +10819,7 @@ article.article .title {
 }
 article.article .content {
   word-wrap: break-word;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.75em;
   letter-spacing: -0.3px;
   color: #5d686f;
@@ -10996,7 +10996,7 @@ a.article-nav-next span {
   }
 }
 .navbar-logo img {
-  max-height: 1.75rem;
+  max-height: 2rem;
 }
 @media screen and (max-width: 768px) {
   footer.footer .level-start {
@@ -11014,7 +11014,7 @@ footer.footer .level-end .field {
   }
 }
 .footer-logo img {
-  max-height: 1.75rem;
+  max-height: 2rem;
 }
 .pagination {
   margin-top: 1.5rem;

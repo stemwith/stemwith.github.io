@@ -680,7 +680,7 @@
 
 <p>​    스마트폰의 TERMINAL에 Good morning! 이 출력됩니다.</p>
 <p><img src="/image/BTserialapp-17.jpg"></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-09-01T09:27:53.000Z" title="2019. 9. 1. 오후 5:27:53">2019-09-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-07T12:13:40.644Z" title="2021. 11. 7. 오후 8:13:40">2021-11-07</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/diy/">diy</a></span><span class="level-item">29분안에 읽기 (약 4288 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a></h1><div class="content"><h3 id="필수-요소"><a href="#필수-요소" class="headerlink" title="필수 요소"></a>필수 요소</h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-09-01T09:27:53.000Z" title="2019. 9. 1. 오후 5:27:53">2019-09-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-08T14:04:32.786Z" title="2021. 11. 8. 오후 10:04:32">2021-11-08</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/diy/">diy</a></span><span class="level-item">29분안에 읽기 (약 4386 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a></h1><div class="content"><h3 id="필수-요소"><a href="#필수-요소" class="headerlink" title="필수 요소"></a>필수 요소</h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
 <ul>
 <li>git</li>
 <li>github.com에 repository 2개 생성하기<ul>
@@ -896,6 +896,13 @@
 <li>hexo server에서는 최신 css 상태를 반영하는데, 그런데 실제로 배포될 때는 css파일이 갱신이 안된다.</li>
 <li>그러므로 public/css/default.css 파일을 삭제하고, 다시 <code>hexo generate</code>로 생성한 후 배포한다.</li>
 </ul>
+<br>
+
+<h4 id="link-hover-컬러-변경"><a href="#link-hover-컬러-변경" class="headerlink" title="link, hover 컬러 변경"></a>link, hover 컬러 변경</h4><ul>
+<li>link, link-visited 컬러가 blue와 purple로 지정되어 있는 것이 어울리는것 같지 않아 grey-darker와 grey-light로 변경 </li>
+</ul>
+<figure class="highlight plaintext"><figcaption><span>node_modules/bulma-stylus/stylus/utilities/derived-variables.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// Link colors</span><br><span class="line"></span><br><span class="line">$link ?= $grey-darker</span><br><span class="line">$link-invert ?= findColorInvert($link)</span><br><span class="line">$link-light ?= findLightColor($link)</span><br><span class="line">$link-dark ?= findDarkColor($link)</span><br><span class="line">$link-visited ?= $grey-dark</span><br><span class="line"></span><br><span class="line">$link-hover ?= $grey-darker</span><br><span class="line">$link-hover-border ?= $grey-light</span><br><span class="line"></span><br><span class="line">$link-focus ?= $grey-darker</span><br><span class="line">$link-focus-border ?= $blue</span><br><span class="line"></span><br><span class="line">$link-active ?= $grey-darker</span><br><span class="line">$link-active-border ?= $grey-dark</span><br></pre></td></tr></table></figure>
+
 <br>
 
 <br>
