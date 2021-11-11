@@ -991,7 +991,7 @@
 <br>
 
 <p><strong>툴</strong>&gt; <strong>시리얼 모니터</strong>(혹은 Ctrl-Shift-M) 에서 확인한다.</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-09-06T02:12:00.000Z" title="2018. 9. 6. 오전 10:12:00">2018-09-06</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-10T12:38:25.289Z" title="2021. 11. 10. 오후 8:38:25">2021-11-10</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">15분안에 읽기 (약 2193 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/">Arduino, IR 리모컨</a></h1><div class="content"><p>생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아본다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요하다.</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-09-06T02:12:00.000Z" title="2018. 9. 6. 오전 10:12:00">2018-09-06</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-10T12:50:37.437Z" title="2021. 11. 10. 오후 8:50:37">2021-11-10</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">15분안에 읽기 (약 2198 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/06/Arduino-IR-%EB%A6%AC%EB%AA%A8%EC%BB%A8/">Arduino, IR 리모컨</a></h1><div class="content"><p>생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아본다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요하다.</p>
 <br>
 
 <h3 id="기본-사용법"><a href="#기본-사용법" class="headerlink" title="기본 사용법"></a>기본 사용법</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/remote.png" style="zoom:80%;">       <img src="/image/remote-controller.png" style="zoom: 67%;"></p>
@@ -1054,7 +1054,7 @@
 <li>old MSB-first 32bit IR data code</li>
 <li>new LSB-first 32bit IR data code</li>
 </ul>
-<p>리모컨 코드값은 위의 2가지 형태로 구분된다. 여기서는 기본적으로 MSD-first 방식을 사용하도록 한다. 아래 스케치를 이용하면 간단하게 MSB-first code 값만 출력된다. (시리얼 모니터 Baudrate 115200)</p>
+<p>리모컨 코드값은 위의 2가지 형태로 구분된다. 여기서는 기본적으로 MSB-first 방식을 사용하도록 한다. 아래 스케치를 이용하면 간단하게 MSB-first code 값만 출력된다. (시리얼 모니터 Baudrate 115200)</p>
 <br>
 
 <h5 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RECV_PIN  = <span class="number">2</span>;                       <span class="comment">// IR 리시버 핀 설정</span></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;                 <span class="comment">// IR 리시버 선언</span></span><br><span class="line">decode_results results;                  <span class="comment">// 수신결과 저장</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  irrecv.enableIRIn();                   <span class="comment">// IR 리시버 시작</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(irrecv.decode(&amp;results)) &#123;          <span class="comment">// 리시버가 받은 값이 있으면</span></span><br><span class="line">    Serial.print(<span class="string">&quot;0x&quot;</span>);</span><br><span class="line">    Serial.println(results.value, HEX);  <span class="comment">// 버튼 HEX값을 콘솔에 출력</span></span><br><span class="line">    delay(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">    irrecv.resume();                     <span class="comment">// 다음 값을 받기 위해 준비</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1162,9 +1162,10 @@
 
 <h3 id="리모컨으로-서보모터-회전시키기"><a href="#리모컨으로-서보모터-회전시키기" class="headerlink" title="리모컨으로 서보모터 회전시키기"></a>리모컨으로 서보모터 회전시키기</h3><p>3개의 리모컨 버튼을 정의하여 각 버튼을 통해 서버모터를 회전시켜 본다.</p>
 <ul>
+<li>  초기 위치 90도</li>
 <li>  Left 버튼을 누르면 5도 감소</li>
 <li>  Right 버튼을 누르면 5도 증가</li>
-<li>  OK 버튼을 누르면 0도 위치로 이동</li>
+<li>  OK 버튼을 누르면 90도 위치로 이동</li>
 </ul>
 <br>
 
