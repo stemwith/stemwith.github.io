@@ -9,6 +9,22 @@
 
 
     <url>
+        <loc>http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/</loc>
+        <lastmod>2021-11-16T02:48:59.046Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://stemwith.github.io/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</loc>
+        <lastmod>2021-11-16T02:46:37.578Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://stemwith.github.io/2018/09/01/Arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</loc>
         <lastmod>2021-11-12T12:38:15.392Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -217,14 +233,6 @@
     </url>
 
     <url>
-        <loc>http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/</loc>
-        <lastmod>2021-09-20T11:44:00.749Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://stemwith.github.io/2019/10/20/Arduino-Bluetooth-Blynk/</loc>
         <lastmod>2021-09-20T11:42:20.286Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -339,14 +347,6 @@
     <url>
         <loc>http://stemwith.github.io/2019/10/18/Blynk%EC%97%90-%EC%84%BC%EC%84%9C%EA%B0%92-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/</loc>
         <lastmod>2021-09-19T01:01:30.210Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://stemwith.github.io/2019/10/17/Bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</loc>
-        <lastmod>2021-09-19T01:01:07.074Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
