@@ -9,11 +9,11 @@
     <atom:link href="http://stemwith.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>for stem education</description>
-    <pubDate>Wed, 17 Nov 2021 03:40:45 GMT</pubDate>
+    <pubDate>Thu, 18 Nov 2021 00:41:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>알코올램프 받침대 3D프린팅</title>
+      <title>알코올 램프 안전 손잡이 받침대 3D프린팅</title>
       <link>http://stemwith.github.io/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/</link>
       <guid>http://stemwith.github.io/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/</guid>
       <pubDate>Mon, 15 Nov 2021 08:57:00 GMT</pubDate>
@@ -35,32 +35,6 @@
       
       
       <comments>http://stemwith.github.io/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>알코올램프 받침대 3D프린팅</title>
-      <link>http://stemwith.github.io/2021/11/15/%EC%95%8C%EC%BD%94%EC%98%AC%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/</link>
-      <guid>http://stemwith.github.io/2021/11/15/%EC%95%8C%EC%BD%94%EC%98%AC%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/</guid>
-      <pubDate>Mon, 15 Nov 2021 08:57:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;학교에서 알코올 램프를 사용할 때 겪는 불편한 문제 중 하나. 삼발이가 뜨거워져서 알코올 램프를 끌 때, 손 등 부분이 삼발이에 닿아서 데이기 쉽다는 것이다. 이 때문에 한국에서는 알코올 램프를 끼워 안전하게 쓸 수 있는 받침대를 구입하여 사용하</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>학교에서 알코올 램프를 사용할 때 겪는 불편한 문제 중 하나. 삼발이가 뜨거워져서 알코올 램프를 끌 때, 손 등 부분이 삼발이에 닿아서 데이기 쉽다는 것이다. 이 때문에 한국에서는 알코올 램프를 끼워 안전하게 쓸 수 있는 받침대를 구입하여 사용하곤 했다.</p><p>그런데 온갖 잡동사니를 다 팔고 있는 중국 타오바오를 아무리 뒤져보아도 막상 이런 형태의 알코올 램프 받침대를 찾을 수가 없었다. 그동안 사용했던 받침대들이 깨지고, 열에 의해 변형되어 새로 구입을 하기는 해야하는데, 어떻게 할까 생각하다가…</p><br><h4 id="STL파일-제작"><a href="#STL파일-제작" class="headerlink" title="STL파일 제작"></a>STL파일 제작</h4><p>STEAM 활동을 하고 있는 학생을 통해 3d 프린팅을 하기로 했다. 아래 그림이 황정○ 학생이 설계한 <a href="/attach/lamp-cover-with-steam.stl">STL파일</a>이다.</p><table><thead><tr><th align="center"><img src="../image/3d/alcohollamp-02.png" style="zoom:67%;" /></th><th align="center"><img src="../image/3d/alcohollamp-01.png" style="zoom:67%;" /></th></tr></thead></table><br><h4 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h4><ul><li><p>알코올 램프를 끼워 넣은 후, 손잡이를 통해 쉽게 옮길 수 있도록 되어 있다. </p></li><li><p>알코올 램프가 잘 빠지지 않는 경우, 밑면에 뚫려 있는 구멍을 통해 위쪽으로 램프를 밀어내어 뺄 수 있도록 하였고,</p></li><li><p> 한쪽 옆면에는 렘프에 남아있는 알코올의 잔량을 쉽게 확인할 수 있도록 구멍을 만들어 놓았다.</p></li></ul><br><h4 id="3D-프린팅한-제품"><a href="#3D-프린팅한-제품" class="headerlink" title="3D 프린팅한 제품"></a>3D 프린팅한 제품</h4><table><thead><tr><th align="center"><img src="../image/3d/alcohollamp-03.png" style="zoom:67%;" /></th><th align="center"><img src="../image/3d/alcohollamp-04.png" style="zoom:67%;" /></th></tr></thead></table><br><p>영롱하다.</p>]]></content:encoded>
-      
-      
-      <category domain="http://stemwith.github.io/categories/science/">Science</category>
-      
-      
-      <category domain="http://stemwith.github.io/tags/3d/">3D</category>
-      
-      
-      <comments>http://stemwith.github.io/2021/11/15/%EC%95%8C%EC%BD%94%EC%98%AC%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/#disqus_thread</comments>
       
     </item>
     
@@ -514,6 +488,32 @@
       
       
       <comments>http://stemwith.github.io/2019/10/23/ESP32-BLE-Blynk-Gauge/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>esp32 BLE, Blynk Slider (PWM)</title>
+      <link>http://stemwith.github.io/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/</link>
+      <guid>http://stemwith.github.io/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/</guid>
+      <pubDate>Tue, 22 Oct 2019 14:55:21 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h3 id=&quot;ESP32와-Blynk에서의-PWM-사용&quot;&gt;&lt;a href=&quot;#ESP32와-Blynk에서의-PWM-사용&quot; class=&quot;headerlink&quot; title=&quot;ESP32와 Blynk에서의 PWM 사용&quot;&gt;&lt;/a&gt;ESP32와 Blynk에서의 PWM </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h3 id="ESP32와-Blynk에서의-PWM-사용"><a href="#ESP32와-Blynk에서의-PWM-사용" class="headerlink" title="ESP32와 Blynk에서의 PWM 사용"></a>ESP32와 Blynk에서의 PWM 사용</h3><p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p><ul><li>  Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li><li>  Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li><li>  ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li></ul><br><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/blynk-pwm-01.png"></p><p>※ LED모듈을 사용하는 경우 저항이 필요없다.</p><br><h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_FREQ        5000 <span class="comment">// Hz</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_CHANNEL_0   0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEDC_RESOLUTION  12   <span class="comment">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// led Pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">19</span>;</span><br><span class="line">    </span><br><span class="line">BLYNK_WRITE(V5)           <span class="comment">// widget virtual pin5 -&gt; ESP32</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> value_V5 = param.asInt();</span><br><span class="line">  ledcWrite(LEDC_CHANNEL_0, value_V5);</span><br><span class="line">  Serial.print(<span class="string">&quot;V5 value: &quot;</span>); Serial.println(value_V5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">  ledcSetup(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// attach the same channel to the GPIO to be controlled</span></span><br><span class="line">  ledcAttachPin(pin_ledR, LEDC_CHANNEL_0);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Blynk.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><h4 id="sketch-분석"><a href="#sketch-분석" class="headerlink" title="sketch 분석"></a>sketch 분석</h4><p>Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.</p><br><ol><li>LED가 연결되어 있는 ESP32 핀</li></ol><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pin_ledR = <span class="number">19</span>;</span><br></pre></td></tr></table></figure><br><ol start="2"><li>Blynk App에서 ESP32로 신호를 보내는 Virtual 핀</li></ol><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_WRITE(V5) &#123;                          <span class="comment">// widget virtual pin(V5) -&gt; ESP32</span></span><br><span class="line">  <span class="keyword">int</span> value_V5 = param.asInt();            <span class="comment">// V5로 지정된 위젯의 값을 읽고</span></span><br><span class="line">  ledcWrite(LEDC_CHANNEL_0, value_V5);     <span class="comment">// PWM 채널0으로 보냄</span></span><br><span class="line">  Serial.print(<span class="string">&quot;V5 value: &quot;</span>); Serial.println(value_V5);     <span class="comment">// 시리얼모니터에 출력</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><ol start="3"><li>LED에 PWM 신호 출력 (밝기 조절)</li></ol><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// configure LED PWM functionalitites</span></span><br><span class="line">ledcSetup(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);</span><br><span class="line"></span><br><span class="line"><span class="comment">// attach the same channel to the GPIO to be controlled</span></span><br><span class="line">ledcAttachPin(pin_ledR, LEDC_CHANNEL_0);</span><br></pre></td></tr></table></figure><br><h3 id="Blynk-App-설정"><a href="#Blynk-App-설정" class="headerlink" title="Blynk App 설정"></a>Blynk App 설정</h3><ol><li>Button 위젯을 삭제한다. (그냥 두어도 관계없음)</li></ol><img src="/image/blynk-pwm-02.png" style="zoom:33%;" /><br><img src="/image/blynk-pwm-03.png" style="zoom:33%;" /><br><img src="/image/blynk-pwm-04.png" style="zoom:33%;" /><br><ol start="2"><li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Slider 위젯을 추가한다.</li></ol><img src="/image/blynk-pwm-05.png" style="zoom:33%;" /><br><ol start="3"><li>프로젝트 바탕화면의 Slider 위젯을 누른다.</li></ol><img src="/image/blynk-pwm-06.png" style="zoom:33%;" /><br><ol start="4"><li>Slider 설정화면이 나오면,</li></ol><img src="/image/blynk-pwm-07.png" style="zoom:33%;" /><br><p>PIN을 누르고 사용할 Virual 핀을 선택한 뒤 OK버튼을 누른다. (여기서는 V5선택)</p><img src="/image/blynk-pwm-08.png" style="zoom:33%;" /><br><img src="/image/blynk-pwm-09.png" style="zoom:33%;" /><br><ol start="5"><li>다음 3가지를 추가로 설정한다.<ul><li>OUTPUT 범위 : 0 ~ 4095 (12bit 사용시)</li><li>SEND ON RELEASE : OFF (OFF 선택시 Slide를 조절하는 즉시 실시간으로 출력값 반영되며, ON 선택시 Slide에서 손가락을 떼면 출력값이 반영된다.)</li><li>WRITE INTERVAL : SEND ON RELEASE를 OFF로 선택시 나타나며, 100ms가 가장 작은 값이다.</li></ul></li></ol><br><img src="/image/blynk-pwm-10.png" style="zoom:33%;" /><br><p>설정을 모두 마치면 상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</p><br><ol start="6"><li>Slider 위젯을 1초이상 누르고 있으면 위젯의 위치와 크기를 조절할 수 있다. 위젯의 위치를 아래로 내리고 가로폭의 크기를 늘려본다.</li></ol><img src="/image/blynk-pwm-11.png" style="zoom:33%;" /><br><img src="/image/blynk-pwm-12.png" style="zoom:33%;" /><br><ol start="7"><li>이제 플레이(▷) 버튼을 누르고 Slide를 조절해본다.</li></ol><img src="/image/blynk-pwm-13.png" style="zoom:33%;" /><br><p>Slide값에 따라 LED의 밝기가 조절된다.</p><img src="/image/blynk-pwm-14.png" style="zoom:33%;" /><br><img src="/image/blynk-pwm-15.png" style="zoom:33%;" /><br><ol start="8"><li>Slider를 조절하는 동안 Arduino IDE의 시리얼 모니터값을 확인해볼 수 있다.</li></ol><p><img src="/image/blynk-pwm-16.png"></p>]]></content:encoded>
+      
+      
+      <category domain="http://stemwith.github.io/categories/esp32/">esp32</category>
+      
+      
+      <category domain="http://stemwith.github.io/tags/iot/">iot</category>
+      
+      
+      <comments>http://stemwith.github.io/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/#disqus_thread</comments>
       
     </item>
     
