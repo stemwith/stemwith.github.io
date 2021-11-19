@@ -9,7 +9,7 @@
     <atom:link href="http://stemwith.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>for stem education</description>
-    <pubDate>Thu, 18 Nov 2021 00:41:06 GMT</pubDate>
+    <pubDate>Fri, 19 Nov 2021 03:02:33 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -25,7 +25,7 @@
       
       
       
-      <content:encoded><![CDATA[<p>학교에서 알코올 램프를 사용할 때 겪는 불편한 문제 중 하나. 삼발이가 뜨거워져서 알코올 램프를 끌 때, 손 등 부분이 삼발이에 닿아서 데이기 쉽다는 것이다. 이 때문에 한국에서는 알코올 램프를 끼워 안전하게 쓸 수 있는 받침대를 구입하여 사용하곤 했다.</p><p>그런데 온갖 잡동사니를 다 팔고 있는 중국 타오바오를 아무리 뒤져보아도 막상 이런 형태의 알코올 램프 받침대를 찾을 수가 없었다. 그동안 사용했던 받침대들이 깨지고, 열에 의해 변형되어 새로 구입을 하기는 해야하는데, 어떻게 할까 생각하다가…</p><br><h4 id="STL파일-제작"><a href="#STL파일-제작" class="headerlink" title="STL파일 제작"></a>STL파일 제작</h4><p>STEAM 활동을 하고 있는 학생을 통해 3d 프린팅을 하기로 했다. 아래 그림이 황정○ 학생이 설계한 <a href="/attach/lamp-cover-with-steam.stl">STL파일</a>이다.</p><table><thead><tr><th align="center"><img src="../image/3d/alcohollamp-02.png" style="zoom:67%;" /></th><th align="center"><img src="../image/3d/alcohollamp-01.png" style="zoom:67%;" /></th></tr></thead></table><br><h4 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h4><ul><li><p>알코올 램프를 끼워 넣은 후, 손잡이를 통해 쉽게 옮길 수 있도록 되어 있다. </p></li><li><p>알코올 램프가 잘 빠지지 않는 경우, 밑면에 뚫려 있는 구멍을 통해 위쪽으로 램프를 밀어내어 뺄 수 있도록 하였고,</p></li><li><p> 한쪽 옆면에는 렘프에 남아있는 알코올의 잔량을 쉽게 확인할 수 있도록 구멍을 만들어 놓았다.</p></li></ul><br><h4 id="3D-프린팅한-제품"><a href="#3D-프린팅한-제품" class="headerlink" title="3D 프린팅한 제품"></a>3D 프린팅한 제품</h4><table><thead><tr><th align="center"><img src="../image/3d/alcohollamp-03.png" style="zoom:67%;" /></th><th align="center"><img src="../image/3d/alcohollamp-04.png" style="zoom:67%;" /></th></tr></thead></table><br><p>영롱하다.</p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>학교에서 알코올 램프를 사용할 때 겪는 불편한 문제 중 하나. 삼발이가 뜨거워져서 알코올 램프를 끌 때, 손 등 부분이 삼발이에 닿아서 데이기 쉽다는 것이다. 이 때문에 한국에서는 알코올 램프를 끼워 안전하게 쓸 수 있는 받침대를 구입하여 사용하곤 했다.</p><p>그런데 온갖 잡동사니를 다 팔고 있는 중국 타오바오를 아무리 뒤져보아도 막상 이런 형태의 알코올 램프 받침대를 찾을 수가 없었다. 그동안 사용했던 받침대들이 깨지고, 열에 의해 변형되어 새로 구입을 하기는 해야하는데, 어떻게 할까 생각하다가…</p><br><h4 id="STL파일-제작"><a href="#STL파일-제작" class="headerlink" title="STL파일 제작"></a>STL파일 제작</h4><p>STEAM 활동을 하고 있는 학생을 통해 3d 프린팅을 하기로 했다. 아래 그림이 황정○ 학생이 설계한 <a href="/attach/lamp-cover-with-steam.stl">STL파일</a>이다.</p><table><thead><tr><th align="center"><img src="/image/3d/alcohollamp-02.png" style="zoom:67%;" /></th><th align="center"><img src="/image/3d/alcohollamp-01.png" style="zoom:67%;" /></th></tr></thead></table><br><h4 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h4><ul><li><p>알코올 램프를 끼워 넣은 후, 손잡이를 통해 쉽게 옮길 수 있도록 되어 있다. </p></li><li><p>알코올 램프가 잘 빠지지 않는 경우, 밑면에 뚫려 있는 구멍을 통해 위쪽으로 램프를 밀어내어 뺄 수 있도록 하였고,</p></li><li><p> 한쪽 옆면에는 렘프에 남아있는 알코올의 잔량을 쉽게 확인할 수 있도록 구멍을 만들어 놓았다.</p></li></ul><br><h4 id="3D-프린팅한-제품"><a href="#3D-프린팅한-제품" class="headerlink" title="3D 프린팅한 제품"></a>3D 프린팅한 제품</h4><table><thead><tr><th align="center"><img src="/image/3d/alcohollamp-03.png" style="zoom:67%;" /></th><th align="center"><img src="/image/3d/alcohollamp-04.png" style="zoom:67%;" /></th></tr></thead></table><br><p>영롱하다.</p>]]></content:encoded>
       
       
       <category domain="http://stemwith.github.io/categories/science/">Science</category>
