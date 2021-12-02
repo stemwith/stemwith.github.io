@@ -4,7 +4,531 @@
         gtag('js', new Date());
     
         gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="Welcome to "stemwith"" type="application/rss+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">태그</a></li><li class="is-active"><a href="#" aria-current="page">rc</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-11-01T09:27:53.000Z" title="2021. 11. 1. 오후 5:27:53">2021-11-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:30:55.423Z" title="2021. 11. 17. 오전 11:30:55">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">ESP32</a></span><span class="level-item">13분안에 읽기 (약 1938 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></h1><div class="content"><h3 id="DC모터-사용하기"><a href="#DC모터-사용하기" class="headerlink" title="DC모터 사용하기"></a>DC모터 사용하기</h3><p>아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.</p>
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">태그</a></li><li class="is-active"><a href="#" aria-current="page">rc</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-12-02T09:27:53.000Z" title="2021. 12. 2. 오후 5:27:53">2021-12-02</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-12-02T13:37:50.882Z" title="2021. 12. 2. 오후 9:37:50">2021-12-02</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">ESP32</a></span><span class="level-item">28분안에 읽기 (약 4270 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></h1><div class="content"><h3 id="샤시-조립"><a href="#샤시-조립" class="headerlink" title="샤시 조립"></a>샤시 조립</h3><h4 id="샤시-부품"><a href="#샤시-부품" class="headerlink" title="샤시 부품"></a>샤시 부품</h4><table>
+<thead>
+<tr>
+<th align="center">번호</th>
+<th align="center">부품</th>
+<th align="center">사진</th>
+<th align="center">수량</th>
+<th align="center">용도 및 참고사항</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">전륜 회전축</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-14.png" style="zoom: 67%;"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">베어링(대)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-18.png" style="zoom: 80%;"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">스티어링 컵</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-08.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">커플러 고정핀</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-16.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">베어링(중)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-19.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">(전륜) 육각 커플러</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-15.png" style="zoom:80%;"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">휠</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-01.png"></td>
+<td align="center">4</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">나이록 너트(M4)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-22.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">십자형 육각 복스</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-17.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">볼 조인트 커넥팅 로드</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-09.png"></td>
+<td align="center">1</td>
+<td align="center">홀 간격 80.5mm 유지</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">볼 조인트 커넥팅 로드</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-35.png"></td>
+<td align="center">1</td>
+<td align="center">홀 간격 51mm 유지</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">서보모터<br>MG996R</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-54.png" style="zoom: 67%;"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">ㄴ자 서보모터 브라켓</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-11.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">휠 베이스 고정판</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-12.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">서보 혼</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-25.png"></td>
+<td align="center">1</td>
+<td align="center">(볼트 포함)</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="center">나이록 너트<br>(M2.5)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-23.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="center">샤시 하판</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-03.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="center">DC엔코더 모터 &amp; 커넥터</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-04.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="center">모터 브라켓</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-07.png" style="zoom:67%;"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">20</td>
+<td align="center">샤프트</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-10.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">21</td>
+<td align="center">써클립</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-24.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">샤프트 베어링</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-21.png"></td>
+<td align="center">4</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">기어<br>(무두볼트(Set Screw) 포함)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-05.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">24</td>
+<td align="center">육각 샤프트 커플링 커넥터</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-06.png"></td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">범퍼</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-02.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">26</td>
+<td align="center">샤시 상판</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-34.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center">락스위치</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-20.png"></td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">28</td>
+<td align="center">황동 육각 스터드<br>(M3×22mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-26.png"></td>
+<td align="center">6</td>
+<td align="center">휠 베이스 고정용 4개, 상판 고정용 2개</td>
+</tr>
+<tr>
+<td align="center">29</td>
+<td align="center">황동 육각 스터드<br>(M3×16mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-27.png"></td>
+<td align="center">2</td>
+<td align="center">범퍼 고정용 2개</td>
+</tr>
+<tr>
+<td align="center">30</td>
+<td align="center">볼트<br>(Pan head, M4×6mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-32.png"></td>
+<td align="center">6</td>
+<td align="center">모터 브라켓과 샤시 하판 고정용 6개</td>
+</tr>
+<tr>
+<td align="center">31</td>
+<td align="center">볼트<br>(Bind-Washer head, M3×6mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-28.png">  <img src="/image/r/ESP32-RC-Car-28.png"></td>
+<td align="center">10</td>
+<td align="center">서보모터와 서보모터 브라켓 고정용 4개, 서보모터 브라켓과 샤시하판 고정용 4개, 범퍼 고정용 2개</td>
+</tr>
+<tr>
+<td align="center">32</td>
+<td align="center">볼트<br>(Bind head, M3×8mm)</td>
+<td align="center">![`](/image/r/ESP32-RC-Car-30.png)<img src="/image/r/ESP32-RC-Car-30.png"><img src="/image/r/ESP32-RC-Car-30.png"><img src="/image/r/ESP32-RC-Car-30.png"></td>
+<td align="center">14</td>
+<td align="center">육각 스터드 고정용 12개, 범퍼 고정용 2개</td>
+</tr>
+<tr>
+<td align="center">33</td>
+<td align="center">볼트<br>(Pan head, M2.5×10mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-29.png">  <img src="/image/r/ESP32-RC-Car-29.png"></td>
+<td align="center">7</td>
+<td align="center">커넥팅 로드 연결용 3개, 휠 베이스 연결용 4개</td>
+</tr>
+<tr>
+<td align="center">34</td>
+<td align="center">볼트<br>(Flat head, M2.5×5mm)</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-31.png"></td>
+<td align="center">4</td>
+<td align="center">모터와 모터브라켓 고정</td>
+</tr>
+<tr>
+<td align="center">35</td>
+<td align="center">육각렌치</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-33.png"></td>
+<td align="center">1</td>
+<td align="center">기어 무두볼트용</td>
+</tr>
+<tr>
+<td align="center">36</td>
+<td align="center">저항<br>1K or 5.1K</td>
+<td align="center"><img src="/image/r/ESP32-RC-Car-13.png"></td>
+<td align="center">2</td>
+<td align="center">(선택사항) 인코더 풀업저항</td>
+</tr>
+<tr>
+<td align="center">37</td>
+<td align="center">홀센서 칩<br>SH41F(SOT-23타입)</td>
+<td align="center"></td>
+<td align="center">2</td>
+<td align="center">(선택사항) 홀 센서를 이중채널로 사용할 필요가 있는 경우에, 각 모터마다 1개씩 추가함</td>
+</tr>
+<tr>
+<td align="center">총</td>
+<td align="center">36종</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="전륜-조향-휠-조립"><a href="#전륜-조향-휠-조립" class="headerlink" title="전륜 조향 휠 조립"></a>전륜 조향 휠 조립</h4><p>사진 오른쪽부터 차례대로 8개의 부품을 끼워 휠을 조립한다. (왼쪽휠/오른쪽휠 각각 1개씩, 총 2개 조립)</p>
+<p><img src="/image/r/ESP32-RC-Car-36.png"></p>
+<ol>
+<li>먼저 검은색의 스티어링 컵에 큰 베어링을 삽입한다. (상당히 뻑뻑하므로 힘을 강하게 주면서 스티어링컵 안쪽 끝까지 밀어넣어야 한다.)</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-37.png"></p>
+<ol start="2">
+<li>베어링이 장착된 스티어링 컵에 회전축을 끼운다. 이때, 회전축 중앙에 있는 작은 구멍이 (고정쇠를 끼울 수 있도록) 보여야 하며, 만약 구멍이 보이지 않으면, 이전 과정에서 베어링을 더 밀어넣어 스티어링 컵에 완전히 밀착시켜야 한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-38.png">   <img src="/image/r/ESP32-RC-Car-39.png"></p>
+<ol start="3">
+<li>회전축이 나온 스티어링컵 밑바닥에 중간 크기의 베어링을 끼운다. 역시 뻑뻑하므로 강한 힘을 주어 밀어넣어야 한다. </li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-40.png"></p>
+<ol start="4">
+<li>회전축 중앙의 작은 구멍에 커플러 고정핀를 끼워 넣는다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-41.png"></p>
+<ol start="5">
+<li>커플러 고정핀 끼워 넣는 홈이 파인 육각 커플러를 준비한 뒤, 커플러 고정핀이 꼽혀있는 방향을 고려하여 스티어링컵에 끼운다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-42.png">   <img src="/image/r/ESP32-RC-Car-43.png"></p>
+<ol start="6">
+<li>스티어링컵에 끼운 육각 커플러를, 휠의 안쪽에 끼워 넣으면(이때, 육각 커플러가 휠의 육각 홈 안쪽까지 완전히 밀착되도록 강한 힘을 가하면서 끼운다.) 휠 바깥쪽면에 회전축의 나사산이 나온다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-44.png">  <img src="/image/r/ESP32-RC-Car-45.png"></p>
+<ol start="7">
+<li>바퀴 바깥쪽으로 빠져나온 회전축 나사를 나이록 너트(M4)를 끼워 고정한다. (십자형 육각 복스로 나이록 너트를 돌릴때 ‘딱딱’하는 소리가 몇번 날때까지 돌리면 고정이 된다.)</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-46.png"></p>
+<ol start="8">
+<li>동일한 방법으로 하나를 더 만들어 2개의 휠을 완성한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-47.png"></p>
+<ol start="9">
+<li>짧은 커넥팅 로드 1개와 긴 커넥팅 로드 1개, M2.5*10mm 나사(Pan head) 3개를 준비한 뒤,</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-48.png"></p>
+<ol start="10">
+<li><strong>오른쪽 휠 컵</strong> 암(Arm)에 있는 구멍 2개 중, 끝부분의 구멍(빨간색으로 표시된 부분)에 </li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-51.png"></p>
+<ol start="11">
+<li>준비한 볼트(M2.5*10mm (Pan head)) 1개를 이용하여 긴 커넥팅 로드를 고정한다. 이때, 볼트의 끝 부분을 <strong>구멍 아래쪽에서 윗쪽으로</strong> 넣듯이 하여 고정한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-49.png"></p>
+<p>​        또한, <strong>볼트의 끝부분이 반대편 구멍 바깥쪽으로 튀어나오지 않도록</strong> 조임의 정도를 조절한다.  </p>
+<p><img src="/image/r/ESP32-RC-Car-50.png">   <img src="/image/r/ESP32-RC-Car-66.png"></p>
+<ol start="12">
+<li><p>같은 방법으로 <strong>왼쪽 휠 컵</strong>의 구멍에 긴 커넥팅 로드의 반대편을 고정한다. (이때, 볼트의 끝부분이 반대편 구멍 바깥쪽으로 튀어나오지 않도록 조임의 정도를 조절한다. )</p>
+</li>
+<li><p><strong>오른쪽 휠 컵</strong>의 구멍 2개 중, 파란색으로 표시된 부분에는 동일한 볼트를 사용하여 짧은 커넥팅 로드를 연결한다. (이때, 볼트의 끝부분이 반대편 구멍 바깥쪽으로 튀어나오지 않도록 조임의 정도를 조절한다. )</p>
+</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-52.png"></p>
+<ol start="14">
+<li>전륜 휠 베이스 완성된 모습</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-53.png"></p>
+<br>
+
+<h4 id="조향-서보모터-조립"><a href="#조향-서보모터-조립" class="headerlink" title="조향 서보모터 조립"></a>조향 서보모터 조립</h4><ol>
+<li>MG996R 서보모터를 준비한 후,</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-54.png"></p>
+<ol start="2">
+<li><p>아래 회로도와 스케치를 참고하여, 서보모터의 초기 위치를 90도 위치로 회전시켜 둔다.</p>
+<ul>
+<li><p>schematic</p>
+<p><img src="/image/SG90.png"></p>
+<table>
+<thead>
+<tr>
+<th>MG996R</th>
+<th>갈색</th>
+<th>빨간색</th>
+<th>주황색</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ESP32</td>
+<td>GND</td>
+<td>5V</td>
+<td>GPIO 15</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>sketch</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin = <span class="number">15</span>;  <span class="comment">// corresponds to GPIO 15</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// setting PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// PWM Setup</span></span><br><span class="line">  <span class="built_in">ledcSetup</span>(ledChannel, freq, resolution);  <span class="comment">// PWM CH0, Frequncy 50 Hz, 16bit resolution</span></span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(ledPin, ledChannel);        <span class="comment">// PWM CH0을 GPIO 15번으로 출력</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">ledcWrite</span>(ledChannel, <span class="number">4910</span>);              <span class="comment">// 1638 ~ 8192 (90degree = 4910)</span></span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">500</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>ㄴ자 서보모터 브라켓, 브라켓 고정용 볼트(Pan-Washer head, M3×6mm) 8개, 서보 혼(고정용 볼트 1개 포함)를 준비한다.</p>
+</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-55.png">   <img src="/image/r/ESP32-RC-Car-56.png"></p>
+<ol start="4">
+<li>와셔볼트 4개를 사용하여 ㄴ자 브라켓을 고정하고, 서버 혼도 고정용 볼트를 사용하여 장착한다. (<strong>아래 사진을 잘 보면서 MG996R 스티커의 글씨 방향, ㄴ자 브라켓이 고정된 방향, 서보 혼 방향(현재 사진에 보이는 서보 날개의 위치가 90도가 됨)에 유의하여 장착한다.</strong>)</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-57.png"></p>
+<ol start="5">
+<li>샤시 하판에 와셔볼트 4개를 사용하여 서보모터를 고정한다.</li>
+</ol>
+<img src="/image/r/ESP32-RC-Car-58.png" style="zoom:80%;">
+
+<p><img src="/image/r/ESP32-RC-Car-59.png"></p>
+<br>
+
+<h4 id="샤시-하판에-휠-베이스-고정하기"><a href="#샤시-하판에-휠-베이스-고정하기" class="headerlink" title="샤시 하판에 휠 베이스 고정하기"></a>샤시 하판에 휠 베이스 고정하기</h4><ol>
+<li>준비물: 서보모터가 고정된 샤시 하판, 황동 육각 스터드 M3×22mm 4개, 볼트 M3*8mm 8개, M2.5×10mm 4개, 부채꼴 모양의 휠 베이스 고정판 2개</li>
+</ol>
+<p> <img src="/image/r/ESP32-RC-Car-60.png"></p>
+<ol start="2">
+<li>(위 1번 사진의) 빨간색으로 표시된 부분에 육각 스터드 4개를 고정한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-61.png"></p>
+<ol start="3">
+<li>(위 1번 사진의) 파란색으로 표시된 부분의 구멍에는, 다음 그림과 같이 긴 커넥팅 로드가 붙어있는 쪽의 휠 컵 구멍(아래 사진에서 파란색으로 표시된 부분)을 맞추어 볼트(M2.5×10mm)로 고정시킨다. (이때, 양쪽 휠 컵의 암(Arm) 부분이 차량 전면을 향하도록 한 상태에서 연결해야 한다.)</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-62.png"></p>
+<ol start="4">
+<li>고정이 완료된 상태에서 밑면을 보면 다음과 같으며,</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-63.png"></p>
+<p>​        위에서 바라본 모습은 다음과 같다.</p>
+<p><img src="/image/r/ESP32-RC-Car-64.png"></p>
+<ol start="5">
+<li><p>(파란색 원으로 표시된 부분) 부채꼴 모양의 휠 베이스 고정판을 양쪽 휠에 있는 육각 스터드와 스티어링 컵의 구멍에 고정한다. (볼트 M3×8mm 8개, M2.5×10mm 4개 사용)</p>
+<p>(빨간색 원으로 표시된 부분) M2.5*10mm 나사와 나이록 너트(M2.5)를 사용하여, 짧은 커넥팅 로드를 서보 혼에 고정한다. 이때, 십자형 육각 복스로 나이록 너트를 돌릴때 ‘딱딱’하는 소리가 몇번 날때까지 돌리면 고정이 된다.)</p>
+</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-65.png"></p>
+<p>​        아래 사진은 완성된 전륜 조향 휠 부분을 정면에서 바라본 모습이다.</p>
+<p><img src="/image/r/ESP32-RC-Car-67.png"></p>
+<br>
+
+<h4 id="후륜-모터-파트-조립"><a href="#후륜-모터-파트-조립" class="headerlink" title="후륜 모터 파트 조립"></a>후륜 모터 파트 조립</h4><ol>
+<li><p>25GA370 엔코더 모터에 모터 커넥터를 끼우고, 볼트 (Flat head, M2.5×5mm) 2개를 사용하여 모터 브라켓를 고정한다.</p>
+<p> <img src="/image/r/ESP32-RC-Car-68.png"></p>
+</li>
+<li><p>베어링 2개, 샤프트, 써클립, 기어, 육각 샤프트 커플링 커넥터, 써클립(Circlip)을 준비한다.</p>
+</li>
+</ol>
+<img src="/image/r/ESP32-RC-Car-69.png" style="zoom: 80%;">
+
+<ol start="3">
+<li>샤프트 끝부분에 있는 홈에 써클립을 끼운다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-70.png">   <img src="/image/r/ESP32-RC-Car-71.png"></p>
+<ol start="4">
+<li>모터 브라켓 양쪽 끝에 있는 구멍에 베어링을 끼우고, 써클립을 끼운 샤프트를 밀어넣는다.</li>
+</ol>
+<img src="/image/r/ESP32-RC-Car-72.png" style="zoom: 67%;">
+
+<p>​        샤프트를 끼운 후, 모터를 앞쪽과 뒷쪽에서 보았을때의 모습</p>
+<p><img src="/image/r/ESP32-RC-Car-74.png">  <img src="/image/r/ESP32-RC-Car-73.png"></p>
+<ol start="5">
+<li>모터에 부착되어 있는 작은 황동 기어에 흰색 플라스틱으로 된 기어가 맞물려지도록 샤프트에 끼우고, 기어 측면에 있는 작은 무두볼트(Set Screw) 2개를 육각렌치를 사용하여 적절하게 분배하여 조여준다. 이때 <strong>한쪽 무두볼트만 조여서 고정하면 기어에서 무두볼트가 빠지거나 고정이 되지 않을 수 있다.</strong> 이를 고려하여 양쪽의 나사를 적절히 분배하여 조이도록 한다.  </li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-75.png">   <img src="/image/r/ESP32-RC-Car-76.png"></p>
+<ol start="6">
+<li>육각 샤프트 커플링 커넥터를 준비하여 샤프트에 끼운 후, 커넥터 측면의 볼트를 돌려 고정한다. 이때, 고정하는 볼트의 끝부분이 샤프트의 편평한 면에 닿도록 조여준다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-77.png" style="zoom:80%;">   <img src="/image/r/ESP32-RC-Car-78.png" style="zoom:80%;"></p>
+<ol start="7">
+<li><p>같은 방법으로 후면 왼쪽 모터도 조립한다.</p>
+</li>
+<li><p>샤시 하판 뒷편 양쪽에 있는 삼각형 형태로 위치한 구멍에, 모터 브라켓을 올려놓고 볼트(Pan head, M4×6mm)를 사용하여 고정한다.</p>
+</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-79.png"></p>
+<p>​        오른쪽 모터를 샤시 후면에 고정한 모습이다. 같은 방법으로 왼쪽 후면 모터도 고정한다.</p>
+<p><img src="/image/r/ESP32-RC-Car-80.png"></p>
+<br>
+
+<h4 id="범퍼-조립"><a href="#범퍼-조립" class="headerlink" title="범퍼 조립"></a>범퍼 조립</h4><ol>
+<li>육각 스터드(M3×16mm) 2개와 볼트 (Bind-Washer head, M3×6mm) 4개 준비</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-81.png"></p>
+<ol start="2">
+<li>준비된 육각 스터드를 샤시 하판의 맨 앞쪽에 고정한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-82.png"></p>
+<ol start="3">
+<li>범퍼를 육각기둥에 끼운 후, 와셔볼트를 사용하여 고정한다.</li>
+</ol>
+<p> <img src="/image/r/ESP32-RC-Car-83.png" style="zoom:80%;">   <img src="/image/r/ESP32-RC-Car-84.png" style="zoom:80%;"></p>
+<br>
+
+<h4 id="샤시-상판-고정"><a href="#샤시-상판-고정" class="headerlink" title="샤시 상판 고정"></a>샤시 상판 고정</h4><ol>
+<li>육각 스터드(M3×22mm) 2개를 서보모터와 DC엔코더모터 사이에 있는 구멍에 볼트(M3.0×8mm)로 고정한다. </li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-85.png"></p>
+<p>​        육각 스터드를 고정한 모습이다.</p>
+<p><img src="/image/r/ESP32-RC-Car-86.png"></p>
+<ol start="2">
+<li>샤시 상판의 보호필름을 떼어내고, 육각 스터드 홀에 맟춰 올린 뒤,</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-87.png"></p>
+<ol start="3">
+<li>볼트(Bind head, M3.0×8mm) 2개를 사용하여 상판을 고정한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-88.png"></p>
+<p>​        상판의 오른쪽 하단에 락스위치를 꼽아 고정한 뒤에, 배터리의 (+)라인에 직렬로 배선할 수 있도록 준비한다.</p>
+<br>
+
+<h4 id="후륜-휠-장착"><a href="#후륜-휠-장착" class="headerlink" title="후륜 휠 장착"></a>후륜 휠 장착</h4><ol>
+<li>육각 휠 너트 앞쪽에 있던 나사를 풀러낸 뒤,</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-89.png"></p>
+<ol start="2">
+<li>바퀴를 끼우고, 풀러냈던 나사로 다시 고정한다.</li>
+</ol>
+<p><img src="/image/r/ESP32-RC-Car-90.png"></p>
+<br>
+
+<h4 id="샤시-완성"><a href="#샤시-완성" class="headerlink" title="샤시 완성"></a>샤시 완성</h4><img src="/image/r/ESP32-RC-Car-91.png" style="zoom: 50%;">
+
+<img src="/image/r/ESP32-RC-Car-92.png" style="zoom:50%;">
+
+<img src="/image/r/ESP32-RC-Car-93.png" style="zoom:50%;">
+
+<br>
+
+<br>
+
+<h3 id="ESP32-Parts"><a href="#ESP32-Parts" class="headerlink" title="ESP32 Parts"></a>ESP32 Parts</h3><p>완성된 샤시의 상판과 하판을 이용하여 ESP32, 브레드보드, 모터드라이버, 배터리, 전원모듈 등을 장작한다.</p>
+<br>
+
+<h4 id="for-RC-Car-ESP32-nRF24L01-TB6612FNG-25GA370-MG996R"><a href="#for-RC-Car-ESP32-nRF24L01-TB6612FNG-25GA370-MG996R" class="headerlink" title="for RC Car (ESP32 + nRF24L01 + TB6612FNG + 25GA370 + MG996R)"></a>for RC Car (ESP32 + nRF24L01 + TB6612FNG + 25GA370 + MG996R)</h4><h5 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h5><p>RC Car에 장착하는 ESP32에 업로드</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;RF24.h&gt;</span></span></span><br><span class="line"><span class="function">RF24 <span class="title">radio</span><span class="params">(<span class="number">4</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> address = <span class="number">0x1234ABCDEF</span>LL;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Value</span>&#123;</span></span><br><span class="line">  <span class="keyword">uint16_t</span> value_x;   <span class="comment">// servo motor pwm</span></span><br><span class="line">  <span class="keyword">uint16_t</span> value_y;   <span class="comment">// DC motor pwm</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Value data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> angle_x = <span class="number">90</span>;     <span class="comment">// servo initial position (0~180)</span></span><br><span class="line"><span class="keyword">int</span> velo_y = <span class="number">0</span>;       <span class="comment">// DC motor inital velocity</span></span><br><span class="line"><span class="keyword">int</span> direction_y = <span class="number">0</span>;  <span class="comment">// DC motor direction</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;            <span class="comment">// joystick center position calculation counter</span></span><br><span class="line"><span class="keyword">int</span> center_x = <span class="number">0</span>;     <span class="comment">// joystick initial center_x </span></span><br><span class="line"><span class="keyword">int</span> center_y = <span class="number">0</span>;     <span class="comment">// joystick initial center_y</span></span><br><span class="line"><span class="keyword">int</span> ref_xl, ref_xr, ref_ya, ref_yb;    <span class="comment">// Servo &amp; DC rotation reference value from center position value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//servo setting</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_SERVO = <span class="number">15</span>;             <span class="comment">// servo pwm pin</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_SERVO = <span class="number">2</span>;               <span class="comment">// servo pwm channel</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> servoFrequency = <span class="number">50</span>;        <span class="comment">// servo pwm frequency (Hz)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> servoResolution = <span class="number">16</span>;       <span class="comment">// servo pwm resolution (bit) (12bit: 0~4095)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// RecvTime</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> lastRecvTime = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">centerData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(radio.<span class="built_in">available</span>())&#123;</span><br><span class="line">      radio.<span class="built_in">read</span>(&amp;data, <span class="built_in"><span class="keyword">sizeof</span></span>(Value));</span><br><span class="line">      center_x = center_x + data.value_x;</span><br><span class="line">      center_y = center_y + data.value_y;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  center_x = center_x / <span class="number">100</span>;         <span class="comment">// x축 조이스틱 센터값 (평균)</span></span><br><span class="line">  center_y = center_y / <span class="number">100</span>;         <span class="comment">// y축 조이스틱 센터값 (평균)</span></span><br><span class="line"></span><br><span class="line">  ref_xl = center_x / <span class="number">2</span>;             <span class="comment">// 좌회전 동작 기준값</span></span><br><span class="line">  ref_xr = (<span class="number">4095</span> + center_x) / <span class="number">2</span>;    <span class="comment">// 우회전 동작 기준값</span></span><br><span class="line">  ref_ya = (<span class="number">4095</span> + center_y) / <span class="number">2</span>;    <span class="comment">// accelator 동작 기준값</span></span><br><span class="line">  ref_yb = center_y / <span class="number">2</span>;             <span class="comment">// brake 동작 기준값</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recvData</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(radio.<span class="built_in">available</span>())&#123;</span><br><span class="line">    radio.<span class="built_in">read</span>(&amp;data, <span class="built_in"><span class="keyword">sizeof</span></span>(Value));</span><br><span class="line">    lastRecvTime = <span class="built_in">millis</span>();  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32D DEVKIT_C V4 left side pin order</span></span><br><span class="line"><span class="comment">const int PIN_PWMA = 32;  </span></span><br><span class="line"><span class="comment">const int PIN_INA1 = 33;</span></span><br><span class="line"><span class="comment">const int PIN_INA2 = 25;</span></span><br><span class="line"><span class="comment">const int PIN_STBY = 26;</span></span><br><span class="line"><span class="comment">const int PIN_INB1 = 27;</span></span><br><span class="line"><span class="comment">const int PIN_INB2 = 14;</span></span><br><span class="line"><span class="comment">const int PIN_PWMB = 12;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// TB6612FNG right side &amp; ESP32-WROOM-32 left side pin order</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMA = <span class="number">33</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN2 = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_AIN1 = <span class="number">26</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_STBY = <span class="number">27</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN1 = <span class="number">14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_BIN2 = <span class="number">12</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_PWMB = <span class="number">13</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// channel setting (GPIO pin, channel)</span></span><br><span class="line"><span class="comment">// if STBY(CH0) = LOW, Standby states.</span></span><br><span class="line"><span class="comment">// if STBY(CH0) = HIGH, and INA1&amp;INA2 have different value</span></span><br><span class="line"><span class="comment">// and PWMA has some value, CW or CCW rotation is made.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Channel      CW   CCW  Stanby Stop Brake1 Brake2 Brake3</span></span><br><span class="line"><span class="comment">// PIN_STBY (0) HIGH HIGH LOW    HIGH  HIGH  HIGH   HIGH</span></span><br><span class="line"><span class="comment">// PIN_INA1 (1) HIGH LOW  *      LOW   HIGH  LOW    HIGH</span></span><br><span class="line"><span class="comment">// PIN_INA2 (2) LOW  HIGH *      LOW   HIGH  HIGH   LOW</span></span><br><span class="line"><span class="comment">// CH_PWMA  (3) PWM  PWM  *      HIGH  *     LOW    LOW</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PWM Channel setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMA = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CH_PWMB = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// PWM frequency and bit resolution setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pwmFrequency = <span class="number">10000</span>;  <span class="comment">// Hz</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> bitResolution = <span class="number">8</span>;     <span class="comment">// pwm value: 0~255</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// led setup</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PIN_LED = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> ledstate;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line"></span><br><span class="line">  radio.<span class="built_in">begin</span>();</span><br><span class="line">  radio.<span class="built_in">openReadingPipe</span>(<span class="number">1</span>, address);</span><br><span class="line">  radio.<span class="built_in">setPALevel</span>(RF24_PA_LOW);</span><br><span class="line">  radio.<span class="built_in">startListening</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Servo PWM Setup</span></span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_SERVO, servoFrequency, servoResolution);  <span class="comment">// PWM CH2, Frequncy 50 Hz, 12bit resolution</span></span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_SERVO, CH_SERVO);                    <span class="comment">// PWM CH2을 GPIO 15번으로 출력</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// center value</span></span><br><span class="line">  <span class="built_in">centerData</span>();</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_LED, OUTPUT);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// tb6612fng setting</span></span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_STBY, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_AIN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMA, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN1, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_BIN2, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(PIN_PWMB, OUTPUT);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// motor output(PWM) setting (channel, frequency, bit)</span></span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMA, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcSetup</span>(CH_PWMB, pwmFrequency, bitResolution);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMA, CH_PWMA);</span><br><span class="line">  <span class="built_in">ledcAttachPin</span>(PIN_PWMB, CH_PWMB);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ledstate = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> now = <span class="built_in">millis</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( now - lastRecvTime &gt; <span class="number">5</span>)&#123;    <span class="comment">// 5ms 마다 서보출력</span></span><br><span class="line">    <span class="built_in">recvData</span>();</span><br><span class="line">    <span class="built_in">rotate_xy</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">move</span>(<span class="number">1</span>, velo_y, direction_y);               <span class="comment">// motor A(right wheels), velo_y speed, moving direction</span></span><br><span class="line">    <span class="built_in">move</span>(<span class="number">2</span>, velo_y, direction_y);               <span class="comment">// motor B(left wheels), velo_y speed, moving direction</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(ledstate &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">digitalWrite</span>(PIN_LED, HIGH);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">digitalWrite</span>(PIN_LED, LOW);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> motor, <span class="keyword">int</span> speed, <span class="keyword">int</span> direction)</span> </span>&#123;   <span class="comment">//Move specific motor at speed and direction</span></span><br><span class="line"><span class="comment">//motor: A(Right) -&gt; 1, B(Left) -&gt; 2</span></span><br><span class="line"><span class="comment">//speed: 0 is off, and 255 is full speed</span></span><br><span class="line"><span class="comment">//direction: 0 clockwise, 1 counter-clockwise</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, HIGH);         <span class="comment">// move</span></span><br><span class="line"></span><br><span class="line">  boolean inPin1 = HIGH;                <span class="comment">// Defalut(direction=0) - Clockwise</span></span><br><span class="line">  boolean inPin2 = LOW;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(direction == <span class="number">1</span>) &#123;                  <span class="comment">// Count-clockwise</span></span><br><span class="line">    inPin1 = LOW;</span><br><span class="line">    inPin2 = HIGH;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(motor == <span class="number">1</span>)&#123;                       <span class="comment">// if motor == 1, right wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_AIN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_AIN2, inPin2);</span><br><span class="line">    <span class="built_in">ledcWrite</span>(CH_PWMA, speed);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;                                <span class="comment">// if motor is not 1, left wheel</span></span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_BIN1, inPin1);</span><br><span class="line">    <span class="built_in">digitalWrite</span>(PIN_BIN2, inPin2);</span><br><span class="line">    <span class="built_in">ledcWrite</span>(CH_PWMB, speed);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">digitalWrite</span>(PIN_STBY, LOW);         <span class="comment">// stand-by = stop</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate_xy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">print</span>(<span class="string">&quot;x: &quot;</span>); Serial.<span class="built_in">print</span>(data.value_x);</span><br><span class="line">  Serial.<span class="built_in">print</span>(<span class="string">&quot;, y: &quot;</span>); Serial.<span class="built_in">println</span>(data.value_y);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//x축 서보 구동 조건 설정</span></span><br><span class="line">  <span class="keyword">if</span>(data.value_x &lt; ref_xl) &#123;     </span><br><span class="line">    <span class="keyword">if</span>(angle_x &gt; <span class="number">55</span>) &#123;                 <span class="comment">// servo 55~125 degree</span></span><br><span class="line">      angle_x--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      angle_x = <span class="number">55</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ledstate++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(data.value_x &gt; ref_xr) &#123;</span><br><span class="line">    <span class="keyword">if</span>(angle_x &lt; <span class="number">125</span>) &#123;</span><br><span class="line">      angle_x++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      angle_x = <span class="number">125</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ledstate++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(angle_x &lt; <span class="number">90</span>) &#123;</span><br><span class="line">      angle_x++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(angle_x &gt; <span class="number">90</span>) &#123;</span><br><span class="line">      angle_x--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      angle_x = <span class="number">90</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//servo_x.write(angle_x);</span></span><br><span class="line">  <span class="built_in">servoWrite</span>(CH_SERVO, angle_x);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">5</span>);                    <span class="comment">// delay를 더 줄이면 서보 모터 기어에 무리가 감</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//y축 DC 구동 조건 설정</span></span><br><span class="line">  <span class="keyword">if</span>(data.value_y &gt; ref_ya) &#123;</span><br><span class="line">    <span class="keyword">if</span>(direction_y == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(velo_y &lt; <span class="number">255</span>) &#123;</span><br><span class="line">        velo_y++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        velo_y = <span class="number">255</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(direction_y == <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(velo_y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        velo_y--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        direction_y = <span class="number">0</span>;</span><br><span class="line">        velo_y = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ledstate++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(data.value_y &lt; ref_yb) &#123;</span><br><span class="line">    <span class="keyword">if</span>(direction_y == <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(velo_y &lt; <span class="number">255</span>) &#123;</span><br><span class="line">        velo_y++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        velo_y = <span class="number">255</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(direction_y == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(velo_y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        velo_y--;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        direction_y = <span class="number">1</span>;</span><br><span class="line">        velo_y = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ledstate++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(velo_y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      velo_y--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      velo_y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deg는 0~180도 까지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">servoWrite</span><span class="params">(<span class="keyword">int</span> ch, <span class="keyword">int</span> deg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> servoPWM = <span class="built_in">map</span>(deg, <span class="number">0</span>, <span class="number">180</span>, <span class="number">2720</span>, <span class="number">8191</span>);  <span class="comment">// 16bit (PWM 4.15% ~ 12.5%)</span></span><br><span class="line">    <span class="built_in">ledcWrite</span>(ch, servoPWM);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h5><p><img src="/image/r/ESP32-RC-Car-94.png"></p>
+<br>
+
+<br>
+
+<h4 id="for-Remote-Controller-ESP32-nRF24L01-Dual-Joystick"><a href="#for-Remote-Controller-ESP32-nRF24L01-Dual-Joystick" class="headerlink" title="for Remote Controller (ESP32 + nRF24L01 + Dual Joystick)"></a>for Remote Controller (ESP32 + nRF24L01 + Dual Joystick)</h4><h5 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h5><p>리모트 컨트롤러의 ESP32에 업로드한다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;RF24.h&gt;</span></span></span><br><span class="line"><span class="function">RF24 <span class="title">radio</span><span class="params">(<span class="number">4</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> address = <span class="number">0x1234ABCDEF</span>LL;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for no interference, two joysticks must be used with each other ADC!  </span></span><br><span class="line"><span class="comment">// one joystick use ADC1: GPIO 36,39,32,33,34,35</span></span><br><span class="line"><span class="comment">// the other must use ADC2: GPIO 4,0,2,15,13,12,14,27,25,26</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Jstick_x_pin = <span class="number">25</span>;           <span class="comment">// Left_Right GPIO25</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Jstick_y_pin = <span class="number">32</span>;           <span class="comment">// Forward_Back GPIO32</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Value</span>&#123;</span></span><br><span class="line">  <span class="keyword">uint16_t</span> value_x;</span><br><span class="line">  <span class="keyword">uint16_t</span> value_y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Value data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  </span><br><span class="line">  radio.<span class="built_in">begin</span>();</span><br><span class="line">  radio.<span class="built_in">openWritingPipe</span>(address);</span><br><span class="line">  radio.<span class="built_in">setPALevel</span>(RF24_PA_MIN);</span><br><span class="line">  radio.<span class="built_in">stopListening</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  data.value_x = <span class="built_in">Jstick</span>(Jstick_x_pin);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">10</span>);</span><br><span class="line">  data.value_y = <span class="built_in">Jstick</span>(Jstick_y_pin);</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">10</span>);</span><br><span class="line">  radio.<span class="built_in">write</span>(&amp;data, <span class="built_in"><span class="keyword">sizeof</span></span>(Value));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//Serial.print(&quot;x: &quot;); Serial.print(data.value_x);</span></span><br><span class="line">  <span class="comment">//Serial.print(&quot;, y: &quot;); Serial.println(data.value_y);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint16_t</span> <span class="title">Jstick</span><span class="params">(<span class="keyword">int</span> Jstick_Pin)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">analogRead</span>(Jstick_Pin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h5 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h5><p><img src="/image/r/ESP32-RC-Car-95.png"></p>
+<p>​    </p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-11-01T09:27:53.000Z" title="2021. 11. 1. 오후 5:27:53">2021-11-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:30:55.423Z" title="2021. 11. 17. 오전 11:30:55">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">ESP32</a></span><span class="level-item">13분안에 읽기 (약 1938 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></h1><div class="content"><h3 id="DC모터-사용하기"><a href="#DC모터-사용하기" class="headerlink" title="DC모터 사용하기"></a>DC모터 사용하기</h3><p>아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.</p>
 <br>
 
 <h4 id="TB6612FNG"><a href="#TB6612FNG" class="headerlink" title="TB6612FNG"></a>TB6612FNG</h4><h5 id="기본-핀-배열"><a href="#기본-핀-배열" class="headerlink" title="기본 핀 배열"></a>기본 핀 배열</h5><table>
@@ -1437,7 +1961,7 @@
 <h5 id="센서-감도-조정"><a href="#센서-감도-조정" class="headerlink" title="센서 감도 조정"></a>센서 감도 조정</h5><ul>
 <li>  센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
 </ul>
-</div></article></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">48</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-09-26T09:27:53.000Z">2021-09-26</time></p><p class="title"><a href="/2021/09/26/ESP32-OLED/">ESP32, OLED (한글 출력 하기)</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">4</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+</div></article></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">49</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2021 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
