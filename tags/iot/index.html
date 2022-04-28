@@ -10,7 +10,7 @@
 <h4 id="Free-Current-weather-and-forecasts-collection"><a href="#Free-Current-weather-and-forecasts-collection" class="headerlink" title="Free Current weather and forecasts collection"></a>Free Current weather and forecasts collection</h4><ul>
 <li>60 Calls per minute (no more than)</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/current">Current weather API</a></li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/forecast5">5 days/3 hour forecast API</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/forecast5">5 days&#x2F;3 hour forecast API</a></li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/api/weathermaps">Weather maps 1.0</a> </li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/api/uvi">UV index</a> </li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/triggers">Weather alerts</a> </li>
@@ -28,14 +28,16 @@
 <br>
 
 <p><img src="/image/owm-api-02.png"></p>
-<br></li>
+<br>
+</li>
 <li><p>Sign In을 클릭하여 로그인한 뒤, API Keys를 누릅니다.</p>
 <p><img src="/image/owm-api-03.png"></p>
 <br>
 
 <p><img src="/image/owm-api-04.png"></p>
-<br></li>
-<li><p> Default로 지정되어 있는 Key를 복사하거나, 새로운 Key를 생성합니다.</p>
+<br>
+</li>
+<li><p>Default로 지정되어 있는 Key를 복사하거나, 새로운 Key를 생성합니다.</p>
 </li>
 </ol>
 <p>   <img src="/image/owm-api-05.png"></p>
@@ -165,14 +167,14 @@
 <br>
 
 <ol start="3">
-<li>밑줄친 부분의 json 변수가 나타나 있는 라인을 모두 지우고 </li>
+<li>밑줄친 부분의 json 변수가 나타나 있는 라인을 모두 지우고</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* json = <span class="string">&quot;&#123;\&quot;coord\&quot;:&#123;\&quot;lon\&quot;:121.49,\&quot;lat\&quot;:31.23&#125;,\&quot;weather\&quot;:[&#123;\&quot;id\&quot;:804,\&quot;main\&quot;:\&quot;Clouds\&quot;,\&quot;description\&quot;:\&quot;overcast clouds\&quot;,\&quot;icon\&quot;:\&quot;04d\&quot;&#125;],\&quot;base\&quot;:\&quot;stations\&quot;,\&quot;main\&quot;:&#123;\&quot;temp\&quot;:293.02,\&quot;pressure\&quot;:1027,\&quot;humidity\&quot;:55,\&quot;temp_min\&quot;:289.82,\&quot;temp_max\&quot;:298.71&#125;,\&quot;visibility\&quot;:10000,\&quot;wind\&quot;:&#123;\&quot;speed\&quot;:3,\&quot;deg\&quot;:60&#125;,\&quot;clouds\&quot;:&#123;\&quot;all\&quot;:94&#125;,\&quot;dt\&quot;:1574303919,\&quot;sys\&quot;:&#123;\&quot;type\&quot;:1,\&quot;id\&quot;:9659,\&quot;country\&quot;:\&quot;CN\&quot;,\&quot;sunrise\&quot;:1574288762,\&quot;sunset\&quot;:1574326426&#125;,\&quot;timezone\&quot;:28800,\&quot;id\&quot;:1796236,\&quot;name\&quot;:\&quot;Shanghai\&quot;,\&quot;cod\&quot;:200&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ol start="4">
-<li> OpenWeatherMap에서 실시간으로 받는 String 형식의 데이터 변수로 바꿔줍니다.</li>
+<li>OpenWeatherMap에서 실시간으로 받는 String 형식의 데이터 변수로 바꿔줍니다.</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String json = http.<span class="built_in">getString</span>();</span><br></pre></td></tr></table></figure>
 
@@ -192,7 +194,7 @@
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">year</span>(dt), <span class="built_in">month</span>(dt), <span class="built_in">day</span>(dt), <span class="built_in">hour</span>(dt), <span class="built_in">minute</span>(dt), <span class="built_in">second</span>(dt), <span class="built_in">weekday</span>(dt));</span><br></pre></td></tr></table></figure>
 
-<p>​        위의 스케치를 통해서 UTC를 YYYY.MM.DD HH:MM:SS(요일) 형태의 날짜를 변환하며, printf문을 통해 출력할 수 있습니다.</p>
+<p>​		위의 스케치를 통해서 UTC를 YYYY.MM.DD HH:MM:SS(요일) 형태의 날짜를 변환하며, printf문을 통해 출력할 수 있습니다.</p>
 <br>
 
 <h4 id="Data-출력에-사용한-variables"><a href="#Data-출력에-사용한-variables" class="headerlink" title="Data 출력에 사용한 variables"></a>Data 출력에 사용한 variables</h4><p>JSON 형식의 데이터를 파싱할때 사용한 변수들입니다.</p>
@@ -275,7 +277,7 @@
 <td>Wind Speed</td>
 <td>int</td>
 <td>wind_speed</td>
-<td>m/s</td>
+<td>m&#x2F;s</td>
 </tr>
 <tr>
 <td>Wind Degree</td>
@@ -334,7 +336,7 @@
 <tr>
 <td>GMT</td>
 <td>int</td>
-<td>timezone  (※timezone/3600)</td>
+<td>timezone  (※timezone&#x2F;3600)</td>
 <td>hour</td>
 </tr>
 <tr>
@@ -697,7 +699,7 @@
 <tr>
 <td>731</td>
 <td>Dust</td>
-<td>sand/ dust whirls</td>
+<td>sand&#x2F; dust whirls</td>
 <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="img"> 50d</td>
 </tr>
 <tr>
@@ -835,8 +837,8 @@
 <p>그밖에 활용가능한 공공데이터가 어떤 것이 있는지, 살펴보세요~</p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-23T12:33:48.000Z" title="2019. 10. 23. 오후 9:33:48">2019-10-23</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:42:28.000Z" title="2021. 11. 17. 오후 12:42:28">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">4분안에 읽기 (약 674 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/23/ESP32-BLE-Blynk-Gauge/">esp32 BLE, Blynk Gauge</a></h1><div class="content"><h3 id="ESP32에서-Blynk로-센서값-보내기"><a href="#ESP32에서-Blynk로-센서값-보내기" class="headerlink" title="ESP32에서 Blynk로 센서값 보내기"></a>ESP32에서 Blynk로 센서값 보내기</h3><p>Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)</p>
 <ul>
-<li>  ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
-<li>  새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
+<li>ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
+<li>새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
 </ul>
 <br>
 
@@ -846,8 +848,8 @@
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;WUAeS6P57T3XNaIGyLK1-OUv........&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Potentiometer Pin</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIN_POTENTIOMETER A0                       <span class="comment">// Potentiometer GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resist, Voltage</span></span><br><span class="line"><span class="keyword">int</span> value_Potentiometer; </span><br><span class="line"><span class="keyword">int</span> value_R;</span><br><span class="line"><span class="keyword">float</span> value_V;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  value_Potentiometer = analogRead(PIN_POTENTIOMETER);  <span class="comment">// 12bit ADC (0~4095)</span></span><br><span class="line">  value_V = <span class="built_in">map</span>(value_Potentiometer, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">3300</span>, <span class="number">0</span>); <span class="comment">// 0~3300mV</span></span><br><span class="line">  value_R = <span class="built_in">map</span>(value_V, <span class="number">0</span>, <span class="number">3300</span>, <span class="number">10000</span>, <span class="number">0</span>);            <span class="comment">// 0~10kΩ</span></span><br><span class="line">  </span><br><span class="line">  Blynk.run();</span><br><span class="line">  </span><br><span class="line">  Serial.print(<span class="string">&quot;Resist : &quot;</span>); Serial.print(value_R); Serial.println(<span class="string">&quot;Ω&quot;</span>);</span><br><span class="line">  Serial.print(<span class="string">&quot;Voltage: &quot;</span>); Serial.print(value_V); Serial.println(<span class="string">&quot;mV&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V1)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V1, value_R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V2)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V2, value_V);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>  Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
-<li>  Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
+<li>Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
+<li>Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
 </ul>
 <br>
 
@@ -995,9 +997,9 @@
 
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-22T14:55:21.000Z" title="2019. 10. 22. 오후 11:55:21">2019-10-22</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:43:04.000Z" title="2021. 11. 17. 오후 12:43:04">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">5분안에 읽기 (약 762 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/">esp32 BLE, Blynk Slider (PWM)</a></h1><div class="content"><h3 id="ESP32와-Blynk에서의-PWM-사용"><a href="#ESP32와-Blynk에서의-PWM-사용" class="headerlink" title="ESP32와 Blynk에서의 PWM 사용"></a>ESP32와 Blynk에서의 PWM 사용</h3><p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p>
 <ul>
-<li>  Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
-<li>  Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
-<li>  ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
+<li>Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
+<li>Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
+<li>ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
 </ul>
 <br>
 
@@ -1127,16 +1129,16 @@
 </ol>
 <p><img src="/image/blynk-pwm-16.png"></p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-21T14:12:58.000Z" title="2019. 10. 21. 오후 11:12:58">2019-10-21</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:42:16.000Z" title="2021. 11. 17. 오후 12:42:16">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">9분안에 읽기 (약 1361 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/21/ESP32-BLE-Blynk-Button/">esp32 BLE, Blynk Button</a></h1><div class="content"><h3 id="Blynk를-처음-사용하는-경우"><a href="#Blynk를-처음-사용하는-경우" class="headerlink" title="Blynk를 처음 사용하는 경우"></a>Blynk를 처음 사용하는 경우</h3><h4 id="Blynk-라이브러리-설치하기"><a href="#Blynk-라이브러리-설치하기" class="headerlink" title="Blynk 라이브러리 설치하기"></a>Blynk 라이브러리 설치하기</h4><ol>
-<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
-<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
 </ul>
 </li>
-<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
 <li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
-<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기존의 libraries 폴더와 합쳐짐</li>
 <li>기본 스케치북 위치 확인 방법<ul>
-<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
 </ul>
 </li>
 </ul>
@@ -1145,14 +1147,14 @@
 <br>
 
 <h4 id="스마트폰에-Blynk-App-설치하기"><a href="#스마트폰에-Blynk-App-설치하기" class="headerlink" title="스마트폰에 Blynk App 설치하기"></a>스마트폰에 Blynk App 설치하기</h4><ul>
-<li>  아이폰 : 애플 앱스토어</li>
-<li>  안드로이드 : 구글 플레이스토어</li>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
 </ul>
 <br>
 
 <br>
 
-<h3 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/blynk-01.png"></p>
+<h3 id="버튼-위젯을-이용한-LED-On-x2F-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-x2F-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On&#x2F;Off 하기"></a>버튼 위젯을 이용한 LED On&#x2F;Off 하기</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/blynk-01.png"></p>
 <p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
 <br>
 
@@ -1182,9 +1184,9 @@
 <br>
 
 <ul>
-<li>  프로젝트명 : ESP32_LED</li>
-<li>  CHOOSE DEVICE : ESP32 Dev Board</li>
-<li>  CONNECTION TYPE : BLE</li>
+<li>프로젝트명 : ESP32_LED</li>
+<li>CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>CONNECTION TYPE : BLE</li>
 </ul>
 <br>
 
@@ -1281,7 +1283,7 @@
 <br>
 
 <ol start="2">
-<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
+<li>예제의 char auth[] &#x3D; “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
 </ol>
 <p><img src="/image/blynk-21.png"></p>
 <br>
@@ -1398,16 +1400,16 @@
 <img src="/image/blynk-39.png" style="zoom:33%;">
 
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-20T14:10:53.000Z" title="2019. 10. 20. 오후 11:10:53">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:46:36.000Z" title="2021. 11. 17. 오후 12:46:36">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">8분안에 읽기 (약 1220 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/Arduino-Bluetooth-Blynk/">Arduino, Bluetooth, Blynk</a></h1><div class="content"><h3 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h3><h4 id="Blynk-라이브러리-설치"><a href="#Blynk-라이브러리-설치" class="headerlink" title="Blynk 라이브러리 설치"></a>Blynk 라이브러리 설치</h4><ol>
-<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
-<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
 </ul>
 </li>
-<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
 <li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
-<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기존의 libraries 폴더와 합쳐짐</li>
 <li>기본 스케치북 위치 확인 방법<ul>
-<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
 </ul>
 </li>
 </ul>
@@ -1416,37 +1418,37 @@
 <br>
 
 <h4 id="스마트폰에-Blynk-App-다운로드-하여-설치하기"><a href="#스마트폰에-Blynk-App-다운로드-하여-설치하기" class="headerlink" title="스마트폰에 Blynk App 다운로드 하여 설치하기"></a>스마트폰에 Blynk App 다운로드 하여 설치하기</h4><ul>
-<li>  아이폰 : 애플 앱스토어</li>
-<li>  안드로이드 : 구글 플레이스토어</li>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
 </ul>
 <br>
 
 <br>
 
-<h3 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
-<li> Blynk App 실행</li>
-<li> Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
+<h3 id="버튼-위젯을-이용한-LED-On-x2F-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-x2F-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On&#x2F;Off 하기"></a>버튼 위젯을 이용한 LED On&#x2F;Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
+<li>Blynk App 실행</li>
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
 <li>Blynk에서 New Project 생성<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Project Name 설정: BLE Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: BLE</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: BLE Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: BLE</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Project Name 설정: HC-06 Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: Bluetooth</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: HC-06 Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: Bluetooth</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Auth Token 확인<ul>
-<li>  가입시 지정한 이메일로 로그인하여 토큰 확인</li>
-<li>  (매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
-<li>  스마트폰으로 확인하는 것은 무의미함</li>
+<li>가입시 지정한 이메일로 로그인하여 토큰 확인</li>
+<li>(매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
+<li>스마트폰으로 확인하는 것은 무의미함</li>
 </ul>
 </li>
 </ol>
@@ -1454,19 +1456,19 @@
 
 <h4 id="Blynk-위젯-설정"><a href="#Blynk-위젯-설정" class="headerlink" title="Blynk 위젯 설정"></a>Blynk 위젯 설정</h4><ol>
 <li>아이폰용 MLT-BT05를 사용할 경우<ul>
-<li>  생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
+<li>생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>안드로이드용 HC-06를 사용할 경우<ul>
-<li>  생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
+<li>생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
@@ -1476,35 +1478,35 @@
 
 <h4 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h4><ol>
 <li>아두이노 스케치 예제 불러오기<ul>
-<li>  파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
-<li>  예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
+<li>파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
+<li>예제의 char auth[] &#x3D; “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
 </ul>
 </li>
-<li> 아두이노 UNO에 스케치 업로드</li>
+<li>아두이노 UNO에 스케치 업로드</li>
 <li>스마트폰의 블루투스 기능을 키고,<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
-<li>  Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
-<li>  MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
+<li>MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
-<li>  Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
-<li>  HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
+<li>Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
+<li>HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Blynk App 상단의 뒤로 돌아가기 버튼을 누른 뒤, App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름<ul>
-<li>  App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
-<li>  잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
+<li>App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
+<li>잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
 </ul>
 </li>
-<li> BUTTON 아이콘을 눌러 ON/OFF → 아두이노 Built-in LED ON/OFF</li>
-<li> Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
+<li>BUTTON 아이콘을 눌러 ON&#x2F;OFF → 아두이노 Built-in LED ON&#x2F;OFF</li>
+<li>Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
 </ol>
 <br>
 
@@ -1519,11 +1521,11 @@
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
-<li> Slider 위젯 추가: OUTPUT D11</li>
-<li> Slider 위젯의 위치/크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치/크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
-<li> App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
-<li> 슬라이드를 조절하여 LED의 밝기 조절 확인</li>
+<li>버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
+<li>Slider 위젯 추가: OUTPUT D11</li>
+<li>Slider 위젯의 위치&#x2F;크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치&#x2F;크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
+<li>슬라이드를 조절하여 LED의 밝기 조절 확인</li>
 </ol>
 <br>
 
@@ -1538,25 +1540,25 @@
 <br>
 
 <h3 id="PULL"><a href="#PULL" class="headerlink" title="PULL"></a>PULL</h3><ul>
-<li>  이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
-<li>  앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
+<li>이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
+<li>앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
 </ul>
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Reading Rate를 3초로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Reading Rate를 3초로 설정한다.</li>
 </ol>
 <br>
 
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><ol>
-<li> Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
-<li> e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
-<li> 하드웨어에 코드를 업로드한다.</li>
-<li> Blynk에서 플레이버튼을 누른다.</li>
-<li> 값이 표시되는 것을 볼 수 있다.</li>
+<li>Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
+<li>e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
+<li>하드웨어에 코드를 업로드한다.</li>
+<li>Blynk에서 플레이버튼을 누른다.</li>
+<li>값이 표시되는 것을 볼 수 있다.</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_READ(V5) &#123; <span class="comment">//Blynk app has something on V5</span></span><br><span class="line">  sensorData = analogRead(A0); <span class="comment">//reading the sensor on A0</span></span><br><span class="line">  Blynk.virtualWrite(V5, sensorData); <span class="comment">//sending to Blynk</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1581,10 +1583,10 @@
 <br>
 
 <h4 id="Blynk-앱-설정-1"><a href="#Blynk-앱-설정-1" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Frequency를 PUSH로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Frequency를 PUSH로 설정한다.</li>
 </ol>
 <br>
 
@@ -1677,7 +1679,7 @@
 <br>
 
 <ol start="8">
-<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다. </li>
+<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다.</li>
 </ol>
 <img src="/image/BTserialapp-09.png" style="zoom:33%;">
 

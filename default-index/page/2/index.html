@@ -16,9 +16,9 @@
 </li>
 <li><p>20ms가 1주기이고, HIGH 펄스가 2ms 지속될 때 180º 회전을 한다.</p>
 </li>
-<li><p>그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</p>
+<li><p>그러므로, 전체 펄스 폭의 1&#x2F;10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</p>
 </li>
-<li><p>Resolution이 16비트라면 65535의 1/10에 해당하는 <del>6554</del>의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</p>
+<li><p>Resolution이 16비트라면 65535의 1&#x2F;10에 해당하는 <del>6554</del>의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</p>
 </li>
 <li><p><del>데이터 시트에 나온 스펙에 따라서, 16비트 해상도에서 duty값에 따른 회전 각도</del></p>
 <ul>
@@ -42,12 +42,12 @@
 <li>PWM 12.5% : 8191 → 180º</li>
 </ul>
 </li>
-<li><p>즉, 각도에 따른 PWM값은 다음과 같이 지정한다.<br>$$<br>PWM = 2^{16} \times 0.1 \times \frac{angle}{180} + 2^{16} \times 0.025 = 2^{16} \times 0.1 \times (\frac{angle}{180} + 0.25)<br>$$</p>
+<li><p>즉, 각도에 따른 PWM값은 다음과 같이 지정한다.<br>$$<br>PWM &#x3D; 2^{16} \times 0.1 \times \frac{angle}{180} + 2^{16} \times 0.025 &#x3D; 2^{16} \times 0.1 \times (\frac{angle}{180} + 0.25)<br>$$</p>
 </li>
 <li><p>그리고, 이 서보모터 스펙상 180도 회전을 하지만 PWM 값을 조절하면 최대 190도 정도까지는 회전한다. </p>
 </li>
 <li><p>그러므로, map 함수를 사용하여 다음과 같이 각도를 조절한다.</p>
-<p>duty = map(deg, 0, 180, 1638, 8191);</p>
+<p>duty &#x3D; map(deg, 0, 180, 1638, 8191);</p>
 </li>
 <li><p>이에 따라, 12비트 해상도(0~4095)에서 duty값에 따른 회전 각도는</p>
 <ul>
@@ -59,7 +59,7 @@
 </ul>
 </li>
 <li><p>MG996R</p>
-<p>duty = map(deg, 0, 180, 2720, 8191);</p>
+<p>duty &#x3D; map(deg, 0, 180, 2720, 8191);</p>
 <p>가 가장 적당한 값을 나타내었다. (4.15% ~ 12.5%) (이유는 잘 모르겠음)</p>
 </li>
 <li><p>이런 내용을 종합해 볼때, <strong>기기 데이터시트의 스펙과는 관계없이, 테스트를 통해 경험적으로 값을 찾아야 하는 듯…</strong></p>
@@ -137,23 +137,23 @@
 
 <h4 id="sketch-2"><a href="#sketch-2" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ESP32Servo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">Servo servo_x;  <span class="comment">// create servo object to control a servo</span></span><br><span class="line">Servo servo_y;  <span class="comment">// 16 servo objects can be created on the ESP32</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pos = <span class="number">0</span>;    <span class="comment">// variable to store the servo position</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 </span></span><br><span class="line"><span class="keyword">int</span> servo_xPin = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">int</span> servo_yPin = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Allow allocation of all timers</span></span><br><span class="line">  ESP32PWM::<span class="built_in">allocateTimer</span>(<span class="number">0</span>);</span><br><span class="line">  ESP32PWM::<span class="built_in">allocateTimer</span>(<span class="number">1</span>);</span><br><span class="line">  ESP32PWM::<span class="built_in">allocateTimer</span>(<span class="number">2</span>);</span><br><span class="line">  ESP32PWM::<span class="built_in">allocateTimer</span>(<span class="number">3</span>);</span><br><span class="line">  servo_x.<span class="built_in">setPeriodHertz</span>(<span class="number">50</span>);    <span class="comment">// standard 50 hz servo</span></span><br><span class="line">  servo_y.<span class="built_in">setPeriodHertz</span>(<span class="number">50</span>);</span><br><span class="line">  servo_x.<span class="built_in">attach</span>(servo_xPin, <span class="number">500</span>, <span class="number">2500</span>); <span class="comment">// attaches the servo on pin 25 &amp; 32 to the servo object</span></span><br><span class="line">  servo_y.<span class="built_in">attach</span>(servo_yPin, <span class="number">500</span>, <span class="number">2500</span>);</span><br><span class="line">  <span class="comment">// using default min/max of 1000us and 2000us</span></span><br><span class="line">  <span class="comment">// different servos may require different min/max settings</span></span><br><span class="line">  <span class="comment">// for an accurate 0 to 180 sweep</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (pos = <span class="number">0</span>; pos &lt;= <span class="number">180</span>; pos += <span class="number">1</span>) &#123; <span class="comment">// goes from 0 degrees to 180 degrees</span></span><br><span class="line">    <span class="comment">// in steps of 1 degree</span></span><br><span class="line">    servo_x.<span class="built_in">write</span>(pos);    <span class="comment">// tell servo to go to position in variable &#x27;pos&#x27;</span></span><br><span class="line">    servo_y.<span class="built_in">write</span>(<span class="number">180</span>-pos);</span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">5</span>);             <span class="comment">// waits 5ms for the servo to reach the position</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (pos = <span class="number">180</span>; pos &gt;= <span class="number">0</span>; pos -= <span class="number">1</span>) &#123; <span class="comment">// goes from 180 degrees to 0 degrees</span></span><br><span class="line">    servo_x.<span class="built_in">write</span>(pos);    <span class="comment">// tell servo to go to position in variable &#x27;pos&#x27;</span></span><br><span class="line">    servo_y.<span class="built_in">write</span>(<span class="number">180</span>-pos);</span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">5</span>);             <span class="comment">// waits 5ms for the servo to reach the position</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</nr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2020-10-06T08:57:00.000Z" title="2020. 10. 6. 오후 5:57:00">2020-10-06</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:32:28.000Z" title="2021. 11. 17. 오후 12:32:28">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/science/">science</a></span><span class="level-item">34분안에 읽기 (약 5036 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a></h1><div class="content"><h3 id="중력-Gravitational-Force"><a href="#중력-Gravitational-Force" class="headerlink" title="중력(Gravitational Force)"></a>중력(Gravitational Force)</h3><p>뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.<br>$$<br>F = G \frac{Mm}{r^2} = m_i a = mg<br>$$</p>
-<p>지구의 질량 M<br>$$<br>M=5.072 \times 10^{24}~kg<br>$$</p>
-<p>지구 반지름 r<br>$$<br>r = 6371~km<br>$$</p>
-<p>만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)<br>$$<br>G = 6.67259 \times 10^{-11}~N \cdot m^2 /kg^2<br>$$</p>
+</nr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2020-10-06T08:57:00.000Z" title="2020. 10. 6. 오후 5:57:00">2020-10-06</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:32:28.000Z" title="2021. 11. 17. 오후 12:32:28">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/science/">science</a></span><span class="level-item">34분안에 읽기 (약 5036 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">ESP32, 중력 가속도 측정</a></h1><div class="content"><h3 id="중력-Gravitational-Force"><a href="#중력-Gravitational-Force" class="headerlink" title="중력(Gravitational Force)"></a>중력(Gravitational Force)</h3><p>뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.<br>$$<br>F &#x3D; G \frac{Mm}{r^2} &#x3D; m_i a &#x3D; mg<br>$$</p>
+<p>지구의 질량 M<br>$$<br>M&#x3D;5.072 \times 10^{24}~kg<br>$$</p>
+<p>지구 반지름 r<br>$$<br>r &#x3D; 6371~km<br>$$</p>
+<p>만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)<br>$$<br>G &#x3D; 6.67259 \times 10^{-11}~N \cdot m^2 &#x2F;kg^2<br>$$</p>
 <p>만유인력이 지상의 물체에 작용되는 경우, 이때 작용하는 힘을 중력이라고 한다. </p>
 <br>
 
-<h4 id="중력-가속도-Gravitational-Acceleration"><a href="#중력-가속도-Gravitational-Acceleration" class="headerlink" title="중력 가속도(Gravitational Acceleration)"></a>중력 가속도(Gravitational Acceleration)</h4><p>위 식에서 관성 질량(m_i)과 중력 질량(m)이 같다는 등가원리를 적용하면 중력 가속도는 작은 물체의 질량 m에 무관하게 된다.<br>$$<br>a = g = G \frac{M}{r^2}<br>$$</p>
-<p>지구의 질량 M과 지구 반지름 R은 지표면의 물체에 비해 매우 크고, 거의 구에 가까우므로, 위 식을 사용하여 지구 표면에서의 중력 가속도 g 값을 구할 수 있다.<br>$$<br>g = 9.80665~m/s^2<br>$$</p>
+<h4 id="중력-가속도-Gravitational-Acceleration"><a href="#중력-가속도-Gravitational-Acceleration" class="headerlink" title="중력 가속도(Gravitational Acceleration)"></a>중력 가속도(Gravitational Acceleration)</h4><p>위 식에서 관성 질량(m_i)과 중력 질량(m)이 같다는 등가원리를 적용하면 중력 가속도는 작은 물체의 질량 m에 무관하게 된다.<br>$$<br>a &#x3D; g &#x3D; G \frac{M}{r^2}<br>$$</p>
+<p>지구의 질량 M과 지구 반지름 R은 지표면의 물체에 비해 매우 크고, 거의 구에 가까우므로, 위 식을 사용하여 지구 표면에서의 중력 가속도 g 값을 구할 수 있다.<br>$$<br>g &#x3D; 9.80665~m&#x2F;s^2<br>$$</p>
 <br>
 
 <h4 id="등가속도-직선-운동"><a href="#등가속도-직선-운동" class="headerlink" title="등가속도 직선 운동"></a>등가속도 직선 운동</h4><p>가속도의 크기와 방향이 일정한 직선 운동으로, 속도가 일정하게 증가하거나 감속하는 직선 운동을 의미한다. 자유낙하의 경우 초기속도가 0인 물체를 중력장에 낙하시킬 때 중력가속도를 받으며 낙하하는 물체의 운동이며, 공기의 저항이 없다고 가정할 경우 등가속도 직선 운동이 된다.</p>
-<p>등가속도 직선 운동과 관련된 공식은 다음과 같다.<br>$$<br>v = v_0 + at~~~\cdots~~~①<br>$$</p>
-<p>$$<br>s=v_0t + \frac{1}{2}at^2~~~\cdots~~~②<br>$$</p>
-<p>$$<br>2as = v^2 - v_0^2~~~\cdots~~~③<br>$$</p>
+<p>등가속도 직선 운동과 관련된 공식은 다음과 같다.<br>$$<br>v &#x3D; v_0 + at~~~\cdots~~~①<br>$$</p>
+<p>$$<br>s&#x3D;v_0t + \frac{1}{2}at^2~~~\cdots~~~②<br>$$</p>
+<p>$$<br>2as &#x3D; v^2 - v_0^2~~~\cdots~~~③<br>$$</p>
 <p>이 3가지 기본 공식을 통해 다양한 형태의 공식을 유도할 수도 있다.</p>
-<p>①, ②식을 조합하면<br>$$<br>s = \frac{1}{2}(v_0+v)t~~~\cdots~~~④<br>$$<br>③식에서 초기속도(v_0)가 0인 경우<br>$$<br>v=\sqrt{2as}~~~\cdots~~~⑤<br>$$<br>②식을 변형하면<br>$$<br>a=\frac{2(s-v_0t)}{t^2}~~~\cdots~~~⑥<br>$$<br>③식을 변형하면<br>$$<br>a=\frac{v^2-v_0^2}{2s}~~~\cdots~~~⑦<br>$$<br><br></p>
+<p>①, ②식을 조합하면<br>$$<br>s &#x3D; \frac{1}{2}(v_0+v)t~~~\cdots~~~④<br>$$<br>③식에서 초기속도(v_0)가 0인 경우<br>$$<br>v&#x3D;\sqrt{2as}~~~\cdots~~~⑤<br>$$<br>②식을 변형하면<br>$$<br>a&#x3D;\frac{2(s-v_0t)}{t^2}~~~\cdots~~~⑥<br>$$<br>③식을 변형하면<br>$$<br>a&#x3D;\frac{v^2-v_0^2}{2s}~~~\cdots~~~⑦<br>$$<br><br></p>
 <br>
 
 <h3 id="자유낙하를-이용한-중력-가속도-측정-실험"><a href="#자유낙하를-이용한-중력-가속도-측정-실험" class="headerlink" title="자유낙하를 이용한 중력 가속도 측정 실험"></a>자유낙하를 이용한 중력 가속도 측정 실험</h3><ul>
@@ -161,25 +161,22 @@
 </li>
 <li><p>이번 실험에서는 2m 길이의 파이프에 25cm 간격으로 센서를 배치하고, 낙하하는 물체가 센서를 지날때마다 시간을 기록할 것이다. 변위와 시간을 측정할 수 있으므로 초기속도(v_0)값만 알면 ⑥을 이용하여 중력 가속도를 계산할 수 있다.</p>
 </li>
+<li><p>⑥을 단순화 시키기 위해서는 <strong>초기 속도가 0이 되도록 하기 위해 첫번째 센서를 파이프의 입구(최상단)에 배치</strong>하는 것이다. 단, 이렇게 할 경우 실험 과정에서 낙하시킬 물체를 놓을 때 물체를 잡고 있는 손가락의 영향을 제거하기 어려우며, 이 문제에 기인하는 오차는 큰 편이라고 할 수 있다.</p>
+</li>
+<li><p>위 문제 해결을 위해 첫번째 센서를 최상단으로부터 12.5cm 정도 아래로 내려 설치한다. 이를 통해 센서가 측정하는 시간은 온전히 자유낙하하는 상태에서 측정되므로 비교적 정확하게 측정할 수 있다. 문제는 <strong>첫번째 센서 위치에서의 초기 속도(v_0)값</strong>이 0이 아니므로 이 값을 별도로 계산하여야 한다.</p>
+</li>
+<li><p>이 값은 ③으로부터 계산할 수 있는데,</p>
+</li>
 </ul>
-<ul>
-<li>⑥을 단순화 시키기 위해서는 <strong>초기 속도가 0이 되도록 하기 위해 첫번째 센서를 파이프의 입구(최상단)에 배치</strong>하는 것이다. 단, 이렇게 할 경우 실험 과정에서 낙하시킬 물체를 놓을 때 물체를 잡고 있는 손가락의 영향을 제거하기 어려우며, 이 문제에 기인하는 오차는 큰 편이라고 할 수 있다.</li>
-</ul>
-<ul>
-<li>위 문제 해결을 위해 첫번째 센서를 최상단으로부터 12.5cm 정도 아래로 내려 설치한다. 이를 통해 센서가 측정하는 시간은 온전히 자유낙하하는 상태에서 측정되므로 비교적 정확하게 측정할 수 있다. 문제는 <strong>첫번째 센서 위치에서의 초기 속도(v_0)값</strong>이 0이 아니므로 이 값을 별도로 계산하여야 한다.</li>
-</ul>
-<ul>
-<li>이 값은 ③으로부터 계산할 수 있는데, </li>
-</ul>
-<p>$$<br>2as = v^2 - v_0^2~~~\cdots~~~③<br>$$</p>
+<p>$$<br>2as &#x3D; v^2 - v_0^2~~~\cdots~~~③<br>$$</p>
 <ul>
 <li>파이프 입구에서의 <strong>초기 속도(v_0)를 0으로 가정</strong>하면, 12.5cm만큼 낙하하여 첫번째 센서에 반응할 때의 속도(v)값은 ⑤로 부터 구할 수 있다.</li>
 </ul>
-<p>$$<br>v=\sqrt{2as} = \sqrt{2\times9.80665\times0.125}=1.5658~m/s<br>$$</p>
+<p>$$<br>v&#x3D;\sqrt{2as} &#x3D; \sqrt{2\times9.80665\times0.125}&#x3D;1.5658~m&#x2F;s<br>$$</p>
 <ul>
 <li>이 값이 12.5cm 위치에 첫번째 센서를 설치한 실험기구를 사용하는 경우, <strong>⑥에서의 초기 속도(v_0)값</strong>이 된다. 파이프에 설치한 센서의 번호를 n이라고 하면, ⑥은 다음과 같이 쓸 수 있다.</li>
 </ul>
-<p>$$<br>a_n=\frac{2(s_n-1.5658t_n)}{t_n^2}<br>$$</p>
+<p>$$<br>a_n&#x3D;\frac{2(s_n-1.5658t_n)}{t_n^2}<br>$$</p>
 <ul>
 <li>s는 <strong>첫번째 센서 ~ 각 센서가 위치한 곳</strong>까지 물체가 이동한 변위이며, 8개의 센서를 사용하여 낙하하는 물체가 센서와 반응하는 시간(t_n)을 측정하고, 이를 ⑥에 대입하면 가속도(a_n)를 계산할 수 있다. 각 지점에서의 가속도를 평균계산하여 중력가속도를 구한다.</li>
 </ul>
@@ -234,7 +231,7 @@
 <br>
 
 <h4 id="이-실험의-한계"><a href="#이-실험의-한계" class="headerlink" title="이 실험의 한계"></a>이 실험의 한계</h4><ul>
-<li>이 실험의 목적은 자유 낙하하는 물체를 통해 중력 가속도를 측정하는 것이다. 그런데, 중력 가속도를 계산하는 중간 과정에서, ⑤를 이용하기 위한 초기 속도(v_0=1.5658m/s) 값을 계산하기 위해 (실험 목적값인) 중력 가속도 9.80665m/s²를 사용한 것은 이 실험을 행하는 본질을 벗어나는 것이라고 볼 수 있다.</li>
+<li>이 실험의 목적은 자유 낙하하는 물체를 통해 중력 가속도를 측정하는 것이다. 그런데, 중력 가속도를 계산하는 중간 과정에서, ⑤를 이용하기 위한 초기 속도(v_0&#x3D;1.5658m&#x2F;s) 값을 계산하기 위해 (실험 목적값인) 중력 가속도 9.80665m&#x2F;s²를 사용한 것은 이 실험을 행하는 본질을 벗어나는 것이라고 볼 수 있다.</li>
 <li>그렇지만, 여기서는 각 센서를 통해 측정되는 값으로 계산해낸 중력 가속도의 평균 값이 어느 정도되는지 확인해보고, 실제값과 어느 정도의 오차를 보이는지를 확인하는 교육 목적을 갖고 사용하는 것임을 감안할 필요가 있다. 이를 근거로 중력 가속도 값을 이용하여 계산한 첫번째 센서위치에서의 초기 속도 값을 기본 보정값의 개념으로 사용하고자 한다.</li>
 <li>이러한 방법이 합당하지 않다고 생각한다면, 위에서 언급한 것 처럼 초기 속도(v_0)가 0이 되도록 센서를 파이프의 입구(최상단)에 배치하고, 물체가 손에서 떨어짐과 동시에 첫번째 센서에 반응하도록 낙하시키는 위치를 정확하게 조절하며 실험해야 한다.</li>
 </ul>
@@ -243,19 +240,19 @@
 <br>
 
 <h4 id="실험-장치-만들기"><a href="#실험-장치-만들기" class="headerlink" title="실험 장치 만들기"></a>실험 장치 만들기</h4><h5 id="파이프-준비"><a href="#파이프-준비" class="headerlink" title="파이프 준비"></a>파이프 준비</h5><ul>
-<li>길이 2m 투명 아크릴 파이프(내경 3.5cm)에 **구간 거리가 0.25m(=25cm)**가 되도록 일정하게 IR LED를 배치하고 고정한다.</li>
+<li>길이 2m 투명 아크릴 파이프(내경 3.5cm)에 **구간 거리가 0.25m(&#x3D;25cm)**가 되도록 일정하게 IR LED를 배치하고 고정한다.</li>
 </ul>
 <p><img src="/image/Gravitational-Acceleration01.png"></p>
 <br>
 
 <h5 id="센서-장착"><a href="#센서-장착" class="headerlink" title="센서 장착"></a>센서 장착</h5><ul>
-<li>맨 위쪽과 아래쪽에는 12.5cm정도 띄우고 IR LED와 Phototransistor를 배치함<ul>
+<li><p>맨 위쪽과 아래쪽에는 12.5cm정도 띄우고 IR LED와 Phototransistor를 배치함</p>
+<ul>
 <li>손에서 낙하물을 놓을 때, 낙하물이 바닥에 닿을 때, 낙하시간에 영향을 주는 요소를 제거하기 위함</li>
 </ul>
 </li>
-<li>IR LED와 Phototransistor가 서로 정확하게 마주 볼 수 있는 위치에 유성펜을 사용하여 표시한다.</li>
-</ul>
-<ul>
+<li><p>IR LED와 Phototransistor가 서로 정확하게 마주 볼 수 있는 위치에 유성펜을 사용하여 표시한다.</p>
+</li>
 <li><p>드릴을 이용하여 아크릴 파이프에 지름 5mm의 구멍을 뚫는다.</p>
 <ul>
 <li>아크릴이 파손되지 않도록 유의한다. 이를 위해 먼저 작은 지름(1~2mm)의 드릴비트를 이용하여 작은 구멍을 뚫은 뒤, 그 구멍에 5mm 드릴비트를 사용하여 LED가 들어갈 구멍을 다시 뚫는 것이 좋다.</li>
@@ -283,12 +280,13 @@
 </li>
 <li><p>Forward Current 100mA, Forward Voltage 1.5V</p>
 </li>
-<li><p>5V를 전원으로 사용하는 경우<br>$$<br>R = \frac{(5-1.5)V}{0.1A} = 35~Ω<br>$$<br>그러므로 35Ω보다 약간 큰 47Ω저항을 연결한다. 100Ω정도의 저항도 사용할 수 있으나, 너무 큰 저항을 사용할 경우 IR의 세기가 작아지게 되므로, 실험이 잘 안될 수 있다.</p>
+<li><p>5V를 전원으로 사용하는 경우<br>$$<br>R &#x3D; \frac{(5-1.5)V}{0.1A} &#x3D; 35~Ω<br>$$<br>그러므로 35Ω보다 약간 큰 47Ω저항을 연결한다. 100Ω정도의 저항도 사용할 수 있으나, 너무 큰 저항을 사용할 경우 IR의 세기가 작아지게 되므로, 실험이 잘 안될 수 있다.</p>
 </li>
 <li><p>실외에서는 태양광에 포함된 적외선의 영향도 받게 되므로 사용장소가 실내로 제한된다.</p>
 </li>
 </ul>
- <br></li>
+ <br>
+</li>
 <li><p>Phototransistor</p>
 <ul>
 <li><p>적외선이 닿으면 전류를 흐르게 하는 스위치 역할을 한다.</p>
@@ -303,7 +301,7 @@
 <br>
 
 <h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><ul>
-<li>8세트의 IR LED와 Phototransistor를 사용하기 위해 아날로그 입력이 총 8개 필요하다. 그러므로 여기서는 많은 아날로그 입력핀을 갖고 있는 <strong>ESP32</strong>를 사용하도록 한다. 장치의 특성상, 최종 사용시에는 USB선을 분리한 상태에서 사용할 수 있도록 하는 것이 좋으므로, 18650 배터리 홀더가 내장된 ESP32를 사용하는 것도 좋은 방법이다. </li>
+<li>8세트의 IR LED와 Phototransistor를 사용하기 위해 아날로그 입력이 총 8개 필요하다. 그러므로 여기서는 많은 아날로그 입력핀을 갖고 있는 <strong>ESP32</strong>를 사용하도록 한다. 장치의 특성상, 최종 사용시에는 USB선을 분리한 상태에서 사용할 수 있도록 하는 것이 좋으므로, 18650 배터리 홀더가 내장된 ESP32를 사용하는 것도 좋은 방법이다.</li>
 </ul>
 <p><img src="/image/Gravitational-Acceleration03.png"></p>
 <br>
@@ -318,7 +316,7 @@
 
 <ul>
 <li>센서값이 4095으로 출력되는 센서는 배선 자체의 연결에 문제가 있는 것이므로, 배선이 연결되어야 하는 부분에 정확하게 연결이 되었는지 우선 점검한다.</li>
-<li> 초기 상태의 센서값이 모두 0에 근접하는 값으로 표시될 수 있도록 하는 것이 좋으며, 초기값이 0에서 많이 벗어나는 경우에는 LED와 Phototransistor가 서로 정확하게 마주 볼 수 있도록 조절해준다. 조절 후에도 센서값이 0이 되지 않을 수 있다. 이때는 0에 가장 가까운 값이 만들어지도록 최대한 조절한다. 이 상태에서 물체를 떨어뜨려 모든 센서가 물체에 반응하는지 살펴본 뒤, 물체에 반응하는 센서값의 최소값을 점검한다.</li>
+<li>초기 상태의 센서값이 모두 0에 근접하는 값으로 표시될 수 있도록 하는 것이 좋으며, 초기값이 0에서 많이 벗어나는 경우에는 LED와 Phototransistor가 서로 정확하게 마주 볼 수 있도록 조절해준다. 조절 후에도 센서값이 0이 되지 않을 수 있다. 이때는 0에 가장 가까운 값이 만들어지도록 최대한 조절한다. 이 상태에서 물체를 떨어뜨려 모든 센서가 물체에 반응하는지 살펴본 뒤, 물체에 반응하는 센서값의 최소값을 점검한다.</li>
 </ul>
 <br>
 
@@ -412,7 +410,7 @@
 <td>0.1857</td>
 </tr>
 <tr>
-<td>Acceleration(m/s^2)</td>
+<td>Acceleration(m&#x2F;s^2)</td>
 <td></td>
 <td>11.18</td>
 <td>9.35</td>
@@ -423,10 +421,10 @@
 <td>11.16</td>
 </tr>
 </tbody></table>
-<p>∴ Gravitational Acceleration = 9.92 m/s²</p>
+<p>∴ Gravitational Acceleration &#x3D; 9.92 m&#x2F;s²</p>
 <br>
 
-<h4 id="문제점-및-해결-방법"><a href="#문제점-및-해결-방법" class="headerlink" title="문제점 및 해결 방법"></a>문제점 및 해결 방법</h4><p>언제나 중력 가속도 9.81 m/s² 에 근접한 값이 나오는 것은 아니다. </p>
+<h4 id="문제점-및-해결-방법"><a href="#문제점-및-해결-방법" class="headerlink" title="문제점 및 해결 방법"></a>문제점 및 해결 방법</h4><p>언제나 중력 가속도 9.81 m&#x2F;s² 에 근접한 값이 나오는 것은 아니다. </p>
 <ul>
 <li><p>낙하시키는 물체가 센서나 브레드보드에 닿지 않도록 조심스럽게 낙하시켜야 한다. 조금이라도 충돌이 일어나면 가속도 값이 전혀 다른 값으로 출력된다.</p>
 <ul>
@@ -435,13 +433,13 @@
 </li>
 <li><p>처음 물체를 잡고 낙하시키는 위치를 셋팅된 값과 일치시켜야 한다.</p>
 <ul>
-<li>셋팅값보다 멀리서(위에서) 낙하시키면 중력 가속도 값이 커지고, 반대로 가까이서(아래에서) 낙하시키면 중력 가속도 값이 작아진다. </li>
+<li>셋팅값보다 멀리서(위에서) 낙하시키면 중력 가속도 값이 커지고, 반대로 가까이서(아래에서) 낙하시키면 중력 가속도 값이 작아진다.</li>
 </ul>
 </li>
 <li><p>손에서 놓는 과정에서 발생하는 초기 속도의 오차는 지속적으로 발생한다.</p>
 <ul>
 <li>되도록이면 낙하 물체를 살짝 잡은 상태에서 낙하시키도록 한다.</li>
-<li>쇠구슬인 경우 전자석을 이용하거나, 솔레노이드 밸브 등의 사용을 고려할 필요가 있다. </li>
+<li>쇠구슬인 경우 전자석을 이용하거나, 솔레노이드 밸브 등의 사용을 고려할 필요가 있다.</li>
 </ul>
 </li>
 </ul>
@@ -526,15 +524,15 @@
 <li>방사선을 측정할 수 있는 관으로  방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자 요하네스 한스 빌헬름 가이거(Johannes Hans Wilhelm Geiger)가 알파선을 감지할 수 있는 감지기를 개발하였으며, 그 후 1928년 가이거와 가이거의 제자인 발터 뮐러가 함께 개량하여 모든 전리방사선을 감지할 수 있도록 만든 것이 현재의 가이거-뮐러 튜브(GM Tube)이다.</li>
 <li>원리: 튜브는 비활성 기체가 충전된 상태이며  중심 전극(+극, anode)과 관의 내벽(-극, cathode, 금속이나 흑연으로 코팅)으로 구성되어 있다. 여기에 수백V의 전압을 걸면, 관 안에 걸린 높은 전기장 때문에 이온은 음극을 향해 가속되고, 전자는 양극을 향해 가속되며 운동에너지를 얻게 되며 이동 중에 충돌한 기체분자도 함께 전이된다. 이렇게 가스 안에 하전입자의 붕괴가 일어나면 음극에서 양극을 향해 짧고 강한 펄스전류가 순간적으로 나타나 흐르게 된다. 이 펄스전류가 ‘스피커’를 지날때 반응음으로 가이거 계수기 특유의 ‘틱티티틱’하는 소리가 만들어지는데, 이것이 ‘방사선이 존재한다’는 상황을 알려주는 소리이다. 그리고 이 소리 1개음이 방사능 입자 1개에 대한 대응 신호가 된다.  오래된 방식이지만 오늘날에도 큰 변화 없이 이 원리를 응용하여 방사선을 측정하고 있다.</li>
 <li>단점: 상당히 큰 펄스신호를 얻을 수 있지만, 이 전류의 강도는 방사선이 가진 에너지와 비례관계를 나타내는 것은 아니기때문에, 방사선이 가진 에너지를 측정하는 것은 불가능하다. (방사선의 에너지를 알기 위해서는 비례계수관을 사용해야 한다.) 또한 고준위 방사선의 경우에는 전류가 연속적으로 흐르게 되어 펄스의 횟수를 계수할 수 없게 되는 경우도 있다. (주로 500cps 이상의 경우) 이것을 막기 위해 전자의 흐름을 제어하는 별도의 장치를 부착하거나, 신틸레이터(scintillator)나 이온화 챔버 같은 다른 검출기로 계측한다.</li>
-<li>가이거 카운터에 사용하는 튜브관은 여러 종류가 제조되고 있다. 대부분의 GM관은 감마선과 2.5MeV 이상의 베타선을 검출한다. 감마선의 검출 감도는 좋지는 않다. GM관 안의 가스밀도가 낮아서, 투과력이 높은 감마선은 상호작용을 일으키기 어렵기 때문이다. 중성자선은 가스로부터 전리하지 않기때문에 검출하지 못한다. 하지만, 관 안쪽을 붕소로 코팅하거나, 삼불화붕소 아니면 ³He가스를 충전하면 중성자선에도 반응하는 GM관을 만들 수 있다. 중성자는 붕소원자핵과 반응하여 알파선을 생성하거나,  ³He원자와 반응하여 수소와 트리튬이온과 전자를 생성하므로 이 전하입자들이 붕괴를 발생시킨다. 각 튜브마다 검출하는 입자가 다르기 때문에, CPM(Count Per Minute) 단위를 uSv/h(Sieverts Per Hours) 단위로 바꾸기 위한 Conversion Factor가 모두 다르다. 그러므로 사용하는 튜브관이 어떤 것인지 정확하게 알아두어야 한다. </li>
+<li>가이거 카운터에 사용하는 튜브관은 여러 종류가 제조되고 있다. 대부분의 GM관은 감마선과 2.5MeV 이상의 베타선을 검출한다. 감마선의 검출 감도는 좋지는 않다. GM관 안의 가스밀도가 낮아서, 투과력이 높은 감마선은 상호작용을 일으키기 어렵기 때문이다. 중성자선은 가스로부터 전리하지 않기때문에 검출하지 못한다. 하지만, 관 안쪽을 붕소로 코팅하거나, 삼불화붕소 아니면 ³He가스를 충전하면 중성자선에도 반응하는 GM관을 만들 수 있다. 중성자는 붕소원자핵과 반응하여 알파선을 생성하거나,  ³He원자와 반응하여 수소와 트리튬이온과 전자를 생성하므로 이 전하입자들이 붕괴를 발생시킨다. 각 튜브마다 검출하는 입자가 다르기 때문에, CPM(Count Per Minute) 단위를 uSv&#x2F;h(Sieverts Per Hours) 단위로 바꾸기 위한 Conversion Factor가 모두 다르다. 그러므로 사용하는 튜브관이 어떤 것인지 정확하게 알아두어야 한다. </li>
 <li>GM관은 하드웨어 난수발생기로서 이용할 수도 있다.</li>
 <li>Background Radiation: 자연적으로 존재하는 자연 방사선, 즉 Background Radiation의 경우 J305β 튜브관을 사용할때 평균 15.6 CPM이 측정된다. (주변 상황에 따라 조금씩 달라짐)</li>
 </ul>
 <br>
 
 <h4 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h4><ul>
-<li>  Wire : 기본 내장 라이브러리</li>
-<li>  LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
+<li>Wire : 기본 내장 라이브러리</li>
+<li>LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
 </ul>
 <br>
 
@@ -602,22 +600,22 @@
 <h3 id="Conversion-Index-amp-Background-Radiation"><a href="#Conversion-Index-amp-Background-Radiation" class="headerlink" title="Conversion Index &amp; Background Radiation"></a>Conversion Index &amp; Background Radiation</h3><p>CPM값은 사용하는 GM tube의 종류에 따라 다르게 측정된다. 왜냐하면, GM tube의 종류에 따라 감지할 수 있는 방사능의 종류가 다르기 때문이다. 그러므로 제조회사에서 제공하는 Conversion Index 값을 사용하여 CPM값을 Sieverts 단위로 바꿔주어야 한다.</p>
 <p>예를들어, 위 sketch에서 사용한 J305β tube관은 CONV_FACTOR값이 0.008120이다. 이 값의 유도과정은 다음과 같다.</p>
 <ul>
-<li>제조사에서 제공하는 J305β 스펙 :  <strong>65 cps/µR/s for 60Co</strong> (cps: count per second, µR = microRem)</li>
-<li>이것은 1µR/s = <strong>65cps</strong> 임을 뜻한다. (즉 1mR/s = <strong>65000cps</strong>)</li>
-<li>1mR/h = 65000cps / (60 × 60) = 18.06cps</li>
-<li>18 cps/mR/h = 18 × 60 cpm/mR/h  = 1080 / 8.77 cpm/µSv/h = 123.14 cpm/µSv/h (※1mR = 8.77μSv)</li>
-<li>∴ Conversion Index = 123.14 </li>
-<li>123CPM = 1μSv/h   →   1CPM = 0.008120 μSv/h</li>
-<li>∴ CONV_FACTOR = 0.008120</li>
-<li>CPM × CONV_FACTOR  = μSv/h</li>
+<li>제조사에서 제공하는 J305β 스펙 :  <strong>65 cps&#x2F;µR&#x2F;s for 60Co</strong> (cps: count per second, µR &#x3D; microRem)</li>
+<li>이것은 1µR&#x2F;s &#x3D; <strong>65cps</strong> 임을 뜻한다. (즉 1mR&#x2F;s &#x3D; <strong>65000cps</strong>)</li>
+<li>1mR&#x2F;h &#x3D; 65000cps &#x2F; (60 × 60) &#x3D; 18.06cps</li>
+<li>18 cps&#x2F;mR&#x2F;h &#x3D; 18 × 60 cpm&#x2F;mR&#x2F;h  &#x3D; 1080 &#x2F; 8.77 cpm&#x2F;µSv&#x2F;h &#x3D; 123.14 cpm&#x2F;µSv&#x2F;h (※1mR &#x3D; 8.77μSv)</li>
+<li>∴ Conversion Index &#x3D; 123.14 </li>
+<li>123CPM &#x3D; 1μSv&#x2F;h   →   1CPM &#x3D; 0.008120 μSv&#x2F;h</li>
+<li>∴ CONV_FACTOR &#x3D; 0.008120</li>
+<li>CPM × CONV_FACTOR  &#x3D; μSv&#x2F;h</li>
 </ul>
 <br>
 
 <p>이 CONV_FACTOR값에 24*365를 곱하면 Sv 단위의 값을 만들어 낼 수도 있다.  </p>
 <ul>
 <li>만일 어떤 지역에서 J305β tube를 사용하여 측정한 CPM값이 20이라면,</li>
-<li>20×0.008120 = 0.1624μSv/h 에 해당하는 방사선이 검출되는 것이며</li>
-<li>이는 0.1624 × 24 × 365 = 1422.6 μSv를 뜻한다. 방사능 생활척도를 통해 일반적인 배경복사보다는 다소 낮은 수준이라는 것을 알 수 있다.</li>
+<li>20×0.008120 &#x3D; 0.1624μSv&#x2F;h 에 해당하는 방사선이 검출되는 것이며</li>
+<li>이는 0.1624 × 24 × 365 &#x3D; 1422.6 μSv를 뜻한다. 방사능 생활척도를 통해 일반적인 배경복사보다는 다소 낮은 수준이라는 것을 알 수 있다.</li>
 </ul>
 <br>
 
@@ -664,7 +662,7 @@
 <ul>
 <li><p>10 μSv – 오늘받은 평균 방사선</p>
 </li>
-<li><p>0.02 ~ 0.04 mSv = 20 ~ 40 μSv – 흉부 X-레이</p>
+<li><p>0.02 ~ 0.04 mSv &#x3D; 20 ~ 40 μSv – 흉부 X-레이</p>
 </li>
 <li><p>40 μSv – 뉴욕에서 L.A.까지 비행기를 타면받는 방사선</p>
 </li>
@@ -680,7 +678,7 @@
 </li>
 <li><p>3000 μSv – 유방 조영술의 방사선 량</p>
 </li>
-<li><p>3650 μSv (= 10 μSv per day = 0.081 μSv/h) = 2.5 ~ 3.5 mSv – 일반적인 배경복사 (장소에 따른 편차가 큼)</p>
+<li><p>3650 μSv (&#x3D; 10 μSv per day &#x3D; 0.081 μSv&#x2F;h) &#x3D; 2.5 ~ 3.5 mSv – 일반적인 배경복사 (장소에 따른 편차가 큼)</p>
 <p>​                        ※ 호주 1.5 mSv, 미국 3 mSv, 이란, 인도, 유럽의 연간 배경 방사선 양 : 50 mSv</p>
 </li>
 <li><p>0.8 ~ 5 mSv – 뇌 CT 스캔</p>
@@ -696,7 +694,7 @@
 <li><p>20 mSv – 핵관련 종사자 연간 허용치</p>
 </li>
 <li><p>50000 μSv – 연간 최대 허용 직업 선량</p>
-<p>​                       ※ 시간당 최대 방사능 = 50000 μSv / (24 * 365) = 5.70 μSv/h</p>
+<p>​                       ※ 시간당 최대 방사능 &#x3D; 50000 μSv &#x2F; (24 * 365) &#x3D; 5.70 μSv&#x2F;h</p>
 </li>
 <li><p>100000 μSv – 암 위험 증가와 관련이 있을 가능성이 높은 연간 최저 용량</p>
 </li>
@@ -704,13 +702,13 @@
 </li>
 <li><p>350 mSv – 체르노빌 사태 후 이주를 결정한 근거 (매년)</p>
 </li>
-<li><p>1 Sv = 1000000 μSv – 약간의 혈액 변화 유발</p>
+<li><p>1 Sv &#x3D; 1000000 μSv – 약간의 혈액 변화 유발</p>
 </li>
-<li><p>2 Sv = 2000000 μSv – 심각한 방사선 중독 (때로는 치명적)</p>
+<li><p>2 Sv &#x3D; 2000000 μSv – 심각한 방사선 중독 (때로는 치명적)</p>
 </li>
-<li><p>2 ~ 5 Sv = 2000000 ~ 5000000 μSv – 메스꺼움, 탈모, 출혈을 유발, 많은 경우 사망</p>
+<li><p>2 ~ 5 Sv &#x3D; 2000000 ~ 5000000 μSv – 메스꺼움, 탈모, 출혈을 유발, 많은 경우 사망</p>
 </li>
-<li><p>6 Sv = 6000000 μSv – 2개월 이내에 80% 이상 사망</p>
+<li><p>6 Sv &#x3D; 6000000 μSv – 2개월 이내에 80% 이상 사망</p>
 </li>
 </ul>
 <br>
@@ -835,7 +833,7 @@
 <h4 id="Free-Current-weather-and-forecasts-collection"><a href="#Free-Current-weather-and-forecasts-collection" class="headerlink" title="Free Current weather and forecasts collection"></a>Free Current weather and forecasts collection</h4><ul>
 <li>60 Calls per minute (no more than)</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/current">Current weather API</a></li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/forecast5">5 days/3 hour forecast API</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/forecast5">5 days&#x2F;3 hour forecast API</a></li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/api/weathermaps">Weather maps 1.0</a> </li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/api/uvi">UV index</a> </li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openweathermap.org/triggers">Weather alerts</a> </li>
@@ -853,14 +851,16 @@
 <br>
 
 <p><img src="/image/owm-api-02.png"></p>
-<br></li>
+<br>
+</li>
 <li><p>Sign In을 클릭하여 로그인한 뒤, API Keys를 누릅니다.</p>
 <p><img src="/image/owm-api-03.png"></p>
 <br>
 
 <p><img src="/image/owm-api-04.png"></p>
-<br></li>
-<li><p> Default로 지정되어 있는 Key를 복사하거나, 새로운 Key를 생성합니다.</p>
+<br>
+</li>
+<li><p>Default로 지정되어 있는 Key를 복사하거나, 새로운 Key를 생성합니다.</p>
 </li>
 </ol>
 <p>   <img src="/image/owm-api-05.png"></p>
@@ -990,14 +990,14 @@
 <br>
 
 <ol start="3">
-<li>밑줄친 부분의 json 변수가 나타나 있는 라인을 모두 지우고 </li>
+<li>밑줄친 부분의 json 변수가 나타나 있는 라인을 모두 지우고</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* json = <span class="string">&quot;&#123;\&quot;coord\&quot;:&#123;\&quot;lon\&quot;:121.49,\&quot;lat\&quot;:31.23&#125;,\&quot;weather\&quot;:[&#123;\&quot;id\&quot;:804,\&quot;main\&quot;:\&quot;Clouds\&quot;,\&quot;description\&quot;:\&quot;overcast clouds\&quot;,\&quot;icon\&quot;:\&quot;04d\&quot;&#125;],\&quot;base\&quot;:\&quot;stations\&quot;,\&quot;main\&quot;:&#123;\&quot;temp\&quot;:293.02,\&quot;pressure\&quot;:1027,\&quot;humidity\&quot;:55,\&quot;temp_min\&quot;:289.82,\&quot;temp_max\&quot;:298.71&#125;,\&quot;visibility\&quot;:10000,\&quot;wind\&quot;:&#123;\&quot;speed\&quot;:3,\&quot;deg\&quot;:60&#125;,\&quot;clouds\&quot;:&#123;\&quot;all\&quot;:94&#125;,\&quot;dt\&quot;:1574303919,\&quot;sys\&quot;:&#123;\&quot;type\&quot;:1,\&quot;id\&quot;:9659,\&quot;country\&quot;:\&quot;CN\&quot;,\&quot;sunrise\&quot;:1574288762,\&quot;sunset\&quot;:1574326426&#125;,\&quot;timezone\&quot;:28800,\&quot;id\&quot;:1796236,\&quot;name\&quot;:\&quot;Shanghai\&quot;,\&quot;cod\&quot;:200&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ol start="4">
-<li> OpenWeatherMap에서 실시간으로 받는 String 형식의 데이터 변수로 바꿔줍니다.</li>
+<li>OpenWeatherMap에서 실시간으로 받는 String 형식의 데이터 변수로 바꿔줍니다.</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String json = http.<span class="built_in">getString</span>();</span><br></pre></td></tr></table></figure>
 
@@ -1017,7 +1017,7 @@
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">year</span>(dt), <span class="built_in">month</span>(dt), <span class="built_in">day</span>(dt), <span class="built_in">hour</span>(dt), <span class="built_in">minute</span>(dt), <span class="built_in">second</span>(dt), <span class="built_in">weekday</span>(dt));</span><br></pre></td></tr></table></figure>
 
-<p>​        위의 스케치를 통해서 UTC를 YYYY.MM.DD HH:MM:SS(요일) 형태의 날짜를 변환하며, printf문을 통해 출력할 수 있습니다.</p>
+<p>​		위의 스케치를 통해서 UTC를 YYYY.MM.DD HH:MM:SS(요일) 형태의 날짜를 변환하며, printf문을 통해 출력할 수 있습니다.</p>
 <br>
 
 <h4 id="Data-출력에-사용한-variables"><a href="#Data-출력에-사용한-variables" class="headerlink" title="Data 출력에 사용한 variables"></a>Data 출력에 사용한 variables</h4><p>JSON 형식의 데이터를 파싱할때 사용한 변수들입니다.</p>
@@ -1100,7 +1100,7 @@
 <td>Wind Speed</td>
 <td>int</td>
 <td>wind_speed</td>
-<td>m/s</td>
+<td>m&#x2F;s</td>
 </tr>
 <tr>
 <td>Wind Degree</td>
@@ -1159,7 +1159,7 @@
 <tr>
 <td>GMT</td>
 <td>int</td>
-<td>timezone  (※timezone/3600)</td>
+<td>timezone  (※timezone&#x2F;3600)</td>
 <td>hour</td>
 </tr>
 <tr>
@@ -1522,7 +1522,7 @@
 <tr>
 <td>731</td>
 <td>Dust</td>
-<td>sand/ dust whirls</td>
+<td>sand&#x2F; dust whirls</td>
 <td><img src="http://openweathermap.org/img/wn/50d@2x.png" alt="img"> 50d</td>
 </tr>
 <tr>
@@ -1668,7 +1668,7 @@
 <h3 id="목록-구성-설정"><a href="#목록-구성-설정" class="headerlink" title="목록 구성 설정"></a>목록 구성 설정</h3><p>먼저 <strong>설정</strong> 시트를 만들고 조건으로 사용할 목록을 구성해보겠습니다. 여기서는 두가지가 필요한데 </p>
 <ul>
 <li>학교급에 따른 학년범위 설정 :  초등은 1<del>6학년, 중등은 7</del>9학년, 고등은 10~12학년, 국제와 유치는 학년개념이 없으므로 그대로 국제와 유치로 설정</li>
-<li>학년에 따른 학급범위 설정 : 국제는 국제반, 유치는 토끼/사슴/기린반으로 나뉘고 그밖의 1~12학년까지 각 학년별 학급수를 나타냅니다. </li>
+<li>학년에 따른 학급범위 설정 : 국제는 국제반, 유치는 토끼&#x2F;사슴&#x2F;기린반으로 나뉘고 그밖의 1~12학년까지 각 학년별 학급수를 나타냅니다.</li>
 </ul>
 <p><img src="/image/dynamic02.png"></p>
 <br>
@@ -1679,7 +1679,7 @@
 <p><img src="/image/dynamic03.png"></p>
 <ul>
 <li>이름 : <strong>학교급_초등</strong></li>
-<li>참조 대상 : <strong>설정&#33;&#36;C&#36;3&#58;&#36;C&#36;8</strong></li>
+<li>참조 대상 : <strong>설정&amp;#33;&amp;#36;C&amp;#36;3&amp;#58;&amp;#36;C&amp;#36;8</strong></li>
 </ul>
 <p>즉, C2셀을 이름으로 하고, 학년의 범위를 나타내는 C3~C8셀까지를 참조 대상으로 하는 이름을 만드는 것이죠.</p>
 <br>
@@ -1690,7 +1690,7 @@
 <h4 id="※-이름-만들기-할-때-고려할-점"><a href="#※-이름-만들기-할-때-고려할-점" class="headerlink" title="※ 이름 만들기 할 때 고려할 점"></a>※ 이름 만들기 할 때 고려할 점</h4><p>예를 들어 6학년의 경우 1~4반까지 있지만, 차기 학년도에 학급수가 6개반으로 증가하게 되면 참조 대상을 다시 수정해주어야 하는 불편한 점이 생길 수 있습니다. 그러므로 학급수 같이 유동적인 데이터는 참조 대상을 여유있게 지정해두는 것이 좋습니다.</p>
 <ul>
 <li>이름 : <strong>학년6_반</strong></li>
-<li>참조 대상 : <strong>설정&#33;&#36;H&#36;12&#58;&#36;H&#36;22</strong>   (<strong>설정&#33;&#36;H&#36;12&#58;&#36;H&#36;15</strong> 로 지정하지말고 여유있게 지정하는 것을 추천)</li>
+<li>참조 대상 : <strong>설정&amp;#33;&amp;#36;H&amp;#36;12&amp;#58;&amp;#36;H&amp;#36;22</strong>   (<strong>설정&amp;#33;&amp;#36;H&amp;#36;12&amp;#58;&amp;#36;H&amp;#36;15</strong> 로 지정하지말고 여유있게 지정하는 것을 추천)</li>
 </ul>
 <br>
 
@@ -1707,10 +1707,10 @@
 <p><img src="/image/dynamic05.png"></p>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
-<li>원본 : <strong>국제,유치,초등,중등,고등</strong> </li>
+<li>원본 : <strong>국제,유치,초등,중등,고등</strong></li>
 </ul>
 <ol start="3">
-<li>J6셀 : <strong>=”학교급_”&amp;$J$5</strong>  (J5셀이 초등으로 선택이 되면, <strong>학교급_초등</strong> 으로 바꿔주는 수식입니다.)</li>
+<li>J6셀 : <strong>&#x3D;”학교급_”&amp;$J$5</strong>  (J5셀이 초등으로 선택이 되면, <strong>학교급_초등</strong> 으로 바꿔주는 수식입니다.)</li>
 </ol>
 <br>
 
@@ -1721,16 +1721,14 @@
 <p><img src="/image/dynamic06.png"></p>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
-<li>원본 : <strong>=INDIRECT($J$6)</strong><pre><code>           - J5셀이 **초등**으로 선택되면 J6셀이 **학교급_초등**으로 바뀌는데, J6셀을 목록 원본으로 지정하므로 이름 지정시 **학교급_초등**의 참조범위인 C3~C8 부분을 목록으로 불러옵니다.
-</code></pre>
-<ul>
+<li>원본 : <strong>&#x3D;INDIRECT($J$6)</strong><br>           - J5셀이 <strong>초등</strong>으로 선택되면 J6셀이 <strong>학교급_초등</strong>으로 바뀌는데, J6셀을 목록 원본으로 지정하므로 이름 지정시 <strong>학교급_초등</strong>의 참조범위인 C3~C8 부분을 목록으로 불러옵니다.<ul>
 <li>그러므로, 아래와 같은 형태로 목록이 뜨게 됩니다.</li>
 </ul>
 </li>
 </ul>
 <p><img src="/image/dynamic07.png"></p>
 <ol start="3">
-<li>K6셀 : <strong>=”학교급_”&amp;$K$5</strong> (K5셀이 <strong>6</strong>으로 선택이 되면, <strong>학년6_반</strong> 으로 바꿔주는 수식입니다.)</li>
+<li>K6셀 : <strong>&#x3D;”학교급_”&amp;$K$5</strong> (K5셀이 <strong>6</strong>으로 선택이 되면, <strong>학년6_반</strong> 으로 바꿔주는 수식입니다.)</li>
 </ol>
 <br>
 
@@ -1741,7 +1739,7 @@
 <p><img src="/image/dynamic08.png"></p>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
-<li>원본 : <strong>=INDIRECT($K$6)</strong><ul>
+<li>원본 : <strong>&#x3D;INDIRECT($K$6)</strong><ul>
 <li>K5셀이 <strong>6</strong>으로 선택되면 K6셀이 <strong>학년6_반</strong>으로 바뀌는데, K6셀을 목록 원본으로 지정하므로 이름 지정시 <strong>학년_반</strong>의 참조범위인 H12~H22 부분을 목록으로 불러옵니다.</li>
 <li>그러므로, 아래와 같은 형태로 목록이 뜨게 됩니다.</li>
 </ul>
@@ -1749,7 +1747,7 @@
 </ul>
 <p><img src="/image/dynamic09.png"></p>
 <ol start="3">
-<li>(선택사항) L6셀 : <strong>=K6&amp;L5</strong> (K6셀이 <strong>6</strong>, L5셀이 <strong>1</strong>로 선택이 되면, <strong>학년6_반1</strong> 과 같이 바꿔주는 수식입니다.)</li>
+<li>(선택사항) L6셀 : <strong>&#x3D;K6&amp;L5</strong> (K6셀이 <strong>6</strong>, L5셀이 <strong>1</strong>로 선택이 되면, <strong>학년6_반1</strong> 과 같이 바꿔주는 수식입니다.)</li>
 </ol>
 <br>
 
@@ -1843,7 +1841,7 @@
 <br>
 
 <ol start="12">
-<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다. </li>
+<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.</li>
 </ol>
 <img src="/image/4wd-bt-12.png" style="zoom:33%;">
 
@@ -1908,8 +1906,8 @@
 </tr>
 </tbody></table>
 <ul>
-<li>VM (모터 전압) = 15V max</li>
-<li>VCC (로직 전압) = 2.7 ~ 5.5V</li>
+<li>VM (모터 전압) &#x3D; 15V max</li>
+<li>VCC (로직 전압) &#x3D; 2.7 ~ 5.5V</li>
 <li><strong>GND</strong><ul>
 <li>TB6612fng 모듈을 여러개 테스트한 결과, <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li>
 <li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li>
@@ -1929,7 +1927,7 @@
 <th>모터드라이브1</th>
 <th>아두이노</th>
 <th>외부전원</th>
-<th>모터 / 역할</th>
+<th>모터 &#x2F; 역할</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -2059,7 +2057,7 @@
 <th>모터드라이브1</th>
 <th>아두이노</th>
 <th>외부전원</th>
-<th>모터 / 역할</th>
+<th>모터 &#x2F; 역할</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -2188,7 +2186,7 @@
 </ul>
 </li>
 <li><strong>왼쪽과 오른쪽 바퀴로 나누어 컨트롤</strong> 하는 방법 : 디지털핀 7개 사용 (아래 본문에서 사용한 방법)</li>
-<li>앞과 뒷 바퀴로 나누어 컨트롤 하는 방법 : 디지털핀 7개 사용. (단, 조향을 위한 추가적인 방법을 고려해야 함.)  </li>
+<li>앞과 뒷 바퀴로 나누어 컨트롤 하는 방법 : 디지털핀 7개 사용. (단, 조향을 위한 추가적인 방법을 고려해야 함.)</li>
 </ul>
 <br>
 
@@ -2216,7 +2214,7 @@
 <tr>
 <td>H</td>
 <td>H</td>
-<td>H/L</td>
+<td>H&#x2F;L</td>
 <td>H</td>
 <td>L</td>
 <td>L</td>
@@ -2268,9 +2266,9 @@
 <td>Stop</td>
 </tr>
 <tr>
-<td>H/L</td>
-<td>H/L</td>
-<td>H/L</td>
+<td>H&#x2F;L</td>
+<td>H&#x2F;L</td>
+<td>H&#x2F;L</td>
 <td>L</td>
 <td>OFF(High impedance)</td>
 <td>OFF(High impedance)</td>
@@ -2354,22 +2352,22 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>▲ (전진 / 속도 증가)</td>
+<td>▲ (전진 &#x2F; 속도 증가)</td>
 <td>0XFF18E7</td>
 <td>BTN_U</td>
 </tr>
 <tr>
-<td>▼ (후진 / 속도 감소)</td>
+<td>▼ (후진 &#x2F; 속도 감소)</td>
 <td>0XFFA4B5</td>
 <td>BTN_D</td>
 </tr>
 <tr>
-<td>◀ (좌회전 / 좌회전각 증가)</td>
+<td>◀ (좌회전 &#x2F; 좌회전각 증가)</td>
 <td>0XFF10EF</td>
 <td>BTN_L</td>
 </tr>
 <tr>
-<td>▶ (우회전 / 우회전각 증가)</td>
+<td>▶ (우회전 &#x2F; 우회전각 증가)</td>
 <td>0XFF5AA5</td>
 <td>BTN_R</td>
 </tr>
@@ -2405,12 +2403,12 @@
 <h3 id="TCRT5000-IR-reflective-sensor"><a href="#TCRT5000-IR-reflective-sensor" class="headerlink" title="TCRT5000 IR reflective sensor"></a>TCRT5000 IR reflective sensor</h3><p>라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.</p>
 <p><img src="/image/LT-03.png"></p>
 <ul>
-<li>  장애물이 없는 경우: 1 반환</li>
-<li>  센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
-<li>  센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
-<li>  검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
-<li>  10~12mm 정도의 거리에서 측정하는 것을 추천</li>
-<li>  AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
+<li>장애물이 없는 경우: 1 반환</li>
+<li>센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
+<li>센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
+<li>검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
+<li>10~12mm 정도의 거리에서 측정하는 것을 추천</li>
+<li>AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
 </ul>
 <blockquote>
 <p>(위 스펙과는 별도로) 라인트레이서 제작시에는 경험상 센서가 바닥면으로부터 2cm정도 떨어지도록 설치하는 것을 추천함</p>
@@ -2441,9 +2439,9 @@
 <li>12V 이상의 외부전원을 입력하는 경우, 레귤레이터 보호를 위해 5V 점퍼선을 제거해야 함</li>
 </ul>
 </li>
-<li><p>5V (입력/출력)</p>
+<li><p>5V (입력&#x2F;출력)</p>
 <ul>
-<li>  점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
+<li>점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
 <li>점퍼핀 없는 경우 5V 입력을 통해 L298N에 전원 인가</li>
 </ul>
 </li>
@@ -2520,26 +2518,26 @@
 
 <h4 id="Jumper"><a href="#Jumper" class="headerlink" title="Jumper"></a>Jumper</h4><ul>
 <li>Enable 모터A<ul>
-<li>  점퍼를 연결시키지 않으면 PWM사용</li>
-<li>  점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
 </ul>
 </li>
 <li>Enable 모터B<ul>
-<li>  점퍼를 연결시키지 않으면 PWM사용</li>
-<li>  점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
 </ul>
 </li>
-<li>  5V (※ Pinout의 5V 부분 참고)</li>
+<li>5V (※ Pinout의 5V 부분 참고)</li>
 </ul>
 <br>
 
 <br>
 
 <h3 id="전원"><a href="#전원" class="headerlink" title="전원"></a>전원</h3><ul>
-<li>  대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
-<li>  But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 되지 않는 경우가 많다.</li>
-<li>  AA건전지 6개를 직렬로 연결하여 9V정도를 공급하거나 (사용시간 10~15분정도 가능)</li>
-<li>  18650 리튬이온전지 2개를 연결하여 7.4V를 공급하는 것을 추천한다.</li>
+<li>대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
+<li>But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 되지 않는 경우가 많다.</li>
+<li>AA건전지 6개를 직렬로 연결하여 9V정도를 공급하거나 (사용시간 10~15분정도 가능)</li>
+<li>18650 리튬이온전지 2개를 연결하여 7.4V를 공급하는 것을 추천한다.</li>
 </ul>
 <br>
 
@@ -2590,7 +2588,7 @@
 <br>
 
 <ol start="3">
-<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1/2의 길이만큼 나누어 준비한뒤,</li>
+<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1&#x2F;2의 길이만큼 나누어 준비한뒤,</li>
 </ol>
 <p><img src="/image/LT-07.jpg"></p>
 <br>
@@ -2718,14 +2716,14 @@
 <thead>
 <tr>
 <th></th>
-<th>L/F 모터 U단자</th>
-<th>L/F 모터 D단자</th>
-<th>L/R 모터 U단자</th>
-<th>L/R 모터 D단자</th>
-<th>R/F 모터 U단자</th>
-<th>R/F 모터 D단자</th>
-<th>R/R 모터 U단자</th>
-<th>R/R모터 D단자</th>
+<th>L&#x2F;F 모터 U단자</th>
+<th>L&#x2F;F 모터 D단자</th>
+<th>L&#x2F;R 모터 U단자</th>
+<th>L&#x2F;R 모터 D단자</th>
+<th>R&#x2F;F 모터 U단자</th>
+<th>R&#x2F;F 모터 D단자</th>
+<th>R&#x2F;R 모터 U단자</th>
+<th>R&#x2F;R모터 D단자</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -2886,7 +2884,7 @@
 <br>
 
 <h5 id="센서-감도-조정"><a href="#센서-감도-조정" class="headerlink" title="센서 감도 조정"></a>센서 감도 조정</h5><ul>
-<li>  센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
+<li>센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
 </ul>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-26T14:24:07.000Z" title="2019. 10. 26. 오후 11:24:07">2019-10-26</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:40:14.000Z" title="2021. 11. 17. 오후 12:40:14">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">14분안에 읽기 (약 2042 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">Arduino, Bluetooth 페어링</a></h1><div class="content"><p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
 <br>
@@ -2898,7 +2896,7 @@
 </ul>
 <p><img src="/image/BT-01.jpg"></p>
 <ul>
-<li>  <strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
+<li><strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
 </ul>
 <p><img src="/image/BT-02.jpg"></p>
 <blockquote>
@@ -3063,36 +3061,36 @@
 </tr>
 <tr>
 <td>AT+VERSION</td>
-<td align="center">OKVERSION=4.0</td>
+<td align="center">OKVERSION&#x3D;4.0</td>
 <td>MLT-BT05 버전 확인</td>
 </tr>
 <tr>
 <td>AT+LADDR</td>
-<td align="center">+LADDR=(MAC Address)</td>
+<td align="center">+LADDR&#x3D;(MAC Address)</td>
 <td>MAC Address 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=0</td>
+<td>AT+ROLE&#x3D;0</td>
 <td align="center">OK+ROLE:0</td>
 <td>SLAVE mode (default)</td>
 </tr>
 <tr>
-<td>AT+ROLE=1</td>
+<td>AT+ROLE&#x3D;1</td>
 <td align="center">OK+ROLE:1</td>
 <td>MASTER mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=2</td>
+<td>AT+ROLE&#x3D;2</td>
 <td align="center">OK+ROLE:2</td>
 <td>sensor mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=3</td>
+<td>AT+ROLE&#x3D;3</td>
 <td align="center">OK+ROLE:3</td>
 <td>iBeacon mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=4</td>
+<td>AT+ROLE&#x3D;4</td>
 <td align="center">OK+ROLE:4</td>
 <td>WeChat mode</td>
 </tr>
@@ -3144,19 +3142,19 @@
 <td>HC-06 버전 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=S</td>
+<td>AT+ROLE&#x3D;S</td>
 <td align="center">OK+ROLE:S</td>
 <td>SLAVE 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=M</td>
+<td>AT+ROLE&#x3D;M</td>
 <td align="center">OK+ROLE:M</td>
 <td>MASTER 역할 (v1.7 이상만 가능)</td>
 </tr>
 <tr>
 <td>AT+ROLE</td>
 <td align="center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
 </tr>
 </tbody></table>
 <br>
@@ -3183,7 +3181,7 @@
 <td>블루투스 모듈ID 지정 (SKS100)</td>
 </tr>
 <tr>
-<td>AT+PSWD=0000</td>
+<td>AT+PSWD&#x3D;0000</td>
 <td align="center">OKsetPIN</td>
 <td>페어링 암호 설정 (0000)</td>
 </tr>
@@ -3198,19 +3196,19 @@
 <td>HC-06 버전 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=0</td>
+<td>AT+ROLE&#x3D;0</td>
 <td align="center">OK+ROLE:0</td>
 <td>SLAVE 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=1</td>
+<td>AT+ROLE&#x3D;1</td>
 <td align="center">OK+ROLE:1</td>
 <td>MASTER 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=?</td>
+<td>AT+ROLE&#x3D;?</td>
 <td align="center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
 </tr>
 </tbody></table>
 <br>
@@ -3227,9 +3225,9 @@
 <p>※ 이때, 주의할 점이 있는데요. <strong>시리얼 모니터를 열기 전에 스마트폰과 HC-06의 블루투스 연결은 해제된 상태</strong>여야 합니다. 기존에 HC-06과 스마트폰을 연결한 적이 있다면, 자기도 모르게 블루투스 연결이 자동으로 되어 있을 수 있는데요. 이런 경우에는 시리얼 모니터가 열리지 않아요.</p>
 </blockquote>
 <ul>
-<li>  <strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
-<li>  <strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
-<li>  <strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
+<li><strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
 </ul>
 <br>
 
@@ -3311,8 +3309,8 @@
 </ol>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-23T12:33:48.000Z" title="2019. 10. 23. 오후 9:33:48">2019-10-23</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:42:28.000Z" title="2021. 11. 17. 오후 12:42:28">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">4분안에 읽기 (약 674 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/23/ESP32-BLE-Blynk-Gauge/">esp32 BLE, Blynk Gauge</a></h1><div class="content"><h3 id="ESP32에서-Blynk로-센서값-보내기"><a href="#ESP32에서-Blynk로-센서값-보내기" class="headerlink" title="ESP32에서 Blynk로 센서값 보내기"></a>ESP32에서 Blynk로 센서값 보내기</h3><p>Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)</p>
 <ul>
-<li>  ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
-<li>  새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
+<li>ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
+<li>새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
 </ul>
 <br>
 
@@ -3322,8 +3320,8 @@
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_PRINT Serial</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLYNK_USE_DIRECT_CONNECT</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BlynkSimpleEsp32_BLE.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// You should get Auth Token in the Blynk App.</span></span><br><span class="line"><span class="comment">// Go to the Project Settings (nut icon).</span></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">&quot;WUAeS6P57T3XNaIGyLK1-OUv........&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Potentiometer Pin</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIN_POTENTIOMETER A0                       <span class="comment">// Potentiometer GPIO 36</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resist, Voltage</span></span><br><span class="line"><span class="keyword">int</span> value_Potentiometer; </span><br><span class="line"><span class="keyword">int</span> value_R;</span><br><span class="line"><span class="keyword">float</span> value_V;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Debug console</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  Serial.println(<span class="string">&quot;Waiting for connections...&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// for Blynk </span></span><br><span class="line">  Blynk.setDeviceName(<span class="string">&quot;Blynk-t&quot;</span>);</span><br><span class="line">  Blynk.begin(auth);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  value_Potentiometer = analogRead(PIN_POTENTIOMETER);  <span class="comment">// 12bit ADC (0~4095)</span></span><br><span class="line">  value_V = <span class="built_in">map</span>(value_Potentiometer, <span class="number">0</span>, <span class="number">4095</span>, <span class="number">3300</span>, <span class="number">0</span>); <span class="comment">// 0~3300mV</span></span><br><span class="line">  value_R = <span class="built_in">map</span>(value_V, <span class="number">0</span>, <span class="number">3300</span>, <span class="number">10000</span>, <span class="number">0</span>);            <span class="comment">// 0~10kΩ</span></span><br><span class="line">  </span><br><span class="line">  Blynk.run();</span><br><span class="line">  </span><br><span class="line">  Serial.print(<span class="string">&quot;Resist : &quot;</span>); Serial.print(value_R); Serial.println(<span class="string">&quot;Ω&quot;</span>);</span><br><span class="line">  Serial.print(<span class="string">&quot;Voltage: &quot;</span>); Serial.print(value_V); Serial.println(<span class="string">&quot;mV&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V1)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V1, value_R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BLYNK_READ(V2)           <span class="comment">// ESP32 -&gt; widget virtual pin1</span></span><br><span class="line">&#123;</span><br><span class="line">  Blynk.virtualWrite(V2, value_V);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>  Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
-<li>  Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
+<li>Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
+<li>Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
 </ul>
 <br>
 

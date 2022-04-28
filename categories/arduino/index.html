@@ -91,7 +91,7 @@
 <br>
 
 <ol start="12">
-<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다. </li>
+<li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.</li>
 </ol>
 <img src="/image/4wd-bt-12.png" style="zoom:33%;">
 
@@ -156,8 +156,8 @@
 </tr>
 </tbody></table>
 <ul>
-<li>VM (모터 전압) = 15V max</li>
-<li>VCC (로직 전압) = 2.7 ~ 5.5V</li>
+<li>VM (모터 전압) &#x3D; 15V max</li>
+<li>VCC (로직 전압) &#x3D; 2.7 ~ 5.5V</li>
 <li><strong>GND</strong><ul>
 <li>TB6612fng 모듈을 여러개 테스트한 결과, <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li>
 <li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li>
@@ -177,7 +177,7 @@
 <th>모터드라이브1</th>
 <th>아두이노</th>
 <th>외부전원</th>
-<th>모터 / 역할</th>
+<th>모터 &#x2F; 역할</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -307,7 +307,7 @@
 <th>모터드라이브1</th>
 <th>아두이노</th>
 <th>외부전원</th>
-<th>모터 / 역할</th>
+<th>모터 &#x2F; 역할</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -436,7 +436,7 @@
 </ul>
 </li>
 <li><strong>왼쪽과 오른쪽 바퀴로 나누어 컨트롤</strong> 하는 방법 : 디지털핀 7개 사용 (아래 본문에서 사용한 방법)</li>
-<li>앞과 뒷 바퀴로 나누어 컨트롤 하는 방법 : 디지털핀 7개 사용. (단, 조향을 위한 추가적인 방법을 고려해야 함.)  </li>
+<li>앞과 뒷 바퀴로 나누어 컨트롤 하는 방법 : 디지털핀 7개 사용. (단, 조향을 위한 추가적인 방법을 고려해야 함.)</li>
 </ul>
 <br>
 
@@ -464,7 +464,7 @@
 <tr>
 <td>H</td>
 <td>H</td>
-<td>H/L</td>
+<td>H&#x2F;L</td>
 <td>H</td>
 <td>L</td>
 <td>L</td>
@@ -516,9 +516,9 @@
 <td>Stop</td>
 </tr>
 <tr>
-<td>H/L</td>
-<td>H/L</td>
-<td>H/L</td>
+<td>H&#x2F;L</td>
+<td>H&#x2F;L</td>
+<td>H&#x2F;L</td>
 <td>L</td>
 <td>OFF(High impedance)</td>
 <td>OFF(High impedance)</td>
@@ -602,22 +602,22 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>▲ (전진 / 속도 증가)</td>
+<td>▲ (전진 &#x2F; 속도 증가)</td>
 <td>0XFF18E7</td>
 <td>BTN_U</td>
 </tr>
 <tr>
-<td>▼ (후진 / 속도 감소)</td>
+<td>▼ (후진 &#x2F; 속도 감소)</td>
 <td>0XFFA4B5</td>
 <td>BTN_D</td>
 </tr>
 <tr>
-<td>◀ (좌회전 / 좌회전각 증가)</td>
+<td>◀ (좌회전 &#x2F; 좌회전각 증가)</td>
 <td>0XFF10EF</td>
 <td>BTN_L</td>
 </tr>
 <tr>
-<td>▶ (우회전 / 우회전각 증가)</td>
+<td>▶ (우회전 &#x2F; 우회전각 증가)</td>
 <td>0XFF5AA5</td>
 <td>BTN_R</td>
 </tr>
@@ -653,12 +653,12 @@
 <h3 id="TCRT5000-IR-reflective-sensor"><a href="#TCRT5000-IR-reflective-sensor" class="headerlink" title="TCRT5000 IR reflective sensor"></a>TCRT5000 IR reflective sensor</h3><p>라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.</p>
 <p><img src="/image/LT-03.png"></p>
 <ul>
-<li>  장애물이 없는 경우: 1 반환</li>
-<li>  센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
-<li>  센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
-<li>  검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
-<li>  10~12mm 정도의 거리에서 측정하는 것을 추천</li>
-<li>  AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
+<li>장애물이 없는 경우: 1 반환</li>
+<li>센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
+<li>센서와 12mm이내의 거리에 검은색이 위치하는 경우: 1 반환</li>
+<li>검은색의 경우도 아주 가까이 가져가면 적외선 수신량이 증가하여 0의 값을 반환할 수 있으므로, 라인트레이서 구성시 감지하는 적당한 거리를 찾는 것이 중요합니다.</li>
+<li>10~12mm 정도의 거리에서 측정하는 것을 추천</li>
+<li>AO 단자를 이용할 경우 아날로그 신호로 처리도 가능</li>
 </ul>
 <blockquote>
 <p>(위 스펙과는 별도로) 라인트레이서 제작시에는 경험상 센서가 바닥면으로부터 2cm정도 떨어지도록 설치하는 것을 추천함</p>
@@ -689,9 +689,9 @@
 <li>12V 이상의 외부전원을 입력하는 경우, 레귤레이터 보호를 위해 5V 점퍼선을 제거해야 함</li>
 </ul>
 </li>
-<li><p>5V (입력/출력)</p>
+<li><p>5V (입력&#x2F;출력)</p>
 <ul>
-<li>  점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
+<li>점퍼핀이 연결되어 있는 경우 5V 출력 (단, 5V출력으로 사용하려면 외부전원을 12V이하로 주어야 하며, 그 이상의 전압을 인가하는 경우 레귤레이터가 손상됨)</li>
 <li>점퍼핀 없는 경우 5V 입력을 통해 L298N에 전원 인가</li>
 </ul>
 </li>
@@ -768,26 +768,26 @@
 
 <h4 id="Jumper"><a href="#Jumper" class="headerlink" title="Jumper"></a>Jumper</h4><ul>
 <li>Enable 모터A<ul>
-<li>  점퍼를 연결시키지 않으면 PWM사용</li>
-<li>  점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 왼쪽 모터에 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
 </ul>
 </li>
 <li>Enable 모터B<ul>
-<li>  점퍼를 연결시키지 않으면 PWM사용</li>
-<li>  점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
+<li>점퍼를 연결시키지 않으면 PWM사용</li>
+<li>점퍼 연결시 오른쪽 모터 5V (즉, PWM을 사용하지 않는 경우에만 연결)</li>
 </ul>
 </li>
-<li>  5V (※ Pinout의 5V 부분 참고)</li>
+<li>5V (※ Pinout의 5V 부분 참고)</li>
 </ul>
 <br>
 
 <br>
 
 <h3 id="전원"><a href="#전원" class="headerlink" title="전원"></a>전원</h3><ul>
-<li>  대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
-<li>  But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 되지 않는 경우가 많다.</li>
-<li>  AA건전지 6개를 직렬로 연결하여 9V정도를 공급하거나 (사용시간 10~15분정도 가능)</li>
-<li>  18650 리튬이온전지 2개를 연결하여 7.4V를 공급하는 것을 추천한다.</li>
+<li>대부분의 초보자를 위한 4WD 제작 키트는 AA건전지 4개를 직렬연결할 수 있는 전지소켓을 포함하여 판매하는 경우가 많지만</li>
+<li>But, 제작 경험으로 볼 때 AA건전지 4개로 얻을 수 있는 전력만으로는 원활한 구동이 되지 않는 경우가 많다.</li>
+<li>AA건전지 6개를 직렬로 연결하여 9V정도를 공급하거나 (사용시간 10~15분정도 가능)</li>
+<li>18650 리튬이온전지 2개를 연결하여 7.4V를 공급하는 것을 추천한다.</li>
 </ul>
 <br>
 
@@ -838,7 +838,7 @@
 <br>
 
 <ol start="3">
-<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1/2의 길이만큼 나누어 준비한뒤,</li>
+<li>준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1&#x2F;2의 길이만큼 나누어 준비한뒤,</li>
 </ol>
 <p><img src="/image/LT-07.jpg"></p>
 <br>
@@ -966,14 +966,14 @@
 <thead>
 <tr>
 <th></th>
-<th>L/F 모터 U단자</th>
-<th>L/F 모터 D단자</th>
-<th>L/R 모터 U단자</th>
-<th>L/R 모터 D단자</th>
-<th>R/F 모터 U단자</th>
-<th>R/F 모터 D단자</th>
-<th>R/R 모터 U단자</th>
-<th>R/R모터 D단자</th>
+<th>L&#x2F;F 모터 U단자</th>
+<th>L&#x2F;F 모터 D단자</th>
+<th>L&#x2F;R 모터 U단자</th>
+<th>L&#x2F;R 모터 D단자</th>
+<th>R&#x2F;F 모터 U단자</th>
+<th>R&#x2F;F 모터 D단자</th>
+<th>R&#x2F;R 모터 U단자</th>
+<th>R&#x2F;R모터 D단자</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -1134,7 +1134,7 @@
 <br>
 
 <h5 id="센서-감도-조정"><a href="#센서-감도-조정" class="headerlink" title="센서 감도 조정"></a>센서 감도 조정</h5><ul>
-<li>  센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
+<li>센서 반응을 살피면서 TCRT5000 모듈에 붙어 있는 감도조절기를 십자드라이버로 돌려 라인트레이싱에 가장 최적인 감도를 찾아야 한다.</li>
 </ul>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-26T14:24:07.000Z" title="2019. 10. 26. 오후 11:24:07">2019-10-26</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:40:14.000Z" title="2021. 11. 17. 오후 12:40:14">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">14분안에 읽기 (약 2042 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">Arduino, Bluetooth 페어링</a></h1><div class="content"><p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
 <br>
@@ -1146,7 +1146,7 @@
 </ul>
 <p><img src="/image/BT-01.jpg"></p>
 <ul>
-<li>  <strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
+<li><strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
 </ul>
 <p><img src="/image/BT-02.jpg"></p>
 <blockquote>
@@ -1311,36 +1311,36 @@
 </tr>
 <tr>
 <td>AT+VERSION</td>
-<td align="center">OKVERSION=4.0</td>
+<td align="center">OKVERSION&#x3D;4.0</td>
 <td>MLT-BT05 버전 확인</td>
 </tr>
 <tr>
 <td>AT+LADDR</td>
-<td align="center">+LADDR=(MAC Address)</td>
+<td align="center">+LADDR&#x3D;(MAC Address)</td>
 <td>MAC Address 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=0</td>
+<td>AT+ROLE&#x3D;0</td>
 <td align="center">OK+ROLE:0</td>
 <td>SLAVE mode (default)</td>
 </tr>
 <tr>
-<td>AT+ROLE=1</td>
+<td>AT+ROLE&#x3D;1</td>
 <td align="center">OK+ROLE:1</td>
 <td>MASTER mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=2</td>
+<td>AT+ROLE&#x3D;2</td>
 <td align="center">OK+ROLE:2</td>
 <td>sensor mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=3</td>
+<td>AT+ROLE&#x3D;3</td>
 <td align="center">OK+ROLE:3</td>
 <td>iBeacon mode</td>
 </tr>
 <tr>
-<td>AT+ROLE=4</td>
+<td>AT+ROLE&#x3D;4</td>
 <td align="center">OK+ROLE:4</td>
 <td>WeChat mode</td>
 </tr>
@@ -1392,19 +1392,19 @@
 <td>HC-06 버전 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=S</td>
+<td>AT+ROLE&#x3D;S</td>
 <td align="center">OK+ROLE:S</td>
 <td>SLAVE 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=M</td>
+<td>AT+ROLE&#x3D;M</td>
 <td align="center">OK+ROLE:M</td>
 <td>MASTER 역할 (v1.7 이상만 가능)</td>
 </tr>
 <tr>
 <td>AT+ROLE</td>
 <td align="center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
 </tr>
 </tbody></table>
 <br>
@@ -1431,7 +1431,7 @@
 <td>블루투스 모듈ID 지정 (SKS100)</td>
 </tr>
 <tr>
-<td>AT+PSWD=0000</td>
+<td>AT+PSWD&#x3D;0000</td>
 <td align="center">OKsetPIN</td>
 <td>페어링 암호 설정 (0000)</td>
 </tr>
@@ -1446,19 +1446,19 @@
 <td>HC-06 버전 확인</td>
 </tr>
 <tr>
-<td>AT+ROLE=0</td>
+<td>AT+ROLE&#x3D;0</td>
 <td align="center">OK+ROLE:0</td>
 <td>SLAVE 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=1</td>
+<td>AT+ROLE&#x3D;1</td>
 <td align="center">OK+ROLE:1</td>
 <td>MASTER 역할</td>
 </tr>
 <tr>
-<td>AT+ROLE=?</td>
+<td>AT+ROLE&#x3D;?</td>
 <td align="center">OK+ROLE:</td>
-<td>MASTER/SLAVE 확인</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
 </tr>
 </tbody></table>
 <br>
@@ -1475,9 +1475,9 @@
 <p>※ 이때, 주의할 점이 있는데요. <strong>시리얼 모니터를 열기 전에 스마트폰과 HC-06의 블루투스 연결은 해제된 상태</strong>여야 합니다. 기존에 HC-06과 스마트폰을 연결한 적이 있다면, 자기도 모르게 블루투스 연결이 자동으로 되어 있을 수 있는데요. 이런 경우에는 시리얼 모니터가 열리지 않아요.</p>
 </blockquote>
 <ul>
-<li>  <strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
-<li>  <strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
-<li>  <strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
+<li><strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
 </ul>
 <br>
 
@@ -1558,16 +1558,16 @@
 <li>페어링된 기기 목록에 SKS100이 뜹니다. 여기까지 진행하면, 스마트폰과 블루투스 모듈이 페어링 완료된 거에요.<img src="/image/BT-18.png" style="zoom:33%;"></li>
 </ol>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-20T14:10:53.000Z" title="2019. 10. 20. 오후 11:10:53">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:46:36.000Z" title="2021. 11. 17. 오후 12:46:36">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">8분안에 읽기 (약 1220 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/Arduino-Bluetooth-Blynk/">Arduino, Bluetooth, Blynk</a></h1><div class="content"><h3 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h3><h4 id="Blynk-라이브러리-설치"><a href="#Blynk-라이브러리-설치" class="headerlink" title="Blynk 라이브러리 설치"></a>Blynk 라이브러리 설치</h4><ol>
-<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
-<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
 </ul>
 </li>
-<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
 <li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
-<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기존의 libraries 폴더와 합쳐짐</li>
 <li>기본 스케치북 위치 확인 방법<ul>
-<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
 </ul>
 </li>
 </ul>
@@ -1576,37 +1576,37 @@
 <br>
 
 <h4 id="스마트폰에-Blynk-App-다운로드-하여-설치하기"><a href="#스마트폰에-Blynk-App-다운로드-하여-설치하기" class="headerlink" title="스마트폰에 Blynk App 다운로드 하여 설치하기"></a>스마트폰에 Blynk App 다운로드 하여 설치하기</h4><ul>
-<li>  아이폰 : 애플 앱스토어</li>
-<li>  안드로이드 : 구글 플레이스토어</li>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
 </ul>
 <br>
 
 <br>
 
-<h3 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
-<li> Blynk App 실행</li>
-<li> Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
+<h3 id="버튼-위젯을-이용한-LED-On-x2F-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-x2F-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On&#x2F;Off 하기"></a>버튼 위젯을 이용한 LED On&#x2F;Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
+<li>Blynk App 실행</li>
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
 <li>Blynk에서 New Project 생성<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Project Name 설정: BLE Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: BLE</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: BLE Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: BLE</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Project Name 설정: HC-06 Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: Bluetooth</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: HC-06 Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: Bluetooth</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Auth Token 확인<ul>
-<li>  가입시 지정한 이메일로 로그인하여 토큰 확인</li>
-<li>  (매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
-<li>  스마트폰으로 확인하는 것은 무의미함</li>
+<li>가입시 지정한 이메일로 로그인하여 토큰 확인</li>
+<li>(매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
+<li>스마트폰으로 확인하는 것은 무의미함</li>
 </ul>
 </li>
 </ol>
@@ -1614,19 +1614,19 @@
 
 <h4 id="Blynk-위젯-설정"><a href="#Blynk-위젯-설정" class="headerlink" title="Blynk 위젯 설정"></a>Blynk 위젯 설정</h4><ol>
 <li>아이폰용 MLT-BT05를 사용할 경우<ul>
-<li>  생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
+<li>생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>안드로이드용 HC-06를 사용할 경우<ul>
-<li>  생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
+<li>생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
@@ -1636,35 +1636,35 @@
 
 <h4 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h4><ol>
 <li>아두이노 스케치 예제 불러오기<ul>
-<li>  파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
-<li>  예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
+<li>파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
+<li>예제의 char auth[] &#x3D; “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
 </ul>
 </li>
-<li> 아두이노 UNO에 스케치 업로드</li>
+<li>아두이노 UNO에 스케치 업로드</li>
 <li>스마트폰의 블루투스 기능을 키고,<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
-<li>  Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
-<li>  MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
+<li>MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
-<li>  Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
-<li>  HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
+<li>Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
+<li>HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Blynk App 상단의 뒤로 돌아가기 버튼을 누른 뒤, App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름<ul>
-<li>  App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
-<li>  잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
+<li>App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
+<li>잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
 </ul>
 </li>
-<li> BUTTON 아이콘을 눌러 ON/OFF → 아두이노 Built-in LED ON/OFF</li>
-<li> Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
+<li>BUTTON 아이콘을 눌러 ON&#x2F;OFF → 아두이노 Built-in LED ON&#x2F;OFF</li>
+<li>Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
 </ol>
 <br>
 
@@ -1679,11 +1679,11 @@
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
-<li> Slider 위젯 추가: OUTPUT D11</li>
-<li> Slider 위젯의 위치/크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치/크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
-<li> App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
-<li> 슬라이드를 조절하여 LED의 밝기 조절 확인</li>
+<li>버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
+<li>Slider 위젯 추가: OUTPUT D11</li>
+<li>Slider 위젯의 위치&#x2F;크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치&#x2F;크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
+<li>슬라이드를 조절하여 LED의 밝기 조절 확인</li>
 </ol>
 <br>
 
@@ -1698,25 +1698,25 @@
 <br>
 
 <h3 id="PULL"><a href="#PULL" class="headerlink" title="PULL"></a>PULL</h3><ul>
-<li>  이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
-<li>  앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
+<li>이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
+<li>앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
 </ul>
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Reading Rate를 3초로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Reading Rate를 3초로 설정한다.</li>
 </ol>
 <br>
 
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><ol>
-<li> Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
-<li> e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
-<li> 하드웨어에 코드를 업로드한다.</li>
-<li> Blynk에서 플레이버튼을 누른다.</li>
-<li> 값이 표시되는 것을 볼 수 있다.</li>
+<li>Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
+<li>e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
+<li>하드웨어에 코드를 업로드한다.</li>
+<li>Blynk에서 플레이버튼을 누른다.</li>
+<li>값이 표시되는 것을 볼 수 있다.</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_READ(V5) &#123; <span class="comment">//Blynk app has something on V5</span></span><br><span class="line">  sensorData = analogRead(A0); <span class="comment">//reading the sensor on A0</span></span><br><span class="line">  Blynk.virtualWrite(V5, sensorData); <span class="comment">//sending to Blynk</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1741,10 +1741,10 @@
 <br>
 
 <h4 id="Blynk-앱-설정-1"><a href="#Blynk-앱-설정-1" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Frequency를 PUSH로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Frequency를 PUSH로 설정한다.</li>
 </ol>
 <br>
 
@@ -1837,7 +1837,7 @@
 <br>
 
 <ol start="8">
-<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다. </li>
+<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다.</li>
 </ol>
 <img src="/image/BTserialapp-09.png" style="zoom:33%;">
 
@@ -2005,7 +2005,7 @@
 <td>3</td>
 <td>VO</td>
 <td align="center">글자 대비값</td>
-<td>(가변저항 추가/미사용시 3.3㏀ 거쳐서 GND)</td>
+<td>(가변저항 추가&#x2F;미사용시 3.3㏀ 거쳐서 GND)</td>
 </tr>
 <tr>
 <td>4</td>
@@ -2016,7 +2016,7 @@
 <tr>
 <td>5</td>
 <td>RW</td>
-<td align="center">읽기/쓰기모드 설정</td>
+<td align="center">읽기&#x2F;쓰기모드 설정</td>
 <td>GND</td>
 </tr>
 <tr>
@@ -2092,7 +2092,7 @@
 
 <h3 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h3><h4 id="라이브러리-설치하기"><a href="#라이브러리-설치하기" class="headerlink" title="라이브러리 설치하기"></a>라이브러리 설치하기</h4><p>이 경우에는 Arduino IDE에 기본적으로 포함되어 있는 LiquidCrystal 라이브러리를 이용한다.</p>
 <ul>
-<li>  <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>LiquidCrystal</strong></li>
+<li><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>LiquidCrystal</strong></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 
@@ -2143,7 +2143,7 @@
 </tr>
 <tr>
 <td>scrollDisplayLeft(), scrollDisplayRight()</td>
-<td>LCD 내용과 커서를 좌/우로 한 칸 스크롤</td>
+<td>LCD 내용과 커서를 좌&#x2F;우로 한 칸 스크롤</td>
 </tr>
 <tr>
 <td>autoscroll(), noautoscroll()</td>
@@ -2249,8 +2249,8 @@
 <br>
 
 <h4 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h4><ul>
-<li>  <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong> 에서 “DHT11” 검색</li>
-<li>  DHT sensor library by Adafruit 설치</li>
+<li><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong> 에서 “DHT11” 검색</li>
+<li>DHT sensor library by Adafruit 설치</li>
 </ul>
 <br>
 
@@ -2425,16 +2425,16 @@
 <p>10진수 숫자와의 구분을 위해 2진수 앞에는 0b, 16진수 앞에는 0x를 표기하고<br>16진수 표현에 있어서, 각 숫자에 소수점을 포함시키는 경우에는 80을 빼주면 됩니다. 예를 들어,</p>
 </blockquote>
 <ul>
-<li>0． → 0xC0 - 0x80 = 0x40</li>
-<li>1． → 0xF9 - 0x80 = 0x79</li>
-<li>2． → 0xA4 - 0x80 = 0x24</li>
-<li>3． → 0xB0 - 0x80 = 0x30</li>
-<li>4． → 0x99 - 0x80 = 0x19</li>
-<li>5． → 0x92 - 0x80 = 0x12</li>
-<li>6． → 0x82 - 0x80 = 0x12</li>
-<li>7． → 0xF8 - 0x80 = 0x78</li>
-<li>8． → 0x80 - 0x80 = 0x00</li>
-<li>9． → 0x90 - 0x80 = 0x10</li>
+<li>0． → 0xC0 - 0x80 &#x3D; 0x40</li>
+<li>1． → 0xF9 - 0x80 &#x3D; 0x79</li>
+<li>2． → 0xA4 - 0x80 &#x3D; 0x24</li>
+<li>3． → 0xB0 - 0x80 &#x3D; 0x30</li>
+<li>4． → 0x99 - 0x80 &#x3D; 0x19</li>
+<li>5． → 0x92 - 0x80 &#x3D; 0x12</li>
+<li>6． → 0x82 - 0x80 &#x3D; 0x12</li>
+<li>7． → 0xF8 - 0x80 &#x3D; 0x78</li>
+<li>8． → 0x80 - 0x80 &#x3D; 0x00</li>
+<li>9． → 0x90 - 0x80 &#x3D; 0x10</li>
 </ul>
 <br>
 
@@ -2507,7 +2507,7 @@
 <h2 id="sketch-시리얼모니터에서-값을-입력받아-출력하기"><a href="#sketch-시리얼모니터에서-값을-입력받아-출력하기" class="headerlink" title="sketch : 시리얼모니터에서 값을 입력받아 출력하기"></a>sketch : 시리얼모니터에서 값을 입력받아 출력하기</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> numArray[<span class="number">10</span>] = &#123; <span class="number">0xC0</span>, <span class="number">0xF9</span>, <span class="number">0xA4</span>, <span class="number">0xB0</span>, <span class="number">0x99</span>, <span class="number">0x92</span>, <span class="number">0x82</span>, <span class="number">0xF8</span>, <span class="number">0x80</span>, <span class="number">0x90</span> &#125;;</span><br><span class="line"><span class="comment">// 소수점 포함 int numArray[10] = &#123; 0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10 &#125;;</span></span><br><span class="line"><span class="keyword">int</span> segPins[<span class="number">7</span>] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123; </span><br><span class="line">  Serial.begin(<span class="number">9600</span>); </span><br><span class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">    pinMode(segPins[i], OUTPUT);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.println(<span class="string">&quot;Press any number!(0~9)&quot;</span>); </span><br><span class="line">  delay(<span class="number">1000</span>); </span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (Serial.available()) &#123;</span><br><span class="line">  <span class="keyword">int</span> number = Serial.read();</span><br><span class="line">    <span class="keyword">if</span>(number &lt; <span class="number">10</span>) &#123;</span><br><span class="line">	  Serial.println(number<span class="string">&quot;);  </span></span><br><span class="line"><span class="string">	  segLED(number);                  // i=1이면 1을 출력</span></span><br><span class="line"><span class="string">	  delay(1000);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    else &#123;</span></span><br><span class="line"><span class="string">      Serial.println(&quot;</span>Please input a lower number than <span class="number">10</span>!<span class="string">&quot;)</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">void segLED(int num) &#123;                 // num값을 넘겨받아</span></span><br><span class="line"><span class="string">  int data = numArray[num];            // num번째 배열값을 data로 지정</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  for (j = 0; j &lt; 8; j++)</span></span><br><span class="line"><span class="string">  &#123;                                    // 2진수 배열 8비트를 &amp;연산자로 가장 오른쪽11 비트값부터 검사</span></span><br><span class="line"><span class="string">    if(data &amp; 0x01) &#123;                  // 1이면</span></span><br><span class="line"><span class="string">      digitalWrite(segPins[j], HIGH);  // HIGH(끄고)</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    else &#123;</span></span><br><span class="line"><span class="string">      digitalWrite(segPins[j], LOW);   // 1이 아니면(0이면)</span></span><br><span class="line"><span class="string">    &#125;                                  // LOW(킨다)</span></span><br><span class="line"><span class="string">  data &gt;&gt;= 1;                          // data값을 1비트씩 오른쪽으로 쉬프트한 후</span></span><br><span class="line"><span class="string">  &#125;                                    // 7번 추가 실행 (총 8번 실행)</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p><br><br></p>
-<h1 id="2개의-7-Segment를-사용하여-2자리-숫자-나타내기"><a href="#2개의-7-Segment를-사용하여-2자리-숫자-나타내기" class="headerlink" title="2개의 7 Segment를 사용하여 2자리 숫자 나타내기"></a>2개의 7 Segment를 사용하여 2자리 숫자 나타내기</h1><p>1개의 7 Segment를 사용하는데 8개의 Digital Pin이 필요하므로, 2개 이상의 7 Segment를 사용하려면 16개의 Digital Pin이 필요합니다. 핀의 개수로만 보면 Arduino Uno로는 표현할 수 없겠지요. 그러므로 2개의 7 Segment를 전원부 제어를 통해 빠른 시간동안 on/off를 반복함으로써 우리 눈에 나타나는 잔상효과를 이용하는 방법으로 여러개의 FND를 사용하는 Dynamic 구동 방식을 사용합니다.</p>
+<h1 id="2개의-7-Segment를-사용하여-2자리-숫자-나타내기"><a href="#2개의-7-Segment를-사용하여-2자리-숫자-나타내기" class="headerlink" title="2개의 7 Segment를 사용하여 2자리 숫자 나타내기"></a>2개의 7 Segment를 사용하여 2자리 숫자 나타내기</h1><p>1개의 7 Segment를 사용하는데 8개의 Digital Pin이 필요하므로, 2개 이상의 7 Segment를 사용하려면 16개의 Digital Pin이 필요합니다. 핀의 개수로만 보면 Arduino Uno로는 표현할 수 없겠지요. 그러므로 2개의 7 Segment를 전원부 제어를 통해 빠른 시간동안 on&#x2F;off를 반복함으로써 우리 눈에 나타나는 잔상효과를 이용하는 방법으로 여러개의 FND를 사용하는 Dynamic 구동 방식을 사용합니다.</p>
 <p>아래 회로를 예로들면 아두이노의 Digital 2~9번핀이 각각 두개의 FND로 병렬연결 되어 있고, 10번핀은 10의 자리를 나타내는 FND1에, 11번 핀은 1의 자리를 나타내는 FND2에 연결되어 있는 것을 볼 수 있습니다. 이 회로를 통해 10번핀을 LOW, 11번핀을 HIGH로 두면 FND1이 작동하고, 마찬가지로 10번핀을 HIGH, 11번핀을 LOW로 두면 FND2가 작동하게 되죠. 이러한 방식으로 2개의 FND를 10개의 핀으로 작동할 수 있게 되는 것입니다.</p>
 <p><img src="/image/7segment-05.jpg"></p>
 <br>

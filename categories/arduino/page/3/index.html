@@ -49,16 +49,16 @@
 <br>
 
 <h2 id="Arduino-IDE"><a href="#Arduino-IDE" class="headerlink" title="Arduino IDE"></a>Arduino IDE</h2><h3 id="Arduino-IDE-설치하기"><a href="#Arduino-IDE-설치하기" class="headerlink" title="Arduino IDE 설치하기"></a>Arduino IDE 설치하기</h3><ul>
-<li>  2021년 9월 현재 최신버전 1.8.60 &amp; 2.0 beta 11 (당분간 1.8.x 버전 설치 추천)</li>
-<li>  <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.arduino.cc/en/Main/Software">아두이노 홈페이지, www.arduino.cc</a> 에서 다운로드 받아 설치</li>
-<li>  설치 경로에 한글이 포함되지 않도록 한다.</li>
-<li>  설치 완료 후, 아두이노 IDE를 실행하면 arduino driver가 설치된다. 모두 설치</li>
-<li>  호환칩(CH340 or CH341)을 사용하는 아두이노의 경우, <a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.wch.cn/download/CH341SER_ZIP.html">칩제조사 홈페이지</a>에서 별도의 driver를 다운로드 받은 후 추가로 설치해야 한다.</li>
+<li>2021년 9월 현재 최신버전 1.8.60 &amp; 2.0 beta 11 (당분간 1.8.x 버전 설치 추천)</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.arduino.cc/en/Main/Software">아두이노 홈페이지, www.arduino.cc</a> 에서 다운로드 받아 설치</li>
+<li>설치 경로에 한글이 포함되지 않도록 한다.</li>
+<li>설치 완료 후, 아두이노 IDE를 실행하면 arduino driver가 설치된다. 모두 설치</li>
+<li>호환칩(CH340 or CH341)을 사용하는 아두이노의 경우, <a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.wch.cn/download/CH341SER_ZIP.html">칩제조사 홈페이지</a>에서 별도의 driver를 다운로드 받은 후 추가로 설치해야 한다.</li>
 </ul>
 <br>
 
 <blockquote>
-<p>CH340/341 호환칩을 사용하는 아두이노 우노보드의 경우 빨간색으로 된 표시된 부분의 칩이 직사각형인 형태로 되어 있는 경우가 많다. 정품의 경우 FT232칩을 사용하며, 대부분의 경우 동일한 위치에 정사각형 모양의 칩을 가지고 있다. 드라이버 추가 설치이외의 기능상의 차이점은 없다.</p>
+<p>CH340&#x2F;341 호환칩을 사용하는 아두이노 우노보드의 경우 빨간색으로 된 표시된 부분의 칩이 직사각형인 형태로 되어 있는 경우가 많다. 정품의 경우 FT232칩을 사용하며, 대부분의 경우 동일한 위치에 정사각형 모양의 칩을 가지고 있다. 드라이버 추가 설치이외의 기능상의 차이점은 없다.</p>
 </blockquote>
 <p><img src="/image/arduino-ch341.png"></p>
 <br>
@@ -74,12 +74,12 @@
 <br>
 
 <ol start="2">
-<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; 에서 Arduino 보드를 선택한다. → Arduino/Genuino Uno<br><img src="/image/arduino-08board.png"></li>
+<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; 에서 Arduino 보드를 선택한다. → Arduino&#x2F;Genuino Uno<br><img src="/image/arduino-08board.png"></li>
 </ol>
 <br>
 
 <ol start="3">
-<li><strong>툴</strong>&gt; <strong>포트</strong>&gt; 에서 Arduino에 연결되어 있는 포트를 선택한다. → COMx (Arduino/Genuino Uno)<br><img src="/image/arduino-09comport.png"></li>
+<li><strong>툴</strong>&gt; <strong>포트</strong>&gt; 에서 Arduino에 연결되어 있는 포트를 선택한다. → COMx (Arduino&#x2F;Genuino Uno)<br><img src="/image/arduino-09comport.png"></li>
 </ol>
 <br>
 
@@ -98,25 +98,25 @@
 <li>; (세미콜론)은 문장이 끝났음을 선언</li>
 <li>**처음 컴파일하는 경우 파일을 저장하는 절차가 수행되며, 이를 위해 파일 이름을 지정해주어야 함 **</li>
 <li>주석문 사용 방법 (컴파일시 skip)<ul>
-<li>// ~~~~              1개의 라인만 주석문 처리 </li>
-<li>/* ~~~~<em>/          여러개의 라인을 /</em>* */ 안에 넣어서 주석문을 만들 수 있음</li>
+<li>&#x2F;&#x2F; ~~~~              1개의 라인만 주석문 처리 </li>
+<li>&#x2F;* ~~~~<em>&#x2F;          여러개의 라인을 &#x2F;</em>* *&#x2F; 안에 넣어서 주석문을 만들 수 있음</li>
 </ul>
 </li>
 </ul>
 <br>
 
 <h4 id="pinMode-13-OUTPUT"><a href="#pinMode-13-OUTPUT" class="headerlink" title="pinMode(13, OUTPUT);"></a>pinMode(13, OUTPUT);</h4><ul>
-<li>  13번 핀을 출력 모드로 설정 (※입력 모드로 사용하려면 OUTPUT 대신 INPUT or INPUT_PULLUP 사용)</li>
-<li>  pinMode는 digitalRead, digitalWrite를 사용하는 핀에만 선언</li>
-<li>  즉, 0과 1의 입출력에만 사용하는 핀에 선언하며, PWM사용핀은 pinMode 선언이 불필요하다.</li>
-<li>  INPUT은 입력핀으로 사용시, OUTPUT은 출력핀으로 사용시</li>
+<li>13번 핀을 출력 모드로 설정 (※입력 모드로 사용하려면 OUTPUT 대신 INPUT or INPUT_PULLUP 사용)</li>
+<li>pinMode는 digitalRead, digitalWrite를 사용하는 핀에만 선언</li>
+<li>즉, 0과 1의 입출력에만 사용하는 핀에 선언하며, PWM사용핀은 pinMode 선언이 불필요하다.</li>
+<li>INPUT은 입력핀으로 사용시, OUTPUT은 출력핀으로 사용시</li>
 </ul>
 <br>
 
 <h4 id="digitalWrite-led-HIGH"><a href="#digitalWrite-led-HIGH" class="headerlink" title="digitalWrite(led, HIGH);"></a>digitalWrite(led, HIGH);</h4><ul>
 <li>디지털 핀의 전압을 LOW(0의 값) 또는 HIGH(1의 값)로 설정<ul>
-<li>  LOW : 0V (전기가 통하지 않음)</li>
-<li>  HIGH : 5V (전기가 통함)</li>
+<li>LOW : 0V (전기가 통하지 않음)</li>
+<li>HIGH : 5V (전기가 통함)</li>
 </ul>
 </li>
 </ul>
@@ -124,8 +124,8 @@
 
 <h4 id="delay-1000"><a href="#delay-1000" class="headerlink" title="delay(1000);"></a>delay(1000);</h4><ul>
 <li>특정 시간 동안 아두이노를 멈추게 하는 명령 (ms 단위)<ul>
-<li>  1초 : 1000</li>
-<li>  5초 : 5000</li>
+<li>1초 : 1000</li>
+<li>5초 : 5000</li>
 </ul>
 </li>
 </ul>
@@ -162,9 +162,9 @@
 
 <br>
 
-<h4 id="int-led-13"><a href="#int-led-13" class="headerlink" title="int led = 13;"></a>int led = 13;</h4><ul>
-<li>  led 라는 integer (정수) 변수를 선언</li>
-<li>  led 변수의 값을 13으로 지정</li>
+<h4 id="int-led-x3D-13"><a href="#int-led-x3D-13" class="headerlink" title="int led &#x3D; 13;"></a>int led &#x3D; 13;</h4><ul>
+<li>led 라는 integer (정수) 변수를 선언</li>
+<li>led 변수의 값을 13으로 지정</li>
 </ul>
 <br>
 
@@ -175,9 +175,9 @@
 <br>
 
 <h4 id="define-led-13"><a href="#define-led-13" class="headerlink" title="#define led 13"></a>#define led 13</h4><ul>
-<li>  int led = 13; 을 사용하는 대신 #define으로 상수 선언을 해도 됨</li>
-<li>  상수 형태로 선언하면 컴파일시에 정의된 값을 참조하여 대체하므로 메모리를 차지하지 않음</li>
-<li>  <strong>#define을 사용하는 경우, 문장 종료 기호인 ;(세미콜론)을 사용하지 않음!</strong></li>
+<li>int led &#x3D; 13; 을 사용하는 대신 #define으로 상수 선언을 해도 됨</li>
+<li>상수 형태로 선언하면 컴파일시에 정의된 값을 참조하여 대체하므로 메모리를 차지하지 않음</li>
+<li><strong>#define을 사용하는 경우, 문장 종료 기호인 ;(세미콜론)을 사용하지 않음!</strong></li>
 </ul>
 <br>
 
@@ -187,9 +187,9 @@
 
 <br>
 
-<h4 id="const-int-led-13"><a href="#const-int-led-13" class="headerlink" title="const int led = 13;"></a>const int led = 13;</h4><ul>
-<li>  const int led = 13; 형태로 상수 선언을 해도 됨</li>
-<li>  단, <strong>문장종료 기호인 ;(세미콜론)을 사용함!</strong></li>
+<h4 id="const-int-led-x3D-13"><a href="#const-int-led-x3D-13" class="headerlink" title="const int led &#x3D; 13;"></a>const int led &#x3D; 13;</h4><ul>
+<li>const int led &#x3D; 13; 형태로 상수 선언을 해도 됨</li>
+<li>단, <strong>문장종료 기호인 ;(세미콜론)을 사용함!</strong></li>
 </ul>
 <br>
 
@@ -201,7 +201,7 @@
 <br>
 
 <h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><ol>
-<li> 켜고 끄는 시간을 시간을 2초로 설정해본다.</li>
+<li>켜고 끄는 시간을 시간을 2초로 설정해본다.</li>
 </ol>
 <br>
 
@@ -243,14 +243,14 @@
 </li>
 <li><p>analogWrite를 사용하는 경우</p>
 <ul>
-<li><p>원래 값이 “0”인 경우 LED가 꺼지는 것이 정상이지만, VCC/R/G/B LED의 경우는</p>
-<p>255 - 0 = <strong>255</strong> 일때, LED가 꺼짐</p>
+<li><p>원래 값이 “0”인 경우 LED가 꺼지는 것이 정상이지만, VCC&#x2F;R&#x2F;G&#x2F;B LED의 경우는</p>
+<p>255 - 0 &#x3D; <strong>255</strong> 일때, LED가 꺼짐</p>
 </li>
-<li><p>원래 값이 “255”인 경우 LED가 켜지는 것이 정상이지만, VCC/R/G/B LED의 경우는</p>
-<p>255 - 255 = <strong>0</strong> 일때 LED가 켜짐</p>
+<li><p>원래 값이 “255”인 경우 LED가 켜지는 것이 정상이지만, VCC&#x2F;R&#x2F;G&#x2F;B LED의 경우는</p>
+<p>255 - 255 &#x3D; <strong>0</strong> 일때 LED가 켜짐</p>
 </li>
-<li><p>Red LED의 세기를 “153”으로 주고 싶을 경우, VCC/R/G/B LED에서는</p>
-<p>255 - 153 = <strong>102</strong> 의 값을 주어야 함</p>
+<li><p>Red LED의 세기를 “153”으로 주고 싶을 경우, VCC&#x2F;R&#x2F;G&#x2F;B LED에서는</p>
+<p>255 - 153 &#x3D; <strong>102</strong> 의 값을 주어야 함</p>
 </li>
 </ul>
 </li>
@@ -265,11 +265,11 @@
 <br>
 
 <h2 id="PWM"><a href="#PWM" class="headerlink" title="PWM"></a>PWM</h2><h3 id="Arduino-PWM-출력"><a href="#Arduino-PWM-출력" class="headerlink" title="Arduino PWM 출력"></a>Arduino PWM 출력</h3><ul>
-<li>  <strong>analogWrite()</strong> : 8bit를 사용하므로 <strong>0~255</strong> 범위에서 센서값을 출력</li>
-<li>   <strong>GND</strong>,R,G,B로 구성된 모듈의 경우    *   analogWrite(pin_ledR, <strong>0</strong>);           pin_ledR에 연결된 LED를 <strong>“켬”</strong>    *   analogWrite(pin_ledR, <strong>255</strong>);       pin_ledR에 연결된 LED를 <strong>끔</strong></li>
-<li>  PWM 출력이 가능한 디지털핀(<strong>3,5,6,9,10,11</strong>)을 사용하여 출력</li>
+<li><strong>analogWrite()</strong> : 8bit를 사용하므로 <strong>0~255</strong> 범위에서 센서값을 출력</li>
+<li><strong>GND</strong>,R,G,B로 구성된 모듈의 경우<br>*   analogWrite(pin_ledR, <strong>0</strong>);           pin_ledR에 연결된 LED를 <strong>“켬”</strong><br>*   analogWrite(pin_ledR, <strong>255</strong>);       pin_ledR에 연결된 LED를 <strong>끔</strong></li>
+<li>PWM 출력이 가능한 디지털핀(<strong>3,5,6,9,10,11</strong>)을 사용하여 출력</li>
 <li><strong>pinMode 선언 불필요</strong><ul>
-<li>  예를들어, pinMode(9, OUTPUT); → 9번 핀으로 PWM 출력을 한다면 불필요한 선언임</li>
+<li>예를들어, pinMode(9, OUTPUT); → 9번 핀으로 PWM 출력을 한다면 불필요한 선언임</li>
 </ul>
 </li>
 </ul>
@@ -356,7 +356,8 @@
 
 <h4 id="for문-사용하기"><a href="#for문-사용하기" class="headerlink" title="for문 사용하기"></a>for문 사용하기</h4><ul>
 <li><p>기본 문법</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(초기값; 조건; 증감) &#123;</span><br><span class="line">    반복처리문;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(초기값; 조건; 증감) &#123;</span><br><span class="line">    반복처리문;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>예를들어</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">255</span>; R&gt;=<span class="number">0</span>; R--) &#123;</span><br><span class="line">    반복처리문;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -373,9 +374,13 @@
 
 <h4 id="Color값-변화시키기"><a href="#Color값-변화시키기" class="headerlink" title="Color값 변화시키기"></a>Color값 변화시키기</h4><ul>
 <li><p>먼저 변화하는 값을 저장할 변수를 설정하고, 초기값으로 0을 지정 (초기값은 지정하지 않아도 됨)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> G = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> B = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> G = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> B = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>R값을 255부터 0까지 감소시키면서, G값은 0에서 255까지 감소시킴</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">255</span>; R&gt;=<span class="number">0</span>; R--) &#123;</span><br><span class="line">    G = <span class="number">255</span> - R;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">255</span>; R&gt;=<span class="number">0</span>; R--) &#123;</span><br><span class="line">    G = <span class="number">255</span> - R;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
 <li><p>여기에 analogWrite를 추가하고, 색깔이 일정한 시간동안 나타난 뒤 바뀌도록 delay를 추가</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R=<span class="number">255</span>; R&gt;=<span class="number">0</span>; R--) &#123;</span><br><span class="line">	G = <span class="number">255</span> - R;</span><br><span class="line">	analogWrite(pin_ledR, R);</span><br><span class="line">	analogWrite(pin_ledG, G);</span><br><span class="line">	analogWrite(pin_ledB, <span class="number">0</span>);</span><br><span class="line">	delay(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -391,13 +396,13 @@
 
 <h2 id="Analog-신호의-처리"><a href="#Analog-신호의-처리" class="headerlink" title="Analog 신호의 처리"></a>Analog 신호의 처리</h2><h3 id="가변저항-값을-시리얼모니터에-출력하기"><a href="#가변저항-값을-시리얼모니터에-출력하기" class="headerlink" title="가변저항 값을 시리얼모니터에 출력하기"></a>가변저항 값을 시리얼모니터에 출력하기</h3><h4 id="ANALOG-IN-A0-A5-핀의-역할"><a href="#ANALOG-IN-A0-A5-핀의-역할" class="headerlink" title="ANALOG IN(A0~A5) 핀의 역할"></a>ANALOG IN(A0~A5) 핀의 역할</h4><ol>
 <li>아날로그 입력으로 사용 : analogRead()<ul>
-<li>  analogRead()는 pinMode 선언 불필요</li>
-<li>  예를들어, pinMode(A0, INPUT); → 불필요한 선언임</li>
+<li>analogRead()는 pinMode 선언 불필요</li>
+<li>예를들어, pinMode(A0, INPUT); → 불필요한 선언임</li>
 </ul>
 </li>
-<li> PWM을 사용하는 디지털 입력으로 사용 : </li>
+<li>PWM을 사용하는 디지털 입력으로 사용 : </li>
 <li>analogRead()<ul>
-<li>  analogRead() : 10bit를 사용하므로 0~1023 범위에서 센서값을 읽음</li>
+<li>analogRead() : 10bit를 사용하므로 0~1023 범위에서 센서값을 읽음</li>
 </ul>
 </li>
 </ol>

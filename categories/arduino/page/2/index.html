@@ -14,19 +14,19 @@
 <ul>
 <li><p>정격전압: 5VDC</p>
 </li>
-<li><p>기어비: 1/64<br>$$<br>\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64<br>$$</p>
+<li><p>기어비: 1&#x2F;64<br>$$<br>\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} &#x3D; 63.68395 \fallingdotseq 64<br>$$</p>
 </li>
 </ul>
 <img src="/image/s/Step-Motor-01.png" style="zoom:80%;">
 
 <ul>
 <li>스트라이드 각도<ul>
-<li><strong>스펙상 5.625º / 64</strong> = 0.087890625<ul>
-<li>그러므로,  360º / 0.087890625 = 4096 스텝</li>
+<li><strong>스펙상 5.625º &#x2F; 64</strong> &#x3D; 0.087890625<ul>
+<li>그러므로,  360º &#x2F; 0.087890625 &#x3D; 4096 스텝</li>
 </ul>
 </li>
-<li><strong>실제로는 11.25º / 64</strong> = 0.17578125<ul>
-<li>그러므로,  360º / 0.17578125 = <strong>2048 스텝으로 1회전</strong> (이 값이 중요함!)</li>
+<li><strong>실제로는 11.25º &#x2F; 64</strong> &#x3D; 0.17578125<ul>
+<li>그러므로,  360º &#x2F; 0.17578125 &#x3D; <strong>2048 스텝으로 1회전</strong> (이 값이 중요함!)</li>
 </ul>
 </li>
 </ul>
@@ -95,17 +95,17 @@
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-09-08T08:57:00.000Z" title="2018. 9. 8. 오후 5:57:00">2018-09-08</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:30:00.000Z" title="2021. 11. 17. 오후 12:30:00">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">14분안에 읽기 (약 2039 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/09/08/Arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/">Arduino, 서보모터</a></h1><div class="content"><h3 id="서보모터-SG-90"><a href="#서보모터-SG-90" class="headerlink" title="서보모터 SG-90"></a>서보모터 SG-90</h3><img src="/image/servo-01.png" style="zoom:67%;">
 
 <ul>
-<li>  모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함</li>
-<li>  보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능</li>
-<li>  아두이노에서 많이 다루는 SG90 제품의 경우 0~180˚ 제어가 가능</li>
-<li>  아두이노UNO의 USB 전류량이 500mA 정도가 한계이므로 별도의 전원을 사용하지 않으면 1~2개의 서보모터만 사용 가능</li>
+<li>모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함</li>
+<li>보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능</li>
+<li>아두이노에서 많이 다루는 SG90 제품의 경우 0~180˚ 제어가 가능</li>
+<li>아두이노UNO의 USB 전류량이 500mA 정도가 한계이므로 별도의 전원을 사용하지 않으면 1~2개의 서보모터만 사용 가능</li>
 </ul>
 <br>
 
 <h4 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h4><p>서보모터를 사용하기 위한 Servo 라이브러리는 아두이노 IDE에 기본으로 포함되어 있다.</p>
 <ul>
-<li>  스케치&gt; 라이브러리 포함하기&gt; Servo 를 선택하면,</li>
-<li>  #include &lt;servo.h&gt; 라이브러리가 스케치에 추가 된다.</li>
+<li>스케치&gt; 라이브러리 포함하기&gt; Servo 를 선택하면,</li>
+<li>#include &lt;servo.h&gt; 라이브러리가 스케치에 추가 된다.</li>
 </ul>
 <br>
 
@@ -131,10 +131,10 @@
 <h4 id="sketch-서보모터-180º-회전-왕복하기"><a href="#sketch-서보모터-180º-회전-왕복하기" class="headerlink" title="sketch : 서보모터 180º 회전 왕복하기"></a>sketch : 서보모터 180º 회전 왕복하기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">Servo servomotor;                                <span class="comment">// servomotor 선언</span></span><br><span class="line"><span class="keyword">int</span> position = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  servomotor.attach(<span class="number">10</span>);                         <span class="comment">// servomotor 핀 설정</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(position = <span class="number">0</span>; position &lt; <span class="number">180</span>; position++)</span><br><span class="line">  &#123;</span><br><span class="line">    servomotor.write(position);                  <span class="comment">// pos값의 위치로 이동</span></span><br><span class="line">    delay(<span class="number">15</span>);                       </span><br><span class="line">  &#125;                                 </span><br><span class="line">  <span class="keyword">for</span>(position = <span class="number">180</span>; position &gt; <span class="number">0</span>; position--)  <span class="comment">// 같은 방법으로 역회전</span></span><br><span class="line">  &#123;</span><br><span class="line">    servomotor.write(position);</span><br><span class="line">    delay(<span class="number">15</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>  servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다!</li>
+<li>servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다!</li>
 <li>초기 위치를 0º로 기준삼아, 표시된 숫자의 각도 위치로 이동하라는 의미이다. 예를들어서 servomotor.write(90)와 servomotor.write(30)을 연속으로 실행하면,<ul>
-<li>  90도를 회전한 뒤, 추가로 30도를 회전하여 120도 위치에 있다 → ×</li>
-<li>  90도의 위치로 회전한 뒤, 역회전하여 (처음위치를 기준으로) 30도의 위치로 이동한다. → ○</li>
+<li>90도를 회전한 뒤, 추가로 30도를 회전하여 120도 위치에 있다 → ×</li>
+<li>90도의 위치로 회전한 뒤, 역회전하여 (처음위치를 기준으로) 30도의 위치로 이동한다. → ○</li>
 </ul>
 </li>
 </ul>
@@ -167,7 +167,7 @@
 <li>signal range (2450 - 544) for SG90 divided by 180 which is equal to 10.6 something that we make 11 as an integer.</li>
 </ul>
 </li>
-<li>Loop = 20000;<ul>
+<li>Loop &#x3D; 20000;<ul>
 <li>20000 micro seconds or 20 milli seconds is signal cycle or u can say total signal should be equal to 20 milli seconds including HIGH and LOW input. (50Hz)</li>
 </ul>
 </li>
@@ -281,7 +281,7 @@
 <ul>
 <li>모듈로 판매하는 제품의 경우 겉모양으로는 구별이 어렵다. Active Buzzer의 경우 초기 판매시 스티커를 붙여서 판매하지만, 스티커가 떨어져 나간 상태라면 Passive Buzzer와 구별하기 어렵다. 또한 반드시 스티커가 붙은 형태로 판매하는 것도 아니다.</li>
 <li>Active Buzzer의 경우 스티커로 사용전압을 표시하기도 한다. 빨간색은 3V, 파란색은 5V, 보라색은 12V용이다.</li>
-<li>Active Buzzer 모듈의 경우 低电平触发(혹은 Low Level) / 高电平触发(혹은 High Level) 2가지 형태로 표기가 되어 있다. <strong>低电平触发은 DigitalWrite에서 HIGH</strong>일 때 소리가 나며, <strong>高电平触发은 LOW</strong>일 때 소리가 난다.</li>
+<li>Active Buzzer 모듈의 경우 低电平触发(혹은 Low Level) &#x2F; 高电平触发(혹은 High Level) 2가지 형태로 표기가 되어 있다. <strong>低电平触发은 DigitalWrite에서 HIGH</strong>일 때 소리가 나며, <strong>高电平触发은 LOW</strong>일 때 소리가 난다.</li>
 <li>모듈 형태가 아닌 단일 부품의 형태라면 연결 핀이 나와 있는 아랫면을 보면 구별할 수 있다. 일반적으로 Active Buzzer는 검은색 실리콘으로 밀폐되어 있으며, Passive Buzzer는 핀의 접합부위가 그대로 노출되어 있다.</li>
 <li>Active Buzzer와 Passive Buzzer를 구별하는 가장 좋은 방법은 사용전압에 해당하는 전압(낮은 전압의 건전지도 가능)의 건전지를 연결시켜보는 것이다. 소리가 나면 Active, 나지 않으면 Passive라고 생각하면 된다.</li>
 </ul>
@@ -331,7 +331,7 @@
 <br>
 
 <ul>
-<li><p>한 옥타브 내려가면 주파수가 1/2배, 올라가면 2배가 되고, 한 음계 올라가면 2^(1/12) 배가 된다.</p>
+<li><p>한 옥타브 내려가면 주파수가 1&#x2F;2배, 올라가면 2배가 되고, 한 음계 올라가면 2^(1&#x2F;12) 배가 된다.</p>
 </li>
 <li><p>0옥타브 중간쯤(20Hz)부터나, 10옥타브 중간쯤(20kHz)부터는 소리가 들리지 않는다. 사람의 가청 영역을 벗어나기 때문. 이를 각각 초저주파, 초음파라고 한다. 어릴 수록 고음이 잘 들리기 때문에, “선생님은 못 듣는 벨소리”같은 것을 만들수 있다.</p>
 </li>
@@ -526,14 +526,18 @@
 
 <h4 id="sketch-Passive-Buzzer"><a href="#sketch-Passive-Buzzer" class="headerlink" title="sketch : Passive Buzzer"></a>sketch : Passive Buzzer</h4><h5 id="tone-사용방법"><a href="#tone-사용방법" class="headerlink" title="tone() 사용방법"></a>tone() 사용방법</h5><ul>
 <li><p>tone 함수는 3개의 매개변수(핀, 주파수, 음길이)를 사용하며, 마지막 매개변수(음길이)는 생략 가능하다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>, <span class="number">500</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>, <span class="number">500</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
 <li><p>마지막 매개변수를 사용하지 않고 tone을 연속으로 사용하는 경우 주의가 필요하다. 예를들어,</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br><span class="line">tone(<span class="number">11</span>, <span class="number">294</span>);   <span class="comment">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure>
 
 <p>이렇게 tone을 연속으로 사용하면 C3음을 소리낸 이후에, D4음을 내는 것이 아니라 C3음이 계속되므로, noTone함수를 사용하여 소리 출력을 멈추어야 한다.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br><span class="line">noTone(<span class="number">11</span>);</span><br><span class="line">tone(<span class="number">11</span>, <span class="number">294</span>);   <span class="comment">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br><span class="line">noTone(<span class="number">11</span>);</span><br><span class="line">tone(<span class="number">11</span>, <span class="number">294</span>);   <span class="comment">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
 <li><p>마지막 매개변수를 사용할 때, 중간에 음을 멈추는 구간을 만들려면, delay를 사용한다.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tone(<span class="number">11</span>, <span class="number">262</span>, <span class="number">500</span>);   <span class="comment">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주</span></span><br><span class="line">delay(<span class="number">600</span>);</span><br><span class="line">tone(<span class="number">11</span>, <span class="number">294</span>, <span class="number">500</span>);   <span class="comment">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주</span></span><br></pre></td></tr></table></figure>
 
@@ -642,13 +646,13 @@
 <h3 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h3><p>Keypad 라이브러리는 아두이노 IDE에 기본으로 포함되어 있지 않으므로, 컴파일 전에 라이브러리를 추가한다.</p>
 <p>1. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong></p>
 <ul>
-<li>  검색창에서 keypad 검색</li>
-<li>  Keypad by Mark Stanley, Alexander Brevig 라이브러리 설치</li>
+<li>검색창에서 keypad 검색</li>
+<li>Keypad by Mark Stanley, Alexander Brevig 라이브러리 설치</li>
 </ul>
 <p>2. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong> 에서 Keypad를 선택하면</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Keypad.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>  라이브러리가 스케치에 추가된다.</li>
+<li>라이브러리가 스케치에 추가된다.</li>
 </ul>
 <br>
 
@@ -703,9 +707,9 @@
 <h4 id="라이브러리-준비하기"><a href="#라이브러리-준비하기" class="headerlink" title="라이브러리 준비하기"></a>라이브러리 준비하기</h4><ul>
 <li><p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong></p>
 <ul>
-<li><p>  검색어 irremote 입력</p>
+<li><p>검색어 irremote 입력</p>
 </li>
-<li><p>  “IRremote by Armin Joachimsmeyer” 라이브러리 설치/업데이트</p>
+<li><p>“IRremote by Armin Joachimsmeyer” 라이브러리 설치&#x2F;업데이트</p>
 </li>
 </ul>
 </li>
@@ -830,10 +834,10 @@
 
 <h3 id="리모컨으로-서보모터-회전시키기"><a href="#리모컨으로-서보모터-회전시키기" class="headerlink" title="리모컨으로 서보모터 회전시키기"></a>리모컨으로 서보모터 회전시키기</h3><p>3개의 리모컨 버튼을 정의하여 각 버튼을 통해 서버모터를 회전시켜 본다.</p>
 <ul>
-<li>  초기 위치 90도</li>
-<li>  Left 버튼을 누르면 5도 감소</li>
-<li>  Right 버튼을 누르면 5도 증가</li>
-<li>  OK 버튼을 누르면 90도 위치로 이동</li>
+<li>초기 위치 90도</li>
+<li>Left 버튼을 누르면 5도 감소</li>
+<li>Right 버튼을 누르면 5도 증가</li>
+<li>OK 버튼을 누르면 90도 위치로 이동</li>
 </ul>
 <br>
 
@@ -860,7 +864,7 @@
 <ol start="2">
 <li>SimpleReceiver을 열면 PinDefinitionsAndMore.h가 동시에 열린다.<ul>
 <li>이 파일은 사용하는 보드에 따라 Signal핀을 연결하는 핀 번호를 정의하고 있다.</li>
-<li>아두이노 UNO의 경우 DEFAULT/AVR 플랫폼으로 정의되어 있으므로 IR Input핀은 2번을 사용한다. (아래 3번과정 참고: 시리얼 모니터를 열면, 연결된 보드에 따라 몇번 핀에 연결해야하는지 출력이 되므로, 이 과정에서 Signal을 어디에 연결해야하는지 확인할 필요는 없다.)</li>
+<li>아두이노 UNO의 경우 DEFAULT&#x2F;AVR 플랫폼으로 정의되어 있으므로 IR Input핀은 2번을 사용한다. (아래 3번과정 참고: 시리얼 모니터를 열면, 연결된 보드에 따라 몇번 핀에 연결해야하는지 출력이 되므로, 이 과정에서 Signal을 어디에 연결해야하는지 확인할 필요는 없다.)</li>
 <li>ESP32의 경우 IR Input이 GPIO 15번으로 지정되어 있다.</li>
 </ul>
 </li>
@@ -903,8 +907,8 @@
 
 <h4 id="라이브러리-설치하기"><a href="#라이브러리-설치하기" class="headerlink" title="라이브러리 설치하기"></a>라이브러리 설치하기</h4><p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong></p>
 <ul>
-<li>  Wire : 기본 내장 라이브러리</li>
-<li>  LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
+<li>Wire : 기본 내장 라이브러리</li>
+<li>LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
 </ul>
 <br>
 
@@ -923,9 +927,9 @@
 <br>
 
 <h4 id="여러-가지-문자열-출력해보기"><a href="#여러-가지-문자열-출력해보기" class="headerlink" title="여러 가지 문자열 출력해보기"></a>여러 가지 문자열 출력해보기</h4><ul>
-<li>  첫 번째 행에 I Love Steam!!</li>
-<li>  두 번째 행에 본인의 영문이름을 써서 스크롤 해보기</li>
-<li>  두 번째 행에 출력하는 방법 : lcd.setCursor(0,1);</li>
+<li>첫 번째 행에 I Love Steam!!</li>
+<li>두 번째 행에 본인의 영문이름을 써서 스크롤 해보기</li>
+<li>두 번째 행에 출력하는 방법 : lcd.setCursor(0,1);</li>
 </ul>
 <br>
 
@@ -1064,7 +1068,8 @@
 <br>
 
 <h4 id="라이브러리-준비하기"><a href="#라이브러리-준비하기" class="headerlink" title="라이브러리 준비하기"></a>라이브러리 준비하기</h4><h5 id="Case1-위-사진과-같은-형태의-DHT22-모듈을-사용하는-경우"><a href="#Case1-위-사진과-같은-형태의-DHT22-모듈을-사용하는-경우" class="headerlink" title="Case1: 위 사진과 같은 형태의 DHT22 모듈을 사용하는 경우"></a>Case1: 위 사진과 같은 형태의 DHT22 모듈을 사용하는 경우</h5><ul>
-<li>라이브러리 매니저검색창에 검색어로 ‘AM2302’를 입력<ul>
+<li><p>라이브러리 매니저검색창에 검색어로 ‘AM2302’를 입력</p>
+<ul>
 <li><p>Groove Temperature And Humidity Sensor (by Seeed Studio) 설치</p>
 <p><img src="/image/dht22-07.png"></p>
 </li>
@@ -1105,7 +1110,7 @@
 <li>one-wire 버스 통신</li>
 <li>공급전압: 3.0V ~ 5.5V</li>
 <li>작동온도: -55ºC ~ +125ºC</li>
-<li>오차: +/-0.5 ºC (-10ºC ~ 85ºC 범위에서)</li>
+<li>오차: +&#x2F;-0.5 ºC (-10ºC ~ 85ºC 범위에서)</li>
 </ul>
 <br>
 
@@ -1181,8 +1186,8 @@
 <br>
 
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><h5 id="라이브러리-준비하기"><a href="#라이브러리-준비하기" class="headerlink" title="라이브러리 준비하기"></a>라이브러리 준비하기</h5><ul>
-<li>  OneWire (by Jim Studt etc.)</li>
-<li>  DallasTemperature (by Miles Burton)</li>
+<li>OneWire (by Jim Studt etc.)</li>
+<li>DallasTemperature (by Miles Burton)</li>
 </ul>
 <br>
 
@@ -1306,7 +1311,7 @@
 <br>
 
 <h4 id="문제-해결-방법"><a href="#문제-해결-방법" class="headerlink" title="문제 해결 방법"></a>문제 해결 방법</h4><ul>
-<li>이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 된다. </li>
+<li>이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 된다.</li>
 </ul>
 <p><img src="/image/switch08.png"></p>
 <br>

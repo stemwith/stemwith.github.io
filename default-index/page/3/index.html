@@ -6,9 +6,9 @@
         gtag('config', 'UA-151970975-1');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/rss2.xml" title="Welcome to "stemwith"" type="application/rss+xml">
 </head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-22T14:55:21.000Z" title="2019. 10. 22. 오후 11:55:21">2019-10-22</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:43:04.000Z" title="2021. 11. 17. 오후 12:43:04">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">5분안에 읽기 (약 762 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/22/ESP32-BLE-Blynk-Slider-PWM/">esp32 BLE, Blynk Slider (PWM)</a></h1><div class="content"><h3 id="ESP32와-Blynk에서의-PWM-사용"><a href="#ESP32와-Blynk에서의-PWM-사용" class="headerlink" title="ESP32와 Blynk에서의 PWM 사용"></a>ESP32와 Blynk에서의 PWM 사용</h3><p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p>
 <ul>
-<li>  Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
-<li>  Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
-<li>  ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
+<li>Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
+<li>Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
+<li>ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
 </ul>
 <br>
 
@@ -138,16 +138,16 @@
 </ol>
 <p><img src="/image/blynk-pwm-16.png"></p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-21T14:12:58.000Z" title="2019. 10. 21. 오후 11:12:58">2019-10-21</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:42:16.000Z" title="2021. 11. 17. 오후 12:42:16">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">9분안에 읽기 (약 1361 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/21/ESP32-BLE-Blynk-Button/">esp32 BLE, Blynk Button</a></h1><div class="content"><h3 id="Blynk를-처음-사용하는-경우"><a href="#Blynk를-처음-사용하는-경우" class="headerlink" title="Blynk를 처음 사용하는 경우"></a>Blynk를 처음 사용하는 경우</h3><h4 id="Blynk-라이브러리-설치하기"><a href="#Blynk-라이브러리-설치하기" class="headerlink" title="Blynk 라이브러리 설치하기"></a>Blynk 라이브러리 설치하기</h4><ol>
-<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
-<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
 </ul>
 </li>
-<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
 <li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
-<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기존의 libraries 폴더와 합쳐짐</li>
 <li>기본 스케치북 위치 확인 방법<ul>
-<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
 </ul>
 </li>
 </ul>
@@ -156,14 +156,14 @@
 <br>
 
 <h4 id="스마트폰에-Blynk-App-설치하기"><a href="#스마트폰에-Blynk-App-설치하기" class="headerlink" title="스마트폰에 Blynk App 설치하기"></a>스마트폰에 Blynk App 설치하기</h4><ul>
-<li>  아이폰 : 애플 앱스토어</li>
-<li>  안드로이드 : 구글 플레이스토어</li>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
 </ul>
 <br>
 
 <br>
 
-<h3 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/blynk-01.png"></p>
+<h3 id="버튼-위젯을-이용한-LED-On-x2F-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-x2F-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On&#x2F;Off 하기"></a>버튼 위젯을 이용한 LED On&#x2F;Off 하기</h3><h4 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/blynk-01.png"></p>
 <p>※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.</p>
 <br>
 
@@ -193,9 +193,9 @@
 <br>
 
 <ul>
-<li>  프로젝트명 : ESP32_LED</li>
-<li>  CHOOSE DEVICE : ESP32 Dev Board</li>
-<li>  CONNECTION TYPE : BLE</li>
+<li>프로젝트명 : ESP32_LED</li>
+<li>CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>CONNECTION TYPE : BLE</li>
 </ul>
 <br>
 
@@ -292,7 +292,7 @@
 <br>
 
 <ol start="2">
-<li>예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
+<li>예제의 char auth[] &#x3D; “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.</li>
 </ol>
 <p><img src="/image/blynk-21.png"></p>
 <br>
@@ -409,16 +409,16 @@
 <img src="/image/blynk-39.png" style="zoom:33%;">
 
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-20T14:10:53.000Z" title="2019. 10. 20. 오후 11:10:53">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:46:36.000Z" title="2021. 11. 17. 오후 12:46:36">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">8분안에 읽기 (약 1220 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/Arduino-Bluetooth-Blynk/">Arduino, Bluetooth, Blynk</a></h1><div class="content"><h3 id="Blynk-설정"><a href="#Blynk-설정" class="headerlink" title="Blynk 설정"></a>Blynk 설정</h3><h4 id="Blynk-라이브러리-설치"><a href="#Blynk-라이브러리-설치" class="headerlink" title="Blynk 라이브러리 설치"></a>Blynk 라이브러리 설치</h4><ol>
-<li> docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
 <li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a><ul>
-<li>  Blynk_Release_v0.6.1.zip 다운로드</li>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
 </ul>
 </li>
-<li> 압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
 <li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함<ul>
-<li>  기존의 libraries 폴더와 합쳐짐</li>
+<li>기존의 libraries 폴더와 합쳐짐</li>
 <li>기본 스케치북 위치 확인 방법<ul>
-<li>  아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
 </ul>
 </li>
 </ul>
@@ -427,37 +427,37 @@
 <br>
 
 <h4 id="스마트폰에-Blynk-App-다운로드-하여-설치하기"><a href="#스마트폰에-Blynk-App-다운로드-하여-설치하기" class="headerlink" title="스마트폰에 Blynk App 다운로드 하여 설치하기"></a>스마트폰에 Blynk App 다운로드 하여 설치하기</h4><ul>
-<li>  아이폰 : 애플 앱스토어</li>
-<li>  안드로이드 : 구글 플레이스토어</li>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
 </ul>
 <br>
 
 <br>
 
-<h3 id="버튼-위젯을-이용한-LED-On-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On/Off 하기"></a>버튼 위젯을 이용한 LED On/Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
-<li> Blynk App 실행</li>
-<li> Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
+<h3 id="버튼-위젯을-이용한-LED-On-x2F-Off-하기"><a href="#버튼-위젯을-이용한-LED-On-x2F-Off-하기" class="headerlink" title="버튼 위젯을 이용한 LED On&#x2F;Off 하기"></a>버튼 위젯을 이용한 LED On&#x2F;Off 하기</h3><h4 id="Blynk-계정생성-및-Auth-Token-받기"><a href="#Blynk-계정생성-및-Auth-Token-받기" class="headerlink" title="Blynk 계정생성 및 Auth Token 받기"></a>Blynk 계정생성 및 Auth Token 받기</h4><ol>
+<li>Blynk App 실행</li>
+<li>Create New Account : 주로 사용하는 e-mail을 사용하여 계정 생성</li>
 <li>Blynk에서 New Project 생성<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Project Name 설정: BLE Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: BLE</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: BLE Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: BLE</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Project Name 설정: HC-06 Test</li>
-<li>  CHOOSE DEVICE: Arduino UNO</li>
-<li>  CONNECTION TYPE: Bluetooth</li>
-<li>  설정 후 Create 버튼</li>
+<li>Project Name 설정: HC-06 Test</li>
+<li>CHOOSE DEVICE: Arduino UNO</li>
+<li>CONNECTION TYPE: Bluetooth</li>
+<li>설정 후 Create 버튼</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Auth Token 확인<ul>
-<li>  가입시 지정한 이메일로 로그인하여 토큰 확인</li>
-<li>  (매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
-<li>  스마트폰으로 확인하는 것은 무의미함</li>
+<li>가입시 지정한 이메일로 로그인하여 토큰 확인</li>
+<li>(매우 복잡한 형태의) 토큰을 복사하여 코딩시 사용할 것이므로, 컴퓨터로 확인!</li>
+<li>스마트폰으로 확인하는 것은 무의미함</li>
 </ul>
 </li>
 </ol>
@@ -465,19 +465,19 @@
 
 <h4 id="Blynk-위젯-설정"><a href="#Blynk-위젯-설정" class="headerlink" title="Blynk 위젯 설정"></a>Blynk 위젯 설정</h4><ol>
 <li>아이폰용 MLT-BT05를 사용할 경우<ul>
-<li>  생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
+<li>생성된 프로젝트(BLE Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 BLE Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 BLE위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>안드로이드용 HC-06를 사용할 경우<ul>
-<li>  생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
-<li>  여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
+<li>생성된 프로젝트(HC-06 Test) 바탕화면으로 진입하면 Blynk App 상단의 초록색 메뉴바의 이름이 HC-06 Test로 바뀜</li>
+<li>여기서 ⊕버튼 터치한 후 Button위젯과 Bluetooth위젯 추가</li>
 <li>추가된 BUTTON 위젯 선택 후 설정<ul>
-<li>  OUTPUT: Select pin: Digital D13 / MODE: SWITCH</li>
+<li>OUTPUT: Select pin: Digital D13 &#x2F; MODE: SWITCH</li>
 </ul>
 </li>
 </ul>
@@ -487,35 +487,35 @@
 
 <h4 id="Blynk-연결하기"><a href="#Blynk-연결하기" class="headerlink" title="Blynk 연결하기"></a>Blynk 연결하기</h4><ol>
 <li>아두이노 스케치 예제 불러오기<ul>
-<li>  파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
-<li>  예제의 char auth[] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
+<li>파일 – 예제 – Blynk – Boards_USB_Serial – Arduino_SoftwareSerial 선택</li>
+<li>예제의 char auth[] &#x3D; “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣기</li>
 </ul>
 </li>
-<li> 아두이노 UNO에 스케치 업로드</li>
+<li>아두이노 UNO에 스케치 업로드</li>
 <li>스마트폰의 블루투스 기능을 키고,<ul>
 <li>아이폰용 MLT-BT05의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
-<li>  Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
-<li>  MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 MLT-BT05-<strong>T</strong>) (디폴트 연결PIN 123456)</li>
+<li>Blynk App에서 BLE버튼(블루투스 아이콘 모양) 터치 후 Connect BLE device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 MLT-BT05-T를 찾은 후 OK버튼 누름</li>
+<li>MLT-BT05-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 <li>안드로이드용 HC-06의 경우<ul>
-<li>  Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
-<li>  Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
-<li>  연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
-<li>  HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
+<li>Bluetooth 모듈 설정에서 설정한 모듈ID 디바이스를 연결(예를 들어 HC-06-<strong>T</strong> 디바이스를 연결 (디폴트 연결PIN 1234)</li>
+<li>Blynk App에서 Bluetooth버튼(블루투스 아이콘 모양) 터치 후 Connect Bluetooth device 버튼을 누른 뒤,</li>
+<li>연결할 디바이스 HC-06-T를 찾은 후 OK버튼 누름</li>
+<li>HC-06-T connected 메시지가 나오면 연결 완료된 것임</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Blynk App 상단의 뒤로 돌아가기 버튼을 누른 뒤, App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름<ul>
-<li>  App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
-<li>  잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
+<li>App상단에 빨간색 숫자1이 보이면 아직 연결이 되지 않았다는 것을 의미함</li>
+<li>잠시 기다리면 빨간색 숫자1이 사라지고, 이 상태가 작동 준비가 완료된 것을 의미함</li>
 </ul>
 </li>
-<li> BUTTON 아이콘을 눌러 ON/OFF → 아두이노 Built-in LED ON/OFF</li>
-<li> Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
+<li>BUTTON 아이콘을 눌러 ON&#x2F;OFF → 아두이노 Built-in LED ON&#x2F;OFF</li>
+<li>Blynk App 오른쪽 상단의 □(정지버튼)을 누른 뒤, ⊕버튼 터치한 후 Text Input 위젯 추가</li>
 </ol>
 <br>
 
@@ -530,11 +530,11 @@
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
-<li> Slider 위젯 추가: OUTPUT D11</li>
-<li> Slider 위젯의 위치/크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치/크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
-<li> App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
-<li> 슬라이드를 조절하여 LED의 밝기 조절 확인</li>
+<li>버튼 위젯을 삭제: 버튼 위젯을 누르고 맨아래쪽으로 내려가서 Delete</li>
+<li>Slider 위젯 추가: OUTPUT D11</li>
+<li>Slider 위젯의 위치&#x2F;크기 조절: Slider 위젯 아이콘을 1초이상 누르면 위치&#x2F;크기를 조절할 수 있음 (가로 크기를 최대로 늘림)</li>
+<li>App 오른쪽 상단의 ▷(플레이버튼)버튼을 누름</li>
+<li>슬라이드를 조절하여 LED의 밝기 조절 확인</li>
 </ol>
 <br>
 
@@ -542,11 +542,12 @@
 
 <h3 id="과제"><a href="#과제" class="headerlink" title="과제"></a>과제</h3><p>3색 RGB LED를 zeRGBa 위젯으로 조정하여 여러 가지 색깔 만들어보기 (스케치는 위의 스케치를 그대로 사용)</p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-19T16:59:54.000Z" title="2019. 10. 20. 오전 1:59:54">2019-10-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:28:28.000Z" title="2021. 11. 17. 오후 12:28:28">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/esp32/">esp32</a></span><span class="level-item">2분안에 읽기 (약 329 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/10/20/ESP32-ADC/">esp32 ADC</a></h1><div class="content"><h3 id="ESP32-ADC"><a href="#ESP32-ADC" class="headerlink" title="ESP32 ADC"></a>ESP32 ADC</h3><ul>
-<li>  ESP32는 18개의 12bit ADC 입력핀을 사용할 수 있다. (0~4095)</li>
-<li>  아두이노의 경우 10bit를 사용한다. (0~1023)</li>
-<li>  0V ~ 3.3V의 전압을 0~4095(0xFFF)까지의 디지털값으로 AD 변환한다.</li>
-<li>  Arduino IDE 환경에서는 ESP32의 ADC 관련 레지스터를 조작하지 않고 analogRead() 함수를 사용하여 ESP32의 ADC 입력핀의 전압값을 가져올 수 있다. </li>
+<li>ESP32는 18개의 12bit ADC 입력핀을 사용할 수 있다. (0~4095)</li>
+<li>아두이노의 경우 10bit를 사용한다. (0~1023)</li>
+<li>0V ~ 3.3V의 전압을 0~4095(0xFFF)까지의 디지털값으로 AD 변환한다.</li>
+<li>Arduino IDE 환경에서는 ESP32의 ADC 관련 레지스터를 조작하지 않고 analogRead() 함수를 사용하여 ESP32의 ADC 입력핀의 전압값을 가져올 수 있다.</li>
 </ul>
+<p> </p>
 <br>
 
 <br>
@@ -565,9 +566,9 @@
 <br>
 
 <ul>
-<li>  LED : R → GPIO19 / G → GPIO18 / B → GPIO17 / GND</li>
-<li>  저항 : R → 150Ω / G → 100Ω / B → 100Ω</li>
-<li>  Potentiometer: Left 5V, Center AO(IO36), Right GND</li>
+<li>LED : R → GPIO19 &#x2F; G → GPIO18 &#x2F; B → GPIO17 &#x2F; GND</li>
+<li>저항 : R → 150Ω &#x2F; G → 100Ω &#x2F; B → 100Ω</li>
+<li>Potentiometer: Left 5V, Center AO(IO36), Right GND</li>
 </ul>
 <br>
 
@@ -690,15 +691,15 @@
 <li>업로드시, “A fatal error occurred: Failed to connect to ESP32: Timed out… Connecting…”이라는 메세지가 나오면서 업로드가 진행되지 않는다면, 우선 IDE의 보드와 포트가 알맞게 선택되어 있는지 확인해본다. 그럼에도 문제가 해결되지 않는다면 아래의 방법을 따른다. (※상기 문제가 해결되어 나온 보드의 경우에는 관계없음)</li>
 </ol>
 <ul>
-<li>  ESP32 보드에 있는 Boot버튼을 누른채로 업로드 버튼을 클릭하고, <strong>Connecting….</strong> 이라는 메세지가 나오면 Boot버튼에서 손가락을 뗀다.</li>
-<li>  일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “<strong>ENABLE</strong>”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.</li>
-<li>  이러한 문제를 해결하기 위해서는 ESP32보드의 <strong>EN핀</strong>과 <strong>GND</strong>를 10uF 컨덴서를 사용하여 연결해주면 된다.</li>
+<li>ESP32 보드에 있는 Boot버튼을 누른채로 업로드 버튼을 클릭하고, <strong>Connecting….</strong> 이라는 메세지가 나오면 Boot버튼에서 손가락을 뗀다.</li>
+<li>일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “<strong>ENABLE</strong>”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.</li>
+<li>이러한 문제를 해결하기 위해서는 ESP32보드의 <strong>EN핀</strong>과 <strong>GND</strong>를 10uF 컨덴서를 사용하여 연결해주면 된다.</li>
 </ul>
 <p><img src="/image/esp32-ide-08.png"></p>
 <ol start="2">
 <li><strong>Mac OS X &amp; Linux</strong></li>
 </ol>
-<p>​        전체적인 설치방법은 Windows와 동일하다. 단, 첫번째 설치가 아닌 재설치 과정을 수행하는한 경우에는 다음</p>
+<p>​		전체적인 설치방법은 Windows와 동일하다. 단, 첫번째 설치가 아닌 재설치 과정을 수행하는한 경우에는 다음</p>
 <p>​        과정을 통해 espressif폴더를 지운 후 설치과정을 시작하여야 한다.</p>
 <ul>
 <li><strong>Arduino</strong>&gt; <strong>Preferences</strong>&gt; <strong>Sketchbook Location</strong>에 표기되어 있는 폴더를 복사하여 해당 디렉토리로 진입한 후,</li>
@@ -742,10 +743,10 @@
 
 <h5 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h5><p>해상도는 output을 위한 값의 범위를 지정하는데 사용하며, 1~16비트 범위에서 선택한다.</p>
 <ul>
-<li>  만약 <strong>8비트 해상도</strong>를 사용한다면 <strong>0~255</strong> 사이의 dutyCycle 값을 사용하여 LED 밝기를 제어할 수 있다.</li>
-<li>  <strong>10비트</strong>를 사용하면 <strong>0~1023</strong>범위,</li>
-<li>  <strong>16비트</strong>로 사용한다면 <strong>0~65535</strong> 범위에서 세밀한 제어를 할 수 있도록 지정된다.</li>
-<li>  참고: 아두이노 우노의 경우, analogWrite()의 해상도는 8비트, 즉 0~255로 고정되어 있다.</li>
+<li>만약 <strong>8비트 해상도</strong>를 사용한다면 <strong>0~255</strong> 사이의 dutyCycle 값을 사용하여 LED 밝기를 제어할 수 있다.</li>
+<li><strong>10비트</strong>를 사용하면 <strong>0~1023</strong>범위,</li>
+<li><strong>16비트</strong>로 사용한다면 <strong>0~65535</strong> 범위에서 세밀한 제어를 할 수 있도록 지정된다.</li>
+<li>참고: 아두이노 우노의 경우, analogWrite()의 해상도는 8비트, 즉 0~255로 고정되어 있다.</li>
 </ul>
 <br>
 
@@ -791,16 +792,16 @@
 <br>
 
 <ul>
-<li>  녹색핀: 사용에 적합한 핀</li>
-<li>  노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
-<li>  빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
-<li>  보라색: Wifi사용시 사용불가한 analog핀</li>
-<li>  GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
-<li>  ADC: 0<del>3.3V (0</del>4095) (0<del>0.15V구간과 3.1</del>3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
-<li>  I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
-<li>  RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
-<li>  Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
-<li>  High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
+<li>녹색핀: 사용에 적합한 핀</li>
+<li>노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
+<li>빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
+<li>보라색: Wifi사용시 사용불가한 analog핀</li>
+<li>GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
+<li>ADC: 0<del>3.3V (0</del>4095) (0<del>0.15V구간과 3.1</del>3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
+<li>I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
+<li>RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
+<li>Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
+<li>High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
 </ul>
 <br>
 
@@ -838,10 +839,10 @@
 
 <h4 id="PWM-Pulse-Width-Modulation"><a href="#PWM-Pulse-Width-Modulation" class="headerlink" title="PWM(Pulse Width Modulation)"></a>PWM(Pulse Width Modulation)</h4><p>ESP32는 16개의 독립적인 채널을 통해 각각 다른 속성의 PWM 신호를 만들 수 있다. 출력으로 사용할 수 있는 모든 핀은 PWM으로 사용할 수 있으며, GPIO 34~39는 Input only핀이므로 PWM으로 사용할 수 없다. PWM신호를 만들기 위해 코드상에 4개의 파라미터를 정해주어야 한다.</p>
 <ul>
-<li>  Signal Frequency</li>
-<li>  Duty Cycle</li>
-<li>  PWM Channel</li>
-<li>  신호를 출력할 GPIO핀</li>
+<li>Signal Frequency</li>
+<li>Duty Cycle</li>
+<li>PWM Channel</li>
+<li>신호를 출력할 GPIO핀</li>
 </ul>
 <br>
 
@@ -864,13 +865,13 @@
 <h3 id="Vin"><a href="#Vin" class="headerlink" title="Vin"></a>Vin</h3><p>ESP32 보드에 전원을 공급하는 방법은 3가지가 있다.</p>
 <ul>
 <li>USB 포트를 통한 공급</li>
-<li>5V/GND 핀을 통한 공급<ul>
+<li>5V&#x2F;GND 핀을 통한 공급<ul>
 <li>5V핀을 통해서 전원을 공급할 경우, 전압은 5~12V 정도 사용하면 된다.</li>
 <li>최적 공급 전압은 <strong>6~7V</strong> 정도이며, 이보다 높은 전압을 공급할 경우 과열될 수 있다.</li>
-<li>5V 공급시 소비전류는 128mA이며, 10V 공급시 99.9mA 정도를 유지한다. </li>
+<li>5V 공급시 소비전류는 128mA이며, 10V 공급시 99.9mA 정도를 유지한다.</li>
 </ul>
 </li>
-<li>3.3V/GND핀을 통한 공급<ul>
+<li>3.3V&#x2F;GND핀을 통한 공급<ul>
 <li>3.3V핀을 통해서 전원을 공급할 경우에는, 공급 전압을 <strong>(정확하게) 3.3V</strong>로 유지해야 한다.</li>
 </ul>
 </li>
@@ -901,25 +902,25 @@
 <br>
 
 <h3 id="PULL"><a href="#PULL" class="headerlink" title="PULL"></a>PULL</h3><ul>
-<li>  이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
-<li>  앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
+<li>이 경우에 블링크는 앱이 열려있는 동안에만 Blynk에서 값을 받는다.</li>
+<li>앱에서 센서값을 표시하는 가장 간단한 방법이며, Blynk 앱의 Virtual Pins이 구동중일때 센서값을 가져온다. (Blynk를 닫거나 백그라운드에서 실행될때 데이타는 요청되지 않는다.) 타이머를 사용할 필요가 없으므로 코딩이 단순한 편이지만, 데이터가 서버에 저장되지 않으므로 히스토리 그래프를 볼 수 없다는 단점이 있다.</li>
 </ul>
 <br>
 
 <h4 id="Blynk-앱-설정"><a href="#Blynk-앱-설정" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Reading Rate를 3초로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Reading Rate를 3초로 설정한다.</li>
 </ol>
 <br>
 
 <h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><ol>
-<li> Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
-<li> e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
-<li> 하드웨어에 코드를 업로드한다.</li>
-<li> Blynk에서 플레이버튼을 누른다.</li>
-<li> 값이 표시되는 것을 볼 수 있다.</li>
+<li>Analog Pin에서 값을 (간단하게) 읽어들이는 경우에는 코드를 쓸 필요가 없다. 단지 예제파일을 오픈하여 하드웨어와 커넥션만 변경한다.</li>
+<li>e-mail을 체크하여 Auth Token을 확인하고, 스케치에 Auth Token을 수정입력한다.</li>
+<li>하드웨어에 코드를 업로드한다.</li>
+<li>Blynk에서 플레이버튼을 누른다.</li>
+<li>값이 표시되는 것을 볼 수 있다.</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BLYNK_READ(V5) &#123; <span class="comment">//Blynk app has something on V5</span></span><br><span class="line">  sensorData = analogRead(A0); <span class="comment">//reading the sensor on A0</span></span><br><span class="line">  Blynk.virtualWrite(V5, sensorData); <span class="comment">//sending to Blynk</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -944,10 +945,10 @@
 <br>
 
 <h4 id="Blynk-앱-설정-1"><a href="#Blynk-앱-설정-1" class="headerlink" title="Blynk 앱 설정"></a>Blynk 앱 설정</h4><ol>
-<li> 새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
-<li> Value Display 위젯을 추가한다.</li>
-<li> 위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
-<li> Frequency를 PUSH로 설정한다.</li>
+<li>새 프로젝트를 만든다. (새로운 Auth Token값이 당신의 이메일에 전송된다)</li>
+<li>Value Display 위젯을 추가한다.</li>
+<li>위젯 세팅으로 가서 PIN 항목을 Virtual Pin V5로 설정한다.</li>
+<li>Frequency를 PUSH로 설정한다.</li>
 </ol>
 <br>
 
@@ -1040,7 +1041,7 @@
 <br>
 
 <ol start="8">
-<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다. </li>
+<li>Paired Devices 목록에서 SKS100을 선택하세요. 그러면 TERMINAL이 HC-06에 접속하여, 서로간 통신할 수 있는 상태가 됩니다.</li>
 </ol>
 <img src="/image/BTserialapp-09.png" style="zoom:33%;">
 
@@ -1094,7 +1095,7 @@
 
 <p>​    스마트폰의 TERMINAL에 Good morning! 이 출력됩니다.</p>
 <p><img src="/image/BTserialapp-17.jpg"></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-09-01T09:27:53.000Z" title="2019. 9. 1. 오후 6:27:53">2019-09-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-04-23T18:04:18.262Z" title="2022. 4. 24. 오전 3:04:18">2022-04-24</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/diy/">diy</a></span><span class="level-item">29분안에 읽기 (약 4303 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a></h1><div class="content"><h3 id="필수-요소"><a href="#필수-요소" class="headerlink" title="필수 요소"></a>필수 요소</h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-09-01T09:27:53.000Z" title="2019. 9. 1. 오후 6:27:53">2019-09-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-04-23T18:19:10.195Z" title="2022. 4. 24. 오전 3:19:10">2022-04-24</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/diy/">diy</a></span><span class="level-item">29분안에 읽기 (약 4303 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/01/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a></h1><div class="content"><h3 id="필수-요소"><a href="#필수-요소" class="headerlink" title="필수 요소"></a>필수 요소</h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
 <ul>
 <li>git</li>
 <li>github.com에 repository 2개 생성하기<ul>
@@ -1371,7 +1372,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">head:</span><br><span class="line">  # URL or path to the website&#x27;s icon</span><br><span class="line">  favicon: /img/favicon.png?</span><br><span class="line">  # Open Graph metadata</span><br></pre></td></tr></table></figure>
 
 <p>_<em>config.icarus.yml</em> 에서 상단에 favicon을 설정하는 부분에서 favicon.png 끝에 <code>?</code>를 추가한 후, 재배포 한다.</p>
-<h3 id="generate할-때-에러가-뜨는-경우"><a href="#generate할-때-에러가-뜨는-경우" class="headerlink" title="generate할 때 에러가 뜨는 경우"></a>generate할 때 에러가 뜨는 경우</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">INFO  Validating config</span><br><span class="line">Inferno is in development mode.</span><br><span class="line">ERROR &#123;</span><br><span class="line">  err: TypeError: Cannot read properties of undefined (reading &#x27;split&#x27;)</span><br></pre></td></tr></table></figure>
+<h4 id="generate할-때-에러가-뜨는-경우"><a href="#generate할-때-에러가-뜨는-경우" class="headerlink" title="generate할 때 에러가 뜨는 경우"></a>generate할 때 에러가 뜨는 경우</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">INFO  Validating config</span><br><span class="line">Inferno is in development mode.</span><br><span class="line">ERROR &#123;</span><br><span class="line">  err: TypeError: Cannot read properties of undefined (reading &#x27;split&#x27;)</span><br></pre></td></tr></table></figure>
 
 <p>해결방법</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd d:\dev\myblog</span><br><span class="line">npm install hexo-html-syncer --save</span><br><span class="line">npm audit fix --force</span><br><span class="line">npm fund</span><br></pre></td></tr></table></figure>
