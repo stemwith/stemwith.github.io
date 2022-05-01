@@ -7,13 +7,6 @@
     </url>
     
     <url>
-        <loc>http://stemwith.github.io/categories/drone/</loc>
-        <lastmod>2021-11-17T03:29:48.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-    
-    <url>
         <loc>http://stemwith.github.io/categories/esp32/</loc>
         <lastmod>2021-11-17T03:43:42.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,6 +51,13 @@
     <url>
         <loc>http://stemwith.github.io/categories/diy/</loc>
         <lastmod>2022-04-23T18:19:10.195Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+    
+    <url>
+        <loc>http://stemwith.github.io/categories/drone/</loc>
+        <lastmod>2022-05-01T05:05:25.458Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
