@@ -2454,6 +2454,318 @@
 <br>
 
 <h3 id="Microsoft-Data-Streamer"><a href="#Microsoft-Data-Streamer" class="headerlink" title="Microsoft Data Streamer"></a>Microsoft Data Streamer</h3><p>PLX-DAQ와 비슷한 역할을 하는 Microsoft Data Streamer가 있으나, 현재 아두이노만 지원하며 ESP32에서는 데이터를 전송받지 못하는 문제가 있음.</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-08-02T09:27:53.000Z" title="2021. 8. 2. 오후 6:27:53">2021-08-02</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-05-07T14:14:58.395Z" title="2022. 5. 7. 오후 11:14:58">2022-05-07</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/drone/">drone</a></span><span class="level-item">14분안에 읽기 (약 2042 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/08/02/Drone-%EC%A1%B0%EC%A2%85%EA%B8%B0-%EC%88%98%EC%8B%A0%EA%B8%B0/">드론 Part2 조종기 FrSky TaranisQ X7 수신기 FrSky X8R</a></h1><div class="content"><br>
+
+<h3 id="조종기-FrSky-TaranisQ-X7"><a href="#조종기-FrSky-TaranisQ-X7" class="headerlink" title="조종기 FrSky TaranisQ X7"></a>조종기 FrSky TaranisQ X7</h3><h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><img src="/image/d/drone2_01.png">
+
+<br>
+
+<h4 id="펌웨어-업데이트"><a href="#펌웨어-업데이트" class="headerlink" title="펌웨어 업데이트"></a>펌웨어 업데이트</h4><p>① 펌웨어 다운로드: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.open-tx.org/">https://www.open-tx.org</a></p>
+<ul>
+<li>Installation&gt; News&gt;에서 최신 버전 OpenTX 클릭</li>
+</ul>
+<ul>
+<li><p>Download&gt; SDCard&gt; opentx-x7 클릭한 뒤, 최신버전의 zip파일 다운로드 후 압축해제</p>
+</li>
+<li><p>Download&gt; 본인 PC의 OS Companion 다운로드 (펌웨어 버전에 맞는 Companion 선택해야 함)</p>
+</li>
+</ul>
+<p>② Yaw, Roll 트림을 동시에 서로 안쪽으로 민 상태로 전원버튼을 누르면, Bootloader로 진입함</p>
+<img src="/image/d/drone2_02.png">
+
+<p>③ TaranisQ X7 하단커버을 열고 miniUSB포트를 이용하여 PC와 연결하면,</p>
+<img src="/image/d/drone2_03.png">
+
+<ul>
+<li>Taranis 드라이브와 USB 드라이브 폴더가 열림 (USB 드라이버는 조정기에 삽입되어 있는 miniSD카드를 의미)</li>
+</ul>
+<p>④ [한글 음성 파일 업데이트]</p>
+<ul>
+<li>다운로드 경로: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://drive.google.com/file/d/1GVKBr7kgxWDjCjIttx5D6jugeeoedwVM/">https://drive.google.com/file/d/1GVKBr7kgxWDjCjIttx5D6jugeeoedwVM/</a></li>
+<li>1.의 과정에서 다운로드 한 새로운 펌웨어의 SOUND폴더의 en폴더에, 다운로드 한 한글 음성 파일 폴더(en)을 덮어씌운다.</li>
+</ul>
+<p>⑤ USB 드라이브(조정기의 miniSD카드) 포맷 (오래 걸림)</p>
+<ul>
+<li>파일시스템 FAT32</li>
+</ul>
+<p>⑥ SOUND파일이 업데이트 된 새로운 펌웨어 파일 전체를 USB 드라이브에 복사한다. (오래 걸림)</p>
+<p>⑦ 컴퓨터에 다운로드 받은 Companion 설치 후 실행</p>
+<ul>
+<li><p>[Radio Profile]</p>
+<p>Profile Name: My Profile (임의 지정)</p>
+<p>Radio Type: Taranis X7&#x2F;X7S 선택</p>
+<p>Menu Language: en</p>
+<p>Build Option: noheli &amp; lua 선택</p>
+</li>
+<li><p>[Application Setting]</p>
+<p>Splash Screen Library: Show user and companion splash Images 선택</p>
+<p>(조정기를 킬 때 나타나는 이미지를 companion 제공 이미지로 바꿀 수 있음)</p>
+</li>
+</ul>
+<p>⑧ 좌측메뉴 두 번째의 Read Models and Settings from Radio 클릭 <img src="/image/d/drone2_04.png"></p>
+<ul>
+<li>기존에 입력해두었던 수신기 리스트 백업</li>
+</ul>
+<p>⑨ 상단메뉴의 Download 클릭 <img src="/image/d/drone2_05.png"></p>
+<ul>
+<li>다운로드 경로 지정한 뒤 확인</li>
+</ul>
+<p>⑩ 다운로드가 완료되면 확인</p>
+<img src="/image/d/drone2_06.png">
+
+<p>⑪ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 <img src="/image/d/drone2_07.png"></p>
+<img src="/image/d/drone2_08.png">
+
+<p>⑫ 업데이트 하려는 범위에 버전이 맞는 지 확인 한 후, Write to TX 클릭. Flashing Done 이 표시되면 Close</p>
+<img src="/image/d/drone2_09.png">
+
+<p>⑬ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 <img src="/image/d/drone2_10.png"></p>
+<img src="/image/d/drone2_11.png">
+
+<ul>
+<li>Check Firmware compatibility 체크한 후 Write to RX 클릭 (백업했던 기존 수신기 등록자료 업데이트)</li>
+</ul>
+<p>⑭ USB선 제거</p>
+<img src="/image/d/drone2_12.png">
+
+<ul>
+<li>스크린에 업데이트한 펌웨어 버전이 표시되면 완료</li>
+<li>다이얼을 돌려 Exit 선택 후 Enter 버튼</li>
+<li>이때 EEPROM warning 이 표시될 수 있음 (Enter 버튼을 1~2회 누르면 됨)</li>
+</ul>
+<br>
+
+<h4 id="Calibration"><a href="#Calibration" class="headerlink" title="Calibration"></a>Calibration</h4><p>① 펌웨어 업데이트 후 Calibration을 먼저 진행한다.</p>
+<p>② 메뉴 길게&gt; Page 5차례 눌러서 6페이지에 Hardware&gt; Calibration 선택 후 Enter</p>
+<p>③ SET STICKS MIDPOINT</p>
+<ul>
+<li>스틱을 모두 중립에 두고 Enter</li>
+</ul>
+<p>④ MOVE STICKS&#x2F;POTS</p>
+<ul>
+<li><p>각 스틱을 4개의 모서리로 이동시키며 돌려줌</p>
+</li>
+<li><p>상단의 다이얼 돌려주고 중간에 위치시킨 뒤 (여러번 시행 후) Enter</p>
+</li>
+</ul>
+<p>⑤ Exit &amp; Exit</p>
+<br>
+
+<h4 id="Radio-Setup"><a href="#Radio-Setup" class="headerlink" title="Radio Setup"></a>Radio Setup</h4><p>메뉴 길게&gt; Page 2번 눌러서 3페이지에 Radio Setup</p>
+<ul>
+<li><p>Batt.range: 6.5-8.4 (2S배터리 이용시) (Enter와 다이얼 이용하여 설정)</p>
+</li>
+<li><p>Alarms&gt; Battery low: 6.5V</p>
+</li>
+<li><p>Backlight&gt; Duration: 30s</p>
+</li>
+<li><p>Backlight&gt; Brightness: 75</p>
+</li>
+<li><p>Splash Screen: —</p>
+</li>
+<li><p>RX channel ord: <strong>AERT</strong></p>
+</li>
+<li><p>Mode 2</p>
+</li>
+</ul>
+<br>
+
+<h3 id="수신기-FrSky-X8R"><a href="#수신기-FrSky-X8R" class="headerlink" title="수신기 FrSky X8R"></a>수신기 FrSky X8R</h3><table>
+<thead>
+<tr>
+<th>X8R</th>
+<th>핀레일 (위:S, 중간:+, 아래:-)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/image/d/drone2_13.png" style="zoom: 50%;"></td>
+<td><img src="/image/d/drone2_14.png" style="zoom:67%;"></td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="조종기에-수신기-이름-설정"><a href="#조종기에-수신기-이름-설정" class="headerlink" title="조종기에 수신기 이름 설정"></a>조종기에 수신기 이름 설정</h4><p>① 조종기 전원을 켜기(LCD 위쪽의 전원 버튼 5초간 누르기) (스로틀은 아래쪽으로 두어야 함)</p>
+<img src="/image/d/drone2_15.png" style="zoom:150%;">
+
+<p>② 메뉴 버튼(≡) 짧게 누르기</p>
+<img src="/image/d/drone2_16.png" style="zoom:150%;">
+
+<p>③ Page 버튼을 한번 누르고,</p>
+<img src="/image/d/drone2_17.png" style="zoom:150%;">
+
+<p>④ Enter 버튼을 누른 뒤</p>
+<p>⑤ 다이얼을 돌려 알파벳이나 숫자를 골른 뒤, 엔터 버튼을 눌러 모델 이름을 한글자씩 정해준다. 소문자를 고른 뒤 엔터 버튼을 길게 누르면, 대문자가 나타남</p>
+<img src="/image/d/drone2_18.png" style="zoom:150%;">
+
+<br>
+
+<h4 id="수신기-바인딩-amp-X8R-16채널-사용-설정"><a href="#수신기-바인딩-amp-X8R-16채널-사용-설정" class="headerlink" title="수신기 바인딩 &amp; X8R 16채널 사용 설정"></a>수신기 바인딩 &amp; X8R 16채널 사용 설정</h4><p>① Mode 4(D16) 설정 → 1-8ch S-bus, 9-16ch (1-8번 포트를 통한) Conventional Channel out</p>
+<img src="/image/d/drone2_19.png">
+
+<p>② CH1&amp;CH2, CH3&amp;CH4 signal 핀을 아래 사진와 같이 점퍼를 사용하여 쇼트시킨다.</p>
+<img src="/image/d/drone2_20.png">
+
+<p>③ 조종기의 SETUP 메뉴에서 다이얼을 돌려 Internal RF 메뉴가 나올 때까지 아래쪽으로 내려감</p>
+<p>④ Internal RF&gt; Mode&gt; XJT D16 선택</p>
+<ul>
+<li><p>펌웨어 2.3.1 이상부터 XJT 선택 가능 (낮은 펌웨어에서는 D16만 나타남)</p>
+</li>
+<li><p>D8: XM 수신기를 사용할 경우</p>
+</li>
+<li><p>D16: XM+ 이상급 (X8R, R-XSR 포함)</p>
+</li>
+</ul>
+<p>⑤ Internal RF&gt; Ch.Range&gt;</p>
+<ul>
+<li><p>CH1-8 전송속도 9ms (※ 8채널만 사용하면 CH1-8 선택 추천)</p>
+</li>
+<li><p>CH1-16 선택시 전송속도 18ms</p>
+</li>
+</ul>
+<img src="/image/d/drone2_21.png">
+
+<p>⑥ Internal RF&gt; RxNum (or Receiver)</p>
+<ul>
+<li><p>수신기마다 다른 번호를 지정    ex) 첫 번째 바인딩할 수신기는 01로 지정</p>
+</li>
+<li><p>[Bnd] 누르면 텔레메트리 선택창이 나옴</p>
+</li>
+</ul>
+<img src="/image/d/drone2_22.png">
+
+<ul>
+<li>Ch9-16 Telem ON 선택하면, “띠리릭” 소리가 나면서 바인딩을 준비함</li>
+</ul>
+<p>⑦ X8R 수신기 ‘F&#x2F;S’ 버튼을 누르고 있는 상태에서,</p>
+<img src="/image/d/drone2_23.png" style="zoom:150%;">
+
+<p>⑧ X8R에 전원을 연결</p>
+<ul>
+<li>수신기가 이미 드론에 연결된 상태일 경우, 드론 FC에 메인 배터리 연결</li>
+</ul>
+<ul>
+<li>혹은 4-10V 외부 배터리를 X8R (+),(-)에 연결 (중간 레일 (+)극, 아래쪽 레일 (-)극)</li>
+</ul>
+<img src="/image/d/drone2_24.png">
+
+<p>⑨ F&#x2F;S 버튼 아래쪽의 LED 녹색빨간색이 점멸 (이 상태는 조종기와 연결이 되었음을 의미)</p>
+<ul>
+<li>누르고 있던 F&#x2F;S 버튼을 떼고, 조종기의 [Bnd] 버튼을 누름</li>
+</ul>
+<p>⑩ X8R의 전원을 뺏다가 다시 공급했을 때, 수신기에 녹색불이 계속 켜져 있는 상태가 되면 바인딩 성공 (녹색발간색이 점멸하는 상태에서 10~30초 정도 대기하면 바인딩이 되면서 녹색불만 들어옴)</p>
+<ul>
+<li>오래 기다려도 녹색불이 유지되지 않으면, 바인딩을 다시 해본다.</li>
+</ul>
+<p>⑪ X8R에 쇼트시켰던 2개의 점퍼를 빼고, X8R Ch1 레일에 서보모터를 연결하여 테스트</p>
+<ul>
+<li>조종기 MIXER 설정에서 Ch9에 스위치를 설정한뒤, 스위치를 토글하였을 때, 서보모터가 움직이면 OK</li>
+</ul>
+<br>
+
+<h5 id="Failsafe-설정"><a href="#Failsafe-설정" class="headerlink" title="Failsafe 설정"></a>Failsafe 설정</h5><p>Internal RF&gt; Failsafe&gt; Receiver로 설정 (수신기 신호가 끊어지면 Failsafe 작동)</p>
+<br>
+
+<h5 id="External-RF-CROSSFIRE-선택사항"><a href="#External-RF-CROSSFIRE-선택사항" class="headerlink" title="External RF (CROSSFIRE) (선택사항)"></a>External RF (CROSSFIRE) (선택사항)</h5><p>External RF는 CROSSFIRE(CRSF) 수신기 (40km이상 장거리 수신)이 필요한 경우에 설정할 수 있다.</p>
+<p>※ 추후 업데이트</p>
+<br>
+
+<h4 id="조종기-채널-할당"><a href="#조종기-채널-할당" class="headerlink" title="조종기 채널 할당"></a>조종기 채널 할당</h4><p>① 메뉴 짧게&gt; Page 4번 눌러서 5페이지에 INPUTS</p>
+<ul>
+<li>(Ch8에 RSSI를 설정하는 경우) 【I】08에 RSSI 설정</li>
+<li>【I】08으로 내려가서 Enter</li>
+<li>Name: rssi</li>
+<li>Source: 텔레메트리에서 찾았던 RSSI 선택</li>
+<li>Scale: 100dB</li>
+</ul>
+<p>② 메뉴 짧게&gt; Page 5번 눌러서 6페이지에 MIXER</p>
+<ul>
+<li><p>CH1~4는 기본 채널로 수정하지 않음</p>
+<ul>
+<li><p>CH1 100【I】Thr</p>
+</li>
+<li><p>CH2 100【I】Ail</p>
+</li>
+<li><p>CH3 100【I】Ele</p>
+</li>
+<li><p>CH4 100【I】Rud</p>
+</li>
+</ul>
+</li>
+<li><p>단, QGround Control을 사용할 경우,</p>
+<ul>
+<li>CH1 100【I】Ele</li>
+<li>CH2 100【I】Ail</li>
+<li>CH3 100【I】Thr</li>
+<li>CH4 100【I】Rud</li>
+</ul>
+</li>
+</ul>
+<p>③ CH5 비행모드 설정</p>
+<ul>
+<li><p>CH5로 이동하여 Enter</p>
+</li>
+<li><p>Mix name: F-Mode</p>
+</li>
+<li><p>Source: Enter키 누르고, 모드키로 할당할 3단 스위치(SB)를 움직이면, 소스가 SB로 변경</p>
+</li>
+</ul>
+<p>④ CH6 아밍 설정</p>
+<ul>
+<li><p>CH6로 이동하여 Enter</p>
+</li>
+<li><p>Mix name: Arm</p>
+</li>
+<li><p>Source: Enter키 누르고, 아밍키로 할당할 스위치(SF)를 움직이면, 소스가 SF로 변경</p>
+</li>
+</ul>
+<p>⑤ CH7 RTL or 부저 설정</p>
+<ul>
+<li><p>CH7로 이동하여 Enter</p>
+</li>
+<li><p>Mix name: RTL or Buz</p>
+</li>
+<li><p>Source: Enter키 누르고, RTL (or Buz)키로 할당할 스위치(SA)를 움직이면, 소스가 SA로 변경</p>
+</li>
+</ul>
+<p>⑥ CH8은 필요에 따라 RSSI로 할당 (X8R, XSR 등 텔레메트리 지원 수신기인 경우)</p>
+<ul>
+<li>메뉴 짧게&gt; Page 10번 눌러서 12페이지에 TELEMETRY</li>
+</ul>
+<img src="/image/d/drone2_25.png">
+
+<ul>
+<li>TELEMETRY&gt; Sensors&gt; Discover new sensors 선택</li>
+</ul>
+<img src="/image/d/drone2_26.png">
+
+<p>​       센서가 발견되면 Stop Discovery, Exit 버튼을 눌러서 빠져나감</p>
+<ul>
+<li><p>메뉴 짧게&gt; Page 6번 눌러서 6페이지에 MIXER</p>
+<ul>
+<li><p>CH8로 이동하여 Enter</p>
+</li>
+<li><p>Mix name: rssi</p>
+</li>
+<li><p>Source: Enter키 누르고</p>
+</li>
+<li><p>Weight: 200</p>
+</li>
+<li><p>Offset: -100 (채널범위는 –100<del>100, 즉 200의 범위인데, RSSI는 0</del>100까지의 값만 갖기 때문)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​         ※ XM, XM+ 등은 이미 채널이 할당되어 있으므로 위와 같이 INPUT, MIXER를 설정할 필요 없음</p>
+<p>⑨ QGC에서 RC_RSSI_PWM_CHAN: Channel 8 로 변경</p>
+<br>
+
+<h4 id="FrSky-수신기-리스트"><a href="#FrSky-수신기-리스트" class="headerlink" title="FrSky 수신기 리스트"></a>FrSky 수신기 리스트</h4><img src="/image/d/drone2_29.png">
+
+<br>
+
+<h4 id="FrSky-RX8R-수신기-메뉴얼"><a href="#FrSky-RX8R-수신기-메뉴얼" class="headerlink" title="FrSky RX8R 수신기 메뉴얼"></a>FrSky RX8R 수신기 메뉴얼</h4><img src="/image/d/drone2_30.png">
+
+<img src="/image/d/drone2_31.png">
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2021-08-01T09:27:53.000Z" title="2021. 8. 1. 오후 6:27:53">2021-08-01</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-05-01T05:05:25.458Z" title="2022. 5. 1. 오후 2:05:25">2022-05-01</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/drone/">drone</a></span><span class="level-item">14분안에 읽기 (약 2144 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/08/01/Drone-Hardware/">드론 Part1 기체 조립</a></h1><div class="content"><br>
 
 <h3 id="드론-조립"><a href="#드론-조립" class="headerlink" title="드론 조립"></a>드론 조립</h3><h4 id="S500-기체-조립"><a href="#S500-기체-조립" class="headerlink" title="S500 기체 조립"></a>S500 기체 조립</h4><img src="/image/d/drone1_01.png" style="zoom:75%;">
@@ -2883,78 +3195,7 @@
 
 <h3 id="배터리"><a href="#배터리" class="headerlink" title="배터리"></a>배터리</h3><p>LiPo 4S 14.8V 4200mAh 90C &#x2F; XT60</p>
 <img src="/image/d/drone1_31.png">
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2020-11-21T16:41:00.000Z" title="2020. 11. 22. 오전 1:41:00">2020-11-22</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:29:18.000Z" title="2021. 11. 17. 오후 12:29:18">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/science/">science</a></span><span class="level-item">8분안에 읽기 (약 1252 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/11/22/STEM-Solar-Tracker/">STEM, Solar Tracker</a></h1><div class="content"><h3 id="Solar-Tracker-만들기"><a href="#Solar-Tracker-만들기" class="headerlink" title="Solar Tracker 만들기"></a>Solar Tracker 만들기</h3><p>팬(도리도리) &amp; 틸트(끄덕끄덕)가 가능한 2축 서보모터 거치대와 2개의 서보모터를 사용하여 Solar Tracker를 만들어 보자.</p>
-<br>
-
-<h4 id="단계1-Solar-Tracker-Frame-3D-Printing"><a href="#단계1-Solar-Tracker-Frame-3D-Printing" class="headerlink" title="단계1: Solar Tracker Frame 3D Printing"></a>단계1: Solar Tracker Frame 3D Printing</h4><p><img src="/image/SolarTracker01.png"></p>
-<p><a href="/attach/Sun_Tracker_Gnomon_B.stl">.stl 파일</a>  <a href="/attach/Sun_Tracker_Gnomon_B.gcode">.gcode 파일</a></p>
-<p>3D 프린팅 후, 조도센서를 설치할 4곳에 1mm 드릴을 이용하여 각각 2개씩 구멍을 뚫는다 (총 8개). </p>
-<br>
-
-<br>
-
-<h4 id="단계2-조도센서-조립하기"><a href="#단계2-조도센서-조립하기" class="headerlink" title="단계2: 조도센서 조립하기"></a>단계2: 조도센서 조립하기</h4><h5 id="조도센서-삽입"><a href="#조도센서-삽입" class="headerlink" title="조도센서 삽입"></a>조도센서 삽입</h5><p><img src="/image/SolarTracker02.png"></p>
-<p>조도센서의 다리를 위에서 뚫은 구멍을 통해 넣은 뒤, </p>
-<p><img src="/image/SolarTracker03.png"></p>
-<p>뒤쪽에 글루건을 쏘아 고정시킨다. (조도센서는 극성을 구분할 필요가 없으므로, 서로 선이 맞닿지만 않으면 된다.)</p>
-<p>4개의 조도 센서를 위와 같은 방식으로 고정한다.</p>
-<br>
-
-<h5 id="10kΩ-저항-연결"><a href="#10kΩ-저항-연결" class="headerlink" title="10kΩ 저항 연결"></a>10kΩ 저항 연결</h5><p>아래 그림과 같이 연결한다.</p>
-<p><img src="/image/SolarTracker04.png"></p>
-<ul>
-<li>각 조도센서에 연결된 2개의 선 중 하나를 골라 10k 저항을 연결하고 한 뒤, 저항의 다른 쪽 끝을 모두 맞붙여서 GND에 연결한다.</li>
-<li>조도센서의 다른 한쪽 끝을 모두 맞붙여서 ESP32의 3.3V에 연결한다.</li>
-</ul>
-<p><img src="/image/SolarTracker05.png"></p>
-<ul>
-<li><p>GND와 3.3로 연결되는 선들이 서로 붙지 않도록 절연테이프를 붙여준다.</p>
-<p><img src="/image/SolarTracker06.png"></p>
-</li>
-<li><p>각 조도센서와 10k 저항의 사이에 ESP32에 연결할 GPIO선을 하나씩 납땜하여 연결한다.</p>
-</li>
-</ul>
-<p><img src="/image/SolarTracker07.png"></p>
-<ul>
-<li><p>ESP32의 3.3V와 GND에 연결할 선도 함께 납땜하여 연결한다.</p>
-<p><img src="/image/SolarTracker08.png"></p>
-</li>
-<li><p>선 모양을 잡아 정리한다. (위 사진에는 하트 모양처럼 양 옆으로 선이 나와 있지만, 추후 거치대 장착을 위해서는 아래 사진처럼 모두 오무려주어야 한다.)</p>
-<p><img src="/image/SolarTracker09.png"></p>
-</li>
-</ul>
-<br>
-
-<br>
-
-<h4 id="단계3-2축-서보모터-거치대에-장착하기"><a href="#단계3-2축-서보모터-거치대에-장착하기" class="headerlink" title="단계3: 2축 서보모터 거치대에 장착하기"></a>단계3: 2축 서보모터 거치대에 장착하기</h4><p><img src="/image/SolarTracker10.png"></p>
-<br>
-
-<h5 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h5><p><img src="/image/SolarTracker11.png"></p>
-<br>
-
-<h5 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************ ESP32 SKETCH FOR SOLAR TRACKER ***************************************</span></span><br><span class="line"><span class="comment">   Author: K. Jun, Lee</span></span><br><span class="line"><span class="comment">   Blog: https://stemwith.github.io         2020-12-04</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">// Use 3.3V for LDR sensor VCC</span></span><br><span class="line"><span class="comment">// Edit your sensor sensitivity: tolh, tolv</span></span><br><span class="line"><span class="comment">// Edit your sensor GPIO pin: ldr_lt, ldr_rt, ldr_ld, ldr_rd</span></span><br><span class="line"><span class="comment">// Edit initial sensor calibration value: avlt_cali, avrt_cali, avld_cali, avrd_cali </span></span><br><span class="line"><span class="comment">***********************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// for horizontal Servo PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin_hori = <span class="number">19</span>;       <span class="comment">// corresponds to GPIO 19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel_hori = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq_hori = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution_hori = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for vertical Servo PWM properties</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledPin_vert = <span class="number">18</span>;       <span class="comment">// corresponds to GPIO 18</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ledChannel_vert = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> freq_vert = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> resolution_vert = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> deg_hori = <span class="number">90</span>; <span class="comment">// default horizon</span></span><br><span class="line"><span class="keyword">int</span> deg_vert = <span class="number">45</span>; <span class="comment">// default vertical</span></span><br><span class="line"><span class="keyword">int</span> duty;</span><br><span class="line"></span><br><span class="line"><span class="comment">// LDR sensor pin</span></span><br><span class="line"><span class="keyword">int</span> ldr_lt = <span class="number">32</span>; <span class="comment">// Left_Top LDR pin</span></span><br><span class="line"><span class="keyword">int</span> ldr_rt = <span class="number">33</span>; <span class="comment">// Right_Top LDR pin</span></span><br><span class="line"><span class="keyword">int</span> ldr_ld = <span class="number">34</span>; <span class="comment">// Left_Down LDR pin</span></span><br><span class="line"><span class="keyword">int</span> ldr_rd = <span class="number">35</span>; <span class="comment">// Right_Down LDR pin</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// LDR sensor value</span></span><br><span class="line"><span class="keyword">int</span> lt[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> rt[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> ld[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> rd[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sensitivity (tolerance)</span></span><br><span class="line"><span class="keyword">int</span> tolh = <span class="number">150</span>;              <span class="comment">// horizon tolerance</span></span><br><span class="line"><span class="keyword">int</span> tolv = <span class="number">150</span>;              <span class="comment">// vertical tolerance</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// initial sensor correction value </span></span><br><span class="line"><span class="keyword">int</span> avlt_cali = <span class="number">0</span>;       <span class="comment">// 초기값 보정</span></span><br><span class="line"><span class="keyword">int</span> avrt_cali = <span class="number">350</span>;     <span class="comment">// (센서에 밝은 빛을 직접 가하여 최대값을 측정한 뒤 편차를 사용)</span></span><br><span class="line"><span class="keyword">int</span> avld_cali = <span class="number">330</span>;</span><br><span class="line"><span class="keyword">int</span> avrd_cali = <span class="number">430</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Servo PWM Setup</span></span><br><span class="line">  ledcSetup(ledChannel_hori, freq_hori, resolution_hori);  <span class="comment">// PWM CH1, Frequncy 50 Hz, 16bit resolution</span></span><br><span class="line">  ledcAttachPin(ledPin_hori, ledChannel_hori);             <span class="comment">// PWM CH1을 GPIO 19번으로 출력</span></span><br><span class="line">  ledcSetup(ledChannel_vert, freq_vert, resolution_vert);  <span class="comment">// PWM CH0, Frequncy 50 Hz, 16bit resolution</span></span><br><span class="line">  ledcAttachPin(ledPin_vert, ledChannel_vert);             <span class="comment">// PWM CH0을 GPIO 19번으로 출력</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> avlt = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> avrt = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> avld = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> avrd = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    lt[i] = analogRead(ldr_lt); <span class="comment">// Left Top</span></span><br><span class="line">    avlt = avlt + lt[i] - avlt_cali;  </span><br><span class="line">    rt[i] = analogRead(ldr_rt); <span class="comment">// Right Top</span></span><br><span class="line">    avrt = avrt + rt[i] - avrt_cali;</span><br><span class="line">    ld[i] = analogRead(ldr_ld); <span class="comment">// Left Down</span></span><br><span class="line">    avld = avld + ld[i] - avld_cali;</span><br><span class="line">    rd[i] = analogRead(ldr_rd); <span class="comment">// Right Down</span></span><br><span class="line">    avrd = avrd + rd[i] - avrd_cali;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  avlt = avlt / <span class="number">10</span>;</span><br><span class="line">  avrt = avrt / <span class="number">10</span>;</span><br><span class="line">  avld = avld / <span class="number">10</span>;</span><br><span class="line">  avrd = avrd / <span class="number">10</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> avt = (avlt + avrt) / <span class="number">2</span>;    <span class="comment">// Average of Top value</span></span><br><span class="line">  <span class="keyword">int</span> avd = (avld + avrd) / <span class="number">2</span>;    <span class="comment">// Average of Down value</span></span><br><span class="line">  <span class="keyword">int</span> avl = (avlt + avld) / <span class="number">2</span>;    <span class="comment">// Average of Left value</span></span><br><span class="line">  <span class="keyword">int</span> avr = (avrt + avrd) / <span class="number">2</span>;    <span class="comment">// Average of Right value.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> dvert = avt - avd;      <span class="comment">// Difference Top, Down</span></span><br><span class="line">  <span class="keyword">int</span> dhoriz = avl - avr;     <span class="comment">// Difference Left, Right</span></span><br><span class="line"></span><br><span class="line">  Serial.println(<span class="string">&quot;LT\tRT\tLD\tRD\tav.T\tav.D\tav.L\tav.R\td.ver\td.hor&quot;</span>);</span><br><span class="line">  Serial.print(avlt);Serial.print(<span class="string">&quot;\t&quot;</span>);Serial.print(avrt);Serial.print(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  Serial.print(avld);Serial.print(<span class="string">&quot;\t&quot;</span>);Serial.print(avrd);Serial.print(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  Serial.print(avt);Serial.print(<span class="string">&quot;\t&quot;</span>);Serial.print(avd);Serial.print(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  Serial.print(avl);Serial.print(<span class="string">&quot;\t&quot;</span>);Serial.print(avr);Serial.print(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">  Serial.print(dvert);Serial.print(<span class="string">&quot;\t&quot;</span>);Serial.print(dhoriz);Serial.println(<span class="string">&quot;\t\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">abs</span>(dvert) &gt; tolv) &#123;      <span class="comment">// sensitivity</span></span><br><span class="line">    <span class="keyword">if</span> (avt &lt; avd) &#123;            <span class="comment">// 아래쪽 센서가 더 밝으면</span></span><br><span class="line">      deg_vert = ++deg_vert;</span><br><span class="line">      <span class="keyword">if</span> (deg_vert &gt; <span class="number">90</span>) &#123;</span><br><span class="line">        deg_vert = <span class="number">90</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (avt &gt; avd) &#123;       <span class="comment">// 윗쪽 센서가 더 밝으면,</span></span><br><span class="line">      deg_vert = --deg_vert;</span><br><span class="line">      <span class="keyword">if</span> (deg_vert &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        deg_vert = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    servoWrite(ledChannel_vert, deg_vert);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">abs</span>(dhoriz) &gt; tolh) &#123;     <span class="comment">// sensitivity</span></span><br><span class="line">    <span class="keyword">if</span> (avl &gt; avr) &#123;            <span class="comment">// 왼쪽 센서가 더 밝으면</span></span><br><span class="line">      deg_hori = --deg_hori;</span><br><span class="line">      <span class="keyword">if</span> (deg_hori &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        deg_hori = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (avl &lt; avr) &#123;       <span class="comment">// 오른쪽 센서가 더 밝으면</span></span><br><span class="line">      deg_hori = ++deg_hori;</span><br><span class="line">      <span class="keyword">if</span> (deg_hori &gt; <span class="number">180</span>) &#123;</span><br><span class="line">        deg_hori = <span class="number">180</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (avl == avr) &#123;</span><br><span class="line">      <span class="comment">// nothing</span></span><br><span class="line">    &#125;</span><br><span class="line">    servoWrite(ledChannel_hori, deg_hori);</span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// deg는 0~180도 까지</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">servoWrite</span><span class="params">(<span class="keyword">int</span> ch, <span class="keyword">int</span> deg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    duty = <span class="built_in">map</span>(deg, <span class="number">0</span>, <span class="number">180</span>, <span class="number">1638</span>, <span class="number">8192</span>);</span><br><span class="line">    ledcWrite(ch, duty);</span><br><span class="line">    delay(<span class="number">50</span>);                  <span class="comment">// delay를 줄이면 180도가 완전히 돌지 않음 (최소값 15)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h3 id="태양광-패널의-전압-측정하기"><a href="#태양광-패널의-전압-측정하기" class="headerlink" title="태양광 패널의 전압 측정하기"></a>태양광 패널의 전압 측정하기</h3><p>MPPT모듈을 만들기 전, 태양광패널에서 만들어지는 전기의 전압을 측정해본다. ESP32의 경우 내부전압 3.3V, 12bit ADC이므로</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line"><span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
-
-<p>를 사용한다.</p>
-<br>
-
-<h4 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/SolarMPPT01.png"></p>
-<br>
-
-<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ESP32 3.3V -&gt; 3.21 , Arduino 5.0V -&gt; 4.89</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">float</span> referenceVolts = <span class="number">3.21</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> volts_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> val = analogRead(<span class="number">32</span>);</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// ESP32 12bit_ADC (4095.0), Arduino 10bit_ADC (1023.0)</span></span><br><span class="line">    <span class="keyword">float</span> volts = (referenceVolts/<span class="number">4095.0</span>)*val*<span class="number">1000</span>; </span><br><span class="line">    volts_sum = volts_sum + volts;</span><br><span class="line">    delay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  volts_sum = volts_sum / <span class="number">10</span>;</span><br><span class="line">  Serial.print(<span class="string">&quot;V = &quot;</span>);</span><br><span class="line">  Serial.print(volts_sum);</span><br><span class="line">  Serial.println(<span class="string">&quot; mV&quot;</span>);</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/default-index/page/0/">이전</a></div><div class="pagination-next"><a href="/default-index/page/2/">다음</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/default-index/">1</a></li><li><a class="pagination-link" href="/default-index/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/default-index/page/5/">5</a></li></ul></nav></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">49</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">8월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2022 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/default-index/page/0/">이전</a></div><div class="pagination-next"><a href="/default-index/page/2/">다음</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/default-index/">1</a></li><li><a class="pagination-link" href="/default-index/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/default-index/page/5/">5</a></li></ul></nav></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">50</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">8월 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2022 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
