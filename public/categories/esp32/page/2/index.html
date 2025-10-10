@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/categories/esp32/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Esp32">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="website">
+
+
+<title>Esp32 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/categories/esp32/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+<link rel="alternate" type="application/rss+xml" href="https://stemwith.github.io/categories/esp32/index.xml" title="STEM with" />
+
+  
+</head>
+<body dir="ltr" class="book-kind-term book-type-categories">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Esp32</h3>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-ble-blynk-button/">esp32 BLE, Blynk Button</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 21, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/iot/">Iot</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="blynk를-처음-사용하는-경우">Blynk를 처음 사용하는 경우<a class="anchor" href="#blynk%eb%a5%bc-%ec%b2%98%ec%9d%8c-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h3>
+<h4 id="blynk-라이브러리-설치하기">Blynk 라이브러리 설치하기<a class="anchor" href="#blynk-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0">#</a></h4>
+<ol>
+<li>docs.blynk.cc 접속 – Downloads – Blynk Library</li>
+<li><a href="https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1">https://github.com/blynkkk/blynk-library/releases/tag/v0.6.1</a>
+<ul>
+<li>Blynk_Release_v0.6.1.zip 다운로드</li>
+</ul>
+</li>
+<li>압축을 풀면 libraries, tools 폴더가 보임</li>
+<li>이 두 폴더를 아두이노IDE의 기본 스케치북 위치로 복사하여 붙여넣기 함
+<ul>
+<li>기존의 libraries 폴더와 합쳐짐</li>
+<li>기본 스케치북 위치 확인 방법
+<ul>
+<li>아두이노IDE – 파일 – 환경설정 – 설정탭 – 스케치북 위치</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<h4 id="스마트폰에-blynk-app-설치하기">스마트폰에 Blynk App 설치하기<a class="anchor" href="#%ec%8a%a4%eb%a7%88%ed%8a%b8%ed%8f%b0%ec%97%90-blynk-app-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0">#</a></h4>
+<ul>
+<li>아이폰 : 애플 앱스토어</li>
+<li>안드로이드 : 구글 플레이스토어</li>
+</ul>
+<br>
+<br>
+<h3 id="버튼-위젯을-이용한-led-onoff-하기">버튼 위젯을 이용한 LED On/Off 하기<a class="anchor" href="#%eb%b2%84%ed%8a%bc-%ec%9c%84%ec%a0%af%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-led-onoff-%ed%95%98%ea%b8%b0">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/blynk-01.png" alt="" /></p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-adc/">esp32 ADC</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 20, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="esp32-adc">ESP32 ADC<a class="anchor" href="#esp32-adc">#</a></h3>
+<ul>
+<li>ESP32는 18개의 12bit ADC 입력핀을 사용할 수 있다. (0~4095)</li>
+<li>아두이노의 경우 10bit를 사용한다. (0~1023)</li>
+<li>0V ~ 3.3V의 전압을 0~4095(0xFFF)까지의 디지털값으로 AD 변환한다.</li>
+<li>Arduino IDE 환경에서는 ESP32의 ADC 관련 레지스터를 조작하지 않고 analogRead() 함수를 사용하여 ESP32의 ADC 입력핀의 전압값을 가져올 수 있다. </li>
+</ul>
+<br>
+<br>
+<h3 id="potentiometer-저항값-출력하기">Potentiometer 저항값 출력하기<a class="anchor" href="#potentiometer-%ec%a0%80%ed%95%ad%ea%b0%92-%ec%b6%9c%eb%a0%a5%ed%95%98%ea%b8%b0">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/esp32-adc-01.png" alt="" /></p>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<p>가변저항의 저항을 A0(ADC1_CH0, GPIO36)로 읽고 전압값으로 변환한 뒤 시리얼 모니터로 출력한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// ESP32 ADC test
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define analogPin A0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// read the input on analog pin GPIO36 (ADC1_CH0):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> sensorValue <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(analogPin);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Convert the analog (12bit ADC :  0 - 4095) to a voltage (0 - 3.3V):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">float</span> voltage <span style="color:#f92672">=</span> (sensorValue <span style="color:#f92672">/</span><span style="color:#ae81ff">4095.0</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">3.3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// print out the value you read:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">println</span>(voltage);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">200</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h3 id="potentiometer로-led-밝기-조절하기">Potentiometer로 LED 밝기 조절하기<a class="anchor" href="#potentiometer%eb%a1%9c-led-%eb%b0%9d%ea%b8%b0-%ec%a1%b0%ec%a0%88%ed%95%98%ea%b8%b0">#</a></h3>
+<h4 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h4>
+<p><img src="/image/esp32-adc-02.png" alt="" /></p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/">esp32 시작하기</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 19, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="esp32-시작하기">ESP32 시작하기<a class="anchor" href="#esp32-%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0">#</a></h3>
+<h4 id="driver-설치-처음-설치하는-경우">Driver 설치: 처음 설치하는 경우<a class="anchor" href="#driver-%ec%84%a4%ec%b9%98-%ec%b2%98%ec%9d%8c-%ec%84%a4%ec%b9%98%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h4>
+<p>ESP32는 USB-to-Serial bridge로 Silicon Labs의 CP210x를 사용한다. <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">제조사 홈페이지</a>에서 자신이 사용하는 OS에 알맞는 CP210x 드라이버를 다운받아 설치한다.</p>
+<pre tabindex="0"><code>https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers</code></pre><br>
+<h4 id="arduino-ide-설치">Arduino IDE 설치<a class="anchor" href="#arduino-ide-%ec%84%a4%ec%b9%98">#</a></h4>
+<p><a href="https://www.arduino.cc/en/software">Arduino IDE Download</a></p>
+<pre tabindex="0"><code>https://www.arduino.cc/en/software</code></pre><br>
+<h4 id="arduino-ide-설정">Arduino IDE 설정<a class="anchor" href="#arduino-ide-%ec%84%a4%ec%a0%95">#</a></h4>
+<ol>
+<li>Arduino IDE에서 <strong>파일</strong>&gt; <strong>환경설정</strong>&gt; <strong>설정</strong> (<strong>File</strong>&gt; <strong>Preferences</strong>&gt; <strong>Settings</strong>)</li>
+</ol>
+<p><img src="/image/esp32-ide-01.jpg" alt="" /></p>
+<br>
+<ul>
+<li>추가적인 보드 매니저 URLs에 아래 내용을 추가한다.</li>
+</ul>
+<pre tabindex="0"><code>https://dl.espressif.com/dl/package_esp32_index.json</code></pre><br>
+<ul>
+<li>ESP8266에 대한 URLs를 사용하고 있었다면, comma를 사용하여 구분하면 두가지를 모두 사용할 수 있다.</li>
+</ul>
+<pre tabindex="0"><code>https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json</code></pre><br>
+<ol start="2">
+<li><strong>툴</strong>&gt; <strong>보드</strong>&gt; <strong>보드 매니저</strong>&hellip; <strong>Tools</strong>&gt; <strong>Board</strong>&gt; <strong>Board Manager</strong>&hellip;</li>
+</ol>
+<p><img src="/image/esp32-ide-02.jpg" alt="" /></p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp-wroom-32d-devkitc-v4/">esp32-WROOM-32D DevkitC V4</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 19, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="esp32-wroom-32d-devkitc-v4">ESP32-WROOM-32D DevkitC V4<a class="anchor" href="#esp32-wroom-32d-devkitc-v4">#</a></h3>
+<p><img src="/image/esp32-pinout.png" alt="" /></p>
+<p><a href="/attach/ESP32-Pinout.hwp">핀아웃 다운로드</a></p>
+<br>
+<ul>
+<li>녹색핀: 사용에 적합한 핀</li>
+<li>노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!)</li>
+<li>빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)</li>
+<li>보라색: Wifi사용시 사용불가한 analog핀</li>
+<li>GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능</li>
+<li>ADC: 0<del>3.3V (0</del>4095) (0<del>0.15V구간과 3.1</del>3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함</li>
+<li>I2C: 아두이노IDE에서 사용하는 디폴트 핀</li>
+<li>RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up</li>
+<li>Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음</li>
+<li>High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀</li>
+</ul>
+<br>
+<br>
+<h3 id="peripheral">Peripheral<a class="anchor" href="#peripheral">#</a></h3>
+<p>ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI, PWM등의 기능은 어느 핀에 사용할지 결정해서 코드에서 지정해 줘야 한다. 소프트웨어에서 핀의 속성을 정의해 줄 수 있지만, 각 핀들은 디폴트로 지정되어 있는 기능들이 있다. (Pinout 참고)</p></div>
+  </article>
+  
+
+  
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/categories/esp32/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/esp32/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/esp32/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </div>
+</aside>
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Hugo site to Pages
+
+on:
+  # main 브랜치에 push가 될 때마다 이 워크플로우를 실행합니다.
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 소스 코드를 가져옵니다.
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # 2. Hugo를 설치합니다.
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+
+      # 3. Hugo로 사이트를 빌드합니다. (public 폴더 생성)
+      - name: Build
+        run: hugo --minify
+
+      # 4. 빌드된 사이트를 발행(Deploy) 저장소로 push합니다.
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # ▼▼▼ 이 부분을 본인의 발행(Deploy) 저장소로 수정하세요! ▼▼▼
+          publish_repo: stemwith/stemwith.github.io
+          # 사용자 페이지는 main 브랜치에 발행합니다.
+          publish_branch: main
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}

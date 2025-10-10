@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TM1637#
+
+schematic#
+
+
+  
+      
+          TM1637
+          CLK
+          DIO
+          VCC
+          GND
+      
+  
+  
+      
+          Arduino
+          4
+          7
+          5V
+          GND
+      
+  
+
+
+라이브러리 추가하기#
+
+파일&gt; 새파일&gt;
+스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리&gt;
+
+
+
+
+라이브러리 매니저 창이 뜨면, 검색란에 “tm1637&quot;를 적어 넣음. tm1637관련 라이브러리가 5~6개정도 검색됨. TM1637 by Avishay Orpaz 라이브러리를 선택하여 설치
+
+
+
+TM1637 숫자 표기 방법#
+for TM1637 by Avishay Orpaz library 
+   *  A  *
+   F     B
+   *  G  *
+   E     C
+   *  D  *  DP
+
+
+sketch#
+&ldquo;8.8.8.8.&rdquo; → &quot; &quot; → &ldquo;0123&rdquo; → &ldquo;dOnE&rdquo;">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Arduino, TM1637 모듈 사용하기">
+  <meta property="og:description" content="TM1637#schematic#TM1637 CLK DIO VCC GND Arduino 4 7 5V GND 라이브러리 추가하기#파일&gt; 새파일&gt; 스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리&gt; 라이브러리 매니저 창이 뜨면, 검색란에 “tm1637&#34;를 적어 넣음. tm1637관련 라이브러리가 5~6개정도 검색됨. TM1637 by Avishay Orpaz 라이브러리를 선택하여 설치 TM1637 숫자 표기 방법#for TM1637 by Avishay Orpaz library * A * F B * G * E C * D * DP sketch#“8.8.8.8.” → &#34; &#34; → “0123” → “dOnE”">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-09-02T20:04:00+09:00">
+    <meta property="article:modified_time" content="2018-09-02T20:04:00+09:00">
+
+
+<title>Arduino, TM1637 모듈 사용하기 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino, TM1637 모듈 사용하기</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tm1637">TM1637</a></li>
+        <li><a href="#tm1637-숫자-표기-방법">TM1637 숫자 표기 방법</a></li>
+        <li><a href="#00009999까지-나타내기">0000~9999까지 나타내기</a></li>
+        <li><a href="#millis-함수를-이용하여-분초-시계-만들기">millis() 함수를 이용하여 (분:초) 시계 만들기</a></li>
+        <li><a href="#다양한-표현방법-익히기">다양한 표현방법 익히기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Arduino, TM1637 모듈 사용하기
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 2, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><h3 id="tm1637">TM1637<a class="anchor" href="#tm1637">#</a></h3>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/tm1637-01.png" alt="" /></p>
+<table>
+  <thead>
+      <tr>
+          <th>TM1637</th>
+          <th>CLK</th>
+          <th>DIO</th>
+          <th>VCC</th>
+          <th>GND</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Arduino</td>
+          <td>4</td>
+          <td>7</td>
+          <td>5V</td>
+          <td>GND</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="라이브러리-추가하기">라이브러리 추가하기<a class="anchor" href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%b6%94%ea%b0%80%ed%95%98%ea%b8%b0">#</a></h4>
+<ol>
+<li>파일&gt; 새파일&gt;</li>
+<li><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt;</li>
+</ol>
+<p><img src="/image/tm1637-02.png" alt="" /></p>
+<br>
+<ol start="3">
+<li>라이브러리 매니저 창이 뜨면, 검색란에 “tm1637&quot;를 적어 넣음. tm1637관련 라이브러리가 5~6개정도 검색됨. TM1637 by Avishay Orpaz 라이브러리를 선택하여 설치</li>
+</ol>
+<p><img src="/image/tm1637-03.png" alt="" /></p>
+<p><br><br></p>
+<h3 id="tm1637-숫자-표기-방법">TM1637 숫자 표기 방법<a class="anchor" href="#tm1637-%ec%88%ab%ec%9e%90-%ed%91%9c%ea%b8%b0-%eb%b0%a9%eb%b2%95">#</a></h3>
+<pre><code>for TM1637 by Avishay Orpaz library 
+   *  A  *
+   F     B
+   *  G  *
+   E     C
+   *  D  *  DP
+</code></pre>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<p>&ldquo;8.8.8.8.&rdquo; → &quot; &quot; → &ldquo;0123&rdquo; → &ldquo;dOnE&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The amount of time (in milliseconds) between tests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define TEST_DELAY   2000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> SEG_DONE[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  SEG_B <span style="color:#f92672">|</span> SEG_C <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_G,               <span style="color:#75715e">// d
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_A <span style="color:#f92672">|</span> SEG_B <span style="color:#f92672">|</span> SEG_C <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_F,       <span style="color:#75715e">// O
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_C <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_G,                               <span style="color:#75715e">// n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_A <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_F <span style="color:#f92672">|</span> SEG_G                <span style="color:#75715e">// E
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span> };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint8_t</span> blank[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">15</span>); <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// All segments on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.<span style="color:#a6e22e">setSegments</span>(data);            <span style="color:#75715e">// &#34;8.8.8.8.&#34;   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Selectively set different digits   // &#34;0123&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Done!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.<span style="color:#a6e22e">setSegments</span>(SEG_DONE);        <span style="color:#75715e">// &#34;dOnE&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h3 id="00009999까지-나타내기">0000~9999까지 나타내기<a class="anchor" href="#00009999%ea%b9%8c%ec%a7%80-%eb%82%98%ed%83%80%eb%82%b4%ea%b8%b0">#</a></h3>
+<br>
+<h4 id="for-문을-이용하는-방법">for() 문을 이용하는 방법<a class="anchor" href="#for-%eb%ac%b8%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95">#</a></h4>
+<p>먼저 가장 간단하게 for문을 사용하여 0~9999까지의 숫자를 표시해보겠습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span> };  <span style="color:#75715e">// 초기 출력값 0000 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> seg3, seg2, seg1, seg0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">15</span>);                  <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>); 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> digitValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; digitValue <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9999</span>; digitValue<span style="color:#f92672">++</span>) {     <span style="color:#75715e">// 0~9999까지 1씩 증가시킴
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg0 <span style="color:#f92672">=</span> (digitValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// 4자리에서 1000의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg1 <span style="color:#f92672">=</span> (digitValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;  <span style="color:#75715e">// 4자리에서 100의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg2 <span style="color:#f92672">=</span> (digitValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;   <span style="color:#75715e">// 4자리에서 10의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg3 <span style="color:#f92672">=</span> digitValue <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;          <span style="color:#75715e">// 4자리에서 1의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg0);  <span style="color:#75715e">// 첫번째 FND에 1000의 자리 숫자배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg1);  <span style="color:#75715e">// 두번째 FND에 100의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg2);  <span style="color:#75715e">// 세번째 FND에 10의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg3);  <span style="color:#75715e">// 네번째 FND에 1의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(digitValue);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>);                       <span style="color:#75715e">// 10ms 마다 카운트
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h4 id="millis-함수를-이용하는-방법">millis() 함수를 이용하는 방법<a class="anchor" href="#millis-%ed%95%a8%ec%88%98%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95">#</a></h4>
+<p>millis() 함수를 이용하여 시간카운트를 통해 0~9999까지 카운트 해보는 방법도 있습니다.</p>
+<p><strong>※ 주의: seg0, seg1, seg2, seg3 등의 변수값이 10<del>15사이의 값을 갖게되면 16진수(A</del>F)로 표현되므로, 각 변수는 10보다 작은 값을 갖도록 해야한다.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> timer0_millis;   <span style="color:#75715e">// millis() 리셋을 위한 변수
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> previousTime, currentTime;      <span style="color:#75715e">// 현재시간, 현재시간(ms)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> timeValue;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span> };  <span style="color:#75715e">// 초기 출력값 0000 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> seg3, seg2, seg1, seg0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">15</span>);                  <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>); 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  currentTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();                    <span style="color:#75715e">// 현재 시간값을 측정
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  if(currentTime - previousTime &gt;= 1000) {   // 현재 시간값을 1s마다 1000씩 증가시킴
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    previousTime = currentTime;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    timeValue = currentTime / 1000;          // 1s 마다 1000씩 증가된 숫자를 1000으로 나누어 줌.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                                             // (결과적으로 1s마다 1씩 증가된 숫자가 timeValue에 저장됨)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(currentTime <span style="color:#f92672">-</span> previousTime <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>) {    <span style="color:#75715e">// 현재 시간값을 0.1s마다 100씩 증가시킴
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    previousTime <span style="color:#f92672">=</span> currentTime;
+</span></span><span style="display:flex;"><span>    timeValue <span style="color:#f92672">=</span> currentTime <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>;           <span style="color:#75715e">// 0.1s 마다 100씩 증가된 숫자를 100으로 나누어 줌.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                             <span style="color:#75715e">// (결과적으로 0.1s마다 1씩 증가된 숫자가 timeValue에 저장됨)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  if(currentTime - previousTime &gt;= 10) {     // 현재 시간값을 0.01s마다 10씩 증가시킴
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    previousTime = currentTime;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    timeValue = currentTime / 10;            // 0.01s 마다 10씩 증가된 숫자를 10으로 나누어 줌.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                                                (결과적으로 0.01s마다 1씩 증가된 숫자가 timeValue에 저장됨)  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>  
+</span></span><span style="display:flex;"><span>    seg0 <span style="color:#f92672">=</span> (timeValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;          <span style="color:#75715e">// 현재 시간값 4자리에서 1000의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg1 <span style="color:#f92672">=</span> (timeValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;           <span style="color:#75715e">// 현재 시간값 4자리에서 100의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg2 <span style="color:#f92672">=</span> (timeValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;            <span style="color:#75715e">// 현재 시간값 4자리에서 10의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	seg3 <span style="color:#f92672">=</span> timeValue <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;                   <span style="color:#75715e">// 현재 시간값 4자리에서 1의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg0);       <span style="color:#75715e">// 첫번째 Segment에 1000의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg1);       <span style="color:#75715e">// 두번째 Segment에 100의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg2);       <span style="color:#75715e">// 세번째 Segment에 10의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg3);       <span style="color:#75715e">// 네번째 Segment에 1의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(timeValue);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(currentTime<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1000000</span>) {                  <span style="color:#75715e">// 1,000,000ms(1000초) 후 millis() 리셋
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    timer0_millis <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    previousTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h3 id="millis-함수를-이용하여-분초-시계-만들기">millis() 함수를 이용하여 (분:초) 시계 만들기<a class="anchor" href="#millis-%ed%95%a8%ec%88%98%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%98%ec%97%ac-%eb%b6%84%ec%b4%88-%ec%8b%9c%ea%b3%84-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a></h3>
+<p><strong>※ 주의: seg0, seg1, seg2, seg3 등의 변수값이 10<del>15사이의 값을 갖게되면 16진수(A</del>F)로 표현되므로, 각 변수는 10보다 작은 값을 갖도록 해야한다.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> timer0_millis;   <span style="color:#75715e">// millis() 리셋을 위한 변수
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> previousTime, currentTime;      <span style="color:#75715e">// 현재시간, 현재시간(ms)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> timeValue;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span> };  <span style="color:#75715e">// 초기 출력값 0000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint8_t</span> segto;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> seg3, seg2, seg1, seg0;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> initTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">5948</span>;                          <span style="color:#75715e">// 초기 시간 59분 48초
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">7</span>);                   <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  seg0 <span style="color:#f92672">=</span> (initTime <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;              <span style="color:#75715e">// 초기 시간값 4자리에서 1000의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg1 <span style="color:#f92672">=</span> (initTime <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;               <span style="color:#75715e">// 초기 시간값 4자리에서 100의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg2 <span style="color:#f92672">=</span> (initTime <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;                <span style="color:#75715e">// 초기 시간값 4자리에서 10의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg3 <span style="color:#f92672">=</span> initTime <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;                       <span style="color:#75715e">// 초기 시간값 4자리에서 1의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>); 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  currentTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();                     <span style="color:#75715e">// 현재 시간값을 측정
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(currentTime <span style="color:#f92672">-</span> previousTime <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1000</span>) {    <span style="color:#75715e">// 현재 시간값을 0.1s마다 100씩 증가시킴
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    previousTime <span style="color:#f92672">=</span> currentTime;
+</span></span><span style="display:flex;"><span>    timeValue <span style="color:#f92672">=</span> currentTime <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>;           <span style="color:#75715e">// 0.1s 마다 100씩 증가된 숫자를 100으로 나누어 줌.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                                              <span style="color:#75715e">// (결과적으로 0.1s마다 1씩 증가된 숫자가 timeValue에 저장됨)  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    seg3<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(seg3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>      seg3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg2<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(seg2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> seg3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      seg2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg1<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(seg1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>      seg1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg0<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(seg0 <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> seg1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      seg0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      seg3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg0);         <span style="color:#75715e">// 첫번째 Segment에 1000의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg1);         <span style="color:#75715e">// 두번째 Segment에 100의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg2);         <span style="color:#75715e">// 세번째 Segment에 10의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    data[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>display.<span style="color:#a6e22e">encodeDigit</span>(seg3);         <span style="color:#75715e">// 네번째 Segment에 1의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 0.5초마다 콜론 깜박이기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    segto <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x80</span> <span style="color:#f92672">|</span> display.<span style="color:#a6e22e">encodeDigit</span>(seg1);  <span style="color:#75715e">// 분과 초사이의 콜론(:) 표시
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    display.<span style="color:#a6e22e">setSegments</span>(<span style="color:#f92672">&amp;</span>segto,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);                                <span style="color:#75715e">// 깜박임 딜레이
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);                                <span style="color:#75715e">// 깜박임 딜레이
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(currentTime<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">86400000</span>) {                  <span style="color:#75715e">// 86,400,000ms(86,400초 = 24시간*60분/시간*60분/초) 후 millis() 리셋
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    timer0_millis <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    previousTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h3 id="다양한-표현방법-익히기">다양한 표현방법 익히기<a class="anchor" href="#%eb%8b%a4%ec%96%91%ed%95%9c-%ed%91%9c%ed%98%84%eb%b0%a9%eb%b2%95-%ec%9d%b5%ed%9e%88%ea%b8%b0">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The amount of time (in milliseconds) between tests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define TEST_DELAY   2000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> SEG_DONE[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  SEG_B <span style="color:#f92672">|</span> SEG_C <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_G,               <span style="color:#75715e">// d
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_A <span style="color:#f92672">|</span> SEG_B <span style="color:#f92672">|</span> SEG_C <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_F,      <span style="color:#75715e">// O
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_C <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_G,                                <span style="color:#75715e">// n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  SEG_A <span style="color:#f92672">|</span> SEG_D <span style="color:#f92672">|</span> SEG_E <span style="color:#f92672">|</span> SEG_F <span style="color:#f92672">|</span> SEG_G                <span style="color:#75715e">// E
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> k;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span> };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint8_t</span> blank[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x00</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">15</span>); <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// All segments on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Selectively set different digits
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> display.<span style="color:#a6e22e">encodeDigit</span>(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  for(k = 3; k &gt;= 0; k--) {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  display.setSegments(data, 1, k);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  delay(TEST_DELAY);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// __23 -&gt; data+2: data배열 0123에서 앞에 두 자리 건너 띄운 후,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 2: 남은 숫자 중 2자리를 잘라서, 2: 앞의 2칸을 띄운 후 출력 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// _23_ -&gt; data+2: data배열 0123에서 앞에 두 자리 건너 띄운 후,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 2: 남은 숫자 중 2자리를 잘라서, 1: 앞의 1칸을 띄운 후 출력
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// _123 -&gt; data+1: data배열 0123에서 앞에 한자리 건너 띄운 후,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 3: 남은 숫자 중 3자리를 잘라서, 1: 앞의 1칸을 띄운 후 출력
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// __3_ -&gt; data+2: data배열 0123에서 앞에 두 자리 건너 띄운 후,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 1: 남은 숫자 중 1자리를 잘라서, 2: 앞의 2칸을 띄운 후 출력 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">setSegments</span>(data<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// _3__ -&gt; data+2: data배열 0123에서 앞에 두 자리 건너 띄운 후,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 2: 남은 숫자 중 2자리를 잘라서(3이 마지막 자리이므로 1자리만 자름)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 2: 앞의 2칸을 띄운 후 출력 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Show decimal numbers with/without leading zeros
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">0</span>, false); <span style="color:#75715e">// Expect: ___0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">0</span>, true);  <span style="color:#75715e">// Expect: 0000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">1</span>, false); <span style="color:#75715e">// Expect: ___1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">1</span>, true);  <span style="color:#75715e">// Expect: 0001
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">301</span>, false); <span style="color:#75715e">// Expect: _301
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">301</span>, true); <span style="color:#75715e">// Expect: 0301
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">14</span>, false, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// Expect: _14_
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#ae81ff">4</span>, true, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);  <span style="color:#75715e">// Expect: __04
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, false);  <span style="color:#75715e">// Expect: __-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">12</span>);        <span style="color:#75715e">// Expect: _-12
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>);       <span style="color:#75715e">// Expect: -999
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDec</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, false, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>); <span style="color:#75715e">// Expect: _-5_
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberHexEx</span>(<span style="color:#ae81ff">0xf1af</span>);        <span style="color:#75715e">// Expect: f1Af
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberHexEx</span>(<span style="color:#ae81ff">0x2c</span>);          <span style="color:#75715e">// Expect: __2C
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberHexEx</span>(<span style="color:#ae81ff">0xd1</span>, <span style="color:#ae81ff">0</span>, true); <span style="color:#75715e">// Expect: 00d1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberHexEx</span>(<span style="color:#ae81ff">0xd1</span>, <span style="color:#ae81ff">0</span>, true, <span style="color:#ae81ff">2</span>); <span style="color:#75715e">// Expect: d1__
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Run through all the dots
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(k<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">4</span>; k<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">showNumberDecEx</span>(<span style="color:#ae81ff">0</span>, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> k), true);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDecEx</span>(<span style="color:#ae81ff">3141</span>, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0</span>), true);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 3.141 -&gt; 0x80: dot출력, 0x40: 콜론출력, &gt;&gt;0: 첫번째 도트출력,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// true: 빈자리 0으로 채우기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDecEx</span>(<span style="color:#ae81ff">243</span>, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>), false);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// _2.43 -&gt; 0x80: dot출력, 0x40: 콜론출력, &gt;&gt;1: 두번째 도트출력,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// true: 빈자리 0으로 채우기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDecEx</span>(<span style="color:#ae81ff">314</span>, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>), false);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// _31.4 -&gt; 0x80: dot출력, 0x40: 콜론출력, &gt;&gt;2: 세번째 도트출력,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// false: 빈자리 채우지 않기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  display.<span style="color:#a6e22e">showNumberDecEx</span>(<span style="color:#ae81ff">52</span>, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">3</span>), false);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// __52. -&gt; 0x80: dot출력, 0x40: 콜론출력, &gt;&gt;3: 네번째 도트출력,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// false: 빈자리 채우지 않기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Brightness Test
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; k<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>      data[k] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xff</span>;           <span style="color:#75715e">// 모두 segment를 키는 data배열 선언
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; k<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">setBrightness</span>(k);  <span style="color:#75715e">// 밝기를 7단계에 걸쳐 점점 밝게 출력 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// On/Off test
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; k<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">7</span>, false);  <span style="color:#75715e">// Turn off
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);
+</span></span><span style="display:flex;"><span>    display.<span style="color:#a6e22e">setBrightness</span>(<span style="color:#ae81ff">7</span>, true); <span style="color:#75715e">// Turn on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    display.<span style="color:#a6e22e">setSegments</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(TEST_DELAY);  
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Done!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.<span style="color:#a6e22e">setSegments</span>(SEG_DONE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// while(1);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div></div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/arduino-1602-lcd-i2c/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="Arduino, 1602 LCD (I2C)" />
+      <span>Arduino, 1602 LCD (I2C)</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/arduino-%EC%98%A8%EC%8A%B5%EB%8F%84%EC%B8%A1%EC%A0%95-dht22/" class="flex align-center">
+      <span>Arduino, 온도 및 습도 측정 (DHT22)</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" title="Arduino, 온도 및 습도 측정 (DHT22)" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tm1637">TM1637</a></li>
+        <li><a href="#tm1637-숫자-표기-방법">TM1637 숫자 표기 방법</a></li>
+        <li><a href="#00009999까지-나타내기">0000~9999까지 나타내기</a></li>
+        <li><a href="#millis-함수를-이용하여-분초-시계-만들기">millis() 함수를 이용하여 (분:초) 시계 만들기</a></li>
+        <li><a href="#다양한-표현방법-익히기">다양한 표현방법 익히기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

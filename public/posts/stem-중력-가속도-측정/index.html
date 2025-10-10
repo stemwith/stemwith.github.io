@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="중력(Gravitational Force)#
+뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.
+\[ F = G \frac{Mm}{r^2} = m_i a = mg \]지구의 질량 M
+\[ M=5.072 \times 10^{24}~kg \]지구 반지름 r
+\[ r = 6371~km \]만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)
+\[ G = 6.67259 \times 10^{-11}~N \cdot m^2 /kg^2 \]만유인력이 지상의 물체에 작용되는 경우, 이때 작용하는 힘을 중력이라고 한다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/stem-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="ESP32, 중력 가속도 측정">
+  <meta property="og:description" content="중력(Gravitational Force)#뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.
+\[ F = G \frac{Mm}{r^2} = m_i a = mg \]지구의 질량 M
+\[ M=5.072 \times 10^{24}~kg \]지구 반지름 r
+\[ r = 6371~km \]만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)
+\[ G = 6.67259 \times 10^{-11}~N \cdot m^2 /kg^2 \]만유인력이 지상의 물체에 작용되는 경우, 이때 작용하는 힘을 중력이라고 한다.">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-10-06T17:57:00+09:00">
+    <meta property="article:modified_time" content="2020-10-06T17:57:00+09:00">
+
+
+<title>ESP32, 중력 가속도 측정 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/stem-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>ESP32, 중력 가속도 측정</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#중력gravitational-force">중력(Gravitational Force)</a></li>
+        <li><a href="#자유낙하를-이용한-중력-가속도-측정-실험">자유낙하를 이용한 중력 가속도 측정 실험</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    ESP32, 중력 가속도 측정
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 6, 2020</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/science/">Science</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><h3 id="중력gravitational-force">중력(Gravitational Force)<a class="anchor" href="#%ec%a4%91%eb%a0%a5gravitational-force">#</a></h3>
+<p>뉴턴은 달의 운동과 케플러의 법칙을 통해, 달과 지구 사이에 작용하는 힘은 지구의 질량과 달의 질량의 곱에 비례하고 거리의 제곱에 반비례한다는 만유인력의 법칙을 밝혔다.</p>
+<span>\[ F = G \frac{Mm}{r^2} = m_i a = mg \]</span><link rel="stylesheet" href="/katex/katex.min.css" /><script defer src="/katex/katex.min.js"></script><script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body, {&#34;delimiters&#34;:[{&#34;left&#34;:&#34;$$&#34;,&#34;right&#34;:&#34;$$&#34;,&#34;display&#34;:true},{&#34;left&#34;:&#34;\\(&#34;,&#34;right&#34;:&#34;\\)&#34;,&#34;display&#34;:false},{&#34;left&#34;:&#34;\\[&#34;,&#34;right&#34;:&#34;\\]&#34;,&#34;display&#34;:true}]});"></script><p>지구의 질량 M</p>
+<span>\[ M=5.072 \times 10^{24}~kg \]</span><p>지구 반지름 r</p>
+<span>\[ r = 6371~km \]</span><p>만유인력 상수값은 다음과 같다. (캐번디시에 의해 측정된 G값은 6.674)</p>
+<span>\[ G = 6.67259 \times 10^{-11}~N \cdot m^2 /kg^2 \]</span><p>만유인력이 지상의 물체에 작용되는 경우, 이때 작용하는 힘을 중력이라고 한다.</p>
+<br>
+<h4 id="중력-가속도gravitational-acceleration">중력 가속도(Gravitational Acceleration)<a class="anchor" href="#%ec%a4%91%eb%a0%a5-%ea%b0%80%ec%86%8d%eb%8f%84gravitational-acceleration">#</a></h4>
+<p>위 식에서 관성 질량(m_i)과 중력 질량(m)이 같다는 등가원리를 적용하면 중력 가속도는 작은 물체의 질량 m에 무관하게 된다.</p>
+<span>\[ a = g = G \frac{M}{r^2} \]</span><p>지구의 질량 M과 지구 반지름 R은 지표면의 물체에 비해 매우 크고, 거의 구에 가까우므로, 위 식을 사용하여 지구 표면에서의 중력 가속도 g 값을 구할 수 있다.</p>
+<span>\[ g = 9.80665~m/s^2 \]</span><br>
+<h4 id="등가속도-직선-운동">등가속도 직선 운동<a class="anchor" href="#%eb%93%b1%ea%b0%80%ec%86%8d%eb%8f%84-%ec%a7%81%ec%84%a0-%ec%9a%b4%eb%8f%99">#</a></h4>
+<p>가속도의 크기와 방향이 일정한 직선 운동으로, 속도가 일정하게 증가하거나 감속하는 직선 운동을 의미한다. 자유낙하의 경우 초기속도가 0인 물체를 중력장에 낙하시킬 때 중력가속도를 받으며 낙하하는 물체의 운동이며, 공기의 저항이 없다고 가정할 경우 등가속도 직선 운동이 된다.</p>
+<p>등가속도 직선 운동과 관련된 공식은 다음과 같다.</p>
+<span>\[ v = v_0 + at~~~\cdots~~~① \]</span><span>\[ s=v_0t + \frac{1}{2}at^2~~~\cdots~~~② \]</span><span>\[ 2as = v^2 - v_0^2~~~\cdots~~~③ \]</span><p>이 3가지 기본 공식을 통해 다양한 형태의 공식을 유도할 수도 있다.</p>
+<p>①, ②식을 조합하면</p>
+<span>\[ s = \frac{1}{2}(v_0+v)t~~~\cdots~~~④ \]</span><p>③식에서 초기속도(v_0)가 0인 경우</p>
+<span>\[ v=\sqrt{2as}~~~\cdots~~~⑤ \]</span><p>②식을 변형하면</p>
+<span>\[ a=\frac{2(s-v_0t)}{t^2}~~~\cdots~~~⑥ \]</span><p>③식을 변형하면</p>
+<span>\[ a=\frac{v^2-v_0^2}{2s}~~~\cdots~~~⑦ \]</span><br>
+<br>
+<h3 id="자유낙하를-이용한-중력-가속도-측정-실험">자유낙하를 이용한 중력 가속도 측정 실험<a class="anchor" href="#%ec%9e%90%ec%9c%a0%eb%82%99%ed%95%98%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%9c-%ec%a4%91%eb%a0%a5-%ea%b0%80%ec%86%8d%eb%8f%84-%ec%b8%a1%ec%a0%95-%ec%8b%a4%ed%97%98">#</a></h3>
+<ul>
+<li>
+<p>실험 목적: 중력 가속도를 측정하는 방법은 여러 가지가 있지만, 본 실험은 자유 낙하를 통해 중력 가속도를 측정하고자 한다. 자유낙하 운동이 중력을 가장 쉽게 표현할 수 있는 운동이라 판단하였기 때문이다. 정밀한 값의 측정보다는, 자유낙하 운동을 통해 중력 가속도를 이해하고 이를 실험을 통해 확인하는 것이 이번 실험의 목적이다. 보다 정밀한 중력 가속도를 측정하기 위해서는 진자의 운동 주기를 이용하는 것이 좋다.</p>
+</li>
+<li>
+<p>이번 실험에서는 2m 길이의 파이프에 25cm 간격으로 센서를 배치하고, 낙하하는 물체가 센서를 지날때마다 시간을 기록할 것이다. 변위와 시간을 측정할 수 있으므로 초기속도({{&lt; katex &gt;}}v_0{{&lt; /katex &gt;}})값만 알면 ⑥을 이용하여 중력 가속도를 계산할 수 있다.</p>
+</li>
+<li>
+<p>⑥을 단순화 시키기 위해서는 <strong>초기 속도가 0이 되도록 하기 위해 첫번째 센서를 파이프의 입구(최상단)에 배치</strong>하는 것이다. 단, 이렇게 할 경우 실험 과정에서 낙하시킬 물체를 놓을 때 물체를 잡고 있는 손가락의 영향을 제거하기 어려우며, 이 문제에 기인하는 오차는 큰 편이라고 할 수 있다.</p>
+</li>
+<li>
+<p>위 문제 해결을 위해 첫번째 센서를 최상단으로부터 12.5cm 정도 아래로 내려 설치한다. 이를 통해 센서가 측정하는 시간은 온전히 자유낙하하는 상태에서 측정되므로 비교적 정확하게 측정할 수 있다. 문제는 <strong>첫번째 센서 위치에서의 초기 속도(v_0)값</strong>이 0이 아니므로 이 값을 별도로 계산하여야 한다.</p>
+</li>
+<li>
+<p>이 값은 ③으로부터 계산할 수 있는데,</p>
+</li>
+</ul>
+<span>\[ 2as = v^2 - v_0^2~~~\cdots~~~③ \]</span><ul>
+<li>파이프 입구에서의 <strong>초기 속도(v_0)를 0으로 가정</strong>하면, 12.5cm만큼 낙하하여 첫번째 센서에 반응할 때의 속도(v)값은 ⑤로 부터 구할 수 있다.</li>
+</ul>
+<span>\[ v=\sqrt{2as} = \sqrt{2\times9.80665\times0.125}=1.5658~m/s \]</span><ul>
+<li>이 값이 12.5cm 위치에 첫번째 센서를 설치한 실험기구를 사용하는 경우, <strong>⑥에서의 초기 속도(v_0)값</strong>이 된다. 파이프에 설치한 센서의 번호를 n이라고 하면, ⑥은 다음과 같이 쓸 수 있다.</li>
+</ul>
+<span>\[ a_n=\frac{2(s_n-1.5658t_n)}{t_n^2} \]</span><ul>
+<li>s는 <strong>첫번째 센서 ~ 각 센서가 위치한 곳</strong>까지 물체가 이동한 변위이며, 8개의 센서를 사용하여 낙하하는 물체가 센서와 반응하는 시간(t_n)을 측정하고, 이를 ⑥에 대입하면 가속도(a_n)를 계산할 수 있다. 각 지점에서의 가속도를 평균계산하여 중력가속도를 구한다.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>센서</th>
+          <th>입구 ~ 0</th>
+          <th>0 ~ 1</th>
+          <th>0 ~ 2</th>
+          <th>0 ~ 3</th>
+          <th>0 ~ 4</th>
+          <th>0 ~ 5</th>
+          <th>0 ~ 6</th>
+          <th>0 ~ 7</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>s_n (m)</td>
+          <td>0.125</td>
+          <td>0.25</td>
+          <td>0.50</td>
+          <td>0.75</td>
+          <td>1.00</td>
+          <td>1.25</td>
+          <td>1.50</td>
+          <td>1.75</td>
+      </tr>
+      <tr>
+          <td>t_n</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>a_n</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="이-실험의-한계">이 실험의 한계<a class="anchor" href="#%ec%9d%b4-%ec%8b%a4%ed%97%98%ec%9d%98-%ed%95%9c%ea%b3%84">#</a></h4>
+<ul>
+<li>이 실험의 목적은 자유 낙하하는 물체를 통해 중력 가속도를 측정하는 것이다. 그런데, 중력 가속도를 계산하는 중간 과정에서, ⑤를 이용하기 위한 초기 속도(v_0=1.5658m/s) 값을 계산하기 위해 (실험 목적값인) 중력 가속도 9.80665m/s²를 사용한 것은 이 실험을 행하는 본질을 벗어나는 것이라고 볼 수 있다.</li>
+<li>그렇지만, 여기서는 각 센서를 통해 측정되는 값으로 계산해낸 중력 가속도의 평균 값이 어느 정도되는지 확인해보고, 실제값과 어느 정도의 오차를 보이는지를 확인하는 교육 목적을 갖고 사용하는 것임을 감안할 필요가 있다. 이를 근거로 중력 가속도 값을 이용하여 계산한 첫번째 센서위치에서의 초기 속도 값을 기본 보정값의 개념으로 사용하고자 한다.</li>
+<li>이러한 방법이 합당하지 않다고 생각한다면, 위에서 언급한 것 처럼 초기 속도(v_0)가 0이 되도록 센서를 파이프의 입구(최상단)에 배치하고, 물체가 손에서 떨어짐과 동시에 첫번째 센서에 반응하도록 낙하시키는 위치를 정확하게 조절하며 실험해야 한다.</li>
+</ul>
+<br>
+<br>
+<h4 id="실험-장치-만들기">실험 장치 만들기<a class="anchor" href="#%ec%8b%a4%ed%97%98-%ec%9e%a5%ec%b9%98-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a></h4>
+<h5 id="파이프-준비">파이프 준비<a class="anchor" href="#%ed%8c%8c%ec%9d%b4%ed%94%84-%ec%a4%80%eb%b9%84">#</a></h5>
+<ul>
+<li>길이 2m 투명 아크릴 파이프(내경 3.5cm)에 **구간 거리가 0.25m(=25cm)**가 되도록 일정하게 IR LED를 배치하고 고정한다.</li>
+</ul>
+<p><img src="/image/Gravitational-Acceleration01.png" alt="" /></p>
+<br>
+<h5 id="센서-장착">센서 장착<a class="anchor" href="#%ec%84%bc%ec%84%9c-%ec%9e%a5%ec%b0%a9">#</a></h5>
+<ul>
+<li>
+<p>맨 위쪽과 아래쪽에는 12.5cm정도 띄우고 IR LED와 Phototransistor를 배치함</p>
+<ul>
+<li>손에서 낙하물을 놓을 때, 낙하물이 바닥에 닿을 때, 낙하시간에 영향을 주는 요소를 제거하기 위함</li>
+</ul>
+</li>
+<li>
+<p>IR LED와 Phototransistor가 서로 정확하게 마주 볼 수 있는 위치에 유성펜을 사용하여 표시한다.</p>
+</li>
+<li>
+<p>드릴을 이용하여 아크릴 파이프에 지름 5mm의 구멍을 뚫는다.</p>
+<ul>
+<li>아크릴이 파손되지 않도록 유의한다. 이를 위해 먼저 작은 지름(1~2mm)의 드릴비트를 이용하여 작은 구멍을 뚫은 뒤, 그 구멍에 5mm 드릴비트를 사용하여 LED가 들어갈 구멍을 다시 뚫는 것이 좋다.</li>
+</ul>
+</li>
+<li>
+<p>IR LED와 Phototransistor를 구멍에 넣고 글루건을 사용하여 고정한다.</p>
+<ul>
+<li>글루건이 IR LED와 Phototransistor의 앞부분에 뭍지 않도록 주의</li>
+<li>글루건이 손에 뭍으면 화상을 입을 수 있으므로 주의</li>
+</ul>
+</li>
+</ul>
+<br>
+<h5 id="배선">배선<a class="anchor" href="#%eb%b0%b0%ec%84%a0">#</a></h5>
+<ul>
+<li>각 센서 층마다 저항과 전원선과 데이터선을 다음과 같이 연결한다.</li>
+</ul>
+<p><img src="/image/Gravitational-Acceleration02.png" alt="" /></p>
+<br>
+<ul>
+<li>
+<p>IR LED</p>
+<ul>
+<li>
+<p>부품번호 및 제조회사가 표기되어 있지 않아 정확히 어떤 제품인지 알 수 없어, Everlight사의 IR333-A (940nm, 직경5mm)의 Datasheet를 참고하였다.</p>
+</li>
+<li>
+<p>Forward Current 100mA, Forward Voltage 1.5V</p>
+</li>
+<li>
+<p>5V를 전원으로 사용하는 경우</p>
+<span>\[ R = \frac{(5-1.5)V}{0.1A} = 35~Ω \]</span><p>그러므로 35Ω보다 약간 큰 47Ω저항을 연결한다. 100Ω정도의 저항도 사용할 수 있으나, 너무 큰 저항을 사용할 경우 IR의 세기가 작아지게 되므로, 실험이 잘 안될 수 있다.</p>
+</li>
+<li>
+<p>실외에서는 태양광에 포함된 적외선의 영향도 받게 되므로 사용장소가 실내로 제한된다.</p>
+</li>
+</ul>
+ <br>
+</li>
+<li>
+<p>Phototransistor</p>
+<ul>
+<li>
+<p>적외선이 닿으면 전류를 흐르게 하는 스위치 역할을 한다.</p>
+</li>
+<li>
+<p>콜렉터(Collector)의 역할을 하는 긴다리와 에미터(Emitter)의 역할을 하는 짧은 다리, 총 2개의 다리가 붙어가 있지만 적외선 빛이 베이스(Base)의 역할을 하는 트렌지스터이다.</p>
+</li>
+<li>
+<p>스위치의 역할을 하므로, 1MΩ의 풀업 저항을 긴다리에 부착한다. 10k옴을 써도 무방하지만 센서의 감도가 떨어지게 됨</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<ul>
+<li>8세트의 IR LED와 Phototransistor를 사용하기 위해 아날로그 입력이 총 8개 필요하다. 그러므로 여기서는 많은 아날로그 입력핀을 갖고 있는 <strong>ESP32</strong>를 사용하도록 한다. 장치의 특성상, 최종 사용시에는 USB선을 분리한 상태에서 사용할 수 있도록 하는 것이 좋으므로, 18650 배터리 홀더가 내장된 ESP32를 사용하는 것도 좋은 방법이다.</li>
+</ul>
+<p><img src="/image/Gravitational-Acceleration03.png" alt="" /></p>
+<br>
+<p>※ 아두이노 UNO의 경우 아날로그 입력이 총 6개이고, 여기에 SDA, SCL과 같은 I2C 통신포트를 사용한다면 실제 사용가능한 아날로그 포트가 4개밖에 남지 않는다. 아두이노 UNO를 사용해야한다면 CD4051BE와 같은 멀티플렉서 IC를 추가로 사용하여야 한다. 혹은 아날로그 입력 포트를 많이 가지고 있는 아두이노 MEGA를 사용한다.</p>
+<br>
+<h4 id="sketch-센서-테스트">sketch: 센서 테스트<a class="anchor" href="#sketch-%ec%84%bc%ec%84%9c-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a></h4>
+<ul>
+<li>모든 센서의 배선이 완료되면, 센서가 잘 작동하는지 테스트하기 위한 스케치를 업로드하여 센서를 점검한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// Potentiometer is connected to GPIO 34 (Analog ADC1_CH6) 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ir_Pin[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// variable for storing the potentiometer value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ir_Value[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Print the header:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Y0</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y1</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y2</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y3</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y4</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y5</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y6</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Y7&#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">---&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Loop through all eight pins.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; pin<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">7</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    ir_Value[pin] <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(ir_Pin[pin]);
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">String</span>(ir_Value[pin]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<li>센서값이 4095으로 출력되는 센서는 배선 자체의 연결에 문제가 있는 것이므로, 배선이 연결되어야 하는 부분에 정확하게 연결이 되었는지 우선 점검한다.</li>
+<li>초기 상태의 센서값이 모두 0에 근접하는 값으로 표시될 수 있도록 하는 것이 좋으며, 초기값이 0에서 많이 벗어나는 경우에는 LED와 Phototransistor가 서로 정확하게 마주 볼 수 있도록 조절해준다. 조절 후에도 센서값이 0이 되지 않을 수 있다. 이때는 0에 가장 가까운 값이 만들어지도록 최대한 조절한다. 이 상태에서 물체를 떨어뜨려 모든 센서가 물체에 반응하는지 살펴본 뒤, 물체에 반응하는 센서값의 최소값을 점검한다.</li>
+</ul>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<ul>
+<li>테스트 sketch를 통해 센서의 반응 정도를 파악한 뒤에, 메인 스케치를 업로드 한다.</li>
+<li>업로드 전에 아래 부분을 찾아, 각 센서에 따라으로 물체에 반응하는 센서의 최소값(센서 테스트시 점검할 것!)으로 바꿔준다.  민감도의 범위는 0~4095이며, 값이 작을 수록 떨어지는 물체에 민감하게 반응한다. 기본값은 모두 100으로 설정되어 있다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// The smaller the value, the more sensitive (0~4095)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> min_Sensitive[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>};</span></span></code></pre></div><br>
+<h5 id="메인-스케치">메인 스케치<a class="anchor" href="#%eb%a9%94%ec%9d%b8-%ec%8a%a4%ec%bc%80%ec%b9%98">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/****** ESP32 SKETCH FOR GRAVITATIONAL ACCELERATION ******
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   Author: K. Jun, Lee
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   Blog: https://stemwith.github.io         2020-10-06
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*********************************************************/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// GPIO of connecting with 8 Phototransistors
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ir_Pin[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// variable for storing the potentiometer value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ir_Value[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// variable for IR Phototransistors&#39; sensitivity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ir_Sensitivity[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The smaller the value, the more sensitive (0~4095)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> min_Sensitive[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">100</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for recording of sensing time by micros()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> nowTime[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for recording of interval time by micros()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> intervalTime[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// for distance of 8 sensors in micrometer unit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// (12.5cm - 25cm - 25cm - 25cm - 25cm - 25cm - 25cm - 25cm)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">unsigned long ir_Distance[8] = {125000, 250000, 250000, 250000, 250000, 250000, 250000, 250000};
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for testing distance of 8 sensors in micrometer unit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// (1.4cm - 2.54cm - 2.54cm - 2.54cm - 2.54cm - 2.54cm - 2.54cm - 2.54cm)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> ir_Distance[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">14000</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">33300</span>, <span style="color:#ae81ff">25400</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for displacemence of 8 sensors in micrometer unit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> ir_Displacemence[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for interval acceleration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> acceleration[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// for times number
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Gravitational Acceleration &amp; Initial Velocity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> g <span style="color:#f92672">=</span> <span style="color:#ae81ff">9.80665</span>; <span style="color:#75715e">// 9.80665 m/s^2 = 0.00000980665 um/us^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> initVelocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">sqrt</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>g<span style="color:#f92672">*</span>((<span style="color:#66d9ef">float</span>)ir_Distance[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000</span>)); <span style="color:#75715e">// in m/s unit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Setup Displacemence
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      ir_Displacemence[pin] <span style="color:#f92672">=</span> ir_Displacemence[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> ir_Distance[pin];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Print the header:;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  t<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> sum_Accel <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> initTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Experiment #&#34;</span>); Serial.<span style="color:#a6e22e">println</span>(t);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y0</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y1</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y2</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y3</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y4</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y5</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y6</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">Y7&#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">---&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Initializing 8 IR Phototransistors&#39; Sensitivity:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; s<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">101</span>; s<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; pin<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">7</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      ir_Sensitivity[pin] <span style="color:#f92672">=</span> ir_Sensitivity[pin] <span style="color:#f92672">+</span> <span style="color:#a6e22e">analogRead</span>(ir_Pin[pin]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Average of Initial Senser value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;IR_Sensivitity</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    ir_Sensitivity[pin] <span style="color:#f92672">=</span> ir_Sensitivity[pin] <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">String</span>(ir_Sensitivity[pin]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Loop through #0~7 pins.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;IR_Value</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (ir_Value[pin] <span style="color:#f92672">&lt;=</span> ir_Sensitivity[pin] <span style="color:#f92672">+</span> min_Sensitive[pin]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span>(pin<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        initTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">micros</span>();
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      nowTime[pin] <span style="color:#f92672">=</span> <span style="color:#a6e22e">micros</span>() <span style="color:#f92672">-</span> initTime;
+</span></span><span style="display:flex;"><span>      ir_Value[pin] <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(ir_Pin[pin]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">String</span>(ir_Value[pin]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Now Time(us)</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">String</span>(nowTime[pin]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    ir_Value[pin] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    ir_Sensitivity[pin] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Interval(s)</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    intervalTime[pin] <span style="color:#f92672">=</span> nowTime[pin] <span style="color:#f92672">-</span> nowTime[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> f_intervalTime <span style="color:#f92672">=</span> (<span style="color:#66d9ef">float</span>)intervalTime[pin] <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000000.0</span>;
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;     &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">String</span>(f_intervalTime, <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Distance(m)</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> f_Distance <span style="color:#f92672">=</span> (<span style="color:#66d9ef">float</span>)ir_Distance[pin] <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000000.0</span>;
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;     &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">String</span>(f_Distance, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Displace.(m)</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">float</span> f_Displacemence <span style="color:#f92672">=</span> (<span style="color:#66d9ef">float</span>)ir_Displacemence[pin] <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000000.0</span>;
+</span></span><span style="display:flex;"><span>      Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;     &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">String</span>(f_Displacemence, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// using a = 2(s - v_0*t) / t^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Accel.(m/s^2)</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Serial.print(&#34;     &#34; + String(initVelocity, 4) + &#34;\t&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> f_numerator <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(ir_Displacemence[pin]<span style="color:#f92672">-</span>(initVelocity<span style="color:#f92672">*</span>nowTime[pin]));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Serial.print(&#34;     &#34; + String(f_numerator) + &#34;\t&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> l_numerator <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span>)f_numerator;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Serial.print(&#34;     &#34; + String(l_numerator) + &#34;\t&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> f_denominator <span style="color:#f92672">=</span> <span style="color:#a6e22e">pow</span>(nowTime[pin], <span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Serial.print(&#34;     &#34; + String(f_denominator) + &#34;\t&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> l_denominator <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span>)f_denominator;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Serial.print(&#34;     &#34; + String(l_denominator) + &#34;\t&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    acceleration[pin] <span style="color:#f92672">=</span> (<span style="color:#66d9ef">float</span>)l_numerator<span style="color:#f92672">/</span>(<span style="color:#66d9ef">float</span>)l_denominator;
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;     &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">String</span>(acceleration[pin]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (byte pin<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; pin<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>; pin<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    sum_Accel <span style="color:#f92672">=</span> sum_Accel <span style="color:#f92672">+</span> acceleration[pin];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> ave_Accel <span style="color:#f92672">=</span> sum_Accel <span style="color:#f92672">/</span> <span style="color:#ae81ff">7.0</span>;
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Gravitational Acceleration = &#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(ave_Accel); Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34; m/s^2&#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();  Serial.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1500</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<p>※ 스케치 내부에서 사용하는 시간과 거리의 단위는 소수 자리수 계산의 편의를 위해 microsecond, micrometer를 사용하며, 출력시에 second, meter 단위로 변환한다.</p>
+<br>
+<br>
+<h4 id="실험-결과">실험 결과<a class="anchor" href="#%ec%8b%a4%ed%97%98-%ea%b2%b0%ea%b3%bc">#</a></h4>
+<h5 id="예비-실험">예비 실험<a class="anchor" href="#%ec%98%88%eb%b9%84-%ec%8b%a4%ed%97%98">#</a></h5>
+<p>예비 실험은 파이프 없이 브레드 보드를 사용한 프로토 타입으로 실시하였다. 센서 간격이 원래의 계획보다 작기 때문에 아래와 같이 설정하였다. 입구부터 첫번째 센서까지의 거리 1.4cm, 각 센서간의 거리는 2.54cm이며, 6번째~7번째 센서의 간격만 3.33cm 이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Arduino" data-lang="Arduino"><span style="display:flex;"><span><span style="color:#75715e">// for testing distance of 8 sensors in micrometer unit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> ir_Distance[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">14000</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">25400</span>, <span style="color:#ae81ff">33300</span>, <span style="color:#ae81ff">25400</span>};</span></span></code></pre></div><br>
+<p>브레드 보드에 배선을 하고 수직으로 세운 뒤, IR LED와 Phototansistor 사이에 스티로폼 공과 쇠구슬을 차례로 낙하시킨다. 질량이 다른 물체의 낙하 속도를 비교할 수 있다.</p>
+<p><img src="/image/Gravitational-Acceleration07.jpg" alt="" /></p>
+<br>
+<p>스티로폼 공은 집에 있는 스티로폼을 커터칼로 적당히 구 형태로 잘라낸 뒤, 손바닥과 바닥 사이에 놓고 손바닥에 살짝 힘을 주어 누르면서 돌돌 굴리면 스티로폼 공 형태를 쉽게 만들 수 있다.</p>
+<p><img src="/image/Gravitational-Acceleration08.png" alt="" /></p>
+<br>
+<h5 id="결과">결과<a class="anchor" href="#%ea%b2%b0%ea%b3%bc">#</a></h5>
+<p>스티로폼 공과 쇠구슬 2종류를 사용하였고, 몇 차례 시도한 결과 다음과 같은 결과가 나왔다.</p>
+<table>
+  <thead>
+      <tr>
+          <th>센서</th>
+          <th>Y0</th>
+          <th>Y1</th>
+          <th>Y2</th>
+          <th>Y3</th>
+          <th>Y4</th>
+          <th>Y5</th>
+          <th>Y6</th>
+          <th>Y7</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>NowTime(us)</td>
+          <td>1</td>
+          <td>35232</td>
+          <td>62407</td>
+          <td>81854</td>
+          <td>100329</td>
+          <td>117774</td>
+          <td>141384</td>
+          <td>141428</td>
+      </tr>
+      <tr>
+          <td>Interval(s)</td>
+          <td></td>
+          <td>0.035231</td>
+          <td>0.027075</td>
+          <td>0.019547</td>
+          <td>0.018475</td>
+          <td>0.017445</td>
+          <td>0.023610</td>
+          <td>0.000044</td>
+      </tr>
+      <tr>
+          <td>Distance(m)</td>
+          <td></td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+          <td>0.0254</td>
+      </tr>
+      <tr>
+          <td>Displace.(m)</td>
+          <td></td>
+          <td>0.0254</td>
+          <td>0.0508</td>
+          <td>0.0762</td>
+          <td>0.1016</td>
+          <td>0.1270</td>
+          <td>0.1603</td>
+          <td>0.1857</td>
+      </tr>
+      <tr>
+          <td>Acceleration(m/s^2)</td>
+          <td></td>
+          <td>11.18</td>
+          <td>9.35</td>
+          <td>9.94</td>
+          <td>9.74</td>
+          <td>9.41</td>
+          <td>8.63</td>
+          <td>11.16</td>
+      </tr>
+  </tbody>
+</table>
+<p>∴ Gravitational Acceleration = 9.92 m/s²</p>
+<br>
+<h4 id="문제점-및-해결-방법">문제점 및 해결 방법<a class="anchor" href="#%eb%ac%b8%ec%a0%9c%ec%a0%90-%eb%b0%8f-%ed%95%b4%ea%b2%b0-%eb%b0%a9%eb%b2%95">#</a></h4>
+<p>언제나 중력 가속도 9.81 m/s² 에 근접한 값이 나오는 것은 아니다.</p>
+<ul>
+<li>
+<p>낙하시키는 물체가 센서나 브레드보드에 닿지 않도록 조심스럽게 낙하시켜야 한다. 조금이라도 충돌이 일어나면 가속도 값이 전혀 다른 값으로 출력된다.</p>
+<ul>
+<li>파이프를 사용하면 문제를 보완할 수 있을 것이다.</li>
+</ul>
+</li>
+<li>
+<p>처음 물체를 잡고 낙하시키는 위치를 셋팅된 값과 일치시켜야 한다.</p>
+<ul>
+<li>셋팅값보다 멀리서(위에서) 낙하시키면 중력 가속도 값이 커지고, 반대로 가까이서(아래에서) 낙하시키면 중력 가속도 값이 작아진다.</li>
+</ul>
+</li>
+<li>
+<p>손에서 놓는 과정에서 발생하는 초기 속도의 오차는 지속적으로 발생한다.</p>
+<ul>
+<li>되도록이면 낙하 물체를 살짝 잡은 상태에서 낙하시키도록 한다.</li>
+<li>쇠구슬인 경우 전자석을 이용하거나, 솔레노이드 밸브 등의 사용을 고려할 필요가 있다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="실제-측정-장치">실제 측정 장치<a class="anchor" href="#%ec%8b%a4%ec%a0%9c-%ec%b8%a1%ec%a0%95-%ec%9e%a5%ec%b9%98">#</a></h4>
+<p>이민O 학생과 황정O 학생이 제작한 측정 장치의 외형이다.</p>
+<p><img src="/image/Gravitational-Acceleration09.png" alt="" /></p>
+<p>각 센서부를 보호하고 외형을 돋보이게 하는 틀을 3D프린터를 사용하여 직접 제작한 뒤 덧붙인 모습이다. 중앙에 18650 배터리를 내장한 ESP32를 덧붙여 제작하였다.</p>
+<br>
+<br>
+<h4 id="대체-가능-센서">대체 가능 센서<a class="anchor" href="#%eb%8c%80%ec%b2%b4-%ea%b0%80%eb%8a%a5-%ec%84%bc%ec%84%9c">#</a></h4>
+<p>이 실험에서 사용한 IR LED와 Phototransistor의 조합은 여러가지 장점이 많지만, 배선이 복잡하다는 것은 제작하는 입장에서는 (특히 학생들이 제작을 한다면) 난감할 수 있다. 이럴 경우 다른 형태의 센서들로 대체할 수 있다.</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>IRLED + <br>Phototransistor</th>
+          <th>포토 인터럽터</th>
+          <th>금속 감지기</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>가격</td>
+          <td>저렴, 쉽게 구할 수 있음. 타오바오에서 1세트당 0.1<del>0.5위안 (약 20원</del>100원)</td>
+          <td>센서 간격 3<del>5cm인 제품은 가격이 비쌈 (타오바오에서 25</del>45위안)</td>
+          <td>구경 3cm인 제품의 경우 타오바오에서 18위안 (단, 3cm 초과 제품은 매우 비쌈)</td>
+      </tr>
+      <tr>
+          <td>종류</td>
+          <td>낙하물의 종류, 재질의 영향이 없다. <br>(고정이 가능하면 파이프를 사용하지 않아도 되므로) 낙하물이 크기가 큰 경우에도 가능</td>
+          <td>낙하물의 종류, 재질의 영향이 없다.<br>낙하물체의 길이가 5cm를  넘어가면 불가능</td>
+          <td>금속 낙하물만 가능<br>낙하물체의 직경이 3cm 이내 추천</td>
+      </tr>
+      <tr>
+          <td>전류</td>
+          <td>사용 전류가 작으므로 배터리홀더가 내장된 ESP32를 사용할 경우, 별도의 전원장지 없이도 (컴퓨터와 연결하지 않고) 독립적으로 사용할 수 있다.</td>
+          <td>좌동</td>
+          <td>개당 전류값이 0.3A로 큰 편이다.</td>
+      </tr>
+      <tr>
+          <td>배선</td>
+          <td>저항을 2개 붙여야 하고, 배선이 복잡</td>
+          <td>간편</td>
+          <td>간편</td>
+      </tr>
+      <tr>
+          <td>실외</td>
+          <td>불가</td>
+          <td>불가</td>
+          <td>가능</td>
+      </tr>
+      <tr>
+          <td>기타</td>
+          <td></td>
+          <td>크기가 작은 것은 본 실험에 부적합<br>구하기 어려움(단종여부 확인)</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h5 id="포토-인터럽터">포토 인터럽터<a class="anchor" href="#%ed%8f%ac%ed%86%a0-%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%84%b0">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th>TT Electronics OPB819Z</th>
+          <th>泰邦工控 TBGK E3S-GS30</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><img src="/image/Gravitational-Acceleration04.png" alt="" /></td>
+          <td><img src="/image/Gravitational-Acceleration05.png" alt="" /></td>
+      </tr>
+  </tbody>
+</table>
+<h5 id="금속-감지기">금속 감지기<a class="anchor" href="#%ea%b8%88%ec%86%8d-%ea%b0%90%ec%a7%80%ea%b8%b0">#</a></h5>
+<p><img src="/image/Gravitational-Acceleration06.png" alt="" /></p>
+<p>위 제품은 <a href="https://detail.tmall.com/item.htm?spm=a1z0d.6639537.1997196601.4.77eb7484HSzCG2&amp;id=620286916175#">环形接近开关金属感应传感器</a>이라는 이름으로 타오바오에서 판매하고 있는 금속감지센서이다. 구경 3cm (30mm孔径, NPN型) 정도인 제품까지는 저렴한 가격(18위안, 약 3,000원)에 구입할 수 있다. 생김새만 보아서는 가장 쉽게 제작할 수 있을 것 같다. 단, 낙하물은 금속을 사용해야하며, 적당한 크기의 금속 구슬을 사용하면 될 것 같다. 외경 3cm 투명 아크릴 파이프에 일정한 간격으로 테이프를 두껍게 감은 뒤 감지기를 끼우는 형태로 설치하면 될 것 같다.</p>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/esp32-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0-%EC%A0%9C%EC%96%B4/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="esp32 서보모터 PWM제어" />
+      <span>esp32 서보모터 PWM제어</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/arduino-geiger-counter/" class="flex align-center">
+      <span>Arduino, Geiger Counter</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" title="Arduino, Geiger Counter" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#중력gravitational-force">중력(Gravitational Force)</a></li>
+        <li><a href="#자유낙하를-이용한-중력-가속도-측정-실험">자유낙하를 이용한 중력 가속도 측정 실험</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

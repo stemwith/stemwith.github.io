@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.
+
+Bluetooth module 선택#
+
+
+아이폰 : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)
+HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 Both NL &amp; CR 모드를 선택해주어야 하는 것입니다.
+
+
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/arduino-bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Arduino, Bluetooth 페어링">
+  <meta property="og:description" content="아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.
+Bluetooth module 선택#아이폰 : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)
+HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 Both NL &amp; CR 모드를 선택해주어야 하는 것입니다.">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-10-26T23:24:07+09:00">
+    <meta property="article:modified_time" content="2019-10-26T23:24:07+09:00">
+
+
+<title>Arduino, Bluetooth 페어링 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/arduino-bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino, Bluetooth 페어링</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#bluetooth-module-선택">Bluetooth module 선택</a></li>
+        <li><a href="#블루투스-모듈을-처음-사용하는-경우">블루투스 모듈을 처음 사용하는 경우</a></li>
+        <li><a href="#스마트폰과의-페어링-과정">스마트폰과의 페어링 과정</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Arduino, Bluetooth 페어링
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 26, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
+<br>
+<h3 id="bluetooth-module-선택">Bluetooth module 선택<a class="anchor" href="#bluetooth-module-%ec%84%a0%ed%83%9d">#</a></h3>
+<ul>
+<li>
+<p><strong>아이폰</strong> : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)</p>
+<p>HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 <strong>Both NL &amp; CR</strong> 모드를 선택해주어야 하는 것입니다.</p>
+</li>
+</ul>
+<p><img src="/image/BT-01.jpg" alt="" /></p>
+<ul>
+<li><strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
+</ul>
+<p><img src="/image/BT-02.jpg" alt="" /></p>
+<blockquote class='book-hint '>
+<p>※ 요즘은 잘 사용하지 않지만, HC-05를 사용하기도 합니다. 생김새가 거의 비슷하지만, 몇가지 차이점이 있는데요. 보통 HC-06과 구별하기 위하여, HC-05에는 칩 위에 V형태로 체크를 해두거나, 화이트로 하얀색 점을 찍어두는 경우가 많습니다. 그리고, 가장 큰 차이점은 HC-05의 경우 6개의 핀이 모두 존재해요.</p>
+<p><img src="/image/BT-05.jpg" alt="" /></p></blockquote><blockquote class='book-hint '>
+<p>※ 예전에는 HC-05는 Master, HC-06은 Slave로 나누어 쓰는 경우가 많았지만, HC-06의 버전이 1.7이상인 경우 Master, Slave를 선택하여 사용할 수 있게 되면서 HC-05는 잘 사용하지 않게 되었습니다.</p></blockquote><br>
+<h4 id="mlt-bt05-hc-06을-사용하는-경우">MLT-BT05, HC-06을 사용하는 경우<a class="anchor" href="#mlt-bt05-hc-06%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h4>
+<h5 id="pin-map">Pin Map<a class="anchor" href="#pin-map">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th style="text-align: center"></th>
+          <th>Arduino Uno</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>STATE</td>
+          <td style="text-align: center">(실제 핀 없거나 미사용)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>RXD</td>
+          <td style="text-align: center">Receive Data (수신)</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>TXD</td>
+          <td style="text-align: center">Transmit Data (송신)</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>GND</td>
+          <td style="text-align: center">GND</td>
+          <td>GND</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>VCC</td>
+          <td style="text-align: center">+5V</td>
+          <td>+5V</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>KEY</td>
+          <td style="text-align: center">(실제 핀 없거나 미사용)</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h5 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h5>
+<p><img src="/image/BT-03.jpg" alt="" /></p>
+<br>
+<h5 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SoftwareSerial.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>SoftwareSerial <span style="color:#a6e22e">BTSerial</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>); <span style="color:#75715e">//Connect MLT-BT05 or HC-06 TX,RX 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()  
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>   Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
+</span></span><span style="display:flex;"><span>   Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// set the data rate for the BT port
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   BTSerial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (BTSerial.<span style="color:#a6e22e">available</span>())
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">write</span>(BTSerial.<span style="color:#a6e22e">read</span>());
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (Serial.<span style="color:#a6e22e">available</span>())
+</span></span><span style="display:flex;"><span>    BTSerial.<span style="color:#a6e22e">write</span>(Serial.<span style="color:#a6e22e">read</span>());
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="hc-05를-사용하는-경우">HC-05를 사용하는 경우<a class="anchor" href="#hc-05%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h4>
+<h5 id="pin-map-1">Pin Map<a class="anchor" href="#pin-map-1">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th>HC-05 Pin</th>
+          <th></th>
+          <th style="text-align: center"></th>
+          <th>Arduino Uno</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>STATE</td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>RXD</td>
+          <td style="text-align: center">Receive Data</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>TXD</td>
+          <td style="text-align: center">Transmit Date</td>
+          <td>7</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>GND</td>
+          <td style="text-align: center">GND</td>
+          <td>GND</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>VCC</td>
+          <td style="text-align: center">+5V</td>
+          <td>+5V</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>KEY (ENABLE)</td>
+          <td style="text-align: center">AT command 진입을 위한 핀</td>
+          <td>8</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote class='book-hint '>
+<p>※ TXD로 UNO의 7번핀을 사용했으나, HC-06처럼 2번핀을 사용해도 됩니다. 단, schematic과 sketch도 2번 핀에 맞추어 수정해주세요.</p></blockquote><br>
+<h5 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h5>
+<p><img src="/image/BT-04.jpg" alt="" /></p>
+<br>
+<h5 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>    <span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SoftwareSerial.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">#define KEY 8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    SoftwareSerial <span style="color:#a6e22e">BTSerial</span>(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>); <span style="color:#75715e">//Connect HC-05 TX,RX 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()  
+</span></span><span style="display:flex;"><span>     {
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">pinMode</span>(KEY, OUTPUT);       <span style="color:#75715e">//for HC-05
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#a6e22e">digitalWrite</span>(KEY, HIGH);
+</span></span><span style="display:flex;"><span>       Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
+</span></span><span style="display:flex;"><span>       Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello!&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// set the data rate for the BT port
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       BTSerial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">38400</span>);
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>     {
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> (BTSerial.<span style="color:#a6e22e">available</span>())
+</span></span><span style="display:flex;"><span>         Serial.<span style="color:#a6e22e">write</span>(BTSerial.<span style="color:#a6e22e">read</span>());
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> (Serial.<span style="color:#a6e22e">available</span>())
+</span></span><span style="display:flex;"><span>         BTSerial.<span style="color:#a6e22e">write</span>(Serial.<span style="color:#a6e22e">read</span>());
+</span></span><span style="display:flex;"><span>     }</span></span></code></pre></div><br>
+<br>
+<h3 id="블루투스-모듈을-처음-사용하는-경우">블루투스 모듈을 처음 사용하는 경우<a class="anchor" href="#%eb%b8%94%eb%a3%a8%ed%88%ac%ec%8a%a4-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%b2%98%ec%9d%8c-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h3>
+<p>모듈을 처음 사용한다면, AT 명령어 세트를 사용하여 세팅을 해주어야 합니다. 또한 이전에 사용한 경험이 있더라도 블루투스 모듈ID, 페어링 암호 등을 새롭게 세팅할 필요가 있는 경우에도 동일합니다.</p>
+<br>
+<h4 id="mlt-bt05at-09의-at-command">MLT-BT05(AT-09)의 AT Command<a class="anchor" href="#mlt-bt05at-09%ec%9d%98-at-command">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>명령어</th>
+          <th style="text-align: center">Serial Monitor 출력 결과</th>
+          <th>의미</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AT</td>
+          <td style="text-align: center">OK</td>
+          <td>접속상태 확인</td>
+      </tr>
+      <tr>
+          <td>AT+NAMESKS100</td>
+          <td style="text-align: center">OKsetname</td>
+          <td>블루투스 모듈ID 지정 (default MLT-BT05)</td>
+      </tr>
+      <tr>
+          <td>AT+PIN</td>
+          <td style="text-align: center">PASSWORD 출력</td>
+          <td>패스워드 확인</td>
+      </tr>
+      <tr>
+          <td>AT+PIN1234</td>
+          <td style="text-align: center">OKsetPIN</td>
+          <td>페어링 암호 설정 (default: <strong>123456</strong>)</td>
+      </tr>
+      <tr>
+          <td>AT+BAUD4</td>
+          <td style="text-align: center">OK9600</td>
+          <td>통신속도 설정 (4 → 9600bps) (default: 0 → 115200bps)</td>
+      </tr>
+      <tr>
+          <td>AT+VERSION</td>
+          <td style="text-align: center">OKVERSION=4.0</td>
+          <td>MLT-BT05 버전 확인</td>
+      </tr>
+      <tr>
+          <td>AT+LADDR</td>
+          <td style="text-align: center">+LADDR=(MAC Address)</td>
+          <td>MAC Address 확인</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=0</td>
+          <td style="text-align: center">OK+ROLE:0</td>
+          <td>SLAVE mode (default)</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=1</td>
+          <td style="text-align: center">OK+ROLE:1</td>
+          <td>MASTER mode</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=2</td>
+          <td style="text-align: center">OK+ROLE:2</td>
+          <td>sensor mode</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=3</td>
+          <td style="text-align: center">OK+ROLE:3</td>
+          <td>iBeacon mode</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=4</td>
+          <td style="text-align: center">OK+ROLE:4</td>
+          <td>WeChat mode</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE</td>
+          <td style="text-align: center">OK+ROLE:</td>
+          <td>Role 확인</td>
+      </tr>
+  </tbody>
+</table>
+<p>※ <a href="/attach/MLT-BT05.pdf">AT Command set 다운로드</a></p>
+<br>
+<h4 id="hc-06의-at-command">HC-06의 AT Command<a class="anchor" href="#hc-06%ec%9d%98-at-command">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>명령어</th>
+          <th style="text-align: center">Serial Monitor 출력 결과</th>
+          <th>의미</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AT</td>
+          <td style="text-align: center">OK</td>
+          <td>접속상태 확인</td>
+      </tr>
+      <tr>
+          <td>AT+NAMESKS100</td>
+          <td style="text-align: center">OKsetname</td>
+          <td>블루투스 모듈ID 지정 (SKS100)</td>
+      </tr>
+      <tr>
+          <td>AT+PIN</td>
+          <td style="text-align: center">PASSWORD출력</td>
+          <td>패스워드 확인</td>
+      </tr>
+      <tr>
+          <td>AT+PIN1234</td>
+          <td style="text-align: center">OKsetPIN</td>
+          <td>페어링 암호 설정 (default: <strong>1234</strong>)</td>
+      </tr>
+      <tr>
+          <td>AT+BAUD4</td>
+          <td style="text-align: center">OK9600</td>
+          <td>통신속도 설정 (4 → 9600bps) (default: 4 → 9600bps)</td>
+      </tr>
+      <tr>
+          <td>AT+VERSION</td>
+          <td style="text-align: center">OKlinvorV1.8</td>
+          <td>HC-06 버전 확인</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=S</td>
+          <td style="text-align: center">OK+ROLE:S</td>
+          <td>SLAVE 역할</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=M</td>
+          <td style="text-align: center">OK+ROLE:M</td>
+          <td>MASTER 역할 (v1.7 이상만 가능)</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE</td>
+          <td style="text-align: center">OK+ROLE:</td>
+          <td>MASTER/SLAVE 확인</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="hc-05의-at-command">HC-05의 AT Command<a class="anchor" href="#hc-05%ec%9d%98-at-command">#</a></h4>
+<blockquote class='book-hint '>
+<p>※ HC-05는 AT Command를 사용하는 경우, KEY(Enable) 핀을 연결해주어야 합니다. (schematic 참고)</p></blockquote><table>
+  <thead>
+      <tr>
+          <th>명령어</th>
+          <th style="text-align: center">Serial Monitor 출력 결과</th>
+          <th>의미</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AT</td>
+          <td style="text-align: center">OK</td>
+          <td>접속상태 확인</td>
+      </tr>
+      <tr>
+          <td>AT+NAMESKS100</td>
+          <td style="text-align: center">OKsetname</td>
+          <td>블루투스 모듈ID 지정 (SKS100)</td>
+      </tr>
+      <tr>
+          <td>AT+PSWD=0000</td>
+          <td style="text-align: center">OKsetPIN</td>
+          <td>페어링 암호 설정 (0000)</td>
+      </tr>
+      <tr>
+          <td>AT+BAUD6</td>
+          <td style="text-align: center">OK9600</td>
+          <td>통신속도 설정 (6 → 38400bps)</td>
+      </tr>
+      <tr>
+          <td>AT+VERSION</td>
+          <td style="text-align: center">OKlinvorV1.8</td>
+          <td>HC-06 버전 확인</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=0</td>
+          <td style="text-align: center">OK+ROLE:0</td>
+          <td>SLAVE 역할</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=1</td>
+          <td style="text-align: center">OK+ROLE:1</td>
+          <td>MASTER 역할</td>
+      </tr>
+      <tr>
+          <td>AT+ROLE=?</td>
+          <td style="text-align: center">OK+ROLE:</td>
+          <td>MASTER/SLAVE 확인</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<h3 id="스마트폰과의-페어링-과정">스마트폰과의 페어링 과정<a class="anchor" href="#%ec%8a%a4%eb%a7%88%ed%8a%b8%ed%8f%b0%ea%b3%bc%ec%9d%98-%ed%8e%98%ec%96%b4%eb%a7%81-%ea%b3%bc%ec%a0%95">#</a></h3>
+<h4 id="시리얼모니터에서">시리얼모니터에서<a class="anchor" href="#%ec%8b%9c%eb%a6%ac%ec%96%bc%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90%ec%84%9c">#</a></h4>
+<p>HC-06과의 페어링 과정을 보도록 하겠습니다. (다른 블루투스 모듈도 유사하게 진행하면 됩니다.)</p>
+<br>
+<ol>
+<li>먼저 아두이노IDE의 시리얼 모니터를 엽니다.</li>
+</ol>
+<blockquote class='book-hint '>
+<p>※ 이때, 주의할 점이 있는데요. <strong>시리얼 모니터를 열기 전에 스마트폰과 HC-06의 블루투스 연결은 해제된 상태</strong>여야 합니다. 기존에 HC-06과 스마트폰을 연결한 적이 있다면, 자기도 모르게 블루투스 연결이 자동으로 되어 있을 수 있는데요. 이런 경우에는 시리얼 모니터가 열리지 않아요.</p></blockquote><ul>
+<li><strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
+<li><strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+</ul>
+<br>
+<ol start="2">
+<li>위 스케치를 <strong>사용하는 모듈에 맞게 선택하여</strong> 아두이노에 업로드 한 상태에서 시리얼 모니터를 열면, Hello! 라는 글자가 뜹니다. (업로드한 스케치에 따라 Hello!는 안나올 수도 있음)
+<img src="/image/BT-06.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="3">
+<li>AT를 입력하고,
+<img src="/image/BT-07.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="4">
+<li>전송을 누르면 OK가 뜹니다. 이것은 아두이노IDE를 통해 블루투스 모듈과 연결이 정상적으로 되었음을 의미해요.
+<img src="/image/BT-08.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="5">
+<li>블루투스 모듈ID를 설정해보겠습니다. SKS100이라는 ID로 지정하기 위해 <strong>AT+NAMESKS100</strong>이라고 입력한 뒤, 전송을 누릅니다. (모듈ID는 본인이 사용할 이름으로 바꾸어 지정합니다.)
+<img src="/image/BT-09.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="6">
+<li>그러면 OKsetname이라고 출력이 되면서, 블루투스 모듈ID가 SKS100으로 셋팅이 됩니다.
+<img src="/image/BT-09-1.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="7">
+<li>이번에는 페어링 암호 설정입니다. AT+PIN0000을 입력하고 전송을 누르면
+<img src="/image/BT-10.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="8">
+<li>OKsetPIN이 출력되면서 페어링 암호가 0000으로 설정됩니다.
+<img src="/image/BT-11.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="9">
+<li>통신속도 설정입니다. HC-06은 주로 9600bps를 사용하며, 이를 위해 AT+BAUD4를 입력한 뒤 전송을 누릅니다. (HC-06의 경우 default 속도가 9600bps이므로 이 과정은 생략 가능하며, 다른 모듈을 사용하는 경우에는 각 모듈의 AT Command를 확인하여 통신속도를 변경해주어야 합니다.)
+<img src="/image/BT-12.jpg" alt="" /></li>
+</ol>
+<br>
+<ol start="10">
+<li>OK9600이 출력되요.
+<img src="/image/BT-13.jpg" alt="" /></li>
+</ol>
+<br>
+<p>여기까지 진행하면 대체적으로 HC-06을 사용할 준비가 된 것입니다.</p>
+<br>
+<h4 id="스마트폰에서">스마트폰에서<a class="anchor" href="#%ec%8a%a4%eb%a7%88%ed%8a%b8%ed%8f%b0%ec%97%90%ec%84%9c">#</a></h4>
+<ol>
+<li>이제 스마트폰에서 블루투스 모드를 켜세요. (아래 화면은 스마트폰 기종마다 조금은 다를 수 있습니다. 화면이 다르더라도 거의 비슷할 거에요.) 그리고 새로고침을 통해 블루투스 기기를 찾습니다.
+<figure class="center"><img src="/image/BT-14.png" width="33%">
+</figure>
+</li>
+</ol>
+<br>
+<ol start="2">
+<li>‘거의 이용하지 않는 기기’ 하나를 찾았네요. 그곳을 누르면 조금전에 설정한 블루투스 모듈ID인 SKS100이 보입니다. 여기를 누르세요.
+<figure class="center"><img src="/image/BT-15.png" width="33%">
+</figure>
+</li>
+</ol>
+<br>
+<ol start="3">
+<li>블루투스 모듈과 페어링을 하기 위한 암호 입력화면이 나오고, 여기에 AT명령어를 통해 입력한 암호를 넣어줍니다.
+<figure class="center"><img src="/image/BT-14-1.png" width="33%">
+</figure>
+</li>
+</ol>
+<br>
+<ol start="4">
+<li>그러면 스마트폰이 SKS100 모듈에 페어링을 시도합니다.
+<figure class="center"><img src="/image/BT-16.png" width="33%">
+</figure>
+</li>
+</ol>
+<br>
+<ol start="5">
+<li>거의 이용하지 않는 블루투스 기기 부분을 누르면
+<figure class="center"><img src="/image/BT-17.png" width="33%">
+</figure>
+</li>
+</ol>
+<br>
+<ol start="6">
+<li>페어링된 기기 목록에 SKS100이 뜹니다. 여기까지 진행하면, 스마트폰과 블루투스 모듈이 페어링 완료된 거에요.
+<figure class="center"><img src="/image/BT-18.png" width="33%">
+</figure>
+</li>
+</ol>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-l298n/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="Arduino, 라인트레이서, L298N" />
+      <span>Arduino, 라인트레이서, L298N</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/esp32-ble-blynk-gauge/" class="flex align-center">
+      <span>esp32 BLE, Blynk Gauge</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" title="esp32 BLE, Blynk Gauge" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#bluetooth-module-선택">Bluetooth module 선택</a></li>
+        <li><a href="#블루투스-모듈을-처음-사용하는-경우">블루투스 모듈을 처음 사용하는 경우</a></li>
+        <li><a href="#스마트폰과의-페어링-과정">스마트폰과의 페어링 과정</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

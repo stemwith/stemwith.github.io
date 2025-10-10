@@ -1,0 +1,16 @@
+{{/*
+  사용법: {{< list-by-taxonomy taxonomy="분류타입" term="분류이름" >}}
+  예시 (Arduino 카테고리): {{< list-by-taxonomy taxonomy="categories" term="arduino" >}}
+  예시 (IoT 태그):      {{< list-by-taxonomy taxonomy="tags" term="iot" >}}
+*/}}
+{{ $taxonomy := .Get "taxonomy" }}
+{{ $term := .Get "term" }}
+
+{{ with (and $taxonomy $term) }}
+  {{ $pages := (index (index site.Taxonomies $taxonomy) $term).Pages }}
+  <ul>
+    {{ range $pages.ByDate }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+{{ end }}

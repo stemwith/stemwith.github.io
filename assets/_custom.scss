@@ -1,0 +1,15 @@
+/* 1. NanumSquareRound 모든 굵기 로드 */
+/* 네이버에서 제공하는 공식 URL을 사용합니다. */
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css');
+
+$font-family-korean: 'NanumSquareRound', 
+                     'NanumSquareRoundBold', 
+                     'NanumSquareRoundExtraBold', 
+                     "Helvetica Neue", 
+                     sans-serif; 
+
+/* 2. CSS 변수(테마 변수)에 SCSS 변수를 저장하여 덮어쓰기 */
+:root, html, body { 
+    /* 📌 :root에 직접 폰트 스택을 적용하여 폰트 상속을 시작합니다. */
+    font-family: $font-family-korean; 
+}

@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/categories/esp32/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Esp32">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="website">
+
+
+<title>Esp32 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/categories/esp32/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+<link rel="alternate" type="application/rss+xml" href="https://stemwith.github.io/categories/esp32/index.xml" title="STEM with" />
+
+  
+</head>
+<body dir="ltr" class="book-kind-term book-type-categories">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Esp32</h3>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-rc%EC%B9%B4/">ESP32, RC카</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>December 2, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/rc/">Rc</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="샤시-조립">샤시 조립<a class="anchor" href="#%ec%83%a4%ec%8b%9c-%ec%a1%b0%eb%a6%bd">#</a></h3>
+<h4 id="샤시-부품">샤시 부품<a class="anchor" href="#%ec%83%a4%ec%8b%9c-%eb%b6%80%ed%92%88">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">번호</th>
+          <th style="text-align: center">부품</th>
+          <th style="text-align: center">사진</th>
+          <th style="text-align: center">수량</th>
+          <th style="text-align: center">용도 및 참고사항</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">전륜 회전축</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/r/ESP32-RC-Car-14.png">
+</figure>
+</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">베어링(대)</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/r/ESP32-RC-Car-18.png">
+</figure>
+</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">스티어링 컵</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-08.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">커플러 고정핀</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-16.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5</td>
+          <td style="text-align: center">베어링(중)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-19.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">6</td>
+          <td style="text-align: center">(전륜) 육각 커플러</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/r/ESP32-RC-Car-15.png" width="80%">
+</figure>
+</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">7</td>
+          <td style="text-align: center">휠</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-01.png" alt="" /></td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">8</td>
+          <td style="text-align: center">나이록 너트(M4)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-22.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">9</td>
+          <td style="text-align: center">십자형 육각 복스</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-17.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10</td>
+          <td style="text-align: center">볼 조인트 커넥팅 로드</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-09.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">홀 간격 80.5mm 유지</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">11</td>
+          <td style="text-align: center">볼 조인트 커넥팅 로드</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-35.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">홀 간격 51mm 유지</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">12</td>
+          <td style="text-align: center">서보모터<br>MG996R</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/r/ESP32-RC-Car-54.png">
+</figure>
+</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">13</td>
+          <td style="text-align: center">ㄴ자 서보모터 브라켓</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-11.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">14</td>
+          <td style="text-align: center">휠 베이스 고정판</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-12.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">15</td>
+          <td style="text-align: center">서보 혼</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-25.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">(볼트 포함)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">16</td>
+          <td style="text-align: center">나이록 너트<br>(M2.5)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-23.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">17</td>
+          <td style="text-align: center">샤시 하판</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-03.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">18</td>
+          <td style="text-align: center">DC엔코더 모터 &amp; 커넥터</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-04.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">19</td>
+          <td style="text-align: center">모터 브라켓</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/r/ESP32-RC-Car-07.png" width="67%">
+</figure>
+</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">20</td>
+          <td style="text-align: center">샤프트</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-10.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">써클립</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-24.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">22</td>
+          <td style="text-align: center">샤프트 베어링</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-21.png" alt="" /></td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">23</td>
+          <td style="text-align: center">기어<br>(무두볼트(Set Screw) 포함)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-05.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">24</td>
+          <td style="text-align: center">육각 샤프트 커플링 커넥터</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-06.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">범퍼</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-02.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">26</td>
+          <td style="text-align: center">샤시 상판</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-34.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">27</td>
+          <td style="text-align: center">락스위치</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-20.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">28</td>
+          <td style="text-align: center">황동 육각 스터드<br>(M3×22mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-26.png" alt="" /></td>
+          <td style="text-align: center">6</td>
+          <td style="text-align: center">휠 베이스 고정용 4개, 상판 고정용 2개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">29</td>
+          <td style="text-align: center">황동 육각 스터드<br/>(M3×16mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-27.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">범퍼 고정용 2개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">30</td>
+          <td style="text-align: center">볼트<br/>(Pan head, M4×6mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-32.png" alt="" /></td>
+          <td style="text-align: center">6</td>
+          <td style="text-align: center">모터 브라켓과 샤시 하판 고정용 6개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">31</td>
+          <td style="text-align: center">볼트<br>(Bind-Washer head, M3×6mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-28.png" alt="" />  <img src="/image/r/ESP32-RC-Car-28.png" alt="" /></td>
+          <td style="text-align: center">10</td>
+          <td style="text-align: center">서보모터와 서보모터 브라켓 고정용 4개, 서보모터 브라켓과 샤시하판 고정용 4개, 범퍼 고정용 2개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">32</td>
+          <td style="text-align: center">볼트<br>(Bind head, M3×8mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-30.png" alt="`" /><img src="/image/r/ESP32-RC-Car-30.png" alt="" /><img src="/image/r/ESP32-RC-Car-30.png" alt="" /><img src="/image/r/ESP32-RC-Car-30.png" alt="" /></td>
+          <td style="text-align: center">14</td>
+          <td style="text-align: center">육각 스터드 고정용 12개, 범퍼 고정용 2개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">33</td>
+          <td style="text-align: center">볼트<br/>(Pan head, M2.5×10mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-29.png" alt="" />  <img src="/image/r/ESP32-RC-Car-29.png" alt="" /></td>
+          <td style="text-align: center">7</td>
+          <td style="text-align: center">커넥팅 로드 연결용 3개, 휠 베이스 연결용 4개</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">34</td>
+          <td style="text-align: center">볼트<br>(Flat head, M2.5×5mm)</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-31.png" alt="" /></td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">모터와 모터브라켓 고정</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">35</td>
+          <td style="text-align: center">육각렌치</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-33.png" alt="" /></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">기어 무두볼트용</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">36</td>
+          <td style="text-align: center">저항<br>1K or 5.1K</td>
+          <td style="text-align: center"><img src="/image/r/ESP32-RC-Car-13.png" alt="" /></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">(선택사항) 인코더 풀업저항</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">37</td>
+          <td style="text-align: center">홀센서 칩<br>SH41F(SOT-23타입)</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">(선택사항) 홀 센서를 이중채널로 사용할 필요가 있는 경우에, 각 모터마다 1개씩 추가함</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">총</td>
+          <td style="text-align: center">36종</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="전륜-조향-휠-조립">전륜 조향 휠 조립<a class="anchor" href="#%ec%a0%84%eb%a5%9c-%ec%a1%b0%ed%96%a5-%ed%9c%a0-%ec%a1%b0%eb%a6%bd">#</a></h4>
+<p>사진 오른쪽부터 차례대로 8개의 부품을 끼워 휠을 조립한다. (왼쪽휠/오른쪽휠 각각 1개씩, 총 2개 조립)</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-dc%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>November 1, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/rc/">Rc</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="dc모터-사용하기">DC모터 사용하기<a class="anchor" href="#dc%eb%aa%a8%ed%84%b0-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0">#</a></h3>
+<p>아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.</p>
+<br>
+<h4 id="tb6612fng">TB6612FNG<a class="anchor" href="#tb6612fng">#</a></h4>
+<h5 id="기본-핀-배열">기본 핀 배열<a class="anchor" href="#%ea%b8%b0%eb%b3%b8-%ed%95%80-%eb%b0%b0%ec%97%b4">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">VM<br/>VCC<br/>GND(*)<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>GND</th>
+          <th style="text-align: center"><figure class="center"><img src="/image/t/tb6612fng-01.png" width="50%">
+</figure>
+</th>
+          <th style="text-align: center">PWMA<br/>AIN2<br/>AIN1<br/>STBY<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"><figure class="center"><img src="/image/t/tb6612fng-02.png">
+</figure>
+</td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h5 id="핀-배열이-다른-경우">핀 배열이 다른 경우<a class="anchor" href="#%ed%95%80-%eb%b0%b0%ec%97%b4%ec%9d%b4-%eb%8b%a4%eb%a5%b8-%ea%b2%bd%ec%9a%b0">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">GND<br/>VCC<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>VM<br/>GND</th>
+          <th style="text-align: center"><figure class="center"><img src="/image/t/tb6612fng-03.png" width="75%">
+</figure>
+</th>
+          <th style="text-align: center">PWMA<br/>AIN2<br/>AIN1<br/>NC (=STBY)<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"><figure class="center"><img src="/image/t/tb6612fng-04.png">
+</figure>
+</td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>VM (모터 전압) = 15V max</li>
+<li>VCC (로직 전압) = 2.7 ~ 5.5V</li>
+<li><strong>GND</strong>
+<ul>
+<li>TB6612FNG 모듈을 여러개 테스트한 결과, 기본 핀 배열을 가진 모듈의 <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li>
+<li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li>
+</ul>
+</li>
+<li>출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임)</li>
+<li>모터 제어모드: CW, CCW, short-brake, STOP, stand-by</li>
+<li>두개의 모터 출력을 개별 제어하며, <strong>100kHz</strong>의 PWM으로 속도 제어</li>
+<li>써멀 셧다운 및 저전압 감지회로 내장</li>
+</ul>
+<br>
+<h5 id="pin의-사용">Pin의 사용<a class="anchor" href="#pin%ec%9d%98-%ec%82%ac%ec%9a%a9">#</a></h5>
+<p>ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀을 구성한 Pinmap이므로, 필요에 따라 수정하여 사용할 수 있다. (아래표는 참고만 할 것!)</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-nrf24l01/">ESP32, nRF24L01 무선통신</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 10, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="nrf24l01">nRF24L01<a class="anchor" href="#nrf24l01">#</a></h3>
+<h4 id="library">library<a class="anchor" href="#library">#</a></h4>
+<p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>nRF24L01</strong> 검색한 후, <strong>RF24 by TMRh20, Avamander</strong> 설치</p>
+<p><img src="/image/n/ESP32-nRF24L01-02.png" alt="" /></p>
+<br>
+<h4 id="schematic-nrf24l01-receiver-with-esp32">schematic: nRF24L01 receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-receiver-with-esp32">#</a></h4>
+<p><img src="/image/n/ESP32-nRF24L01-01.png" alt="" /></p>
+<p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
+<br>
+<h5 id="pinmap-안테나를-위로-향하게-두고-모듈을-위에서-내려다-볼때의-핀배열">pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배열)<a class="anchor" href="#pinmap-%ec%95%88%ed%85%8c%eb%82%98%eb%a5%bc-%ec%9c%84%eb%a1%9c-%ed%96%a5%ed%95%98%ea%b2%8c-%eb%91%90%ea%b3%a0-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%9c%84%ec%97%90%ec%84%9c-%eb%82%b4%eb%a0%a4%eb%8b%a4-%eb%b3%bc%eb%95%8c%ec%9d%98-%ed%95%80%eb%b0%b0%ec%97%b4">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th>ESP32</th>
+          <th>3V3</th>
+          <th>IO5</th>
+          <th>IO23</th>
+          <th>None</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>↑</td>
+          <td>↑</td>
+          <td>↑</td>
+          <td>↑</td>
+      </tr>
+      <tr>
+          <td>nRF24L01</td>
+          <td>VCC + 10uF</td>
+          <td>CSN</td>
+          <td>MOSI</td>
+          <td>IRQ</td>
+      </tr>
+      <tr>
+          <td>(위에서 보이는 핀배열)</td>
+          <td>GND + 10uF</td>
+          <td>CE</td>
+          <td>SCK</td>
+          <td>MISO</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>↓</td>
+          <td>↓</td>
+          <td>↓</td>
+          <td>↓</td>
+      </tr>
+      <tr>
+          <td><strong>ESP32</strong></td>
+          <td><strong>GND</strong></td>
+          <td><strong>IO4</strong></td>
+          <td><strong>IO18</strong></td>
+          <td><strong>IO19</strong></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="sketch-11-chat-room">sketch: 1:1 Chat Room<a class="anchor" href="#sketch-11-chat-room">#</a></h4>
+<ul>
+<li>양방향 송수신을 위하여 위 회로도를 보고 2개의 모듈을 만든 뒤, 다음 스케치를 업로드한다.</li>
+<li>시리얼 모니터를 띄운 뒤, 메세지를 전송해본다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//Libraries for NRF24L01+ module.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;nRF24L01.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//RF24 object with two pins defined with arguments. CE: 4, CSN: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Address of the pipe. 40 bit long, you can choose this freely.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//Remember to use different address in different projects.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> stext[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> spos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> rtext[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> rpos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendText</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> text, <span style="color:#66d9ef">int</span> tlen)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  radio.stopListening();
+</span></span><span style="display:flex;"><span>  radio.openWritingPipe(address);
+</span></span><span style="display:flex;"><span>  radio.write(stext, tlen);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Serial.print(<span style="color:#e6db74">&#34;SEND: &#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.println(text);    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  memset(stext, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">32</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  radio.openReadingPipe(<span style="color:#ae81ff">0</span>, address);
+</span></span><span style="display:flex;"><span>  radio.startListening();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Start the radio
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.begin(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  radio.begin();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Open reading pipe with given address and start listening for incoming data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  radio.openReadingPipe(<span style="color:#ae81ff">0</span>, address);
+</span></span><span style="display:flex;"><span>  radio.setPALevel(RF24_PA_MIN); 
+</span></span><span style="display:flex;"><span>  radio.startListening();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> Serial.available()) {
+</span></span><span style="display:flex;"><span>    stext[spos] <span style="color:#f92672">=</span> Serial.read();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(stext[spos] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x0a</span>) {
+</span></span><span style="display:flex;"><span>      sendText(stext, spos);
+</span></span><span style="display:flex;"><span>      spos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      spos <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (radio.available()) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (radio.available()) {
+</span></span><span style="display:flex;"><span>      radio.read(rtext, <span style="color:#ae81ff">32</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Serial.print(<span style="color:#e6db74">&#34;RECV: &#34;</span>);
+</span></span><span style="display:flex;"><span>    Serial.println(rtext);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="sketch-11-chat-room-1">sketch: 1:1 Chat Room<a class="anchor" href="#sketch-11-chat-room-1">#</a></h4>
+<p>다음은 처음 실행 후 시리얼모니터에 입력한 ID를 이용하여 Chat Room을 만드는 코드이다.</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-oled/">ESP32, OLED (한글 출력 하기)</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 26, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="oled">OLED<a class="anchor" href="#oled">#</a></h3>
+<h4 id="종류">종류<a class="anchor" href="#%ec%a2%85%eb%a5%98">#</a></h4>
+<p>ESP32나 Arduino에서 사용할 수 있는  oled의 종류는 매우 많지만, 주로 128*64 픽셀을 가진 0.96인치, 1.3인치의 SSD1306, SH1106 컨트롤러를 사용한 oled가 판매되고 있으며, 통신 프로토콜은 I2C나 SPI를 사용한다. oled 모듈 구입시 픽셀수, 컨트롤러 및 통신프로토콜을 잘 알아두어야 스케치 작성시 참고할 수 있음에 유의한다. I2C 방식은 GPIO를 2개만 사용하여 구성이 쉽다는 장점이 있고, SPI방식은 4~5개의 GPIO를 사용하지만 속도가 빠르다는 장점이 있다. 겉모습만으로는 컨트롤러를 확인하기는 어렵다.</p>
+<table>
+  <thead>
+      <tr>
+          <th>I2C</th>
+          <th>SPI</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><img src="/image/u/u8g2-oled-i2c-01.png" alt="" /></td>
+          <td><img src="/image/u/u8g2-oled-spi-01.png" alt="" /></td>
+      </tr>
+      <tr>
+          <td><img src="/image/u/u8g2-oled-i2c-02.png" alt="" /></td>
+          <td><img src="/image/u/u8g2-oled-spi-02.png" alt="" /></td>
+      </tr>
+  </tbody>
+</table>
+<p>이밖에도 U8g2 라이브러리에서 사용가능한 다양한 oled의 종류를 아래 링크에서 확인할 수 있다.</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-%EC%8A%A4%ED%85%9D%EB%AA%A8%ED%84%B0-%EC%A0%9C%EC%96%B4/">ESP32, 스텝모터</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 25, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="스텝-모터-28byj-48">스텝 모터, 28BYJ-48<a class="anchor" href="#%ec%8a%a4%ed%85%9d-%eb%aa%a8%ed%84%b0-28byj-48">#</a></h3>
+<h4 id="specification">Specification<a class="anchor" href="#specification">#</a></h4>
+<figure class="center"><img src="/image/s/Step-Motor-02.png">
+</figure>
+
+<ul>
+<li>
+<p>정격전압: 5VDC</p>
+</li>
+<li>
+<p>기어비: 1/64
+$$
+\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
+$$</p>
+</li>
+</ul>
+<figure class="center"><img src="/image/s/Step-Motor-01.png">
+</figure>
+
+<ul>
+<li>스트라이드 각도
+<ul>
+<li><strong>스펙상 5.625º / 64</strong> = 0.087890625
+<ul>
+<li>그러므로,  360º / 0.087890625 = 4096 스텝</li>
+</ul>
+</li>
+<li><strong>실제로는 11.25º / 64</strong> = 0.17578125
+<ul>
+<li>그러므로,  360º / 0.17578125 = <strong>2048 스텝으로 1회전</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Frequency: 100Hz</li>
+<li>토크: 34.3mN,m</li>
+</ul>
+<br>
+<h3 id="모터드라이브-uln2003">모터드라이브 ULN2003<a class="anchor" href="#%eb%aa%a8%ed%84%b0%eb%93%9c%eb%9d%bc%ec%9d%b4%eb%b8%8c-uln2003">#</a></h3>
+<figure class="center"><img src="/image/s/Step-Motor-03.png" width="67%">
+</figure>
+
+<br>
+<br>
+<h3 id="스텝-모터의-구동">스텝 모터의 구동<a class="anchor" href="#%ec%8a%a4%ed%85%9d-%eb%aa%a8%ed%84%b0%ec%9d%98-%ea%b5%ac%eb%8f%99">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/s/Step-Motor-04.png" alt="" /></p>
+<br>
+<h4 id="pin-map">Pin Map<a class="anchor" href="#pin-map">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>외부전원</th>
+          <th>모터드라이브</th>
+          <th>ESP32</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>INT1</td>
+          <td>19</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>INT2</td>
+          <td>18</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>INT3</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>INT4</td>
+          <td>17</td>
+      </tr>
+      <tr>
+          <td>(+) 5V</td>
+          <td>GND</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>(-)</td>
+          <td>VCC</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>※ 모터드라이브에 연결하는 전원(VCC)는 <strong>외부전원 5V를 사용</strong>한다. (ESP32의 5V는, 전류가 부족하여 ESP32와 연결한 노트북에 영향을 줄 수 있으므로, 사용하지 않는 것이 좋다.)</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-%EC%98%A8%EB%8F%84%EC%B8%A1%EC%A0%95-ds18b20/">ESP32, 온도측정(DS18b20), PLX_DAQ</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 17, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="ds18b20-온도센서">DS18b20 온도센서<a class="anchor" href="#ds18b20-%ec%98%a8%eb%8f%84%ec%84%bc%ec%84%9c">#</a></h3>
+<p>DS18b20 온도 센서를 이용하여 온도를 측정한다.</p>
+<ul>
+<li>one-wire 버스 통신</li>
+<li>공급전압: 3.0V ~ 5.5V</li>
+<li>작동온도: -55ºC ~ +125ºC</li>
+<li>오차: +/-0.5 ºC (-10ºC ~ 85ºC 범위에서)</li>
+</ul>
+<br>
+<h4 id="pinout">Pinout<a class="anchor" href="#pinout">#</a></h4>
+<p><img src="/image/DS18b20.png" alt="" /></p>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p>DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5V에 연결하는 Normal Mode이고 다른 하나는 VCC를 GND에 연결하는 Parasite Mode이다. 두가지 방법 모두 지원되지만 (경험상) Normal를 추천하며 (원인은 잘 모르겠지만) Parasite Mode에서는 온도센서가 작동이 되지 않는 경우도 가끔 있었다. 회로 구성을 위해 <strong>4.7㏀ 저항 1개</strong>가 필요하며 Normal Mode 구성을 위해 다음 그림과 같이 연결한다.</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0-%EC%A0%9C%EC%96%B4/">esp32 서보모터 PWM제어</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 19, 2020</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="sg90-mg90s--mg966r-서보모터">SG90, MG90S,  MG966R 서보모터<a class="anchor" href="#sg90-mg90s--mg966r-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0">#</a></h3>
+<h4 id="datasheet">datasheet<a class="anchor" href="#datasheet">#</a></h4>
+<p><img src="/image/SG90_Datasheet.jpg" alt="" /></p>
+<br>
+<h4 id="사용법">사용법<a class="anchor" href="#%ec%82%ac%ec%9a%a9%eb%b2%95">#</a></h4>
+<ol>
+<li>
+<p>ESP32는 16개의 PWM채널이 있으므로, 최대 16개의 서보모터를 동시에 제어할 수 있다.</p>
+</li>
+<li>
+<p>서보모터 데이터 시트의 스펙상으로는&hellip;</p>
+<ul>
+<li>
+<p>대부분의 서보모터(<strong>SG90, MG90S, MG966R</strong> 등 포함)는 위의 그림처럼 20ms가 1주기가 되므로, PWM frequency를 50Hz로 설정한다.</p>
+</li>
+<li>
+<p>20ms가 1주기이고, HIGH 펄스가 2ms 지속될 때 180º 회전을 한다.</p>
+</li>
+<li>
+<p>그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</p>
+</li>
+<li>
+<p>Resolution이 16비트라면 65535의 1/10에 해당하는 <del>6554</del>의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-openweathermap/">esp32 OpenWeatherMap에서 실시간 날씨 정보 받기</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>November 19, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/iot/">Iot</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="openweathermaporg">OpenWeatherMap.org<a class="anchor" href="#openweathermaporg">#</a></h3>
+<p><a href="https://openweathermap.org/">OpenWeatherMap</a>은 세계 각 지역의 현재 날씨, 예보, 과거 날씨 데이터를 제공하는 사이트입니다. (몇가지 제약이 있긴 하지만) 회원가입을 통해서 API Key를 생성하고 이를 통해 무료로 실시간 날씨 정보를 얻을 수 있습니다.</p>
+<br>
+<h4 id="free-current-weather-and-forecasts-collection">Free Current weather and forecasts collection<a class="anchor" href="#free-current-weather-and-forecasts-collection">#</a></h4>
+<ul>
+<li>60 Calls per minute (no more than)</li>
+<li><a href="https://openweathermap.org/current">Current weather API</a></li>
+<li><a href="https://openweathermap.org/forecast5">5 days/3 hour forecast API</a></li>
+<li><a href="https://openweathermap.org/api/weathermaps">Weather maps 1.0</a></li>
+<li><a href="https://openweathermap.org/api/uvi">UV index</a></li>
+<li><a href="https://openweathermap.org/triggers">Weather alerts</a></li>
+<li>Availability 95%</li>
+<li>Weather API data update  &lt; 2 hours</li>
+<li>Weather maps data update  &lt; 3 hours</li>
+<li>API lifetime support :  Current version</li>
+<li>Historical weather collection은 모두 Starter 이상(유료)</li>
+</ul>
+<br>
+<h4 id="current-weather-collections-api-key-생성">Current weather collections API Key 생성<a class="anchor" href="#current-weather-collections-api-key-%ec%83%9d%ec%84%b1">#</a></h4>
+<ol>
+<li>
+<p>Sign Up을 클릭하여 회원가입을 하고,</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-ble-blynk-gauge/">esp32 BLE, Blynk Gauge</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 23, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/iot/">Iot</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="esp32에서-blynk로-센서값-보내기">ESP32에서 Blynk로 센서값 보내기<a class="anchor" href="#esp32%ec%97%90%ec%84%9c-blynk%eb%a1%9c-%ec%84%bc%ec%84%9c%ea%b0%92-%eb%b3%b4%eb%82%b4%ea%b8%b0">#</a></h3>
+<p>Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)</p>
+<ul>
+<li>ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다.</li>
+<li>새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다.</li>
+</ul>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/blynk-adc-01.png" alt="" /></p>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_PRINT Serial
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_USE_DIRECT_CONNECT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BlynkSimpleEsp32_BLE.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEDevice.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEServer.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// You should get Auth Token in the Blynk App.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Go to the Project Settings (nut icon).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> auth[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;WUAeS6P57T3XNaIGyLK1-OUv........&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Potentiometer Pin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define PIN_POTENTIOMETER A0                       </span><span style="color:#75715e">// Potentiometer GPIO 36
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Resist, Voltage
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> value_Potentiometer; 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value_R;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> value_V;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Debug console
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Waiting for connections...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// for Blynk 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Blynk.<span style="color:#a6e22e">setDeviceName</span>(<span style="color:#e6db74">&#34;Blynk-t&#34;</span>);
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">begin</span>(auth);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  value_Potentiometer <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(PIN_POTENTIOMETER);  <span style="color:#75715e">// 12bit ADC (0~4095)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  value_V <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(value_Potentiometer, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">3300</span>, <span style="color:#ae81ff">0</span>); <span style="color:#75715e">// 0~3300mV
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  value_R <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(value_V, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3300</span>, <span style="color:#ae81ff">10000</span>, <span style="color:#ae81ff">0</span>);            <span style="color:#75715e">// 0~10kΩ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">run</span>();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Resist : &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(value_R); Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Ω&#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Voltage: &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(value_V); Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;mV&#34;</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_READ</span>(V1)           <span style="color:#75715e">// ESP32 -&gt; widget virtual pin1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">virtualWrite</span>(V1, value_R);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_READ</span>(V2)           <span style="color:#75715e">// ESP32 -&gt; widget virtual pin1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">virtualWrite</span>(V2, value_V);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<li>Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.</li>
+<li>Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.</li>
+</ul>
+<br>
+<br>
+<h3 id="blynk-설정">Blynk 설정<a class="anchor" href="#blynk-%ec%84%a4%ec%a0%95">#</a></h3>
+<ol>
+<li>새로운 프로젝트를 생성한다.
+<ul>
+<li>NAME : ESP32_Potentiometer</li>
+<li>CHOOSE DEVICE : ESP32 Dev Board</li>
+<li>CONNECTION TYPE : BLE</li>
+</ul>
+</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-02.png" width="33%">
+</figure>
+
+<br>
+<ol start="2">
+<li>이메일로 발송된 토큰을 복사한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-03.png" width="33%">
+</figure>
+
+<br>
+<ol start="3">
+<li>+버튼을 눌러 위젯을 추가할 수 있는 화면으로 진입한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-04.png" width="33%">
+</figure>
+
+<br>
+<ol start="4">
+<li>먼저 BLE 위젯을 선택하여 ESP32와 Blynk간의 통신 방법을 지정한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-05.png" width="33%">
+</figure>
+
+<br>
+<ol start="5">
+<li>블루투스 모양의 위젯 버튼을 눌러 Blynk와의 통신을 준비한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-06.png" width="33%">
+</figure>
+
+<br>
+<ol start="6">
+<li>Connect BLE device</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-07.png" width="33%">
+</figure>
+
+<br>
+<ol start="7">
+<li>연결하고자 하는 BLE 장비를 선택하면,</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-08.png" width="33%">
+</figure>
+
+<br>
+<ol start="8">
+<li>연결 확인!</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-09.png" width="33%">
+</figure>
+
+<br>
+<ol start="9">
+<li>+버튼을 눌러 출력 위젯 2개를 추가한다. (Gauge, Labeled value)</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-10.png" width="33%">
+</figure>
+
+<br>
+<ol start="10">
+<li>먼저 Gauge 위젯을 선택한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-11.png" width="33%">
+</figure>
+
+<br>
+<ol start="11">
+<li>Gauge 위젯이 추가되면 육각형 모양의 아이콘을 눌러 GAUGE Setting 화면으로 진입한다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-12.png" width="33%">
+</figure>
+
+<br>
+<figure class="center"><img src="/image/blynk-adc-13.png" width="33%">
+</figure>
+
+<br>
+<ol start="12">
+<li>설정화면에서 다음 4가지를 설정한다.
+<ul>
+<li>NAME : 저항</li>
+<li>INPUT : V1, 0~1000</li>
+<li>LABEL : (단위를 표시하기 위해) x10 Ohm 을 적는다.</li>
+<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
+</ul>
+</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-14.png" width="33%">
+</figure>
+
+<br>
+<ol start="13">
+<li>Labeled Value 위젯을 추가하고, 다음과 같이 설정한다.
+<ul>
+<li>NAME : 저항</li>
+<li>INPUT : V2, 0~3300</li>
+<li>LABEL : (단위를 표시하기 위해) mV 를 적는다.</li>
+<li>READING RATE : 1sec (PUSH 위젯은 실행되지 않음)</li>
+</ul>
+</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-15.png" width="33%">
+</figure>
+
+<br>
+<ol start="14">
+<li>상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-16.png" width="33%">
+</figure>
+
+<br>
+<ol start="15">
+<li>여기서 플레이버튼을 누르면,</li>
+</ol>
+<figure class="center"><img src="/image/blynk-adc-17.png" width="33%">
+</figure>
+
+<br>
+<p>저항과 전압의 측정이 시작된다. (시리얼 모니터에서도 관찰 가능)</p></div>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-ble-blynk-slider-pwm/">esp32 BLE, Blynk Slider (PWM)</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 22, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/iot/">Iot</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="esp32와-blynk에서의-pwm-사용">ESP32와 Blynk에서의 PWM 사용<a class="anchor" href="#esp32%ec%99%80-blynk%ec%97%90%ec%84%9c%ec%9d%98-pwm-%ec%82%ac%ec%9a%a9">#</a></h3>
+<p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p>
+<ul>
+<li>Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
+<li>Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
+<li>ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
+</ul>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/blynk-pwm-01.png" alt="" /></p>
+<p>※ LED모듈을 사용하는 경우 저항이 필요없다.</p>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_PRINT Serial
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_USE_DIRECT_CONNECT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BlynkSimpleEsp32_BLE.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEDevice.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEServer.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// You should get Auth Token in the Blynk App.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Go to the Project Settings (nut icon).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> auth[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// setting PWM properties
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_FREQ        5000 </span><span style="color:#75715e">// Hz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_CHANNEL_0   0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define LEDC_RESOLUTION  12   </span><span style="color:#75715e">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// led Pin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> pin_ledR <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_WRITE</span>(V5)           <span style="color:#75715e">// widget virtual pin5 -&gt; ESP32
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> value_V5 <span style="color:#f92672">=</span> param.<span style="color:#a6e22e">asInt</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ledcWrite</span>(LEDC_CHANNEL_0, value_V5);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;V5 value: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(value_V5);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Debug console
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Waiting for connections...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// configure LED PWM functionalitites
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// attach the same channel to the GPIO to be controlled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(pin_ledR, LEDC_CHANNEL_0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// for Blynk 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Blynk.<span style="color:#a6e22e">setDeviceName</span>(<span style="color:#e6db74">&#34;Blynk-t&#34;</span>);
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">begin</span>(auth);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">run</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="sketch-분석">sketch 분석<a class="anchor" href="#sketch-%eb%b6%84%ec%84%9d">#</a></h4>
+<p>Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.</p></div>
+  </article>
+  
+
+  
+    <ul class="pagination pagination-default">
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/esp32/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/esp32/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/esp32/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </div>
+</aside>
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

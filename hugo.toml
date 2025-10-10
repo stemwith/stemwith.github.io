@@ -1,3 +1,45 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+# 'baseURL' 위에 다음 줄을 추가하여 Hugo Module을 활성화
+#enableGitInfo = true
+
+baseURL = "https://stemwith.github.io/"
+languageCode = "ko-kr"
+title = "STEM with"
+theme = "hugo-book"
+
+# Google Analytics 4 측정 ID
+googleAnalytics = "G-128DRYVCRT"
+
+[params]
+  # (Optional, default light) Sets color theme: light, dark or auto.
+  # Theme 'auto' switches between dark and light modes based on browser/os preferences
+  # BookTheme = 'light'
+
+  # (Optional, default true) Controls table of contents visibility on right side of pages.
+  # Start and end levels can be controlled with markup.tableOfContents setting.
+  # You can also specify this parameter per page in front matter.
+  # BookToC = true
+
+  # (Optional, default none) Set the path to a logo for the book. If the logo is
+  # /static/logo.png then the path would be 'logo.png'
+  # BookLogo = 'logo.svg'
+
+  # (Optional, default 'favicon.png') Set the path to a favicon for the site.
+  # If the favicon is in /static/custom.svg, then the path would be 'custom.svg'.
+  # BookFavicon = 'favicon.png'
+
+  # (Optional, default docs) Specify section of content to render as menu
+  # You can also set value to "*" to render all sections to menu
+  # BookSection = 'docs'
+
+  customCSS = ["_custom.scss"]
+  math = true
+
+[module]
+  [[module.imports]]
+    #path = 'github.com/alex-shpak/hugo-book'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # true로 설정해야 KaTeX가 생성하는 HTML가 페이지에 표시됩니다.
+      unsafe = true

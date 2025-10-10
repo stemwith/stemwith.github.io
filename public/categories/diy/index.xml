@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diy on STEM with</title>
+    <link>https://stemwith.github.io/categories/diy/</link>
+    <description>Recent content in Diy on STEM with</description>
+    <generator>Hugo</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sun, 01 Sep 2019 18:27:53 +0900</lastBuildDate>
+    <atom:link href="https://stemwith.github.io/categories/diy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hexo icarus 테마로 Github 블로그 만들기</title>
+      <link>https://stemwith.github.io/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/</link>
+      <pubDate>Sun, 01 Sep 2019 18:27:53 +0900</pubDate>
+      <guid>https://stemwith.github.io/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/</guid>
+      <description>&lt;h3 id=&#34;필수-요소&#34;&gt;필수 요소&lt;a class=&#34;anchor&#34; href=&#34;#%ed%95%84%ec%88%98-%ec%9a%94%ec%86%8c&#34;&gt;#&lt;/a&gt;&lt;/h3&gt;&#xD;&#xA;&lt;p&gt;Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;git&lt;/li&gt;&#xA;&lt;li&gt;github.com에 repository 2개 생성하기&#xA;&lt;ul&gt;&#xA;&lt;li&gt;사용자ID-archives&lt;/li&gt;&#xA;&lt;li&gt;사용자ID.github.io&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;node.js&lt;/li&gt;&#xA;&lt;li&gt;npm&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://hexo.io&#34;&gt;hexo.io&lt;/a&gt; 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영하기는 쉽지 않다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d드라이브에 hexo 블로그를 생성하고 운영하는 방법을 차례대로 따라할 수 있도록 정리한 것이다.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;h4 id=&#34;git-설치&#34;&gt;Git 설치&lt;a class=&#34;anchor&#34; href=&#34;#git-%ec%84%a4%ec%b9%98&#34;&gt;#&lt;/a&gt;&lt;/h4&gt;&#xD;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt; 에서 &lt;strong&gt;64-bit Git for Windows Setup&lt;/strong&gt; 다운로드&lt;/li&gt;&#xA;&lt;li&gt;설치 (설치 경로는 바꾸지 않음)&lt;/li&gt;&#xA;&lt;li&gt;exe 파일은 삭제&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;br&gt;&#xA;&lt;h4 id=&#34;nodejs-설치&#34;&gt;nodejs 설치&lt;a class=&#34;anchor&#34; href=&#34;#nodejs-%ec%84%a4%ec%b9%98&#34;&gt;#&lt;/a&gt;&lt;/h4&gt;&#xD;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://nodejs.org/en/download/&#34;&gt;https://nodejs.org/en/download/&lt;/a&gt; 에서 Windows Installer (.msi) 64-bit 다운로드&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>연수기 DIY</title>
+      <link>https://stemwith.github.io/posts/%EC%97%B0%EC%88%98%EA%B8%B0-diy/</link>
+      <pubDate>Wed, 31 Jan 2018 18:27:53 +0900</pubDate>
+      <guid>https://stemwith.github.io/posts/%EC%97%B0%EC%88%98%EA%B8%B0-diy/</guid>
+      <description>&lt;h3 id=&#34;연수기의-원리&#34;&gt;연수기의 원리&lt;a class=&#34;anchor&#34; href=&#34;#%ec%97%b0%ec%88%98%ea%b8%b0%ec%9d%98-%ec%9b%90%eb%a6%ac&#34;&gt;#&lt;/a&gt;&lt;/h3&gt;&#xD;&#xA;&lt;p&gt;연수기는 Ca2+, Mg2+, Fe2+ 같은 양이온을 포함한 &lt;strong&gt;센물&lt;/strong&gt;을, (이러한 양이온을 제거한 형태의) &lt;strong&gt;단물&lt;/strong&gt;로 만들어주는 장치입니다. 이렇게 만들어 주는 방법은 크게 두가지인데, 하나는 전기적인 방법이고, 다른 하나는 센물에 포함되어 있는 양이온을 다른 형태의 양이온으로 치환시켜주는 방법입니다. 전자는 전기연결이 필요하므로, 보통 집에서 사용하는 연수기는 후자의 방법을 사용하지요.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;이를 위해 기본적으로 &lt;strong&gt;양이온교환수지&lt;/strong&gt;를 사용합니다. 양이온 교환수지는 보통 날치알 같은 작은 알갱이 형태로 되어 있는데, 이 알갱이에 수많은 Na+이 붙어 있다고 생각하면 되요. 이 상태에서 센물(수돗물)이 들어오면, 센물의 Ca2+, Mg2+, Fe2+ 등의 이온이 Na+가 붙어 있던 자리에 대신 들어가게 되고, 대신 Na+가 수도물에 포함되어 나오게 되는데, 이렇게 되면 물 속에 Ca2+, Mg2+, Fe2+ 등의 성분이 사라지게 되어, 연수(단물)가 나오게 되는 것입니다. 말로 표현하자니 엄청 복잡한데요. 그러나, 고등학교 화학시간에도 이러한 원리를 이미 배웠다는 사실&amp;hellip;교과서에 나와있는 그림으로 표현하면 아래와 같아요.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>역삼투압 정수기 DIY</title>
+      <link>https://stemwith.github.io/posts/%EC%97%AD%EC%82%BC%ED%88%AC%EC%95%95-%EC%A0%95%EC%88%98%EA%B8%B0-diy/</link>
+      <pubDate>Sat, 20 Oct 2012 22:20:35 +0900</pubDate>
+      <guid>https://stemwith.github.io/posts/%EC%97%AD%EC%82%BC%ED%88%AC%EC%95%95-%EC%A0%95%EC%88%98%EA%B8%B0-diy/</guid>
+      <description>&lt;p&gt;몸에 좋은 미네랄까지 걸러낸다고 하여 역삼투압정수기를 싫어하시는 분도 많지요? 그러나 여기는 중국입니다. 미네랄이고 뭐고, 그냥 거를 수 있는 것은 다 걸러내는 것이 좋습니다.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;역삼투압정수기의 경우 2)번이 정석입니다. 그런데, 폐수가 너무 많이 버려지기때문에, 1)번과 같이 작업하는 분도 계시죠. 정수 성능은 조금 떨어지겠지만 폐수가 전혀 없기도 합니다. 그렇지만 역삼투압정수기의 원리에 맞추어 생각해보면, 1)번 구성은 가장 비싼 RO필터 성능을 급격히 저하시키는 원인이 될 수 있습니다. 1)번과 같이 설치하는 것보다는 2)번 구성대로 하고, 대신 폐수라인을 적절히 빼내어 설거지 용도로 사용하는 것이 좋습니다.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

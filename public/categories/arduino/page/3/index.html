@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/categories/arduino/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Arduino">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="website">
+
+
+<title>Arduino | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/categories/arduino/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+<link rel="alternate" type="application/rss+xml" href="https://stemwith.github.io/categories/arduino/index.xml" title="STEM with" />
+
+  
+</head>
+<body dir="ltr" class="book-kind-term book-type-categories">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino</h3>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/">Arduino 시작하기, RGB LED, PWM</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 1, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h2 id="arduino">Arduino<a class="anchor" href="#arduino">#</a></h2>
+<p><img src="/image/arduino-01uno.png" alt="" /></p>
+<br>
+<h3 id="pinout">Pinout<a class="anchor" href="#pinout">#</a></h3>
+<h4 id="digital--analog">Digital &amp; Analog<a class="anchor" href="#digital--analog">#</a></h4>
+<p><img src="/image/arduino-02unopin.png" alt="" /></p>
+<ul>
+<li>Digital
+<ul>
+<li>0~13번 핀</li>
+<li>PWM:3,5,6,9,10,11번 핀 (<strong>8bit</strong>로 <strong>0~255</strong>의 범위를 사용)</li>
+</ul>
+</li>
+<li>Analog Input:  ADC <strong>10bit</strong>로 <strong>0~1023</strong>의 범위를 사용</li>
+<li>스케치 업로드 중에는 0번핀(RX), 1번핀(TX)을 사용할 수 없다.</li>
+</ul>
+<br>
+<h4 id="전원부-v_in">전원부 V_in<a class="anchor" href="#%ec%a0%84%ec%9b%90%eb%b6%80-v_in">#</a></h4>
+<ul>
+<li>
+<p>input으로 사용</p>
+<ul>
+<li>기본적으로 파워잭을 사용하는 것과 같음</li>
+<li>아두이노에 전원을 공급 (6.6V~12V 범위에서 가능)</li>
+<li>외부전원이 Vin을 통해 공급되면, USB포트에서 나오는 전원공급은 자동으로 차단됨</li>
+<li>최소 전압은 6.6V이나, 다이오드에서의 전압 강하로 인해, 최소 7.2V가 공급되어야 USB포트에서의 전원이 차단되고, 외부전원으로 아두이노가 전원을 공급받기 시작함</li>
+</ul>
+</li>
+<li>
+<p>output으로 사용</p></div>
+  </article>
+  
+
+  
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/categories/arduino/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/arduino/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/arduino/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/arduino/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  <nav>
+  <ul>
+  
+    
+    <li class="book-section-flat">
+      <a>Categories</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/categories/esp32/">Esp32</a>
+          <span>14</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/science/">Science</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/drone/">Drone</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/office/">Office</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>21</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/diy/">Diy</a>
+          <span>3</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+    
+    <li class="book-section-flat">
+      <a>Tags</a>
+      <ul>
+      
+        <li class="flex align-center">
+          <a href="/tags/rc/">Rc</a>
+          <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/3d/">3D</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/tags/iot/">Iot</a>
+          <span>7</span>
+        </li>
+      
+      </ul>
+    </li>
+    
+  
+  </ul>
+</nav>
+
+
+  </div>
+</aside>
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

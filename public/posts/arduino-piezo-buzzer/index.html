@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Buzzer의 종류#
+
+  
+      
+          Active Buzzer (능동형 부저)
+          Passive Buzzer (수동형 부저)
+      
+  
+  
+      
+          有源蜂鸣器 (KY-012)
+          无源蜂鸣器 (KY-006)
+      
+      
+          회로가 내장되어 있어, 전원만 인가하면 소리가 나므로 프로그램 제어가 편리함
+          내부에 진동원이 없어, 스케치에 주파수를 지정하여야만 소리를 냄
+      
+      
+          원하는 주파수의 소리를 낼 수 없음
+          원하는 주파수의 소리를 만들어낼 수 있음
+      
+      
+          패시브 부저에 비해 비쌈 (모듈 1개 0.9위안)
+          액티브 부저에 비해 저렴 (모듈 1개 0.8위안)
+      
+      
+          
+
+
+          
+
+
+      
+      
+          
+
+
+          
+      
+      
+          
+
+
+          
+      
+      
+          
+
+
+          
+
+
+      
+  
+
+
+모듈로 판매하는 제품의 경우 겉모양으로는 구별이 어렵다. Active Buzzer의 경우 초기 판매시 스티커를 붙여서 판매하지만, 스티커가 떨어져 나간 상태라면 Passive Buzzer와 구별하기 어렵다. 또한 반드시 스티커가 붙은 형태로 판매하는 것도 아니다.
+Active Buzzer의 경우 스티커로 사용전압을 표시하기도 한다. 빨간색은 3V, 파란색은 5V, 보라색은 12V용이다.
+Active Buzzer 모듈의 경우 低电平触发(혹은 Low Level) / 高电平触发(혹은 High Level) 2가지 형태로 표기가 되어 있다. 低电平触发은 DigitalWrite에서 HIGH일 때 소리가 나며, 高电平触发은 LOW일 때 소리가 난다.
+모듈 형태가 아닌 단일 부품의 형태라면 연결 핀이 나와 있는 아랫면을 보면 구별할 수 있다. 일반적으로 Active Buzzer는 검은색 실리콘으로 밀폐되어 있으며, Passive Buzzer는 핀의 접합부위가 그대로 노출되어 있다.
+Active Buzzer와 Passive Buzzer를 구별하는 가장 좋은 방법은 사용전압에 해당하는 전압(낮은 전압의 건전지도 가능)의 건전지를 연결시켜보는 것이다. 소리가 나면 Active, 나지 않으면 Passive라고 생각하면 된다.
+
+
+
+Active Buzzer#
+schematic#
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/arduino-piezo-buzzer/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Arduino, 피에조 부저">
+  <meta property="og:description" content="Buzzer의 종류#Active Buzzer (능동형 부저) Passive Buzzer (수동형 부저) 有源蜂鸣器 (KY-012) 无源蜂鸣器 (KY-006) 회로가 내장되어 있어, 전원만 인가하면 소리가 나므로 프로그램 제어가 편리함 내부에 진동원이 없어, 스케치에 주파수를 지정하여야만 소리를 냄 원하는 주파수의 소리를 낼 수 없음 원하는 주파수의 소리를 만들어낼 수 있음 패시브 부저에 비해 비쌈 (모듈 1개 0.9위안) 액티브 부저에 비해 저렴 (모듈 1개 0.8위안) 모듈로 판매하는 제품의 경우 겉모양으로는 구별이 어렵다. Active Buzzer의 경우 초기 판매시 스티커를 붙여서 판매하지만, 스티커가 떨어져 나간 상태라면 Passive Buzzer와 구별하기 어렵다. 또한 반드시 스티커가 붙은 형태로 판매하는 것도 아니다. Active Buzzer의 경우 스티커로 사용전압을 표시하기도 한다. 빨간색은 3V, 파란색은 5V, 보라색은 12V용이다. Active Buzzer 모듈의 경우 低电平触发(혹은 Low Level) / 高电平触发(혹은 High Level) 2가지 형태로 표기가 되어 있다. 低电平触发은 DigitalWrite에서 HIGH일 때 소리가 나며, 高电平触发은 LOW일 때 소리가 난다. 모듈 형태가 아닌 단일 부품의 형태라면 연결 핀이 나와 있는 아랫면을 보면 구별할 수 있다. 일반적으로 Active Buzzer는 검은색 실리콘으로 밀폐되어 있으며, Passive Buzzer는 핀의 접합부위가 그대로 노출되어 있다. Active Buzzer와 Passive Buzzer를 구별하는 가장 좋은 방법은 사용전압에 해당하는 전압(낮은 전압의 건전지도 가능)의 건전지를 연결시켜보는 것이다. 소리가 나면 Active, 나지 않으면 Passive라고 생각하면 된다. Active Buzzer#schematic#">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-09-07T17:23:00+09:00">
+    <meta property="article:modified_time" content="2018-09-07T17:23:00+09:00">
+
+
+<title>Arduino, 피에조 부저 | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/arduino-piezo-buzzer/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino, 피에조 부저</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#buzzer의-종류">Buzzer의 종류</a></li>
+        <li><a href="#active-buzzer">Active Buzzer</a></li>
+        <li><a href="#passive-buzzer-사용">Passive Buzzer 사용</a></li>
+        <li><a href="#미니-피아노-만들기">미니 피아노 만들기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Arduino, 피에조 부저
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 7, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><h3 id="buzzer의-종류">Buzzer의 종류<a class="anchor" href="#buzzer%ec%9d%98-%ec%a2%85%eb%a5%98">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">Active Buzzer (능동형 부저)</th>
+          <th style="text-align: center">Passive Buzzer (수동형 부저)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">有源蜂鸣器 (KY-012)</td>
+          <td style="text-align: center">无源蜂鸣器 (KY-006)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">회로가 내장되어 있어, 전원만 인가하면 소리가 나므로 프로그램 제어가 편리함</td>
+          <td style="text-align: center">내부에 진동원이 없어, 스케치에 주파수를 지정하여야만 소리를 냄</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">원하는 주파수의 소리를 낼 수 없음</td>
+          <td style="text-align: center">원하는 주파수의 소리를 만들어낼 수 있음</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">패시브 부저에 비해 비쌈 (모듈 1개 0.9위안)</td>
+          <td style="text-align: center">액티브 부저에 비해 저렴 (모듈 1개 0.8위안)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-active.png" width="50%">
+</figure>
+</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-passive.png" width="50%">
+</figure>
+</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-active3.png" width="50%">
+</figure>
+</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-active1.png" width="50%">
+</figure>
+</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-active2.png" width="50%">
+</figure>
+</td>
+          <td style="text-align: center"><figure class="center"><img src="/image/Buzzer-passive2.png" width="50%">
+</figure>
+</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>모듈로 판매하는 제품의 경우 겉모양으로는 구별이 어렵다. Active Buzzer의 경우 초기 판매시 스티커를 붙여서 판매하지만, 스티커가 떨어져 나간 상태라면 Passive Buzzer와 구별하기 어렵다. 또한 반드시 스티커가 붙은 형태로 판매하는 것도 아니다.</li>
+<li>Active Buzzer의 경우 스티커로 사용전압을 표시하기도 한다. 빨간색은 3V, 파란색은 5V, 보라색은 12V용이다.</li>
+<li>Active Buzzer 모듈의 경우 低电平触发(혹은 Low Level) / 高电平触发(혹은 High Level) 2가지 형태로 표기가 되어 있다. <strong>低电平触发은 DigitalWrite에서 HIGH</strong>일 때 소리가 나며, <strong>高电平触发은 LOW</strong>일 때 소리가 난다.</li>
+<li>모듈 형태가 아닌 단일 부품의 형태라면 연결 핀이 나와 있는 아랫면을 보면 구별할 수 있다. 일반적으로 Active Buzzer는 검은색 실리콘으로 밀폐되어 있으며, Passive Buzzer는 핀의 접합부위가 그대로 노출되어 있다.</li>
+<li>Active Buzzer와 Passive Buzzer를 구별하는 가장 좋은 방법은 사용전압에 해당하는 전압(낮은 전압의 건전지도 가능)의 건전지를 연결시켜보는 것이다. 소리가 나면 Active, 나지 않으면 Passive라고 생각하면 된다.</li>
+</ul>
+<br>
+<br>
+<h3 id="active-buzzer">Active Buzzer<a class="anchor" href="#active-buzzer">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/Buzzer01.png" alt="" /></p>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span> (<span style="color:#ae81ff">11</span>, OUTPUT);        <span style="color:#75715e">// 11번 핀을 출력으로 설정
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span> (<span style="color:#ae81ff">11</span>, HIGH);     <span style="color:#75715e">// 11번 핀 부저 ON
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span> (<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span> (<span style="color:#ae81ff">11</span>, LOW);      <span style="color:#75715e">// 11번 핀 부저 OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span> (<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="과제">과제<a class="anchor" href="#%ea%b3%bc%ec%a0%9c">#</a></h4>
+<p>tact 스위치를 누르면 액티브 부저 소리 울리기</p>
+<br>
+<br>
+<h3 id="passive-buzzer-사용">Passive Buzzer 사용<a class="anchor" href="#passive-buzzer-%ec%82%ac%ec%9a%a9">#</a></h3>
+<h4 id="주파수">주파수<a class="anchor" href="#%ec%a3%bc%ed%8c%8c%ec%88%98">#</a></h4>
+<ul>
+<li>0옥타브(C0<del>B0): 16</del>31(Hz) (초저주파)</li>
+<li>1옥타브(C1<del>B1): 33</del>62(Hz)</li>
+<li>2옥타브(C2<del>B2): 65</del>123(Hz)
+<ul>
+<li>중저음</li>
+</ul>
+</li>
+<li><strong>3옥타브(C3<del>B3): 131</del>247(Hz)</strong>
+<ul>
+<li>기본 음계에 해당하는 옥타브</li>
+</ul>
+</li>
+<li>4옥타브(C4<del>B4): 262</del>494(Hz)
+<ul>
+<li>일반적으로 고음이라고 불리는 영역</li>
+<li>일반적인 남자의 경우 G4~B4음이 최고음</li>
+<li>음악의 기준음인 **가온 라(A4)(440Hz)**가 속한 영역</li>
+</ul>
+</li>
+<li>5옥타브(C5<del>B5): 523</del>988(Hz)
+<ul>
+<li>일반적인 여성의 경우 D5의 음까지는 낼 수 있고, 고음을 잘 내는 경우 E5까지는 무난함</li>
+</ul>
+</li>
+<li>6옥타브(C6<del>B6): 1047</del>1976(Hz)</li>
+<li>7옥타브(C7<del>B7): 2093</del>3951(Hz)</li>
+<li>8옥타브(C8<del>B8): 4186</del>7902(Hz)</li>
+<li>9옥타브(C9<del>B9): 8372</del>15804(Hz)</li>
+<li>10옥타브(C10<del>B10): 16744</del>31608(Hz) (초음파)</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>한 옥타브 내려가면 주파수가 1/2배, 올라가면 2배가 되고, 한 음계 올라가면 2^(1/12) 배가 된다.</p>
+</li>
+<li>
+<p>0옥타브 중간쯤(20Hz)부터나, 10옥타브 중간쯤(20kHz)부터는 소리가 들리지 않는다. 사람의 가청 영역을 벗어나기 때문. 이를 각각 초저주파, 초음파라고 한다. 어릴 수록 고음이 잘 들리기 때문에, &ldquo;선생님은 못 듣는 벨소리&quot;같은 것을 만들수 있다.</p>
+</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C(도)</td>
+          <td>16</td>
+          <td>33</td>
+          <td>65</td>
+          <td>131</td>
+          <td>262</td>
+          <td>523</td>
+          <td>1046.5</td>
+          <td>2093</td>
+          <td>4186</td>
+      </tr>
+      <tr>
+          <td>C♯</td>
+          <td>17</td>
+          <td>35</td>
+          <td>69</td>
+          <td>139</td>
+          <td>277</td>
+          <td>554</td>
+          <td>1109</td>
+          <td>2217.5</td>
+          <td>4435</td>
+      </tr>
+      <tr>
+          <td>D(레)</td>
+          <td>18</td>
+          <td>37</td>
+          <td>73</td>
+          <td>147</td>
+          <td>294</td>
+          <td>587</td>
+          <td>1175</td>
+          <td>2349</td>
+          <td>4699</td>
+      </tr>
+      <tr>
+          <td>D♯</td>
+          <td>20</td>
+          <td>39</td>
+          <td>78</td>
+          <td>156</td>
+          <td>311</td>
+          <td>622</td>
+          <td>1244.5</td>
+          <td>2489</td>
+          <td>4978</td>
+      </tr>
+      <tr>
+          <td>E(미)</td>
+          <td>21</td>
+          <td>41</td>
+          <td>82</td>
+          <td>165</td>
+          <td>330</td>
+          <td>659</td>
+          <td>1318.5</td>
+          <td>2637</td>
+          <td>5274</td>
+      </tr>
+      <tr>
+          <td>F(파)</td>
+          <td>22</td>
+          <td>44</td>
+          <td>87</td>
+          <td>175</td>
+          <td>349</td>
+          <td>698.5</td>
+          <td>1397</td>
+          <td>2794</td>
+          <td>5588</td>
+      </tr>
+      <tr>
+          <td>F♯</td>
+          <td>23</td>
+          <td>46</td>
+          <td>92.5</td>
+          <td>185</td>
+          <td>370</td>
+          <td>740</td>
+          <td>1480</td>
+          <td>2960</td>
+          <td>5920</td>
+      </tr>
+      <tr>
+          <td>G(솔)</td>
+          <td>25</td>
+          <td>49</td>
+          <td>98</td>
+          <td>196</td>
+          <td>392</td>
+          <td>784</td>
+          <td>1568</td>
+          <td>3136</td>
+          <td>6272</td>
+      </tr>
+      <tr>
+          <td>G♯</td>
+          <td>26</td>
+          <td>52</td>
+          <td>104</td>
+          <td>208</td>
+          <td>415</td>
+          <td>831</td>
+          <td>1661</td>
+          <td>3322.5</td>
+          <td>6645</td>
+      </tr>
+      <tr>
+          <td>A(라)</td>
+          <td>28</td>
+          <td>55</td>
+          <td>110</td>
+          <td>220</td>
+          <td><strong>440</strong></td>
+          <td>880</td>
+          <td>1760</td>
+          <td>3520</td>
+          <td>7040</td>
+      </tr>
+      <tr>
+          <td>A♯</td>
+          <td>29</td>
+          <td>58</td>
+          <td>116.5</td>
+          <td>233</td>
+          <td>466</td>
+          <td>932</td>
+          <td>1865</td>
+          <td>3729</td>
+          <td>7459</td>
+      </tr>
+      <tr>
+          <td>B(시)</td>
+          <td>31</td>
+          <td>62</td>
+          <td>123.5</td>
+          <td>247</td>
+          <td>494</td>
+          <td>988</td>
+          <td>1975.5</td>
+          <td>3951</td>
+          <td>7902</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="pin-map">Pin Map<a class="anchor" href="#pin-map">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>Arduino</th>
+          <th>Active Buzzer</th>
+          <th>Passive Buzzer</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>11</td>
+          <td>S</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>5V</td>
+          <td>표기없음</td>
+          <td>표기없음</td>
+      </tr>
+      <tr>
+          <td>GND</td>
+          <td>(-)</td>
+          <td>(-)</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="sketch--passive-buzzer">sketch : Passive Buzzer<a class="anchor" href="#sketch--passive-buzzer">#</a></h4>
+<h5 id="tone-사용방법">tone() 사용방법<a class="anchor" href="#tone-%ec%82%ac%ec%9a%a9%eb%b0%a9%eb%b2%95">#</a></h5>
+<ul>
+<li>
+<p>tone 함수는 3개의 매개변수(핀, 주파수, 음길이)를 사용하며, 마지막 매개변수(음길이)는 생략 가능하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">262</span>, <span style="color:#ae81ff">500</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주
+</span></span></span></code></pre></div></li>
+<li>
+<p>마지막 매개변수를 사용하지 않고 tone을 연속으로 사용하는 경우 주의가 필요하다. 예를들어,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">262</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">294</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주
+</span></span></span></code></pre></div><p>이렇게 tone을 연속으로 사용하면 C3음을 소리낸 이후에, D4음을 내는 것이 아니라 C3음이 계속되므로, noTone함수를 사용하여 소리 출력을 멈추어야 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">262</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">noTone</span>(<span style="color:#ae81ff">11</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">294</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주
+</span></span></span></code></pre></div></li>
+<li>
+<p>마지막 매개변수를 사용할 때, 중간에 음을 멈추는 구간을 만들려면, delay를 사용한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">262</span>, <span style="color:#ae81ff">500</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 C3음을 0.5초 연주
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">600</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tone</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">294</span>, <span style="color:#ae81ff">500</span>);   <span style="color:#75715e">// 11번 핀에 연결된 부저에 D3음을 0.5초 연주
+</span></span></span></code></pre></div><p>C3음을 0.5초 소리낸 후 delay(600) 에 의해 0.6초를 쉬는 것이 아니라, delay(600) 의 시간 중, 0.5초는 C3음을 소리내는 데 사용하고, 나머지 0.1초를 쉰다.</p>
+</li>
+</ul>
+<br>
+<h4 id="예시">예시<a class="anchor" href="#%ec%98%88%ec%8b%9c">#</a></h4>
+<h5 id="도레미파솔라시도">도레미파솔라시도<a class="anchor" href="#%eb%8f%84%eb%a0%88%eb%af%b8%ed%8c%8c%ec%86%94%eb%9d%bc%ec%8b%9c%eb%8f%84">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> BUZZER_PIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> C_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;   <span style="color:#75715e">// 도
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> D_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">294</span>;   <span style="color:#75715e">// 레
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> E_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">330</span>;   <span style="color:#75715e">// 미
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> F_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">349</span>;   <span style="color:#75715e">// 파
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> G_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">392</span>;   <span style="color:#75715e">// 솔
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> A_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">440</span>;   <span style="color:#75715e">// 라
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> B_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">494</span>;   <span style="color:#75715e">// 시
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, C_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, D_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, E_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, F_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, G_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, A_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone</span>(BUZZER_PIN, B_4);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">noTone</span>(BUZZER_PIN);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h5 id="노래-연주-super-mario-theme">노래 연주: Super Mario Theme<a class="anchor" href="#%eb%85%b8%eb%9e%98-%ec%97%b0%ec%a3%bc-super-mario-theme">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/* Arduino Mario Bros Tunes With Piezo Buzzer and PWM
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             by : ARDUTECH
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  Connect the positive side of the Buzzer to pin 11,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  then the negative side to a 1k ohm resistor. Connect
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  the other side of the 1 k ohm resistor to
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  ground(GND) pin on the Arduino.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B0  31
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C1  33
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS1 35
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D1  37
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS1 39
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E1  41
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F1  44
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS1 46
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G1  49
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS1 52
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A1  55
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS1 58
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B1  62
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C2  65
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS2 69
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D2  73
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS2 78
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E2  82
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F2  87
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS2 93
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G2  98
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS2 104
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A2  110
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS2 117
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B2  123
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C3  131
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS3 139
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D3  147
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS3 156
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E3  165
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F3  175
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS3 185
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G3  196
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS3 208
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A3  220
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS3 233
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B3  247
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C4  262
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS4 277
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D4  294
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS4 311
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E4  330
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F4  349
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS4 370
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G4  392
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS4 415
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A4  440
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS4 466
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B4  494
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C5  523
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS5 554
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D5  587
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS5 622
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E5  659
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F5  698
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS5 740
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G5  784
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS5 831
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A5  880
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS5 932
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B5  988
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C6  1047
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS6 1109
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D6  1175
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS6 1245
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E6  1319
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F6  1397
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS6 1480
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G6  1568
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS6 1661
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A6  1760
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS6 1865
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B6  1976
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C7  2093
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS7 2217
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D7  2349
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS7 2489
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_E7  2637
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_F7  2794
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_FS7 2960
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_G7  3136
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_GS7 3322
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_A7  3520
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_AS7 3729
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_B7  3951
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_C8  4186
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_CS8 4435
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_D8  4699
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define NOTE_DS8 4978
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define melodyPin 11
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Mario main theme melody
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> melody[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  NOTE_E7, NOTE_E7, <span style="color:#ae81ff">0</span>, NOTE_E7,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_C7, NOTE_E7, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  NOTE_G7, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  NOTE_G6, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  NOTE_C7, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, NOTE_G6,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, NOTE_E6, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_A6, <span style="color:#ae81ff">0</span>, NOTE_B6,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_AS6, NOTE_A6, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  NOTE_G6, NOTE_E7, NOTE_G7,
+</span></span><span style="display:flex;"><span>  NOTE_A7, <span style="color:#ae81ff">0</span>, NOTE_F7, NOTE_G7,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_E7, <span style="color:#ae81ff">0</span>, NOTE_C7,
+</span></span><span style="display:flex;"><span>  NOTE_D7, NOTE_B6, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  NOTE_C7, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, NOTE_G6,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, NOTE_E6, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_A6, <span style="color:#ae81ff">0</span>, NOTE_B6,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_AS6, NOTE_A6, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  NOTE_G6, NOTE_E7, NOTE_G7,
+</span></span><span style="display:flex;"><span>  NOTE_A7, <span style="color:#ae81ff">0</span>, NOTE_F7, NOTE_G7,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_E7, <span style="color:#ae81ff">0</span>, NOTE_C7,
+</span></span><span style="display:flex;"><span>  NOTE_D7, NOTE_B6, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Mario main theme tempo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> tempo[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">9</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Underworld melody
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> underworld_melody[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
+</span></span><span style="display:flex;"><span>  NOTE_AS3, NOTE_AS4, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
+</span></span><span style="display:flex;"><span>  NOTE_AS3, NOTE_AS4, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  NOTE_F3, NOTE_F4, NOTE_D3, NOTE_D4,
+</span></span><span style="display:flex;"><span>  NOTE_DS3, NOTE_DS4, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  NOTE_F3, NOTE_F4, NOTE_D3, NOTE_D4,
+</span></span><span style="display:flex;"><span>  NOTE_DS3, NOTE_DS4, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, NOTE_DS4, NOTE_CS4, NOTE_D4,
+</span></span><span style="display:flex;"><span>  NOTE_CS4, NOTE_DS4,
+</span></span><span style="display:flex;"><span>  NOTE_DS4, NOTE_GS3,
+</span></span><span style="display:flex;"><span>  NOTE_G3, NOTE_CS4,
+</span></span><span style="display:flex;"><span>  NOTE_C4, NOTE_FS4, NOTE_F4, NOTE_E3, NOTE_AS4, NOTE_A4,
+</span></span><span style="display:flex;"><span>  NOTE_GS4, NOTE_DS4, NOTE_B3,
+</span></span><span style="display:flex;"><span>  NOTE_AS3, NOTE_A3, NOTE_GS3,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Underwolrd tempo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> underworld_tempo[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(melodyPin, OUTPUT);  <span style="color:#75715e">// buzzer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">pinMode</span>(<span style="color:#ae81ff">13</span>, OUTPUT);         <span style="color:#75715e">// led indicator when singing a note
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//sing the tunes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">sing</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sing</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sing</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> song <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sing</span>(<span style="color:#66d9ef">int</span> s) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// iterate over the notes of the melody:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  song <span style="color:#f92672">=</span> s;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (song <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34; &#39;Underworld Theme&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> size <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(underworld_melody) <span style="color:#f92672">/</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> thisNote <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; thisNote <span style="color:#f92672">&lt;</span> size; thisNote<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// to calculate the note duration, take one second
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// divided by the note type.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">//e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int</span> noteDuration <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> <span style="color:#f92672">/</span> underworld_tempo[thisNote];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">buzz</span>(melodyPin, underworld_melody[thisNote], noteDuration);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// to distinguish the notes, set a minimum time between them.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// the note&#39;s duration + 30% seems to work well:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int</span> pauseBetweenNotes <span style="color:#f92672">=</span> noteDuration <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.30</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">delay</span>(pauseBetweenNotes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// stop the tone playing:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">buzz</span>(melodyPin, <span style="color:#ae81ff">0</span>, noteDuration);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34; &#39;Mario Theme&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> size <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(melody) <span style="color:#f92672">/</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> thisNote <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; thisNote <span style="color:#f92672">&lt;</span> size; thisNote<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// to calculate the note duration, take one second
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// divided by the note type.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">//e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int</span> noteDuration <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> <span style="color:#f92672">/</span> tempo[thisNote];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">buzz</span>(melodyPin, melody[thisNote], noteDuration);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// to distinguish the notes, set a minimum time between them.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// the note&#39;s duration + 30% seems to work well:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">int</span> pauseBetweenNotes <span style="color:#f92672">=</span> noteDuration <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.30</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">delay</span>(pauseBetweenNotes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// stop the tone playing:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">buzz</span>(melodyPin, <span style="color:#ae81ff">0</span>, noteDuration);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">buzz</span>(<span style="color:#66d9ef">int</span> targetPin, <span style="color:#66d9ef">long</span> frequency, <span style="color:#66d9ef">long</span> length) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(<span style="color:#ae81ff">13</span>, HIGH);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">long</span> delayValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> <span style="color:#f92672">/</span> frequency <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// calculate the delay value between transitions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//// 1 second&#39;s worth of microseconds, divided by the frequency, then split in half since
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//// there are two phases to each cycle
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">long</span> numCycles <span style="color:#f92672">=</span> frequency <span style="color:#f92672">*</span> length <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>; <span style="color:#75715e">// calculate the number of cycles for proper timing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//// multiply frequency, which is really cycles per second, by the number of seconds to
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//// get the total number of cycles to produce
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">long</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> numCycles; i<span style="color:#f92672">++</span>) { <span style="color:#75715e">// for the calculated length of time...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">digitalWrite</span>(targetPin, HIGH); <span style="color:#75715e">// write the buzzer pin high to push out the diaphram
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delayMicroseconds</span>(delayValue); <span style="color:#75715e">// wait for the calculated delay value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">digitalWrite</span>(targetPin, LOW); <span style="color:#75715e">// write the buzzer pin low to pull back the diaphram
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delayMicroseconds</span>(delayValue); <span style="color:#75715e">// wait again or the calculated delay value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(<span style="color:#ae81ff">13</span>, LOW);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h5 id="노래-연주-학교종이-땡땡땡">노래 연주: 학교종이 땡땡땡<a class="anchor" href="#%eb%85%b8%eb%9e%98-%ec%97%b0%ec%a3%bc-%ed%95%99%ea%b5%90%ec%a2%85%ec%9d%b4-%eb%95%a1%eb%95%a1%eb%95%a1">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> BUZZER_PIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> C_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;   <span style="color:#75715e">// 도
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> D_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">294</span>;   <span style="color:#75715e">// 레
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> E_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">330</span>;   <span style="color:#75715e">// 미
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> F_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">349</span>;   <span style="color:#75715e">// 파
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> G_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">392</span>;   <span style="color:#75715e">// 솔
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> A_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">440</span>;   <span style="color:#75715e">// 라
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> B_4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">494</span>;   <span style="color:#75715e">// 시
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>  { 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> tone;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> delay;
+</span></span><span style="display:flex;"><span>} TAD;<span style="color:#75715e">//Tone And Delay
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>TAD music[] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    {G_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {A_4, <span style="color:#ae81ff">100</span>}, {A_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">200</span>},
+</span></span><span style="display:flex;"><span>    {G_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">100</span>}, {D_4, <span style="color:#ae81ff">200</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>},
+</span></span><span style="display:flex;"><span>    {A_4, <span style="color:#ae81ff">100</span>}, {A_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">200</span>}, {G_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">100</span>},
+</span></span><span style="display:flex;"><span>    {D_4, <span style="color:#ae81ff">100</span>}, {E_4, <span style="color:#ae81ff">100</span>}, {C_4, <span style="color:#ae81ff">200</span>}
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> musicLen;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  musicLen <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(music) <span style="color:#f92672">/</span> <span style="color:#66d9ef">sizeof</span>(TAD);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> musicLen; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tone</span>(BUZZER_PIN, music[i].tone);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(music[i].delay <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">noTone</span>(BUZZER_PIN);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">30</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">noTone</span>(BUZZER_PIN);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="과제-1">과제<a class="anchor" href="#%ea%b3%bc%ec%a0%9c-1">#</a></h4>
+<ul>
+<li>크리스마스 캐롤 만들어보기</li>
+<li>크리스마스 캐롤 연주시에, 음이 바뀔때마다 신호등 LED점멸 바꿔보기</li>
+</ul>
+<br>
+<br>
+<h3 id="미니-피아노-만들기">미니 피아노 만들기<a class="anchor" href="#%eb%af%b8%eb%8b%88-%ed%94%bc%ec%95%84%eb%85%b8-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a></h3>
+<p>패시브 부저와 스위치를 사용하여 미니 피아노를 만들어보자.</p>
+<br>
+<h4 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h4>
+<p><img src="/image/switch11.png" alt="" /></p>
+<br>
+<h4 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> BUZZER_PIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//                       도   레   미    파   솔   라   시
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//                       C4   D4   E4   F4   G4   A4   B4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> octave_4[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">261</span>, <span style="color:#ae81ff">294</span>, <span style="color:#ae81ff">330</span>, <span style="color:#ae81ff">349</span>, <span style="color:#ae81ff">392</span>, <span style="color:#ae81ff">440</span>, <span style="color:#ae81ff">494</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// tact switch pin 2~8 for Keyboard
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">8</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pinMode</span>(i, INPUT_PULLUP);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">8</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">digitalRead</span>(i) <span style="color:#f92672">==</span> HIGH) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">tone</span>(BUZZER_PIN, octave_4[i]);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">noTone</span>(BUZZER_PIN);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="과제-2">과제<a class="anchor" href="#%ea%b3%bc%ec%a0%9c-2">#</a></h4>
+<p>2<del>3명의 학생이 모여 2</del>3 옥타브를 사용하는 피아노 연주곡 만들어보기</p>
+<br>
+<br>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="Arduino, 서보모터" />
+      <span>Arduino, 서보모터</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="flex align-center">
+      <span>Arduino, 키패드 사용하기</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" title="Arduino, 키패드 사용하기" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#buzzer의-종류">Buzzer의 종류</a></li>
+        <li><a href="#active-buzzer">Active Buzzer</a></li>
+        <li><a href="#passive-buzzer-사용">Passive Buzzer 사용</a></li>
+        <li><a href="#미니-피아노-만들기">미니 피아노 만들기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

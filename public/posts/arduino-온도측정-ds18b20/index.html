@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DS18b20 온도센서#
+DS18b20 온도 센서를 이용하여 온도를 측정한다.
+
+one-wire 버스 통신
+공급전압: 3.0V ~ 5.5V
+작동온도: -55ºC ~ &#43;125ºC
+오차: &#43;/-0.5 ºC (-10ºC ~ 85ºC 범위에서)
+
+
+Pinout#
+
+
+schematic#
+DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5V에 연결하는 Normal Mode이고 다른 하나는 VCC를 GND에 연결하는 Parasite Mode이다. 두가지 방법 모두 지원되지만 (경험상) Normal를 추천하며 (원인은 잘 모르겠지만) Parasite Mode에서는 온도센서가 작동이 되지 않는 경우도 가끔 있었다. 회로 구성을 위해 4.7㏀ 저항 1개가 필요하며 Normal Mode 구성을 위해 다음 그림과 같이 연결한다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/arduino-%EC%98%A8%EB%8F%84%EC%B8%A1%EC%A0%95-ds18b20/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="Arduino, 온도측정(DS18b20)">
+  <meta property="og:description" content="DS18b20 온도센서#DS18b20 온도 센서를 이용하여 온도를 측정한다.
+one-wire 버스 통신 공급전압: 3.0V ~ 5.5V 작동온도: -55ºC ~ &#43;125ºC 오차: &#43;/-0.5 ºC (-10ºC ~ 85ºC 범위에서) Pinout#schematic#DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5V에 연결하는 Normal Mode이고 다른 하나는 VCC를 GND에 연결하는 Parasite Mode이다. 두가지 방법 모두 지원되지만 (경험상) Normal를 추천하며 (원인은 잘 모르겠지만) Parasite Mode에서는 온도센서가 작동이 되지 않는 경우도 가끔 있었다. 회로 구성을 위해 4.7㏀ 저항 1개가 필요하며 Normal Mode 구성을 위해 다음 그림과 같이 연결한다.">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-09-02T00:41:00+09:00">
+    <meta property="article:modified_time" content="2018-09-02T00:41:00+09:00">
+
+
+<title>Arduino, 온도측정(DS18b20) | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/arduino-%EC%98%A8%EB%8F%84%EC%B8%A1%EC%A0%95-ds18b20/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Arduino, 온도측정(DS18b20)</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ds18b20-온도센서">DS18b20 온도센서</a></li>
+        <li><a href="#tm1637에-온도-표시하기">TM1637에 온도 표시하기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    Arduino, 온도측정(DS18b20)
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 2, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><h3 id="ds18b20-온도센서">DS18b20 온도센서<a class="anchor" href="#ds18b20-%ec%98%a8%eb%8f%84%ec%84%bc%ec%84%9c">#</a></h3>
+<p>DS18b20 온도 센서를 이용하여 온도를 측정한다.</p>
+<ul>
+<li>one-wire 버스 통신</li>
+<li>공급전압: 3.0V ~ 5.5V</li>
+<li>작동온도: -55ºC ~ +125ºC</li>
+<li>오차: +/-0.5 ºC (-10ºC ~ 85ºC 범위에서)</li>
+</ul>
+<br>
+<h4 id="pinout">Pinout<a class="anchor" href="#pinout">#</a></h4>
+<p><img src="/image/DS18b20.png" alt="" /></p>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p>DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5V에 연결하는 Normal Mode이고 다른 하나는 VCC를 GND에 연결하는 Parasite Mode이다. 두가지 방법 모두 지원되지만 (경험상) Normal를 추천하며 (원인은 잘 모르겠지만) Parasite Mode에서는 온도센서가 작동이 되지 않는 경우도 가끔 있었다. 회로 구성을 위해 <strong>4.7㏀ 저항 1개</strong>가 필요하며 Normal Mode 구성을 위해 다음 그림과 같이 연결한다.</p>
+<ul>
+<li>3가닥의 선에 브레드보드에 연결할 수 있는 핀을 납땜하고, 노란색선과 빨간색선의 연결부위에 4.7㏀ 저항을 추가로 납땜하여 연결한다.</li>
+</ul>
+<p><img src="/image/ESP32-DS18b20-R01.png" alt="" /></p>
+<ul>
+<li>수축튜브를 사용하여 연결부위를 절연한 뒤,</li>
+</ul>
+<p><img src="/image/ESP32-DS18b20-R02.png" alt="" /></p>
+<ul>
+<li>구경이 조금 더 큰 수축튜브를 사용하여 3가닥을 하나로 감싸 마무리한다.</li>
+</ul>
+<p><img src="/image/ESP32-DS18b20-R03.png" alt="" /></p>
+<br>
+<h5 id="normal-mode">Normal Mode<a class="anchor" href="#normal-mode">#</a></h5>
+<p><img src="/image/ds18b20-temperature-normal-mode.png" alt="" /></p>
+<table>
+  <thead>
+      <tr>
+          <th>DS18b20</th>
+          <th>Yellow</th>
+          <th>Red</th>
+          <th>Black</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Arduino</td>
+          <td>2</td>
+          <td>5V</td>
+          <td>GND</td>
+      </tr>
+      <tr>
+          <td>4.7㏀</td>
+          <td>O</td>
+          <td>O</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h5 id="parasite-mode">Parasite Mode<a class="anchor" href="#parasite-mode">#</a></h5>
+<p><img src="/image/ds18b20-temperature.png" alt="" /></p>
+<table>
+  <thead>
+      <tr>
+          <th>DS18b20</th>
+          <th></th>
+          <th>Yellow</th>
+          <th>Red</th>
+          <th>Black</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Arduino</td>
+          <td>5V</td>
+          <td>2</td>
+          <td>GND</td>
+          <td>GND</td>
+      </tr>
+      <tr>
+          <td>4.7㏀</td>
+          <td>O</td>
+          <td>O</td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<h5 id="라이브러리-준비하기">라이브러리 준비하기<a class="anchor" href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%a4%80%eb%b9%84%ed%95%98%ea%b8%b0">#</a></h5>
+<ul>
+<li>OneWire (by Jim Studt etc.)</li>
+<li>DallasTemperature (by Miles Burton)</li>
+</ul>
+<br>
+<h5 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;OneWire.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;DallasTemperature.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define TEMP_PIN 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>OneWire <span style="color:#a6e22e">oneWire</span>(TEMP_PIN);
+</span></span><span style="display:flex;"><span>DallasTemperature <span style="color:#a6e22e">sensors</span>(<span style="color:#f92672">&amp;</span>oneWire);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  Serial.begin(<span style="color:#ae81ff">9600</span>);  
+</span></span><span style="display:flex;"><span>  Serial.println(<span style="color:#e6db74">&#34;DallasTemperature IC Control&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Start up the library
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  sensors.begin();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  sensors.requestTemperatures();
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> temperatureC <span style="color:#f92672">=</span> sensors.getTempCByIndex(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> temperatureF <span style="color:#f92672">=</span> sensors.getTempFByIndex(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  Serial.print(temperatureC);
+</span></span><span style="display:flex;"><span>  Serial.println(<span style="color:#e6db74">&#34;*C&#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.print(temperatureF);
+</span></span><span style="display:flex;"><span>  Serial.println(<span style="color:#e6db74">&#34;*F&#34;</span>);
+</span></span><span style="display:flex;"><span>  delay(<span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<br>
+<h3 id="tm1637에-온도-표시하기">TM1637에 온도 표시하기<a class="anchor" href="#tm1637%ec%97%90-%ec%98%a8%eb%8f%84-%ed%91%9c%ec%8b%9c%ed%95%98%ea%b8%b0">#</a></h3>
+<br>
+<h4 id="schematic-normal-mode">schematic: Normal Mode<a class="anchor" href="#schematic-normal-mode">#</a></h4>
+<p><img src="/image/ds18b20-temperature-normal-mode-tm1637.png" alt="" /></p>
+<br>
+<h4 id="sketch-2">sketch<a class="anchor" href="#sketch-2">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Arduino.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;TM1637Display.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Module connection pins (Digital Pins)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CLK 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DIO 7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>TM1637Display <span style="color:#a6e22e">display</span>(CLK, DIO);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> data[] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> seg3, seg2, seg1, seg0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// DS18b20 Temperature Sensor Setting
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;OneWire.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;DallasTemperature.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define TEMP_PIN 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>OneWire <span style="color:#a6e22e">oneWire</span>(TEMP_PIN);
+</span></span><span style="display:flex;"><span>DallasTemperature <span style="color:#a6e22e">sensors</span>(<span style="color:#f92672">&amp;</span>oneWire);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> celciusTemperature;  <span style="color:#75715e">// Celcius Temperature
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> tempTemperature;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
+</span></span><span style="display:flex;"><span>  Serial.begin(<span style="color:#ae81ff">9600</span>);  
+</span></span><span style="display:flex;"><span>  Serial.println(<span style="color:#e6db74">&#34;DallasTemperature IC Control&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// DS18b20 Temperature Sensor Initialize
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  sensors.begin();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// TM1637 Initialize
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  display.setBrightness(<span style="color:#ae81ff">15</span>); <span style="color:#75715e">// 0 ~ 15 (15가 가장 밝음)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// display.setBrightness(0x0f);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+</span></span><span style="display:flex;"><span>  sensors.requestTemperatures();
+</span></span><span style="display:flex;"><span>  celciusTemperature <span style="color:#f92672">=</span> sensors.getTempCByIndex(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  Serial.print(<span style="color:#e6db74">&#34;Temperature is: &#34;</span>);
+</span></span><span style="display:flex;"><span>  Serial.println(celciusTemperature);
+</span></span><span style="display:flex;"><span>  tempTemperature <span style="color:#f92672">=</span> celciusTemperature <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  seg0 <span style="color:#f92672">=</span> (tempTemperature <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// 4자리에서 1000의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg1 <span style="color:#f92672">=</span> (tempTemperature <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;  <span style="color:#75715e">// 4자리에서 100의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg2 <span style="color:#f92672">=</span> (tempTemperature <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;   <span style="color:#75715e">// 4자리에서 10의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  seg3 <span style="color:#f92672">=</span> tempTemperature <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;          <span style="color:#75715e">// 4자리에서 1의 자리 숫자 저장
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>  data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>display.encodeDigit(seg0);  <span style="color:#75715e">// 첫번째 FND에 1000의 자리 숫자배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  data[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>display.encodeDigit(seg1);  <span style="color:#75715e">// 두번째 FND에 100의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  data[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>display.encodeDigit(seg2);  <span style="color:#75715e">// 세번째 FND에 10의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  data[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>display.encodeDigit(seg3);  <span style="color:#75715e">// 네번째 FND에 1의 자리 숫자 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 온도가 100도보다 높으면 소수점 첫째자리까지 출력
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (celciusTemperature <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>    display.showNumberDecEx(tempTemperature, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">2</span>), true);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 온도가 100도보다 낮으면 소수점 둘째자리까지 출력
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    display.showNumberDecEx(tempTemperature, (<span style="color:#ae81ff">0x80</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>), true);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  delay(<span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/arduino-%EC%98%A8%EC%8A%B5%EB%8F%84%EC%B8%A1%EC%A0%95-dht22/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="Arduino, 온도 및 습도 측정 (DHT22)" />
+      <span>Arduino, 온도 및 습도 측정 (DHT22)</span>
+    </a>
+  
+  </div>
+  <div>
+  
+    <a href="/posts/arduino-%EC%8A%A4%EC%9C%84%EC%B9%98-%ED%92%80%EB%8B%A4%EC%9A%B4-%ED%92%80%EC%97%85%EC%A0%80%ED%95%AD/" class="flex align-center">
+      <span>Arduino 스위치, 풀다운저항, 풀업저항</span>
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" title="Arduino 스위치, 풀다운저항, 풀업저항" />
+    </a>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ds18b20-온도센서">DS18b20 온도센서</a></li>
+        <li><a href="#tm1637에-온도-표시하기">TM1637에 온도 표시하기</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

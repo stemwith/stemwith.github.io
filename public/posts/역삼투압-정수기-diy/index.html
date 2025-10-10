@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko-kr" dir="ltr">
+<head>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="몸에 좋은 미네랄까지 걸러낸다고 하여 역삼투압정수기를 싫어하시는 분도 많지요? 그러나 여기는 중국입니다. 미네랄이고 뭐고, 그냥 거를 수 있는 것은 다 걸러내는 것이 좋습니다.
+
+역삼투압정수기의 경우 2)번이 정석입니다. 그런데, 폐수가 너무 많이 버려지기때문에, 1)번과 같이 작업하는 분도 계시죠. 정수 성능은 조금 떨어지겠지만 폐수가 전혀 없기도 합니다. 그렇지만 역삼투압정수기의 원리에 맞추어 생각해보면, 1)번 구성은 가장 비싼 RO필터 성능을 급격히 저하시키는 원인이 될 수 있습니다. 1)번과 같이 설치하는 것보다는 2)번 구성대로 하고, 대신 폐수라인을 적절히 빼내어 설거지 용도로 사용하는 것이 좋습니다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/%EC%97%AD%EC%82%BC%ED%88%AC%EC%95%95-%EC%A0%95%EC%88%98%EA%B8%B0-diy/">
+  <meta property="og:site_name" content="STEM with">
+  <meta property="og:title" content="역삼투압 정수기 DIY">
+  <meta property="og:description" content="몸에 좋은 미네랄까지 걸러낸다고 하여 역삼투압정수기를 싫어하시는 분도 많지요? 그러나 여기는 중국입니다. 미네랄이고 뭐고, 그냥 거를 수 있는 것은 다 걸러내는 것이 좋습니다.
+역삼투압정수기의 경우 2)번이 정석입니다. 그런데, 폐수가 너무 많이 버려지기때문에, 1)번과 같이 작업하는 분도 계시죠. 정수 성능은 조금 떨어지겠지만 폐수가 전혀 없기도 합니다. 그렇지만 역삼투압정수기의 원리에 맞추어 생각해보면, 1)번 구성은 가장 비싼 RO필터 성능을 급격히 저하시키는 원인이 될 수 있습니다. 1)번과 같이 설치하는 것보다는 2)번 구성대로 하고, 대신 폐수라인을 적절히 빼내어 설거지 용도로 사용하는 것이 좋습니다.">
+  <meta property="og:locale" content="ko_kr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-10-20T22:20:35+09:00">
+    <meta property="article:modified_time" content="2012-10-20T22:20:35+09:00">
+
+
+<title>역삼투압 정수기 DIY | STEM with</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://stemwith.github.io/posts/%EC%97%AD%EC%82%BC%ED%88%AC%EC%95%95-%EC%A0%95%EC%88%98%EA%B8%B0-diy/">
+<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-128DRYVCRT');
+        }
+      </script>
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-posts">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>STEM with</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>역삼투압 정수기 DIY</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#부품-구입">부품 구입</a></li>
+        <li><a href="#diy-결과">DIY 결과</a></li>
+        <li><a href="#참고-필터-후레싱-방법">(참고) 필터 후레싱 방법</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown book-post">
+  <h1>
+    역삼투압 정수기 DIY
+  </h1>
+  
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 20, 2012</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/diy/">Diy</a>
+  </div>
+  
+
+  
+
+
+  <div class="book-post-content markdown-inner"><p>몸에 좋은 미네랄까지 걸러낸다고 하여 역삼투압정수기를 싫어하시는 분도 많지요? 그러나 여기는 중국입니다. 미네랄이고 뭐고, 그냥 거를 수 있는 것은 다 걸러내는 것이 좋습니다.</p>
+<br>
+<p>역삼투압정수기의 경우 2)번이 정석입니다. 그런데, 폐수가 너무 많이 버려지기때문에, 1)번과 같이 작업하는 분도 계시죠. 정수 성능은 조금 떨어지겠지만 폐수가 전혀 없기도 합니다. 그렇지만 역삼투압정수기의 원리에 맞추어 생각해보면, 1)번 구성은 가장 비싼 RO필터 성능을 급격히 저하시키는 원인이 될 수 있습니다. 1)번과 같이 설치하는 것보다는 2)번 구성대로 하고, 대신 폐수라인을 적절히 빼내어 설거지 용도로 사용하는 것이 좋습니다.</p>
+<p><img src="/image/RO-01.jpg" alt="역삼투압정수기 구조" /></p>
+<br>
+<p>솔레노이드밸브와 모터펌프, 압력센서스위치는 24V 아답터와 아래와 같이 결선하면 됩니다. (※솔레노이드밸브와 압력센서스위치는 극성이 없으나, 모터펌프는 극성을 맞추어 연결!)</p>
+<p><img src="/image/RO-02.jpg" alt="배선도" /></p>
+<br>
+<br>
+<h3 id="부품-구입">부품 구입<a class="anchor" href="#%eb%b6%80%ed%92%88-%ea%b5%ac%ec%9e%85">#</a></h3>
+<p>필요한 부품은 모두 타오바오에서 구입할 수 있었는데, 부품의 간체표기법을 몰라 검색어에 이것저것 넣어가며 이름을 알아가면서 검색하느라 조금 고생을 했습니다. ㅋㅋ</p>
+<ul>
+<li>수도아답터(원수밸브)(4分金属进水三通+2分球阀) 1개 : 13원 (※수도 원수 밸브 규격 : 4分=1/2인치)</li>
+<li>원터치 T피팅(1/4인치)(2分管+2分管+2分管T型三通快接) 2개 : 개당 1.5원</li>
+<li>원터치 L피팅(1/4인치)(2分管+2分管弯头快接) 11개 : 개당 1.2원</li>
+<li>솔레노이드밸브(快接式 2分管 进水电磁阀 24V) 1개 : 9원</li>
+<li>모터펌프(50G邓元增压泵 TYP-2500) 1개 : 63원</li>
+<li>펌프용피팅(3分外牙+2分管接头) 2개 : 개당 4원</li>
+<li>테프론테이프(生料带) : 1.5원</li>
+<li>폐수저항(废水比) 1개 : 5원</li>
+<li>체크밸브(2头插2分管 一字型快接逆止阀) 2개 : 개당 4원</li>
+<li>볼밸브(2分球阀快接) 1개 : 5원</li>
+<li>피팅마개(1/4인치)(2分堵头) 1개 : 0.4원</li>
+<li>압력탱크 3.2갤런(压力桶储水桶)+압력밸브(压力桶球阀) 1개 : 42.5원</li>
+<li>압력센서스위치(快接式高压开关) 1개 : 9.5원</li>
+<li>압력센서스위치 접속단자(插线) 1개 : 2원</li>
+<li>조리수밸브(直颈龙头, 304, 3M유사품) 1개 : 31원</li>
+<li>조리수밸브 구멍마개 1개(이사갈때 구멍마개용) 1개 : 10원</li>
+<li>아답터(DC24V 2A)(水泵电源) 1개 : 5원</li>
+<li>정수기용 호스 PE관(2分PE管水管) 10미터 : 미터당 0.52원</li>
+<li>호스커터기(切管刀) : 7원</li>
+<li>필터는 한국식접속필터(韩式快接滤芯)형으로 2년 교체분량 구매
+<ul>
+<li>세디멘트(3개월-6개) : 熔喷PP棉滤芯(분홍색) : 개당 12원</li>
+<li>프리카본(3개월-6개) : CTO压缩活性碳滤芯(남색) : 개당 12원</li>
+<li>RO(24개월-1개) : RO反渗透膜滤芯(파랑) : 개당 110원</li>
+<li>포스트카본(6개월-4개) : 后置载银颗粒活性碳滤芯(보라) : 개당 15원</li>
+<li>코코넛입상활성탄(6개월-4개) : UDF颗粒活性碳滤芯(초록) (TCR대용) : 개당 13원</li>
+</ul>
+</li>
+<li>정수기 케이스(RO纯水机外壳 5级) 1개 : 68원
+<ul>
+<li>(아래 사진과 같이) 필터 5개와 모터펌프가 함께 수납가능한 크기의 케이스를 선택</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/RO-case-01.jpg" alt="" /></p>
+<p><img src="/image/RO-case-02.jpg" alt="" /></p>
+<ul>
+<li>
+<p>필터 고정대(净水器 5连 大单夹) 2개 : 개당 1.8원</p>
+<p><img src="/image/RO-30.png" alt="" /></p>
+</li>
+<li>
+<p>그밖에 십자드라이버, 니퍼, 절연테이프 등의 간단한 공구와 전기재료</p>
+</li>
+<li>
+<p>조리수밸브 구멍이 없는 경우 드릴과 14mm 드릴비트가 필요</p>
+</li>
+<li>
+<p>설치 상황에서 어떻게 될지 몰라서 피팅류는 여유분을 더 구매</p>
+</li>
+</ul>
+<br>
+<h4 id="diy-소요비용">DIY 소요비용<a class="anchor" href="#diy-%ec%86%8c%ec%9a%94%eb%b9%84%ec%9a%a9">#</a></h4>
+<p>필터(2년교환분량) 366위안 + 부품 308위안 = 674위안, 한국돈으로 115,000원 정도입니다.</p>
+<br>
+<br>
+<h4 id="diy시-주의사항">DIY시 주의사항<a class="anchor" href="#diy%ec%8b%9c-%ec%a3%bc%ec%9d%98%ec%82%ac%ed%95%ad">#</a></h4>
+<p>정수기 DIY의 실제 과정은 매우 간단하여, 필터의 양쪽 끝단에 L피팅을 붙이고 구상도대로 호스를 잘라 연결만 하면 되는데요. 연결시 몇가지 주의할 점은,</p>
+<ul>
+<li>필터는 되도록 입수구가 아래쪽, 출수구가 위쪽을 향하도록 조립하는 것이 좋고,</li>
+<li>필터를 케이스에 끼우기전에 반드시 후레싱(필터에 물을 2~3L정도 통과시키는 과정)을 거쳐야 합니다.</li>
+<li>체크밸브, 솔레노이드밸브, 모터펌프와 필터류는 물의 흐름방향을 잘 보고 조립하세요.</li>
+<li>배선 연결시 <strong>솔레노이드밸브와 압력센서스위치는 (+)(-)극성이 없지만</strong>, 모터펌프는 극성을 지켜야 합니다.</li>
+</ul>
+<br>
+<br>
+<h3 id="diy-결과">DIY 결과<a class="anchor" href="#diy-%ea%b2%b0%ea%b3%bc">#</a></h3>
+<p>완성후 아답터를 콘센트에 꼽고 조리수밸브를 열어보니 모터가 돌아가면서 물이 졸졸졸 나오는 것이 RO정수기 답네요. 처음에는 조리수밸브를 닫고 압력탱크에 물이 꽉찰때까지 기다려야 합니다. 이후에 조리수밸브를 열면 기성품 못지않게 잘 나오게 되죠. 압력탱크 용량이 웅진에서 쓰는 것보다 더 큰 3.2갤런(약 12.1리터)이어서 한번에 더 많은 양을 쓸 수도 있습니다.</p>
+<br>
+<p>며칠동안 테스트를 하였는데, 초반에 침전물같은 것이 눈에 보이지만, 작은 공기기포이므로 걱정할 필요가 없습니다. 이틀정도 지나고 나면 기포도 발생하지 않습니다. 다만 모터펌프와 연결된 호스가 진동에 의해 덜덜거리며 떨리는 소음이 조금 거슬리긴 합니다. 문제없이 잘 작동되는 것이 확인되면 케이블타이로 고정하여 진동을 제거해주세요.</p>
+<br>
+<br>
+<h3 id="참고-필터-후레싱-방법">(참고) 필터 후레싱 방법<a class="anchor" href="#%ec%b0%b8%ea%b3%a0-%ed%95%84%ed%84%b0-%ed%9b%84%eb%a0%88%ec%8b%b1-%eb%b0%a9%eb%b2%95">#</a></h3>
+<ul>
+<li>역삼투압 필터 (원자재 공급사에 따라 후레싱방법이 다름)
+<ul>
+<li>미국 필림테크 다우케미칼 제품 : 보존액이 전혀 없는 건식이므로 후레싱 생략가능. 단, 후레싱을 하고자 할 경우에는 배출수쪽을 막지 않고 물을 2리터정도 흘려보냄.</li>
+<li>웅진케미칼(옛 삼성제일합섬) 공급 CSM역삼투압 멤브레인 : 1차로 배출수쪽을 막지 않고 물을 2리터정도 흘려보낸 뒤, 2차로 배출수쪽을 막고서 정수쪽으로 약간만 흘러보내면 됨</li>
+</ul>
+</li>
+<li>나머지 필터의 경우 2리터정도 흘려보내면 됨.</li>
+</ul>
+<p> </p>
+</div>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+  <div>
+  
+    <a href="/posts/%EC%97%91%EC%85%80-%EB%B9%88%EC%85%80-%EC%B1%84%EC%9A%B0%EA%B8%B0/" class="flex align-center">
+      <img src="/icons/backward.svg" class="book-icon" alt="Previous" title="엑셀, 빈셀 채우기" />
+      <span>엑셀, 빈셀 채우기</span>
+    </a>
+  
+  </div>
+  <div>
+  
+  </div>
+</div>
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+
+ 
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+
+<aside class="book-toc">
+  <div class="book-toc-content">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#부품-구입">부품 구입</a></li>
+        <li><a href="#diy-결과">DIY 결과</a></li>
+        <li><a href="#참고-필터-후레싱-방법">(참고) 필터 후레싱 방법</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </div>
+</aside>
+
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
