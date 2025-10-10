@@ -36,7 +36,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # ▼▼▼ 이 부분을 본인의 발행(Deploy) 저장소로 수정하세요! ▼▼▼
           publish_repo: stemwith/stemwith.github.io
-          # 사용자 페이지는 main 브랜치에 발행합니다.
-          publish_branch: main
+          # 사용자 페이지는 pages 브랜치에 발행합니다.
+          publish_branch: pages
           publish_dir: ./public
           commit_message: ${{ github.event.head_commit.message }}

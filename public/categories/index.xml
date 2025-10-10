@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on STEM with</title>
-    <link>https://stemwith.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on STEM with</description>
     <generator>Hugo</generator>
     <language>ko-kr</language>
     <lastBuildDate>Thu, 02 Dec 2021 18:27:53 +0900</lastBuildDate>
-    <atom:link href="https://stemwith.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Esp32</title>
-      <link>https://stemwith.github.io/categories/esp32/</link>
+      <link>http://localhost:1313/categories/esp32/</link>
       <pubDate>Thu, 02 Dec 2021 18:27:53 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/esp32/</guid>
+      <guid>http://localhost:1313/categories/esp32/</guid>
       <description></description>
     </item>
     <item>
       <title>Science</title>
-      <link>https://stemwith.github.io/categories/science/</link>
+      <link>http://localhost:1313/categories/science/</link>
       <pubDate>Mon, 15 Nov 2021 17:57:00 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/science/</guid>
+      <guid>http://localhost:1313/categories/science/</guid>
       <description></description>
     </item>
     <item>
       <title>Drone</title>
-      <link>https://stemwith.github.io/categories/drone/</link>
+      <link>http://localhost:1313/categories/drone/</link>
       <pubDate>Mon, 02 Aug 2021 18:27:53 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/drone/</guid>
+      <guid>http://localhost:1313/categories/drone/</guid>
       <description></description>
     </item>
     <item>
       <title>Office</title>
-      <link>https://stemwith.github.io/categories/office/</link>
+      <link>http://localhost:1313/categories/office/</link>
       <pubDate>Fri, 01 Nov 2019 18:27:53 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/office/</guid>
+      <guid>http://localhost:1313/categories/office/</guid>
       <description></description>
     </item>
     <item>
       <title>Arduino</title>
-      <link>https://stemwith.github.io/categories/arduino/</link>
+      <link>http://localhost:1313/categories/arduino/</link>
       <pubDate>Wed, 30 Oct 2019 18:27:53 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/arduino/</guid>
+      <guid>http://localhost:1313/categories/arduino/</guid>
       <description></description>
     </item>
     <item>
       <title>Diy</title>
-      <link>https://stemwith.github.io/categories/diy/</link>
+      <link>http://localhost:1313/categories/diy/</link>
       <pubDate>Sun, 01 Sep 2019 18:27:53 +0900</pubDate>
-      <guid>https://stemwith.github.io/categories/diy/</guid>
+      <guid>http://localhost:1313/categories/diy/</guid>
       <description></description>
     </item>
   </channel>
