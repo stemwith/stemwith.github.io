@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Arduino, Geiger Counter - Welcome to &quot;stemwith&quot;</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Welcome to &quot;stemwith&quot;"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Welcome to &quot;stemwith&quot;"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="※ SAT Subject Chemistry: Pactice Test 123456Used to detect radioactivity.① Calorimeter② Geiger Counter③ Burette④ Funnel⑤ Bunsen Burner    가이거 계수기 방사선을 측정할 수 있는 관으로  방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자"><meta property="og:type" content="blog"><meta property="og:title" content="Arduino, Geiger Counter"><meta property="og:url" content="http://stemwith.github.io/2020/08/23/Arduino-Geiger-Counter/"><meta property="og:site_name" content="Welcome to &quot;stemwith&quot;"><meta property="og:description" content="※ SAT Subject Chemistry: Pactice Test 123456Used to detect radioactivity.① Calorimeter② Geiger Counter③ Burette④ Funnel⑤ Bunsen Burner    가이거 계수기 방사선을 측정할 수 있는 관으로  방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/image/Geiger-Counter.png"><meta property="og:image" content="http://stemwith.github.io/image/RADIATION-Poster-Cartoon.jpg"><meta property="article:published_time" content="2020-08-23T08:57:00.000Z"><meta property="article:modified_time" content="2022-01-03T05:35:34.000Z"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/Geiger-Counter.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io/2020/08/23/Arduino-Geiger-Counter/"},"headline":"Arduino, Geiger Counter","image":["http://stemwith.github.io/image/Geiger-Counter.png","http://stemwith.github.io/image/RADIATION-Poster-Cartoon.jpg"],"datePublished":"2020-08-23T08:57:00.000Z","dateModified":"2022-01-03T05:35:34.000Z","author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"Welcome to \"stemwith\"","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"※ SAT Subject Chemistry: Pactice Test 123456Used to detect radioactivity.① Calorimeter② Geiger Counter③ Burette④ Funnel⑤ Bunsen Burner    가이거 계수기 방사선을 측정할 수 있는 관으로  방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자"}</script><link rel="canonical" href="http://stemwith.github.io/2020/08/23/Arduino-Geiger-Counter/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-128DRYVCRT');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/rss2.xml" title="Welcome to "stemwith"" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2020-08-23T08:57:00.000Z" title="2020. 8. 23. 오후 5:57:00">2020-08-23</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-01-03T05:35:34.000Z" title="2022. 1. 3. 오후 2:35:34">2022-01-03</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/science/">science</a></span><span class="level-item">18분안에 읽기 (약 2670 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">Arduino, Geiger Counter</h1><div class="content"><p>※ SAT Subject Chemistry: Pactice Test</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Used to detect radioactivity.</span><br><span class="line">① Calorimeter</span><br><span class="line">② Geiger Counter</span><br><span class="line">③ Burette</span><br><span class="line">④ Funnel</span><br><span class="line">⑤ Bunsen Burner</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="가이거-계수기"><a href="#가이거-계수기" class="headerlink" title="가이거 계수기"></a>가이거 계수기</h3><ul>
+<li>방사선을 측정할 수 있는 관으로  방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자 요하네스 한스 빌헬름 가이거(Johannes Hans Wilhelm Geiger)가 알파선을 감지할 수 있는 감지기를 개발하였으며, 그 후 1928년 가이거와 가이거의 제자인 발터 뮐러가 함께 개량하여 모든 전리방사선을 감지할 수 있도록 만든 것이 현재의 가이거-뮐러 튜브(GM Tube)이다.</li>
+<li>원리: 튜브는 비활성 기체가 충전된 상태이며  중심 전극(+극, anode)과 관의 내벽(-극, cathode, 금속이나 흑연으로 코팅)으로 구성되어 있다. 여기에 수백V의 전압을 걸면, 관 안에 걸린 높은 전기장 때문에 이온은 음극을 향해 가속되고, 전자는 양극을 향해 가속되며 운동에너지를 얻게 되며 이동 중에 충돌한 기체분자도 함께 전이된다. 이렇게 가스 안에 하전입자의 붕괴가 일어나면 음극에서 양극을 향해 짧고 강한 펄스전류가 순간적으로 나타나 흐르게 된다. 이 펄스전류가 ‘스피커’를 지날때 반응음으로 가이거 계수기 특유의 ‘틱티티틱’하는 소리가 만들어지는데, 이것이 ‘방사선이 존재한다’는 상황을 알려주는 소리이다. 그리고 이 소리 1개음이 방사능 입자 1개에 대한 대응 신호가 된다.  오래된 방식이지만 오늘날에도 큰 변화 없이 이 원리를 응용하여 방사선을 측정하고 있다.</li>
+<li>단점: 상당히 큰 펄스신호를 얻을 수 있지만, 이 전류의 강도는 방사선이 가진 에너지와 비례관계를 나타내는 것은 아니기때문에, 방사선이 가진 에너지를 측정하는 것은 불가능하다. (방사선의 에너지를 알기 위해서는 비례계수관을 사용해야 한다.) 또한 고준위 방사선의 경우에는 전류가 연속적으로 흐르게 되어 펄스의 횟수를 계수할 수 없게 되는 경우도 있다. (주로 500cps 이상의 경우) 이것을 막기 위해 전자의 흐름을 제어하는 별도의 장치를 부착하거나, 신틸레이터(scintillator)나 이온화 챔버 같은 다른 검출기로 계측한다.</li>
+<li>가이거 카운터에 사용하는 튜브관은 여러 종류가 제조되고 있다. 대부분의 GM관은 감마선과 2.5MeV 이상의 베타선을 검출한다. 감마선의 검출 감도는 좋지는 않다. GM관 안의 가스밀도가 낮아서, 투과력이 높은 감마선은 상호작용을 일으키기 어렵기 때문이다. 중성자선은 가스로부터 전리하지 않기때문에 검출하지 못한다. 하지만, 관 안쪽을 붕소로 코팅하거나, 삼불화붕소 아니면 ³He가스를 충전하면 중성자선에도 반응하는 GM관을 만들 수 있다. 중성자는 붕소원자핵과 반응하여 알파선을 생성하거나,  ³He원자와 반응하여 수소와 트리튬이온과 전자를 생성하므로 이 전하입자들이 붕괴를 발생시킨다. 각 튜브마다 검출하는 입자가 다르기 때문에, CPM(Count Per Minute) 단위를 uSv&#x2F;h(Sieverts Per Hours) 단위로 바꾸기 위한 Conversion Factor가 모두 다르다. 그러므로 사용하는 튜브관이 어떤 것인지 정확하게 알아두어야 한다. </li>
+<li>GM관은 하드웨어 난수발생기로서 이용할 수도 있다.</li>
+<li>Background Radiation: 자연적으로 존재하는 자연 방사선, 즉 Background Radiation의 경우 J305β 튜브관을 사용할때 평균 15.6 CPM이 측정된다. (주변 상황에 따라 조금씩 달라짐)</li>
+</ul>
+<br>
+
+<h4 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h4><ul>
+<li>Wire : 기본 내장 라이브러리</li>
+<li>LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치</li>
+</ul>
+<br>
+
+<h4 id="schematic-for-standalone"><a href="#schematic-for-standalone" class="headerlink" title="schematic (for standalone)"></a>schematic (for standalone)</h4><p><img src="/image/Geiger-Counter.png"></p>
+<table>
+<thead>
+<tr>
+<th>GM Monule</th>
+<th>GND</th>
+<th>5V</th>
+<th>VIN</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arduino</td>
+<td>GND</td>
+<td>5V</td>
+<td>D2</td>
+<td>VIN</td>
+<td>A4</td>
+<td>A5</td>
+<td>PowerJack</td>
+</tr>
+<tr>
+<td>1602 LCD I2C</td>
+<td>GND</td>
+<td>VCC</td>
+<td></td>
+<td>(VCC)</td>
+<td>SDA</td>
+<td>SCL</td>
+<td></td>
+</tr>
+<tr>
+<td>9V battery</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>(+)(-)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>외부로 들고 다니면서 측정할 수 있도록 9V 배터리 1개를 추가하여 Arduino, 1602 LCD, GM Molule을 모두 작동시킬 수 있도록 하였다.</li>
+</ul>
+<br>
+
+<h4 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* --------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">* WHAT IS CPM?</span></span><br><span class="line"><span class="comment">* CPM (counts per minute) is events quantity from Geiger Tube you get during one minute.</span></span><br><span class="line"><span class="comment">* Usually it used to calculate a radiation level.  </span></span><br><span class="line"><span class="comment">* Different GM Tubes has different quantity of CPM for background.</span></span><br><span class="line"><span class="comment">* Some tubes can produce about 10-50 CPM for normal background,</span></span><br><span class="line"><span class="comment">* other GM Tube models produce 50-100 CPM or 0-5 CPM for same radiation level.</span></span><br><span class="line"><span class="comment">* Please refer your GM Tube datasheet for more information. </span></span><br><span class="line"><span class="comment">* Just for reference here, SBM-20 can generate about 10-50 CPM for normal background.</span></span><br><span class="line"><span class="comment">* --------------------------------------------------------------------------------------*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This Sketch counts the number of pulses a minute.</span></span><br><span class="line"><span class="comment">// Connect the GND on Arduino to the GND on the Geiger counter.</span></span><br><span class="line"><span class="comment">// Connect the 5V on Arduino to the 5V on the Geiger counter.</span></span><br><span class="line"><span class="comment">// Connect the VIN on the Geiger counter to the D2 on Arduino.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// For I2C 1602 LCD : VCC-5V / GND-GND / SDA-A4 / SCL-A5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// I2C address: 0x20~0x27 or 0x3F</span></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x27</span>, <span class="number">16</span>, <span class="number">2</span>)</span></span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cpm;</span><br><span class="line"><span class="keyword">float</span> sievertshour; <span class="comment">// for converting from cpm to sieverts/hour</span></span><br><span class="line"><span class="comment">//float sieverts; // for converting from cpm to sieverts  </span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> counts; <span class="comment">//variable for GM Tube events</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> previousMillis; <span class="comment">//variable for measuring time</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LOG_PERIOD 60000 <span class="comment">// count rate (1 minute)</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONV_FACTOR 0.008120 <span class="comment">// for GM tube of J305beta type</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123; <span class="comment">//setup</span></span><br><span class="line">  counts = <span class="number">0</span>;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  pinMode(<span class="number">2</span>, INPUT);</span><br><span class="line"></span><br><span class="line">  lcd.init();               <span class="comment">// lcd 초기화</span></span><br><span class="line">  lcd.backlight();</span><br><span class="line">  </span><br><span class="line">  attachInterrupt(digitalPinToInterrupt(<span class="number">2</span>), impulse, FALLING); <span class="comment">//define external interrupts</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;CPM:&quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">9</span>,<span class="number">0</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot; #:&quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">12</span>,<span class="number">0</span>);</span><br><span class="line">  lcd.print(counts);</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;uSv/h:&quot;</span>);</span><br><span class="line">  <span class="comment">//lcd.print(&quot;uSv  :&quot;);</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> currentMillis = millis();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (currentMillis - previousMillis &gt; LOG_PERIOD) &#123;   <span class="comment">//every 1 minute</span></span><br><span class="line">    previousMillis = currentMillis;</span><br><span class="line"></span><br><span class="line">    lcd.clear();</span><br><span class="line">    lcd.setCursor(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    cpm = counts;</span><br><span class="line">    lcd.print(cpm); <span class="comment">//Display CPM</span></span><br><span class="line">    Serial.println(cpm);</span><br><span class="line">    sievertshour = cpm * CONV_FACTOR;</span><br><span class="line">    <span class="comment">//sieverts = sievertshour * 356 * 24;</span></span><br><span class="line">    lcd.setCursor(<span class="number">7</span>,<span class="number">1</span>);</span><br><span class="line">    lcd.print(sievertshour);</span><br><span class="line">    <span class="comment">//lcd.print(sieverts);</span></span><br><span class="line">     </span><br><span class="line">    counts = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">impulse</span><span class="params">()</span> </span>&#123; <span class="comment">// called every time there is a FALLING signal at pin 2</span></span><br><span class="line">  counts++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="sketch-for-ESP8266-Geigerzaehler-LCD-ESP-ino"><a href="#sketch-for-ESP8266-Geigerzaehler-LCD-ESP-ino" class="headerlink" title="sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)"></a>sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************ARDUINO SKETCH FOR GEIGER COUNTER******************</span></span><br><span class="line"><span class="comment">Author: RH Electronics www.radiohobbystore.com / www.mygeiger.org</span></span><br><span class="line"><span class="comment">*****************************************************************</span></span><br><span class="line"><span class="comment">This sketch can be used with DIY Geiger Counter board. It allow</span></span><br><span class="line"><span class="comment">to receive CPM data during minute. You can modify the sketch</span></span><br><span class="line"><span class="comment">for your needs.</span></span><br><span class="line"><span class="comment">*****************************************************************</span></span><br><span class="line"><span class="comment">LCD I2C Connection:</span></span><br><span class="line"><span class="comment">LCD SDA -&gt; D10  =  1</span></span><br><span class="line"><span class="comment">LCD SCL -&gt; D9   =  3</span></span><br><span class="line"><span class="comment">VCC to +3,3V and ground</span></span><br><span class="line"><span class="comment">****************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// include the library code:</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LOG_PERIOD 15000  <span class="comment">//Logging period in milliseconds, recommended value 15000-60000.</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_PERIOD 60000  <span class="comment">//Maximum logging period without modifying this sketch</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PERIOD 60000.0 <span class="comment">// (60 sec) one minute measure period</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> CNT; <span class="comment">// variable for counting interrupts from dosimeter</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> counts;     <span class="comment">//variable for GM Tube events</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> cpm;        <span class="comment">//variable for CPM</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> multiplier;  <span class="comment">//variable for calculation CPM in this sketch</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> previousMillis;  <span class="comment">//variable for time measurement</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> dispPeriod; <span class="comment">// variable for measuring time</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> CPM; <span class="comment">// variable for measuring CPM</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inputPin = <span class="number">4</span>;  <span class="comment">// pin D2 is VIN on geiger counter</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// initialize the library with the numbers of the interface pins</span></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x3F</span>,<span class="number">20</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;               <span class="comment">// setup</span></span><br><span class="line">Wire.begin(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">lcd.begin(<span class="number">20</span>, <span class="number">4</span>);</span><br><span class="line">lcd.init();</span><br><span class="line"><span class="comment">// Turn on the backlight.</span></span><br><span class="line">lcd.backlight();</span><br><span class="line"></span><br><span class="line">CNT = <span class="number">0</span>;</span><br><span class="line">CPM = <span class="number">0</span>;</span><br><span class="line">dispPeriod = <span class="number">0</span>;</span><br><span class="line">attachInterrupt(digitalPinToInterrupt(inputPin), GetEvent, FALLING); <span class="comment">// Define interrupt D2 on falling edge</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;           <span class="comment">// main loop</span></span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">lcd.print(<span class="string">&quot;Berlin-Siemensstadt&quot;</span>);</span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">lcd.print(<span class="string">&quot;   Geiger Counter &quot;</span>);</span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">2</span>); <span class="comment">// print text and CNT on the LCD</span></span><br><span class="line">lcd.print(<span class="string">&quot;CPM:&quot;</span>);</span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">3</span>);</span><br><span class="line">lcd.print(<span class="string">&quot;CNT:&quot;</span>);</span><br><span class="line">lcd.setCursor(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">lcd.print(CNT);</span><br><span class="line"><span class="keyword">if</span> (millis() &gt;=dispPeriod + PERIOD) &#123; <span class="comment">// If one minute is over</span></span><br><span class="line">cleanDisplay(); <span class="comment">// Clear LCD</span></span><br><span class="line"><span class="comment">// Do something about accumulated CNT events....</span></span><br><span class="line">lcd.setCursor(<span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line">CPM = CNT;</span><br><span class="line">lcd.print(CPM); <span class="comment">//Display CPM</span></span><br><span class="line">CNT = <span class="number">0</span>;</span><br><span class="line">dispPeriod = millis();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetEvent</span><span class="params">()</span></span>&#123;           <span class="comment">// Get Event from Device</span></span><br><span class="line">CNT++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cleanDisplay</span> <span class="params">()</span></span>&#123;      <span class="comment">// Clear LCD routine</span></span><br><span class="line">lcd.clear();</span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(출처: rhelectronics.net)</p>
+<br>
+
+<br>
+
+<h3 id="Conversion-Index-amp-Background-Radiation"><a href="#Conversion-Index-amp-Background-Radiation" class="headerlink" title="Conversion Index &amp; Background Radiation"></a>Conversion Index &amp; Background Radiation</h3><p>CPM값은 사용하는 GM tube의 종류에 따라 다르게 측정된다. 왜냐하면, GM tube의 종류에 따라 감지할 수 있는 방사능의 종류가 다르기 때문이다. 그러므로 제조회사에서 제공하는 Conversion Index 값을 사용하여 CPM값을 Sieverts 단위로 바꿔주어야 한다.</p>
+<p>예를들어, 위 sketch에서 사용한 J305β tube관은 CONV_FACTOR값이 0.008120이다. 이 값의 유도과정은 다음과 같다.</p>
+<ul>
+<li>제조사에서 제공하는 J305β 스펙 :  <strong>65 cps&#x2F;µR&#x2F;s for 60Co</strong> (cps: count per second, µR &#x3D; microRem)</li>
+<li>이것은 1µR&#x2F;s &#x3D; <strong>65cps</strong> 임을 뜻한다. (즉 1mR&#x2F;s &#x3D; <strong>65000cps</strong>)</li>
+<li>1mR&#x2F;h &#x3D; 65000cps &#x2F; (60 × 60) &#x3D; 18.06cps</li>
+<li>18 cps&#x2F;mR&#x2F;h &#x3D; 18 × 60 cpm&#x2F;mR&#x2F;h  &#x3D; 1080 &#x2F; 8.77 cpm&#x2F;µSv&#x2F;h &#x3D; 123.14 cpm&#x2F;µSv&#x2F;h (※1mR &#x3D; 8.77μSv)</li>
+<li>∴ Conversion Index &#x3D; 123.14 </li>
+<li>123CPM &#x3D; 1μSv&#x2F;h   →   1CPM &#x3D; 0.008120 μSv&#x2F;h</li>
+<li>∴ CONV_FACTOR &#x3D; 0.008120</li>
+<li>CPM × CONV_FACTOR  &#x3D; μSv&#x2F;h</li>
+</ul>
+<br>
+
+<p>이 CONV_FACTOR값에 24*365를 곱하면 Sv 단위의 값을 만들어 낼 수도 있다.  </p>
+<ul>
+<li>만일 어떤 지역에서 J305β tube를 사용하여 측정한 CPM값이 20이라면,</li>
+<li>20×0.008120 &#x3D; 0.1624μSv&#x2F;h 에 해당하는 방사선이 검출되는 것이며</li>
+<li>이는 0.1624 × 24 × 365 &#x3D; 1422.6 μSv를 뜻한다. 방사능 생활척도를 통해 일반적인 배경복사보다는 다소 낮은 수준이라는 것을 알 수 있다.</li>
+</ul>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>tube</th>
+<th>Conversion Index</th>
+<th>CONV_FACTOR</th>
+<th>Background Radiation (CPM)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>J305β</td>
+<td>123.14</td>
+<td>0.008120</td>
+<td>15.6</td>
+</tr>
+<tr>
+<td>SBM-20</td>
+<td>175.4</td>
+<td>0.0057</td>
+<td>23.4</td>
+</tr>
+<tr>
+<td>M4011</td>
+<td>153.8</td>
+<td>0.006502</td>
+<td></td>
+</tr>
+<tr>
+<td>LDN-712</td>
+<td></td>
+<td>0.01</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+
+<h3 id="방사능-생활척도"><a href="#방사능-생활척도" class="headerlink" title="방사능 생활척도"></a>방사능 생활척도</h3><p>밀리시버트(mSv)는 X선, PET, CT 등과 같은 의료 검진시 발생하는 유효 노출을 측정하는 경우 사용된다. 일상생활에서 노출되는 방사선량은 다음과 같다. (출처: 위키피디아)</p>
+<ul>
+<li><p>10 μSv – 오늘받은 평균 방사선</p>
+</li>
+<li><p>0.02 ~ 0.04 mSv &#x3D; 20 ~ 40 μSv – 흉부 X-레이</p>
+</li>
+<li><p>40 μSv – 뉴욕에서 L.A.까지 비행기를 타면받는 방사선</p>
+</li>
+<li><p>100 μSv – 치과 용 X- 레이 동안받는 방사선</p>
+</li>
+<li><p>0.24 mSv – 해수면에 도달하는 우주입자선 (연간) </p>
+</li>
+<li><p>0.28 mSv – 지하로부터 나오는 지상 방사선 (연간) </p>
+</li>
+<li><p>800 μSv – 사고 기간 동안 Three-Mile Island의 총 방사선 량</p>
+</li>
+<li><p>2 mSv – 미국 가정의 연 평균 라돈 방사선 양</p>
+</li>
+<li><p>3000 μSv – 유방 조영술의 방사선 량</p>
+</li>
+<li><p>3650 μSv (&#x3D; 10 μSv per day &#x3D; 0.081 μSv&#x2F;h) &#x3D; 2.5 ~ 3.5 mSv – 일반적인 배경복사 (장소에 따른 편차가 큼)</p>
+<p>​                        ※ 호주 1.5 mSv, 미국 3 mSv, 이란, 인도, 유럽의 연간 배경 방사선 양 : 50 mSv</p>
+</li>
+<li><p>0.8 ~ 5 mSv – 뇌 CT 스캔</p>
+</li>
+<li><p>6 ~ 18 mSv – 흉부 CT 스캔</p>
+</li>
+<li><p>6.2 mSv – 미국인 연 평균 방사선 노출량</p>
+</li>
+<li><p>9 mSv – 뉴욕-동경간 항공 승무원이 받는 연간 방사선 양</p>
+</li>
+<li><p>14 mSv – 내장기관 X-레이</p>
+</li>
+<li><p>20 mSv – 핵관련 종사자 연간 허용치</p>
+</li>
+<li><p>50000 μSv – 연간 최대 허용 직업 선량</p>
+<p>​                       ※ 시간당 최대 방사능 &#x3D; 50000 μSv &#x2F; (24 * 365) &#x3D; 5.70 μSv&#x2F;h</p>
+</li>
+<li><p>100000 μSv – 암 위험 증가와 관련이 있을 가능성이 높은 연간 최저 용량</p>
+</li>
+<li><p>80~160 mSv – 하루 담배 1.5갑씩 1년을 필 때</p>
+</li>
+<li><p>350 mSv – 체르노빌 사태 후 이주를 결정한 근거 (매년)</p>
+</li>
+<li><p>1 Sv &#x3D; 1000000 μSv – 약간의 혈액 변화 유발</p>
+</li>
+<li><p>2 Sv &#x3D; 2000000 μSv – 심각한 방사선 중독 (때로는 치명적)</p>
+</li>
+<li><p>2 ~ 5 Sv &#x3D; 2000000 ~ 5000000 μSv – 메스꺼움, 탈모, 출혈을 유발, 많은 경우 사망</p>
+</li>
+<li><p>6 Sv &#x3D; 6000000 μSv – 2개월 이내에 80% 이상 사망</p>
+</li>
+</ul>
+<br>
+
+<h4 id="Radiation-Cartooon"><a href="#Radiation-Cartooon" class="headerlink" title="Radiation Cartooon"></a>Radiation Cartooon</h4><p><img src="/image/RADIATION-Poster-Cartoon.jpg"></p>
+<br>
+
+<br>
+
+<h3 id="Electrical-Information-for-GM-Tubes"><a href="#Electrical-Information-for-GM-Tubes" class="headerlink" title="Electrical Information for GM Tubes"></a>Electrical Information for GM Tubes</h3><table>
+<thead>
+<tr>
+<th>Tube</th>
+<th>Working Voltages</th>
+<th>Nominal Voltage</th>
+<th>Anode Resistor</th>
+<th>Dead Time μs</th>
+<th>Detection</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SBM-20</td>
+<td>350 ~ 450V</td>
+<td>400V</td>
+<td>4M7</td>
+<td>100 ~ 190</td>
+<td>β, γ</td>
+</tr>
+<tr>
+<td>SBM-19</td>
+<td>“</td>
+<td>“</td>
+<td>4M7</td>
+<td>125 ~ 250</td>
+<td>β, γ</td>
+</tr>
+<tr>
+<td>SBT-10</td>
+<td>“</td>
+<td>“</td>
+<td>4M7</td>
+<td>65</td>
+<td>β, γ</td>
+</tr>
+<tr>
+<td>SI29BG</td>
+<td>“</td>
+<td>“</td>
+<td>4M7</td>
+<td>95</td>
+<td>β, γ</td>
+</tr>
+<tr>
+<td>SI21BG</td>
+<td>“</td>
+<td>“</td>
+<td>10M</td>
+<td>30</td>
+<td>β, γ</td>
+</tr>
+<tr>
+<td>SBT-9</td>
+<td>“</td>
+<td>380V</td>
+<td>4M7</td>
+<td>50 ~ 100</td>
+<td>α, β, γ</td>
+</tr>
+<tr>
+<td>SBT-11A</td>
+<td>“</td>
+<td>390V</td>
+<td>3M3 ~ 4M7</td>
+<td>75</td>
+<td>α, β, γ</td>
+</tr>
+<tr>
+<td>SI-22G</td>
+<td>“</td>
+<td>400V</td>
+<td>10M</td>
+<td></td>
+<td>γ</td>
+</tr>
+<tr>
+<td>SI180G</td>
+<td>“</td>
+<td>“</td>
+<td>4M7</td>
+<td></td>
+<td>γ</td>
+</tr>
+<tr>
+<td>LND-712</td>
+<td>450 ~ 650V</td>
+<td>500V</td>
+<td>10M</td>
+<td>90</td>
+<td>α, β, γ</td>
+</tr>
+<tr>
+<td>LND-7317</td>
+<td>475 ~ 675V</td>
+<td>“</td>
+<td>4M7</td>
+<td>40</td>
+<td>α, β, γ</td>
+</tr>
+<tr>
+<td>Philips 18504</td>
+<td>425 ~ 675V</td>
+<td>“</td>
+<td>10M</td>
+<td>100</td>
+<td>α, β, γ, n</td>
+</tr>
+</tbody></table>
+<p>(출처: rhelectronics.net)</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Arduino, Geiger Counter</p><p><a href="http://stemwith.github.io/2020/08/23/Arduino-Geiger-Counter/">http://stemwith.github.io/2020/08/23/Arduino-Geiger-Counter/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>chemidot</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-08-23</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-01-03</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/10/06/STEM-%EC%A4%91%EB%A0%A5-%EA%B0%80%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">ESP32, 중력 가속도 측정</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/11/19/ESP32-OpenWeatherMap/"><span class="level-item">esp32 OpenWeatherMap에서 실시간 날씨 정보 받기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="stemwith/stemwith.github.io" issue-term="pathname" label="blog comments" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">50</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#가이거-계수기"><span class="level-left"><span class="level-item">1</span><span class="level-item">가이거 계수기</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#라이브러리-추가하기"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">라이브러리 추가하기</span></span></a></li><li><a class="level is-mobile" href="#schematic-for-standalone"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">schematic (for standalone)</span></span></a></li><li><a class="level is-mobile" href="#sketch"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">sketch</span></span></a></li><li><a class="level is-mobile" href="#sketch-for-ESP8266-Geigerzaehler-LCD-ESP-ino"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Conversion-Index-amp-Background-Radiation"><span class="level-left"><span class="level-item">2</span><span class="level-item">Conversion Index &amp; Background Radiation</span></span></a></li><li><a class="level is-mobile" href="#방사능-생활척도"><span class="level-left"><span class="level-item">3</span><span class="level-item">방사능 생활척도</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Radiation-Cartooon"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">Radiation Cartooon</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Electrical-Information-for-GM-Tubes"><span class="level-left"><span class="level-item">4</span><span class="level-item">Electrical Information for GM Tubes</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">8월 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2022 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

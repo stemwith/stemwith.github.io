@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>1602 LCD, 조도, 초음파, 온습도 - Welcome to &quot;stemwith&quot;</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Welcome to &quot;stemwith&quot;"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Welcome to &quot;stemwith&quot;"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1602 LCD 중에서 (I2C 모듈이 추가되어 있지 않은) 가장 기본적인 형태, 즉 1602 LCD만 있는 상태에서의 출력방법을 알아보겠습니다.   schematic   schematic : 백라이트 밝기 조절 추가백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 LCD 3번핀을 3.3㏀ 거쳐서 GND"><meta property="og:type" content="blog"><meta property="og:title" content="1602 LCD, 조도, 초음파, 온습도"><meta property="og:url" content="http://stemwith.github.io/2018/10/02/1602-LCD-Display/"><meta property="og:site_name" content="Welcome to &quot;stemwith&quot;"><meta property="og:description" content="1602 LCD 중에서 (I2C 모듈이 추가되어 있지 않은) 가장 기본적인 형태, 즉 1602 LCD만 있는 상태에서의 출력방법을 알아보겠습니다.   schematic   schematic : 백라이트 밝기 조절 추가백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 LCD 3번핀을 3.3㏀ 거쳐서 GND"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/image/1602-01.jpg"><meta property="og:image" content="http://stemwith.github.io/image/1602-02.jpg"><meta property="og:image" content="http://stemwith.github.io/image/1602-03.jpg"><meta property="og:image" content="http://stemwith.github.io/image/1602-04.jpg"><meta property="og:image" content="http://stemwith.github.io/image/1602-05.jpg"><meta property="article:published_time" content="2018-10-02T05:18:00.000Z"><meta property="article:modified_time" content="2021-11-17T03:47:00.000Z"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/1602-01.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io/2018/10/02/1602-LCD-Display/"},"headline":"1602 LCD, 조도, 초음파, 온습도","image":["http://stemwith.github.io/image/1602-01.jpg","http://stemwith.github.io/image/1602-02.jpg","http://stemwith.github.io/image/1602-03.jpg","http://stemwith.github.io/image/1602-04.jpg","http://stemwith.github.io/image/1602-05.jpg"],"datePublished":"2018-10-02T05:18:00.000Z","dateModified":"2021-11-17T03:47:00.000Z","author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"Welcome to \"stemwith\"","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"1602 LCD 중에서 (I2C 모듈이 추가되어 있지 않은) 가장 기본적인 형태, 즉 1602 LCD만 있는 상태에서의 출력방법을 알아보겠습니다.   schematic   schematic : 백라이트 밝기 조절 추가백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 LCD 3번핀을 3.3㏀ 거쳐서 GND"}</script><link rel="canonical" href="http://stemwith.github.io/2018/10/02/1602-LCD-Display/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-128DRYVCRT');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/rss2.xml" title="Welcome to "stemwith"" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2018-10-02T05:18:00.000Z" title="2018. 10. 2. 오후 2:18:00">2018-10-02</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:47:00.000Z" title="2021. 11. 17. 오후 12:47:00">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">9분안에 읽기 (약 1342 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">1602 LCD, 조도, 초음파, 온습도</h1><div class="content"><p>1602 LCD 중에서 (I2C 모듈이 추가되어 있지 않은) 가장 기본적인 형태, 즉 1602 LCD만 있는 상태에서의 출력방법을 알아보겠습니다.</p>
+<br>
+
+<h3 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h3><p><img src="/image/1602-01.jpg"></p>
+<br>
+
+<h4 id="schematic-백라이트-밝기-조절-추가"><a href="#schematic-백라이트-밝기-조절-추가" class="headerlink" title="schematic : 백라이트 밝기 조절 추가"></a>schematic : 백라이트 밝기 조절 추가</h4><p>백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 <strong>LCD 3번핀을 3.3㏀ 거쳐서 GND로 연결</strong>(혹은 1㏀ 3개를 직렬연결) 하거나, 아래 회로와 같이 가변 저항을 사용하면 백라이트의 밝기를 적절히 조절할 수도 있다.</p>
+<p><img src="/image/1602-02.jpg"></p>
+<h4 id="Pin-Map"><a href="#Pin-Map" class="headerlink" title="Pin Map"></a>Pin Map</h4><table>
+<thead>
+<tr>
+<th>LCD Pin</th>
+<th></th>
+<th align="center"></th>
+<th>Arduino Uno</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>VSS</td>
+<td align="center">LCD GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>2</td>
+<td>VDD</td>
+<td align="center">LCD 전원</td>
+<td>+5V</td>
+</tr>
+<tr>
+<td>3</td>
+<td>VO</td>
+<td align="center">글자 대비값</td>
+<td>(가변저항 추가&#x2F;미사용시 3.3㏀ 거쳐서 GND)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RS</td>
+<td align="center">레지스터 설정</td>
+<td>12</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RW</td>
+<td align="center">읽기&#x2F;쓰기모드 설정</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>6</td>
+<td>E</td>
+<td align="center">쓰기모드 활성화</td>
+<td>11</td>
+</tr>
+<tr>
+<td>7</td>
+<td>D0</td>
+<td align="center">데이터 핀</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>D1</td>
+<td align="center">″</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>D2</td>
+<td align="center">″</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>D3</td>
+<td align="center">″</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>D4</td>
+<td align="center">″</td>
+<td>5</td>
+</tr>
+<tr>
+<td>12</td>
+<td>D5</td>
+<td align="center">″</td>
+<td>4</td>
+</tr>
+<tr>
+<td>13</td>
+<td>D6</td>
+<td align="center">″</td>
+<td>3</td>
+</tr>
+<tr>
+<td>14</td>
+<td>D7</td>
+<td align="center">″</td>
+<td>2</td>
+</tr>
+<tr>
+<td>15</td>
+<td>A</td>
+<td align="center">배경밝기 전압입력</td>
+<td>(가변저항 추가)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>K</td>
+<td align="center">배경밝기 GND</td>
+<td>(가변저항 추가)</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h3 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h3><h4 id="라이브러리-설치하기"><a href="#라이브러리-설치하기" class="headerlink" title="라이브러리 설치하기"></a>라이브러리 설치하기</h4><p>이 경우에는 Arduino IDE에 기본적으로 포함되어 있는 LiquidCrystal 라이브러리를 이용한다.</p>
+<ul>
+<li><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>LiquidCrystal</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="function"><a href="#function" class="headerlink" title="function"></a>function</h4><table>
+<thead>
+<tr>
+<th>function</th>
+<th>기능</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LiquidCrystal()</td>
+<td>LCD 클래스 생성(LCD interface 설정)</td>
+</tr>
+<tr>
+<td>begin()</td>
+<td>LCD 화면 초기화(column과 row 설정)</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>LCD 화면을 지우고 커서를 (0,0) 위치로 옮김</td>
+</tr>
+<tr>
+<td>home()</td>
+<td>커서를 (0,0) 위치로 옮김</td>
+</tr>
+<tr>
+<td>setCursor()</td>
+<td>커서를 특정 위치로 옮김</td>
+</tr>
+<tr>
+<td>write()</td>
+<td>현재 커서에 한 문자를 출력</td>
+</tr>
+<tr>
+<td>print()</td>
+<td>현재 커서부터 출력 (Serial.print() 함수와 유사)</td>
+</tr>
+<tr>
+<td>cursor(), nocursor()</td>
+<td>커서 표시 O or X</td>
+</tr>
+<tr>
+<td>display(), noDisplay()</td>
+<td>LCD 화면에 정보 표시 O or X</td>
+</tr>
+<tr>
+<td>scrollDisplayLeft(), scrollDisplayRight()</td>
+<td>LCD 내용과 커서를 좌&#x2F;우로 한 칸 스크롤</td>
+</tr>
+<tr>
+<td>autoscroll(), noautoscroll()</td>
+<td>문자 출력 시 이전 내용을 스크롤 할 지를 결정</td>
+</tr>
+<tr>
+<td>leftToRight(), rightToLeft()</td>
+<td>문자 출력 후 커서의 이동 위치 결정 (문자 출력 방향 결정)</td>
+</tr>
+<tr>
+<td>createChar()</td>
+<td>사용자 문자 등록, 총 8개까지 가능</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h3 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h3><h4 id="sketch-문자-2열-출력하기"><a href="#sketch-문자-2열-출력하기" class="headerlink" title="sketch : 문자 2열 출력하기"></a>sketch : 문자 2열 출력하기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>,<span class="number">11</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</span></span>;  <span class="comment">// pin 연결에 대한 class 선언 (RS,E,D4,D5,D6,D7)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	lcd.begin(<span class="number">16</span>, <span class="number">2</span>);             <span class="comment">// LCD크기 지정</span></span><br><span class="line">	lcd.print(<span class="string">&quot;SKS Afterschool&quot;</span>);</span><br><span class="line">	lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);          <span class="comment">// 커서를 (0,1) 즉 두번째 줄(행)의 첫번째 칸(열)으로 이동</span></span><br><span class="line">	lcd.print(<span class="string">&quot;Let&#x27;s Arduino!!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+<h4 id="sketch-문자열-좌우-스크롤하기"><a href="#sketch-문자열-좌우-스크롤하기" class="headerlink" title="sketch : 문자열 좌우 스크롤하기"></a>sketch : 문자열 좌우 스크롤하기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>, <span class="number">11</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  lcd.begin(<span class="number">16</span>, <span class="number">2</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;SKS Afterschool&quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;Let&#x27;s Arduino!!&quot;</span>);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> left = <span class="number">0</span>; left &lt; <span class="number">15</span>; left++) &#123;</span><br><span class="line">    lcd.scrollDisplayLeft();  <span class="comment">// 15번 왼쪽으로 이동 (15글자)</span></span><br><span class="line">    delay(<span class="number">300</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; <span class="number">31</span>; right++) &#123;</span><br><span class="line">    lcd.scrollDisplayRight();  <span class="comment">// 31번 오른쪽으로 이동 (15글자+16칸)</span></span><br><span class="line">    delay(<span class="number">300</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> left = <span class="number">0</span>; left &lt; <span class="number">16</span>; left++) &#123;</span><br><span class="line">    lcd.scrollDisplayLeft();  <span class="comment">// 16번 왼쪽으로 이동 (16칸)</span></span><br><span class="line">    delay(<span class="number">300</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="문자열과-조도센서값을-출력하기"><a href="#문자열과-조도센서값을-출력하기" class="headerlink" title="문자열과 조도센서값을 출력하기"></a>문자열과 조도센서값을 출력하기</h3><h4 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/1602-03.jpg"></p>
+<br>
+
+<h4 id="sketch-문자열과-조도센서를-읽은-조도값을-동시에-출력하기"><a href="#sketch-문자열과-조도센서를-읽은-조도값을-동시에-출력하기" class="headerlink" title="sketch : 문자열과 조도센서를 읽은 조도값을 동시에 출력하기"></a>sketch : 문자열과 조도센서를 읽은 조도값을 동시에 출력하기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>,<span class="number">11</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</span></span>;  <span class="comment">// pin 연결에 대한 class 선언 (RS,E,D4,D5,D6,D7)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	lcd.begin(<span class="number">16</span>, <span class="number">2</span>);             <span class="comment">// LCD크기 지정</span></span><br><span class="line">	lcd.print(<span class="string">&quot;Illumination:&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);         <span class="comment">// 커서를 (0,1) 즉 첫번째 줄의 두번째 칸으로 이동</span></span><br><span class="line">	lcd.print(analogRead(A0));   <span class="comment">// A0에서 읽은 조도값을 출력</span></span><br><span class="line">	delay(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="sketch-조도-센서값을-위로-스크롤시키기"><a href="#sketch-조도-센서값을-위로-스크롤시키기" class="headerlink" title="sketch : 조도 센서값을 위로 스크롤시키기"></a>sketch : 조도 센서값을 위로 스크롤시키기</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i, j, k=<span class="number">1</span>;</span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>,<span class="number">11</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  lcd.begin(<span class="number">16</span>, <span class="number">2</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;Illumination:&quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);        <span class="comment">// 두번째 줄에</span></span><br><span class="line">  i = analogRead(A0);</span><br><span class="line">  lcd.print(<span class="string">&quot;Check#&quot;</span>);</span><br><span class="line">  lcd.print(k);               <span class="comment">// 측정 횟수</span></span><br><span class="line">  lcd.print(<span class="string">&quot; : &quot;</span>);</span><br><span class="line">  lcd.print(i);               <span class="comment">// 첫번째 조도값 출력</span></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  lcd.clear();                <span class="comment">// lcd 화면 지우고 (0,0)으로 커서 이동</span></span><br><span class="line">  j = i;                      <span class="comment">// 이전 조도값을 j에 저장</span></span><br><span class="line">  lcd.print(<span class="string">&quot;Check#&quot;</span>);</span><br><span class="line">  lcd.print(k);               <span class="comment">// 이전 조도값 측정 횟수</span></span><br><span class="line">  lcd.print(<span class="string">&quot; : &quot;</span>);</span><br><span class="line">  lcd.print(j);               <span class="comment">// 이전 조도값 출력</span></span><br><span class="line"></span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);        <span class="comment">// 두번째 줄로 이동</span></span><br><span class="line">  i = analogRead(A0);         <span class="comment">// 새로운 조도값 측정</span></span><br><span class="line">  k++;                        <span class="comment">// 측정 횟수 증가</span></span><br><span class="line">  lcd.print(<span class="string">&quot;check#&quot;</span>);</span><br><span class="line">  lcd.print(k);               <span class="comment">// 새로운 측정 횟수</span></span><br><span class="line">  lcd.print(<span class="string">&quot; : &quot;</span>);</span><br><span class="line">  lcd.print(i);               <span class="comment">// 새로운 조도값 출력</span></span><br><span class="line">  </span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="초음파-센서-거리값-출력하기"><a href="#초음파-센서-거리값-출력하기" class="headerlink" title="초음파 센서 거리값 출력하기"></a>초음파 센서 거리값 출력하기</h3><p>초음파를 이용하여 사물간의 거리를 측정하는 센서입니다. 아두이노에서는 HC-SR04, US-100 제품을 많이 사용하며, 여기서는 HC-SR04를 사용해보겠습니다.</p>
+<br>
+
+
+<h4 id="schematic-2"><a href="#schematic-2" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/1602-04.jpg"></p>
+<br>
+
+<h4 id="Pin-Map-HC-SR04"><a href="#Pin-Map-HC-SR04" class="headerlink" title="Pin Map : HC-SR04"></a>Pin Map : HC-SR04</h4><table>
+<thead>
+<tr>
+<th>DHT11</th>
+<th>아두이노</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>Trig (초음파 송신)</td>
+<td>8 (pinMode 설정함)</td>
+</tr>
+<tr>
+<td>Echo (초음파 수신)</td>
+<td>9 (pinMode 설정함)</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRIG 8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ECHO 9</span></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>, <span class="number">11</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   pinMode(TRIG, OUTPUT);</span><br><span class="line">   pinMode(ECHO, INPUT);</span><br><span class="line">   lcd.begin(<span class="number">16</span>, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  digitalWrite(TRIG, LOW);  <span class="comment">// 초음파발사 정지(초기화)</span></span><br><span class="line">  delayMicroseconds(<span class="number">2</span>);</span><br><span class="line">  digitalWrite(TRIG, HIGH); <span class="comment">// 초음파발사</span></span><br><span class="line">  delayMicroseconds(<span class="number">2</span>);</span><br><span class="line">  digitalWrite(TRIG, LOW);  <span class="comment">// 초음파발사 정지</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">long</span> distance = pulseIn(ECHO, HIGH)/<span class="number">58.2</span>;</span><br><span class="line">  lcd.clear();</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">  lcd.print(distance);</span><br><span class="line">  lcd.print(<span class="string">&quot; cm&quot;</span>);</span><br><span class="line">  delay(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="DHT11-온·습도센서-값-출력하기"><a href="#DHT11-온·습도센서-값-출력하기" class="headerlink" title="DHT11 온·습도센서 값 출력하기"></a>DHT11 온·습도센서 값 출력하기</h3><p>DHT11 센서를 사용하면 온도와 습도를 동시에 측정할 수 있다. 여기서는 1602 LCD에 온도와 습도를 출력해본다.</p>
+<br>
+
+<h4 id="schematic-3"><a href="#schematic-3" class="headerlink" title="schematic"></a>schematic</h4><p><img src="/image/1602-05.jpg"></p>
+<br>
+
+<h4 id="Pin-Map-1"><a href="#Pin-Map-1" class="headerlink" title="Pin Map"></a>Pin Map</h4><table>
+<thead>
+<tr>
+<th>DHT11</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arduino</td>
+<td>5V</td>
+<td></td>
+<td>2, 10㏀ 저항 거쳐서 5V</td>
+<td>GND</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="라이브러리-추가하기"><a href="#라이브러리-추가하기" class="headerlink" title="라이브러리 추가하기"></a>라이브러리 추가하기</h4><ul>
+<li><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>라이브러리 매니저</strong> 에서 “DHT11” 검색</li>
+<li>DHT sensor library by Adafruit 설치</li>
+</ul>
+<br>
+
+<h4 id="sketch-2"><a href="#sketch-2" class="headerlink" title="sketch"></a>sketch</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;DHT.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal <span class="title">lcd</span><span class="params">(<span class="number">12</span>, <span class="number">11</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>)</span></span>;    <span class="comment">// RS, E, D4, D5, D6, D7</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DHTPIN 10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DHTTYPE DHT11</span></span><br><span class="line"><span class="function">DHT <span class="title">dht</span><span class="params">(DHTPIN, DHTTYPE)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  dht.begin();</span><br><span class="line">  lcd.begin(<span class="number">16</span>, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">float</span> t = dht.readTemperature();       <span class="comment">// read temperature</span></span><br><span class="line">  <span class="keyword">float</span> h = dht.readHumidity();          <span class="comment">// read humidity</span></span><br><span class="line"></span><br><span class="line">  lcd.clear();</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;Temp.: &quot;</span>);                  <span class="comment">// write temperature </span></span><br><span class="line">  lcd.print(t);</span><br><span class="line">  lcd.print(<span class="string">&quot; C&quot;</span>);</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;Humi.: &quot;</span>);                  <span class="comment">// write humidity</span></span><br><span class="line">  lcd.print(h);</span><br><span class="line">  lcd.print(<span class="string">&quot;%&quot;</span>);</span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="과제"><a href="#과제" class="headerlink" title="과제"></a>과제</h3><p>입력버튼을 만들과, 각 버튼을 누를때마다 A → B → C → D 등 출력하기</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>1602 LCD, 조도, 초음파, 온습도</p><p><a href="http://stemwith.github.io/2018/10/02/1602-LCD-Display/">http://stemwith.github.io/2018/10/02/1602-LCD-Display/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>chemidot</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-10-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-11-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/11/01/%EB%93%9C%EB%A1%A0%EC%9D%98-%EB%B9%84%ED%96%89-%EC%9B%90%EB%A6%AC/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">드론의 비행 원리</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/10/01/7-Segment-FND-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/"><span class="level-item">7 Segment (FND) 사용하기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="stemwith/stemwith.github.io" issue-term="pathname" label="blog comments" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">50</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#schematic"><span class="level-left"><span class="level-item">1</span><span class="level-item">schematic</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#schematic-백라이트-밝기-조절-추가"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">schematic : 백라이트 밝기 조절 추가</span></span></a></li><li><a class="level is-mobile" href="#Pin-Map"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Pin Map</span></span></a></li></ul></li><li><a class="level is-mobile" href="#sketch"><span class="level-left"><span class="level-item">2</span><span class="level-item">sketch</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#라이브러리-설치하기"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">라이브러리 설치하기</span></span></a></li><li><a class="level is-mobile" href="#function"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">function</span></span></a></li></ul></li><li><a class="level is-mobile" href="#예시"><span class="level-left"><span class="level-item">3</span><span class="level-item">예시</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#sketch-문자-2열-출력하기"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">sketch : 문자 2열 출력하기</span></span></a></li><li><a class="level is-mobile" href="#sketch-문자열-좌우-스크롤하기"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">sketch : 문자열 좌우 스크롤하기</span></span></a></li></ul></li><li><a class="level is-mobile" href="#문자열과-조도센서값을-출력하기"><span class="level-left"><span class="level-item">4</span><span class="level-item">문자열과 조도센서값을 출력하기</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#schematic-1"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">schematic</span></span></a></li><li><a class="level is-mobile" href="#sketch-문자열과-조도센서를-읽은-조도값을-동시에-출력하기"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">sketch : 문자열과 조도센서를 읽은 조도값을 동시에 출력하기</span></span></a></li><li><a class="level is-mobile" href="#sketch-조도-센서값을-위로-스크롤시키기"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">sketch : 조도 센서값을 위로 스크롤시키기</span></span></a></li></ul></li><li><a class="level is-mobile" href="#초음파-센서-거리값-출력하기"><span class="level-left"><span class="level-item">5</span><span class="level-item">초음파 센서 거리값 출력하기</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#schematic-2"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">schematic</span></span></a></li><li><a class="level is-mobile" href="#Pin-Map-HC-SR04"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">Pin Map : HC-SR04</span></span></a></li><li><a class="level is-mobile" href="#sketch-1"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">sketch</span></span></a></li></ul></li><li><a class="level is-mobile" href="#DHT11-온·습도센서-값-출력하기"><span class="level-left"><span class="level-item">6</span><span class="level-item">DHT11 온·습도센서 값 출력하기</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#schematic-3"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">schematic</span></span></a></li><li><a class="level is-mobile" href="#Pin-Map-1"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">Pin Map</span></span></a></li><li><a class="level is-mobile" href="#라이브러리-추가하기"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">라이브러리 추가하기</span></span></a></li><li><a class="level is-mobile" href="#sketch-2"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">sketch</span></span></a></li></ul></li><li><a class="level is-mobile" href="#과제"><span class="level-left"><span class="level-item">7</span><span class="level-item">과제</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">8월 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2022 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Arduino, Bluetooth 페어링 - Welcome to &quot;stemwith&quot;</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Welcome to &quot;stemwith&quot;"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Welcome to &quot;stemwith&quot;"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.   Bluetooth module 선택 아이폰 : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능) HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을"><meta property="og:type" content="blog"><meta property="og:title" content="Arduino, Bluetooth 페어링"><meta property="og:url" content="http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/"><meta property="og:site_name" content="Welcome to &quot;stemwith&quot;"><meta property="og:description" content="아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.   Bluetooth module 선택 아이폰 : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능) HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://stemwith.github.io/image/BT-01.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-02.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-05.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-03.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-04.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-06.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-07.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-08.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-09.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-09-1.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-10.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-11.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-12.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-13.jpg"><meta property="og:image" content="http://stemwith.github.io/image/BT-14.png"><meta property="og:image" content="http://stemwith.github.io/image/BT-15.png"><meta property="og:image" content="http://stemwith.github.io/image/BT-14-1.png"><meta property="og:image" content="http://stemwith.github.io/image/BT-16.png"><meta property="og:image" content="http://stemwith.github.io/image/BT-17.png"><meta property="og:image" content="http://stemwith.github.io/image/BT-18.png"><meta property="article:published_time" content="2019-10-26T14:24:07.000Z"><meta property="article:modified_time" content="2021-11-17T03:40:14.000Z"><meta property="article:author" content="chemidot"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/BT-01.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/"},"headline":"Arduino, Bluetooth 페어링","image":["http://stemwith.github.io/image/BT-01.jpg","http://stemwith.github.io/image/BT-02.jpg","http://stemwith.github.io/image/BT-05.jpg","http://stemwith.github.io/image/BT-03.jpg","http://stemwith.github.io/image/BT-04.jpg","http://stemwith.github.io/image/BT-06.jpg","http://stemwith.github.io/image/BT-07.jpg","http://stemwith.github.io/image/BT-08.jpg","http://stemwith.github.io/image/BT-09.jpg","http://stemwith.github.io/image/BT-09-1.jpg","http://stemwith.github.io/image/BT-10.jpg","http://stemwith.github.io/image/BT-11.jpg","http://stemwith.github.io/image/BT-12.jpg","http://stemwith.github.io/image/BT-13.jpg","http://stemwith.github.io/image/BT-14.png","http://stemwith.github.io/image/BT-15.png","http://stemwith.github.io/image/BT-14-1.png","http://stemwith.github.io/image/BT-16.png","http://stemwith.github.io/image/BT-17.png","http://stemwith.github.io/image/BT-18.png"],"datePublished":"2019-10-26T14:24:07.000Z","dateModified":"2021-11-17T03:40:14.000Z","author":{"@type":"Person","name":"chemidot"},"publisher":{"@type":"Organization","name":"Welcome to \"stemwith\"","logo":{"@type":"ImageObject","url":"http://stemwith.github.io/img/logo.svg"}},"description":"아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.   Bluetooth module 선택 아이폰 : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능) HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을"}</script><link rel="canonical" href="http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai.css"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&amp;family=Roboto" rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-128DRYVCRT');</script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/rss2.xml" title="Welcome to "stemwith"" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2019-10-26T14:24:07.000Z" title="2019. 10. 26. 오후 11:24:07">2019-10-26</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2021-11-17T03:40:14.000Z" title="2021. 11. 17. 오후 12:40:14">2021-11-17</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/arduino/">arduino</a></span><span class="level-item">14분안에 읽기 (약 2042 단어)</span></div></div><h1 class="title is-3 is-size-4-mobile">Arduino, Bluetooth 페어링</h1><div class="content"><p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
+<br>
+
+<h3 id="Bluetooth-module-선택"><a href="#Bluetooth-module-선택" class="headerlink" title="Bluetooth module 선택"></a>Bluetooth module 선택</h3><ul>
+<li><p><strong>아이폰</strong> : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)</p>
+<p>HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 <strong>Both NL &amp; CR</strong> 모드를 선택해주어야 하는 것입니다.</p>
+</li>
+</ul>
+<p><img src="/image/BT-01.jpg"></p>
+<ul>
+<li><strong>안드로이드</strong> : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)</li>
+</ul>
+<p><img src="/image/BT-02.jpg"></p>
+<blockquote>
+<p>※ 요즘은 잘 사용하지 않지만, HC-05를 사용하기도 합니다. 생김새가 거의 비슷하지만, 몇가지 차이점이 있는데요. 보통 HC-06과 구별하기 위하여, HC-05에는 칩 위에 V형태로 체크를 해두거나, 화이트로 하얀색 점을 찍어두는 경우가 많습니다. 그리고, 가장 큰 차이점은 HC-05의 경우 6개의 핀이 모두 존재해요.</p>
+<p><img src="/image/BT-05.jpg"></p>
+</blockquote>
+<blockquote>
+<p>※ 예전에는 HC-05는 Master, HC-06은 Slave로 나누어 쓰는 경우가 많았지만, HC-06의 버전이 1.7이상인 경우 Master, Slave를 선택하여 사용할 수 있게 되면서 HC-05는 잘 사용하지 않게 되었습니다.</p>
+</blockquote>
+<br>
+
+<h4 id="MLT-BT05-HC-06을-사용하는-경우"><a href="#MLT-BT05-HC-06을-사용하는-경우" class="headerlink" title="MLT-BT05, HC-06을 사용하는 경우"></a>MLT-BT05, HC-06을 사용하는 경우</h4><h5 id="Pin-Map"><a href="#Pin-Map" class="headerlink" title="Pin Map"></a>Pin Map</h5><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th align="center"></th>
+<th>Arduino Uno</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>STATE</td>
+<td align="center">(실제 핀 없거나 미사용)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>RXD</td>
+<td align="center">Receive Data (수신)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TXD</td>
+<td align="center">Transmit Data (송신)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GND</td>
+<td align="center">GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>5</td>
+<td>VCC</td>
+<td align="center">+5V</td>
+<td>+5V</td>
+</tr>
+<tr>
+<td>6</td>
+<td>KEY</td>
+<td align="center">(실제 핀 없거나 미사용)</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<h5 id="schematic"><a href="#schematic" class="headerlink" title="schematic"></a>schematic</h5><p><img src="/image/BT-03.jpg"></p>
+<br>
+
+<h5 id="sketch"><a href="#sketch" class="headerlink" title="sketch"></a>sketch</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect MLT-BT05 or HC-06 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">9600</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">    Serial.write(BTSerial.read());</span><br><span class="line">  <span class="keyword">if</span> (Serial.available())</span><br><span class="line">    BTSerial.write(Serial.read());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="HC-05를-사용하는-경우"><a href="#HC-05를-사용하는-경우" class="headerlink" title="HC-05를 사용하는 경우"></a>HC-05를 사용하는 경우</h4><h5 id="Pin-Map-1"><a href="#Pin-Map-1" class="headerlink" title="Pin Map"></a>Pin Map</h5><table>
+<thead>
+<tr>
+<th>HC-05 Pin</th>
+<th></th>
+<th align="center"></th>
+<th>Arduino Uno</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>STATE</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>RXD</td>
+<td align="center">Receive Data</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TXD</td>
+<td align="center">Transmit Date</td>
+<td>7</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GND</td>
+<td align="center">GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>5</td>
+<td>VCC</td>
+<td align="center">+5V</td>
+<td>+5V</td>
+</tr>
+<tr>
+<td>6</td>
+<td>KEY (ENABLE)</td>
+<td align="center">AT command 진입을 위한 핀</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>※ TXD로 UNO의 7번핀을 사용했으나, HC-06처럼 2번핀을 사용해도 됩니다. 단, schematic과 sketch도 2번 핀에 맞추어 수정해주세요.</p>
+</blockquote>
+<br>
+
+<h5 id="schematic-1"><a href="#schematic-1" class="headerlink" title="schematic"></a>schematic</h5><p><img src="/image/BT-04.jpg"></p>
+<br>
+
+<h5 id="sketch-1"><a href="#sketch-1" class="headerlink" title="sketch"></a>sketch</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SoftwareSerial.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> KEY 8</span></span><br><span class="line"><span class="function">SoftwareSerial <span class="title">BTSerial</span><span class="params">(<span class="number">7</span>, <span class="number">3</span>)</span></span>; <span class="comment">//Connect HC-05 TX,RX </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   pinMode(KEY, OUTPUT);       <span class="comment">//for HC-05</span></span><br><span class="line">   digitalWrite(KEY, HIGH);</span><br><span class="line">   Serial.begin(<span class="number">9600</span>);</span><br><span class="line">   Serial.println(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the data rate for the BT port</span></span><br><span class="line">   BTSerial.begin(<span class="number">38400</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (BTSerial.available())</span><br><span class="line">     Serial.write(BTSerial.read());</span><br><span class="line">   <span class="keyword">if</span> (Serial.available())</span><br><span class="line">     BTSerial.write(Serial.read());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="블루투스-모듈을-처음-사용하는-경우"><a href="#블루투스-모듈을-처음-사용하는-경우" class="headerlink" title="블루투스 모듈을 처음 사용하는 경우"></a>블루투스 모듈을 처음 사용하는 경우</h3><p>모듈을 처음 사용한다면, AT 명령어 세트를 사용하여 세팅을 해주어야 합니다. 또한 이전에 사용한 경험이 있더라도 블루투스 모듈ID, 페어링 암호 등을 새롭게 세팅할 필요가 있는 경우에도 동일합니다.</p>
+<br>
+
+<h4 id="MLT-BT05-AT-09-의-AT-Command"><a href="#MLT-BT05-AT-09-의-AT-Command" class="headerlink" title="MLT-BT05(AT-09)의 AT Command"></a>MLT-BT05(AT-09)의 AT Command</h4><table>
+<thead>
+<tr>
+<th>명령어</th>
+<th align="center">Serial Monitor 출력 결과</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AT</td>
+<td align="center">OK</td>
+<td>접속상태 확인</td>
+</tr>
+<tr>
+<td>AT+NAMESKS100</td>
+<td align="center">OKsetname</td>
+<td>블루투스 모듈ID 지정 (default MLT-BT05)</td>
+</tr>
+<tr>
+<td>AT+PIN</td>
+<td align="center">PASSWORD 출력</td>
+<td>패스워드 확인</td>
+</tr>
+<tr>
+<td>AT+PIN1234</td>
+<td align="center">OKsetPIN</td>
+<td>페어링 암호 설정 (default: <strong>123456</strong>)</td>
+</tr>
+<tr>
+<td>AT+BAUD4</td>
+<td align="center">OK9600</td>
+<td>통신속도 설정 (4 → 9600bps) (default: 0 → 115200bps)</td>
+</tr>
+<tr>
+<td>AT+VERSION</td>
+<td align="center">OKVERSION&#x3D;4.0</td>
+<td>MLT-BT05 버전 확인</td>
+</tr>
+<tr>
+<td>AT+LADDR</td>
+<td align="center">+LADDR&#x3D;(MAC Address)</td>
+<td>MAC Address 확인</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;0</td>
+<td align="center">OK+ROLE:0</td>
+<td>SLAVE mode (default)</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;1</td>
+<td align="center">OK+ROLE:1</td>
+<td>MASTER mode</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;2</td>
+<td align="center">OK+ROLE:2</td>
+<td>sensor mode</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;3</td>
+<td align="center">OK+ROLE:3</td>
+<td>iBeacon mode</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;4</td>
+<td align="center">OK+ROLE:4</td>
+<td>WeChat mode</td>
+</tr>
+<tr>
+<td>AT+ROLE</td>
+<td align="center">OK+ROLE:</td>
+<td>Role 확인</td>
+</tr>
+</tbody></table>
+<p>※ <a href="/attach/MLT-BT05.pdf">AT Command set 다운로드</a></p>
+<br>
+
+<h4 id="HC-06의-AT-Command"><a href="#HC-06의-AT-Command" class="headerlink" title="HC-06의 AT Command"></a>HC-06의 AT Command</h4><table>
+<thead>
+<tr>
+<th>명령어</th>
+<th align="center">Serial Monitor 출력 결과</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AT</td>
+<td align="center">OK</td>
+<td>접속상태 확인</td>
+</tr>
+<tr>
+<td>AT+NAMESKS100</td>
+<td align="center">OKsetname</td>
+<td>블루투스 모듈ID 지정 (SKS100)</td>
+</tr>
+<tr>
+<td>AT+PIN</td>
+<td align="center">PASSWORD출력</td>
+<td>패스워드 확인</td>
+</tr>
+<tr>
+<td>AT+PIN1234</td>
+<td align="center">OKsetPIN</td>
+<td>페어링 암호 설정 (default: <strong>1234</strong>)</td>
+</tr>
+<tr>
+<td>AT+BAUD4</td>
+<td align="center">OK9600</td>
+<td>통신속도 설정 (4 → 9600bps) (default: 4 → 9600bps)</td>
+</tr>
+<tr>
+<td>AT+VERSION</td>
+<td align="center">OKlinvorV1.8</td>
+<td>HC-06 버전 확인</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;S</td>
+<td align="center">OK+ROLE:S</td>
+<td>SLAVE 역할</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;M</td>
+<td align="center">OK+ROLE:M</td>
+<td>MASTER 역할 (v1.7 이상만 가능)</td>
+</tr>
+<tr>
+<td>AT+ROLE</td>
+<td align="center">OK+ROLE:</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="HC-05의-AT-Command"><a href="#HC-05의-AT-Command" class="headerlink" title="HC-05의 AT Command"></a>HC-05의 AT Command</h4><blockquote>
+<p>※ HC-05는 AT Command를 사용하는 경우, KEY(Enable) 핀을 연결해주어야 합니다. (schematic 참고)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th align="center">Serial Monitor 출력 결과</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AT</td>
+<td align="center">OK</td>
+<td>접속상태 확인</td>
+</tr>
+<tr>
+<td>AT+NAMESKS100</td>
+<td align="center">OKsetname</td>
+<td>블루투스 모듈ID 지정 (SKS100)</td>
+</tr>
+<tr>
+<td>AT+PSWD&#x3D;0000</td>
+<td align="center">OKsetPIN</td>
+<td>페어링 암호 설정 (0000)</td>
+</tr>
+<tr>
+<td>AT+BAUD6</td>
+<td align="center">OK9600</td>
+<td>통신속도 설정 (6 → 38400bps)</td>
+</tr>
+<tr>
+<td>AT+VERSION</td>
+<td align="center">OKlinvorV1.8</td>
+<td>HC-06 버전 확인</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;0</td>
+<td align="center">OK+ROLE:0</td>
+<td>SLAVE 역할</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;1</td>
+<td align="center">OK+ROLE:1</td>
+<td>MASTER 역할</td>
+</tr>
+<tr>
+<td>AT+ROLE&#x3D;?</td>
+<td align="center">OK+ROLE:</td>
+<td>MASTER&#x2F;SLAVE 확인</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h3 id="스마트폰과의-페어링-과정"><a href="#스마트폰과의-페어링-과정" class="headerlink" title="스마트폰과의 페어링 과정"></a>스마트폰과의 페어링 과정</h3><h4 id="시리얼모니터에서"><a href="#시리얼모니터에서" class="headerlink" title="시리얼모니터에서"></a>시리얼모니터에서</h4><p>HC-06과의 페어링 과정을 보도록 하겠습니다. (다른 블루투스 모듈도 유사하게 진행하면 됩니다.)</p>
+<br>
+
+<ol>
+<li>먼저 아두이노IDE의 시리얼 모니터를 엽니다.</li>
+</ol>
+<blockquote>
+<p>※ 이때, 주의할 점이 있는데요. <strong>시리얼 모니터를 열기 전에 스마트폰과 HC-06의 블루투스 연결은 해제된 상태</strong>여야 합니다. 기존에 HC-06과 스마트폰을 연결한 적이 있다면, 자기도 모르게 블루투스 연결이 자동으로 되어 있을 수 있는데요. 이런 경우에는 시리얼 모니터가 열리지 않아요.</p>
+</blockquote>
+<ul>
+<li><strong>MLT-BT05</strong>: 시리얼모니터의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+<li><strong>HC-06</strong>: 시리얼창의 하단에 “<strong>line ending 없음</strong>”, “9600 보드레이트 선택</li>
+<li><strong>HC-05</strong>: 시리얼창의 하단에 “<strong>Both NL &amp; CR</strong>”, “9600 보드레이트” 선택</li>
+</ul>
+<br>
+
+<ol start="2">
+<li>위 스케치를 <strong>사용하는 모듈에 맞게 선택하여</strong> 아두이노에 업로드 한 상태에서 시리얼 모니터를 열면, Hello! 라는 글자가 뜹니다. (업로드한 스케치에 따라 Hello!는 안나올 수도 있음)<br><img src="/image/BT-06.jpg"></li>
+</ol>
+<br>
+
+<ol start="3">
+<li>AT를 입력하고,<br><img src="/image/BT-07.jpg"></li>
+</ol>
+<br>
+
+<ol start="4">
+<li>전송을 누르면 OK가 뜹니다. 이것은 아두이노IDE를 통해 블루투스 모듈과 연결이 정상적으로 되었음을 의미해요.<br><img src="/image/BT-08.jpg"></li>
+</ol>
+<br>
+
+<ol start="5">
+<li>블루투스 모듈ID를 설정해보겠습니다. SKS100이라는 ID로 지정하기 위해 <strong>AT+NAMESKS100</strong>이라고 입력한 뒤, 전송을 누릅니다. (모듈ID는 본인이 사용할 이름으로 바꾸어 지정합니다.)<br><img src="/image/BT-09.jpg"></li>
+</ol>
+<br>
+
+<ol start="6">
+<li>그러면 OKsetname이라고 출력이 되면서, 블루투스 모듈ID가 SKS100으로 셋팅이 됩니다.<br><img src="/image/BT-09-1.jpg"></li>
+</ol>
+<br>
+
+<ol start="7">
+<li>이번에는 페어링 암호 설정입니다. AT+PIN0000을 입력하고 전송을 누르면<br><img src="/image/BT-10.jpg"></li>
+</ol>
+<br>
+
+<ol start="8">
+<li>OKsetPIN이 출력되면서 페어링 암호가 0000으로 설정됩니다.<br><img src="/image/BT-11.jpg"></li>
+</ol>
+<br>
+
+<ol start="9">
+<li>통신속도 설정입니다. HC-06은 주로 9600bps를 사용하며, 이를 위해 AT+BAUD4를 입력한 뒤 전송을 누릅니다. (HC-06의 경우 default 속도가 9600bps이므로 이 과정은 생략 가능하며, 다른 모듈을 사용하는 경우에는 각 모듈의 AT Command를 확인하여 통신속도를 변경해주어야 합니다.)<br><img src="/image/BT-12.jpg"></li>
+</ol>
+<br>
+
+<ol start="10">
+<li>OK9600이 출력되요.<br><img src="/image/BT-13.jpg"></li>
+</ol>
+<br>
+
+<p>여기까지 진행하면 대체적으로 HC-06을 사용할 준비가 된 것입니다.</p>
+<br>
+
+<h4 id="스마트폰에서"><a href="#스마트폰에서" class="headerlink" title="스마트폰에서"></a>스마트폰에서</h4><ol>
+<li>이제 스마트폰에서 블루투스 모드를 켜세요. (아래 화면은 스마트폰 기종마다 조금은 다를 수 있습니다. 화면이 다르더라도 거의 비슷할 거에요.) 그리고 새로고침을 통해 블루투스 기기를 찾습니다.<img src="/image/BT-14.png" style="zoom:33%;"></li>
+</ol>
+<br>
+
+<ol start="2">
+<li>‘거의 이용하지 않는 기기’ 하나를 찾았네요. 그곳을 누르면 조금전에 설정한 블루투스 모듈ID인 SKS100이 보입니다. 여기를 누르세요.<img src="/image/BT-15.png" style="zoom:33%;"></li>
+</ol>
+<br>
+
+<ol start="3">
+<li>블루투스 모듈과 페어링을 하기 위한 암호 입력화면이 나오고, 여기에 AT명령어를 통해 입력한 암호를 넣어줍니다.<img src="/image/BT-14-1.png" style="zoom:33%;"></li>
+</ol>
+<br>
+
+<ol start="4">
+<li>그러면 스마트폰이 SKS100 모듈에 페어링을 시도합니다.<img src="/image/BT-16.png" style="zoom:33%;"></li>
+</ol>
+<br>
+
+<ol start="5">
+<li>거의 이용하지 않는 블루투스 기기 부분을 누르면<img src="/image/BT-17.png" style="zoom:33%;"></li>
+</ol>
+<br>
+
+<ol start="6">
+<li>페어링된 기기 목록에 SKS100이 뜹니다. 여기까지 진행하면, 스마트폰과 블루투스 모듈이 페어링 완료된 거에요.<img src="/image/BT-18.png" style="zoom:33%;"></li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Arduino, Bluetooth 페어링</p><p><a href="http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-페어링/">http://stemwith.github.io/2019/10/26/Arduino-Bluetooth-페어링/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>chemidot</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-10-26</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-11-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="external nofollow noopener noreferrer" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/10/28/Arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-L298N/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Arduino, 라인트레이서, L298N</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/10/23/ESP32-BLE-Blynk-Gauge/"><span class="level-item">esp32 BLE, Blynk Gauge</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><script src="https://utteranc.es/client.js" repo="stemwith/stemwith.github.io" issue-term="pathname" label="blog comments" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-60x60 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="stemwith"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">stemwith</p><p class="is-size-6 is-block">de la Cruz a la fecha</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">50</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Bluetooth-module-선택"><span class="level-left"><span class="level-item">1</span><span class="level-item">Bluetooth module 선택</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#MLT-BT05-HC-06을-사용하는-경우"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">MLT-BT05, HC-06을 사용하는 경우</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Pin-Map"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">Pin Map</span></span></a></li><li><a class="level is-mobile" href="#schematic"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">schematic</span></span></a></li><li><a class="level is-mobile" href="#sketch"><span class="level-left"><span class="level-item">1.1.3</span><span class="level-item">sketch</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HC-05를-사용하는-경우"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">HC-05를 사용하는 경우</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Pin-Map-1"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">Pin Map</span></span></a></li><li><a class="level is-mobile" href="#schematic-1"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">schematic</span></span></a></li><li><a class="level is-mobile" href="#sketch-1"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">sketch</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#블루투스-모듈을-처음-사용하는-경우"><span class="level-left"><span class="level-item">2</span><span class="level-item">블루투스 모듈을 처음 사용하는 경우</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#MLT-BT05-AT-09-의-AT-Command"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">MLT-BT05(AT-09)의 AT Command</span></span></a></li><li><a class="level is-mobile" href="#HC-06의-AT-Command"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">HC-06의 AT Command</span></span></a></li><li><a class="level is-mobile" href="#HC-05의-AT-Command"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">HC-05의 AT Command</span></span></a></li></ul></li><li><a class="level is-mobile" href="#스마트폰과의-페어링-과정"><span class="level-left"><span class="level-item">3</span><span class="level-item">스마트폰과의 페어링 과정</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#시리얼모니터에서"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">시리얼모니터에서</span></span></a></li><li><a class="level is-mobile" href="#스마트폰에서"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">스마트폰에서</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">ESP32</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">Science</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/arduino/"><span class="level-start"><span class="level-item">arduino</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/diy/"><span class="level-start"><span class="level-item">diy</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/drone/"><span class="level-start"><span class="level-item">drone</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/esp32/"><span class="level-start"><span class="level-item">esp32</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/office/"><span class="level-start"><span class="level-item">office</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/science/"><span class="level-start"><span class="level-item">science</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2021-12-02T09:27:53.000Z">2021-12-02</time></p><p class="title"><a href="/2021/12/02/ESP32-RC%EC%B9%B4/">ESP32, RC카</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-15T08:57:00.000Z">2021-11-15</time></p><p class="title"><a href="/2021/11/15/STEM-%EC%95%8C%EC%BD%94%EC%98%AC-%EB%9E%A8%ED%94%84-%EB%B0%9B%EC%B9%A8%EB%8C%80/">알코올 램프 안전 손잡이 받침대 3D프린팅</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-02T08:57:00.000Z">2021-11-02</time></p><p class="title"><a href="/2021/11/02/STEM-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/">전자기파 검출기 만들기</a></p><p class="categories"><a href="/categories/science/">Science</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-11-01T09:27:53.000Z">2021-11-01</time></p><p class="title"><a href="/2021/11/01/ESP32-DC%EB%AA%A8%ED%84%B0/">ESP32, DC모터, TB6612FNG</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2021-10-10T09:27:53.000Z">2021-10-10</time></p><p class="title"><a href="/2021/10/10/ESP32-nRF24L01/">ESP32, nRF24L01 무선통신</a></p><p class="categories"><a href="/categories/esp32/">ESP32</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">12월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">11월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">10월 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/09/"><span class="level-start"><span class="level-item">9월 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">8월 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">11월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">10월 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">8월 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">11월 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">10월 2019</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">9월 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">11월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">10월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">9월 2018</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">6월 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">1월 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/11/"><span class="level-start"><span class="level-item">11월 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2012/10/"><span class="level-start"><span class="level-item">10월 2012</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3d/"><span class="tag">3D</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iot/"><span class="tag">iot</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rc/"><span class="tag">rc</span><span class="tag">5</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Welcome to &quot;stemwith&quot;" height="28"></a><p class="is-size-7"><span>&copy; 2022 chemidot</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
