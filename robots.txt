@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://stemwith.github.io/sitemap.xml
