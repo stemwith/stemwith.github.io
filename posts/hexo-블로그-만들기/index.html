@@ -1,0 +1,240 @@
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="필수 요소#
+Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치
+
+git
+github.com에 repository 2개 생성하기
+
+사용자ID-archives
+사용자ID.github.io
+
+
+node.js
+npm
+
+hexo.io 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영하기는 쉽지 않다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d드라이브에 hexo 블로그를 생성하고 운영하는 방법을 차례대로 따라할 수 있도록 정리한 것이다.
+
+Git 설치#
+
+https://git-scm.com/download/win 에서 64-bit Git for Windows Setup 다운로드
+설치 (설치 경로는 바꾸지 않음)
+exe 파일은 삭제
+
+
+nodejs 설치#
+
+
+https://nodejs.org/en/download/ 에서 Windows Installer (.msi) 64-bit 다운로드"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/"><meta property="og:site_name" content="STEM with"><meta property="og:title" content="hexo icarus 테마로 Github 블로그 만들기"><meta property="og:description" content="필수 요소# Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치
+git github.com에 repository 2개 생성하기 사용자ID-archives 사용자ID.github.io node.js npm hexo.io 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영하기는 쉽지 않다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d드라이브에 hexo 블로그를 생성하고 운영하는 방법을 차례대로 따라할 수 있도록 정리한 것이다.
+Git 설치# https://git-scm.com/download/win 에서 64-bit Git for Windows Setup 다운로드 설치 (설치 경로는 바꾸지 않음) exe 파일은 삭제 nodejs 설치# https://nodejs.org/en/download/ 에서 Windows Installer (.msi) 64-bit 다운로드"><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-01T18:27:53+09:00"><meta property="article:modified_time" content="2019-09-01T18:27:53+09:00"><title>hexo icarus 테마로 Github 블로그 만들기 | STEM with</title><link rel=icon href=/favicon.png><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/><link rel=stylesheet href=/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css integrity="sha256-rupC+yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>STEM with</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>hexo icarus 테마로 Github 블로그 만들기</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><ul><li><a href=#필수-요소>필수 요소</a></li><li><a href=#icarus-테마-설정>icarus 테마 설정</a></li><li><a href=#icarus-테마-셋팅>icarus 테마 셋팅</a></li><li><a href=#troubleshooting>Troubleshooting</a></li><li><a href=#블로그-포스트-생성>블로그 포스트 생성</a></li><li><a href=#code-fence>Code fence</a></li><li><a href=#about-페이지-만들기>about 페이지 만들기</a></li><li><a href=#사진-첨부-방법>사진 첨부 방법</a></li><li><a href=#github-블로그-구글-검색-노출>Github 블로그 구글 검색 노출</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1>hexo icarus 테마로 Github 블로그 만들기</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
+<span>September 1, 2019</span></div><div class=text-small><a href=/categories/diy/>Diy</a></div><div class="book-post-content markdown-inner"><h3 id=필수-요소>필수 요소<a class=anchor href=#%ed%95%84%ec%88%98-%ec%9a%94%ec%86%8c>#</a></h3><p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p><ul><li>git</li><li>github.com에 repository 2개 생성하기<ul><li>사용자ID-archives</li><li>사용자ID.github.io</li></ul></li><li>node.js</li><li>npm</li></ul><p><a href=https://hexo.io>hexo.io</a> 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영하기는 쉽지 않다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d드라이브에 hexo 블로그를 생성하고 운영하는 방법을 차례대로 따라할 수 있도록 정리한 것이다.</p><br><h4 id=git-설치>Git 설치<a class=anchor href=#git-%ec%84%a4%ec%b9%98>#</a></h4><ol><li><a href=https://git-scm.com/download/win>https://git-scm.com/download/win</a> 에서 <strong>64-bit Git for Windows Setup</strong> 다운로드</li><li>설치 (설치 경로는 바꾸지 않음)</li><li>exe 파일은 삭제</li></ol><br><h4 id=nodejs-설치>nodejs 설치<a class=anchor href=#nodejs-%ec%84%a4%ec%b9%98>#</a></h4><ol><li><p><a href=https://nodejs.org/en/download/>https://nodejs.org/en/download/</a> 에서 Windows Installer (.msi) 64-bit 다운로드</p></li><li><p>설치 (설치 경로는 바꾸지 않음)</p></li><li><p>(선택사항) 설치 중 Tools for Native Modules 에서 Automatically install the necessary tools에 체크</p><ul><li>chocolately, python, visualstudio 등 여러가지 패키지가 설치됨</li><li>설치 후, 리부팅 필요</li></ul></li><li><p>환경 변수 구성: <strong>제어판> 고급 시스템 설정 보기> 고급> 환경 변수</strong>를 열고, <strong>사용자 변수와 시스템 변수</strong>에 다음을 새로만들기 혹은 추가</p><ul><li>PATH 변수에 아래의 변수값 지정되어 있는지 확인 (없으면 새로 만들기)<ul><li>변수값: C:\Program Files\nodejs</li></ul></li></ul></li></ol><br><h4 id=git-bash-실행-후-hexo-및-icarus-테마-설치>git-bash 실행 후, hexo 및 icarus 테마 설치<a class=anchor href=#git-bash-%ec%8b%a4%ed%96%89-%ed%9b%84-hexo-%eb%b0%8f-icarus-%ed%85%8c%eb%a7%88-%ec%84%a4%ec%b9%98>#</a></h4><pre tabindex=0><code class=language-[bash] data-lang=[bash]>cd d:/dev
+npm install -g hexo-cli </code></pre><pre tabindex=0><code class=language-[bash] data-lang=[bash]>mkdir myblog
+hexo init myblog               // myblog 폴더가 비어 있어야 함.
+cd myblog
+git clone --depth 1 https://github.com/ppoffice/hexo-theme-icarus.git themes/icarus
+hexo config theme icarus</code></pre><br><ul><li>아래와 같은 error 메세지가 나오면,</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>ERROR Package bulma-stylus is not installed.
+ERROR Package hexo-renderer-inferno is not installed.
+ERROR Package hexo-component-inferno is not installed.
+ERROR Package inferno is not installed.
+ERROR Package inferno-create-element is not installed.
+ERROR Please install the missing dependencies your Hexo site root directory:
+ERROR npm install --save bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3
+ERROR or:
+ERROR yarn add bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3</code></pre><br><ul><li>패키지를 추가 설치한 후</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm install --save bulma-stylus@0.8.0 hexo-renderer-inferno@^0.1.3 hexo-component-inferno@^0.13.0 inferno@^7.3.3 inferno-create-element@^7.3.3</code></pre><br><ul><li>다시 실행</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo config theme icarus</code></pre><br><ul><li>이후에 아래와 같은 메세지가 나오면 _config.icarus.yml이 생성되면서 완료된다.</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>INFO  Validating config
+Inferno is in development mode.
+INFO  =======================================
+ ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗
+ ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝
+ ██║██║     ███████║██████╔╝██║   ██║███████╗
+ ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║
+ ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║
+ ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+=============================================
+INFO  === Checking package dependencies ===
+INFO  === Checking theme configurations ===
+WARN  None of the following configuration files is found:
+WARN  - D:\dev\stemwith\_config.icarus.yml
+WARN  - D:\dev\stemwith\themes\icarus\_config.yml
+INFO  Generating theme configuration file...
+INFO  D:\dev\stemwith\_config.icarus.yml created successfully.
+INFO  To skip configuration generation, use &#34;--icarus-dont-generate-config&#34;.
+INFO  === Registering Hexo extensions ===</code></pre><br><ul><li>이제 블로그 저장소 주소를 설정 파일(_config.yml)에 적어준다.</li></ul><pre tabindex=0><code class=language-[html] data-lang=[html]>theme: icarus
+deploy:
+  type: git
+  repo: https://github.com/myblog/myblog.github.io
+  branch: master</code></pre><br><ul><li>로컬에서 확인</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo server --debug</code></pre><p>이후, 브라우저에서</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>http://localhost:4000</code></pre><br><ul><li>배포를 위한 hexo-deployer-git 설치</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm i hexo-deployer-git --save</code></pre><p>이제 hexo generate와 hexo deploy를 사용할 수 있다.</p><br><br><h3 id=icarus-테마-설정>icarus 테마 설정<a class=anchor href=#icarus-%ed%85%8c%eb%a7%88-%ec%84%a4%ec%a0%95>#</a></h3><h4 id=category-list-order-설정-선택사항>Category list order 설정 (선택사항)<a class=anchor href=#category-list-order-%ec%84%a4%ec%a0%95-%ec%84%a0%ed%83%9d%ec%82%ac%ed%95%ad>#</a></h4><ul><li>d:/dev/myblog/node-modules/hexo-generator-category/lib/generator.js 수정</li></ul><pre tabindex=0><code class=language-[html] data-lang=[html]>module.exports = function(locals) {
+  const config = this.config;
+  const perPage = config.category_generator.per_page;
+  const paginationDir = config.pagination_dir || &#39;page&#39;;
+  const orderBy = config.category_generator.order_by || &#39;+date&#39;;</code></pre><ul><li>orderBy 부분<ul><li>-date : 최근 글 순 (default)</li><li>+date : 오래된 글 순</li></ul></li></ul><br><h4 id=기본-설정>기본 설정<a class=anchor href=#%ea%b8%b0%eb%b3%b8-%ec%84%a4%ec%a0%95>#</a></h4><ul><li>Site Configuration: _config.yml 수정</li></ul><pre tabindex=0><code class=language-[html] data-lang=[html]># Site
+title: myblog
+subtitle: &#39;my first blog&#39;
+description: &#39;life diary&#39;
+keywords:
+author: anonymous
+language: ko
+timezone: Asia/Seoul
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
+url: http://[githubID].github.io</code></pre><ul><li>Localization re-testing</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo clean &amp;&amp; hexo s</code></pre><br><h4 id=alternative-configuration>Alternative Configuration<a class=anchor href=#alternative-configuration>#</a></h4><p>_config.yml 에서는 가장 기본적인 셋팅과 테마 설정만 하고. 나머지 설정은 _config.[테마명].yml 에서 수행한다.</p><br><h5 id=사용-예시>사용 예시<a class=anchor href=#%ec%82%ac%ec%9a%a9-%ec%98%88%ec%8b%9c>#</a></h5><p>동일한 설정항목에 대하여 두가지 이상의 설정파일에서 동시에 정의하는 경우, 우선순위에 의해 설정값이 결정된다. 만약 _config.yml, _config.[테마명].yml, themes/[테마명]/ _config.yml 세가지 설정파일이 동시에 존재하는 경우, 각 파일을 아래와 같이 설정했다면,</p><pre tabindex=0><code class=language-[html] data-lang=[html]># _config.yml
+theme: &#34;my-theme&#34;</code></pre><pre tabindex=0><code class=language-[html] data-lang=[html]># _config.icarus.yml
+bio: &#34;My awesome bio&#34;
+foo:
+  bar: &#39;a&#39;</code></pre><pre tabindex=0><code class=language-[html] data-lang=[html]># themes/icarus/_config.yml
+bio: &#34;Some generic bio&#34;
+logo: &#34;a-cool-image.png&#34;
+  foo:
+    baz: &#39;b&#39;</code></pre><p>최종적으로 설정되는 값은 각각 다음과 같다.</p><pre tabindex=0><code class=language-[html] data-lang=[html]>bio: &#34;My awesome bio&#34;,
+logo: &#34;a-cool-image.png&#34;,
+foo: {
+  bar: &#34;a&#34;,
+  baz: &#34;b&#34;</code></pre><br><br><h3 id=icarus-테마-셋팅>icarus 테마 셋팅<a class=anchor href=#icarus-%ed%85%8c%eb%a7%88-%ec%85%8b%ed%8c%85>#</a></h3><ul><li>출처: <a href=https://chinsun9.github.io/2020/11/20/github-hexo-blog-web-font-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/>친성의 블로그</a> github hexo blog web font 적용하기, hexo icarus 테마에 커스텀 레이아웃, 스타일(css) 적용하기</li></ul><br><h4 id=폰트-수정>폰트 수정<a class=anchor href=#%ed%8f%b0%ed%8a%b8-%ec%88%98%ec%a0%95>#</a></h4><pre tabindex=0><code class=language-[html] data-lang=[html]>// 51 line
+const fontCssUrl = {
+  default: fontcdn(&#34;Ubuntu:wght@400;600&amp;family=Source+Code+Pro&#34;, &#34;css2&#34;),
+  cyberpunk: fontcdn(&#34;Oxanium:wght@300;400;600&amp;family=Roboto+Mono&#34;, &#34;css2&#34;),
+  nanumgothic: fontcdn(&#34;Nanum+Gothic:wght@400&amp;family=Roboto&#34;, &#34;css2&#34;),
+};</code></pre><pre tabindex=0><code class=language-[html] data-lang=[html]>// 151 line
+&lt;link rel=&#34;preconnect&#34; href=&#34;https://fonts.gstatic.com&#34; /&gt;
+&lt;link href={fontCssUrl[&#39;nanumgothic&#39;]} rel=&#34;stylesheet&#34; /&gt;</code></pre><pre tabindex=0><code class=language-[html] data-lang=[html]>$family-sans-serif ?= &#39;Gowun Dodum&#39;, &#39;Nanum Gothic&#39;, Ubuntu, Roboto, &#39;Open Sans&#39;, &#39;Microsoft YaHei&#39;, sans-serif
+// $family-sans-serif ?= Ubuntu, Roboto,&#39;Nanum Gothic Coding&#39;, &#39;Open Sans&#39;, &#39;Microsoft YaHei&#39;, sans-serif</code></pre><pre tabindex=0><code class=language-[html] data-lang=[html]>$article-font-size ?= 1.2rem</code></pre><ul><li><a href="https://fonts.google.com/?subset=korean">Google Fonts</a>에서 사용가능한 몇가지 폰트들을 검색해볼 수 있다.</li></ul><ul><li><p>이 사이트는 Google Fonts에서 지원하는 Gowun Dodum 폰트를 사용하도록 설정하였다. 이 경우 새로운 폰트 cdn을 import할 필요는 없으나, 특별한 폰트를 원하는 경우에는 아래와 같은 방법으로 새로운 cdn을 import하여야 한다.</p><pre tabindex=0><code class=language-[html] data-lang=[html]>@import url(https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css)</code></pre></li></ul><br><h4 id=가독성-향상>가독성 향상<a class=anchor href=#%ea%b0%80%eb%8f%85%ec%84%b1-%ed%96%a5%ec%83%81>#</a></h4><p>icarus 테마의 포스트 글자 크기나 기본 줄간격이 좋지 않아 가독성이 떨어지는 경향이 있어 아래와 같이 수정한다.</p><ol><li><p>포스트 제목 폰트 변경: &.article 을 검색한 후, .title 추가</p><pre tabindex=0><code class=language-[html] data-lang=[html]>&amp;.article
+    .title
+        font-size: 2.0em
+        font-weight: 700
+        letter-spacing: -1.4px;</code></pre></li><li><p>포스트 컨텐트 폰트 변경: .content를 검색한 후, 수정</p><pre tabindex=0><code class=language-[html] data-lang=[html]>.content
+    font-size: $article-font-size
+    line-height: 1.75em;
+    letter-spacing: -0.3px;
+    color: #5d686f;
+    margin-top: 20px;</code></pre></li><li><p>heading 폰트 변경: h1과 h2만 수정</p><pre tabindex=0><code class=language-[html] data-lang=[html]>    h1
+            font-size: 1.95em
+            font-weight: 600
+            margin-top: 50px;
+
+    h2
+            font-size: 1.5em
+            margin-top: 35px;</code></pre></li></ol><br><h4 id=컬럼-비율-조정하기>컬럼 비율 조정하기<a class=anchor href=#%ec%bb%ac%eb%9f%bc-%eb%b9%84%ec%9c%a8-%ec%a1%b0%ec%a0%95%ed%95%98%ea%b8%b0>#</a></h4><ol><li><p><em>layout/common/widgets.jsx</em> 로 가보면 <code>getColumnSizeClass</code>라는 함수가 있다</p><p>여기에 자신의 <em>columnCount</em> 에 맞게 수정한다</p><p>columnCount* 의 기본값은 2라서 case 2인 경우를 <code>is-3</code>으로 수정</p></li></ol><pre tabindex=0><code class=language-[html] data-lang=[html]>function getColumnSizeClass(columnCount) {
+  switch (columnCount) {
+    case 2:
+      return &#39;is-3-tablet is-3-desktop is-3-widescreen&#39;; // 여기 수정
+    case 3:
+      return &#39;is-4-tablet is-4-desktop is-3-widescreen&#39;;
+  }
+  return &#39;&#39;;
+}</code></pre><ol start=2><li><p><em>layout/layout.jsx</em> 아래쪽에서 <code>is-9</code>로 수정해주었다</p><ul><li><p>전체 12에서 기본값은 프로필이 들어있는 영역이 4, 게시글 영역이 8이였다</p></li><li><p>위처럼 수정하게되면 우선 그 비율을 3, 9로 변경해준 것이다</p></li><li><p>프로필 영역을 좁게, 게시글 영역은 크게 바뀐 것이다</p></li><li><p>이 12라는 것은 칼럼들의 상위에 있는 <code>container</code>의 크기를 기준으로 12등분한 것이다.</p></li></ul></li></ol><pre tabindex=0><code class=language-[html] data-lang=[html]>&lt;div
+  class={classname({
+    column: true,
+    &#39;order-2&#39;: true,
+    &#39;column-main&#39;: true,
+    &#39;is-12&#39;: columnCount === 1,
+    &#39;is-9-tablet is-9-desktop is-9-widescreen&#39;: columnCount === 2, // 여기 수정
+    &#39;is-9-tablet is-9-desktop is-6-widescreen&#39;: columnCount === 3,
+  })}
+  dangerouslySetInnerHTML={{ __html: body }}
+&gt;&lt;/div&gt;</code></pre><ol start=3><li><p>container 크기 늘리기</p><p><em>include/style/base.styl</em> 로 가서 23라인 정도에 보이는 아래 코드 중에서 <code>$widescreen</code>, <code>$fullhd</code>의 값을 각각 200px 씩 늘려준다.</p></li></ol><pre tabindex=0><code class=language-[html] data-lang=[html]>$gap ?= 16px
+$tablet ?= 769px
+$desktop ?= 1288px
+$widescreen ?= 1480px
+$fullhd ?= 1672px</code></pre><br><h4 id=커스텀-css-적용>커스텀 css 적용<a class=anchor href=#%ec%bb%a4%ec%8a%a4%ed%85%80-css-%ec%a0%81%ec%9a%a9>#</a></h4><h5 id=이미지-margin-변경>이미지 margin 변경<a class=anchor href=#%ec%9d%b4%eb%af%b8%ec%a7%80-margin-%eb%b3%80%ea%b2%bd>#</a></h5><pre tabindex=0><code class=language-[html] data-lang=[html]>&amp;.article
+    .article-meta, .article-tags
+        color: $text-light
+
+    .article-meta
+        overflow-x: auto
+        margin-bottom: .5rem
+
+    .article-more
+        @extend .button.is-light
+
+    .content
+        word-wrap: break-word
+        font-size: $article-font-size
+
+        img                     // 여기 추가
+            margin-top: 30px    // 여기 추가</code></pre><br><h4 id=변경된-css의-배포-및-적용>변경된 css의 배포 및 적용<a class=anchor href=#%eb%b3%80%ea%b2%bd%eb%90%9c-css%ec%9d%98-%eb%b0%b0%ed%8f%ac-%eb%b0%8f-%ec%a0%81%ec%9a%a9>#</a></h4><ul><li>hexo server에서는 최신 css 상태를 반영하는데, 그런데 실제로 배포될 때는 css파일이 갱신이 안된다.</li><li>그러므로 public/css/default.css 파일을 삭제하고, 다시 <code>hexo generate</code>로 생성한 후 배포한다.</li></ul><br><h4 id=link-hover-컬러-변경>link, hover 컬러 변경<a class=anchor href=#link-hover-%ec%bb%ac%eb%9f%ac-%eb%b3%80%ea%b2%bd>#</a></h4><ul><li>link, link-visited 컬러가 blue와 purple로 지정되어 있는 것이 어울리는것 같지 않아 grey-darker와 grey-light로 변경</li></ul><pre tabindex=0><code class=language-[html] data-lang=[html]>// Link colors
+
+$link ?= $grey-darker
+$link-invert ?= findColorInvert($link)
+$link-light ?= findLightColor($link)
+$link-dark ?= findDarkColor($link)
+$link-visited ?= $grey-dark
+
+$link-hover ?= $grey-darker
+$link-hover-border ?= $grey-light
+
+$link-focus ?= $grey-darker
+$link-focus-border ?= $blue
+
+$link-active ?= $grey-darker
+$link-active-border ?= $grey-dark</code></pre><br><br><h3 id=troubleshooting>Troubleshooting<a class=anchor href=#troubleshooting>#</a></h3><h4 id=경로의-대소문자-구분-설정>경로의 대소문자 구분 설정<a class=anchor href=#%ea%b2%bd%eb%a1%9c%ec%9d%98-%eb%8c%80%ec%86%8c%eb%ac%b8%ec%9e%90-%ea%b5%ac%eb%b6%84-%ec%84%a4%ec%a0%95>#</a></h4><p>경로에서 사용하는 폴더나 파일이름의 대소문자 구분 문제로 인해, 파일 인식이 안되는 경우가 발생한다. 특히, generate 시에 아래와 같은 메세지가 여러개 나오면, 대부분 파일이름의 대소문자 구분 문제라고 생각하면 된다.</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>Markdown Image Path does not exists!</code></pre><p>이런 경우, 다음과 같은 방법으로 문제를 해결해야 한다.</p><ul><li><p>_config.yml의 filename_case 수정</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]># Writing
+filename_case: 1</code></pre><ul><li>0: 대소문자 구분</li><li>1: 경로를 이루는 문자를 모두 소문자로 변경하여 관리</li><li>2: 경로를 이루는 문자를 모두 대문자로 변경하여 관리</li></ul></li><li><p>github.com에 로그인하여 repository의 categories 폴더 삭제</p></li><li><p>d:\dev\myblog\ 폴더의 .deploy_git 폴더 삭제</p></li><li><p>hexo clean 후 재배포</p></li><li><p>재배포시에 다음과 같은 에러가 생길 수 있다.</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>fatal: not a git repository (or any of the parent directories): .git</code></pre><p>.deploy_git 폴더의 삭제에 따라, git에 대한 정보를 담은 파일이 없기 때문에 발생하는 에러이며, d:\dev\myblog 폴더에서 다음을 실행한 후,</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>git init
+git remote add</code></pre></li></ul><br><p>이렇게 해도 경로가 인식이 안되는 경우는, Git에서 대소문자를 구분하게 설정하고, 폴더명 및 파일이름의 대소문자를 하나하나 맞춰주어서 해결할 수도 있다.</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>git config --global core.ignorecase=false</code></pre><br><h4 id=기존-블로그를-복구하는-경우>기존 블로그를 복구하는 경우<a class=anchor href=#%ea%b8%b0%ec%a1%b4-%eb%b8%94%eb%a1%9c%ea%b7%b8%eb%a5%bc-%eb%b3%b5%ea%b5%ac%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0>#</a></h4><ul><li>기존에 사용하던 블로그 디렉토리가 d:\dev\myblog 인 경우, d:\dev 폴더 전체를 다른 폴더에 복사하여 백업해두고 아래의 과정을 진행한다.</li><li>백업 완료 후, 기존에 사용하던 d:\dev\ 폴더 자체를 삭제한 후, 아래의 과정을 수행하여 모든 설치를 마친 뒤, 백업해둔 myblog 폴더에서 필요한 부분을 복구함.</li></ul><br><h4 id=favicon이-안나오는-경우>favicon이 안나오는 경우<a class=anchor href=#favicon%ec%9d%b4-%ec%95%88%eb%82%98%ec%98%a4%eb%8a%94-%ea%b2%bd%ec%9a%b0>#</a></h4><p>로컬 테스트시 favicon이 출력되지만, github 배포시 출력되지 않는다면</p><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>head:
+  # URL or path to the website&#39;s icon
+  favicon: /img/favicon.png?
+  # Open Graph metadata</code></pre><p>_<em>config.icarus.yml</em> 에서 상단에 favicon을 설정하는 부분에서 favicon.png 끝에 <code>?</code>를 추가한 후, 재배포 한다.</p><h4 id=generate할-때-에러가-뜨는-경우>generate할 때 에러가 뜨는 경우<a class=anchor href=#generate%ed%95%a0-%eb%95%8c-%ec%97%90%eb%9f%ac%ea%b0%80-%eb%9c%a8%eb%8a%94-%ea%b2%bd%ec%9a%b0>#</a></h4><pre tabindex=0><code>$ hexo g
+INFO  Validating config
+Inferno is in development mode.
+ERROR {
+  err: TypeError: Cannot read properties of undefined (reading &#39;split&#39;)</code></pre><p>해결방법</p><pre tabindex=0><code>cd d:\dev\myblog
+npm install hexo-html-syncer --save
+npm audit fix --force
+npm fund</code></pre><p><br>이후에 다시 generate 한다.</p><br><br><h3 id=블로그-포스트-생성>블로그 포스트 생성<a class=anchor href=#%eb%b8%94%eb%a1%9c%ea%b7%b8-%ed%8f%ac%ec%8a%a4%ed%8a%b8-%ec%83%9d%ec%84%b1>#</a></h3><ol><li><p>test.md 파일을 만든 뒤, d:/dev/stemwith/source/_post/ 폴더에 복사</p><p>test.md 파일의 가장 앞부분에 들어가는 post front-matter는 다음과 같이 구성한다.</p><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>---
+title: test 블로그 페이지
+date: 2019-09-17 01:32:35
+updated: 
+category:
+  - blog
+tags:
+  - hexo
+  - blog
+toc: true
+thumbnail: /images/preview.jpg
+---</code></pre><ul><li>toc: true를 추가하면 헤딩 태그(h1~h6)를 통해 목차를 만들어 준다. (icarus 테마의 경우)</li></ul></li><li><p>로컬에서 페이지 확인</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo serve
+http://localhost:4000</code></pre></li><li><p>로컬 작업 내용을 github 도메인으로 배포 (push)</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo generate
+hexo deploy</code></pre><p>or</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo g -d</code></pre></li><li><p>deploy 후에도 오랜시간 업데이트가 안된다면, 페이지 clean 후 재배포</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo clean
+hexo deploy --generate</code></pre></li></ol><br><br><h3 id=code-fence>Code fence<a class=anchor href=#code-fence>#</a></h3><pre tabindex=0><code class=language-[html] data-lang=[html]>``` [language] [title] [url] [link text] [additional options]
+code snippet</code></pre><p>{% codeblock [title] [lang:language] [url] [link text] [additional options] %}
+code snippet
+{% endcodeblock %}</p><p>{% code [title] [lang:language] [url] [link text] [additional options] %}
+code snippet
+{% endcode %}</p><pre tabindex=0><code>* 첫번째 라인에
+
+```[markdown]
+``` [C++] 파일이름</code></pre><p>과 같이 적어주면 코드박스 상단에 파일이름이 표시된다.</p><ul><li>파일이름은 [ ]로 감싸게 되면, [ ]까지 출력된다.</li><li>typora에서는 `````를 먼저 입력한 뒤, 코드박스가 나타나면, 코드박스 하단의 language 입력란에 입력한다.</li></ul><br><br><h3 id=about-페이지-만들기>about 페이지 만들기<a class=anchor href=#about-%ed%8e%98%ec%9d%b4%ec%a7%80-%eb%a7%8c%eb%93%a4%ea%b8%b0>#</a></h3><p>아래 명령을 통해 source/about/index.md을 생성한 후, 파일을 수정하여 사용한다.</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo new page &#34;about&#34;</code></pre><br><br><h3 id=사진-첨부-방법>사진 첨부 방법<a class=anchor href=#%ec%82%ac%ec%a7%84-%ec%b2%a8%eb%b6%80-%eb%b0%a9%eb%b2%95>#</a></h3><ol><li><p>첨부할 사진 파일 위치 : 사진 파일을 d:/dev/stemwith/source/image/ 폴더에 복사</p></li><li><p>마크다운 파일에서 파일 위치를 다음과 같이 지정함 지정함</p><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>![사진첨부파일설명](/image/~~~.jpg)</code></pre></li><li><p>사진 출력시 사이즈 조정</p><ul><li>icarus, next 테마 사용시에는 사진 사이즈 조정이 필요한 경우, img 태그를 사용하여 zoom 수치로 조정하여야 함</li></ul><pre tabindex=0><code class=language-[html] data-lang=[html]><figure class=center><img src=/image/test.png width=80%>
+   </figure>
+</code></pre><ul><li>book 테마 사용시에는 아래와 같이 하면 화면에 출력되는 크기를 조정할 수 있다. (단, icarus, Next 테마와 같은 방법을 사용해도 된다.)</li></ul><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>![사진첨부파일설명](/image/~~~.png =432x768)</code></pre></li><li><p>주의 사항</p><ul><li>필요한 경우, hexo-image-link-with-display-size 설치</li></ul><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm i hexo-image-link-with-display-size</code></pre><ul><li><p>사진이 위치한 폴더를 지정할 때, /image/ 폴더 앞에 점(.) 같은 것을 추가하면 안됨</p></li><li><p>파일이름에 언더바(_)가 포함되면 안됨. 대시(-)는 가능</p></li></ul></li></ol><br><br><h3 id=github-블로그-구글-검색-노출>Github 블로그 구글 검색 노출<a class=anchor href=#github-%eb%b8%94%eb%a1%9c%ea%b7%b8-%ea%b5%ac%ea%b8%80-%ea%b2%80%ec%83%89-%eb%85%b8%ec%b6%9c>#</a></h3><p>※ 출처: <a href=https://chinsun9.github.io/2020/09/23/%EB%82%B4-github-blog-%EA%B8%80%EC%9D%B4-%EA%B5%AC%EA%B8%80-%EA%B2%80%EC%83%89%EC%97%90-%EB%82%98%EC%98%A4%EB%8A%94-%EB%B2%95/>내 github blog 글이 구글 검색에 나오는 법(친성의 블로그)</a></p><br><h4 id=blog-설정>blog 설정<a class=anchor href=#blog-%ec%84%a4%ec%a0%95>#</a></h4><h5 id=seo-search-engine-optimization-설정>SEO (search engine optimization) 설정<a class=anchor href=#seo-search-engine-optimization-%ec%84%a4%ec%a0%95>#</a></h5><p>블로그 설치 폴더가 d:\dev\myblog 인 경우, d:\dev\myblog 폴더에서</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm i hexo-autonofollow
+npm i hexo-generator-feed
+npm i hexo-generator-seo-friendly-sitemap
+npm i hexo-generator-robotstxt</code></pre><p>필요한 경우 hexo-auto-canonical과 hexo-component-inferno을 추가로 설치한다.</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm i hexo-auto-canonical
+npm i hexo-component-inferno</code></pre><p>설치 후</p><pre tabindex=0><code class=language-[bash] data-lang=[bash]>npm audit fix</code></pre><br><p>※ 표준링크 확인 방법</p><ol><li><p>본인 블로그로 접속</p></li><li><p>F12로 개발자도구를 열고</p></li><li><p>개발자도구 상단의 <strong>요소</strong>를 클릭한 뒤,</p></li><li><p>Ctrl-F를 눌러 <strong>canonical</strong>를 검색했을 때, 아래 형태의 링크 태그가 검색이 되면, 이미 표준링크가 생성되고 있는 것임. 이런 경우에는 hexo-auto-canonical은 설치하지 않아도 됨!</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;canonical&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://블로그 글 주소/&#34;</span></span></span></code></pre></div></li><li><p>NEXT 테마의 경우, (이미 표준링크를 생성하고 있으므로) hexo-auto-canonical은 설치하지 않아도 됨</p></li></ol><br><h5 id=_configyml-설정>_config.yml 설정<a class=anchor href=#_configyml-%ec%84%a4%ec%a0%95>#</a></h5><p>_config.yml 최하단 deploy 설정 아래에 다음을 추가</p><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>nofollow:
+  enable: true
+  exclude:
+    - exclude1.com
+    - exclude2.com
+feed:
+  type: rss2
+  path: rss2.xml
+  limit: 20
+sitemap:
+  path: sitemap.xml
+  tag: false
+  category: false
+robotstxt:
+  useragent: &#39;*&#39;
+  allow:
+    - /
+  sitemap: https://깃허브유저네임.github.io/sitemap.xml</code></pre><br><h5 id=배포>배포<a class=anchor href=#%eb%b0%b0%ed%8f%ac>#</a></h5><pre tabindex=0><code class=language-[bash] data-lang=[bash]>hexo g -d</code></pre><br><h5 id=생성된-파일-확인하기>생성된 파일 확인하기<a class=anchor href=#%ec%83%9d%ec%84%b1%eb%90%9c-%ed%8c%8c%ec%9d%bc-%ed%99%95%ec%9d%b8%ed%95%98%ea%b8%b0>#</a></h5><p>d:\dev\myblog\public\ 디렉터리 하단에 rss2.xml, sitemap.xml, robots.txt 이 3개의 파일이 보이는지 확인한다.</p><br><br><h4 id=검색-노출>검색 노출<a class=anchor href=#%ea%b2%80%ec%83%89-%eb%85%b8%ec%b6%9c>#</a></h4><h5 id=구글-검색-엔진-등록>구글 검색 엔진 등록<a class=anchor href=#%ea%b5%ac%ea%b8%80-%ea%b2%80%ec%83%89-%ec%97%94%ec%a7%84-%eb%93%b1%eb%a1%9d>#</a></h5><ol><li><p><a href=https://search.google.com/search-console/about>Google Search Console</a> 에 접속후 시작하기 클릭</p></li><li><p><strong>URL 접두어</strong>를 선택하고, <strong>자신의 깃헙 주소</strong> (예, <a href=https://testblog.github.io>https://testblog.github.io</a>)를 입력한 뒤 <strong>계속</strong> 클릭</p></li><li><p>소유권 확인</p><ol><li>html 파일 다운로드</li><li>(_config.yml 이 위치한) d:\dev\myblog\public\ 디렉토리에 다운 받은 파일을 넣고</li><li>hexo d 로 배포</li><li>잠시 대기 후, 소유권 확인 과정 창의 <strong>확인</strong> 클릭 (확인이 안된다고 나오는 경우에는 잠시 후에 다시 시도 해야 함)</li><li>소유권이 확인되면, <strong>속성으로 이동</strong> 클릭</li></ol></li><li><p>Google Search Console에서</p><ol><li>왼쪽 메뉴의 <strong>sitemaps</strong> 클릭</li><li>새 사이트맵 추가에서 <strong>sitemap.xml</strong> 입력 후 <strong>제출</strong> 클릭</li><li>새 사이트맵 추가에서 <strong>rss2.xml</strong> 입력 후 <strong>제출</strong> 클릭</li><li>두 파일의 제출 상태가 <strong>성공</strong>으로 표시되어야 함 (<strong>가져올 수 없음</strong> 이라고 나오면 잠시 후에 페이지 새로고침을 해보고, 성공으로 표시되는지 확인이 필요함)</li></ol></li><li><p>실제 검색은 하루 정도 지나면 가능</p></li></ol><br><h5 id=naver-검색-노출>Naver 검색 노출<a class=anchor href=#naver-%ea%b2%80%ec%83%89-%eb%85%b8%ec%b6%9c>#</a></h5><ol><li>구글과 유사하며, 네이버 웹마스터 도구 (Naver Search Advisor)를 사용하여 등록함</li><li>RSS 제출 메뉴와 사이트맵 제출 메뉴가 분리되어 있으므로, sitemap.xml 및 rss2.xml 등록시 유의</li></ol><br><h5 id=daum-검색-노출>Daum 검색 노출<a class=anchor href=#daum-%ea%b2%80%ec%83%89-%eb%85%b8%ec%b6%9c>#</a></h5><ol><li><a href=https://register.search.daum.net/index.daum>Daum 검색등록</a>으로 들어가서</li><li>신규 등록에 블로그 URL을 등록한 뒤 <strong>확인</strong>을 클릭하여 제출하면, 심사 후 이메일로 등록 결과를 알려줌</li></ol><br><br><h4 id=mathjax--katex-설정>Mathjax & KaTeX 설정<a class=anchor href=#mathjax--katex-%ec%84%a4%ec%a0%95>#</a></h4><ul><li>_config.[테마].yml 설정</li></ul><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>math:
+    enable: false
+  ...
+  katex:
+    enable: true
+    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
+    copy_tex: true</code></pre><p>​ math: enable: false 상태에서는 필요한 렌더링이 필요한 페이지의 front matter에 <strong>mathjax: true</strong>를 넣어주어야 한다.</p><pre tabindex=0><code class=language-[markdown] data-lang=[markdown]>---
+title: Will Render Math
+mathjax: true
+---</code></pre><br><h4 id=google-analytics-설정>Google Analytics 설정<a class=anchor href=#google-analytics-%ec%84%a4%ec%a0%95>#</a></h4><pre tabindex=0><code class=language-[html] data-lang=[html]># Google Analytics
+# See: https://analytics.google.com
+google_analytics:
+  tracking_id: UA-*********-1          // google analytics 계정 s○○○○○○○@○○○○○○○.com</code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="Bluetooth Serial Controller 앱">
+<span>Bluetooth Serial Controller 앱</span></a></div><div><a href=/posts/processing-%EA%B8%B0%EC%B4%88/ class="flex align-center"><span>Processing 기초</span>
+<img src=/icons/forward.svg class=book-icon alt=Next title="Processing 기초"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#필수-요소>필수 요소</a></li><li><a href=#icarus-테마-설정>icarus 테마 설정</a></li><li><a href=#icarus-테마-셋팅>icarus 테마 셋팅</a></li><li><a href=#troubleshooting>Troubleshooting</a></li><li><a href=#블로그-포스트-생성>블로그 포스트 생성</a></li><li><a href=#code-fence>Code fence</a></li><li><a href=#about-페이지-만들기>about 페이지 만들기</a></li><li><a href=#사진-첨부-방법>사진 첨부 방법</a></li><li><a href=#github-블로그-구글-검색-노출>Github 블로그 구글 검색 노출</a></li></ul></li></ul></nav></div></aside></main></body></html>

@@ -1,0 +1,322 @@
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="4WD Bluetooth#
+지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.
+
+schematic#
+
+
+Bluetooth Serial Controller 설정#
+여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.
+
+
+먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.)  아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.
+
+
+
+
+
+
+PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여
+
+
+
+
+
+
+9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.
+
+
+
+
+
+
+그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.
+
+
+
+
+
+
+다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.
+
+
+
+
+
+
+button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &lsquo;전진&rsquo;, &lsquo;왼쪽&rsquo;, &lsquo;정지&rsquo;, &lsquo;오른쪽&rsquo;, &lsquo;후진&rsquo;이라고 이름을 붙여줍니다.
+
+
+
+
+
+
+다시 PREFERENCE에서 Command를 누르세요.
+
+
+
+
+
+
+Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &lsquo;F&rsquo;, &lsquo;L&rsquo;, &lsquo;O&rsquo;, &lsquo;R&rsquo;, &lsquo;B&rsquo;이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.
+
+
+
+
+
+
+이제 Visibility로 갑니다.
+
+
+
+
+
+
+여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.
+
+
+
+
+
+
+그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.
+
+
+
+
+
+
+이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.
+
+
+
+
+
+
+모듈ID인 SKS100을 누르면 페어링을 시도하고요.
+
+
+
+
+
+
+만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.
+
+
+
+
+
+
+페어링을 시도하는 중이네요.
+
+
+
+
+
+
+페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.
+
+
+
+
+
+
+4WD 블루투스 초음파센서 자동차#
+위 회로에 초음파 센서 하나만 덧붙여봅니다. 50cm 이내에 물체가 접근하면 후진했다가 정지하도록 되어있습니다. (실제로는 50cm보다 훨씬 짧은 거리내에서 후진을 시작하네요.)"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/4wd-bluetooth/"><meta property="og:site_name" content="STEM with"><meta property="og:title" content="4WD Bluetooth"><meta property="og:description" content="4WD Bluetooth# 지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.
+schematic# Bluetooth Serial Controller 설정# 여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.
+먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.) 아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요. PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여 9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요. 그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다. 다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘전진’, ‘왼쪽’, ‘정지’, ‘오른쪽’, ‘후진’이라고 이름을 붙여줍니다. 다시 PREFERENCE에서 Command를 누르세요. Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 ‘F’, ‘L’, ‘O’, ‘R’, ‘B’이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다. 이제 Visibility로 갑니다. 여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다. 그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다. 이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다. 모듈ID인 SKS100을 누르면 페어링을 시도하고요. 만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다. 페어링을 시도하는 중이네요. 페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다. 4WD 블루투스 초음파센서 자동차# 위 회로에 초음파 센서 하나만 덧붙여봅니다. 50cm 이내에 물체가 접근하면 후진했다가 정지하도록 되어있습니다. (실제로는 50cm보다 훨씬 짧은 거리내에서 후진을 시작하네요.)"><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-10-30T18:27:53+09:00"><meta property="article:modified_time" content="2019-10-30T18:27:53+09:00"><meta property="article:tag" content="Rc"><title>4WD Bluetooth | STEM with</title><link rel=icon href=/favicon.png><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/4wd-bluetooth/><link rel=stylesheet href=/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css integrity="sha256-rupC+yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>STEM with</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>4WD Bluetooth</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><ul><li><a href=#4wd-bluetooth>4WD Bluetooth</a></li><li><a href=#bluetooth-serial-controller-설정>Bluetooth Serial Controller 설정</a></li><li><a href=#4wd-블루투스-초음파센서-자동차>4WD 블루투스 초음파센서 자동차</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1>4WD Bluetooth</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
+<span>October 30, 2019</span></div><div class=text-small><a href=/categories/arduino/>Arduino</a></div><div class=text-small><a href=/tags/rc/>Rc</a></div><div class="book-post-content markdown-inner"><h3 id=4wd-bluetooth>4WD Bluetooth<a class=anchor href=#4wd-bluetooth>#</a></h3><p>지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.</p><br><h4 id=schematic>schematic<a class=anchor href=#schematic>#</a></h4><p><img src=/image/4wd-bt-17.png alt></p><br><h3 id=bluetooth-serial-controller-설정>Bluetooth Serial Controller 설정<a class=anchor href=#bluetooth-serial-controller-%ec%84%a4%ec%a0%95>#</a></h3><p>여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.</p><br><ol><li>먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.) 아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.</li></ol><figure class=center><img src=/image/4wd-bt-01.png width=33%></figure><br><ol start=2><li>PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여</li></ol><figure class=center><img src=/image/4wd-bt-02.png width=33%></figure><br><ol start=3><li>9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.</li></ol><figure class=center><img src=/image/4wd-bt-03.png width=33%></figure><br><ol start=4><li>그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.</li></ol><figure class=center><img src=/image/4wd-bt-04.png width=33%></figure><br><ol start=5><li>다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.</li></ol><figure class=center><img src=/image/4wd-bt-05.png width=33%></figure><br><ol start=6><li>button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &lsquo;전진&rsquo;, &lsquo;왼쪽&rsquo;, &lsquo;정지&rsquo;, &lsquo;오른쪽&rsquo;, &lsquo;후진&rsquo;이라고 이름을 붙여줍니다.</li></ol><figure class=center><img src=/image/4wd-bt-06.png width=33%></figure><br><ol start=7><li>다시 PREFERENCE에서 Command를 누르세요.</li></ol><figure class=center><img src=/image/4wd-bt-07.png width=33%></figure><br><ol start=8><li>Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &lsquo;F&rsquo;, &lsquo;L&rsquo;, &lsquo;O&rsquo;, &lsquo;R&rsquo;, &lsquo;B&rsquo;이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.</li></ol><figure class=center><img src=/image/4wd-bt-08.png width=33%></figure><br><ol start=9><li>이제 Visibility로 갑니다.</li></ol><figure class=center><img src=/image/4wd-bt-09.png width=33%></figure><br><ol start=10><li>여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.</li></ol><figure class=center><img src=/image/4wd-bt-10.png width=33%></figure><br><ol start=11><li>그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.</li></ol><figure class=center><img src=/image/4wd-bt-11.png width=33%></figure><br><ol start=12><li>이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.</li></ol><figure class=center><img src=/image/4wd-bt-12.png width=33%></figure><br><ol start=13><li>모듈ID인 SKS100을 누르면 페어링을 시도하고요.</li></ol><figure class=center><img src=/image/4wd-bt-13.png width=33%></figure><br><ol start=14><li>만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.</li></ol><figure class=center><img src=/image/4wd-bt-14.png width=33%></figure><br><ol start=15><li>페어링을 시도하는 중이네요.</li></ol><figure class=center><img src=/image/4wd-bt-15.png width=33%></figure><br><ol start=16><li>페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.</li></ol><figure class=center><img src=/image/4wd-bt-16.png width=33%></figure><br><br><h3 id=4wd-블루투스-초음파센서-자동차>4WD 블루투스 초음파센서 자동차<a class=anchor href=#4wd-%eb%b8%94%eb%a3%a8%ed%88%ac%ec%8a%a4-%ec%b4%88%ec%9d%8c%ed%8c%8c%ec%84%bc%ec%84%9c-%ec%9e%90%eb%8f%99%ec%b0%a8>#</a></h3><p>위 회로에 초음파 센서 하나만 덧붙여봅니다. 50cm 이내에 물체가 접근하면 후진했다가 정지하도록 되어있습니다. (실제로는 50cm보다 훨씬 짧은 거리내에서 후진을 시작하네요.)</p><br><h4 id=schematic-1>schematic<a class=anchor href=#schematic-1>#</a></h4><p><img src=/image/4wd-bt-18.png alt></p><br><h4 id=sketch>sketch<a class=anchor href=#sketch>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#75715e>//Initialize Bluetooth
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;SoftwareSerial.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>SoftwareSerial <span style=color:#a6e22e>BTSerial</span>(<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>3</span>);  <span style=color:#75715e>// HC-06 TX,RX
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Initialize TB6612FNG Motor drive
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> STBY <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;  <span style=color:#75715e>// STBY pin on TB6612FNG. Must be HIGH to enable motor
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> A_PWM <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;  <span style=color:#75715e>// Left motor speed control using analogWrite() function. Value between 0 - 255
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> A_IN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>9</span>;  <span style=color:#75715e>// Left motor - LOW should go forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> A_IN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>;  <span style=color:#75715e>// Left motor - HIGH should go forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> B_PWM <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>;  <span style=color:#75715e>// Right motor speed control using analogWrite() function. Value between 0 - 255
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> B_IN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>11</span>; <span style=color:#75715e>// Right motor - LOW should go forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> B_IN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>12</span>; <span style=color:#75715e>// Right motor - HIGH should go forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> L_MaxSpeed <span style=color:#f92672>=</span> <span style=color:#ae81ff>255</span>;   <span style=color:#75715e>//set motor speed to max speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> R_MaxSpeed <span style=color:#f92672>=</span> <span style=color:#ae81ff>255</span>;   <span style=color:#75715e>//set motor speed to max speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> L_TurnSpeed <span style=color:#f92672>=</span> <span style=color:#ae81ff>128</span>;  <span style=color:#75715e>//set motor speed to max speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> R_TurnSpeed <span style=color:#f92672>=</span> <span style=color:#ae81ff>128</span>;  <span style=color:#75715e>//set motor speed to max speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> LR_Direct <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;      <span style=color:#75715e>//for Direction (0:clockwise, 1:count-clockwise)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Initialize Ultrasonic Sensor
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define TRIG 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#define ECHO 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>char</span> val;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>long</span> val_distance;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(A_PWM, OUTPUT);                        <span style=color:#75715e>// Motor
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>pinMode</span>(A_IN1, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(A_IN2, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(B_PWM, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(B_IN1, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(B_IN2, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(STBY, OUTPUT);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(TRIG, OUTPUT);                         <span style=color:#75715e>// Ultrasonic Sensor
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>pinMode</span>(ECHO, INPUT);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);
+</span></span><span style=display:flex><span>  BTSerial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);                          <span style=color:#75715e>// Start Bluetooth
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>BTSerial.<span style=color:#a6e22e>available</span>()) {                <span style=color:#75715e>// 처음 입력이 있을때까지
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>stop</span>();                                        <span style=color:#75715e>// 정지
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>distance</span>();                                    <span style=color:#75715e>// 거리 측정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  Serial.<span style=color:#a6e22e>println</span>(val_distance);                 <span style=color:#75715e>// 거리 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (BTSerial.<span style=color:#a6e22e>available</span>()) {                    <span style=color:#75715e>// Check for Bluetooth input
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    val <span style=color:#f92672>=</span> BTSerial.<span style=color:#a6e22e>read</span>();                       <span style=color:#75715e>// 입력값 val에 저장
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    Serial.<span style=color:#a6e22e>println</span>(val);                        <span style=color:#75715e>// 입력값 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (val_distance <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>50</span>) {  <span style=color:#75715e>// 거리가 50cm 이상이면 입력값 실행
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>parseCommand</span>(val);                           <span style=color:#75715e>// parse the input
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  } <span style=color:#66d9ef>else</span> {                                       <span style=color:#75715e>// 거리가 50cm 이내이면 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>stop</span>();
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>20</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>b_stop</span>();                                    <span style=color:#75715e>// 거리가 50cm 이상이 될 때까지 후진 후, 정지
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>50</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>parseCommand</span>(<span style=color:#66d9ef>char</span> input) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>switch</span> (input) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;F&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>go_forward</span>();
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;B&#39;</span><span style=color:#f92672>:</span>  
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>go_backward</span>();
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;L&#39;</span><span style=color:#f92672>:</span>  
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span>(LR_Direct<span style=color:#f92672>==</span><span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>go_f_left</span>();
+</span></span><span style=display:flex><span>      } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(LR_Direct<span style=color:#f92672>==</span><span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>go_b_left</span>();
+</span></span><span style=display:flex><span>      }     
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;R&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span>(LR_Direct<span style=color:#f92672>==</span><span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>go_f_right</span>();
+</span></span><span style=display:flex><span>      } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(LR_Direct<span style=color:#f92672>==</span><span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>go_b_right</span>();
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;O&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>stop</span>();
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>  }  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>50</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>distance</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(TRIG, LOW);                       <span style=color:#75715e>// Start Ultrasonic sensor
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delayMicroseconds</span>(<span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(TRIG, HIGH);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delayMicroseconds</span>(<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(TRIG, LOW);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  val_distance <span style=color:#f92672>=</span> <span style=color:#a6e22e>pulseIn</span>(ECHO, HIGH) <span style=color:#f92672>/</span> <span style=color:#ae81ff>58.2</span>;     <span style=color:#75715e>// 거리 측정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}       
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Move specific motor at speed and direction
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// motor: A(Left) -&gt; 0, B(Right) -&gt; 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// speed: 0 is off, and 255 is full speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// direction: 0 clockwise, 1 counter-clockwise
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>move</span>(<span style=color:#66d9ef>int</span> motorLR, <span style=color:#66d9ef>int</span> speed, boolean inPin1, boolean inPin2) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(STBY, HIGH);        <span style=color:#75715e>// Disable Standby
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (motorLR <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>analogWrite</span>(A_PWM, speed);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(A_IN1, inPin1);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(A_IN2, inPin2);   
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (motorLR <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>analogWrite</span>(B_PWM, speed);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(B_IN1, inPin1);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(B_IN2, inPin2);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_forward</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;F&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_MaxSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>);  <span style=color:#75715e>// Left motor, Left Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_MaxSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>);  <span style=color:#75715e>// Right motor, Right Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  LR_Direct <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;              <span style=color:#75715e>// Forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_backward</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_MaxSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);  <span style=color:#75715e>// Left motor, Left Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_MaxSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);  <span style=color:#75715e>// Right motor, Right Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  LR_Direct <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;              <span style=color:#75715e>// Backward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_f_left</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;F_L&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_TurnSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>); <span style=color:#75715e>// Left motor, Left Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_MaxSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>);  <span style=color:#75715e>// Right motor, Right Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_b_left</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B_R&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_TurnSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>); <span style=color:#75715e>// Left motor, Left Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_MaxSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);  <span style=color:#75715e>// Right motor, Right Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_f_right</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;F_R&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_MaxSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>);  <span style=color:#75715e>// Left motor, Left Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_TurnSpeed, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>); <span style=color:#75715e>// Right motor, Right Speed, forward(0,1)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>go_b_right</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B_R&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>0</span>, L_MaxSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);  <span style=color:#75715e>// Left motor, Left Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>move</span>(<span style=color:#ae81ff>1</span>, R_TurnSpeed, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>); <span style=color:#75715e>// Right motor, Right Speed, backward(1,0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>b_stop</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B_STOP&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (val_distance <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>50</span>) {                    <span style=color:#75715e>// 거리가 50cm 이내인 경우 반복
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>go_backward</span>();                               <span style=color:#75715e>// 후진
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>distance</span>();                                  <span style=color:#75715e>// 거리를 다시 측정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>BTSerial.<span style=color:#a6e22e>available</span>()) {                <span style=color:#75715e>// 입력이 없으면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>stop</span>();                                      <span style=color:#75715e>// 정지상태 유지
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  LR_Direct <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;                                 <span style=color:#75715e>// 앞으로 갈 준비
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stop</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;STOP&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(STBY, LOW);                       <span style=color:#75715e>// Enable Standby
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}</span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정">
+<span>엑셀, 데이터 유효성 검사의 목록 구성시 동적 범위 설정</span></a></div><div><a href=/posts/dc%EB%AA%A8%ED%84%B0-4wd-%EC%9E%90%EB%8F%99%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="flex align-center"><span>DC모터 + 4WD 자동차 만들기 (TB6612FNG)</span>
+<img src=/icons/forward.svg class=book-icon alt=Next title="DC모터 + 4WD 자동차 만들기 (TB6612FNG)"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#4wd-bluetooth>4WD Bluetooth</a></li><li><a href=#bluetooth-serial-controller-설정>Bluetooth Serial Controller 설정</a></li><li><a href=#4wd-블루투스-초음파센서-자동차>4WD 블루투스 초음파센서 자동차</a></li></ul></li></ul></nav></div></aside></main></body></html>

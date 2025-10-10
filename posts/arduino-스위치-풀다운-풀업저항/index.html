@@ -1,0 +1,178 @@
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='Tact Switch#
+
+
+Pull-down#
+
+  
+      
+          
+          동작
+          Arduino
+      
+  
+  
+      
+          스위치를 누르면
+          ON
+          HIGH
+      
+      
+          스위치에서 손을 떼면
+          OFF
+          LOW
+      
+  
+
+
+schematic#
+저항(10k 이상)을 GND에 연결한 경우: Pull-down 회로
+
+
+sketch#
+const int switch_R = 2;
+
+void setup() {
+  pinMode(switch_R, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+    int i = digitalRead(switch_R);
+    if(i == HIGH) {                  // 스위치를 누르면
+        Serial.println("1");
+    }
+    else {                           // 스위치에서 손을 떼면
+        Serial.println("0");
+    }
+}
+Pull-up#
+
+  
+      
+          
+          동작
+          Arduino
+      
+  
+  
+      
+          스위치를 누르면
+          OFF
+          LOW
+      
+      
+          스위치에서 손을 떼면
+          ON
+          HIGH
+      
+  
+
+
+schematic#
+저항(10k 이상)을 VCC(5V)에 연결한 경우: Pull-up 회로'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/arduino-%EC%8A%A4%EC%9C%84%EC%B9%98-%ED%92%80%EB%8B%A4%EC%9A%B4-%ED%92%80%EC%97%85%EC%A0%80%ED%95%AD/"><meta property="og:site_name" content="STEM with"><meta property="og:title" content="Arduino 스위치, 풀다운저항, 풀업저항"><meta property="og:description" content='Tact Switch# Pull-down# 동작 Arduino 스위치를 누르면 ON HIGH 스위치에서 손을 떼면 OFF LOW schematic# 저항(10k 이상)을 GND에 연결한 경우: Pull-down 회로
+sketch# const int switch_R = 2; void setup() { pinMode(switch_R, INPUT); Serial.begin(9600); } void loop() { int i = digitalRead(switch_R); if(i == HIGH) { // 스위치를 누르면 Serial.println("1"); } else { // 스위치에서 손을 떼면 Serial.println("0"); } }
+Pull-up# 동작 Arduino 스위치를 누르면 OFF LOW 스위치에서 손을 떼면 ON HIGH schematic# 저항(10k 이상)을 VCC(5V)에 연결한 경우: Pull-up 회로'><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-09-01T16:01:00+09:00"><meta property="article:modified_time" content="2018-09-01T16:01:00+09:00"><title>Arduino 스위치, 풀다운저항, 풀업저항 | STEM with</title><link rel=icon href=/favicon.png><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/arduino-%EC%8A%A4%EC%9C%84%EC%B9%98-%ED%92%80%EB%8B%A4%EC%9A%B4-%ED%92%80%EC%97%85%EC%A0%80%ED%95%AD/><link rel=stylesheet href=/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css integrity="sha256-rupC+yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>STEM with</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>Arduino 스위치, 풀다운저항, 풀업저항</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><ul><li><a href=#tact-switch>Tact Switch</a></li><li><a href=#pull-down>Pull-down</a></li><li><a href=#pull-up>Pull-up</a></li><li><a href=#스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유>스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유</a></li><li><a href=#아두이노-보드에-내장된-풀업저항-사용하기>아두이노 보드에 내장된 풀업저항 사용하기</a></li><li><a href=#스위치를-눌러-led-켜기>스위치를 눌러 LED 켜기</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1>Arduino 스위치, 풀다운저항, 풀업저항</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
+<span>September 1, 2018</span></div><div class=text-small><a href=/categories/arduino/>Arduino</a></div><div class="book-post-content markdown-inner"><h3 id=tact-switch>Tact Switch<a class=anchor href=#tact-switch>#</a></h3><p><img src=/image/tact_switch.png alt></p><br><h3 id=pull-down>Pull-down<a class=anchor href=#pull-down>#</a></h3><table><thead><tr><th></th><th>동작</th><th>Arduino</th></tr></thead><tbody><tr><td>스위치를 누르면</td><td>ON</td><td>HIGH</td></tr><tr><td>스위치에서 손을 떼면</td><td>OFF</td><td>LOW</td></tr></tbody></table><br><h4 id=schematic>schematic<a class=anchor href=#schematic>#</a></h4><p><strong>저항(10k 이상)을 GND에 연결</strong>한 경우: Pull-down 회로</p><p><img src=/image/switch01.png alt></p><br><h4 id=sketch>sketch<a class=anchor href=#sketch>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_R <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_R, INPUT);
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_R);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>==</span> HIGH) {                  <span style=color:#75715e>// 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;1&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                           <span style=color:#75715e>// 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;0&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h3 id=pull-up>Pull-up<a class=anchor href=#pull-up>#</a></h3><table><thead><tr><th></th><th>동작</th><th>Arduino</th></tr></thead><tbody><tr><td>스위치를 누르면</td><td>OFF</td><td>LOW</td></tr><tr><td>스위치에서 손을 떼면</td><td>ON</td><td>HIGH</td></tr></tbody></table><br><h4 id=schematic-1>schematic<a class=anchor href=#schematic-1>#</a></h4><p><strong>저항(10k 이상)을 VCC(5V)에 연결</strong>한 경우: Pull-up 회로</p><p><img src=/image/switch02.png alt></p><br><h4 id=sketch-1>sketch<a class=anchor href=#sketch-1>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_R <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_R, INPUT);
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_R);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>==</span> HIGH) {                  <span style=color:#75715e>// 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;1&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                           <span style=color:#75715e>// 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;0&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><br><h3 id=스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유>스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유<a class=anchor href=#%ec%8a%a4%ec%9c%84%ec%b9%98%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%eb%95%8c-%ed%92%80%eb%8b%a4%ec%9a%b4-or-%ed%92%80%ec%97%85-%ec%a0%80%ed%95%ad%ec%9d%84-%ea%b5%ac%ec%84%b1%ed%95%b4%ec%95%bc-%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0>#</a></h3><p>출처: <a href=https://blog.xcoda.net/77>풀업(Pull-up)저항, 풀다운(Pull-down)저항 (악보쓰는 프로그래머)</a></p><h4 id=floating-문제>Floating 문제<a class=anchor href=#floating-%eb%ac%b8%ec%a0%9c>#</a></h4><table><thead><tr><th>5V에 연결한 경우</th><th>GND에 연결한 경우</th></tr></thead><tbody><tr><td><figure class=center><img src=/image/switch03.png width=75%></figure></td><td><figure class=center><img src=/image/switch04.png width=75%></figure></td></tr><tr><td>스위치를 누르면 HIGH, 스위치를 떼면 LOW ?</td><td>스위치를 누르면 LOW, 스위치를 떼면 HIGH ?</td></tr><tr><td>실제로는 스위치를 누른 상태에는 HIGH이지만, 스위치를 뗀 상태에는 <strong>HIGH와 LOW가 섞여서 들어간다</strong></td><td>실제로는 스위치를 누른 상태에는 LOW이지만, 스위치를 뗀 상태에는 <strong>LOW와 HIGH가 섞여서 들어간다.</strong></td></tr></tbody></table><p>즉, 스위치를 누른 상태에서는 어떤 값을 가져야 하는지 확실하지만, 스위치를 뗀 상태에서는 어떤 값을 가져야 하는지 불확실하다는 문제가 발생하는데, 이것이 플로팅이다.</p><br><h4 id=floating의-해결과-또-다른-문제>Floating의 해결과 또 다른 문제<a class=anchor href=#floating%ec%9d%98-%ed%95%b4%ea%b2%b0%ea%b3%bc-%eb%98%90-%eb%8b%a4%eb%a5%b8-%eb%ac%b8%ec%a0%9c>#</a></h4><ul><li><strong>(아래 그림대로 연결 절대 금지!)</strong> 위 그림 2개를 조합하여, 회로를 만든다고 가정하면</li></ul><p><img src=/image/switch05.png alt></p><p>스위치를 누르면 HIGH, 스위치를 누르지 않으면 LOW ?</p><ul><li>(<strong>그림대로 연결 절대 금지!</strong>) 그러나 위 그림과 같이 연결하면 또다른 심각한 문제가 발생한다.</li></ul><p><img src=/image/switch06.png alt></p><ul><li><p>스위치를 누르는 순간, 5V와 GND가 직접 연결되어 전기적으로 합선(쇼트)이 되기때문에 아두이노 보드가 망가지거나 심한 경우, 아두이노가 연결된 컴퓨터가 망가질 수도 있다.</p></li><li><p>이 그림은 마치 건전지 양극을 도선으로 그대로 연결한 것과 마찬가지인 상황이며, 실제 건전지에 이와 같은 방법으로 선을 연결하면 건전지가 과열되어 녹거나 심하면 불이 날수도 있다.</p></li></ul><p><img src=/image/switch07.png alt></p><br><h4 id=문제-해결-방법>문제 해결 방법<a class=anchor href=#%eb%ac%b8%ec%a0%9c-%ed%95%b4%ea%b2%b0-%eb%b0%a9%eb%b2%95>#</a></h4><ul><li>이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 된다.</li></ul><p><img src=/image/switch08.png alt></p><br><ul><li>이를 응용하여 스위치의 한쪽에 저항을 하나 추가로 연결하는 것이고, 이것이 바로 풀다운 저항 혹은 풀업 저항을 구성해야하는 이유이다.</li></ul><br><br><h3 id=아두이노-보드에-내장된-풀업저항-사용하기>아두이노 보드에 내장된 풀업저항 사용하기<a class=anchor href=#%ec%95%84%eb%91%90%ec%9d%b4%eb%85%b8-%eb%b3%b4%eb%93%9c%ec%97%90-%eb%82%b4%ec%9e%a5%eb%90%9c-%ed%92%80%ec%97%85%ec%a0%80%ed%95%ad-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0>#</a></h3><ul><li><p>스위치를 사용하는 경우, 풀다운 저항 혹은 풀업 저항을 사용해야 하므로. 스위치를 구성할 때마다 10k~100kΩ 정도의 저항을 별도로 준비해서 회로를 구성해야 한다. 매우 중요한 문제이지만, 매우 귀찮기도 하다.</p></li><li><p>그래서&mldr;친절하게도 아두이노 보드는 자체에 풀업 저항을 내장해두었다. 당연한 이야기이지만 아두이노 보드에 내장된 풀업 저항을 사용한다면, 별도의 저항을 준비하지 않아도 되기때문에 회로를 간단하게 구성할 수 있다.</p></li></ul><ul><li><p>기본적으로 <strong>풀업</strong> 회로이므로 <strong>스위치가 눌리지 않은 상태가 HIGH</strong>이며, <strong>스위치가 눌린 상태에서 LOW</strong>값을 갖습니다.</p></li><li><p>pinMode 선언시, <strong>INPUT_PULLUP</strong>을 사용합니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#a6e22e>pinMode</span> (<span style=color:#ae81ff>2</span>, INPUT_PULLUP);</span></span></code></pre></div></li></ul><br><h4 id=schematic-2>schematic<a class=anchor href=#schematic-2>#</a></h4><p><img src=/image/switch04.png alt></p><br><h4 id=sketch-2>sketch<a class=anchor href=#sketch-2>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_R <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> R;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_R, INPUT_PULLUP);
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>    R <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_R);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(R <span style=color:#f92672>==</span> LOW) {                   <span style=color:#75715e>// 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;0&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                           <span style=color:#75715e>// 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;1&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><br><h3 id=스위치를-눌러-led-켜기>스위치를 눌러 LED 켜기<a class=anchor href=#%ec%8a%a4%ec%9c%84%ec%b9%98%eb%a5%bc-%eb%88%8c%eb%9f%ac-led-%ec%bc%9c%ea%b8%b0>#</a></h3><p>위에서 구성한 풀업 회로에 RGB LED를 추가하여, 각 스위치에 연결된 LED가 점등되도록 구성해보자.</p><br><h4 id=schematic-3>schematic<a class=anchor href=#schematic-3>#</a></h4><p><img src=/image/switch10.png alt></p><br><h4 id=sketch-3>sketch<a class=anchor href=#sketch-3>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_R <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_G <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> switch_B <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> pin_ledR <span style=color:#f92672>=</span> A0;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> pin_ledG <span style=color:#f92672>=</span> A1;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> pin_ledB <span style=color:#f92672>=</span> A2;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> R, G, B;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_R, INPUT_PULLUP);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_G, INPUT_PULLUP);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(switch_B, INPUT_PULLUP);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(pin_ledR, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(pin_ledG, OUTPUT);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pinMode</span>(pin_ledB, OUTPUT);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>    R <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_R);
+</span></span><span style=display:flex><span>    G <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_G);
+</span></span><span style=display:flex><span>    B <span style=color:#f92672>=</span> <span style=color:#a6e22e>digitalRead</span>(switch_B);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(R <span style=color:#f92672>==</span> LOW) {                  <span style=color:#75715e>// R 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;R=1&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledR, HIGH);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                          <span style=color:#75715e>// R 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;R=0&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledR, LOW);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(G <span style=color:#f92672>==</span> LOW) {                  <span style=color:#75715e>// G 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;G=1&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledG, HIGH);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                          <span style=color:#75715e>// G 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;G=0&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledG, LOW);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(B <span style=color:#f92672>==</span> LOW) {                  <span style=color:#75715e>// B 스위치를 누르면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B=1&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledB, HIGH);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                          <span style=color:#75715e>// B 스위치에서 손을 떼면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;B=0&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>digitalWrite</span>(pin_ledB, LOW);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/arduino-%EC%98%A8%EB%8F%84%EC%B8%A1%EC%A0%95-ds18b20/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="Arduino, 온도측정(DS18b20)">
+<span>Arduino, 온도측정(DS18b20)</span></a></div><div><a href=/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/ class="flex align-center"><span>Arduino 시작하기, RGB LED, PWM</span>
+<img src=/icons/forward.svg class=book-icon alt=Next title="Arduino 시작하기, RGB LED, PWM"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#tact-switch>Tact Switch</a></li><li><a href=#pull-down>Pull-down</a></li><li><a href=#pull-up>Pull-up</a></li><li><a href=#스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유>스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유</a></li><li><a href=#아두이노-보드에-내장된-풀업저항-사용하기>아두이노 보드에 내장된 풀업저항 사용하기</a></li><li><a href=#스위치를-눌러-led-켜기>스위치를 눌러 LED 켜기</a></li></ul></li></ul></nav></div></aside></main></body></html>

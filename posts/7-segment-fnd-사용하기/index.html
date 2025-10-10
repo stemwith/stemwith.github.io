@@ -1,0 +1,443 @@
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="FND의 종류#
+
+
+FND는 Anode형과 Cathode형으로 분류되며, 이 중 Anode형이 주로 사용되고 있는데요. Anode형은 중앙핀이 VCC이며, Cathode형은 GND입니다. 우리가 사용하는 것은 5611BH로 Common Anode형입니다.
+
+
+7 Segment (FND)는 숫자나 문자를 표현하는 7개의 LED와 소수점을 표현하는 1개의 LED가 포함되어 있는 부품을 의미합니다. FND는 16X2 LCD와 비교할 때 표현할 수 있는 문자의 개수가 제한되고, 각 문자의 표현을 위하여 총 8개의 LED를 하나씩 조절해주어야 하는 등 사용이 복잡하다는 단점이 있습니다. 그렇지만, 전력소모가 적고 크기가 큰 Segment를 선택하면 비교적 큰 문자도 표현할 수 있다는 장점이 있어 다양한 용도로 사용되고 있습니다."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/7-segment-fnd-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/"><meta property="og:site_name" content="STEM with"><meta property="og:title" content="7 Segment (FND) 사용하기"><meta property="og:description" content="FND의 종류# FND는 Anode형과 Cathode형으로 분류되며, 이 중 Anode형이 주로 사용되고 있는데요. Anode형은 중앙핀이 VCC이며, Cathode형은 GND입니다. 우리가 사용하는 것은 5611BH로 Common Anode형입니다.
+7 Segment (FND)는 숫자나 문자를 표현하는 7개의 LED와 소수점을 표현하는 1개의 LED가 포함되어 있는 부품을 의미합니다. FND는 16X2 LCD와 비교할 때 표현할 수 있는 문자의 개수가 제한되고, 각 문자의 표현을 위하여 총 8개의 LED를 하나씩 조절해주어야 하는 등 사용이 복잡하다는 단점이 있습니다. 그렇지만, 전력소모가 적고 크기가 큰 Segment를 선택하면 비교적 큰 문자도 표현할 수 있다는 장점이 있어 다양한 용도로 사용되고 있습니다."><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-10-01T11:21:00+09:00"><meta property="article:modified_time" content="2018-10-01T11:21:00+09:00"><title>7 Segment (FND) 사용하기 | STEM with</title><link rel=icon href=/favicon.png><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/7-segment-fnd-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/><link rel=stylesheet href=/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css integrity="sha256-rupC+yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>STEM with</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>7 Segment (FND) 사용하기</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#fnd의-종류>FND의 종류</a></li><li><a href=#숫자표시-방법>숫자표시 방법</a></li><li><a href=#pin-map>Pin Map</a></li><li><a href=#schematic>schematic</a></li><li><a href=#sketch--09까지-차례대로-표시하기>sketch : 0~9까지 차례대로 표시하기</a></li><li><a href=#sketch--배열을-사용하여-숫자-출력하기>sketch : 배열을 사용하여 숫자 출력하기</a></li><li><a href=#sketch--2진수나-16진수를-이용하여-표시하기>sketch : 2진수나 16진수를 이용하여 표시하기</a></li><li><a href=#sketch--시리얼모니터에서-값을-입력받아-출력하기>sketch : 시리얼모니터에서 값을 입력받아 출력하기</a></li></ul><ul><li><a href=#sketch>sketch</a></li></ul><ul><li><a href=#schematic-1>schematic</a></li><li><a href=#pin-map-1>Pin Map</a></li><li><a href=#sketch-1>sketch</a></li></ul></nav></aside></header><article class="markdown book-post"><h1>7 Segment (FND) 사용하기</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
+<span>October 1, 2018</span></div><div class=text-small><a href=/categories/arduino/>Arduino</a></div><div class="book-post-content markdown-inner"><h2 id=fnd의-종류>FND의 종류<a class=anchor href=#fnd%ec%9d%98-%ec%a2%85%eb%a5%98>#</a></h2><ul><li><p>FND는 Anode형과 Cathode형으로 분류되며, 이 중 Anode형이 주로 사용되고 있는데요. Anode형은 중앙핀이 VCC이며, Cathode형은 GND입니다. 우리가 사용하는 것은 5611BH로 Common Anode형입니다.</p></li><li><p>7 Segment (FND)는 숫자나 문자를 표현하는 7개의 LED와 소수점을 표현하는 1개의 LED가 포함되어 있는 부품을 의미합니다. FND는 16X2 LCD와 비교할 때 표현할 수 있는 문자의 개수가 제한되고, 각 문자의 표현을 위하여 총 8개의 LED를 하나씩 조절해주어야 하는 등 사용이 복잡하다는 단점이 있습니다. 그렇지만, 전력소모가 적고 크기가 큰 Segment를 선택하면 비교적 큰 문자도 표현할 수 있다는 장점이 있어 다양한 용도로 사용되고 있습니다.</p></li></ul><br><h2 id=숫자표시-방법>숫자표시 방법<a class=anchor href=#%ec%88%ab%ec%9e%90%ed%91%9c%ec%8b%9c-%eb%b0%a9%eb%b2%95>#</a></h2><p><figure class=center><img src=/image/7segment-01.jpg width=50%></figure><img src=/image/7segment-02.jpg alt></p><br><table><thead><tr><th>Num</th><th>DP</th><th>G</th><th>F</th><th>E</th><th>D</th><th>C</th><th>B</th><th>A</th><th>2진수</th><th>16진수</th></tr></thead><tbody><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0b11000000</td><td>0xC0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0b11111001</td><td>0xF9</td></tr><tr><td>2</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0b10100100</td><td>0xA4</td></tr><tr><td>3</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0b10110000</td><td>0xB0</td></tr><tr><td>4</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0b10011001</td><td>0x99</td></tr><tr><td>5</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0b10010010</td><td>0x92</td></tr><tr><td>6</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0b10000010</td><td>0x82</td></tr><tr><td>7</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0b11111000</td><td>0xF8</td></tr><tr><td>8</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0b10000000</td><td>0x80</td></tr><tr><td>9</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0b10010000</td><td>0x90</td></tr></tbody></table><blockquote class=book-hint><p>10진수 숫자와의 구분을 위해 2진수 앞에는 0b, 16진수 앞에는 0x를 표기하고
+16진수 표현에 있어서, 각 숫자에 소수점을 포함시키는 경우에는 80을 빼주면 됩니다. 예를 들어,</p></blockquote><ul><li>0． → 0xC0 - 0x80 = 0x40</li><li>1． → 0xF9 - 0x80 = 0x79</li><li>2． → 0xA4 - 0x80 = 0x24</li><li>3． → 0xB0 - 0x80 = 0x30</li><li>4． → 0x99 - 0x80 = 0x19</li><li>5． → 0x92 - 0x80 = 0x12</li><li>6． → 0x82 - 0x80 = 0x12</li><li>7． → 0xF8 - 0x80 = 0x78</li><li>8． → 0x80 - 0x80 = 0x00</li><li>9． → 0x90 - 0x80 = 0x10</li></ul><br><h2 id=pin-map>Pin Map<a class=anchor href=#pin-map>#</a></h2><table><thead><tr><th>7 Segment</th><th>Arduino</th></tr></thead><tbody><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>3</td></tr><tr><td>C</td><td>4</td></tr><tr><td>D</td><td>5</td></tr><tr><td>E</td><td>6</td></tr><tr><td>F</td><td>7</td></tr><tr><td>G</td><td>8</td></tr><tr><td>DP</td><td>9</td></tr></tbody></table><br><h2 id=schematic>schematic<a class=anchor href=#schematic>#</a></h2><p>아래 회로에서는 330Ω 저항 1개를 VCC에 직접 연결하여 사용하였습니다. 상단부와 하단부 중앙핀은 서로 연결이 되어 있으므로, 둘 중 하나만 +5V에 연결하여 사용합니다.
+<img src=/image/7segment-03.jpg alt></p><br><blockquote class=book-hint><p><strong>주의</strong> : 위 회로에서는 간단한 회로 구성을 위해 VCC에 저항을 직접 연결하여 사용하였으나, 이것이 좋은 방법은 아닙니다. FND의 각 LED가 직렬이 아닌 병렬로 연결되어 있는데, 이렇게 구성하는 경우 동일한 전류로 “1”를 표시할때는 2개의 Segment만 켜고, “8”을 표시할때는 7개의 Segment를 모두 키므로, 각 숫자마다 밝기의 차이가 생기길 수 있기 때문이죠. 실제 LED의 밝기에 미세한 변화가 생기는 것을 볼 수 있습니다.</p></blockquote><blockquote class=book-hint><p>이러한 문제를 해결하기 위해서는 각 LED마다 저항을 따로 사용하여야 합니다. 아래 그림과 같이 220~330Ω 저항 8개를 사용하는 것이 원칙이며, 이렇게 하면 밝기를 고르게 유지할 수 있습니다.</p></blockquote><p><img src=/image/7segment-04.jpg alt></p><br><h2 id=sketch--09까지-차례대로-표시하기>sketch : 0~9까지 차례대로 표시하기<a class=anchor href=#sketch--09%ea%b9%8c%ec%a7%80-%ec%b0%a8%eb%a1%80%eb%8c%80%eb%a1%9c-%ed%91%9c%ec%8b%9c%ed%95%98%ea%b8%b0>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> A <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> B <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> C <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> D <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> E <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> F <span style=color:#f92672>=</span> <span style=color:#ae81ff>7</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> G <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> DP <span style=color:#f92672>=</span> <span style=color:#ae81ff>9</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>1000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(A, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(B, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(C, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(D, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(E, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(F, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(G, OUTPUT);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pinMode</span>(DP, OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 7 Segment Ready
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 6
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 7
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 8
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>delay</span>(dt);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// digit 0.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>digitalWrite</span> (A,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (B,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (C,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (D,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (E,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (F,LOW);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (G,HIGH);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>digitalWrite</span> (DP,LOW);
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h2 id=sketch--배열을-사용하여-숫자-출력하기>sketch : 배열을 사용하여 숫자 출력하기<a class=anchor href=#sketch--%eb%b0%b0%ec%97%b4%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%ec%97%ac-%ec%88%ab%ec%9e%90-%ec%b6%9c%eb%a0%a5%ed%95%98%ea%b8%b0>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> numArray[<span style=color:#ae81ff>11</span>][<span style=color:#ae81ff>8</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 6
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 7
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 8
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>}, <span style=color:#75715e>// 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>}  <span style=color:#75715e>// 0.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> pins[] <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>};
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> r <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; r <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; r<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(pins[r], OUTPUT);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(pins[r], <span style=color:#ae81ff>1</span>); <span style=color:#75715e>// 7 Segment Ready
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 8 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> r <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; r <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; r<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(pins[r], numArray[<span style=color:#ae81ff>8</span>][r]); <span style=color:#75715e>// numbers[8][r]이면 8을 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> num <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; num <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>11</span>; num<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> r <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; r <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; r<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>digitalWrite</span>(pins[r], numbers[num][r]); <span style=color:#75715e>// num의 값을 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h2 id=sketch--2진수나-16진수를-이용하여-표시하기>sketch : 2진수나 16진수를 이용하여 표시하기<a class=anchor href=#sketch--2%ec%a7%84%ec%88%98%eb%82%98-16%ec%a7%84%ec%88%98%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%98%ec%97%ac-%ed%91%9c%ec%8b%9c%ed%95%98%ea%b8%b0>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> numArray[<span style=color:#ae81ff>10</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>0</span>b11000000,   <span style=color:#75715e>// 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b11111001,   <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10100100,   <span style=color:#75715e>// 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10110000,   <span style=color:#75715e>// 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10011001,   <span style=color:#75715e>// 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10010010,   <span style=color:#75715e>// 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10000010,   <span style=color:#75715e>// 6
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b11111000,   <span style=color:#75715e>// 7
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10000000,   <span style=color:#75715e>// 8
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b10010000    <span style=color:#75715e>// 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span><span style=color:#75715e>// int numArray[10] = { 0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90 };
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 16진수를 사용해도 됨
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 소수점 포함 int numArray[10] = { 0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10 };
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> segPins[<span style=color:#ae81ff>7</span>] <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>};
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> i, j;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {                
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(segPins[i], OUTPUT);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span>; i<span style=color:#f92672>++</span>)
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>segLED</span>(i);                         <span style=color:#75715e>// i=1이면 1을 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>segLED</span>(<span style=color:#66d9ef>int</span> num) {                 <span style=color:#75715e>// num값을 넘겨받아
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>int</span> data <span style=color:#f92672>=</span> numArray[num];            <span style=color:#75715e>// num번째 배열값을 data로 지정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; j<span style=color:#f92672>++</span>)
+</span></span><span style=display:flex><span>  {                                    <span style=color:#75715e>// 2진수 배열 8비트를 &amp;연산자로 가장 오른쪽11 비트값부터 검사
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(data <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0x01</span>) {                  <span style=color:#75715e>// 1이면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[j], HIGH);  <span style=color:#75715e>// HIGH(끄고)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[j], LOW);   <span style=color:#75715e>// 1이 아니면(0이면)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }                                  <span style=color:#75715e>// LOW(킨다)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  data <span style=color:#f92672>&gt;&gt;=</span> <span style=color:#ae81ff>1</span>;                          <span style=color:#75715e>// data값을 1비트씩 오른쪽으로 쉬프트한 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }                                    <span style=color:#75715e>// 7번 추가 실행 (총 8번 실행)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}</span></span></code></pre></div><br><h2 id=sketch--시리얼모니터에서-값을-입력받아-출력하기>sketch : 시리얼모니터에서 값을 입력받아 출력하기<a class=anchor href=#sketch--%ec%8b%9c%eb%a6%ac%ec%96%bc%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90%ec%84%9c-%ea%b0%92%ec%9d%84-%ec%9e%85%eb%a0%a5%eb%b0%9b%ec%95%84-%ec%b6%9c%eb%a0%a5%ed%95%98%ea%b8%b0>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> numArray[<span style=color:#ae81ff>10</span>] <span style=color:#f92672>=</span> { <span style=color:#ae81ff>0xC0</span>, <span style=color:#ae81ff>0xF9</span>, <span style=color:#ae81ff>0xA4</span>, <span style=color:#ae81ff>0xB0</span>, <span style=color:#ae81ff>0x99</span>, <span style=color:#ae81ff>0x92</span>, <span style=color:#ae81ff>0x82</span>, <span style=color:#ae81ff>0xF8</span>, <span style=color:#ae81ff>0x80</span>, <span style=color:#ae81ff>0x90</span> };
+</span></span><span style=display:flex><span><span style=color:#75715e>// 소수점 포함 int numArray[10] = { 0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10 };
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> segPins[<span style=color:#ae81ff>7</span>] <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>};
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> i, j;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() { 
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>begin</span>(<span style=color:#ae81ff>9600</span>); 
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(segPins[i], OUTPUT);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>  Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Press any number!(0~9)&#34;</span>); 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>1000</span>); 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (Serial.<span style=color:#a6e22e>available</span>()) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> number <span style=color:#f92672>=</span> Serial.<span style=color:#a6e22e>read</span>();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(number <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span>) {
+</span></span><span style=display:flex><span>	  Serial.<span style=color:#a6e22e>println</span>(number<span style=color:#e6db74>&#34;);  </span>
+</span></span><span style=display:flex><span>	  <span style=color:#a6e22e>segLED</span>(number);                  <span style=color:#75715e>// i=1이면 1을 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	  <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>      Serial.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Please input a lower number than 10!&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>segLED</span>(<span style=color:#66d9ef>int</span> num) {                 <span style=color:#75715e>// num값을 넘겨받아
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>int</span> data <span style=color:#f92672>=</span> numArray[num];            <span style=color:#75715e>// num번째 배열값을 data로 지정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; j<span style=color:#f92672>++</span>)
+</span></span><span style=display:flex><span>  {                                    <span style=color:#75715e>// 2진수 배열 8비트를 &amp;연산자로 가장 오른쪽11 비트값부터 검사
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(data <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0x01</span>) {                  <span style=color:#75715e>// 1이면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[j], HIGH);  <span style=color:#75715e>// HIGH(끄고)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[j], LOW);   <span style=color:#75715e>// 1이 아니면(0이면)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }                                  <span style=color:#75715e>// LOW(킨다)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  data <span style=color:#f92672>&gt;&gt;=</span> <span style=color:#ae81ff>1</span>;                          <span style=color:#75715e>// data값을 1비트씩 오른쪽으로 쉬프트한 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }                                    <span style=color:#75715e>// 7번 추가 실행 (총 8번 실행)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}</span></span></code></pre></div><p><br><br></p><h1 id=2개의-7-segment를-사용하여-2자리-숫자-나타내기>2개의 7 Segment를 사용하여 2자리 숫자 나타내기<a class=anchor href=#2%ea%b0%9c%ec%9d%98-7-segment%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%98%ec%97%ac-2%ec%9e%90%eb%a6%ac-%ec%88%ab%ec%9e%90-%eb%82%98%ed%83%80%eb%82%b4%ea%b8%b0>#</a></h1><p>1개의 7 Segment를 사용하는데 8개의 Digital Pin이 필요하므로, 2개 이상의 7 Segment를 사용하려면 16개의 Digital Pin이 필요합니다. 핀의 개수로만 보면 Arduino Uno로는 표현할 수 없겠지요. 그러므로 2개의 7 Segment를 전원부 제어를 통해 빠른 시간동안 on/off를 반복함으로써 우리 눈에 나타나는 잔상효과를 이용하는 방법으로 여러개의 FND를 사용하는 Dynamic 구동 방식을 사용합니다.</p><p>아래 회로를 예로들면 아두이노의 Digital 2~9번핀이 각각 두개의 FND로 병렬연결 되어 있고, 10번핀은 10의 자리를 나타내는 FND1에, 11번 핀은 1의 자리를 나타내는 FND2에 연결되어 있는 것을 볼 수 있습니다. 이 회로를 통해 10번핀을 LOW, 11번핀을 HIGH로 두면 FND1이 작동하고, 마찬가지로 10번핀을 HIGH, 11번핀을 LOW로 두면 FND2가 작동하게 되죠. 이러한 방식으로 2개의 FND를 10개의 핀으로 작동할 수 있게 되는 것입니다.</p><p><img src=/image/7segment-05.jpg alt></p><br><h2 id=sketch>sketch<a class=anchor href=#sketch>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#66d9ef>int</span> numArray[<span style=color:#ae81ff>10</span>] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>0</span>b01000000,   <span style=color:#75715e>// 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b01111001,   <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00100100,   <span style=color:#75715e>// 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00110000,   <span style=color:#75715e>// 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00011001,   <span style=color:#75715e>// 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00010010,   <span style=color:#75715e>// 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00000010,   <span style=color:#75715e>// 6
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b01111000,   <span style=color:#75715e>// 7
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00000000,   <span style=color:#75715e>// 8
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#ae81ff>0</span>b00010000    <span style=color:#75715e>// 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span><span style=color:#75715e>// int numArray[10] = { 0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10 };
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 16진수를 사용해도 됨
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> segPins[] <span style=color:#f92672>=</span> { <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span> };  <span style=color:#75715e>// Segment핀 번호
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> segNum <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;                              <span style=color:#75715e>// Segment 개수 (숫자 자리수)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> vccPins[segNum] <span style=color:#f92672>=</span> { <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>11</span> };            <span style=color:#75715e>// 10, 11번 핀을 통해 seg#1, seg#2의 전원 인가
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>8</span>; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(segPins[i], OUTPUT);                   <span style=color:#75715e>// Segment핀 설정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  } 
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> segNum; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(vccPins[i], OUTPUT);                   <span style=color:#75715e>// seg#0, seg#1의 전원인가 핀 설정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>; i<span style=color:#f92672>++</span>) {                  <span style=color:#75715e>// 0~99까지 숫자를 표시
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; n <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span>; n<span style=color:#f92672>++</span>) {                 <span style=color:#75715e>// 빠르게 카운트할 경우 모든 LED가 켜져 있는 것처럼 보여 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>showNumber</span>(i);                               <span style=color:#75715e>// 숫자를 구분할 수 없으므로, 빠르게 10번씩 점멸시키면서 표시
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }  
+</span></span><span style=display:flex><span>  }                                  
+</span></span><span style=display:flex><span>}                                    
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>showNumber</span>(<span style=color:#66d9ef>int</span> number) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (number <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>showDigit</span>(number, <span style=color:#ae81ff>0</span>);                         <span style=color:#75715e>// 0의 경우 (1의 자리수) Segment에만 0을 출력
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> segNum; j<span style=color:#f92672>++</span>) {            <span style=color:#75715e>// 10의 자리, 1의 자리 출력을 위해 2번 실행
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#66d9ef>if</span> (number <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {                           <span style=color:#75715e>// 출력값이 0보다 큰 경우에만 실행
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#a6e22e>showDigit</span>(number <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>, j);                <span style=color:#75715e>// 1의 자리 숫자(%10)를 seg#0(j=0)에 출력 (if 10의 자리 숫자 = (number % 100) / 10))
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        number <span style=color:#f92672>=</span> number <span style=color:#f92672>/</span> <span style=color:#ae81ff>10</span>;                     <span style=color:#75715e>// ※ 숫자를 10으로 나눠 10의 자리 숫자를 1의 자리 숫자로 만듦
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      }                                           <span style=color:#75715e>// if 처음에 주어진 숫자가 한 자리 수였으면,
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>5</span>);                                   <span style=color:#75715e>//    → 10으로 나눈 후에는 1의 자리값이 0이 되어, 0보다 큰 값이 안되므로 10의 자리 출력하지 않음
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }                                             <span style=color:#75715e>// if 처음에 주어진 숫자가 두 자리 수였으면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }                                               <span style=color:#75715e>//    → 10으로 나눈 후 10의 자리 숫자가 1의 자리 수가 되므로, 10이 자리수를 seg#1(j=1)에 출력 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>showDigit</span>(<span style=color:#66d9ef>int</span> num, <span style=color:#66d9ef>int</span> digit) {              <span style=color:#75715e>// num값과 digit(0→1의 자리수에 표시, 1→10의 자리수에 표시)을 넘겨받아
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>int</span> data <span style=color:#f92672>=</span> numArray[num];                       <span style=color:#75715e>// num번째 배열값을 digit자리수에 표시할 data로 지정
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(vccPins[<span style=color:#ae81ff>0</span>], HIGH);                 <span style=color:#75715e>// vcc핀에 전원 인가
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>digitalWrite</span>(vccPins[<span style=color:#ae81ff>1</span>], HIGH);                 <span style=color:#75715e>// [0] = Arduino Pin10, [1] = Arduino Pin11
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> segLED <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; segLED <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>7</span>; segLED<span style=color:#f92672>++</span>)      <span style=color:#75715e>// 숫자 2진수의 7세그먼트 ON, OFF
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (data <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0x01</span>) {                            <span style=color:#75715e>// 1이면
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[segLED], HIGH);        <span style=color:#75715e>// HIGH(끄고)                  
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> {                                        <span style=color:#75715e>// 1이 아니면(0이면)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>digitalWrite</span>(segPins[segLED], LOW);         <span style=color:#75715e>// LOW(끈다)               
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    data <span style=color:#f92672>&gt;&gt;=</span> <span style=color:#ae81ff>1</span>;                                   <span style=color:#75715e>// data값을 1비트씩 오른쪽으로 쉬프트한 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>digitalWrite</span>(vccPins[digit], LOW);              <span style=color:#75715e>// 숫자 LED 한 자리 ON
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}</span></span></code></pre></div><p><br><br></p><h1 id=4-fnd>4 FND<a class=anchor href=#4-fnd>#</a></h1><p>4개의 FND를 Dynamic 방식으로 구동하기 위해서는 8개의 데이터 핀과 4개의 전원부 핀이 필요합니다.<figure class=center><img src=/image/7segment-06.jpg></figure></p><br><h2 id=schematic-1>schematic<a class=anchor href=#schematic-1>#</a></h2><p><img src=/image/7segment-07.jpg alt></p><br><h2 id=pin-map-1>Pin Map<a class=anchor href=#pin-map-1>#</a></h2><table><thead><tr><th>FND</th><th>Arduino</th><th>Segment</th><th>자리수</th></tr></thead><tbody><tr><td>1</td><td>6</td><td>E</td><td></td></tr><tr><td>2</td><td>5</td><td>D</td><td></td></tr><tr><td>3</td><td>13</td><td>DP</td><td></td></tr><tr><td>4</td><td>4</td><td>C</td><td></td></tr><tr><td>5</td><td>8</td><td>G</td><td></td></tr><tr><td>6</td><td>9</td><td>S1</td><td>1의 자리 수</td></tr><tr><td>7</td><td>3</td><td>B</td><td></td></tr><tr><td>8</td><td>10</td><td>S2</td><td>10의 자리 수</td></tr><tr><td>9</td><td>11</td><td>S3</td><td>100의 자리 수</td></tr><tr><td>10</td><td>7</td><td>F</td><td></td></tr><tr><td>11</td><td>2</td><td>A</td><td></td></tr><tr><td>12</td><td>12</td><td>S4</td><td>1000의 자리 수</td></tr></tbody></table><br><h2 id=sketch-1>sketch<a class=anchor href=#sketch-1>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#75715e>// Segment_X - Arduino Pin // FND Pin
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_A 2 </span><span style=color:#75715e>// 11
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_B 3 </span><span style=color:#75715e>// 7
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_C 4 </span><span style=color:#75715e>// 4
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_D 5 </span><span style=color:#75715e>// 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_E 6 </span><span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_F 7 </span><span style=color:#75715e>// 10
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define SEG_G 8 </span><span style=color:#75715e>// 5
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// FND_num - Arduino Pin // FND Pin
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define FND1 9  </span><span style=color:#75715e>// 6
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define FND2 10 </span><span style=color:#75715e>// 8
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define FND3 11 </span><span style=color:#75715e>// 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#define FND4 12 </span><span style=color:#75715e>// 12
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seglight</span>(byte number);
+</span></span><span style=display:flex><span>byte numbers[] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  B0111111,  <span style=color:#75715e>// MSB   --  LSB
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  B0000110,
+</span></span><span style=display:flex><span>  B1011011,
+</span></span><span style=display:flex><span>  B1001111,
+</span></span><span style=display:flex><span>  B1100110,
+</span></span><span style=display:flex><span>  B1101101,
+</span></span><span style=display:flex><span>  B1111101,
+</span></span><span style=display:flex><span>  B0000111,
+</span></span><span style=display:flex><span>  B1111111,
+</span></span><span style=display:flex><span>  B1101111
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> FND[] <span style=color:#f92672>=</span> {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G };
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> FND_NO[] <span style=color:#f92672>=</span> {FND1, FND2, FND3, FND4};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>7</span>; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(FND[i], OUTPUT);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>4</span>; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pinMode</span>(FND_NO[i], OUTPUT);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(FND_NO[i], HIGH);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> ON <span style=color:#f92672>=</span> OUTPUT;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> intCnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(intCnt <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10000</span>) {
+</span></span><span style=display:flex><span>    intCnt<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    intCnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>long</span> start <span style=color:#f92672>=</span> <span style=color:#a6e22e>millis</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>long</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span> ; j <span style=color:#f92672>=</span> <span style=color:#a6e22e>millis</span>() <span style=color:#f92672>-</span> start) { <span style=color:#75715e>// 600 밀리초 마다 실행
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Dynamic 구동
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>digitalWrite</span>(FND1, LOW);                 <span style=color:#75715e>// 1의 자리 켜기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>seglight</span>(numbers[intCnt <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>]);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>5</span>);                                <span style=color:#75715e>// 5ms 유지 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>digitalWrite</span>(FND1, HIGH);                <span style=color:#75715e>// 끄기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(FND2, LOW);                 <span style=color:#75715e>// 10의 자리 켜기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>seglight</span>(numbers[(intCnt <span style=color:#f92672>/</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>]);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>5</span>);                                <span style=color:#75715e>// 5ms 유지 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>digitalWrite</span>(FND2, HIGH);                <span style=color:#75715e>// 끄기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> 
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(FND3, LOW);                 <span style=color:#75715e>// 100의 자리 켜기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>seglight</span>(numbers[(intCnt <span style=color:#f92672>/</span> <span style=color:#ae81ff>100</span>) <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>]);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>5</span>);                                <span style=color:#75715e>// 5ms 유지 후 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>digitalWrite</span>(FND3, HIGH);                <span style=color:#75715e>// 끄기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(FND4, LOW);                 <span style=color:#75715e>// 1000의 자리 켜기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>seglight</span>(numbers[(intCnt <span style=color:#f92672>/</span> <span style=color:#ae81ff>1000</span>) <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>]);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>delay</span>(<span style=color:#ae81ff>5</span>);                                <span style=color:#75715e>// 5ms 유지 후
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>digitalWrite</span>(FND4, HIGH);                <span style=color:#75715e>// 끄기
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Bit값으로 FND 각 LED 점등
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seglight</span>(byte number) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>7</span> ; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> bit <span style=color:#f92672>=</span> <span style=color:#a6e22e>bitRead</span>(number, i) ;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>digitalWrite</span>(FND[i], bit);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/1602-lcd-display/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="1602 LCD, 조도, 초음파, 온습도">
+<span>1602 LCD, 조도, 초음파, 온습도</span></a></div><div><a href=/posts/arduino-%EC%8A%A4%ED%85%9D%EB%AA%A8%ED%84%B0/ class="flex align-center"><span>Arduino, 스텝모터</span>
+<img src=/icons/forward.svg class=book-icon alt=Next title="Arduino, 스텝모터"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#fnd의-종류>FND의 종류</a></li><li><a href=#숫자표시-방법>숫자표시 방법</a></li><li><a href=#pin-map>Pin Map</a></li><li><a href=#schematic>schematic</a></li><li><a href=#sketch--09까지-차례대로-표시하기>sketch : 0~9까지 차례대로 표시하기</a></li><li><a href=#sketch--배열을-사용하여-숫자-출력하기>sketch : 배열을 사용하여 숫자 출력하기</a></li><li><a href=#sketch--2진수나-16진수를-이용하여-표시하기>sketch : 2진수나 16진수를 이용하여 표시하기</a></li><li><a href=#sketch--시리얼모니터에서-값을-입력받아-출력하기>sketch : 시리얼모니터에서 값을 입력받아 출력하기</a></li></ul><ul><li><a href=#sketch>sketch</a></li></ul><ul><li><a href=#schematic-1>schematic</a></li><li><a href=#pin-map-1>Pin Map</a></li><li><a href=#sketch-1>sketch</a></li></ul></nav></div></aside></main></body></html>

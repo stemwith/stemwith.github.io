@@ -1,0 +1,299 @@
+<!doctype html><html lang=ko-kr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="DC모터 사용하기#
+아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.
+
+TB6612FNG#
+기본 핀 배열#
+
+  
+      
+          VMVCCGND(*)AOUT1AOUT2BOUT2BOUT1GND
+          
+
+
+          PWMAAIN2AIN1STBYBIN1BIN2PWMBGND
+      
+  
+  
+      
+          
+          
+
+
+          
+      
+  
+
+
+핀 배열이 다른 경우#
+
+  
+      
+          GNDVCCAOUT1AOUT2BOUT2BOUT1VMGND
+          
+
+
+          PWMAAIN2AIN1NC (=STBY)BIN1BIN2PWMBGND
+      
+  
+  
+      
+          
+          
+
+
+          
+      
+  
+
+
+VM (모터 전압) = 15V max
+VCC (로직 전압) = 2.7 ~ 5.5V
+GND
+
+TB6612FNG 모듈을 여러개 테스트한 결과, 기본 핀 배열을 가진 모듈의 3번핀 GND에 연결할 경우 작동이 안되는 몇몇 제품이 있었음
+그러므로 8번핀, 9번핀의 GND 사용을 권장함
+
+
+출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임)
+모터 제어모드: CW, CCW, short-brake, STOP, stand-by
+두개의 모터 출력을 개별 제어하며, 100kHz의 PWM으로 속도 제어
+써멀 셧다운 및 저전압 감지회로 내장
+
+
+Pin의 사용#
+ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀을 구성한 Pinmap이므로, 필요에 따라 수정하여 사용할 수 있다. (아래표는 참고만 할 것!)"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://stemwith.github.io/posts/esp32-dc%EB%AA%A8%ED%84%B0/"><meta property="og:site_name" content="STEM with"><meta property="og:title" content="ESP32, DC모터, TB6612FNG"><meta property="og:description" content="DC모터 사용하기# 아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.
+TB6612FNG# 기본 핀 배열# VMVCCGND(*)AOUT1AOUT2BOUT2BOUT1GND PWMAAIN2AIN1STBYBIN1BIN2PWMBGND 핀 배열이 다른 경우# GNDVCCAOUT1AOUT2BOUT2BOUT1VMGND PWMAAIN2AIN1NC (=STBY)BIN1BIN2PWMBGND VM (모터 전압) = 15V max VCC (로직 전압) = 2.7 ~ 5.5V GND TB6612FNG 모듈을 여러개 테스트한 결과, 기본 핀 배열을 가진 모듈의 3번핀 GND에 연결할 경우 작동이 안되는 몇몇 제품이 있었음 그러므로 8번핀, 9번핀의 GND 사용을 권장함 출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임) 모터 제어모드: CW, CCW, short-brake, STOP, stand-by 두개의 모터 출력을 개별 제어하며, 100kHz의 PWM으로 속도 제어 써멀 셧다운 및 저전압 감지회로 내장 Pin의 사용# ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀을 구성한 Pinmap이므로, 필요에 따라 수정하여 사용할 수 있다. (아래표는 참고만 할 것!)"><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-11-01T18:27:53+09:00"><meta property="article:modified_time" content="2021-11-01T18:27:53+09:00"><meta property="article:tag" content="Rc"><title>ESP32, DC모터, TB6612FNG | STEM with</title><link rel=icon href=/favicon.png><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/esp32-dc%EB%AA%A8%ED%84%B0/><link rel=stylesheet href=/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css integrity="sha256-rupC+yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>STEM with</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>ESP32, DC모터, TB6612FNG</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><ul><li><a href=#dc모터-사용하기>DC모터 사용하기</a></li><li><a href=#모터-1개-컨트롤하기>모터 1개 컨트롤하기</a></li><li><a href=#모터-2개-컨트롤하기>모터 2개 컨트롤하기</a></li><li><a href=#스케치-최적화>스케치 최적화</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1>ESP32, DC모터, TB6612FNG</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
+<span>November 1, 2021</span></div><div class=text-small><a href=/categories/esp32/>Esp32</a></div><div class=text-small><a href=/tags/rc/>Rc</a></div><div class="book-post-content markdown-inner"><h3 id=dc모터-사용하기>DC모터 사용하기<a class=anchor href=#dc%eb%aa%a8%ed%84%b0-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0>#</a></h3><p>아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.</p><br><h4 id=tb6612fng>TB6612FNG<a class=anchor href=#tb6612fng>#</a></h4><h5 id=기본-핀-배열>기본 핀 배열<a class=anchor href=#%ea%b8%b0%eb%b3%b8-%ed%95%80-%eb%b0%b0%ec%97%b4>#</a></h5><table><thead><tr><th style=text-align:center>VM<br>VCC<br>GND(*)<br>AOUT1<br>AOUT2<br>BOUT2<br>BOUT1<br>GND</th><th style=text-align:center><figure class=center><img src=/image/t/tb6612fng-01.png width=50%></figure></th><th style=text-align:center>PWMA<br>AIN2<br>AIN1<br>STBY<br>BIN1<br>BIN2<br>PWMB<br>GND</th></tr></thead><tbody><tr><td style=text-align:center></td><td style=text-align:center><figure class=center><img src=/image/t/tb6612fng-02.png></figure></td><td style=text-align:center></td></tr></tbody></table><br><h5 id=핀-배열이-다른-경우>핀 배열이 다른 경우<a class=anchor href=#%ed%95%80-%eb%b0%b0%ec%97%b4%ec%9d%b4-%eb%8b%a4%eb%a5%b8-%ea%b2%bd%ec%9a%b0>#</a></h5><table><thead><tr><th style=text-align:center>GND<br>VCC<br>AOUT1<br>AOUT2<br>BOUT2<br>BOUT1<br>VM<br>GND</th><th style=text-align:center><figure class=center><img src=/image/t/tb6612fng-03.png width=75%></figure></th><th style=text-align:center>PWMA<br>AIN2<br>AIN1<br>NC (=STBY)<br>BIN1<br>BIN2<br>PWMB<br>GND</th></tr></thead><tbody><tr><td style=text-align:center></td><td style=text-align:center><figure class=center><img src=/image/t/tb6612fng-04.png></figure></td><td style=text-align:center></td></tr></tbody></table><ul><li>VM (모터 전압) = 15V max</li><li>VCC (로직 전압) = 2.7 ~ 5.5V</li><li><strong>GND</strong><ul><li>TB6612FNG 모듈을 여러개 테스트한 결과, 기본 핀 배열을 가진 모듈의 <strong>3번핀 GND</strong>에 연결할 경우 <strong>작동이 안되는</strong> 몇몇 제품이 있었음</li><li>그러므로 <strong>8번핀, 9번핀의 GND 사용을 권장</strong>함</li></ul></li><li>출력전류: 정전류 1.2A (3.2A peak)까지 (모터 2개 사용시 합산 전류임)</li><li>모터 제어모드: CW, CCW, short-brake, STOP, stand-by</li><li>두개의 모터 출력을 개별 제어하며, <strong>100kHz</strong>의 PWM으로 속도 제어</li><li>써멀 셧다운 및 저전압 감지회로 내장</li></ul><br><h5 id=pin의-사용>Pin의 사용<a class=anchor href=#pin%ec%9d%98-%ec%82%ac%ec%9a%a9>#</a></h5><p>ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀을 구성한 Pinmap이므로, 필요에 따라 수정하여 사용할 수 있다. (아래표는 참고만 할 것!)</p><table><thead><tr><th>핀번호</th><th>TB6612FNG 모터드라이브 (기본 핀 배열)</th><th>ESP32 DEVKIT_C V4 사용시</th><th>ESP32 DEVKIT V1 사용시</th><th>외부전원</th><th>모터 / 역할</th></tr></thead><tbody><tr><td>1</td><td>VM</td><td></td><td></td><td>(+) (DC모터에 사용하는 전압 사용)</td><td></td></tr><tr><td>2</td><td>VCC</td><td>+3.3V</td><td>+3.3V</td><td></td><td></td></tr><tr><td>3</td><td><strong>GND (사용 비추천)</strong></td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td>A_OUT1</td><td></td><td></td><td></td><td>모터A</td></tr><tr><td>5</td><td>A_OUT2</td><td></td><td></td><td></td><td>모터A</td></tr><tr><td>6</td><td>B_OUT2</td><td></td><td></td><td></td><td>모터B</td></tr><tr><td>7</td><td>B_OUT1</td><td></td><td></td><td></td><td>모터B</td></tr><tr><td>8</td><td>GND</td><td></td><td></td><td>(-)</td><td></td></tr><tr><td>9</td><td>GND</td><td>GND</td><td>GND</td><td></td><td></td></tr><tr><td>10</td><td>B_PWM</td><td>12</td><td>13</td><td></td><td>모터B 속도제어</td></tr><tr><td>11</td><td>B_IN2</td><td>14</td><td>12</td><td></td><td>모터B 방향제어</td></tr><tr><td>12</td><td>B_IN1</td><td>27</td><td>14</td><td></td><td>모터B 방향제어</td></tr><tr><td>13</td><td>STBY</td><td>26</td><td>27</td><td></td><td>모터 상태신호</td></tr><tr><td>14</td><td>A_IN1</td><td>25</td><td>26</td><td></td><td>모터A 방향제어</td></tr><tr><td>15</td><td>A_IN2</td><td>33</td><td>25</td><td></td><td>모터A 방향제어</td></tr><tr><td>16</td><td>A_PWM</td><td>32</td><td>33</td><td></td><td>모터A 속도제어</td></tr></tbody></table><br><table><thead><tr><th>ESP32 DEVKIT V4 사용시</th><th><img src=/image/t/ESP32-RC-04.png alt></th></tr></thead><tbody><tr><td>ESP32 DEVKIT V1 사용시</td><td><img src=/image/t/ESP32-RC-05.png alt></td></tr></tbody></table><br><br><h3 id=모터-1개-컨트롤하기>모터 1개 컨트롤하기<a class=anchor href=#%eb%aa%a8%ed%84%b0-1%ea%b0%9c-%ec%bb%a8%ed%8a%b8%eb%a1%a4%ed%95%98%ea%b8%b0>#</a></h3><table><thead><tr><th>(기어박스를 포함한) 일반 DC모터</th><th>(엔코더 모듈을 포함한) 엔코더 DC모터</th></tr></thead><tbody><tr><td>아두이노를 사용한 스마트카 실습용으로 많이 사용됨</td><td>Hall sensor를 통해 회전수를 정밀하게 측정가능</td></tr><tr><td>(+)와 (-), 2P 단자가 있음</td><td>5P or 6P 단자가 있음 (여기서는 (+)와 (-) 2P만 사용)</td></tr><tr><td><figure class=center><img src=/image/4wd-01.jpg width=80%></figure></td><td><figure class=center><img src=/image/t/ESP32-RC-07.png></figure></td></tr></tbody></table><br><h4 id=schematic>schematic<a class=anchor href=#schematic>#</a></h4><h5 id=esp32와-컴퓨터를-usb선으로-연결하여-사용할-경우-단-모터-외부전원은-사용>ESP32와 컴퓨터를 USB선으로 연결하여 사용할 경우 (단, 모터 외부전원은 사용)<a class=anchor href=#esp32%ec%99%80-%ec%bb%b4%ed%93%a8%ed%84%b0%eb%a5%bc-usb%ec%84%a0%ec%9c%bc%eb%a1%9c-%ec%97%b0%ea%b2%b0%ed%95%98%ec%97%ac-%ec%82%ac%ec%9a%a9%ed%95%a0-%ea%b2%bd%ec%9a%b0-%eb%8b%a8-%eb%aa%a8%ed%84%b0-%ec%99%b8%eb%b6%80%ec%a0%84%ec%9b%90%ec%9d%80-%ec%82%ac%ec%9a%a9>#</a></h5><p><img src=/image/t/ESP32-RC-01.png alt></p><br><h5 id=esp32와-컴퓨터의-연결없이-외부전원을-사용하여-단독으로-사용할-경우>ESP32와 컴퓨터의 연결없이, 외부전원을 사용하여 단독으로 사용할 경우<a class=anchor href=#esp32%ec%99%80-%ec%bb%b4%ed%93%a8%ed%84%b0%ec%9d%98-%ec%97%b0%ea%b2%b0%ec%97%86%ec%9d%b4-%ec%99%b8%eb%b6%80%ec%a0%84%ec%9b%90%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%ec%97%ac-%eb%8b%a8%eb%8f%85%ec%9c%bc%eb%a1%9c-%ec%82%ac%ec%9a%a9%ed%95%a0-%ea%b2%bd%ec%9a%b0>#</a></h5><ul><li><p>18650 2S 외부전원(7.4V)을 DC컨버터 모듈에 연결</p><ul><li>입력: 8~36V</li><li>출력: 1.25~32V 및 USB 5V 출력</li><li>75W내 사용 권장, 전류량 최대 5A (4.5A 이내 사용 권장)</li></ul><p><img src=/image/t/ESP32-RC-03.png alt></p></li><li><p>여기서는 서보모터 추가 연결을 위해서, 왼쪽 가변 저항을 사용하여 출력 전압을 5V로 세팅하여 사용</p></li><li><p>USB 출력단자는 ESP32의 microUSB 단자에 연결</p></li></ul><p><img src=/image/t/ESP32-RC-02.png alt></p><br><h4 id=sketch>sketch<a class=anchor href=#sketch>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=display:flex><span><span style=color:#75715e>// TB6612FNG right side &amp; ESP32-WROOM-32D DEVKIT_C V4 left side pin order
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_PWMA <span style=color:#f92672>=</span> <span style=color:#ae81ff>32</span>;  
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_AIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>33</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_AIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>25</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_STBY <span style=color:#f92672>=</span> <span style=color:#ae81ff>26</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_BIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>27</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_BIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>14</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_PWMB <span style=color:#f92672>=</span> <span style=color:#ae81ff>12</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// TB6612FNG right side &amp; ESP32-WROOM-32 left side pin order
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_PWMA = 33;  
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_AIN1 = 25;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_AIN2 = 26;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_STBY = 27;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_BIN1 = 14;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_BIN2 = 12;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_PWMB = 13;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// PWM Channel setup
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> CH_PWMA <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> CH_PWMB <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>// PWM frequency and bit resolution setup
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> pwmFrequency <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>;  <span style=color:#75715e>// Hz
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> bitResolution <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>;     <span style=color:#75715e>// pwm value: 0~255
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_LED <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// put your setup code here, to run once:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  Serial.begin(<span style=color:#ae81ff>115200</span>);
+</span></span><span style=display:flex><span>  pinMode(PIN_LED, OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// tb6612fng setting
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  pinMode(PIN_STBY,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_AIN1,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_AIN2,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_PWMA,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_BIN1,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_BIN2,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_PWMB,OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// motor output(PWM) setting (channel, frequency, bit)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcSetup(CH_PWMA, pwmFrequency, bitResolution);
+</span></span><span style=display:flex><span>  ledcSetup(CH_PWMB, pwmFrequency, bitResolution);
+</span></span><span style=display:flex><span>  ledcAttachPin(PIN_PWMA, CH_PWMA);
+</span></span><span style=display:flex><span>  ledcAttachPin(PIN_PWMB, CH_PWMB);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// channel setting (GPIO pin, channel)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// if STBY(CH0) = LOW, Standby states.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// if STBY(CH0) = HIGH, and INA1&amp;INA2 have different value
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// and PWMA has some value, CW or CCW rotation is made.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Channel      CW   CCW  Stanby Stop Brake1 Brake2 Brake3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_STBY (0) HIGH HIGH LOW    HIGH  HIGH  HIGH   HIGH
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_INA1 (1) HIGH LOW  *      LOW   HIGH  LOW    HIGH
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_INA2 (2) LOW  HIGH *      LOW   HIGH  HIGH   LOW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// CH_PWMA  (3) PWM  PWM  *      HIGH  *     LOW    LOW  
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Motor A : CW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_STBY, HIGH); 	<span style=color:#75715e>// STBY
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_AIN1, HIGH); 	<span style=color:#75715e>// AIN1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_AIN2, LOW);   	<span style=color:#75715e>// AIN2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcWrite(CH_PWMA, <span style=color:#ae81ff>255</span>); 			<span style=color:#75715e>// PWMA
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// Motor B : CW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_BIN1, HIGH); 	<span style=color:#75715e>// BIN1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_BIN2, LOW);   	<span style=color:#75715e>// BIN2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcWrite(CH_PWMB, <span style=color:#ae81ff>255</span>); 			<span style=color:#75715e>// PWMB
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  delay(<span style=color:#ae81ff>3000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Motor : Stand-by
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_STBY, LOW); 		<span style=color:#75715e>// STBY
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>//delay(1000);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//LED Blink
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>3500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, HIGH);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Motor A : CCW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_STBY, HIGH); 	<span style=color:#75715e>// STBY
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_AIN1, LOW); 		<span style=color:#75715e>// AIN1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_AIN2, HIGH);   	<span style=color:#75715e>// AIN2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcWrite(CH_PWMA, <span style=color:#ae81ff>255</span>); 			<span style=color:#75715e>// PWMA
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// Motor B : CCW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_BIN1, LOW); 		<span style=color:#75715e>// BIN1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_BIN2, HIGH);   	<span style=color:#75715e>// BIN2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcWrite(CH_PWMB, <span style=color:#ae81ff>255</span>); 			<span style=color:#75715e>// PWMB
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  delay(<span style=color:#ae81ff>3000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Motor : Stand-by
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_STBY, LOW); 		<span style=color:#75715e>// STBY
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>//delay(1000);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//LED Blink
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(PIN_LED, LOW);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>3500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(PIN_LED, HIGH);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(PIN_LED, LOW);
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h4 id=troubleshooting>Troubleshooting<a class=anchor href=#troubleshooting>#</a></h4><h5 id=스케치-중간에-있는-stand-by가-있거나-없거나-동일한-운동을-보일-것-같지만-실제로는-완전히-다르다>스케치 중간에 있는 stand-by가 있거나 없거나 동일한 운동을 보일 것 같지만, 실제로는 완전히 다르다.<a class=anchor href=#%ec%8a%a4%ec%bc%80%ec%b9%98-%ec%a4%91%ea%b0%84%ec%97%90-%ec%9e%88%eb%8a%94-stand-by%ea%b0%80-%ec%9e%88%ea%b1%b0%eb%82%98-%ec%97%86%ea%b1%b0%eb%82%98-%eb%8f%99%ec%9d%bc%ed%95%9c-%ec%9a%b4%eb%8f%99%ec%9d%84-%eb%b3%b4%ec%9d%bc-%ea%b2%83-%ea%b0%99%ec%a7%80%eb%a7%8c-%ec%8b%a4%ec%a0%9c%eb%a1%9c%eb%8a%94-%ec%99%84%ec%a0%84%ed%9e%88-%eb%8b%a4%eb%a5%b4%eb%8b%a4>#</a></h5><ul><li><p>stand-by가 있는 경우</p><ul><li>3초간 CW회전 후 정지 → 3.5초 대기 → 0.5초 LED켜졌다가 꺼짐 → 3초간 CCW회전 후 정지→ 3.5초 대기 → 0.5초 LED켜졌다가 꺼짐</li></ul></li><li><p>stand-by가 없는 경우:</p><ul><li>모터<ul><li>모터의 delay 시간(회전시간)이 3초로 되어 있어도 stand-by 상태로 들어가지 않으므로, <strong>실제로는 7초간 회전</strong> 후 방향을 바꿈</li><li>7초간 CW회전 후 → (정지하지 않고) 곧바로 7초간 CCW회전 (반복)</li></ul></li><li>LED<ul><li>꺼짐: 6.5초간 꺼져있다가 (모터의 delay 시간 3초 + led low delay 시간 3.5초)</li><li>켜짐: 0.5초간 켜짐 (반복)</li></ul></li></ul></li><li><p>그러므로, 각 상황에 따라 stand-by를 걸어야 할지, 말아야할지를 결정해야 함.</p><ul><li>stand-by를 걸지 않은 상태에서 멈추려면 PWMA or PWMB를 0으로 주면 됨.</li></ul></li></ul><br><h5 id=회전-방향이-생각했던-방향과-반대로-회전하는-경우>회전 방향이 (생각했던 방향과) 반대로 회전하는 경우<a class=anchor href=#%ed%9a%8c%ec%a0%84-%eb%b0%a9%ed%96%a5%ec%9d%b4-%ec%83%9d%ea%b0%81%ed%96%88%eb%8d%98-%eb%b0%a9%ed%96%a5%ea%b3%bc-%eb%b0%98%eb%8c%80%eb%a1%9c-%ed%9a%8c%ec%a0%84%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0>#</a></h5><p>AIN1핀과 AIN2 핀의 번호를 바꿔준다. 즉, 위 스케치에서</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> AIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>25</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> AIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>26</span>;</span></span></code></pre></div><p>부분을</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> AIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>26</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> AIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>25</span>;</span></span></code></pre></div><p>로 바꿔준다.</p><br><br><h3 id=모터-2개-컨트롤하기>모터 2개 컨트롤하기<a class=anchor href=#%eb%aa%a8%ed%84%b0-2%ea%b0%9c-%ec%bb%a8%ed%8a%b8%eb%a1%a4%ed%95%98%ea%b8%b0>#</a></h3><p><img src=/image/t/ESP32-RC-06.png alt><br></p><h4 id=sketch-1>sketch<a class=anchor href=#sketch-1>#</a></h4><p>위의 &lsquo;&lsquo;모터 1개 컨트롤하기&rsquo;&rsquo; 스케치와 동일함.</p><br><br><h3 id=스케치-최적화>스케치 최적화<a class=anchor href=#%ec%8a%a4%ec%bc%80%ec%b9%98-%ec%b5%9c%ec%a0%81%ed%99%94>#</a></h3><p>move(), stop()을 만들어서 스케치 최적화</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>// TB6612FNG right side &amp; ESP32-WROOM-32D DEVKIT_C V4 left side pin order
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_PWMA <span style=color:#f92672>=</span> <span style=color:#ae81ff>32</span>;  
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_AIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>33</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_AIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>25</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_STBY <span style=color:#f92672>=</span> <span style=color:#ae81ff>26</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_BIN1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>27</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_BIN2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>14</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_PWMB <span style=color:#f92672>=</span> <span style=color:#ae81ff>12</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// TB6612FNG right side &amp; ESP32-WROOM-32 left side pin order
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_PWMA = 33;  
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_AIN1 = 25;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_AIN2 = 26;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_STBY = 27;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_BIN1 = 14;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_BIN2 = 12;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>const int PIN_PWMB = 13;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// PWM Channel setup
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> CH_PWMA <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> CH_PWMB <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>// PWM frequency and bit resolution setup
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> pwmFrequency <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>;  <span style=color:#75715e>// Hz
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> bitResolution <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>;     <span style=color:#75715e>// pwm value: 0~255
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> PIN_LED <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// put your setup code here, to run once:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  Serial.begin(<span style=color:#ae81ff>115200</span>);
+</span></span><span style=display:flex><span>  pinMode(PIN_LED, OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// tb6612fng setting
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  pinMode(PIN_STBY,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_AIN1,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_AIN2,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_PWMA,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_BIN1,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_BIN2,OUTPUT);
+</span></span><span style=display:flex><span>  pinMode(PIN_PWMB,OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// motor output(PWM) setting (channel, frequency, bit)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  ledcSetup(CH_PWMA, pwmFrequency, bitResolution);
+</span></span><span style=display:flex><span>  ledcSetup(CH_PWMB, pwmFrequency, bitResolution);
+</span></span><span style=display:flex><span>  ledcAttachPin(PIN_PWMA, CH_PWMA);
+</span></span><span style=display:flex><span>  ledcAttachPin(PIN_PWMB, CH_PWMB);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// channel setting (GPIO pin, channel)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// if STBY(CH0) = LOW, Standby states.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// if STBY(CH0) = HIGH, and INA1&amp;INA2 have different value
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// and PWMA has some value, CW or CCW rotation is made.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Channel      CW   CCW  Stanby Stop Brake1 Brake2 Brake3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_STBY (0) HIGH HIGH LOW    HIGH  HIGH  HIGH   HIGH
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_INA1 (1) HIGH LOW  *      LOW   HIGH  LOW    HIGH
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// PIN_INA2 (2) LOW  HIGH *      LOW   HIGH  HIGH   LOW
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// CH_PWMA  (3) PWM  PWM  *      HIGH  *     LOW    LOW  
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>loop</span>() {
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  move(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>128</span>, <span style=color:#ae81ff>0</span>);               <span style=color:#75715e>// motor A(right wheels), half speed, moving forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  move(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>);               <span style=color:#75715e>// motor B(left wheels), full speed, moving forward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  delay(<span style=color:#ae81ff>3000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  stop();						 <span style=color:#75715e>// Motor : Stand-by
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>//delay(1000);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//LED Blink
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>3500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, HIGH);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  move(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>1</span>);               <span style=color:#75715e>// motor A(right wheels), full speed, moving backward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  move(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>128</span>, <span style=color:#ae81ff>1</span>);               <span style=color:#75715e>// motor B(left wheels), half speed, moving backward
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  delay(<span style=color:#ae81ff>3000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  stop();						 <span style=color:#75715e>// Motor : Stand-by
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>//delay(1000);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//LED Blink
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>3500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, HIGH);
+</span></span><span style=display:flex><span>  delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>  digitalWrite(ledPin, LOW);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>move</span>(<span style=color:#66d9ef>int</span> motor, <span style=color:#66d9ef>int</span> speed, <span style=color:#66d9ef>int</span> direction) {   <span style=color:#75715e>//Move specific motor at speed and direction
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//motor: A(Right) -&gt; 1, B(Left) -&gt; 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//speed: 0 is off, and 255 is full speed
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//direction: 0 clockwise, 1 counter-clockwise
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  digitalWrite(PIN_STBY, HIGH);         <span style=color:#75715e>// move
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  boolean inPin1 <span style=color:#f92672>=</span> HIGH;            	<span style=color:#75715e>// Defalut(direction=0) - Clockwise
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  boolean inPin2 <span style=color:#f92672>=</span> LOW;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(direction <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {             		<span style=color:#75715e>// Count-clockwise
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    inPin1 <span style=color:#f92672>=</span> LOW;
+</span></span><span style=display:flex><span>    inPin2 <span style=color:#f92672>=</span> HIGH;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(motor <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>){                 		<span style=color:#75715e>// if motor == 1, right wheel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    digitalWrite(PIN_AIN1, inPin1);
+</span></span><span style=display:flex><span>    digitalWrite(PIN_AIN2, inPin2);
+</span></span><span style=display:flex><span>    ledcWrite(CH_PWMA, speed);
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {                         		<span style=color:#75715e>// if motor is not 1, left wheel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    digitalWrite(PIN_BIN1, inPin1);
+</span></span><span style=display:flex><span>    digitalWrite(PIN_BIN2, inPin2);
+</span></span><span style=display:flex><span>    ledcWrite(CH_PWMB, speed);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stop</span>() {
+</span></span><span style=display:flex><span>  digitalWrite(PIN_STBY, LOW);          <span style=color:#75715e>// stand-by = stop
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}</span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/stem-%EC%A0%84%EC%9E%90%EA%B8%B0%ED%8C%8C-%EA%B2%80%EC%B6%9C%EA%B8%B0/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="전자기파 검출기 만들기">
+<span>전자기파 검출기 만들기</span></a></div><div><a href=/posts/esp32-nrf24l01/ class="flex align-center"><span>ESP32, nRF24L01 무선통신</span>
+<img src=/icons/forward.svg class=book-icon alt=Next title="ESP32, nRF24L01 무선통신"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#dc모터-사용하기>DC모터 사용하기</a></li><li><a href=#모터-1개-컨트롤하기>모터 1개 컨트롤하기</a></li><li><a href=#모터-2개-컨트롤하기>모터 2개 컨트롤하기</a></li><li><a href=#스케치-최적화>스케치 최적화</a></li></ul></li></ul></nav></div></aside></main></body></html>
