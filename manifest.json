@@ -1,6 +1,6 @@
 {
-  "name": "STEM with",
-  "short_name": "STEM with",
+  "name": "stemwith",
+  "short_name": "stemwith",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
