@@ -26,7 +26,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -135,12 +135,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -151,11 +156,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
@@ -202,6 +202,98 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/esp32-ble-blynk-slider-pwm/">esp32 BLE, Blynk Slider (PWM)</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 22, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/esp32/">Esp32</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/iot/">Iot</a>
+  </div>
+  
+
+
+    <div class="book-post-content"><h3 id="esp32와-blynk에서의-pwm-사용">ESP32와 Blynk에서의 PWM 사용<a class="anchor" href="#esp32%ec%99%80-blynk%ec%97%90%ec%84%9c%ec%9d%98-pwm-%ec%82%ac%ec%9a%a9">#</a></h3>
+<p>Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.</p>
+<ul>
+<li>Blynk에서 Slider는 Virtual pin을 사용해야한다. (Digital핀을 선택하는 것이 불가능)</li>
+<li>Virtual pin을 사용하기 위해 BLYNK_WRITE(Vpin)을 사용한다.</li>
+<li>ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.</li>
+</ul>
+<br>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/blynk-pwm-01.png" alt="" /></p>
+<p>※ LED모듈을 사용하는 경우 저항이 필요없다.</p>
+<br>
+<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_PRINT Serial
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_USE_DIRECT_CONNECT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BlynkSimpleEsp32_BLE.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEDevice.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEServer.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// You should get Auth Token in the Blynk App.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Go to the Project Settings (nut icon).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> auth[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// setting PWM properties
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_FREQ        5000 </span><span style="color:#75715e">// Hz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_CHANNEL_0   0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define LEDC_RESOLUTION  12   </span><span style="color:#75715e">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// led Pin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> pin_ledR <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_WRITE</span>(V5)           <span style="color:#75715e">// widget virtual pin5 -&gt; ESP32
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> value_V5 <span style="color:#f92672">=</span> param.<span style="color:#a6e22e">asInt</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ledcWrite</span>(LEDC_CHANNEL_0, value_V5);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;V5 value: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(value_V5);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Debug console
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
+</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Waiting for connections...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// configure LED PWM functionalitites
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// attach the same channel to the GPIO to be controlled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(pin_ledR, LEDC_CHANNEL_0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// for Blynk 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Blynk.<span style="color:#a6e22e">setDeviceName</span>(<span style="color:#e6db74">&#34;Blynk-t&#34;</span>);
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">begin</span>(auth);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">run</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<h4 id="sketch-분석">sketch 분석<a class="anchor" href="#sketch-%eb%b6%84%ec%84%9d">#</a></h4>
+<p>Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.</p></div>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -496,12 +588,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -512,11 +609,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">

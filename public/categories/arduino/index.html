@@ -26,7 +26,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -135,12 +135,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -151,11 +156,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
@@ -202,6 +202,91 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/posts/arduino-nrf24l01_draft/">Arduino, nRF24L01 무선통신</a>
+    </h2>
+    
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 10, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+    <div class="book-post-content"><h3 id="nrf24l01">nRF24L01<a class="anchor" href="#nrf24l01">#</a></h3>
+<h4 id="library">library<a class="anchor" href="#library">#</a></h4>
+<p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>nRF24L01</strong> 검색한 후, <strong>RF24 by TMRh20, Avamander</strong> 설치</p>
+<p><img src="../image/n/ESP32-nRF24L01-02.png" alt="" /></p>
+<br>
+<h4 id="schematic-nrf24l01-receiver-with-esp32">schematic: nRF24L01 receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-receiver-with-esp32">#</a></h4>
+<p><img src="../image/n/ESP32-nRF24L01-01.png" alt="" /></p>
+<p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
+<br>
+<h5 id="pinmap-안테나를-위로-향하게-두고-모듈을-위에서-내려다-볼때의-핀배열">pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배열)<a class="anchor" href="#pinmap-%ec%95%88%ed%85%8c%eb%82%98%eb%a5%bc-%ec%9c%84%eb%a1%9c-%ed%96%a5%ed%95%98%ea%b2%8c-%eb%91%90%ea%b3%a0-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%9c%84%ec%97%90%ec%84%9c-%eb%82%b4%eb%a0%a4%eb%8b%a4-%eb%b3%bc%eb%95%8c%ec%9d%98-%ed%95%80%eb%b0%b0%ec%97%b4">#</a></h5>
+<table>
+  <thead>
+      <tr>
+          <th>ESP32</th>
+          <th>3V3</th>
+          <th>IO5</th>
+          <th>IO23</th>
+          <th>None</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>↑</td>
+          <td>↑</td>
+          <td>↑</td>
+          <td>↑</td>
+      </tr>
+      <tr>
+          <td>nRF24L01</td>
+          <td>VCC + 10uF</td>
+          <td>CSN</td>
+          <td>MOSI</td>
+          <td>IRQ</td>
+      </tr>
+      <tr>
+          <td>(위에서 보이는 핀배열)</td>
+          <td>GND + 10uF</td>
+          <td>CE</td>
+          <td>SCK</td>
+          <td>MISO</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>↓</td>
+          <td>↓</td>
+          <td>↓</td>
+          <td>↓</td>
+      </tr>
+      <tr>
+          <td><strong>ESP32</strong></td>
+          <td><strong>GND</strong></td>
+          <td><strong>IO4</strong></td>
+          <td><strong>IO18</strong></td>
+          <td><strong>IO19</strong></td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="schematic-nrf24l01-receiver-with-arduino-uno">schematic: nRF24L01 receiver with Arduino Uno<a class="anchor" href="#schematic-nrf24l01-receiver-with-arduino-uno">#</a></h4>
+<p><img src="../image/n/UNO-nRF24L01-01.png" alt="" /></p></div>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -1034,37 +1119,6 @@ https://github.com/alex-shpak/hugo-book
 <p>이 경우에는 Arduino IDE에 기본적으로 포함되어 있는 LiquidCrystal 라이브러리를 이용한다.</p></div>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/posts/7-segment-fnd-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">7 Segment (FND) 사용하기</a>
-    </h2>
-    
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>October 1, 2018</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/arduino/">Arduino</a>
-  </div>
-  
-
-  
-
-
-    <div class="book-post-content"><h2 id="fnd의-종류">FND의 종류<a class="anchor" href="#fnd%ec%9d%98-%ec%a2%85%eb%a5%98">#</a></h2>
-<ul>
-<li>
-<p>FND는 Anode형과 Cathode형으로 분류되며, 이 중 Anode형이 주로 사용되고 있는데요. Anode형은 중앙핀이 VCC이며, Cathode형은 GND입니다. 우리가 사용하는 것은 5611BH로 Common Anode형입니다.</p>
-</li>
-<li>
-<p>7 Segment (FND)는 숫자나 문자를 표현하는 7개의 LED와 소수점을 표현하는 1개의 LED가 포함되어 있는 부품을 의미합니다. FND는 16X2 LCD와 비교할 때 표현할 수 있는 문자의 개수가 제한되고, 각 문자의 표현을 위하여 총 8개의 LED를 하나씩 조절해주어야 하는 등 사용이 복잡하다는 단점이 있습니다. 그렇지만, 전력소모가 적고 크기가 큰 Segment를 선택하면 비교적 큰 문자도 표현할 수 있다는 장점이 있어 다양한 용도로 사용되고 있습니다.</p></div>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -1145,12 +1199,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -1161,11 +1220,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">

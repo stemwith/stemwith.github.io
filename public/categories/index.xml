@@ -23,6 +23,13 @@
       <description></description>
     </item>
     <item>
+      <title>Arduino</title>
+      <link>http://localhost:1313/categories/arduino/</link>
+      <pubDate>Sun, 10 Oct 2021 18:27:53 +0900</pubDate>
+      <guid>http://localhost:1313/categories/arduino/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Drone</title>
       <link>http://localhost:1313/categories/drone/</link>
       <pubDate>Mon, 02 Aug 2021 18:27:53 +0900</pubDate>
@@ -34,13 +41,6 @@
       <link>http://localhost:1313/categories/office/</link>
       <pubDate>Fri, 01 Nov 2019 18:27:53 +0900</pubDate>
       <guid>http://localhost:1313/categories/office/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Arduino</title>
-      <link>http://localhost:1313/categories/arduino/</link>
-      <pubDate>Wed, 30 Oct 2019 18:27:53 +0900</pubDate>
-      <guid>http://localhost:1313/categories/arduino/</guid>
       <description></description>
     </item>
     <item>

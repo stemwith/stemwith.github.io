@@ -31,6 +31,9 @@ googleAnalytics = "G-128DRYVCRT"
   # You can also set value to "*" to render all sections to menu
   # BookSection = 'docs'
 
+  # Book 테마 검색 기능 활성화
+  BookSearch = true 
+
   customCSS = ["_custom.scss"]
   math = true
 
@@ -43,3 +46,6 @@ googleAnalytics = "G-128DRYVCRT"
     [markup.goldmark.renderer]
       # true로 설정해야 KaTeX가 생성하는 HTML가 페이지에 표시됩니다.
       unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

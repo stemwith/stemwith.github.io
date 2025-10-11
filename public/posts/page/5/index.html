@@ -26,7 +26,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -135,12 +135,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -151,11 +156,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
@@ -202,6 +202,100 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/arduino-ir-%EB%A6%AC%EB%AA%A8%EC%BB%A8/">Arduino, IR 리모컨</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 6, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><p>생활속에서 가장 밀접하게 쓰이는 IR(Infra Red, 적외선) 리모컨의 사용에 대해서 알아본다. 리모컨 작동을 위해서는 기본적으로 IR 신호를 내보내는 리모컨본체와 이 본체에서 내보내는 신호를 받아들이는 IR 리시버가 필요하다.</p>
+<br>
+<h3 id="기본-사용법">기본 사용법<a class="anchor" href="#%ea%b8%b0%eb%b3%b8-%ec%82%ac%ec%9a%a9%eb%b2%95">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><figure class="center"><img src="/image/remote.png" width="80%">
+</figure>
+       <figure class="center"><img src="/image/remote-controller.png">
+       </figure>
+</p>
+<p>위 그림에서 IR 리시버에 있는 핀은, IR모듈이 아닌 단일 부품형태의 리시버 일때 핀의 순서이다.</p>
+<br>
+<h5 id="ir-리시버-모듈을-사용하는-경우">IR 리시버 모듈을 사용하는 경우<a class="anchor" href="#ir-%eb%a6%ac%ec%8b%9c%eb%b2%84-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0">#</a></h5>
+<p>아두이노 학습 …</p></div>
+      </div></div>
+  </article>
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/arduino-1602-lcd-i2c/">Arduino, 1602 LCD (I2C)</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>September 3, 2018</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><h3 id="1602-lcd-i2c">1602 LCD (I2C)<a class="anchor" href="#1602-lcd-i2c">#</a></h3>
+<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
+<p><img src="/image/1602lcd.png" alt="" /></p>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th>1602 LCD</th>
+          <th>SDA</th>
+          <th>SCL</th>
+          <th>VCC</th>
+          <th>GND</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Arduino</td>
+          <td>A4</td>
+          <td>A5</td>
+          <td>5V</td>
+          <td>GND</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h4 id="라이브러리-설치하기">라이브러리 설치하기<a class="anchor" href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0">#</a></h4>
+<p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong> …</strong></p></div>
+      </div></div>
+  </article>
   
   <article class="book-post markdown">
     <h2>
@@ -549,67 +643,6 @@ https://github.com/alex-shpak/hugo-book
       </div></div>
   </article>
   
-  <article class="book-post markdown">
-    <h2>
-      <a href="/posts/%EC%97%91%EC%85%80-%EB%B9%88%EC%85%80-%EC%B1%84%EC%9A%B0%EA%B8%B0/">엑셀, 빈셀 채우기</a>
-    </h2>
-    <div class="book-post-container flex gap">
-      <div>
-        
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>November 1, 2016</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/office/">Office</a>
-  </div>
-  
-
-  
-
-
-        <div class="book-post-content markdown-inner"><p>아래와 같이 학년, 반, 번호를 채워 넣으려고 할 때, A3~A31셀이 빈 셀로 되어 있네요. 이럴때 모든 셀을 1학년을 나타내는 숫자 1을 채워 넣으려면 어떻게 해야 할까요? A2셀을 클릭하고 A31셀까지 아래쪽으로 쭉 드래그를 하면 되겠죠?</p>
-<p><img src="/image/equal01.png" alt="" /></p>
-<br>
-<p>그런데, 문제는 &lsquo;반&rsquo;의 숫자를 넣을 B열입니다. 1~3반까지의 숫자가 나뉘어 있으므로 드래그를 세번 나누어서 해야 하는 것이죠. 세개의 반만 있으면 다행이지만, 학급수가 많다면 이것도 쉬 …</p></div>
-      </div></div>
-  </article>
-  
-  <article class="book-post markdown">
-    <h2>
-      <a href="/posts/%EC%97%AD%EC%82%BC%ED%88%AC%EC%95%95-%EC%A0%95%EC%88%98%EA%B8%B0-diy/">역삼투압 정수기 DIY</a>
-    </h2>
-    <div class="book-post-container flex gap">
-      <div>
-        
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>October 20, 2012</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/diy/">Diy</a>
-  </div>
-  
-
-  
-
-
-        <div class="book-post-content markdown-inner"><p>몸에 좋은 미네랄까지 걸러낸다고 하여 역삼투압정수기를 싫어하시는 분도 많지요? 그러나 여기는 중국입니다. 미네랄이고 뭐고, 그냥 거를 수 있는 것은 다 걸러내는 것이 좋습니다.</p>
-<br>
-<p>역삼투압정수기의 경우 2)번이 정석입니다. 그런데, 폐수가 너무 많이 버려지기때문에, 1)번과 같이 작업하는 분도 계시죠. 정수 성능은 조금 떨어지겠지만 폐수가 전혀 없기도 합니다. 그렇지만 역삼투압정수기의 원리에 맞추어 생각해보면, 1)번 구성은 가장 비싼 RO필터 성능을 급격 …</p></div>
-      </div></div>
-  </article>
-  
  
       
 
@@ -623,9 +656,13 @@ https://github.com/alex-shpak/hugo-book
   
   </span>
   
-  <span class="flex gap"><a href="/posts/page/3/">3</a><a href="/posts/page/4/">4</a><a >5</a></span>
+  <span class="flex gap"><a href="/posts/page/3/">3</a><a href="/posts/page/4/">4</a><a >5</a><a href="/posts/page/6/">6</a></span>
   
   <span>
+    <a href="/posts/page/6/" class="flex align-center">
+      <img src="/icons/forward.svg" class="book-icon" alt="Next" />
+    </a>
+  
   </span>
 </div>
  
@@ -655,12 +692,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -671,11 +713,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">

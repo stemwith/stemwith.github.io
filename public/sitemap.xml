@@ -35,6 +35,12 @@
     <loc>http://localhost:1313/posts/esp32-dc%EB%AA%A8%ED%84%B0/</loc>
     <lastmod>2021-11-01T18:27:53+09:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/categories/arduino/</loc>
+    <lastmod>2021-10-10T18:27:53+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/arduino-nrf24l01_draft/</loc>
+    <lastmod>2021-10-10T18:27:53+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/esp32-nrf24l01/</loc>
     <lastmod>2021-10-10T18:27:53+09:00</lastmod>
   </url><url>
@@ -77,6 +83,9 @@
     <loc>http://localhost:1313/tags/iot/</loc>
     <lastmod>2019-11-19T18:27:53+09:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/posts/esp32-ap-mode-and-websocket_draft/</loc>
+    <lastmod>2019-11-15T18:27:53+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/office/</loc>
     <lastmod>2019-11-01T18:27:53+09:00</lastmod>
   </url><url>
@@ -84,9 +93,6 @@
     <lastmod>2019-11-01T18:27:53+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/4wd-bluetooth/</loc>
-    <lastmod>2019-10-30T18:27:53+09:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/arduino/</loc>
     <lastmod>2019-10-30T18:27:53+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/dc%EB%AA%A8%ED%84%B0-4wd-%EC%9E%90%EB%8F%99%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0/</loc>

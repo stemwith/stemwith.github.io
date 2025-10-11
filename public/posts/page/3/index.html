@@ -26,7 +26,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -135,12 +135,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -151,11 +156,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
@@ -202,6 +202,81 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/arduino-%EB%9D%BC%EC%9D%B8%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%84%9C-l298n/">Arduino, 라인트레이서, L298N</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 28, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+  <div class="text-small">
+    
+      <a href="/tags/rc/">Rc</a>
+  </div>
+  
+
+
+        <div class="book-post-content markdown-inner"><p>아두이노를 사용하여 검은색 라인을 따라 움직이는 라인트레이서 자동차를 만들어보자.</p>
+<br>
+<h3 id="tcrt5000-ir-reflective-sensor">TCRT5000 IR reflective sensor<a class="anchor" href="#tcrt5000-ir-reflective-sensor">#</a></h3>
+<p>라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.</p>
+<p><img src="/image/LT-03.png" alt="" /></p>
+<ul>
+<li>장애물이 없는 경우: 1 반환</li>
+<li>센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환</li>
+<li>센서와 12mm이내의 거리에 검 …</li></ul></div>
+      </div></div>
+  </article>
+  
+  <article class="book-post markdown">
+    <h2>
+      <a href="/posts/arduino-bluetooth-%ED%8E%98%EC%96%B4%EB%A7%81/">Arduino, Bluetooth 페어링</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 26, 2019</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><p>아두이노에서 블루투스를 이용하는 방법을 알아보겠습니다.</p>
+<br>
+<h3 id="bluetooth-module-선택">Bluetooth module 선택<a class="anchor" href="#bluetooth-module-%ec%84%a0%ed%83%9d">#</a></h3>
+<ul>
+<li>
+<p><strong>아이폰</strong> : MLT-BT05(AT-09) BLE 모듈 사용 (이 모듈은 안드로이도에서도 사용 가능)</p>
+<p>HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, …</p></li></ul></div>
+      </div></div>
+  </article>
   
   <article class="book-post markdown">
     <h2>
@@ -517,88 +592,6 @@ https://github.com/alex-shpak/hugo-book
       </div></div>
   </article>
   
-  <article class="book-post markdown">
-    <h2>
-      <a href="/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/">Bluetooth Serial Controller 앱</a>
-    </h2>
-    <div class="book-post-container flex gap">
-      <div>
-        
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>October 17, 2019</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/arduino/">Arduino</a>
-  </div>
-  
-
-  
-  <div class="text-small">
-    
-      <a href="/tags/iot/">Iot</a>
-  </div>
-  
-
-
-        <div class="book-post-content markdown-inner"><h3 id="bluetooth-시리얼-통신">Bluetooth 시리얼 통신<a class="anchor" href="#bluetooth-%ec%8b%9c%eb%a6%ac%ec%96%bc-%ed%86%b5%ec%8b%a0">#</a></h3>
-<p>Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 <a href="2018/10/09/Arduino-Bluetooth-%ed%8e%98%ec%96%b4%eb%a7%81">Bluetooth 페어링</a> 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.</p>
-<br>
-<h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/BT-03.jpg" alt="" /></p>
-<br>
-<h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SoftwareSerial.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SoftwareSerial …</span></span></span></span></code></pre></div></div>
-      </div></div>
-  </article>
-  
-  <article class="book-post markdown">
-    <h2>
-      <a href="/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">hexo icarus 테마로 Github 블로그 만들기</a>
-    </h2>
-    <div class="book-post-container flex gap">
-      <div>
-        
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>September 1, 2019</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/diy/">Diy</a>
-  </div>
-  
-
-  
-
-
-        <div class="book-post-content markdown-inner"><h3 id="필수-요소">필수 요소<a class="anchor" href="#%ed%95%84%ec%88%98-%ec%9a%94%ec%86%8c">#</a></h3>
-<p>Hexo를 이용하여 블로그를 만들기에 앞서 아래 요소를 먼저 설치</p>
-<ul>
-<li>git</li>
-<li>github.com에 repository 2개 생성하기
-<ul>
-<li>사용자ID-archives</li>
-<li>사용자ID.github.io</li>
-</ul>
-</li>
-<li>node.js</li>
-<li>npm</li>
-</ul>
-<p><a href="https://hexo.io">hexo.io</a> 사이트에는 이를 위한 설치 방법이 간단하게 요약이 되어 있지만, 이것만으로 자신이 원하는 형태의 블로그를 운영하기는 쉽지 않다. 이 글은 아무것도 설치 되어있지 않은 상태의 윈도우 사용 컴퓨터 사용자를 기준으로, d …</p></ul></li></ul></div>
-      </div></div>
-  </article>
-  
  
       
 
@@ -648,12 +641,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -664,11 +662,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">

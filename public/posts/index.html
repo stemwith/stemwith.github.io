@@ -26,7 +26,7 @@ https://github.com/alex-shpak/hugo-book
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a7e685dc2aef531dd596314bb17ca4c9ffbdebffc34d9d11ac4d101b95171b90.js" integrity="sha256-p&#43;aF3CrvUx3VljFLsXykyf&#43;96//DTZ0RrE0QG5UXG5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -135,12 +135,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -151,11 +156,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
@@ -385,6 +385,43 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="book-post markdown">
     <h2>
+      <a href="/posts/arduino-nrf24l01_draft/">Arduino, nRF24L01 무선통신</a>
+    </h2>
+    <div class="book-post-container flex gap">
+      <div>
+        
+  <div class="flex align-center text-small book-post-date">
+    <img src="/icons/calendar.svg" class="book-icon" alt="" />
+    <span>October 10, 2021</span>
+  </div>
+
+
+
+  
+  <div class="text-small">
+    
+      <a href="/categories/arduino/">Arduino</a>
+  </div>
+  
+
+  
+
+
+        <div class="book-post-content markdown-inner"><h3 id="nrf24l01">nRF24L01<a class="anchor" href="#nrf24l01">#</a></h3>
+<h4 id="library">library<a class="anchor" href="#library">#</a></h4>
+<p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>nRF24L01</strong> 검색한 후, <strong>RF24 by TMRh20, Avamander</strong> 설치</p>
+<p><img src="../image/n/ESP32-nRF24L01-02.png" alt="" /></p>
+<br>
+<h4 id="schematic-nrf24l01-receiver-with-esp32">schematic: nRF24L01 receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-receiver-with-esp32">#</a></h4>
+<p><img src="../image/n/ESP32-nRF24L01-01.png" alt="" /></p>
+<p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
+<br>
+<h5 id="pinmap-안테나를-위로-향하게-두고-모듈을-위에서-내려다-볼때의-핀배열">pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배 …</h5></div>
+      </div></div>
+  </article>
+  
+  <article class="book-post markdown">
+    <h2>
       <a href="/posts/esp32-nrf24l01/">ESP32, nRF24L01 무선통신</a>
     </h2>
     <div class="book-post-container flex gap">
@@ -588,45 +625,6 @@ $$</p>
       </div></div>
   </article>
   
-  <article class="book-post markdown">
-    <h2>
-      <a href="/posts/drone-hardware/">드론 Part1 기체 조립</a>
-    </h2>
-    <div class="book-post-container flex gap">
-      <div>
-        
-  <div class="flex align-center text-small book-post-date">
-    <img src="/icons/calendar.svg" class="book-icon" alt="" />
-    <span>August 1, 2021</span>
-  </div>
-
-
-
-  
-  <div class="text-small">
-    
-      <a href="/categories/drone/">Drone</a>
-  </div>
-  
-
-  
-
-
-        <div class="book-post-content markdown-inner"><br>
-<h3 id="드론-조립">드론 조립<a class="anchor" href="#%eb%93%9c%eb%a1%a0-%ec%a1%b0%eb%a6%bd">#</a></h3>
-<h4 id="s500-기체-조립">S500 기체 조립<a class="anchor" href="#s500-%ea%b8%b0%ec%b2%b4-%ec%a1%b0%eb%a6%bd">#</a></h4>
-<figure class="center"><img src="/image/d/drone1_01.png" width="75%">
-</figure>
-
-<ul>
-<li>
-<p>전원부: 아래 3가지 방법중 1가지 방법을 선택하여 구성</p>
-<ul>
-<li>S500 기판 오른쪽에 있는 (+), (-) 단자에 납을 크게 먹인 뒤, AWG12 와이어를 붙이고, 반대쪽 끝은 (사용할 LiPo 배터리의 단자 형태를 고려하여) XT60 Male 혹은 Deans (T plug) 단자를 납땝하여 연결한다.</li>
-<li>(사용할 LiPo 배터리의 단자가 XT60인 경우) S500 …</li></ul></li></ul></div>
-      </div></div>
-  </article>
-  
  
       
 
@@ -672,12 +670,17 @@ $$</p>
       
         <li class="flex align-center">
           <a href="/categories/esp32/">Esp32</a>
-          <span>14</span>
+          <span>15</span>
         </li>
       
         <li class="flex align-center">
           <a href="/categories/science/">Science</a>
           <span>5</span>
+        </li>
+      
+        <li class="flex align-center">
+          <a href="/categories/arduino/">Arduino</a>
+          <span>22</span>
         </li>
       
         <li class="flex align-center">
@@ -688,11 +691,6 @@ $$</p>
         <li class="flex align-center">
           <a href="/categories/office/">Office</a>
           <span>4</span>
-        </li>
-      
-        <li class="flex align-center">
-          <a href="/categories/arduino/">Arduino</a>
-          <span>21</span>
         </li>
       
         <li class="flex align-center">
