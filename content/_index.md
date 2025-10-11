@@ -1,6 +1,6 @@
 ---
 title: "STEM with" 
-image: /image/steam-logo.png
+#image: /image/steam-logo.png
 date: 2021-09-01T16:00:00+09:00
 
 # 댓글 비활성화는 테마마다 설정 변수가 다릅니다.
