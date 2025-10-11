@@ -211,7 +211,7 @@ READING RATE : 1sec (PUSH 위젯은 실행되지 않음)
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/esp32-ble-blynk-gauge/">
-  <meta property="og:site_name" content="STEM with">
+  <meta property="og:site_name" content="stemwith">
   <meta property="og:title" content="esp32 BLE, Blynk Gauge">
   <meta property="og:description" content="ESP32에서 Blynk로 센서값 보내기#Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)
 ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다. 새로운 프로젝트를 만드는 경우, 새로운 auth token을 받아서 사용해야 한다. schematic#sketch##define BLYNK_PRINT Serial #define BLYNK_USE_DIRECT_CONNECT #include &lt;BlynkSimpleEsp32_BLE.h&gt; #include &lt;BLEDevice.h&gt; #include &lt;BLEServer.h&gt; // You should get Auth Token in the Blynk App. // Go to the Project Settings (nut icon). char auth[] = &#34;WUAeS6P57T3XNaIGyLK1-OUv........&#34;; // Potentiometer Pin #define PIN_POTENTIOMETER A0 // Potentiometer GPIO 36 // Resist, Voltage int value_Potentiometer; int value_R; float value_V; void setup() { // Debug console Serial.begin(115200); Serial.println(&#34;Waiting for connections...&#34;); // for Blynk Blynk.setDeviceName(&#34;Blynk-t&#34;); Blynk.begin(auth); } void loop() { value_Potentiometer = analogRead(PIN_POTENTIOMETER); // 12bit ADC (0~4095) value_V = map(value_Potentiometer, 0, 4095, 3300, 0); // 0~3300mV value_R = map(value_V, 0, 3300, 10000, 0); // 0~10kΩ Blynk.run(); Serial.print(&#34;Resist : &#34;); Serial.print(value_R); Serial.println(&#34;Ω&#34;); Serial.print(&#34;Voltage: &#34;); Serial.print(value_V); Serial.println(&#34;mV&#34;); delay(1000); } BLYNK_READ(V1) // ESP32 -&gt; widget virtual pin1 { Blynk.virtualWrite(V1, value_R); } BLYNK_READ(V2) // ESP32 -&gt; widget virtual pin1 { Blynk.virtualWrite(V2, value_V); } Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다. Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다. Blynk 설정#새로운 프로젝트를 생성한다. NAME : ESP32_Potentiometer CHOOSE DEVICE : ESP32 Dev Board CONNECTION TYPE : BLE 이메일로 발송된 토큰을 복사한다. &#43;버튼을 눌러 위젯을 추가할 수 있는 화면으로 진입한다. 먼저 BLE 위젯을 선택하여 ESP32와 Blynk간의 통신 방법을 지정한다. 블루투스 모양의 위젯 버튼을 눌러 Blynk와의 통신을 준비한다. Connect BLE device 연결하고자 하는 BLE 장비를 선택하면, 연결 확인! &#43;버튼을 눌러 출력 위젯 2개를 추가한다. (Gauge, Labeled value) 먼저 Gauge 위젯을 선택한다. Gauge 위젯이 추가되면 육각형 모양의 아이콘을 눌러 GAUGE Setting 화면으로 진입한다. 설정화면에서 다음 4가지를 설정한다. NAME : 저항 INPUT : V1, 0~1000 LABEL : (단위를 표시하기 위해) x10 Ohm 을 적는다. READING RATE : 1sec (PUSH 위젯은 실행되지 않음) Labeled Value 위젯을 추가하고, 다음과 같이 설정한다. NAME : 저항 INPUT : V2, 0~3300 LABEL : (단위를 표시하기 위해) mV 를 적는다. READING RATE : 1sec (PUSH 위젯은 실행되지 않음) 상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다. 여기서 플레이버튼을 누르면, 저항과 전압의 측정이 시작된다. (시리얼 모니터에서도 관찰 가능)">
@@ -223,11 +223,11 @@ ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다. �
     <meta property="article:tag" content="Iot">
 
 
-<title>esp32 BLE, Blynk Gauge | STEM with</title>
-<link rel="icon" href="/favicon.png" >
+<title>esp32 BLE, Blynk Gauge | stemwith</title>
+<link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/esp32-ble-blynk-gauge/">
-<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
@@ -261,8 +261,7 @@ ESP32의 Potentiometer 값을 읽기 위해 BLYNK_READ(Vpin)을 사용한다. �
     
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/logo.svg" alt="Logo" /><span>STEM with</span>
-  </a>
+  <a class="flex align-center" href="/"><img src="/og_image.png" alt="Logo" /></a>
 </h2>
 
 

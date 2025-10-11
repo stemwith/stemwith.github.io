@@ -31,7 +31,7 @@ ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/esp-wroom-32d-devkitc-v4/">
-  <meta property="og:site_name" content="STEM with">
+  <meta property="og:site_name" content="stemwith">
   <meta property="og:title" content="esp32-WROOM-32D DevkitC V4">
   <meta property="og:description" content="ESP32-WROOM-32D DevkitC V4#핀아웃 다운로드
 녹색핀: 사용에 적합한 핀 노란색: 사용은 가능하나 부팅시 예기치 않은 동작이 발생할 수 있으므로 주의해야 하는 핀 (GPIO34~39는 Input only!) 빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!) 보라색: Wifi사용시 사용불가한 analog핀 GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능 ADC: 03.3V (04095) (00.15V구간과 3.13.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함 I2C: 아두이노IDE에서 사용하는 디폴트 핀 RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음 High at Boot, Low at Boot, BOOT, PWM at Boot: Boot시 신호가 나오며, Output으로 사용하면 reset이나 booting시에 문제가 될 수 있는 핀 Peripheral#ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI, PWM등의 기능은 어느 핀에 사용할지 결정해서 코드에서 지정해 줘야 한다. 소프트웨어에서 핀의 속성을 정의해 줄 수 있지만, 각 핀들은 디폴트로 지정되어 있는 기능들이 있다. (Pinout 참고)">
@@ -42,11 +42,11 @@ ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI
     <meta property="article:modified_time" content="2019-10-19T01:58:29+09:00">
 
 
-<title>esp32-WROOM-32D DevkitC V4 | STEM with</title>
-<link rel="icon" href="/favicon.png" >
+<title>esp32-WROOM-32D DevkitC V4 | stemwith</title>
+<link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/esp-wroom-32d-devkitc-v4/">
-<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
@@ -80,8 +80,7 @@ ADC와 DAC 기능은 특정 핀에 고정되어 있다. 하지만 UART, I2C, SPI
     
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/logo.svg" alt="Logo" /><span>STEM with</span>
-  </a>
+  <a class="flex align-center" href="/"><img src="/og_image.png" alt="Logo" /></a>
 </h2>
 
 

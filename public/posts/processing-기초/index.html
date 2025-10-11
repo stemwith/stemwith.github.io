@@ -124,7 +124,7 @@ schematic#
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/processing-%EA%B8%B0%EC%B4%88/">
-  <meta property="og:site_name" content="STEM with">
+  <meta property="og:site_name" content="stemwith">
   <meta property="og:title" content="Processing 기초">
   <meta property="og:description" content="processing.org 에서 다운로드 (다운로드 페이지) arduino sketch는 C&#43;&#43;기반이고, processing sketch는 java기반입니다. processing sketch 예제#예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력 void setup() { size(400,400); background(100); // background(0,255,0); strokeWeight(10); // dot/line width stroke(0,255,0,100); // dot/line color and transparency, noStroke(); point(200,200); // draw dot line(0,0,200,150); // draw line ellipse(300,300,50,80); // draw circle(x,y,xr,yr) fill(0); // rect/text color, nofill(); rect(100,250,150,300); // draw rectangle(x1,y1,x2,y2) textSize(20); PFont font = createFont(&#34;NanumGothic&#34;, 32); textFont(font); text(&#34;Hello World!&#34;,200,100); // text(string,x1,y2) PImage img = loadImage(&#34;sks.jpg&#34;); // file in &#39;/sketch_XXXXXXa/data/&#39; folder image(img,20,50); // image(img,x,y,width,height); } void draw() { }
 예제2 : 마우스와 키보드 이벤트 void setup() { size(400,400); } void draw() { } void mousePressed() { if(mouseButton == LEFT) { println(&#34;left button Pressed!&#34;); } else if(mouseButton == RIGHT) { println(&#34;right button Pressed!&#34;); } else if(mouseButton == CENTER) { println(&#34;center button Pressed!&#34;); } } void keyPressed() { println(&#34;key Pressed!&#34;); // Key event println(key); // Key String println(keyCode); // ASCII Code } void mouseReleased() { println(&#34;button Released!&#34;); } void keyReleased() { println(&#34;key Released!&#34;); } void mouseClicked() { println(&#34;button Clicked!&#34;); } void mouseMoved() { println(&#34;mouse Moved!&#34;); } void mouseDragged() { println(&#34;mouse Dragged!&#34;); } void mouseWheel() { println(&#34;mouse Wheel!&#34;); }
@@ -138,11 +138,11 @@ Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기#schem
     <meta property="article:modified_time" content="2018-11-30T18:27:53+09:00">
 
 
-<title>Processing 기초 | STEM with</title>
-<link rel="icon" href="/favicon.png" >
+<title>Processing 기초 | stemwith</title>
+<link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/processing-%EA%B8%B0%EC%B4%88/">
-<link rel="stylesheet" href="/book.min.aeea42fb216bc5e1dbc1c7adf74b0ac79e17602b386834ac6f1c28574b966754.css" integrity="sha256-rupC&#43;yFrxeHbwcet90sKx54XYCs4aDSsbxwoV0uWZ1Q=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
@@ -176,8 +176,7 @@ Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기#schem
     
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/logo.svg" alt="Logo" /><span>STEM with</span>
-  </a>
+  <a class="flex align-center" href="/"><img src="/og_image.png" alt="Logo" /></a>
 </h2>
 
 

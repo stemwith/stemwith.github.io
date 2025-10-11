@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Arduino on STEM with</title>
+    <title>Arduino on stemwith</title>
     <link>http://localhost:1313/categories/arduino/</link>
-    <description>Recent content in Arduino on STEM with</description>
+    <description>Recent content in Arduino on stemwith</description>
     <generator>Hugo</generator>
     <language>ko-kr</language>
     <lastBuildDate>Sun, 10 Oct 2021 18:27:53 +0900</lastBuildDate>
