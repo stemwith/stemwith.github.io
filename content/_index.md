@@ -16,6 +16,13 @@ comments: false
 .grid-two h3 {
   margin-top: 0;
 }
+
+/* ✅ 화면이 768px 이하일 때는 1열로 전환 */
+@media (max-width: 768px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 
 <div class="grid-two">
