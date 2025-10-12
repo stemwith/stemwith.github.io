@@ -34,7 +34,7 @@ tags: ["iot"]
 
 
 #### schematic
-![](/image/blynk-01.png)
+{{< figure src="/image/blynk-01.png" width="75%" class="center" >}}
 
 ※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.
 
@@ -88,7 +88,7 @@ tags: ["iot"]
 
 6. 컴퓨터를 사용하여 이메일 계정에 로그인 한 후, Auth Token을 복사한다. (복잡한 형태의 토큰을 코딩시 사용할 것이므로, 스마트폰인 아닌 컴퓨터에서 확인하여 복사하는 것이 좋다.)
 
-![](/image/blynk-09.png)
+{{< figure src="/image/blynk-09.png" width="75%" class="center" >}}
 
 <br>
 
@@ -152,29 +152,29 @@ tags: ["iot"]
 
 1. Arduino IDE에서 예제를 로드한다. **파일**\> **예제**\> **Blynk**\> **Boards_Bluetooth**> **ESP32_BLE**
 
-![](/image/blynk-20.png)
+{{< figure src="/image/blynk-20.png" width="75%" class="center" >}}
 
 <br>
 
 2. 예제의 char auth\[\] = “YourAuthToken”; 부분을 찾아서 쌍따옴표 사이의 YourAuthToken을 지운 뒤, 이메일에서 복사한 AuthToken 붙여넣은 뒤, 다른 이름으로 저장한다.
 
-![](/image/blynk-21.png)
+{{< figure src="/image/blynk-21.png" width="75%" class="center" >}}
 
 <br>
 
-![](/image/blynk-22.png)
+{{< figure src="/image/blynk-22.png" width="75%" class="center" >}}
 
 <br>
 
 3. 예제의 **Blynk.setDeviceName("Blynk");** 부분을 찾아 따옴표 안의 BLE Device 이름을 적당한 이름으로 바꿔준다. (※이름을 바꿔주지 않으면 주변의 다른 기기와 중복되어 오작동할 소지가 있으므로 반드시 다른 이름으로 바꿔주어야 한다.)
 
-![](/image/blynk-23.png)
+{{< figure src="/image/blynk-23.png" width="75%" class="center" >}}
 
 <br>
 
 Device Name을 "Blynk-t"로 수정하였다.
 
-![](/image/blynk-24.png)
+{{< figure src="/image/blynk-24.png" width="75%" class="center" >}}
 
 <br>
 
@@ -210,7 +210,7 @@ void loop()
 
 <br>
 
-![](/image/blynk-25.png)
+{{< figure src="/image/blynk-25.png" width="75%" class="center" >}}
 
 <br>
 

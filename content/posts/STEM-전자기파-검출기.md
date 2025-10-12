@@ -16,7 +16,7 @@ tags:
 
 #### schematic
 
-![](/image/w/wave-27.png)
+{{< figure src="/image/w/wave-27.png" width="75%" class="center" >}}
 
 <br>
 
@@ -54,7 +54,7 @@ tags:
 
 1. 듀퐁 케이블은 40P 형태로 판매되는 것이 많으므로, 40P 10cm 듀퐁 케이블 구입한다.
 
-{{< figure src="/image/w/wave-02.png" width="75%" class="center" >}}
+{{< figure src="/image/w/wave-02.png" width="33%" class="center" >}}
 
 <br>
 
@@ -62,19 +62,19 @@ tags:
 
 2. 갈색과 검은색 사이를 갈라내어 10P 4세트로 만든다. 이제, (갈-빨-주-노-초-파-보-회-흰-검) 10P가 1세트가 된다.
 
-![](/image/w/wave-03.png)
+{{< figure src="/image/w/wave-03.png" width="75%" class="center" >}}
 
 <br>
 
 3. 준비한 10P 케이블을 가위를 사용하여 반으로 잘라, 10P 8세트로 만든다. 1명당 1세트만 사용하면 되므로, 40P 듀퐁케이블 1개를 구입하면 학생 8명이 사용할 수 있다.
 
-![](/image/w/wave-04.png)
+{{< figure src="/image/w/wave-04.png" width="75%" class="center" >}}
 
 <br>
 
 4. 준비 완료
 
-![](/image/w/wave-01.png)
+{{< figure src="/image/w/wave-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -90,33 +90,33 @@ tags:
    | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
    | 색깔 | 갈   | 빨   | 주   | 노   | 초   | 파   | 보   | 회   | 흰   | 검   |
 
-![](/image/w/wave-05.png)
+{{< figure src="/image/w/wave-05.png" width="50%" class="center" >}}
 
 <br>
 
 2. 케이블의 중간 위치 정도까지 스카치 테이프를 붙여 단단히 고정한다. 
 
-![](/image/w/wave-06.png)
+{{< figure src="/image/w/wave-06.png" width="50%" class="center" >}}
 
 <br>
 
 3. 케이블 아래쪽을 모두 갈라 10가닥으로 만든다.
 
-![](/image/w/wave-07.png)
+{{< figure src="/image/w/wave-07.png" width="50%" class="center" >}}
 
 <br>
 
 4. 빨간색(2번), 초록색(5번), 보라색(7번), 검은색(0번) 케이블을 짧게 자른다.
 
-![](/image/w/wave-08.png)
+{{< figure src="/image/w/wave-08.png" width="50%" class="center" >}}
 
 <br>
 
 5. 남아있는 케이블(갈(1번), 주(3번), 노(4번), 파(6번), 회(8번), 흰(9번))의 끝부분 7~8mm 정도를 스트리퍼의 22AWG 부분으로 집은 뒤에 힘을 주어 벗겨낸다. (흰색(9번)은 벗겨내지 않아도 됨)
 
-![](/image/w/wave-09.png)
+{{< figure src="/image/w/wave-09.png" width="75%" class="center" >}}
 
-![](/image/w/wave-10.png)
+{{< figure src="/image/w/wave-10.png" width="50%" class="center" >}}
 
 <br>
 
@@ -124,7 +124,7 @@ tags:
 
    같은 방법으로, 노란색(4번)선과 회색(8번)선의 끝부분을 모아 하나로 만든 뒤, 다른 곳에 닿지 않도록 스카치테이프로 절연처리한다. 
 
-![](/image/w/wave-11.png)
+{{< figure src="/image/w/wave-11.png" width="50%" class="center" >}}
 
 <br>
 
@@ -132,11 +132,11 @@ tags:
 
    * CR2032 (+)극 (CR2032 레터링 된 면) : 갈색(1번) 선을 스카치테이프로 단단히 붙임
 
-   ![](/image/w/wave-13.png)
+   {{< figure src="/image/w/wave-13.png" width="50%" class="center" >}}
 
    * CR2032 (-)극 (검은색 테두리가 보이는 면) : 주황색(3번)/파란색(6번) 선을 하나로 묶어낸 선을 붙임 
 
-![](/image/w/wave-12.png)
+{{< figure src="/image/w/wave-12.png" width="75%" class="center" >}}
 
 <br>
 
@@ -147,9 +147,9 @@ tags:
    * (+)극 (다리가 긴 쪽) : 갈색(1번)에 삽입
    * (-)극 (다리가 짧은 쪽) : 빨간색(2번)에 삽입
 
-   ![](/image/w/wave-14.png)
+   {{< figure src="/image/w/wave-14.png" width="75%" class="center" >}}
 
-![](/image/w/wave-15.png)
+{{< figure src="/image/w/wave-15.png" width="75%" class="center" >}}
 
 <br>
 
@@ -159,25 +159,25 @@ tags:
    * 가운데 핀(Collector) : 주황색(3번)에 삽입
    * 오른쪽 핀(Base) : 노란색(4번)에 삽입
 
-   ![](/image/w/wave-16.png)
+   {{< figure src="/image/w/wave-16.png" width="75%" class="center" >}}
 
-   ![](/image/w/wave-17.png)
+   {{< figure src="/image/w/wave-17.png" width="75%" class="center" >}}
 
 <br>
 
 3. 0.01uF (103) 세라믹 캐패시터 (극성 없음) : 노란색(4번)과 파란색(6번)에 삽입
 
-   ![](/image/w/wave-18.png)
+   {{< figure src="/image/w/wave-18.png" width="75%" class="center" >}}
 
-   ![](/image/w/wave-19.png)
+   {{< figure src="/image/w/wave-19.png" width="75%" class="center" >}}
 
 <br>
 
 4. 10uH 인덕터 코일 (극성 없음) : 파란색(6번)과 보라색(7번)에 삽입
 
-![](/image/w/wave-20.png)
+{{< figure src="/image/w/wave-20.png" width="75%" class="center" >}}
 
-![](/image/w/wave-21.png)
+{{< figure src="/image/w/wave-21.png" width="75%" class="center" >}}
 
 <br>
 
@@ -187,17 +187,17 @@ tags:
    * 가운데 핀(Collector) : 회색(8번)에 삽입
    * 오른쪽 핀(Base) : 흰색(9번)에 삽입
 
-   ![](/image/w/wave-22.png)
+   {{< figure src="/image/w/wave-22.png" width="75%" class="center" >}}
 
-   ![](/image/w/wave-23.png)
+   {{< figure src="/image/w/wave-23.png" width="75%" class="center" >}}
 
 <br>
 
 6. 1N4148 스위칭 다이오드 (**방향에 주의!**)
 
-   ![](/image/w/wave-24.png)
+   {{< figure src="/image/w/wave-24.png" width="75%" class="center" >}}
 
-![](/image/w/wave-25.png)
+{{< figure src="/image/w/wave-25.png" width="75%" class="center" >}}
 
 <br>
 
@@ -216,5 +216,5 @@ tags:
 * 전자파가 나올 만한 곳에 가져가 본다.
 * 핸드폰 충전기가 꼽혀있는 콘센트 근처에 가져가 보았더니, 다음과 같이 LED에 불이 들어왔다.
 
-![](/image/w/wave-26.png)
+{{< figure src="/image/w/wave-26.png" width="75%" class="center" >}}
 

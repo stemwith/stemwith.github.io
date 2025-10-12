@@ -18,6 +18,19 @@ ESP32에서 PWM을 사용하기 위한 절차에 따라 코딩을 진행한다.
 
 schematic#
 
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
 ※ LED모듈을 사용하는 경우 저항이 필요없다.
 
 sketch#
@@ -92,11 +105,11 @@ sketch 분석#Button 위젯 사용을 위해 사용하였던 예제 sketch에 �
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/esp32-ble-blynk-slider-pwm/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -252,126 +265,272 @@ sketch 분석#Button 위젯 사용을 위해 사용하였던 예제 sketch에 �
 </ul>
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/blynk-pwm-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/blynk-pwm-01.png" alt="/image/blynk-pwm-01.png">
+
+  
+  
+</figure>
 <p>※ LED모듈을 사용하는 경우 저항이 필요없다.</p>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_PRINT Serial
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BLYNK_USE_DIRECT_CONNECT
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BlynkSimpleEsp32_BLE.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEDevice.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;BLEServer.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// You should get Auth Token in the Blynk App.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Go to the Project Settings (nut icon).
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> auth[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// setting PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_FREQ        5000 </span><span style="color:#75715e">// Hz
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define LEDC_CHANNEL_0   0
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define LEDC_RESOLUTION  12   </span><span style="color:#75715e">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// led Pin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> pin_ledR <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_WRITE</span>(V5)           <span style="color:#75715e">// widget virtual pin5 -&gt; ESP32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> value_V5 <span style="color:#f92672">=</span> param.<span style="color:#a6e22e">asInt</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ledcWrite</span>(LEDC_CHANNEL_0, value_V5);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;V5 value: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(value_V5);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Debug console
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Waiting for connections...&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// configure LED PWM functionalitites
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// attach the same channel to the GPIO to be controlled
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(pin_ledR, LEDC_CHANNEL_0);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// for Blynk 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Blynk.<span style="color:#a6e22e">setDeviceName</span>(<span style="color:#e6db74">&#34;Blynk-t&#34;</span>);
-</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">begin</span>(auth);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  Blynk.<span style="color:#a6e22e">run</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define BLYNK_PRINT Serial
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define BLYNK_USE_DIRECT_CONNECT
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;BlynkSimpleEsp32_BLE.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;BLEDevice.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;BLEServer.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// You should get Auth Token in the Blynk App.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Go to the Project Settings (nut icon).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="n">auth</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// setting PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define LEDC_FREQ        5000 </span><span class="c1">// Hz
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define LEDC_CHANNEL_0   0
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define LEDC_RESOLUTION  12   </span><span class="c1">// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// led Pin
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">pin_ledR</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="nf">BLYNK_WRITE</span><span class="p">(</span><span class="n">V5</span><span class="p">)</span>           <span class="c1">// widget virtual pin5 -&gt; ESP32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">value_V5</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="nf">asInt</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ledcWrite</span><span class="p">(</span><span class="n">LEDC_CHANNEL_0</span><span class="p">,</span> <span class="n">value_V5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;V5 value: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">value_V5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Debug console
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;Waiting for connections...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// configure LED PWM functionalitites
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcSetup</span><span class="p">(</span><span class="n">LEDC_CHANNEL_0</span><span class="p">,</span> <span class="n">LEDC_FREQ</span><span class="p">,</span> <span class="n">LEDC_RESOLUTION</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// attach the same channel to the GPIO to be controlled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcAttachPin</span><span class="p">(</span><span class="n">pin_ledR</span><span class="p">,</span> <span class="n">LEDC_CHANNEL_0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// for Blynk 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Blynk</span><span class="p">.</span><span class="nf">setDeviceName</span><span class="p">(</span><span class="s">&#34;Blynk-t&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Blynk</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="n">auth</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Blynk</span><span class="p">.</span><span class="nf">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="sketch-분석">sketch 분석<a class="anchor" href="#sketch-%eb%b6%84%ec%84%9d">#</a></h4>
 <p>Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.</p>
 <br>
 <ol>
 <li>LED가 연결되어 있는 ESP32 핀</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> pin_ledR <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">pin_ledR</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span></span></span></code></pre></div><br>
 <ol start="2">
 <li>Blynk App에서 ESP32로 신호를 보내는 Virtual 핀</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">BLYNK_WRITE</span>(V5) {                          <span style="color:#75715e">// widget virtual pin(V5) -&gt; ESP32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> value_V5 <span style="color:#f92672">=</span> param.<span style="color:#a6e22e">asInt</span>();            <span style="color:#75715e">// V5로 지정된 위젯의 값을 읽고
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcWrite</span>(LEDC_CHANNEL_0, value_V5);     <span style="color:#75715e">// PWM 채널0으로 보냄
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;V5 value: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(value_V5);     <span style="color:#75715e">// 시리얼모니터에 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">BLYNK_WRITE</span><span class="p">(</span><span class="n">V5</span><span class="p">)</span> <span class="p">{</span>                          <span class="c1">// widget virtual pin(V5) -&gt; ESP32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">value_V5</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="nf">asInt</span><span class="p">();</span>            <span class="c1">// V5로 지정된 위젯의 값을 읽고
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcWrite</span><span class="p">(</span><span class="n">LEDC_CHANNEL_0</span><span class="p">,</span> <span class="n">value_V5</span><span class="p">);</span>     <span class="c1">// PWM 채널0으로 보냄
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;V5 value: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">value_V5</span><span class="p">);</span>     <span class="c1">// 시리얼모니터에 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div><br>
 <ol start="3">
 <li>LED에 PWM 신호 출력 (밝기 조절)</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>  <span style="color:#75715e">// configure LED PWM functionalitites
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// attach the same channel to the GPIO to be controlled
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(pin_ledR, LEDC_CHANNEL_0);</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">  <span class="c1">// configure LED PWM functionalitites
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcSetup</span><span class="p">(</span><span class="n">LEDC_CHANNEL_0</span><span class="p">,</span> <span class="n">LEDC_FREQ</span><span class="p">,</span> <span class="n">LEDC_RESOLUTION</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// attach the same channel to the GPIO to be controlled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcAttachPin</span><span class="p">(</span><span class="n">pin_ledR</span><span class="p">,</span> <span class="n">LEDC_CHANNEL_0</span><span class="p">);</span></span></span></code></pre></div><br>
 <h3 id="blynk-app-설정">Blynk App 설정<a class="anchor" href="#blynk-app-%ec%84%a4%ec%a0%95">#</a></h3>
 <ol>
 <li>Button 위젯을 삭제한다. (그냥 두어도 관계없음)</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-02.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-02.png" alt="/image/blynk-pwm-02.png">
+
+  
+  
+</figure>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-03.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-03.png" alt="/image/blynk-pwm-03.png">
+
+  
+  
+</figure>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-04.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-04.png" alt="/image/blynk-pwm-04.png">
+
+  
+  
+</figure>
 <br>
 <ol start="2">
 <li>프로젝트 바탕화면에서 ⊕버튼을 누른 후, Slider 위젯을 추가한다.</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-05.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-05.png" alt="/image/blynk-pwm-05.png">
+
+  
+  
+</figure>
 <br>
 <ol start="3">
 <li>프로젝트 바탕화면의 Slider 위젯을 누른다.</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-06.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-06.png" alt="/image/blynk-pwm-06.png">
+
+  
+  
+</figure>
 <br>
 <ol start="4">
 <li>Slider 설정화면이 나오면,</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-07.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-07.png" alt="/image/blynk-pwm-07.png">
+
+  
+  
+</figure>
 <br>
 <p>PIN을 누르고 사용할 Virual 핀을 선택한 뒤 OK버튼을 누른다. (여기서는 V5선택)</p>
-<figure class="center"><img src="/image/blynk-pwm-08.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-08.png" alt="/image/blynk-pwm-08.png">
+
+  
+  
+</figure>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-09.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-09.png" alt="/image/blynk-pwm-09.png">
+
+  
+  
+</figure>
 <br>
 <ol start="5">
 <li>다음 3가지를 추가로 설정한다.
@@ -383,43 +542,157 @@ sketch 분석#Button 위젯 사용을 위해 사용하였던 예제 sketch에 �
 </li>
 </ol>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-10.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-10.png" alt="/image/blynk-pwm-10.png">
+
+  
+  
+</figure>
 <br>
 <p>설정을 모두 마치면 상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.</p>
 <br>
 <ol start="6">
 <li>Slider 위젯을 1초이상 누르고 있으면 위젯의 위치와 크기를 조절할 수 있다. 위젯의 위치를 아래로 내리고 가로폭의 크기를 늘려본다.</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-11.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-11.png" alt="/image/blynk-pwm-11.png">
+
+  
+  
+</figure>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-12.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-12.png" alt="/image/blynk-pwm-12.png">
+
+  
+  
+</figure>
 <br>
 <ol start="7">
 <li>이제 플레이(▷) 버튼을 누르고 Slide를 조절해본다.</li>
 </ol>
-<figure class="center"><img src="/image/blynk-pwm-13.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-13.png" alt="/image/blynk-pwm-13.png">
+
+  
+  
+</figure>
 <br>
 <p>Slide값에 따라 LED의 밝기가 조절된다.</p>
-<figure class="center"><img src="/image/blynk-pwm-14.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-14.png" alt="/image/blynk-pwm-14.png">
+
+  
+  
+</figure>
 <br>
-<figure class="center"><img src="/image/blynk-pwm-15.png" width="33%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/blynk-pwm-15.png" alt="/image/blynk-pwm-15.png">
+
+  
+  
+</figure>
 <br>
 <ol start="8">
 <li>Slider를 조절하는 동안 Arduino IDE의 시리얼 모니터값을 확인해볼 수 있다.</li>
 </ol>
-<p><img src="/image/blynk-pwm-16.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/blynk-pwm-16.png" alt="/image/blynk-pwm-16.png">
+
+  
+  
+</figure>
 </div>
 </article>
  

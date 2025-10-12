@@ -5,7 +5,6 @@ date: 2019-10-29T18:27:53+09:00
 toc: true
 tags: ["rc"]
 ---
-
 ### DC모터 사용하기
 
 아두이노의 5V, 3.3V핀으로는 모터에 필요한 충분한 전압과 전류를 공급하기 어렵다. 그러므로 사용하려는 모터에 맞는 전압과 전류의 공급을 위한 모터드라이버를 사용해야 한다. 아두이노에서 주로 사용하는 모듈은 L293D, L298N와 TB6612FNG 등이 있으며, 여기서는 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 별도의 외부전원을 사용한다. ~~외부 전원으로는 모터를 위한 1.5V AA*4개와 함께 아두이노 단독사용을 위한 9V 사각전지(6F22)를 추가로 연결하였다.~~ 
@@ -16,7 +15,7 @@ tags: ["rc"]
 
 #### TB6612FNG
 
-| VM<br/>VCC<br/>GND(*)<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>GND |              ![](/image/t/tb6612fng-01.png)               | PWMA<br/>AIN2<br/>AIN1<br/>STBY<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
+| VM<br/>VCC<br/>GND(*)<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>GND |              {{< figure src="/image/t/tb6612fng-01.png" width="75%" class="center" >}}               | PWMA<br/>AIN2<br/>AIN1<br/>STBY<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
 | :----------------------------------------------------------: | :-------------------------------------------------------: | :----------------------------------------------------------: |
 |                                                              | {{< figure src="/image/t/tb6612fng-02.png" width="80%" class="center" >}} |                                                              |
 
@@ -125,7 +124,7 @@ TB6612FNG 모터드라이브는 2채널 형태이며, 만일 2WD 자동차를 �
 
 여기서 사용하는 DC모터는 아래의 형태를 가진 기어드모터이며, 아두이노를 사용하여 자동차를 만드는데 많이 사용되는 저렴이 모터이다.
 
-![](/image/4wd-01.jpg)
+{{< figure src="/image/4wd-01.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -133,7 +132,7 @@ TB6612FNG 모터드라이브는 2채널 형태이며, 만일 2WD 자동차를 �
 
 ##### UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우
 
-![](/image/4wd-02.png)
+{{< figure src="/image/4wd-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -142,7 +141,7 @@ TB6612FNG 모터드라이브는 2채널 형태이며, 만일 2WD 자동차를 �
 * UNO 보드의 Vin에 외부전원(7.4V) (+)에 연결: 6.6V~12V 범위의 전원 연결 가능 (7.2V 이상 추천)
 * UNO 보드의 GND를 TB6612fng 모듈의 GND에 연결
 
-![](/image/4wd-03.png)
+{{< figure src="/image/4wd-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -237,7 +236,7 @@ int A_IN2 = 8;
 
 ##### UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우
 
-![](/image/4wd-04.png)
+{{< figure src="/image/4wd-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -246,7 +245,7 @@ int A_IN2 = 8;
 * UNO 보드의 Vin에 외부전원(7.4V) (+)에 연결: 6.6V~12V 범위의 전원 연결 가능 (7.2V 이상 추천)
 * UNO 보드의 GND를 TB6612fng 모듈의 GND에 연결
 
-![](/image/4wd-05.png)
+{{< figure src="/image/4wd-05.png" width="75%" class="center" >}}
 
 <br>
 
@@ -339,13 +338,13 @@ IR리모컨을 사용하여 RC카를 컨트롤 하기 위해서는 모터와 회
 
 ##### UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우
 
-![](/image/4wd-06.png)
+{{< figure src="/image/4wd-06.png" width="75%" class="center" >}}
 
 <br>
 
 ##### UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우
 
-![](/image/4wd-07.png)
+{{< figure src="/image/4wd-07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -550,13 +549,13 @@ void stop() {
 
 ##### UNO보드와 컴퓨터를 USB선으로 연결하여 사용할 경우
 
-![](/image/4wd-08.png)
+{{< figure src="/image/4wd-08.png" width="75%" class="center" >}}
 
 <br>
 
 ##### UNO보드와 컴퓨터의 연결없이 Vin핀을 사용하여 단독으로 사용할 경우
 
-![](/image/4wd-09.png)
+{{< figure src="/image/4wd-09.png" width="75%" class="center" >}}
 
 <br>
 

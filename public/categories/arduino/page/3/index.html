@@ -22,11 +22,11 @@ https://github.com/alex-shpak/hugo-book
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/categories/arduino/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -225,7 +225,25 @@ https://github.com/alex-shpak/hugo-book
 
 
     <div class="book-post-content"><h3 id="tact-switch">Tact Switch<a class="anchor" href="#tact-switch">#</a></h3>
-<p><img src="/image/tact_switch.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/tact_switch.png" alt="/image/tact_switch.png">
+
+  
+  
+</figure>
 <br>
 <h3 id="pull-down">Pull-down<a class="anchor" href="#pull-down">#</a></h3>
 <table>
@@ -252,25 +270,43 @@ https://github.com/alex-shpak/hugo-book
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
 <p><strong>저항(10k 이상)을 GND에 연결</strong>한 경우: Pull-down 회로</p>
-<p><img src="/image/switch01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/switch01.png" alt="/image/switch01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> switch_R <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(switch_R, INPUT);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#a6e22e">digitalRead</span>(switch_R);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">==</span> HIGH) {                  <span style="color:#75715e">// 스위치를 누르면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;1&#34;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {                           <span style="color:#75715e">// 스위치에서 손을 떼면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;0&#34;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">switch_R</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">switch_R</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="nf">digitalRead</span><span class="p">(</span><span class="n">switch_R</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">HIGH</span><span class="p">)</span> <span class="p">{</span>                  <span class="c1">// 스위치를 누르면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>                           <span class="c1">// 스위치에서 손을 떼면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;0&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h3 id="pull-up">Pull-up<a class="anchor" href="#pull-up">#</a></h3>
 <table>
   <thead>
@@ -295,7 +331,47 @@ https://github.com/alex-shpak/hugo-book
 </table>
 <br>
 <h4 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h4>
-<p><strong>저항(10k 이상)을 VCC(5V)에 연결</strong>한 경우: Pull-up 회로</p></div>
+<p><strong>저항(10k 이상)을 VCC(5V)에 연결</strong>한 경우: Pull-up 회로</p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/switch02.png" alt="/image/switch02.png">
+
+  
+  
+</figure>
+<br>
+<h4 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">switch_R</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">switch_R</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="nf">digitalRead</span><span class="p">(</span><span class="n">switch_R</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">HIGH</span><span class="p">)</span> <span class="p">{</span>                  <span class="c1">// 스위치를 누르면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>                           <span class="c1">// 스위치에서 손을 떼면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;0&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
+<br>
+<h3 id="스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유">스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유<a class="anchor" href="#%ec%8a%a4%ec%9c%84%ec%b9%98%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%eb%95%8c-%ed%92%80%eb%8b%a4%ec%9a%b4-or-%ed%92%80%ec%97%85-%ec%a0%80%ed%95%ad%ec%9d%84-%ea%b5%ac%ec%84%b1%ed%95%b4%ec%95%bc-%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0">#</a></h3>
+<p>출처: <a href="https://blog.xcoda.net/77">풀업(Pull-up)저항,  풀다운(Pull-down)저항 (악보쓰는 프로그래머)</a></p></div>
   </article>
   
   <article class="markdown book-post">
@@ -321,11 +397,47 @@ https://github.com/alex-shpak/hugo-book
 
 
     <div class="book-post-content"><h2 id="arduino">Arduino<a class="anchor" href="#arduino">#</a></h2>
-<p><img src="/image/arduino-01uno.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/arduino-01uno.png" alt="/image/arduino-01uno.png">
+
+  
+  
+</figure>
 <br>
 <h3 id="pinout">Pinout<a class="anchor" href="#pinout">#</a></h3>
 <h4 id="digital--analog">Digital &amp; Analog<a class="anchor" href="#digital--analog">#</a></h4>
-<p><img src="/image/arduino-02unopin.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/arduino-02unopin.png" alt="/image/arduino-02unopin.png">
+
+  
+  
+</figure>
 <ul>
 <li>Digital
 <ul>

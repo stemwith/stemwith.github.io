@@ -8,7 +8,7 @@ tags:
 
 ### ESP32-WROOM-32D DevkitC V4
 
-![](/image/esp32-pinout.png)
+{{< figure src="/image/esp32-pinout.png" width="100%" class="center" >}}
 
 [핀아웃 다운로드](/attach/ESP32-Pinout.hwp)
 
@@ -19,7 +19,7 @@ tags:
 *   빨간색: 입력 또는 출력으로 사용할 수 없는 핀을 의미한다. (사용이 가능하더라도 사용하지 않음!)
 *   보라색: Wifi사용시 사용불가한 analog핀
 *   GPIO에서 Output이 가능한 모든 핀은 PWM으로 사용 가능
-*   ADC: 0~3.3V (0~4095) (0~0.15V구간과 3.1~3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함
+*   ADC: 0-3.3V (0-4095) (0-0.15V구간과 3.1-3.3V의 값은 리니어하지 않으므로 구별이 거의 불가능함
 *   I2C: 아두이노IDE에서 사용하는 디폴트 핀
 *   RTC GPIO: Ultra Low Power(Deep Sleep)모드의 ESP32를 Wake up
 *   Strapping Pins: Bootloader나 Flashing시에 사용되며, 코드 업로드시 문제될 수 있음
@@ -114,14 +114,14 @@ GPIO12에 풀업을 넣을 경우 플래시 인식 오류가 발생한다. GPIO1
 
 #### TTGO T-Energy
 
-![TTGO T-Energy](/image/TTGO-T-Energy01.jpg)
+{{< figure src="/image/TTGO-T-Energy01.jpg" alt="TTGO T-Energy" width="100%" class="center" >}}
 
-![TTGO T-Energy](/image/TTGO-T-Energy02.jpg)
+{{< figure src="/image/TTGO-T-Energy02.jpg" alt="TTGO T-Energy" width="33%" class="center" >}}
 
 <br>
 
 #### TTGO T-BEAM
 
-![TTGO T-BEAM](/image/TTGO-T-BEAM01.jpg)
+{{< figure src="/image/TTGO-T-BEAM01.jpg" alt="TTGO T-BEAM" width="100%" class="center" >}}
 
-![TTGO T-BEAM](/image/TTGO-T-BEAM02.jpg)
+{{< figure src="/image/TTGO-T-BEAM02.jpg" alt="TTGO T-BEAM" width="50%" class="center" >}}

@@ -8,7 +8,7 @@ tags:
 
 ## Arduino
 
-![](/image/arduino-01uno.png)
+{{< figure src="/image/arduino-01uno.png" width="50%" class="center" >}}
 
 <br>
 
@@ -16,7 +16,7 @@ tags:
 
 #### Digital & Analog
 
-![](/image/arduino-02unopin.png)
+{{< figure src="/image/arduino-02unopin.png" width="75%" class="center" >}}
 
 * Digital 
   * 0~13번 핀
@@ -41,17 +41,17 @@ tags:
 <br>
 
 ### Arduino 보드의 종류
-![](/image/arduino-04arduino.png)
+{{< figure src="/image/arduino-04arduino.png" width="75%" class="center" >}}
 
 <br>
 
 ### 브레드 보드 & 점퍼선
-![](/image/arduino-03breadboard.png)
+{{< figure src="/image/arduino-03breadboard.png" width="50%" class="center" >}}
 
 <br>
 
 ### 부품, 센서, 모듈, 쉴드
-![](/image/arduino-05parts.png)
+{{< figure src="/image/arduino-05parts.png" width="75%" class="center" >}}
 
 <br>
 
@@ -70,12 +70,12 @@ tags:
 
 >CH340/341 호환칩을 사용하는 아두이노 우노보드의 경우 빨간색으로 된 표시된 부분의 칩이 직사각형인 형태로 되어 있는 경우가 많다. 정품의 경우 FT232칩을 사용하며, 대부분의 경우 동일한 위치에 정사각형 모양의 칩을 가지고 있다. 드라이버 추가 설치이외의 기능상의 차이점은 없다.
 
-![](/image/arduino-ch341.png)
+{{< figure src="/image/arduino-ch341.png" width="50%" class="center" >}}
 
 <br>
 
 ### Arduino IDE의 기본 구성
-![](/image/arduino-06ide.png)
+{{< figure src="/image/arduino-06ide.png" width="75%" class="center" >}}
 
 <br>
 
@@ -83,17 +83,17 @@ tags:
 
 1. USB A(M)-B(M) 케이블을 사용하여 PC와 아두이노 우노를 연결한다. (아두이노에 연결하는 포트는 대부분 USB-B(M) type이나, 최근 나오는 일부 호환 보드의 경우 microUSB 포트인 경우도 있다.)
 
-   ![](/image/arduino-07link.png)
+   {{< figure src="/image/arduino-07link.png" width="75%" class="center" >}}
 
 <br>
 
 2. **툴**\> **보드**\> 에서 Arduino 보드를 선택한다. → Arduino/Genuino Uno
-   ![](/image/arduino-08board.png)
+   {{< figure src="/image/arduino-08board.png" width="75%" class="center" >}}
 
 <br>
 
 3. **툴**\> **포트**\> 에서 Arduino에 연결되어 있는 포트를 선택한다. → COMx (Arduino/Genuino Uno)
-   ![](/image/arduino-09comport.png)
+   {{< figure src="/image/arduino-09comport.png" width="75%" class="center" >}}
 
 <br>
 
@@ -343,7 +343,7 @@ void loop() {
 <br>
 
 #### schematic
-![](/image/arduino-10rgbled.png)
+{{< figure src="/image/arduino-10rgbled.png" width="75%" class="center" >}}
 
 <br>
 
@@ -477,13 +477,13 @@ void loop() {
 
 #### 16진수 및 10진수 Color Table
 
-![](/image/color_table01.png)
+{{< figure src="/image/color_table01.png" width="75%" class="center" >}}
 
-![](/image/color_table02.png)
+{{< figure src="/image/color_table02.png" width="75%" class="center" >}}
 
-![](/image/color_table03.png)
+{{< figure src="/image/color_table03.png" width="75%" class="center" >}}
 
-![](/image/color_table04.png)
+{{< figure src="/image/color_table04.png" width="75%" class="center" >}}
 
 ※ 색깔이 미묘하게 다를 수 있다.
 
@@ -643,7 +643,7 @@ void loop() {
 
 #### schematic
 
-![](/image/arduino-11potentiometer.png)
+{{< figure src="/image/arduino-11potentiometer.png" width="75%" class="center" >}}
 
 <br>
 
@@ -669,7 +669,7 @@ void loop() {
 ### 가변저항 값에 따라 LED 밝기 조절하기
 
 #### schematic
-![](/image/arduino-12rgbled_potentiometer.png)
+{{< figure src="/image/arduino-12rgbled_potentiometer.png" width="75%" class="center" >}}
 
 <br>
 

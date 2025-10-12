@@ -6,22 +6,21 @@ mathjax: true
 toc: true
 tags:
 ---
-
 ### 스텝 모터, 28BYJ-48
 
 #### Specification
 
-{{< figure src="/image/s/Step-Motor-02.png" style="zoom: 80%;" class="center" >}}
+{{< figure src="/image/s/Step-Motor-02.png" width="50%" class="center" >}}
 
 * 정격전압: 5VDC
 
 * 기어비: 1/64
-  $$
+``` katex
   \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
-  $$
+```
   
 
-{{< figure src="/image/s/Step-Motor-01.png" style="zoom: 50%;" class="center" >}}
+{{< figure src="/image/s/Step-Motor-01.png" width="50%" class="center" >}}
 
 * 스트라이드 각도
   * **스펙상 5.625º / 64** = 0.087890625
@@ -35,7 +34,7 @@ tags:
 
 ### 모터드라이브 ULN2003
 
-{{< figure src="/image/s/Step-Motor-03.png" width="67%" class="center" >}}
+{{< figure src="/image/s/Step-Motor-03.png" width="50%" class="center" >}}
 
 <br>
 
@@ -45,7 +44,7 @@ tags:
 
 #### schematic
 
-![](/image/s/Step-Motor-04.png)
+{{< figure src="/image/s/Step-Motor-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -66,7 +65,7 @@ tags:
 
 #### 스텝업 모듈
 
-{{< figure src="/image/s/Stepup-Module-01.png" width="67%" class="center" >}}
+{{< figure src="/image/s/Stepup-Module-01.png" width="33%" class="center" >}}
 
 * 입력전압: 0.9~5V
 * 출력전압: 5V

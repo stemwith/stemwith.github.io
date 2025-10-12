@@ -21,7 +21,7 @@ tags:
 
 #### schematic
 
-![](/image/esp32-adc-01.png)
+{{< figure src="/image/esp32-adc-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -57,7 +57,7 @@ void loop() {
 
 #### schematic
 
-![](/image/esp32-adc-02.png)
+{{< figure src="/image/esp32-adc-02.png" width="75%" class="center" >}}
 
 <br>
 

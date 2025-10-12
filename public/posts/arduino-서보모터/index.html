@@ -13,6 +13,17 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+
+
+
+
+
+  
+
+  
+  
+
+
 모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함
 보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능
 아두이노에서 많이 다루는 SG90 제품의 경우 0~180˚ 제어가 가능
@@ -27,14 +38,227 @@ https://github.com/alex-shpak/hugo-book
 
 
 schematic#
-">
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
+  
+      
+          SG90
+          Brown
+          Red
+          Orange
+      
+  
+  
+      
+          Arduino
+          GND
+          5V
+          10
+      
+  
+
+
+sketch : 서보모터 180º 회전 왕복하기#
+#include &lt;Servo.h&gt;
+
+Servo servomotor;                                // servomotor 선언
+int position = 0;
+
+void setup() {
+  servomotor.attach(10);                         // servomotor 핀 설정
+}
+
+void loop() {
+  for(position = 0; position &lt; 180; position&#43;&#43;)
+  {
+    servomotor.write(position);                  // pos값의 위치로 이동
+    delay(15);                       
+  }                                 
+  for(position = 180; position &gt; 0; position--)  // 같은 방법으로 역회전
+  {
+    servomotor.write(position);
+    delay(15);
+  }
+}
+servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다!
+초기 위치를 0º로 기준삼아, 표시된 숫자의 각도 위치로 이동하라는 의미이다. 예를들어서 servomotor.write(90)와 servomotor.write(30)을 연속으로 실행하면,
+
+90도를 회전한 뒤, 추가로 30도를 회전하여 120도 위치에 있다 → ×
+90도의 위치로 회전한 뒤, 역회전하여 (처음위치를 기준으로) 30도의 위치로 이동한다. → ○
+
+
+
+
+단, servo.h 라이브러리를 사용하면, 스케치 내에서 analogWrite를 사용할 수 없다는 단점도 있다.
+
+
+sketch: 시리얼모니터에서 각도값을 입력받아 회전시키기#
+#include &lt;Servo.h&gt;
+Servo servomotor;
+int a = 0;
+
+void setup() {
+  servomotor.attach(10);
+  Serial.begin(9600);                  // Serial 통신을 설정
+  while(!Serial);
+  Serial.println(&#34;Servor Mortor&#34;);
+}
+
+void loop() {
+  if(Serial.available()){              // Serial 모니터창에 어떤 값이 들어오면 실행
+    a = Serial.parseInt();             // Serial 모니터창에서 받은 값을 a에 넘겨줌
+    if(a&gt;=0 &amp;&amp; a&lt;=180)
+    {
+      Serial.print(&#34;angle : &#34;);
+      Serial.println(a);
+      servomotor.write(a);             // a값에 해당하는 각도의 위치로 이동
+      delay(15);
+    }
+  }
+}
+
+서보모터 SG-90: 라이브러리 없이 사용하기#
+for SG90 with Arduino#
+
+Frequency of that signal should be 50hz.
+Its range is 544-2450 micro seconds for 0-180 degree angle.
+Again its a little complex.
+For example 0 degree signal will be something like 5 volts for 544 micro seconds and 0 volt for 19465.
+highDelay
+
+the time in which we want to keep voltage high on pin 10 and this unit is in micro seconds.
+
+
+lowDelay
+
+the time in which want to keep voltage zero across pin 10 again this unit is going to be in micro seconds
+
+
+only HIGH part of signal wont operate servo. we have to send complete HIGH and LOW signal to make servo work.
+deg_factor
+
+signal range (2450 - 544) for SG90 divided by 180 which is equal to 10.6 something that we make 11 as an integer.
+
+
+Loop = 20000;
+
+20000 micro seconds or 20 milli seconds is signal cycle or u can say total signal should be equal to 20 milli seconds including HIGH and LOW input. (50Hz)
+
+
+
+int servoPin = 10;        // servo is connected to pin 10.
+int initialDelay = 544;
+int highDelay, lowDelay;
+
+int deg;
+int deg_factor = 10;      
+int Loop = 20000;         
+
+void setup() {
+  pinMode (servoPin, OUTPUT);
+}
+
+void loop() {
+  for (deg = 0;deg &lt;= 180; deg&#43;&#43;) {
+    servoWrite(servoPin, deg);
+  }
+  for (deg = 180;deg &gt;= 0; deg--) {
+    servoWrite(servoPin, deg);
+  }
+}
+
+void servoWrite(int servo, int duty)
+{
+  highDelay = initialDelay &#43; (duty * deg_factor); // setting angle
+
+  digitalWrite(servo, HIGH);
+  delayMicroseconds(highDelay);
+  
+  lowDelay = Loop - highDelay;
+  digitalWrite(servo, LOW);
+  delayMicroseconds(lowDelay);
+
+  delay(500);
+}
+시리얼 모니터에 입력한 문자로 서보모터 회전시키기#
+int servoPin = 10;        // servo is connected to pin 10.
+int initialDelay = 544;
+int highDelay, lowDelay;
+
+int deg = 90;             // servo initial degree
+int deg_factor = 10;      
+int Loop = 20000;         
+
+void setup() {
+  Serial.begin(9600);
+  pinMode (servoPin, OUTPUT);
+}
+
+void loop() {
+  servoWrite(servoPin, deg);  
+    
+  while(Serial.available() &gt; 0) 
+  {
+    char flag=Serial.read();
+    delay(2);
+      
+    if(flag==&#39;l&#39;) {
+        deg = deg - 5;
+        if(deg &lt; 0) {
+            deg = 0;
+        }
+    }
+    
+    if(flag==&#39;r&#39;) {
+        deg = deg &#43; 5;
+        if(deg &gt; 180) {
+            deg = 180;
+        }
+    }      
+}
+
+void servoWrite(int servo, int duty)
+{
+  highDelay = initialDelay &#43; (duty * deg_factor); // setting angle
+
+  digitalWrite(servo, HIGH);
+  delayMicroseconds(highDelay);
+  
+  lowDelay = Loop - highDelay;
+  digitalWrite(servo, LOW);
+  delayMicroseconds(lowDelay);
+
+  delay(500);
+}
+l 을 입력하면, 5도 좌회전하며, ll을 입력하면 10도 좌회전한다.
+r 을 입력하면, 5도 우회전하며, rr을 입력하면 10도 우회전한다.
+
+
+
+서보모터와 인터럽트 동시에 사용하기#
+서보모터가 180도 회전하는 동안, 스위치를 누르면 13번 LED가 토글되도록 만들어보자.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/">
   <meta property="og:site_name" content="stemwith">
   <meta property="og:title" content="Arduino, 서보모터">
   <meta property="og:description" content="서보모터 SG-90#모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함 보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능 아두이노에서 많이 다루는 SG90 제품의 경우 0~180˚ 제어가 가능 아두이노UNO의 USB 전류량이 500mA 정도가 한계이므로 별도의 전원을 사용하지 않으면 1~2개의 서보모터만 사용 가능 라이브러리 추가하기#서보모터를 사용하기 위한 Servo 라이브러리는 아두이노 IDE에 기본으로 포함되어 있다.
-스케치&gt; 라이브러리 포함하기&gt; Servo 를 선택하면, #include &lt;servo.h&gt; 라이브러리가 스케치에 추가 된다. schematic#">
+스케치&gt; 라이브러리 포함하기&gt; Servo 를 선택하면, #include &lt;servo.h&gt; 라이브러리가 스케치에 추가 된다. schematic#SG90 Brown Red Orange Arduino GND 5V 10 sketch : 서보모터 180º 회전 왕복하기##include &lt;Servo.h&gt; Servo servomotor; // servomotor 선언 int position = 0; void setup() { servomotor.attach(10); // servomotor 핀 설정 } void loop() { for(position = 0; position &lt; 180; position&#43;&#43;) { servomotor.write(position); // pos값의 위치로 이동 delay(15); } for(position = 180; position &gt; 0; position--) // 같은 방법으로 역회전 { servomotor.write(position); delay(15); } } servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다! 초기 위치를 0º로 기준삼아, 표시된 숫자의 각도 위치로 이동하라는 의미이다. 예를들어서 servomotor.write(90)와 servomotor.write(30)을 연속으로 실행하면, 90도를 회전한 뒤, 추가로 30도를 회전하여 120도 위치에 있다 → × 90도의 위치로 회전한 뒤, 역회전하여 (처음위치를 기준으로) 30도의 위치로 이동한다. → ○ 단, servo.h 라이브러리를 사용하면, 스케치 내에서 analogWrite를 사용할 수 없다는 단점도 있다. sketch: 시리얼모니터에서 각도값을 입력받아 회전시키기##include &lt;Servo.h&gt; Servo servomotor; int a = 0; void setup() { servomotor.attach(10); Serial.begin(9600); // Serial 통신을 설정 while(!Serial); Serial.println(&#34;Servor Mortor&#34;); } void loop() { if(Serial.available()){ // Serial 모니터창에 어떤 값이 들어오면 실행 a = Serial.parseInt(); // Serial 모니터창에서 받은 값을 a에 넘겨줌 if(a&gt;=0 &amp;&amp; a&lt;=180) { Serial.print(&#34;angle : &#34;); Serial.println(a); servomotor.write(a); // a값에 해당하는 각도의 위치로 이동 delay(15); } } }
+서보모터 SG-90: 라이브러리 없이 사용하기#for SG90 with Arduino#Frequency of that signal should be 50hz. Its range is 544-2450 micro seconds for 0-180 degree angle. Again its a little complex. For example 0 degree signal will be something like 5 volts for 544 micro seconds and 0 volt for 19465. highDelay the time in which we want to keep voltage high on pin 10 and this unit is in micro seconds. lowDelay the time in which want to keep voltage zero across pin 10 again this unit is going to be in micro seconds only HIGH part of signal wont operate servo. we have to send complete HIGH and LOW signal to make servo work. deg_factor signal range (2450 - 544) for SG90 divided by 180 which is equal to 10.6 something that we make 11 as an integer. Loop = 20000; 20000 micro seconds or 20 milli seconds is signal cycle or u can say total signal should be equal to 20 milli seconds including HIGH and LOW input. (50Hz) int servoPin = 10; // servo is connected to pin 10. int initialDelay = 544; int highDelay, lowDelay; int deg; int deg_factor = 10; int Loop = 20000; void setup() { pinMode (servoPin, OUTPUT); } void loop() { for (deg = 0;deg &lt;= 180; deg&#43;&#43;) { servoWrite(servoPin, deg); } for (deg = 180;deg &gt;= 0; deg--) { servoWrite(servoPin, deg); } } void servoWrite(int servo, int duty) { highDelay = initialDelay &#43; (duty * deg_factor); // setting angle digitalWrite(servo, HIGH); delayMicroseconds(highDelay); lowDelay = Loop - highDelay; digitalWrite(servo, LOW); delayMicroseconds(lowDelay); delay(500); }
+시리얼 모니터에 입력한 문자로 서보모터 회전시키기#int servoPin = 10; // servo is connected to pin 10. int initialDelay = 544; int highDelay, lowDelay; int deg = 90; // servo initial degree int deg_factor = 10; int Loop = 20000; void setup() { Serial.begin(9600); pinMode (servoPin, OUTPUT); } void loop() { servoWrite(servoPin, deg); while(Serial.available() &gt; 0) { char flag=Serial.read(); delay(2); if(flag==&#39;l&#39;) { deg = deg - 5; if(deg &lt; 0) { deg = 0; } } if(flag==&#39;r&#39;) { deg = deg &#43; 5; if(deg &gt; 180) { deg = 180; } } } void servoWrite(int servo, int duty) { highDelay = initialDelay &#43; (duty * deg_factor); // setting angle digitalWrite(servo, HIGH); delayMicroseconds(highDelay); lowDelay = Loop - highDelay; digitalWrite(servo, LOW); delayMicroseconds(lowDelay); delay(500); } l 을 입력하면, 5도 좌회전하며, ll을 입력하면 10도 좌회전한다. r 을 입력하면, 5도 우회전하며, rr을 입력하면 10도 우회전한다. 서보모터와 인터럽트 동시에 사용하기#서보모터가 180도 회전하는 동안, 스위치를 누르면 13번 LED가 토글되도록 만들어보자.">
   <meta property="og:locale" content="ko_kr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -46,11 +270,11 @@ schematic#
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -199,9 +423,25 @@ schematic#
 
 
   <div class="book-post-content markdown-inner"><h3 id="서보모터-sg-90">서보모터 SG-90<a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-sg-90">#</a></h3>
-<figure class="center"><img src="/image/servo-01.png" width="67%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/servo-01.png" alt="/image/servo-01.png">
+
+  
+  
+</figure>
 <ul>
 <li>모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함</li>
 <li>보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능</li>
@@ -217,7 +457,25 @@ schematic#
 </ul>
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/servo-02.jpg" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/servo-02.jpg" alt="/image/servo-02.jpg">
+
+  
+  
+</figure>
 <table>
   <thead>
       <tr>
@@ -238,27 +496,27 @@ schematic#
 </table>
 <br>
 <h4 id="sketch--서보모터-180º-회전-왕복하기">sketch : 서보모터 180º 회전 왕복하기<a class="anchor" href="#sketch--%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-180%c2%ba-%ed%9a%8c%ec%a0%84-%ec%99%95%eb%b3%b5%ed%95%98%ea%b8%b0">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servomotor;                                <span style="color:#75715e">// servomotor 선언
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> position <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  servomotor.<span style="color:#a6e22e">attach</span>(<span style="color:#ae81ff">10</span>);                         <span style="color:#75715e">// servomotor 핀 설정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(position <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; position <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">180</span>; position<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    servomotor.<span style="color:#a6e22e">write</span>(position);                  <span style="color:#75715e">// pos값의 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);                       
-</span></span><span style="display:flex;"><span>  }                                 
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(position <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>; position <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; position<span style="color:#f92672">--</span>)  <span style="color:#75715e">// 같은 방법으로 역회전
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  {
-</span></span><span style="display:flex;"><span>    servomotor.<span style="color:#a6e22e">write</span>(position);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servomotor</span><span class="p">;</span>                                <span class="c1">// servomotor 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servomotor</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>                         <span class="c1">// servomotor 핀 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="mi">180</span><span class="p">;</span> <span class="n">position</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>                  <span class="c1">// pos값의 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                       
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>                                 
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="n">position</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">position</span><span class="o">--</span><span class="p">)</span>  <span class="c1">// 같은 방법으로 역회전
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><ul>
 <li>servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다!</li>
 <li>초기 위치를 0º로 기준삼아, 표시된 숫자의 각도 위치로 이동하라는 의미이다. 예를들어서 servomotor.write(90)와 servomotor.write(30)을 연속으로 실행하면,
 <ul>
@@ -272,29 +530,29 @@ schematic#
 </ul>
 <br>
 <h4 id="sketch-시리얼모니터에서-각도값을-입력받아-회전시키기">sketch: 시리얼모니터에서 각도값을 입력받아 회전시키기<a class="anchor" href="#sketch-%ec%8b%9c%eb%a6%ac%ec%96%bc%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90%ec%84%9c-%ea%b0%81%eb%8f%84%ea%b0%92%ec%9d%84-%ec%9e%85%eb%a0%a5%eb%b0%9b%ec%95%84-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Servo servomotor;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  servomotor.<span style="color:#a6e22e">attach</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);                  <span style="color:#75715e">// Serial 통신을 설정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>Serial);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Servor Mortor&#34;</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(Serial.<span style="color:#a6e22e">available</span>()){              <span style="color:#75715e">// Serial 모니터창에 어떤 값이 들어오면 실행
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    a <span style="color:#f92672">=</span> Serial.<span style="color:#a6e22e">parseInt</span>();             <span style="color:#75715e">// Serial 모니터창에서 받은 값을 a에 넘겨줌
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(a<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> a<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">180</span>)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;angle : &#34;</span>);
-</span></span><span style="display:flex;"><span>      Serial.<span style="color:#a6e22e">println</span>(a);
-</span></span><span style="display:flex;"><span>      servomotor.<span style="color:#a6e22e">write</span>(a);             <span style="color:#75715e">// a값에 해당하는 각도의 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">Servo</span> <span class="n">servomotor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servomotor</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>                  <span class="c1">// Serial 통신을 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;Servor Mortor&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="nf">available</span><span class="p">()){</span>              <span class="c1">// Serial 모니터창에 어떤 값이 들어오면 실행
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">a</span> <span class="o">=</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">parseInt</span><span class="p">();</span>             <span class="c1">// Serial 모니터창에서 받은 값을 a에 넘겨줌
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="o">&lt;=</span><span class="mi">180</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;angle : &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>             <span class="c1">// a값에 해당하는 각도의 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="서보모터-sg-90-라이브러리-없이-사용하기">서보모터 SG-90: 라이브러리 없이 사용하기<a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-sg-90-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%97%86%ec%9d%b4-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0">#</a></h3>
 <h4 id="for-sg90-with-arduino">for SG90 with Arduino<a class="anchor" href="#for-sg90-with-arduino">#</a></h4>
@@ -325,90 +583,90 @@ schematic#
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servoPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;        <span style="color:#75715e">// servo is connected to pin 10.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> initialDelay <span style="color:#f92672">=</span> <span style="color:#ae81ff">544</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> highDelay, lowDelay;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;      
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> Loop <span style="color:#f92672">=</span> <span style="color:#ae81ff">20000</span>;         
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span> (servoPin, OUTPUT);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;deg <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; deg<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;deg <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; deg<span style="color:#f92672">--</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> servo, <span style="color:#66d9ef">int</span> duty)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  highDelay <span style="color:#f92672">=</span> initialDelay <span style="color:#f92672">+</span> (duty <span style="color:#f92672">*</span> deg_factor); <span style="color:#75715e">// setting angle
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, HIGH);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(highDelay);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  lowDelay <span style="color:#f92672">=</span> Loop <span style="color:#f92672">-</span> highDelay;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, LOW);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(lowDelay);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servoPin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>        <span class="c1">// servo is connected to pin 10.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">initialDelay</span> <span class="o">=</span> <span class="mi">544</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">highDelay</span><span class="p">,</span> <span class="n">lowDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg_factor</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>      
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Loop</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">;</span>         
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span> <span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">deg</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">deg</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span><span class="n">deg</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">deg</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">servo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">duty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">highDelay</span> <span class="o">=</span> <span class="n">initialDelay</span> <span class="o">+</span> <span class="p">(</span><span class="n">duty</span> <span class="o">*</span> <span class="n">deg_factor</span><span class="p">);</span> <span class="c1">// setting angle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">highDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">lowDelay</span> <span class="o">=</span> <span class="n">Loop</span> <span class="o">-</span> <span class="n">highDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">lowDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="시리얼-모니터에-입력한-문자로-서보모터-회전시키기">시리얼 모니터에 입력한 문자로 서보모터 회전시키기<a class="anchor" href="#%ec%8b%9c%eb%a6%ac%ec%96%bc-%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90-%ec%9e%85%eb%a0%a5%ed%95%9c-%eb%ac%b8%ec%9e%90%eb%a1%9c-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servoPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;        <span style="color:#75715e">// servo is connected to pin 10.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> initialDelay <span style="color:#f92672">=</span> <span style="color:#ae81ff">544</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> highDelay, lowDelay;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>;             <span style="color:#75715e">// servo initial degree
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> deg_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;      
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> Loop <span style="color:#f92672">=</span> <span style="color:#ae81ff">20000</span>;         
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span> (servoPin, OUTPUT);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);  
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(Serial.<span style="color:#a6e22e">available</span>() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) 
-</span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> flag<span style="color:#f92672">=</span>Serial.<span style="color:#a6e22e">read</span>();
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(flag<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;l&#39;</span>) {
-</span></span><span style="display:flex;"><span>        deg <span style="color:#f92672">=</span> deg <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(deg <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>            deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(flag<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;r&#39;</span>) {
-</span></span><span style="display:flex;"><span>        deg <span style="color:#f92672">=</span> deg <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(deg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
-</span></span><span style="display:flex;"><span>            deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }      
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> servo, <span style="color:#66d9ef">int</span> duty)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  highDelay <span style="color:#f92672">=</span> initialDelay <span style="color:#f92672">+</span> (duty <span style="color:#f92672">*</span> deg_factor); <span style="color:#75715e">// setting angle
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, HIGH);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(highDelay);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  lowDelay <span style="color:#f92672">=</span> Loop <span style="color:#f92672">-</span> highDelay;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, LOW);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(lowDelay);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servoPin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>        <span class="c1">// servo is connected to pin 10.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">initialDelay</span> <span class="o">=</span> <span class="mi">544</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">highDelay</span><span class="p">,</span> <span class="n">lowDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>             <span class="c1">// servo initial degree
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">deg_factor</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>      
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Loop</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">;</span>         
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span> <span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="nf">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">flag</span><span class="o">=</span><span class="n">Serial</span><span class="p">.</span><span class="nf">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="sc">&#39;l&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deg</span> <span class="o">=</span> <span class="n">deg</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">deg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">deg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="sc">&#39;r&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deg</span> <span class="o">=</span> <span class="n">deg</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">deg</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>      
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">servo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">duty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">highDelay</span> <span class="o">=</span> <span class="n">initialDelay</span> <span class="o">+</span> <span class="p">(</span><span class="n">duty</span> <span class="o">*</span> <span class="n">deg_factor</span><span class="p">);</span> <span class="c1">// setting angle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">highDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">lowDelay</span> <span class="o">=</span> <span class="n">Loop</span> <span class="o">-</span> <span class="n">highDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">lowDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><ul>
 <li>l 을 입력하면, 5도 좌회전하며, ll을 입력하면 10도 좌회전한다.</li>
 <li>r 을 입력하면, 5도 우회전하며, rr을 입력하면 10도 우회전한다.</li>
 </ul>
@@ -418,64 +676,82 @@ schematic#
 <p>서보모터가 180도 회전하는 동안, 스위치를 누르면 13번 LED가 토글되도록 만들어보자.</p>
 <br>
 <h4 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h4>
-<p><img src="/image/SG90_Interrupt01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/SG90_Interrupt01.png" alt="/image/SG90_Interrupt01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servoPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;        <span style="color:#75715e">// servo is connected to pin 10.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> initialDelay <span style="color:#f92672">=</span> <span style="color:#ae81ff">544</span>;   
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> highDelay, lowDelay;  
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> Loop <span style="color:#f92672">=</span> <span style="color:#ae81ff">20000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define swPin 2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define ledPin 13
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define debounceTime 500 </span><span style="color:#75715e">// Set debounce Time (unit ms) 버튼을 누른 후 0.5sec 이내에는 버튼 체크하지 않음
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>boolean state <span style="color:#f92672">=</span> false;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(servoPin, OUTPUT);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(swPin, INPUT_PULLUP);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(ledPin, OUTPUT);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">attachInterrupt</span>(<span style="color:#a6e22e">digitalPinToInterrupt</span>(swPin), swInterrupt, FALLING);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;deg <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; deg<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;deg <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; deg<span style="color:#f92672">--</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> servo, <span style="color:#66d9ef">int</span> duty)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  highDelay <span style="color:#f92672">=</span> initialDelay <span style="color:#f92672">+</span> (duty <span style="color:#f92672">*</span> deg_factor); <span style="color:#75715e">// setting angle
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, HIGH);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(highDelay);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  lowDelay <span style="color:#f92672">=</span> Loop <span style="color:#f92672">-</span> highDelay;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, LOW);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(lowDelay);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span> (<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swInterrupt</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> lastTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> now <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>((now<span style="color:#f92672">-</span>lastTime) <span style="color:#f92672">&gt;</span> debounceTime) {
-</span></span><span style="display:flex;"><span>    state<span style="color:#f92672">=!</span>state;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  lastTime <span style="color:#f92672">=</span> now;
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(ledPin, state);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servoPin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>        <span class="c1">// servo is connected to pin 10.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">initialDelay</span> <span class="o">=</span> <span class="mi">544</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">highDelay</span><span class="p">,</span> <span class="n">lowDelay</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg_factor</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Loop</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define swPin 2
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ledPin 13
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define debounceTime 500 </span><span class="c1">// Set debounce Time (unit ms) 버튼을 누른 후 0.5sec 이내에는 버튼 체크하지 않음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">boolean</span> <span class="n">state</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">swPin</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">attachInterrupt</span><span class="p">(</span><span class="nf">digitalPinToInterrupt</span><span class="p">(</span><span class="n">swPin</span><span class="p">),</span> <span class="n">swInterrupt</span><span class="p">,</span> <span class="n">FALLING</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">deg</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">deg</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span><span class="n">deg</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">deg</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">servo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">duty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">highDelay</span> <span class="o">=</span> <span class="n">initialDelay</span> <span class="o">+</span> <span class="p">(</span><span class="n">duty</span> <span class="o">*</span> <span class="n">deg_factor</span><span class="p">);</span> <span class="c1">// setting angle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">highDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">lowDelay</span> <span class="o">=</span> <span class="n">Loop</span> <span class="o">-</span> <span class="n">highDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">lowDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span> <span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swInterrupt</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">((</span><span class="n">now</span><span class="o">-</span><span class="n">lastTime</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">debounceTime</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">state</span><span class="o">=!</span><span class="n">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lastTime</span> <span class="o">=</span> <span class="n">now</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><ul>
 <li>스위치를 눌렀다 뗄 때, 물리적 요인에 의해 다시 스위치가 눌리는 효과가 나타나기도 함 (chattering)</li>
 <li>Chattering 효과를 방지하기 위해, 하드웨어적으로 콘덴서를 붙이거나, 소프트웨어적으로 debounce 시간을 만들어 해결해야 한다.</li>
 </ul>
@@ -483,7 +759,25 @@ schematic#
 <br>
 <h3 id="레이저-모듈-추가-서보모터-날개에-부착">레이저 모듈 추가: 서보모터 날개에 부착<a class="anchor" href="#%eb%a0%88%ec%9d%b4%ec%a0%80-%eb%aa%a8%eb%93%88-%ec%b6%94%ea%b0%80-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%eb%82%a0%ea%b0%9c%ec%97%90-%eb%b6%80%ec%b0%a9">#</a></h3>
 <h4 id="schematic-2">schematic<a class="anchor" href="#schematic-2">#</a></h4>
-<p><img src="/image/SG90_Interrupt02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/SG90_Interrupt02.png" alt="/image/SG90_Interrupt02.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h4>
 <p>13번 핀에 레이저모듈을 연결하므로 위 스케치를 그대로 이용</p>
@@ -495,209 +789,245 @@ schematic#
 <br>
 <h3 id="keypad에서-값을-입력받아-회전시키기">Keypad에서 값을 입력받아 회전시키기<a class="anchor" href="#keypad%ec%97%90%ec%84%9c-%ea%b0%92%ec%9d%84-%ec%9e%85%eb%a0%a5%eb%b0%9b%ec%95%84-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h3>
 <h4 id="schematic-3">schematic<a class="anchor" href="#schematic-3">#</a></h4>
-<p><img src="/image/servo-03.jpg" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/servo-03.jpg" alt="/image/servo-03.jpg">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-2">sketch<a class="anchor" href="#sketch-2">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Keypad.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servomotor;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> byte ROWS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;                          <span style="color:#75715e">// 키패드 배열 선언
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> byte COLS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> keys[ROWS][COLS] <span style="color:#f92672">=</span> {                     <span style="color:#75715e">// 키패드 정의
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  {<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>,<span style="color:#e6db74">&#39;A&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;4&#39;</span>,<span style="color:#e6db74">&#39;5&#39;</span>,<span style="color:#e6db74">&#39;6&#39;</span>,<span style="color:#e6db74">&#39;B&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;7&#39;</span>,<span style="color:#e6db74">&#39;8&#39;</span>,<span style="color:#e6db74">&#39;9&#39;</span>,<span style="color:#e6db74">&#39;C&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;*&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;#&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>},
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>byte rowPins[ROWS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>};            <span style="color:#75715e">// 키패드 연결 핀 설정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>byte colPins[COLS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Keypad keypad <span style="color:#f92672">=</span> <span style="color:#a6e22e">Keypad</span>( <span style="color:#a6e22e">makeKeymap</span>(keys), rowPins, colPins, ROWS, COLS );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  servomotor.<span style="color:#a6e22e">attach</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> keyValue <span style="color:#f92672">=</span> keypad.<span style="color:#a6e22e">getKey</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(keyValue) {
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">switch</span>(keyValue) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">:</span>                    <span style="color:#75715e">// 시리얼 모니터에 0을 입력하면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">0</span>);       <span style="color:#75715e">// 0도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">:</span>                    <span style="color:#75715e">// 시리얼 모니터에 1을 입력하면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">15</span>);       <span style="color:#75715e">// 15도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">30</span>);       <span style="color:#75715e">// 30도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">45</span>);       <span style="color:#75715e">// 45도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">60</span>);       <span style="color:#75715e">// 60도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">75</span>);       <span style="color:#75715e">// 75도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">90</span>);       <span style="color:#75715e">// 90도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">120</span>);       <span style="color:#75715e">// 120도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">150</span>);       <span style="color:#75715e">// 150도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">180</span>);       <span style="color:#75715e">// 180도 위치로 이동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">default</span> <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>     }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Keypad.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servomotor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">byte</span> <span class="n">ROWS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                          <span class="c1">// 키패드 배열 선언
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="n">byte</span> <span class="n">COLS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">keys</span><span class="p">[</span><span class="n">ROWS</span><span class="p">][</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>                     <span class="c1">// 키패드 정의
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="sc">&#39;A&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="sc">&#39;6&#39;</span><span class="p">,</span><span class="sc">&#39;B&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;7&#39;</span><span class="p">,</span><span class="sc">&#39;8&#39;</span><span class="p">,</span><span class="sc">&#39;9&#39;</span><span class="p">,</span><span class="sc">&#39;C&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;*&#39;</span><span class="p">,</span><span class="sc">&#39;0&#39;</span><span class="p">,</span><span class="sc">&#39;#&#39;</span><span class="p">,</span><span class="sc">&#39;D&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">byte</span> <span class="n">rowPins</span><span class="p">[</span><span class="n">ROWS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>            <span class="c1">// 키패드 연결 핀 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">byte</span> <span class="n">colPins</span><span class="p">[</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Keypad</span> <span class="n">keypad</span> <span class="o">=</span> <span class="nf">Keypad</span><span class="p">(</span> <span class="nf">makeKeymap</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">rowPins</span><span class="p">,</span> <span class="n">colPins</span><span class="p">,</span> <span class="n">ROWS</span><span class="p">,</span> <span class="n">COLS</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servomotor</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">keyValue</span> <span class="o">=</span> <span class="n">keypad</span><span class="p">.</span><span class="nf">getKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="n">keyValue</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">switch</span><span class="p">(</span><span class="n">keyValue</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;0&#39;</span> <span class="o">:</span>                    <span class="c1">// 시리얼 모니터에 0을 입력하면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>       <span class="c1">// 0도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;1&#39;</span> <span class="o">:</span>                    <span class="c1">// 시리얼 모니터에 1을 입력하면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>       <span class="c1">// 15도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;2&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>       <span class="c1">// 30도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;3&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span>       <span class="c1">// 45도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;4&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>       <span class="c1">// 60도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;5&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">75</span><span class="p">);</span>       <span class="c1">// 75도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;6&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">90</span><span class="p">);</span>       <span class="c1">// 90도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;7&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>       <span class="c1">// 120도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;8&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>       <span class="c1">// 150도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="sc">&#39;9&#39;</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">180</span><span class="p">);</span>       <span class="c1">// 180도 위치로 이동
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">default</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="비밀번호-확인하여-서보모터-회전시키기">비밀번호 확인하여 서보모터 회전시키기<a class="anchor" href="#%eb%b9%84%eb%b0%80%eb%b2%88%ed%98%b8-%ed%99%95%ec%9d%b8%ed%95%98%ec%97%ac-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h3>
 <p>서보모터의 날개를 금고의 개폐장치로 사용하여, 비밀번호 금고를 만들어 보자.</p>
 <br>
 <h4 id="sketch-3">sketch<a class="anchor" href="#sketch-3">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Keypad.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> tru<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;                        <span style="color:#75715e">// 비밀번호가 맞는지 확인
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;                      <span style="color:#75715e">// 4자리수 카운트
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> PW[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>,<span style="color:#e6db74">&#39;A&#39;</span>};     <span style="color:#75715e">//비밀번호
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servomotor;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 키패드 설정 시작
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> byte ROWS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> byte COLS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>byte rowPins[ROWS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>};
-</span></span><span style="display:flex;"><span>byte colPins[COLS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> keys[ROWS][COLS] <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;4&#39;</span>,<span style="color:#e6db74">&#39;5&#39;</span>,<span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;B&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;7&#39;</span>,<span style="color:#e6db74">&#39;8&#39;</span>,<span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;*&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;#&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Keypad keypad <span style="color:#f92672">=</span> <span style="color:#a6e22e">Keypad</span>( <span style="color:#a6e22e">makeKeymap</span>(keys), rowPins, colPins, ROWS, COLS );
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 키패드 설정 끝
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
-</span></span><span style="display:flex;"><span>  servomotor.<span style="color:#a6e22e">attach</span>(<span style="color:#ae81ff">10</span>);          <span style="color:#75715e">// 서보모터 핀 설정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> key <span style="color:#f92672">=</span> keypad.<span style="color:#a6e22e">getKey</span>();     <span style="color:#75715e">// 키패드 입력 변수
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (key) {
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(key);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(key<span style="color:#f92672">==</span>PW[count]) {          <span style="color:#75715e">// 입력번호와 비밀번호가 맞으면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        count<span style="color:#f92672">++</span>;                  <span style="color:#75715e">// 자리수 카운트 1증가
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        tru<span style="color:#f92672">++</span>;                    <span style="color:#75715e">// 맞은수 값 1증가
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     }
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(key<span style="color:#f92672">!=</span>PW[count]) {    <span style="color:#75715e">// 입력번호와 비밀번호가 틀리면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        count<span style="color:#f92672">++</span>;                  <span style="color:#75715e">// 자리수 카운트 값만 1증가
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">if</span>(key<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;#&#39;</span>)                 <span style="color:#75715e">// #을 누르면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">re</span>();                     <span style="color:#75715e">// 초기화
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#66d9ef">if</span>(count<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>) {               <span style="color:#75715e">// 4자리 입력받은 값이
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(tru<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>)                <span style="color:#75715e">// 모두 맞으면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#a6e22e">Su</span>();                   <span style="color:#75715e">// 성공
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span>                      <span style="color:#75715e">// 그렇지 않으면(4자리는 입력했는데, 모두 맞지는 않았으면)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#a6e22e">Fa</span>();                   <span style="color:#75715e">// 실패
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        tru<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;                    <span style="color:#75715e">// tru, count값 초기화
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>   }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Su</span>() {                          <span style="color:#75715e">// 성공했을 때 실행
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">90</span>);              <span style="color:#75715e">// 90도 돌려서 도어락 열림
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;open the door&#34;</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Fa</span>() {                        <span style="color:#75715e">// 실패한 경우는 도어락 잠금 유지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;close the door&#34;</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">re</span>() {                        <span style="color:#75715e">// 비밀번호 입력중 #을 입력하면 초기화하고 도어락 잠금 유지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  tru<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  servomotor.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;password reset&#34;</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Keypad.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">tru</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                        <span class="c1">// 비밀번호가 맞는지 확인
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                      <span class="c1">// 4자리수 카운트
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="n">PW</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="sc">&#39;A&#39;</span><span class="p">};</span>     <span class="c1">//비밀번호
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servomotor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 키패드 설정 시작
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="n">byte</span> <span class="n">ROWS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">byte</span> <span class="n">COLS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">byte</span> <span class="n">rowPins</span><span class="p">[</span><span class="n">ROWS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">byte</span> <span class="n">colPins</span><span class="p">[</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">keys</span><span class="p">[</span><span class="n">ROWS</span><span class="p">][</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="sc">&#39;6&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;7&#39;</span><span class="p">,</span><span class="sc">&#39;8&#39;</span><span class="p">,</span><span class="sc">&#39;9&#39;</span><span class="p">,</span> <span class="sc">&#39;C&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;*&#39;</span><span class="p">,</span><span class="sc">&#39;0&#39;</span><span class="p">,</span><span class="sc">&#39;#&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Keypad</span> <span class="n">keypad</span> <span class="o">=</span> <span class="nf">Keypad</span><span class="p">(</span> <span class="nf">makeKeymap</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">rowPins</span><span class="p">,</span> <span class="n">colPins</span><span class="p">,</span> <span class="n">ROWS</span><span class="p">,</span> <span class="n">COLS</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 키패드 설정 끝
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servomotor</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>          <span class="c1">// 서보모터 핀 설정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keypad</span><span class="p">.</span><span class="nf">getKey</span><span class="p">();</span>     <span class="c1">// 키패드 입력 변수
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">key</span><span class="o">==</span><span class="n">PW</span><span class="p">[</span><span class="n">count</span><span class="p">])</span> <span class="p">{</span>          <span class="c1">// 입력번호와 비밀번호가 맞으면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">count</span><span class="o">++</span><span class="p">;</span>                  <span class="c1">// 자리수 카운트 1증가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">tru</span><span class="o">++</span><span class="p">;</span>                    <span class="c1">// 맞은수 값 1증가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">     <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">key</span><span class="o">!=</span><span class="n">PW</span><span class="p">[</span><span class="n">count</span><span class="p">])</span> <span class="p">{</span>    <span class="c1">// 입력번호와 비밀번호가 틀리면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">count</span><span class="o">++</span><span class="p">;</span>                  <span class="c1">// 자리수 카운트 값만 1증가
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">key</span><span class="o">==</span><span class="sc">&#39;#&#39;</span><span class="p">)</span>                 <span class="c1">// #을 누르면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">re</span><span class="p">();</span>                     <span class="c1">// 초기화
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">if</span><span class="p">(</span><span class="n">count</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>               <span class="c1">// 4자리 입력받은 값이
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">tru</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span>                <span class="c1">// 모두 맞으면
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="nf">Su</span><span class="p">();</span>                   <span class="c1">// 성공
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span>                      <span class="c1">// 그렇지 않으면(4자리는 입력했는데, 모두 맞지는 않았으면)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="nf">Fa</span><span class="p">();</span>                   <span class="c1">// 실패
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">tru</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>                    <span class="c1">// tru, count값 초기화
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Su</span><span class="p">()</span> <span class="p">{</span>                          <span class="c1">// 성공했을 때 실행
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">90</span><span class="p">);</span>              <span class="c1">// 90도 돌려서 도어락 열림
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;open the door&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Fa</span><span class="p">()</span> <span class="p">{</span>                        <span class="c1">// 실패한 경우는 도어락 잠금 유지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;close the door&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">re</span><span class="p">()</span> <span class="p">{</span>                        <span class="c1">// 비밀번호 입력중 #을 입력하면 초기화하고 도어락 잠금 유지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">tru</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servomotor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;password reset&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="joystick을-사용하여-2개의-서보모터-제어하기">Joystick을 사용하여 2개의 서보모터 제어하기<a class="anchor" href="#joystick%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%ec%97%ac-2%ea%b0%9c%ec%9d%98-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ec%a0%9c%ec%96%b4%ed%95%98%ea%b8%b0">#</a></h3>
 <h4 id="schematic-4">schematic<a class="anchor" href="#schematic-4">#</a></h4>
-<p><img src="/image/SG90_Joystick01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/SG90_Joystick01.png" alt="/image/SG90_Joystick01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-4">sketch<a class="anchor" href="#sketch-4">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define JSTICKPIN A0      </span><span style="color:#75715e">// joystick is connected to pin 11
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servoPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;        <span style="color:#75715e">// servo is connected to pin 10
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> initialDelay <span style="color:#f92672">=</span> <span style="color:#ae81ff">544</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> highDelay, lowDelay;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg, Jstick, duty;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;      
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> Loop <span style="color:#f92672">=</span> <span style="color:#ae81ff">20000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span> (servoPin, OUTPUT);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PrintValue</span>();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  Jstick <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(JSTICKPIN);          
-</span></span><span style="display:flex;"><span>  deg <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(Jstick, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1023</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);     
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(servoPin, deg);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> servo, <span style="color:#66d9ef">int</span> duty)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  highDelay <span style="color:#f92672">=</span> initialDelay <span style="color:#f92672">+</span> (duty <span style="color:#f92672">*</span> deg_factor); <span style="color:#75715e">// setting angle
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, HIGH);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(highDelay);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  lowDelay <span style="color:#f92672">=</span> Loop <span style="color:#f92672">-</span> highDelay;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">digitalWrite</span>(servo, LOW);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delayMicroseconds</span>(lowDelay);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span> (<span style="color:#ae81ff">15</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">PrintValue</span>() {
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">analogRead</span>(JSTICKPIN));
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span> (<span style="color:#e6db74">&#34; Joystick Value&#34;</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define JSTICKPIN A0      </span><span class="c1">// joystick is connected to pin 11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servoPin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>        <span class="c1">// servo is connected to pin 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">initialDelay</span> <span class="o">=</span> <span class="mi">544</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">highDelay</span><span class="p">,</span> <span class="n">lowDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span><span class="p">,</span> <span class="n">Jstick</span><span class="p">,</span> <span class="n">duty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg_factor</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>      
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Loop</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span> <span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">PrintValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="n">Jstick</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">JSTICKPIN</span><span class="p">);</span>          
+</span></span><span class="line"><span class="cl">  <span class="n">deg</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">Jstick</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>     
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">servo</span><span class="p">,</span> <span class="kt">int</span> <span class="n">duty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">highDelay</span> <span class="o">=</span> <span class="n">initialDelay</span> <span class="o">+</span> <span class="p">(</span><span class="n">duty</span> <span class="o">*</span> <span class="n">deg_factor</span><span class="p">);</span> <span class="c1">// setting angle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">highDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">lowDelay</span> <span class="o">=</span> <span class="n">Loop</span> <span class="o">-</span> <span class="n">highDelay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">servo</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">lowDelay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span> <span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PrintValue</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="nf">analogRead</span><span class="p">(</span><span class="n">JSTICKPIN</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span> <span class="p">(</span><span class="s">&#34; Joystick Value&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 </article>
  
       

@@ -5,7 +5,6 @@ date: 2021-11-01T18:27:53+09:00
 toc: true
 tags: ["rc"]
 ---
-
 ### DC모터 사용하기
 
 아두이노의 경우와 마찬가지로 ESP32에서도 TB6612FNG 모터드라이버와 함께, 모터 및 아두이노 단독사용을 위하여 3.7V 18650 2개를 직렬로 연결한 외부전원을 사용한다.
@@ -16,17 +15,17 @@ tags: ["rc"]
 
 ##### 기본 핀 배열
 
-| VM<br/>VCC<br/>GND(*)<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>GND | {{< figure src="/image/t/tb6612fng-01.png" width="50%" class="center" >}}  | PWMA<br/>AIN2<br/>AIN1<br/>STBY<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
+| VM<br/>VCC<br/>GND(*)<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>GND | {{< figure src="/image/t/tb6612fng-01.png" width="33%" class="center" >}}  | PWMA<br/>AIN2<br/>AIN1<br/>STBY<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
 | :----------------------------------------------------------: | :--------------------------------------------------------: | :----------------------------------------------------------: |
-|                                                              | {{< figure src="/image/t/tb6612fng-02.png" style="zoom: 42%;" class="center" >}} |                                                              |
+|                                                              | {{< figure src="/image/t/tb6612fng-02.png" width="33%" class="center" >}} |                                                              |
 
 <br>
 
 ##### 핀 배열이 다른 경우
 
-| GND<br/>VCC<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>VM<br/>GND | {{< figure src="/image/t/tb6612fng-03.png" width="75%" class="center" >}}  | PWMA<br/>AIN2<br/>AIN1<br/>NC (=STBY)<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
+| GND<br/>VCC<br/>AOUT1<br/>AOUT2<br/>BOUT2<br/>BOUT1<br/>VM<br/>GND | {{< figure src="/image/t/tb6612fng-03.png" width="33%" class="center" >}}  | PWMA<br/>AIN2<br/>AIN1<br/>NC (=STBY)<br/>BIN1<br/>BIN2<br/>PWMB<br/>GND |
 | :----------------------------------------------------------: | :--------------------------------------------------------: | :----------------------------------------------------------: |
-|                                                              | {{< figure src="/image/t/tb6612fng-04.png" style="zoom: 50%;" class="center" >}} |                                                              |
+|                                                              | {{< figure src="/image/t/tb6612fng-04.png" width="33%" class="center" >}} |                                                              |
 
 * VM (모터 전압) = 15V max
 * VCC (로직 전압) = 2.7 ~ 5.5V
@@ -65,9 +64,9 @@ ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀
 
 <br>
 
-| ESP32 DEVKIT V4 사용시 | ![](/image/t/ESP32-RC-04.png) |
+| ESP32 DEVKIT V4 사용시 | {{< figure src="/image/t/ESP32-RC-04.png" width="75%" class="center" >}} |
 | ---------------------- | ----------------------------- |
-| ESP32 DEVKIT V1 사용시 | ![](/image/t/ESP32-RC-05.png) |
+| ESP32 DEVKIT V1 사용시 | {{< figure src="/image/t/ESP32-RC-05.png" width="75%" class="center" >}} |
 
 <br>
 
@@ -79,7 +78,7 @@ ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀
 | ------------------------------------------------- | --------------------------------------------------------- |
 | 아두이노를 사용한 스마트카 실습용으로 많이 사용됨 | Hall sensor를 통해 회전수를 정밀하게 측정가능             |
 | (+)와 (-), 2P 단자가 있음                         | 5P or 6P 단자가 있음 (여기서는 (+)와 (-) 2P만 사용)       |
-| {{< figure src="/image/4wd-01.jpg" width="80%" class="center" >}} | {{< figure src="/image/t/ESP32-RC-07.png" style="zoom: 67%;" class="center" >}} |
+| {{< figure src="/image/4wd-01.jpg" width="80%" class="center" >}} | {{< figure src="/image/t/ESP32-RC-07.png" width="75%" class="center" >}} |
 
 <br>
 
@@ -87,7 +86,7 @@ ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀
 
 ##### ESP32와 컴퓨터를 USB선으로 연결하여 사용할 경우 (단, 모터 외부전원은 사용)
 
-![](/image/t/ESP32-RC-01.png)
+{{< figure src="/image/t/ESP32-RC-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -99,13 +98,13 @@ ESP32와 TB6612FNG모듈을 브레드보드를 통해 연결하기 쉽도록 핀
   * 출력: 1.25~32V 및 USB 5V 출력
   * 75W내 사용 권장, 전류량 최대 5A (4.5A 이내 사용 권장)
 
-  ![](/image/t/ESP32-RC-03.png)
+  {{< figure src="/image/t/ESP32-RC-03.png" width="33%" class="center" >}}
 
 * 여기서는 서보모터 추가 연결을 위해서, 왼쪽 가변 저항을 사용하여 출력 전압을 5V로 세팅하여 사용
 
 * USB 출력단자는 ESP32의 microUSB 단자에 연결
 
-![](/image/t/ESP32-RC-02.png)
+{{< figure src="/image/t/ESP32-RC-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -267,7 +266,7 @@ const int AIN1 = 25;
 
 ### 모터 2개 컨트롤하기
 
-![](/image/t/ESP32-RC-06.png)<br>
+{{< figure src="/image/t/ESP32-RC-06.png" width="75%" class="center" >}}<br>
 
 #### sketch
 

@@ -11,7 +11,7 @@ tags:
 <br>
 
 #### schematic
-![](/image/keypad-01.jpg)
+{{< figure src="/image/keypad-01.jpg" width="50%" class="center" >}}
 
 <br>
 

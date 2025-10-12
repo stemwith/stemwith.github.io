@@ -5,9 +5,8 @@ date: 2018-09-08T17:57:00+09:00
 toc: true
 tags:
 ---
-
 ### 서보모터 SG-90
-{{< figure src="/image/servo-01.png" width="67%" class="center" >}}
+{{< figure src="/image/servo-01.png" width="50%" class="center" >}}
 
 *   모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함
 *   보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능
@@ -25,7 +24,7 @@ tags:
 <br>
 
 #### schematic
-![](/image/servo-02.jpg)
+{{< figure src="/image/servo-02.jpg" width="75%" class="center" >}}
 
 | SG90    | Brown | Red  | Orange |
 | ------- | ----- | ---- | ------ |
@@ -225,7 +224,7 @@ void servoWrite(int servo, int duty)
 
 #### schematic
 
-![](/image/SG90_Interrupt01.png)
+{{< figure src="/image/SG90_Interrupt01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -300,7 +299,7 @@ void swInterrupt() {
 
 #### schematic
 
-![](/image/SG90_Interrupt02.png)
+{{< figure src="/image/SG90_Interrupt02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -325,7 +324,7 @@ void swInterrupt() {
 
 #### schematic
 
-![](/image/servo-03.jpg)
+{{< figure src="/image/servo-03.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -506,7 +505,7 @@ void re() {                        // 비밀번호 입력중 #을 입력하면 �
 
 #### schematic
 
-![](/image/SG90_Joystick01.png)
+{{< figure src="/image/SG90_Joystick01.png" width="75%" class="center" >}}
 
 <br>
 

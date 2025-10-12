@@ -653,7 +653,7 @@ hexo new page "about"
 2. 마크다운 파일에서 파일 위치를 다음과 같이 지정함 지정함
    
    ```[markdown]
-   ![사진첨부파일설명](/image/~~~.jpg)
+   {{< figure src="/image/~~~.jpg" alt="사진첨부파일설명" width="50%" class="center" >}}
    ```
 
 3. 사진 출력시 사이즈 조정
@@ -667,7 +667,7 @@ hexo new page "about"
    * book 테마 사용시에는 아래와 같이 하면 화면에 출력되는 크기를 조정할 수 있다. (단, icarus, Next 테마와 같은 방법을 사용해도 된다.)
    
    ```[markdown]
-   ![사진첨부파일설명](/image/~~~.png =432x768)
+   {{< figure src="/image/~~~.png =432x768" alt="사진첨부파일설명" width="50%" class="center" >}}
    ```
 
 4. 주의 사항

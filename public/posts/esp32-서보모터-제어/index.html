@@ -12,6 +12,19 @@ https://github.com/alex-shpak/hugo-book
 datasheet#
 
 
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
 사용법#
 
 
@@ -30,7 +43,7 @@ ESP32는 16개의 PWM채널이 있으므로, 최대 16개의 서보모터를 동
 그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.
 
 
-Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.">
+Resolution이 16비트라면 65535의 1/10에 해당하는 6554 의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/esp32-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0-%EC%A0%9C%EC%96%B4/">
@@ -41,7 +54,7 @@ Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty�
 대부분의 서보모터(SG90, MG90S, MG966R 등 포함)는 위의 그림처럼 20ms가 1주기가 되므로, PWM frequency를 50Hz로 설정한다.
 20ms가 1주기이고, HIGH 펄스가 2ms 지속될 때 180º 회전을 한다.
 그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.
-Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.">
+Resolution이 16비트라면 65535의 1/10에 해당하는 6554 의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.">
   <meta property="og:locale" content="ko_kr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -53,11 +66,11 @@ Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty�
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/esp32-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0-%EC%A0%9C%EC%96%B4/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -204,7 +217,25 @@ Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty�
 
   <div class="book-post-content markdown-inner"><h3 id="sg90-mg90s--mg966r-서보모터">SG90, MG90S,  MG966R 서보모터<a class="anchor" href="#sg90-mg90s--mg966r-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0">#</a></h3>
 <h4 id="datasheet">datasheet<a class="anchor" href="#datasheet">#</a></h4>
-<p><img src="/image/SG90_Datasheet.jpg" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/SG90_Datasheet.jpg" alt="/image/SG90_Datasheet.jpg">
+
+  
+  
+</figure>
 <br>
 <h4 id="사용법">사용법<a class="anchor" href="#%ec%82%ac%ec%9a%a9%eb%b2%95">#</a></h4>
 <ol>
@@ -224,19 +255,19 @@ Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty�
 <p>그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.</p>
 </li>
 <li>
-<p>Resolution이 16비트라면 65535의 1/10에 해당하는 <del>6554</del>의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</p>
+<p>Resolution이 16비트라면 65535의 1/10에 해당하는 <strong>6554</strong> 의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.</p>
 </li>
 <li>
-<p><del>데이터 시트에 나온 스펙에 따라서, 16비트 해상도에서 duty값에 따른 회전 각도</del></p>
+<p>데이터 시트에 나온 스펙에 따라서, 16비트 해상도에서 duty값에 따른 회전 각도</p>
 <ul>
 <li>
-<p><del>PWM 5% : 3277 → 0º</del></p>
+<p>PWM 5% : 3277 → 0º</p>
 </li>
 <li>
-<p><del>PWM 7.5% : 4915 → 90º</del></p>
+<p>PWM 7.5% : 4915 → 90º</p>
 </li>
 <li>
-<p><del>PWM 10% : 6554 → 180º</del></p>
+<p>PWM 10% : 6554 → 180º</p>
 <p>라고 생각했으나, 실제로는 이와 달랐다.</p>
 </li>
 </ul>
@@ -255,11 +286,8 @@ Resolution이 16비트라면 65535의 1/10에 해당하는 6554의 값이 duty�
 </ul>
 </li>
 <li>
-<p>즉, 각도에 따른 PWM값은 다음과 같이 지정한다.
-$$
-PWM = 2^{16} \times 0.1 \times \frac{angle}{180} + 2^{16} \times 0.025 = 2^{16} \times 0.1 \times (\frac{angle}{180} + 0.25)
-$$</p>
-</li>
+<p>즉, 각도에 따른 PWM값은 다음과 같이 지정한다.</p>
+<span>\[ PWM = 2^{16} \times 0.1 \times \frac{angle}{180} + 2^{16} \times 0.025 = 2^{16} \times 0.1 \times (\frac{angle}{180} + 0.25) \]</span><link rel="stylesheet" href="/katex/katex.min.css" /><script defer src="/katex/katex.min.js"></script><script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body, {&#34;delimiters&#34;:[{&#34;left&#34;:&#34;$$&#34;,&#34;right&#34;:&#34;$$&#34;,&#34;display&#34;:true},{&#34;left&#34;:&#34;\\(&#34;,&#34;right&#34;:&#34;\\)&#34;,&#34;display&#34;:false},{&#34;left&#34;:&#34;\\[&#34;,&#34;right&#34;:&#34;\\]&#34;,&#34;display&#34;:true}]});"></script></li>
 <li>
 <p>그리고, 이 서보모터 스펙상 180도 회전을 하지만 PWM 값을 조절하면 최대 190도 정도까지는 회전한다.</p>
 </li>
@@ -310,269 +338,429 @@ $$</p>
 <p>그러므로, 여기서는 라이브러리를 사용하지 않고 PWM을 사용하여 ESP32로 MG90 서보모터를 제어해보고자 한다.</p>
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/SG90.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/SG90.png" alt="/image/SG90.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;  <span style="color:#75715e">// corresponds to GPIO 15
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// setting PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg, duty;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// PWM Setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(ledChannel, freq, resolution);  <span style="color:#75715e">// PWM CH0, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(ledPin, ledChannel);        <span style="color:#75715e">// PWM CH0을 GPIO 15번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;deg <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; deg<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(ledChannel, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;deg <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; deg<span style="color:#f92672">--</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(ledChannel, deg);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// deg는 0~180도 까지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> ch, <span style="color:#66d9ef">int</span> deg)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    duty <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(deg, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">1638</span>, <span style="color:#ae81ff">8192</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ledcWrite</span>(ch, duty);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);                             <span style="color:#75715e">// delay를 줄이면 180도가 완전히 돌지 않음
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  <span class="c1">// corresponds to GPIO 15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// setting PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span><span class="p">,</span> <span class="n">duty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// PWM Setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcSetup</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">resolution</span><span class="p">);</span>  <span class="c1">// PWM CH0, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">ledChannel</span><span class="p">);</span>        <span class="c1">// PWM CH0을 GPIO 15번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">deg</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">deg</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span><span class="n">deg</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">deg</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// deg는 0~180도 까지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="kt">int</span> <span class="n">deg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">duty</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">1638</span><span class="p">,</span> <span class="mi">8192</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ledcWrite</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">duty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                             <span class="c1">// delay를 줄이면 180도가 완전히 돌지 않음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="sketch-시리얼-모니터에-입력한-문자로-서보모터-회전시키기">sketch: 시리얼 모니터에 입력한 문자로 서보모터 회전시키기<a class="anchor" href="#sketch-%ec%8b%9c%eb%a6%ac%ec%96%bc-%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90-%ec%9e%85%eb%a0%a5%ed%95%9c-%eb%ac%b8%ec%9e%90%eb%a1%9c-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;  <span style="color:#75715e">// corresponds to GPIO 15
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// setting PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> duty;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// PWM Setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcSetup</span>(ledChannel, freq, resolution);  <span style="color:#75715e">// PWM CH0, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ledcAttachPin</span>(ledPin, ledChannel);        <span style="color:#75715e">// PWM CH0을 GPIO 15번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(ledChannel, deg);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(Serial.<span style="color:#a6e22e">available</span>() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) 
-</span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> flag<span style="color:#f92672">=</span>Serial.<span style="color:#a6e22e">read</span>();
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(flag<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;l&#39;</span>) {
-</span></span><span style="display:flex;"><span>        deg <span style="color:#f92672">=</span> deg <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(deg <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>            deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(flag<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;r&#39;</span>) {
-</span></span><span style="display:flex;"><span>        deg <span style="color:#f92672">=</span> deg <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(deg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">180</span>) {
-</span></span><span style="display:flex;"><span>            deg <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }      
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">servoWrite</span>(ledChannel, deg);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// deg는 0~180도 까지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> ch, <span style="color:#66d9ef">int</span> deg)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    duty <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(deg, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">1638</span>, <span style="color:#ae81ff">8192</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ledcWrite</span>(ch, duty);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">15</span>);                             <span style="color:#75715e">// delay를 줄이면 180도가 완전히 돌지 않음
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  <span class="c1">// corresponds to GPIO 15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// setting PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">duty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="c1">// PWM Setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcSetup</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">resolution</span><span class="p">);</span>  <span class="c1">// PWM CH0, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">ledChannel</span><span class="p">);</span>        <span class="c1">// PWM CH0을 GPIO 15번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="nf">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">flag</span><span class="o">=</span><span class="n">Serial</span><span class="p">.</span><span class="nf">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="sc">&#39;l&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deg</span> <span class="o">=</span> <span class="n">deg</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">deg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">deg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="sc">&#39;r&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">deg</span> <span class="o">=</span> <span class="n">deg</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">deg</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>      
+</span></span><span class="line"><span class="cl">  <span class="nf">servoWrite</span><span class="p">(</span><span class="n">ledChannel</span><span class="p">,</span> <span class="n">deg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// deg는 0~180도 까지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="kt">int</span> <span class="n">deg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">duty</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">1638</span><span class="p">,</span> <span class="mi">8192</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ledcWrite</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">duty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                             <span class="c1">// delay를 줄이면 180도가 완전히 돌지 않음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="2축-서보모터-거치대-조립-및-테스트">2축 서보모터 거치대 조립 및 테스트<a class="anchor" href="#2%ec%b6%95-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ea%b1%b0%ec%b9%98%eb%8c%80-%ec%a1%b0%eb%a6%bd-%eb%b0%8f-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a></h3>
 <h4 id="거치대-조립">거치대 조립<a class="anchor" href="#%ea%b1%b0%ec%b9%98%eb%8c%80-%ec%a1%b0%eb%a6%bd">#</a></h4>
 <p>첫번째 단계로 서보모터 거치대를 조립하고 서보모터 2개를 장착한다.</p>
 <p>SG90 서보 2개를 준비하고</p>
-<figure class="center"><img src="/image/servo-01.png" width="50%">
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/servo-01.png" alt="/image/servo-01.png">
+
+  
+  
+</figure>
+<p>니퍼로 아래 빨간 동그라미로 표시한 부분의 크기에 맞추어, <strong>서보모터 날개를 잘라낸 뒤</strong></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/servo-04.png" alt="/image/servo-04.png">
+
+  
+  
+</figure>
+<p>아래 형태대로 조립한다.</p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/servo-02.png" alt="/image/servo-02.png">
+
+  
+  
 </figure>
 
-<p>니퍼로 아래 빨간 동그라미로 표시한 부분의 크기에 맞추어, <strong>서보모터 날개를 잘라낸 뒤</strong></p>
-<p><img src="/image/servo-04.png" alt="" /></p>
-<p>아래 형태대로 조립한다.</p>
-<p><img src="/image/servo-02.png" alt="" /></p>
-<p><img src="/image/servo-03.png" alt="" /></p>
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/servo-03.png" alt="/image/servo-03.png">
+
+  
+  
+</figure>
 <p>날개를 나사로 조인 부분에 순간접착제를 살짝 뿌려, 완전히 고정시킨다. (단, 서보모터의 회전축 부분에는 접착제가 뭍지 않도록 주의한다.)</p>
 <br>
 <h4 id="schematic-1">schematic<a class="anchor" href="#schematic-1">#</a></h4>
-<p><img src="/image/servo-05.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/servo-05.png" alt="/image/servo-05.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-두개의-서보모터를-180도-회전시키기">sketch: 두개의 서보모터를 180도 회전시키기<a class="anchor" href="#sketch-%eb%91%90%ea%b0%9c%ec%9d%98-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0%eb%a5%bc-180%eb%8f%84-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// for horizontal Servo PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;  <span style="color:#75715e">// corresponds to GPIO 15
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// for vertical Servo PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;  <span style="color:#75715e">// corresponds to GPIO 2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> deg_hori, deg_vert, duty;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// PWM Setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcSetup(ledChannel_hori, freq_hori, resolution_hori);  <span style="color:#75715e">// PWM CH1, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcAttachPin(ledPin_hori, ledChannel_hori);             <span style="color:#75715e">// PWM CH1을 GPIO 19번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcSetup(ledChannel_vert, freq_vert, resolution_vert);  <span style="color:#75715e">// PWM CH0, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcAttachPin(ledPin_vert, ledChannel_vert);             <span style="color:#75715e">// PWM CH0을 GPIO 18번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;deg_hori <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; deg_hori<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>  servoWrite(ledChannel_hori, deg_hori);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;deg_vert <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; deg_vert<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>  servoWrite(ledChannel_vert, deg_vert);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;deg_hori <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; deg_hori<span style="color:#f92672">--</span>) {
-</span></span><span style="display:flex;"><span>  servoWrite(ledChannel_hori, deg_hori);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (deg_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>;deg_vert <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; deg_vert<span style="color:#f92672">--</span>) {
-</span></span><span style="display:flex;"><span>  servoWrite(ledChannel_vert, deg_vert);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// deg는 0~180도 까지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> ch, <span style="color:#66d9ef">int</span> deg)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    duty <span style="color:#f92672">=</span> map(deg, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">1638</span>, <span style="color:#ae81ff">8192</span>);
-</span></span><span style="display:flex;"><span>    ledcWrite(ch, duty);
-</span></span><span style="display:flex;"><span>    delay(<span style="color:#ae81ff">15</span>);                             <span style="color:#75715e">// delay를 줄이면 180도가 완전히 돌지 않음
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// for horizontal Servo PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin_hori</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  <span class="c1">// corresponds to GPIO 15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel_hori</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq_hori</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution_hori</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for vertical Servo PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin_vert</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// corresponds to GPIO 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel_vert</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq_vert</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution_vert</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">deg_hori</span><span class="p">,</span> <span class="n">deg_vert</span><span class="p">,</span> <span class="n">duty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// PWM Setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcSetup</span><span class="p">(</span><span class="n">ledChannel_hori</span><span class="p">,</span> <span class="n">freq_hori</span><span class="p">,</span> <span class="n">resolution_hori</span><span class="p">);</span>  <span class="c1">// PWM CH1, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin_hori</span><span class="p">,</span> <span class="n">ledChannel_hori</span><span class="p">);</span>             <span class="c1">// PWM CH1을 GPIO 19번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcSetup</span><span class="p">(</span><span class="n">ledChannel_vert</span><span class="p">,</span> <span class="n">freq_vert</span><span class="p">,</span> <span class="n">resolution_vert</span><span class="p">);</span>  <span class="c1">// PWM CH0, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin_vert</span><span class="p">,</span> <span class="n">ledChannel_vert</span><span class="p">);</span>             <span class="c1">// PWM CH0을 GPIO 18번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg_hori</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">deg_hori</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">deg_hori</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_hori</span><span class="p">,</span> <span class="n">deg_hori</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg_vert</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">deg_vert</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">deg_vert</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_vert</span><span class="p">,</span> <span class="n">deg_vert</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg_hori</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span><span class="n">deg_hori</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">deg_hori</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_hori</span><span class="p">,</span> <span class="n">deg_hori</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">deg_vert</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span><span class="n">deg_vert</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">deg_vert</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_vert</span><span class="p">,</span> <span class="n">deg_vert</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// deg는 0~180도 까지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="kt">int</span> <span class="n">deg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">duty</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">1638</span><span class="p">,</span> <span class="mi">8192</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ledcWrite</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">duty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                             <span class="c1">// delay를 줄이면 180도가 완전히 돌지 않음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="joystick-1개를-사용하여-2개의-서보모터-제어하기">Joystick 1개를 사용하여 2개의 서보모터 제어하기<a class="anchor" href="#joystick-1%ea%b0%9c%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%98%ec%97%ac-2%ea%b0%9c%ec%9d%98-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ec%a0%9c%ec%96%b4%ed%95%98%ea%b8%b0">#</a></h3>
 <h4 id="schematic-2">schematic<a class="anchor" href="#schematic-2">#</a></h4>
-<p><img src="/image/ESP32_Joystick_2Servo.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/ESP32_Joystick_2Servo.png" alt="/image/ESP32_Joystick_2Servo.png">
+
+  
+  
+</figure>
 <nr>
 <h4 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// for horizontal Servo PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;       <span style="color:#75715e">// corresponds to GPIO 15
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution_hori <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// for vertical Servo PWM properties
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledPin_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;       <span style="color:#75715e">// corresponds to GPIO 2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> ledChannel_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> freq_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> resolution_vert <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_LR_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;           <span style="color:#75715e">// Left_Right GPIO25
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_FB_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;           <span style="color:#75715e">// Forward_Backward GPIO32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> Jstick_LR, Jstick_FB, deg_hori, deg_vert, duty;          
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.begin(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Servo PWM Setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcSetup(ledChannel_hori, freq_hori, resolution_hori);  <span style="color:#75715e">// PWM CH1, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcAttachPin(ledPin_hori, ledChannel_hori);             <span style="color:#75715e">// PWM CH1을 GPIO 19번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcSetup(ledChannel_vert, freq_vert, resolution_vert);  <span style="color:#75715e">// PWM CH0, Frequncy 50 Hz, 16bit resolution
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ledcAttachPin(ledPin_vert, ledChannel_vert);             <span style="color:#75715e">// PWM CH0을 GPIO 18번으로 출력
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>(){
-</span></span><span style="display:flex;"><span>    PrintValue();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    Jstick_LR <span style="color:#f92672">=</span> analogRead(Jstick_LR_pin);          
-</span></span><span style="display:flex;"><span>    deg_hori <span style="color:#f92672">=</span> map(Jstick_LR, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);     
-</span></span><span style="display:flex;"><span>    servoWrite(ledChannel_hori, deg_hori);
-</span></span><span style="display:flex;"><span>                             
-</span></span><span style="display:flex;"><span>    Jstick_UD <span style="color:#f92672">=</span> analogRead(Jstick_UD_pin);           
-</span></span><span style="display:flex;"><span>    deg_vert <span style="color:#f92672">=</span> map(Jstick_FB, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);     
-</span></span><span style="display:flex;"><span>    servoWrite(ledChannel_vert, deg_vert); 
-</span></span><span style="display:flex;"><span>                              
-</span></span><span style="display:flex;"><span>    delay(<span style="color:#ae81ff">15</span>);                                  
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// deg는 0~180도 까지
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">servoWrite</span>(<span style="color:#66d9ef">int</span> ch, <span style="color:#66d9ef">int</span> deg)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    duty <span style="color:#f92672">=</span> map(deg, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">1638</span>, <span style="color:#ae81ff">8192</span>);
-</span></span><span style="display:flex;"><span>    ledcWrite(ch, duty);
-</span></span><span style="display:flex;"><span>    delay(<span style="color:#ae81ff">15</span>);                             <span style="color:#75715e">// delay를 줄이면 180도가 완전히 돌지 않음 (최소값 15)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">PrintValue</span>(){
-</span></span><span style="display:flex;"><span>    Serial.print(analogRead(Jstick_LR));
-</span></span><span style="display:flex;"><span>    Serial.print (<span style="color:#e6db74">&#34; - &#34;</span>); 
-</span></span><span style="display:flex;"><span>    Serial.print(analogRead(Jstick_FB));
-</span></span><span style="display:flex;"><span>    Serial.println (<span style="color:#e6db74">&#34; Joystick Value&#34;</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// for horizontal Servo PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin_hori</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>       <span class="c1">// corresponds to GPIO 15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel_hori</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq_hori</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution_hori</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for vertical Servo PWM properties
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledPin_vert</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>       <span class="c1">// corresponds to GPIO 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ledChannel_vert</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">freq_vert</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">resolution_vert</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_LR_pin</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>           <span class="c1">// Left_Right GPIO25
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_FB_pin</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>           <span class="c1">// Forward_Backward GPIO32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Jstick_LR</span><span class="p">,</span> <span class="n">Jstick_FB</span><span class="p">,</span> <span class="n">deg_hori</span><span class="p">,</span> <span class="n">deg_vert</span><span class="p">,</span> <span class="n">duty</span><span class="p">;</span>          
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Servo PWM Setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcSetup</span><span class="p">(</span><span class="n">ledChannel_hori</span><span class="p">,</span> <span class="n">freq_hori</span><span class="p">,</span> <span class="n">resolution_hori</span><span class="p">);</span>  <span class="c1">// PWM CH1, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin_hori</span><span class="p">,</span> <span class="n">ledChannel_hori</span><span class="p">);</span>             <span class="c1">// PWM CH1을 GPIO 19번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcSetup</span><span class="p">(</span><span class="n">ledChannel_vert</span><span class="p">,</span> <span class="n">freq_vert</span><span class="p">,</span> <span class="n">resolution_vert</span><span class="p">);</span>  <span class="c1">// PWM CH0, Frequncy 50 Hz, 16bit resolution
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ledcAttachPin</span><span class="p">(</span><span class="n">ledPin_vert</span><span class="p">,</span> <span class="n">ledChannel_vert</span><span class="p">);</span>             <span class="c1">// PWM CH0을 GPIO 18번으로 출력
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PrintValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Jstick_LR</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">Jstick_LR_pin</span><span class="p">);</span>          
+</span></span><span class="line"><span class="cl">    <span class="n">deg_hori</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">Jstick_LR</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>     
+</span></span><span class="line"><span class="cl">    <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_hori</span><span class="p">,</span> <span class="n">deg_hori</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                             
+</span></span><span class="line"><span class="cl">    <span class="n">Jstick_UD</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">Jstick_UD_pin</span><span class="p">);</span>           
+</span></span><span class="line"><span class="cl">    <span class="n">deg_vert</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">Jstick_FB</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>     
+</span></span><span class="line"><span class="cl">    <span class="n">servoWrite</span><span class="p">(</span><span class="n">ledChannel_vert</span><span class="p">,</span> <span class="n">deg_vert</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">                              
+</span></span><span class="line"><span class="cl">    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                                  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// deg는 0~180도 까지
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">servoWrite</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="kt">int</span> <span class="n">deg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">duty</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">deg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">1638</span><span class="p">,</span> <span class="mi">8192</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ledcWrite</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">duty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                             <span class="c1">// delay를 줄이면 180도가 완전히 돌지 않음 (최소값 15)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">PrintValue</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">Jstick_LR</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span> <span class="p">(</span><span class="s">&#34; - &#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">analogRead</span><span class="p">(</span><span class="n">Jstick_FB</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span> <span class="p">(</span><span class="s">&#34; Joystick Value&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h3 id="esp32servo-라이브러리-사용시">ESP32Servo 라이브러리 사용시<a class="anchor" href="#esp32servo-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%82%ac%ec%9a%a9%ec%8b%9c">#</a></h3>
 <h4 id="library-for-esp32">library for ESP32<a class="anchor" href="#library-for-esp32">#</a></h4>
 <p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong> 에서 &ldquo;<strong>esp32servo</strong>&rdquo; (by Kevin Harrington) 검색 후 설치</p>
-<p><img src="/image/esp32-nRF24L01-servo-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/esp32-nRF24L01-servo-01.png" alt="/image/esp32-nRF24L01-servo-01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="schematic-3">schematic<a class="anchor" href="#schematic-3">#</a></h4>
-<p><img src="/image/servo-05.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/servo-05.png" alt="/image/servo-05.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-2">sketch<a class="anchor" href="#sketch-2">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ESP32Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servo_x;  <span style="color:#75715e">// create servo object to control a servo
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Servo servo_y;  <span style="color:#75715e">// 16 servo objects can be created on the ESP32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e">// variable to store the servo position
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> servo_xPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servo_yPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Allow allocation of all timers
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ESP32PWM<span style="color:#f92672">::</span>allocateTimer(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span>allocateTimer(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span>allocateTimer(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span>allocateTimer(<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>  servo_x.setPeriodHertz(<span style="color:#ae81ff">50</span>);    <span style="color:#75715e">// standard 50 hz servo
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servo_y.setPeriodHertz(<span style="color:#ae81ff">50</span>);
-</span></span><span style="display:flex;"><span>  servo_x.attach(servo_xPin, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2500</span>); <span style="color:#75715e">// attaches the servo on pin 25 &amp; 32 to the servo object
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servo_y.attach(servo_yPin, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2500</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// using default min/max of 1000us and 2000us
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// different servos may require different min/max settings
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// for an accurate 0 to 180 sweep
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; pos <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">180</span>; pos <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>) { <span style="color:#75715e">// goes from 0 degrees to 180 degrees
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// in steps of 1 degree
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    servo_x.write(pos);    <span style="color:#75715e">// tell servo to go to position in variable &#39;pos&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    servo_y.write(<span style="color:#ae81ff">180</span><span style="color:#f92672">-</span>pos);
-</span></span><span style="display:flex;"><span>    delay(<span style="color:#ae81ff">5</span>);             <span style="color:#75715e">// waits 5ms for the servo to reach the position
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>; pos <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; pos <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>) { <span style="color:#75715e">// goes from 180 degrees to 0 degrees
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    servo_x.write(pos);    <span style="color:#75715e">// tell servo to go to position in variable &#39;pos&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    servo_y.write(<span style="color:#ae81ff">180</span><span style="color:#f92672">-</span>pos);
-</span></span><span style="display:flex;"><span>    delay(<span style="color:#ae81ff">5</span>);             <span style="color:#75715e">// waits 5ms for the servo to reach the position
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;ESP32Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servo_x</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Servo</span> <span class="n">servo_y</span><span class="p">;</span>  <span class="c1">// 16 servo objects can be created on the ESP32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// variable to store the servo position
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">servo_xPin</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servo_yPin</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Allow allocation of all timers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ESP32PWM</span><span class="o">::</span><span class="n">allocateTimer</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="n">allocateTimer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="n">allocateTimer</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="n">allocateTimer</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="n">setPeriodHertz</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>    <span class="c1">// standard 50 hz servo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servo_y</span><span class="p">.</span><span class="n">setPeriodHertz</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">servo_xPin</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span> <span class="c1">// attaches the servo on pin 25 &amp; 32 to the servo object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servo_y</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">servo_yPin</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// using default min/max of 1000us and 2000us
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// different servos may require different min/max settings
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// for an accurate 0 to 180 sweep
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// goes from 0 degrees to 180 degrees
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// in steps of 1 degree
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">servo_x</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>    <span class="c1">// tell servo to go to position in variable &#39;pos&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">servo_y</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">180</span><span class="o">-</span><span class="n">pos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>             <span class="c1">// waits 5ms for the servo to reach the position
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// goes from 180 degrees to 0 degrees
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">servo_x</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>    <span class="c1">// tell servo to go to position in variable &#39;pos&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">servo_y</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="mi">180</span><span class="o">-</span><span class="n">pos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>             <span class="c1">// waits 5ms for the servo to reach the position
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 </article>
  
       

@@ -32,7 +32,228 @@ LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치
 
 
 schematic (for standalone)#
-">
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
+  
+      
+          GM Monule
+          GND
+          5V
+          VIN
+          
+          
+          
+          
+      
+  
+  
+      
+          Arduino
+          GND
+          5V
+          D2
+          VIN
+          A4
+          A5
+          PowerJack
+      
+      
+          1602 LCD I2C
+          GND
+          VCC
+          
+          (VCC)
+          SDA
+          SCL
+          
+      
+      
+          9V battery
+          
+          
+          
+          
+          
+          
+          (&#43;)(-)
+      
+  
+
+
+외부로 들고 다니면서 측정할 수 있도록 9V 배터리 1개를 추가하여 Arduino, 1602 LCD, GM Molule을 모두 작동시킬 수 있도록 하였다.
+
+
+sketch#
+/* --------------------------------------------------------------------------------------
+* WHAT IS CPM?
+* CPM (counts per minute) is events quantity from Geiger Tube you get during one minute.
+* Usually it used to calculate a radiation level.  
+* Different GM Tubes has different quantity of CPM for background.
+* Some tubes can produce about 10-50 CPM for normal background,
+* other GM Tube models produce 50-100 CPM or 0-5 CPM for same radiation level.
+* Please refer your GM Tube datasheet for more information. 
+* Just for reference here, SBM-20 can generate about 10-50 CPM for normal background.
+* --------------------------------------------------------------------------------------*/
+
+// This Sketch counts the number of pulses a minute.
+// Connect the GND on Arduino to the GND on the Geiger counter.
+// Connect the 5V on Arduino to the 5V on the Geiger counter.
+// Connect the VIN on the Geiger counter to the D2 on Arduino.
+
+// For I2C 1602 LCD : VCC-5V / GND-GND / SDA-A4 / SCL-A5
+#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+// I2C address: 0x20~0x27 or 0x3F
+LiquidCrystal_I2C lcd(0x27, 16, 2);  
+
+int cpm;
+float sievertshour; // for converting from cpm to sieverts/hour
+//float sieverts; // for converting from cpm to sieverts  
+unsigned long counts; //variable for GM Tube events
+unsigned long previousMillis; //variable for measuring time
+
+#define LOG_PERIOD 60000 // count rate (1 minute)
+#define CONV_FACTOR 0.008120 // for GM tube of J305beta type
+
+void setup() { //setup
+  counts = 0;
+  Serial.begin(9600);
+  pinMode(2, INPUT);
+
+  lcd.init();               // lcd 초기화
+  lcd.backlight();
+  
+  attachInterrupt(digitalPinToInterrupt(2), impulse, FALLING); //define external interrupts
+}
+
+void loop() {
+  lcd.setCursor(0,0);
+  lcd.print(&#34;CPM:&#34;);
+  lcd.setCursor(9,0);
+  lcd.print(&#34; #:&#34;);
+  lcd.setCursor(12,0);
+  lcd.print(counts);
+  lcd.setCursor(0,1);
+  lcd.print(&#34;uSv/h:&#34;);
+  //lcd.print(&#34;uSv  :&#34;);
+  
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis &gt; LOG_PERIOD) {   //every 1 minute
+    previousMillis = currentMillis;
+
+    lcd.clear();
+    lcd.setCursor(5, 0);
+    cpm = counts;
+    lcd.print(cpm); //Display CPM
+    Serial.println(cpm);
+    sievertshour = cpm * CONV_FACTOR;
+    //sieverts = sievertshour * 356 * 24;
+    lcd.setCursor(7,1);
+    lcd.print(sievertshour);
+    //lcd.print(sieverts);
+     
+    counts = 0;
+  }
+}
+
+void impulse() { // called every time there is a FALLING signal at pin 2
+  counts&#43;&#43;;
+}
+sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)#
+/*************ARDUINO SKETCH FOR GEIGER COUNTER******************
+Author: RH Electronics www.radiohobbystore.com / www.mygeiger.org
+*****************************************************************
+This sketch can be used with DIY Geiger Counter board. It allow
+to receive CPM data during minute. You can modify the sketch
+for your needs.
+*****************************************************************
+LCD I2C Connection:
+LCD SDA -&gt; D10  =  1
+LCD SCL -&gt; D9   =  3
+VCC to &#43;3,3V and ground
+****************************************************************/
+
+// include the library code:
+#include &lt;LiquidCrystal_I2C.h&gt;
+#include &lt;SPI.h&gt;
+#include &lt;Wire.h&gt;
+
+#define LOG_PERIOD 15000  //Logging period in milliseconds, recommended value 15000-60000.
+#define MAX_PERIOD 60000  //Maximum logging period without modifying this sketch
+#define PERIOD 60000.0 // (60 sec) one minute measure period
+
+volatile unsigned long CNT; // variable for counting interrupts from dosimeter
+unsigned long counts;     //variable for GM Tube events
+unsigned long cpm;        //variable for CPM
+unsigned int multiplier;  //variable for calculation CPM in this sketch
+unsigned long previousMillis;  //variable for time measurement
+unsigned long dispPeriod; // variable for measuring time
+unsigned long CPM; // variable for measuring CPM
+
+const int inputPin = 4;  // pin D2 is VIN on geiger counter
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal_I2C lcd(0x3F,20,4);
+
+void setup() {               // setup
+Wire.begin(1,3);
+lcd.begin(20, 4);
+lcd.init();
+// Turn on the backlight.
+lcd.backlight();
+
+CNT = 0;
+CPM = 0;
+dispPeriod = 0;
+attachInterrupt(digitalPinToInterrupt(inputPin), GetEvent, FALLING); // Define interrupt D2 on falling edge
+}
+
+void loop() {           // main loop
+lcd.setCursor(0,0);
+lcd.print(&#34;Berlin-Siemensstadt&#34;);
+lcd.setCursor(0,1);
+lcd.print(&#34;   Geiger Counter &#34;);
+lcd.setCursor(0,2); // print text and CNT on the LCD
+lcd.print(&#34;CPM:&#34;);
+lcd.setCursor(0,3);
+lcd.print(&#34;CNT:&#34;);
+lcd.setCursor(5,3);
+lcd.print(CNT);
+if (millis() &gt;=dispPeriod &#43; PERIOD) { // If one minute is over
+cleanDisplay(); // Clear LCD
+// Do something about accumulated CNT events....
+lcd.setCursor(5, 2);
+CPM = CNT;
+lcd.print(CPM); //Display CPM
+CNT = 0;
+dispPeriod = millis();
+}
+}
+
+void GetEvent(){           // Get Event from Device
+CNT&#43;&#43;;
+}
+
+void cleanDisplay (){      // Clear LCD routine
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.setCursor(0,0);
+}(출처: rhelectronics.net)">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/arduino-geiger-counter/">
@@ -40,7 +261,8 @@ schematic (for standalone)#
   <meta property="og:title" content="Arduino, Geiger Counter">
   <meta property="og:description" content="※ SAT Subject Chemistry: Pactice Test
 Used to detect radioactivity. ① Calorimeter ② Geiger Counter ③ Burette ④ Funnel ⑤ Bunsen Burner
-가이거 계수기#방사선을 측정할 수 있는 관으로 방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자 요하네스 한스 빌헬름 가이거(Johannes Hans Wilhelm Geiger)가 알파선을 감지할 수 있는 감지기를 개발하였으며, 그 후 1928년 가이거와 가이거의 제자인 발터 뮐러가 함께 개량하여 모든 전리방사선을 감지할 수 있도록 만든 것이 현재의 가이거-뮐러 튜브(GM Tube)이다. 원리: 튜브는 비활성 기체가 충전된 상태이며 중심 전극(&#43;극, anode)과 관의 내벽(-극, cathode, 금속이나 흑연으로 코팅)으로 구성되어 있다. 여기에 수백V의 전압을 걸면, 관 안에 걸린 높은 전기장 때문에 이온은 음극을 향해 가속되고, 전자는 양극을 향해 가속되며 운동에너지를 얻게 되며 이동 중에 충돌한 기체분자도 함께 전이된다. 이렇게 가스 안에 하전입자의 붕괴가 일어나면 음극에서 양극을 향해 짧고 강한 펄스전류가 순간적으로 나타나 흐르게 된다. 이 펄스전류가 ‘스피커’를 지날때 반응음으로 가이거 계수기 특유의 ‘틱티티틱’하는 소리가 만들어지는데, 이것이 ‘방사선이 존재한다’는 상황을 알려주는 소리이다. 그리고 이 소리 1개음이 방사능 입자 1개에 대한 대응 신호가 된다. 오래된 방식이지만 오늘날에도 큰 변화 없이 이 원리를 응용하여 방사선을 측정하고 있다. 단점: 상당히 큰 펄스신호를 얻을 수 있지만, 이 전류의 강도는 방사선이 가진 에너지와 비례관계를 나타내는 것은 아니기때문에, 방사선이 가진 에너지를 측정하는 것은 불가능하다. (방사선의 에너지를 알기 위해서는 비례계수관을 사용해야 한다.) 또한 고준위 방사선의 경우에는 전류가 연속적으로 흐르게 되어 펄스의 횟수를 계수할 수 없게 되는 경우도 있다. (주로 500cps 이상의 경우) 이것을 막기 위해 전자의 흐름을 제어하는 별도의 장치를 부착하거나, 신틸레이터(scintillator)나 이온화 챔버 같은 다른 검출기로 계측한다. 가이거 카운터에 사용하는 튜브관은 여러 종류가 제조되고 있다. 대부분의 GM관은 감마선과 2.5MeV 이상의 베타선을 검출한다. 감마선의 검출 감도는 좋지는 않다. GM관 안의 가스밀도가 낮아서, 투과력이 높은 감마선은 상호작용을 일으키기 어렵기 때문이다. 중성자선은 가스로부터 전리하지 않기때문에 검출하지 못한다. 하지만, 관 안쪽을 붕소로 코팅하거나, 삼불화붕소 아니면 ³He가스를 충전하면 중성자선에도 반응하는 GM관을 만들 수 있다. 중성자는 붕소원자핵과 반응하여 알파선을 생성하거나, ³He원자와 반응하여 수소와 트리튬이온과 전자를 생성하므로 이 전하입자들이 붕괴를 발생시킨다. 각 튜브마다 검출하는 입자가 다르기 때문에, CPM(Count Per Minute) 단위를 uSv/h(Sieverts Per Hours) 단위로 바꾸기 위한 Conversion Factor가 모두 다르다. 그러므로 사용하는 튜브관이 어떤 것인지 정확하게 알아두어야 한다. GM관은 하드웨어 난수발생기로서 이용할 수도 있다. Background Radiation: 자연적으로 존재하는 자연 방사선, 즉 Background Radiation의 경우 J305β 튜브관을 사용할때 평균 15.6 CPM이 측정된다. (주변 상황에 따라 조금씩 달라짐) 라이브러리 추가하기#Wire : 기본 내장 라이브러리 LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치 schematic (for standalone)#">
+가이거 계수기#방사선을 측정할 수 있는 관으로 방사능 입자 하나하나를 셀 수 있다. 1908년 러더퍼드의 제자 요하네스 한스 빌헬름 가이거(Johannes Hans Wilhelm Geiger)가 알파선을 감지할 수 있는 감지기를 개발하였으며, 그 후 1928년 가이거와 가이거의 제자인 발터 뮐러가 함께 개량하여 모든 전리방사선을 감지할 수 있도록 만든 것이 현재의 가이거-뮐러 튜브(GM Tube)이다. 원리: 튜브는 비활성 기체가 충전된 상태이며 중심 전극(&#43;극, anode)과 관의 내벽(-극, cathode, 금속이나 흑연으로 코팅)으로 구성되어 있다. 여기에 수백V의 전압을 걸면, 관 안에 걸린 높은 전기장 때문에 이온은 음극을 향해 가속되고, 전자는 양극을 향해 가속되며 운동에너지를 얻게 되며 이동 중에 충돌한 기체분자도 함께 전이된다. 이렇게 가스 안에 하전입자의 붕괴가 일어나면 음극에서 양극을 향해 짧고 강한 펄스전류가 순간적으로 나타나 흐르게 된다. 이 펄스전류가 ‘스피커’를 지날때 반응음으로 가이거 계수기 특유의 ‘틱티티틱’하는 소리가 만들어지는데, 이것이 ‘방사선이 존재한다’는 상황을 알려주는 소리이다. 그리고 이 소리 1개음이 방사능 입자 1개에 대한 대응 신호가 된다. 오래된 방식이지만 오늘날에도 큰 변화 없이 이 원리를 응용하여 방사선을 측정하고 있다. 단점: 상당히 큰 펄스신호를 얻을 수 있지만, 이 전류의 강도는 방사선이 가진 에너지와 비례관계를 나타내는 것은 아니기때문에, 방사선이 가진 에너지를 측정하는 것은 불가능하다. (방사선의 에너지를 알기 위해서는 비례계수관을 사용해야 한다.) 또한 고준위 방사선의 경우에는 전류가 연속적으로 흐르게 되어 펄스의 횟수를 계수할 수 없게 되는 경우도 있다. (주로 500cps 이상의 경우) 이것을 막기 위해 전자의 흐름을 제어하는 별도의 장치를 부착하거나, 신틸레이터(scintillator)나 이온화 챔버 같은 다른 검출기로 계측한다. 가이거 카운터에 사용하는 튜브관은 여러 종류가 제조되고 있다. 대부분의 GM관은 감마선과 2.5MeV 이상의 베타선을 검출한다. 감마선의 검출 감도는 좋지는 않다. GM관 안의 가스밀도가 낮아서, 투과력이 높은 감마선은 상호작용을 일으키기 어렵기 때문이다. 중성자선은 가스로부터 전리하지 않기때문에 검출하지 못한다. 하지만, 관 안쪽을 붕소로 코팅하거나, 삼불화붕소 아니면 ³He가스를 충전하면 중성자선에도 반응하는 GM관을 만들 수 있다. 중성자는 붕소원자핵과 반응하여 알파선을 생성하거나, ³He원자와 반응하여 수소와 트리튬이온과 전자를 생성하므로 이 전하입자들이 붕괴를 발생시킨다. 각 튜브마다 검출하는 입자가 다르기 때문에, CPM(Count Per Minute) 단위를 uSv/h(Sieverts Per Hours) 단위로 바꾸기 위한 Conversion Factor가 모두 다르다. 그러므로 사용하는 튜브관이 어떤 것인지 정확하게 알아두어야 한다. GM관은 하드웨어 난수발생기로서 이용할 수도 있다. Background Radiation: 자연적으로 존재하는 자연 방사선, 즉 Background Radiation의 경우 J305β 튜브관을 사용할때 평균 15.6 CPM이 측정된다. (주변 상황에 따라 조금씩 달라짐) 라이브러리 추가하기#Wire : 기본 내장 라이브러리 LiquidCrystal I2C (by Frank de Brabander) 검색하여 설치 schematic (for standalone)#GM Monule GND 5V VIN Arduino GND 5V D2 VIN A4 A5 PowerJack 1602 LCD I2C GND VCC (VCC) SDA SCL 9V battery (&#43;)(-) 외부로 들고 다니면서 측정할 수 있도록 9V 배터리 1개를 추가하여 Arduino, 1602 LCD, GM Molule을 모두 작동시킬 수 있도록 하였다. sketch#/* -------------------------------------------------------------------------------------- * WHAT IS CPM? * CPM (counts per minute) is events quantity from Geiger Tube you get during one minute. * Usually it used to calculate a radiation level. * Different GM Tubes has different quantity of CPM for background. * Some tubes can produce about 10-50 CPM for normal background, * other GM Tube models produce 50-100 CPM or 0-5 CPM for same radiation level. * Please refer your GM Tube datasheet for more information. * Just for reference here, SBM-20 can generate about 10-50 CPM for normal background. * --------------------------------------------------------------------------------------*/ // This Sketch counts the number of pulses a minute. // Connect the GND on Arduino to the GND on the Geiger counter. // Connect the 5V on Arduino to the 5V on the Geiger counter. // Connect the VIN on the Geiger counter to the D2 on Arduino. // For I2C 1602 LCD : VCC-5V / GND-GND / SDA-A4 / SCL-A5 #include &lt;Wire.h&gt; #include &lt;LiquidCrystal_I2C.h&gt; // I2C address: 0x20~0x27 or 0x3F LiquidCrystal_I2C lcd(0x27, 16, 2); int cpm; float sievertshour; // for converting from cpm to sieverts/hour //float sieverts; // for converting from cpm to sieverts unsigned long counts; //variable for GM Tube events unsigned long previousMillis; //variable for measuring time #define LOG_PERIOD 60000 // count rate (1 minute) #define CONV_FACTOR 0.008120 // for GM tube of J305beta type void setup() { //setup counts = 0; Serial.begin(9600); pinMode(2, INPUT); lcd.init(); // lcd 초기화 lcd.backlight(); attachInterrupt(digitalPinToInterrupt(2), impulse, FALLING); //define external interrupts } void loop() { lcd.setCursor(0,0); lcd.print(&#34;CPM:&#34;); lcd.setCursor(9,0); lcd.print(&#34; #:&#34;); lcd.setCursor(12,0); lcd.print(counts); lcd.setCursor(0,1); lcd.print(&#34;uSv/h:&#34;); //lcd.print(&#34;uSv :&#34;); unsigned long currentMillis = millis(); if (currentMillis - previousMillis &gt; LOG_PERIOD) { //every 1 minute previousMillis = currentMillis; lcd.clear(); lcd.setCursor(5, 0); cpm = counts; lcd.print(cpm); //Display CPM Serial.println(cpm); sievertshour = cpm * CONV_FACTOR; //sieverts = sievertshour * 356 * 24; lcd.setCursor(7,1); lcd.print(sievertshour); //lcd.print(sieverts); counts = 0; } } void impulse() { // called every time there is a FALLING signal at pin 2 counts&#43;&#43;; }
+sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)#/*************ARDUINO SKETCH FOR GEIGER COUNTER****************** Author: RH Electronics www.radiohobbystore.com / www.mygeiger.org ***************************************************************** This sketch can be used with DIY Geiger Counter board. It allow to receive CPM data during minute. You can modify the sketch for your needs. ***************************************************************** LCD I2C Connection: LCD SDA -&gt; D10 = 1 LCD SCL -&gt; D9 = 3 VCC to &#43;3,3V and ground ****************************************************************/ // include the library code: #include &lt;LiquidCrystal_I2C.h&gt; #include &lt;SPI.h&gt; #include &lt;Wire.h&gt; #define LOG_PERIOD 15000 //Logging period in milliseconds, recommended value 15000-60000. #define MAX_PERIOD 60000 //Maximum logging period without modifying this sketch #define PERIOD 60000.0 // (60 sec) one minute measure period volatile unsigned long CNT; // variable for counting interrupts from dosimeter unsigned long counts; //variable for GM Tube events unsigned long cpm; //variable for CPM unsigned int multiplier; //variable for calculation CPM in this sketch unsigned long previousMillis; //variable for time measurement unsigned long dispPeriod; // variable for measuring time unsigned long CPM; // variable for measuring CPM const int inputPin = 4; // pin D2 is VIN on geiger counter // initialize the library with the numbers of the interface pins LiquidCrystal_I2C lcd(0x3F,20,4); void setup() { // setup Wire.begin(1,3); lcd.begin(20, 4); lcd.init(); // Turn on the backlight. lcd.backlight(); CNT = 0; CPM = 0; dispPeriod = 0; attachInterrupt(digitalPinToInterrupt(inputPin), GetEvent, FALLING); // Define interrupt D2 on falling edge } void loop() { // main loop lcd.setCursor(0,0); lcd.print(&#34;Berlin-Siemensstadt&#34;); lcd.setCursor(0,1); lcd.print(&#34; Geiger Counter &#34;); lcd.setCursor(0,2); // print text and CNT on the LCD lcd.print(&#34;CPM:&#34;); lcd.setCursor(0,3); lcd.print(&#34;CNT:&#34;); lcd.setCursor(5,3); lcd.print(CNT); if (millis() &gt;=dispPeriod &#43; PERIOD) { // If one minute is over cleanDisplay(); // Clear LCD // Do something about accumulated CNT events.... lcd.setCursor(5, 2); CPM = CNT; lcd.print(CPM); //Display CPM CNT = 0; dispPeriod = millis(); } } void GetEvent(){ // Get Event from Device CNT&#43;&#43;; } void cleanDisplay (){ // Clear LCD routine lcd.clear(); lcd.setCursor(0,0); lcd.setCursor(0,0); }(출처: rhelectronics.net)">
   <meta property="og:locale" content="ko_kr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -52,11 +274,11 @@ Used to detect radioactivity. ① Calorimeter ② Geiger Counter ③ Burette ④
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/arduino-geiger-counter/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -224,7 +446,25 @@ Used to detect radioactivity. ① Calorimeter ② Geiger Counter ③ Burette ④
 </ul>
 <br>
 <h4 id="schematic-for-standalone">schematic (for standalone)<a class="anchor" href="#schematic-for-standalone">#</a></h4>
-<p><img src="/image/Geiger-Counter.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 100%;">
+
+  <img src="/image/Geiger-Counter.png" alt="/image/Geiger-Counter.png">
+
+  
+  
+</figure>
 <table>
   <thead>
       <tr>
@@ -276,163 +516,163 @@ Used to detect radioactivity. ① Calorimeter ② Geiger Counter ③ Burette ④
 </ul>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/* --------------------------------------------------------------------------------------
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* WHAT IS CPM?
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* CPM (counts per minute) is events quantity from Geiger Tube you get during one minute.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Usually it used to calculate a radiation level.  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Different GM Tubes has different quantity of CPM for background.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Some tubes can produce about 10-50 CPM for normal background,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* other GM Tube models produce 50-100 CPM or 0-5 CPM for same radiation level.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Please refer your GM Tube datasheet for more information. 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Just for reference here, SBM-20 can generate about 10-50 CPM for normal background.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* --------------------------------------------------------------------------------------*/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// This Sketch counts the number of pulses a minute.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Connect the GND on Arduino to the GND on the Geiger counter.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Connect the 5V on Arduino to the 5V on the Geiger counter.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Connect the VIN on the Geiger counter to the D2 on Arduino.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// For I2C 1602 LCD : VCC-5V / GND-GND / SDA-A4 / SCL-A5
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Wire.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;LiquidCrystal_I2C.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// I2C address: 0x20~0x27 or 0x3F
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>LiquidCrystal_I2C <span style="color:#a6e22e">lcd</span>(<span style="color:#ae81ff">0x27</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">2</span>);  
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cpm;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> sievertshour; <span style="color:#75715e">// for converting from cpm to sieverts/hour
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//float sieverts; // for converting from cpm to sieverts  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> counts; <span style="color:#75715e">//variable for GM Tube events
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> previousMillis; <span style="color:#75715e">//variable for measuring time
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define LOG_PERIOD 60000 </span><span style="color:#75715e">// count rate (1 minute)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define CONV_FACTOR 0.008120 </span><span style="color:#75715e">// for GM tube of J305beta type
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() { <span style="color:#75715e">//setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  counts <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pinMode</span>(<span style="color:#ae81ff">2</span>, INPUT);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">init</span>();               <span style="color:#75715e">// lcd 초기화
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  lcd.<span style="color:#a6e22e">backlight</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">attachInterrupt</span>(<span style="color:#a6e22e">digitalPinToInterrupt</span>(<span style="color:#ae81ff">2</span>), impulse, FALLING); <span style="color:#75715e">//define external interrupts
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;CPM:&#34;</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34; #:&#34;</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">print</span>(counts);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>  lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;uSv/h:&#34;</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//lcd.print(&#34;uSv  :&#34;);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> currentMillis <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (currentMillis <span style="color:#f92672">-</span> previousMillis <span style="color:#f92672">&gt;</span> LOG_PERIOD) {   <span style="color:#75715e">//every 1 minute
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    previousMillis <span style="color:#f92672">=</span> currentMillis;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    lcd.<span style="color:#a6e22e">clear</span>();
-</span></span><span style="display:flex;"><span>    lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>    cpm <span style="color:#f92672">=</span> counts;
-</span></span><span style="display:flex;"><span>    lcd.<span style="color:#a6e22e">print</span>(cpm); <span style="color:#75715e">//Display CPM
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Serial.<span style="color:#a6e22e">println</span>(cpm);
-</span></span><span style="display:flex;"><span>    sievertshour <span style="color:#f92672">=</span> cpm <span style="color:#f92672">*</span> CONV_FACTOR;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//sieverts = sievertshour * 356 * 24;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>    lcd.<span style="color:#a6e22e">print</span>(sievertshour);
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//lcd.print(sieverts);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     
-</span></span><span style="display:flex;"><span>    counts <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">impulse</span>() { <span style="color:#75715e">// called every time there is a FALLING signal at pin 2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  counts<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/* --------------------------------------------------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="cm">* WHAT IS CPM?
+</span></span></span><span class="line"><span class="cl"><span class="cm">* CPM (counts per minute) is events quantity from Geiger Tube you get during one minute.
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Usually it used to calculate a radiation level.  
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Different GM Tubes has different quantity of CPM for background.
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Some tubes can produce about 10-50 CPM for normal background,
+</span></span></span><span class="line"><span class="cl"><span class="cm">* other GM Tube models produce 50-100 CPM or 0-5 CPM for same radiation level.
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Please refer your GM Tube datasheet for more information. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Just for reference here, SBM-20 can generate about 10-50 CPM for normal background.
+</span></span></span><span class="line"><span class="cl"><span class="cm">* --------------------------------------------------------------------------------------*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// This Sketch counts the number of pulses a minute.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Connect the GND on Arduino to the GND on the Geiger counter.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Connect the 5V on Arduino to the 5V on the Geiger counter.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Connect the VIN on the Geiger counter to the D2 on Arduino.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// For I2C 1602 LCD : VCC-5V / GND-GND / SDA-A4 / SCL-A5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;Wire.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;LiquidCrystal_I2C.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// I2C address: 0x20~0x27 or 0x3F
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LiquidCrystal_I2C</span> <span class="nf">lcd</span><span class="p">(</span><span class="mh">0x27</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">cpm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">sievertshour</span><span class="p">;</span> <span class="c1">// for converting from cpm to sieverts/hour
+</span></span></span><span class="line"><span class="cl"><span class="c1">//float sieverts; // for converting from cpm to sieverts  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">counts</span><span class="p">;</span> <span class="c1">//variable for GM Tube events
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">previousMillis</span><span class="p">;</span> <span class="c1">//variable for measuring time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define LOG_PERIOD 60000 </span><span class="c1">// count rate (1 minute)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define CONV_FACTOR 0.008120 </span><span class="c1">// for GM tube of J305beta type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">init</span><span class="p">();</span>               <span class="c1">// lcd 초기화
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">lcd</span><span class="p">.</span><span class="nf">backlight</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">attachInterrupt</span><span class="p">(</span><span class="nf">digitalPinToInterrupt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">impulse</span><span class="p">,</span> <span class="n">FALLING</span><span class="p">);</span> <span class="c1">//define external interrupts
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;CPM:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34; #:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">counts</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;uSv/h:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//lcd.print(&#34;uSv  :&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">currentMillis</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">currentMillis</span> <span class="o">-</span> <span class="n">previousMillis</span> <span class="o">&gt;</span> <span class="n">LOG_PERIOD</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//every 1 minute
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">previousMillis</span> <span class="o">=</span> <span class="n">currentMillis</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">lcd</span><span class="p">.</span><span class="nf">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cpm</span> <span class="o">=</span> <span class="n">counts</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">cpm</span><span class="p">);</span> <span class="c1">//Display CPM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">cpm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sievertshour</span> <span class="o">=</span> <span class="n">cpm</span> <span class="o">*</span> <span class="n">CONV_FACTOR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//sieverts = sievertshour * 356 * 24;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">sievertshour</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//lcd.print(sieverts);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     
+</span></span><span class="line"><span class="cl">    <span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">impulse</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// called every time there is a FALLING signal at pin 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">counts</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="sketch--for-esp8266-geigerzaehler-lcd-espino">sketch : for ESP8266 (Geigerzaehler-LCD-ESP.ino)<a class="anchor" href="#sketch--for-esp8266-geigerzaehler-lcd-espino">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/*************ARDUINO SKETCH FOR GEIGER COUNTER******************
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">Author: RH Electronics www.radiohobbystore.com / www.mygeiger.org
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*****************************************************************
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">This sketch can be used with DIY Geiger Counter board. It allow
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">to receive CPM data during minute. You can modify the sketch
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">for your needs.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*****************************************************************
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">LCD I2C Connection:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">LCD SDA -&gt; D10  =  1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">LCD SCL -&gt; D9   =  3
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">VCC to +3,3V and ground
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">****************************************************************/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// include the library code:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;LiquidCrystal_I2C.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Wire.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define LOG_PERIOD 15000  </span><span style="color:#75715e">//Logging period in milliseconds, recommended value 15000-60000.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define MAX_PERIOD 60000  </span><span style="color:#75715e">//Maximum logging period without modifying this sketch
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define PERIOD 60000.0 </span><span style="color:#75715e">// (60 sec) one minute measure period
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> CNT; <span style="color:#75715e">// variable for counting interrupts from dosimeter
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> counts;     <span style="color:#75715e">//variable for GM Tube events
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> cpm;        <span style="color:#75715e">//variable for CPM
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> multiplier;  <span style="color:#75715e">//variable for calculation CPM in this sketch
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> previousMillis;  <span style="color:#75715e">//variable for time measurement
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> dispPeriod; <span style="color:#75715e">// variable for measuring time
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> CPM; <span style="color:#75715e">// variable for measuring CPM
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> inputPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;  <span style="color:#75715e">// pin D2 is VIN on geiger counter
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// initialize the library with the numbers of the interface pins
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>LiquidCrystal_I2C <span style="color:#a6e22e">lcd</span>(<span style="color:#ae81ff">0x3F</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {               <span style="color:#75715e">// setup
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Wire.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">init</span>();
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Turn on the backlight.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lcd.<span style="color:#a6e22e">backlight</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>CNT <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>CPM <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>dispPeriod <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">attachInterrupt</span>(<span style="color:#a6e22e">digitalPinToInterrupt</span>(inputPin), GetEvent, FALLING); <span style="color:#75715e">// Define interrupt D2 on falling edge
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {           <span style="color:#75715e">// main loop
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Berlin-Siemensstadt&#34;</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;   Geiger Counter &#34;</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>); <span style="color:#75715e">// print text and CNT on the LCD
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;CPM:&#34;</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;CNT:&#34;</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">print</span>(CNT);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">millis</span>() <span style="color:#f92672">&gt;=</span>dispPeriod <span style="color:#f92672">+</span> PERIOD) { <span style="color:#75715e">// If one minute is over
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">cleanDisplay</span>(); <span style="color:#75715e">// Clear LCD
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Do something about accumulated CNT events....
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>CPM <span style="color:#f92672">=</span> CNT;
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">print</span>(CPM); <span style="color:#75715e">//Display CPM
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CNT <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>dispPeriod <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">GetEvent</span>(){           <span style="color:#75715e">// Get Event from Device
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CNT<span style="color:#f92672">++</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cleanDisplay</span> (){      <span style="color:#75715e">// Clear LCD routine
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lcd.<span style="color:#a6e22e">clear</span>();
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>lcd.<span style="color:#a6e22e">setCursor</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p>(출처: rhelectronics.net)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/*************ARDUINO SKETCH FOR GEIGER COUNTER******************
+</span></span></span><span class="line"><span class="cl"><span class="cm">Author: RH Electronics www.radiohobbystore.com / www.mygeiger.org
+</span></span></span><span class="line"><span class="cl"><span class="cm">*****************************************************************
+</span></span></span><span class="line"><span class="cl"><span class="cm">This sketch can be used with DIY Geiger Counter board. It allow
+</span></span></span><span class="line"><span class="cl"><span class="cm">to receive CPM data during minute. You can modify the sketch
+</span></span></span><span class="line"><span class="cl"><span class="cm">for your needs.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*****************************************************************
+</span></span></span><span class="line"><span class="cl"><span class="cm">LCD I2C Connection:
+</span></span></span><span class="line"><span class="cl"><span class="cm">LCD SDA -&gt; D10  =  1
+</span></span></span><span class="line"><span class="cl"><span class="cm">LCD SCL -&gt; D9   =  3
+</span></span></span><span class="line"><span class="cl"><span class="cm">VCC to +3,3V and ground
+</span></span></span><span class="line"><span class="cl"><span class="cm">****************************************************************/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// include the library code:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;LiquidCrystal_I2C.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Wire.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define LOG_PERIOD 15000  </span><span class="c1">//Logging period in milliseconds, recommended value 15000-60000.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define MAX_PERIOD 60000  </span><span class="c1">//Maximum logging period without modifying this sketch
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define PERIOD 60000.0 </span><span class="c1">// (60 sec) one minute measure period
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">volatile</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">CNT</span><span class="p">;</span> <span class="c1">// variable for counting interrupts from dosimeter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">counts</span><span class="p">;</span>     <span class="c1">//variable for GM Tube events
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">cpm</span><span class="p">;</span>        <span class="c1">//variable for CPM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">multiplier</span><span class="p">;</span>  <span class="c1">//variable for calculation CPM in this sketch
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">previousMillis</span><span class="p">;</span>  <span class="c1">//variable for time measurement
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">dispPeriod</span><span class="p">;</span> <span class="c1">// variable for measuring time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">CPM</span><span class="p">;</span> <span class="c1">// variable for measuring CPM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">inputPin</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>  <span class="c1">// pin D2 is VIN on geiger counter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// initialize the library with the numbers of the interface pins
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LiquidCrystal_I2C</span> <span class="nf">lcd</span><span class="p">(</span><span class="mh">0x3F</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>               <span class="c1">// setup
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Wire</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Turn on the backlight.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">lcd</span><span class="p">.</span><span class="nf">backlight</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CNT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CPM</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dispPeriod</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">attachInterrupt</span><span class="p">(</span><span class="nf">digitalPinToInterrupt</span><span class="p">(</span><span class="n">inputPin</span><span class="p">),</span> <span class="n">GetEvent</span><span class="p">,</span> <span class="n">FALLING</span><span class="p">);</span> <span class="c1">// Define interrupt D2 on falling edge
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>           <span class="c1">// main loop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;Berlin-Siemensstadt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;   Geiger Counter &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// print text and CNT on the LCD
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;CPM:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;CNT:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">CNT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nf">millis</span><span class="p">()</span> <span class="o">&gt;=</span><span class="n">dispPeriod</span> <span class="o">+</span> <span class="n">PERIOD</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// If one minute is over
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">cleanDisplay</span><span class="p">();</span> <span class="c1">// Clear LCD
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Do something about accumulated CNT events....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">CPM</span> <span class="o">=</span> <span class="n">CNT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">CPM</span><span class="p">);</span> <span class="c1">//Display CPM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">CNT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dispPeriod</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">GetEvent</span><span class="p">(){</span>           <span class="c1">// Get Event from Device
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">CNT</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">cleanDisplay</span> <span class="p">(){</span>      <span class="c1">// Clear LCD routine
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">lcd</span><span class="p">.</span><span class="nf">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">lcd</span><span class="p">.</span><span class="nf">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><p>(출처: rhelectronics.net)</p>
 <br>
 <br>
 <h3 id="conversion-index--background-radiation">Conversion Index &amp; Background Radiation<a class="anchor" href="#conversion-index--background-radiation">#</a></h3>
@@ -574,7 +814,25 @@ Used to detect radioactivity. ① Calorimeter ② Geiger Counter ③ Burette ④
 </ul>
 <br>
 <h4 id="radiation-cartooon">Radiation Cartooon<a class="anchor" href="#radiation-cartooon">#</a></h4>
-<p><img src="/image/RADIATION-Poster-Cartoon.jpg" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/RADIATION-Poster-Cartoon.jpg" alt="/image/RADIATION-Poster-Cartoon.jpg">
+
+  
+  
+</figure>
 <br>
 <br>
 <h3 id="electrical-information-for-gm-tubes">Electrical Information for GM Tubes<a class="anchor" href="#electrical-information-for-gm-tubes">#</a></h3>

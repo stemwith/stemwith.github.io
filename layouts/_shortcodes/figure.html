@@ -1,0 +1,21 @@
+{{/* src, width, class, alt, caption 등의 파라미터를 받습니다. */}}
+{{ $src := .Get "src" }}
+{{ $width := .Get "width" }}
+{{ $class := .Get "class" }}
+{{ $alt := .Get "alt" | default $src }}
+{{ $caption := .Get "caption" }}
+
+<figure
+  {{/* class 파라미터가 있으면 class 속성을 추가합니다. */}}
+  {{ with $class }}class="{{ . }}"{{ end }}
+
+  {{/* width 파라미터가 있으면 style 속성을 추가합니다. */}}
+  {{ with $width }}style="width: {{ . }};"{{ end }}>
+
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}">
+
+  {{/* caption 파라미터가 있으면 figcaption을 추가합니다. */}}
+  {{ with $caption }}
+    <figcaption>{{ . | markdownify }}</figcaption>
+  {{ end }}
+</figure>

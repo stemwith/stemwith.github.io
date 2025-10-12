@@ -14,7 +14,7 @@ Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의
 
 #### schematic
 
-![](/image/BT-03.jpg)
+{{< figure src="/image/BT-03.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -50,7 +50,7 @@ void loop()
 
 1. 이제 Google Playstore를 통해서 스마트폰에 Bluetooth Serial Controller 앱을 설치합니다. (iOS는 유사한 프로그램으로 설치)
 
-{{< figure src="/image/BTserialapp-01.png" style="zoom: 33%;" class="center" >}}
+{{< figure src="/image/BTserialapp-01.png" width="33%" class="center" >}}
 
 ​    비슷한 역할을 하는 수많은 앱들이 있는데, 여러 앱을 설치하고 사용해본 결과, 이 앱이 사용하기에 유연함을 갖고 있는 것 같더군요.
 
@@ -64,25 +64,25 @@ void loop()
 
 2. 설치 후 처음 실행을 하면, LANDSCAPE 모드(가로모드)로 실행이 되는데요. 그대로 사용해도 무방하지만 PORTRAIT 모드(세로 모드)로 바꿔보겠습니다. 먼저 PREFERENCE를 누르세요.
 
-{{< figure src="/image/BTserialapp-03.png" width="33%" class="center" >}}
+{{< figure src="/image/BTserialapp-03.png" width="75%" class="center" >}}
 
 <br>
 
 3. 그러면 아래 화면이 뜹니다. 아무곳이나 누르고 위로 스크롤을 하면 아래에 숨겨져 있는 메뉴가 나타나게 되는데요.
 
-{{< figure src="/image/BTserialapp-04.png" width="33%" class="center" >}}
+{{< figure src="/image/BTserialapp-04.png" width="75%" class="center" >}}
 
 <br>
 
 4. OPTION - Orientation을 선택한 뒤,
 
-{{< figure src="/image/BTserialapp-05.png" width="33%" class="center" >}}
+{{< figure src="/image/BTserialapp-05.png" width="75%" class="center" >}}
 
 <br>
 
 5. PORTRAIT를 누릅니다.
 
-{{< figure src="/image/BTserialapp-06.png" width="33%" class="center" >}}
+{{< figure src="/image/BTserialapp-06.png" width="75%" class="center" >}}
 
 <br>
 
@@ -140,7 +140,7 @@ void loop()
 
 ​     시리얼 모니터에 Test가 출력됩니다. 즉, TERMINAL에서 입력한 Test라는 글자가 HC-06을 통해, 아두이노와 연결되어 있는 컴퓨터의 시리얼 모니터에 출력된 것이에요.
 
-![](/image/BTserialapp-15.jpg)
+{{< figure src="/image/BTserialapp-15.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -152,5 +152,5 @@ void loop()
 
 ​    스마트폰의 TERMINAL에 Good morning! 이 출력됩니다.
 
-![](/image/BTserialapp-17.jpg)
+{{< figure src="/image/BTserialapp-17.jpg" width="75%" class="center" >}}
 

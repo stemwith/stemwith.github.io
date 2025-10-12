@@ -13,7 +13,7 @@ tags:
 
 #### schematic
 
-{{< figure src="/image/remote.png" width="80%" class="center" >}}       {{< figure src="/image/remote-controller.png" style="zoom: 67%;" class="center" >}}
+{{< figure src="/image/remote.png" width="75%" class="center" >}}       {{< figure src="/image/remote-controller.png" width="15%" class="center" >}}
 
 위 그림에서 IR 리시버에 있는 핀은, IR모듈이 아닌 단일 부품형태의 리시버 일때 핀의 순서이다.
 
@@ -47,7 +47,7 @@ tags:
   *   "IRremote by Armin Joachimsmeyer" 라이브러리 설치/업데이트
 
 
-![](/image/remote-library.png)
+{{< figure src="/image/remote-library.png" width="75%" class="center" >}}
 
 * **스케치**\> **라이브러리 포함하기**\> **IRremote** 를 선택하면, IR remote 기능을 사용하는데 필요한 라이브러리가 스케치에 include 된다.
 
@@ -96,7 +96,7 @@ void loop() {
 
 ##### serial monitor
 
-![](/image/remote-hex2.png)
+{{< figure src="/image/remote-hex2.png" width="75%" class="center" >}}
 
 출력값 중에서 앞부분의 **0x**를 제외한 6자리의 값(아래 그림에서 **FFA25D**)이 방금 누른 버튼의 고유 값이다.
 
@@ -281,7 +281,7 @@ void loop() {
 
 #### schematic
 
-![](/image/remote-servo.png)
+{{< figure src="/image/remote-servo.png" width="75%" class="center" >}}
 
 <br>
 
@@ -395,15 +395,15 @@ LSB-first 형태의 디코더 데이터를 사용해야하는 경우에는 라�
    * 아두이노 UNO의 경우 DEFAULT/AVR 플랫폼으로 정의되어 있으므로 IR Input핀은 2번을 사용한다. (아래 3번과정 참고: 시리얼 모니터를 열면, 연결된 보드에 따라 몇번 핀에 연결해야하는지 출력이 되므로, 이 과정에서 Signal을 어디에 연결해야하는지 확인할 필요는 없다.)
    * ESP32의 경우 IR Input이 GPIO 15번으로 지정되어 있다.
 
-![](/image/remote-pindefinitionandmore.png)
+{{< figure src="/image/remote-pindefinitionandmore.png" width="75%" class="center" >}}
 
 3. 스케치를 업로드 한 후, 시리얼 모니터를 열고 Baud rate를 115200으로 설정한다. (Signal이 연결된 핀의 번호가 맞는지 확인)
 
-![](/image/remote-serialmonitor.png)
+{{< figure src="/image/remote-serialmonitor.png" width="75%" class="center" >}}
 
 4. 리모컨의 버튼을 IR수신부를 향하여 누르면, 3줄이 출력됨
    * 첫번째 라인에 출력되는 Raw-Data 부분에서 앞부분의 **0x**를 제외한 8자리의 값(아래 그림에서 **BA45FF00**)이 방금 누른 버튼의 고유 값이다.
    * 각 버튼을 차례대로 누르면서 버튼의 고유값을 기록한다. [다운로드](/attach/ir-remote-hex.pdf)
 
-![](/image/remote-hex.png)
+{{< figure src="/image/remote-hex.png" width="75%" class="center" >}}
 

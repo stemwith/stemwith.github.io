@@ -5,7 +5,6 @@ categories: ["arduino"]
 toc: true
 tags:
 ---
-
 ## FND의 종류
 * FND는 Anode형과 Cathode형으로 분류되며, 이 중 Anode형이 주로 사용되고 있는데요. Anode형은 중앙핀이 VCC이며, Cathode형은 GND입니다. 우리가 사용하는 것은 5611BH로 Common Anode형입니다.
 
@@ -14,8 +13,8 @@ tags:
 <br>
 
 ## 숫자표시 방법
-{{< figure src="/image/7segment-01.jpg" width="50%" class="center" >}}
-![](/image/7segment-02.jpg)
+{{< figure src="/image/7segment-01.jpg" width="25%" class="center" >}}
+{{< figure src="/image/7segment-02.jpg" width="50%" class="center" >}}
 
 <br>
 
@@ -66,7 +65,7 @@ tags:
 
 ## schematic
 아래 회로에서는 330Ω 저항 1개를 VCC에 직접 연결하여 사용하였습니다. 상단부와 하단부 중앙핀은 서로 연결이 되어 있으므로, 둘 중 하나만 +5V에 연결하여 사용합니다.
-![](/image/7segment-03.jpg)
+{{< figure src="/image/7segment-03.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -76,7 +75,7 @@ tags:
 >이러한 문제를 해결하기 위해서는 각 LED마다 저항을 따로 사용하여야 합니다. 아래 그림과 같이 220~330Ω 저항 8개를 사용하는 것이 원칙이며, 이렇게 하면 밝기를 고르게 유지할 수 있습니다.
 
 
-![](/image/7segment-04.jpg)
+{{< figure src="/image/7segment-04.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -391,7 +390,7 @@ void segLED(int num) {                 // num값을 넘겨받아
 아래 회로를 예로들면 아두이노의 Digital 2~9번핀이 각각 두개의 FND로 병렬연결 되어 있고, 10번핀은 10의 자리를 나타내는 FND1에, 11번 핀은 1의 자리를 나타내는 FND2에 연결되어 있는 것을 볼 수 있습니다. 이 회로를 통해 10번핀을 LOW, 11번핀을 HIGH로 두면 FND1이 작동하고, 마찬가지로 10번핀을 HIGH, 11번핀을 LOW로 두면 FND2가 작동하게 되죠. 이러한 방식으로 2개의 FND를 10개의 핀으로 작동할 수 있게 되는 것입니다.
 
 
-![](/image/7segment-05.jpg)
+{{< figure src="/image/7segment-05.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -472,12 +471,12 @@ void showDigit(int num, int digit) {              // num값과 digit(0→1의 �
 
 # 4 FND
 4개의 FND를 Dynamic 방식으로 구동하기 위해서는 8개의 데이터 핀과 4개의 전원부 핀이 필요합니다.
-{{< figure src="/image/7segment-06.jpg" style="zoom: 67%;" class="center" >}}
+{{< figure src="/image/7segment-06.jpg" width="75%" class="center" >}}
 
 <br>
 
 ## schematic
-![](/image/7segment-07.jpg)
+{{< figure src="/image/7segment-07.jpg" width="75%" class="center" >}}
 
 <br>
 

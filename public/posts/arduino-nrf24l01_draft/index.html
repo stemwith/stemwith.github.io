@@ -13,7 +13,33 @@ library#
 스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리&gt; nRF24L01 검색한 후, RF24 by TMRh20, Avamander 설치
 
 
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
 schematic: nRF24L01 receiver with ESP32#
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
@@ -68,7 +94,21 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 
 
 schematic: nRF24L01 receiver with Arduino Uno#
-">
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/arduino-nrf24l01_draft/">
@@ -76,7 +116,7 @@ schematic: nRF24L01 receiver with Arduino Uno#
   <meta property="og:title" content="Arduino, nRF24L01 무선통신">
   <meta property="og:description" content="nRF24L01#library#스케치&gt; 라이브러리 포함하기&gt; 라이브러리 관리&gt; nRF24L01 검색한 후, RF24 by TMRh20, Avamander 설치
 schematic: nRF24L01 receiver with ESP32#※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
-pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배열)#ESP32 3V3 IO5 IO23 None ↑ ↑ ↑ ↑ nRF24L01 VCC &#43; 10uF CSN MOSI IRQ (위에서 보이는 핀배열) GND &#43; 10uF CE SCK MISO ↓ ↓ ↓ ↓ ESP32 GND IO4 IO18 IO19 schematic: nRF24L01 receiver with Arduino Uno#">
+pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배열)#ESP32 3V3 IO5 IO23 None ↑ ↑ ↑ ↑ nRF24L01 VCC &#43; 10uF CSN MOSI IRQ (위에서 보이는 핀배열) GND &#43; 10uF CE SCK MISO ↓ ↓ ↓ ↓ ESP32 GND IO4 IO18 IO19 schematic: nRF24L01 receiver with Arduino Uno#※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.">
   <meta property="og:locale" content="ko_kr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -88,11 +128,11 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/arduino-nrf24l01_draft/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -238,10 +278,46 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
   <div class="book-post-content markdown-inner"><h3 id="nrf24l01">nRF24L01<a class="anchor" href="#nrf24l01">#</a></h3>
 <h4 id="library">library<a class="anchor" href="#library">#</a></h4>
 <p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong>&gt; <strong>nRF24L01</strong> 검색한 후, <strong>RF24 by TMRh20, Avamander</strong> 설치</p>
-<p><img src="../image/n/ESP32-nRF24L01-02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-02.png" alt="/image/n/ESP32-nRF24L01-02.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="schematic-nrf24l01-receiver-with-esp32">schematic: nRF24L01 receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-receiver-with-esp32">#</a></h4>
-<p><img src="../image/n/ESP32-nRF24L01-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-01.png" alt="/image/n/ESP32-nRF24L01-01.png">
+
+  
+  
+</figure>
 <p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
 <br>
 <h5 id="pinmap-안테나를-위로-향하게-두고-모듈을-위에서-내려다-볼때의-핀배열">pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼때의 핀배열)<a class="anchor" href="#pinmap-%ec%95%88%ed%85%8c%eb%82%98%eb%a5%bc-%ec%9c%84%eb%a1%9c-%ed%96%a5%ed%95%98%ea%b2%8c-%eb%91%90%ea%b3%a0-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%9c%84%ec%97%90%ec%84%9c-%eb%82%b4%eb%a0%a4%eb%8b%a4-%eb%b3%bc%eb%95%8c%ec%9d%98-%ed%95%80%eb%b0%b0%ec%97%b4">#</a></h5>
@@ -295,55 +371,73 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 </table>
 <br>
 <h4 id="schematic-nrf24l01-receiver-with-arduino-uno">schematic: nRF24L01 receiver with Arduino Uno<a class="anchor" href="#schematic-nrf24l01-receiver-with-arduino-uno">#</a></h4>
-<p><img src="../image/n/UNO-nRF24L01-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/UNO-nRF24L01-01.png" alt="/image/n/UNO-nRF24L01-01.png">
+
+  
+  
+</figure>
 <p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
 <br>
 <h4 id="sketch-nrf24l01-receiver">sketch: nRF24L01 receiver<a class="anchor" href="#sketch-nrf24l01-receiver">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">//Libraries for NRF24L01+ module.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//RF24 object with two pins defined with arguments. CE: 4, CSN: 5
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//Address of the pipe. 40 bit long, you can choose this freely.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//Remember to use different address in different projects.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// float temphumi[2];
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#66d9ef">uint16_t</span> temphumi[<span style="color:#ae81ff">2</span>];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// for temperature, humidity sensor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;DHT.h&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DHTPIN    13         </span><span style="color:#75715e">// data pin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define DHTTYPE   DHT11      </span><span style="color:#75715e">// change to DHT11 if you&#39;re using the DHT11
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                             <span style="color:#75715e">// AM2301(DHT21) -&gt; DHT21, AM2302(DHT22) -&gt; DHT22
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DHT <span style="color:#a6e22e">dht</span>(DHTPIN, DHTTYPE);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Start the radio
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Open reading pipe with given address and start listening for incoming data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  radio.<span style="color:#a6e22e">openReadingPipe</span>(<span style="color:#ae81ff">1</span>, address);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">startListening</span>();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  dht.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//If data is available in radio&#39;s buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span>(radio.<span style="color:#a6e22e">available</span>()) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//While the data is available...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (radio.<span style="color:#a6e22e">available</span>()) {
-</span></span><span style="display:flex;"><span>      <span style="color:#75715e">//Update temperature -variable with data from the radio module
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      radio.<span style="color:#a6e22e">read</span>(<span style="color:#f92672">&amp;</span>temphumi, <span style="color:#66d9ef">sizeof</span>(temphumi));
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;temperature: &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(temphumi[<span style="color:#ae81ff">0</span>]);
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;,  humidity: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(temphumi[<span style="color:#ae81ff">1</span>]);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">2000</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//Libraries for NRF24L01+ module.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//RF24 object with two pins defined with arguments. CE: 4, CSN: 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//Address of the pipe. 40 bit long, you can choose this freely.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Remember to use different address in different projects.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// float temphumi[2];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">uint16_t</span> <span class="n">temphumi</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for temperature, humidity sensor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;DHT.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define DHTPIN    13         </span><span class="c1">// data pin
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define DHTTYPE   DHT11      </span><span class="c1">// change to DHT11 if you&#39;re using the DHT11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                             <span class="c1">// AM2301(DHT21) -&gt; DHT21, AM2302(DHT22) -&gt; DHT22
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">DHT</span> <span class="nf">dht</span><span class="p">(</span><span class="n">DHTPIN</span><span class="p">,</span> <span class="n">DHTTYPE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//Start the radio
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//Open reading pipe with given address and start listening for incoming data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">radio</span><span class="p">.</span><span class="nf">openReadingPipe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">startListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="n">dht</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//If data is available in radio&#39;s buffer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span><span class="p">(</span><span class="n">radio</span><span class="p">.</span><span class="nf">available</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//While the data is available...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">radio</span><span class="p">.</span><span class="nf">available</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">//Update temperature -variable with data from the radio module
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">radio</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temphumi</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">temphumi</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;temperature: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">temphumi</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;,  humidity: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">temphumi</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h5 id="long-long-address--0x1234abcdefll">long long address = 0x1234ABCDEFLL;<a class="anchor" href="#long-long-address--0x1234abcdefll">#</a></h5>
 <ul>
 <li>receiver와 transmitter의 페어링을 위한 파이프(주소)를 지정함. (receiver와 transmitter의 파이프(주소)는 동일해야 함)</li>
@@ -380,70 +474,106 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 <ul>
 <li>
 <p>먼저 **DHT sensor library (by Adafruit)**를 검색하여 <strong>설치</strong>를 누르면,</p>
-<p><img src="../image/dht22-03.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/dht22-03.png" alt="/image/dht22-03.png">
+  
+    
+    
+  </figure>
 </li>
 </ul>
 <ul>
 <li>
 <p><strong>Dependencies for library DHT sensor library</strong> 창이 나오면 <strong>Install all</strong>을 클릭하여 2개의 라이브러리를 동시에 설치</p>
-<p><img src="../image/dht22-04.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/dht22-04.png" alt="/image/dht22-04.png">
+  
+    
+    
+  </figure>
 </li>
 </ul>
 <br>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">//Libraries for NRF24L01+ module.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//RF24 object with two pins defined with arguments. CE: 4, CSN: 5
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//Address of the pipe. 40 bit long, you can choose this freely.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//Remember to use different address in different projects.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// for temperature, humidity sensor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;DHT.h&#34;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define DHTPIN    13         </span><span style="color:#75715e">// data pin
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define DHTTYPE   DHT22      </span><span style="color:#75715e">// change to DHT11 if you&#39;re using the DHT11
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//float temphumi[2];         // AM2301(DHT21) -&gt; DHT21, AM2302(DHT22) -&gt; DHT22
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint16_t</span> temphumi[<span style="color:#ae81ff">2</span>];
-</span></span><span style="display:flex;"><span>DHT <span style="color:#a6e22e">dht</span>(DHTPIN, DHTTYPE);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Start the radio
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">openWritingPipe</span>(address);
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//RF24_PA_MIN, RF24_PA_LOW, RF24_PA_HIGH and RF24_PA_MAX
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//NRF24L01: -18dBm, -12dBm,-6dBM, and 0dBm
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  radio.<span style="color:#a6e22e">setPALevel</span>(RF24_PA_LOW);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">stopListening</span>();
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  dht.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Get temperature from the sensor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">uint16_t</span> t <span style="color:#f92672">=</span> dht.<span style="color:#a6e22e">readTemperature</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> h <span style="color:#f92672">=</span> dht.<span style="color:#a6e22e">readHumidity</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  temphumi[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> t;
-</span></span><span style="display:flex;"><span>  temphumi[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> h;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Send the temperature wirelessly, print error if failed
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>radio.<span style="color:#a6e22e">write</span>(<span style="color:#f92672">&amp;</span>temphumi, <span style="color:#66d9ef">sizeof</span>(temphumi))) {
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#a6e22e">F</span>(<span style="color:#e6db74">&#34;Sending temperature failed&#34;</span>));
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Check if any reads failed and exit early (to try again).
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isnan</span>(h) <span style="color:#f92672">||</span> <span style="color:#a6e22e">isnan</span>(t)) {
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#a6e22e">F</span>(<span style="color:#e6db74">&#34;Failed to read from DHT sensor!&#34;</span>));
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">2000</span>);
-</span></span><span style="display:flex;"><span>  } 
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//Libraries for NRF24L01+ module.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//RF24 object with two pins defined with arguments. CE: 4, CSN: 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//Address of the pipe. 40 bit long, you can choose this freely.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Remember to use different address in different projects.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for temperature, humidity sensor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&#34;DHT.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define DHTPIN    13         </span><span class="c1">// data pin
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define DHTTYPE   DHT22      </span><span class="c1">// change to DHT11 if you&#39;re using the DHT11
+</span></span></span><span class="line"><span class="cl"><span class="c1">//float temphumi[2];         // AM2301(DHT21) -&gt; DHT21, AM2302(DHT22) -&gt; DHT22
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">uint16_t</span> <span class="n">temphumi</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">DHT</span> <span class="nf">dht</span><span class="p">(</span><span class="n">DHTPIN</span><span class="p">,</span> <span class="n">DHTTYPE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//Start the radio
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">openWritingPipe</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//RF24_PA_MIN, RF24_PA_LOW, RF24_PA_HIGH and RF24_PA_MAX
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//NRF24L01: -18dBm, -12dBm,-6dBM, and 0dBm
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">radio</span><span class="p">.</span><span class="nf">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">stopListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="n">dht</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//Get temperature from the sensor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">uint16_t</span> <span class="n">t</span> <span class="o">=</span> <span class="n">dht</span><span class="p">.</span><span class="nf">readTemperature</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">h</span> <span class="o">=</span> <span class="n">dht</span><span class="p">.</span><span class="nf">readHumidity</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">temphumi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">temphumi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//Send the temperature wirelessly, print error if failed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">radio</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temphumi</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">temphumi</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="nf">F</span><span class="p">(</span><span class="s">&#34;Sending temperature failed&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">  <span class="c1">// Check if any reads failed and exit early (to try again).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nf">isnan</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">||</span> <span class="nf">isnan</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="nf">F</span><span class="p">(</span><span class="s">&#34;Failed to read from DHT sensor!&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h5 id="long-long-address--0x1234abcdefll-1">long long address = 0x1234ABCDEFLL;<a class="anchor" href="#long-long-address--0x1234abcdefll-1">#</a></h5>
 <ul>
 <li>receiver와 transmitter의 페어링을 위한 파이프(주소)를 지정함. (receiver와 transmitter의 파이프(주소)는 동일해야 함)</li>
@@ -462,7 +592,25 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 <h4 id="schematic-nrf24l01-transmitter-with-esp32">schematic: nRF24L01 transmitter with ESP32<a class="anchor" href="#schematic-nrf24l01-transmitter-with-esp32">#</a></h4>
 <p>스케치를 업로드하고, 컴퓨터와 연결한 USB선을 분리한 뒤, 독립하여 동작하도록 외부 전원을 연결한다.</p>
 <p>※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.</p>
-<p><img src="../image/n/ESP32-nRF24L01-03.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 100%;">
+
+  <img src="/image/n/ESP32-nRF24L01-03.png" alt="/image/n/ESP32-nRF24L01-03.png">
+
+  
+  
+</figure>
 <br>
 <ul>
 <li>ESP32를 외부전원을 통해 동작시키려면, ESP32의 5V/GND 단자를 사용하여 5<del>12V의 전압(최적 전압은 6</del>7V)을 공급하여야 한다.</li>
@@ -473,15 +621,69 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 <ul>
 <li>18650 소켓에 F단자를 납땜하여 연결한다. (<strong>M단자는 서로 맞닿을 경우 과열 위험이 있으므로 사용금지!</strong>)</li>
 </ul>
-<p><img src="../image/n/ESP32-nRF24L01-04.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-04.png" alt="/image/n/ESP32-nRF24L01-04.png">
+
+  
+  
+</figure>
 <br>
 <ul>
 <li>DC-DC 5V 승압 모듈에 아래 그림과 같이 납땜하여 연결한다. (USB단자는 사용하지 않음)</li>
 </ul>
-<p><img src="../image/n/ESP32-nRF24L01-06.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/n/ESP32-nRF24L01-06.png" alt="/image/n/ESP32-nRF24L01-06.png">
+
+  
+  
+</figure>
 <br>
 <p>※ USB단자가 있는 5V 승압 모듈을 사용하였지만, USB단자가 없는 승압모듈을 사용하면 더 깔끔하게 제작 가능하다.</p>
-<p><img src="../image/n/ESP32-nRF24L01-05.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/n/ESP32-nRF24L01-05.png" alt="/image/n/ESP32-nRF24L01-05.png">
+
+  
+  
+</figure>
 <br>
 <ul>
 <li>위 사진과 같이 납땜한 승압 모듈을 18650배터리와 ESP32에 연결한다.</li>
@@ -519,7 +721,25 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 </table>
 <br>
 <h4 id="result">result<a class="anchor" href="#result">#</a></h4>
-<p><img src="../image/n/ESP32-nRF24L01-07.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-07.png" alt="/image/n/ESP32-nRF24L01-07.png">
+
+  
+  
+</figure>
 <br>
 <br>
 <h3 id="nrf24l01--dual-joystick">nRF24L01 + dual joystick<a class="anchor" href="#nrf24l01--dual-joystick">#</a></h3>
@@ -527,7 +747,25 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 <br>
 <h4 id="schematic-nrf24l01-dual-joystick-transmitter-with-esp32">schematic: nRF24L01 dual joystick transmitter with ESP32<a class="anchor" href="#schematic-nrf24l01-dual-joystick-transmitter-with-esp32">#</a></h4>
 <p>하나의 조이스틱으로도 일반적인 조정이 가능하지만 시판되는 조정기의 경우 dual joystick(혹은 dual channel)을 사용하는 형태가 많으므로, 여기서도 이와 같은 형태의 transmitter를 만들어 보자.</p>
-<p><img src="../image/n/ESP32-nRF24L01-08.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 100%;">
+
+  <img src="/image/n/ESP32-nRF24L01-08.png" alt="/image/n/ESP32-nRF24L01-08.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="pinmap">pinmap<a class="anchor" href="#pinmap">#</a></h5>
 <table>
@@ -563,62 +801,62 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 </table>
 <br>
 <h4 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// for no interference, two joysticks must be used with each other ADC!  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// one joystick use ADC1: GPIO 36,39,32,33,34,35
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the other must use ADC2: GPIO 4,0,2,15,13,12,14,27,25,26
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_x_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;           <span style="color:#75715e">// Left_Right GPIO25
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_y_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;           <span style="color:#75715e">// Forward_Back GPIO32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> Value{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_x;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_y;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Value data;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">void ResetData(){
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_x = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_y = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">openWritingPipe</span>(address);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setPALevel</span>(RF24_PA_MIN);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">stopListening</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//ResetData();   
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  data.value_x <span style="color:#f92672">=</span> <span style="color:#a6e22e">Jstick</span>(Jstick_x_pin);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>  data.value_y <span style="color:#f92672">=</span> <span style="color:#a6e22e">Jstick</span>(Jstick_y_pin);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">write</span>(<span style="color:#f92672">&amp;</span>data, <span style="color:#66d9ef">sizeof</span>(Value));
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Serial.print(&#34;x: &#34;); Serial.print(data.value_x);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//Serial.print(&#34;, y: &#34;); Serial.println(data.value_y);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint16_t</span> <span style="color:#a6e22e">Jstick</span>(<span style="color:#66d9ef">int</span> Jstick_Pin){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">analogRead</span>(Jstick_Pin);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// for no interference, two joysticks must be used with each other ADC!  
+</span></span></span><span class="line"><span class="cl"><span class="c1">// one joystick use ADC1: GPIO 36,39,32,33,34,35
+</span></span></span><span class="line"><span class="cl"><span class="c1">// the other must use ADC2: GPIO 4,0,2,15,13,12,14,27,25,26
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_x_pin</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>           <span class="c1">// Left_Right GPIO25
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_y_pin</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>           <span class="c1">// Forward_Back GPIO32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Value</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Value</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">void ResetData(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_x = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_y = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">openWritingPipe</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_MIN</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">stopListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//ResetData();   
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span><span class="p">.</span><span class="n">value_x</span> <span class="o">=</span> <span class="nf">Jstick</span><span class="p">(</span><span class="n">Jstick_x_pin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span><span class="p">.</span><span class="n">value_y</span> <span class="o">=</span> <span class="nf">Jstick</span><span class="p">(</span><span class="n">Jstick_y_pin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Value</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">//Serial.print(&#34;x: &#34;); Serial.print(data.value_x);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//Serial.print(&#34;, y: &#34;); Serial.println(data.value_y);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">uint16_t</span> <span class="nf">Jstick</span><span class="p">(</span><span class="kt">int</span> <span class="n">Jstick_Pin</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">Jstick_Pin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h5 id="joystick-gpio의-선정">Joystick GPIO의 선정<a class="anchor" href="#joystick-gpio%ec%9d%98-%ec%84%a0%ec%a0%95">#</a></h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// for no interference, two joysticks must be used with each other ADC! 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// one joystick use ADC1: GPIO 36,39,32,33,34,35
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the other must use ADC2: GPIO 4,0,2,15,13,12,14,27,25,26
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_x_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;           <span style="color:#75715e">// Left_Right GPIO25
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Jstick_y_pin <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;           <span style="color:#75715e">// Forward_Back GPIO32
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// for no interference, two joysticks must be used with each other ADC! 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// one joystick use ADC1: GPIO 36,39,32,33,34,35
+</span></span></span><span class="line"><span class="cl"><span class="c1">// the other must use ADC2: GPIO 4,0,2,15,13,12,14,27,25,26
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_x_pin</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>           <span class="c1">// Left_Right GPIO25
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Jstick_y_pin</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>           <span class="c1">// Forward_Back GPIO32
 </span></span></span></code></pre></div><ul>
 <li>2개의 joystick을 동시에 사용할때 동일한 ADC의 GPIO를 사용하면, 한쪽 joystick을 움직여 값을 변화시킬 경우 다른 한쪽 joystick을 움직이지 않았음에도 동시에 값이 일부 (소폭) 변화하는 현상이 나타났다.</li>
 <li>이 문제를 해결하기 위해 각각의 joystick을 서로 다른 ADC에 연결한다.
@@ -637,248 +875,392 @@ pinmap: (안테나를 위로 향하게 두고, 모듈을 위에서 내려다 볼
 </ul>
 <br>
 <h4 id="schematic-nrf24l01-receiver-with-esp32-1">schematic: nRF24L01 receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-receiver-with-esp32-1">#</a></h4>
-<p><img src="../image/n/ESP32-nRF24L01-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-01.png" alt="/image/n/ESP32-nRF24L01-01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="schematic-nrf24l01-receiver-with-arduino-uno-1">schematic: nRF24L01 receiver with Arduino UNO<a class="anchor" href="#schematic-nrf24l01-receiver-with-arduino-uno-1">#</a></h4>
 <p>위에서 사용한 Arduino UNO receiver와 동일함</p>
-<p><img src="../image/n/UNO-nRF24L01-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/UNO-nRF24L01-01.png" alt="/image/n/UNO-nRF24L01-01.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="sketch-1">sketch<a class="anchor" href="#sketch-1">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">9</span> ,<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> Value{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_x;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_y;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Value data;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">void ResetData(){
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_x = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_y = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">openReadingPipe</span>(<span style="color:#ae81ff">1</span>, address);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setPALevel</span>(RF24_PA_LOW);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">startListening</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> lastRecvTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">recvData</span>(){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>( radio.<span style="color:#a6e22e">available</span>()){
-</span></span><span style="display:flex;"><span>    radio.<span style="color:#a6e22e">read</span>(<span style="color:#f92672">&amp;</span>data, <span style="color:#66d9ef">sizeof</span>(Value));
-</span></span><span style="display:flex;"><span>    lastRecvTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();  
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">recvData</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> now <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>( now <span style="color:#f92672">-</span> lastRecvTime <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>){
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//ResetData();
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;x: &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(data.value_x);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;, y: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(data.value_y); 
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Value</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Value</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">void ResetData(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_x = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_y = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">openReadingPipe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">startListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">recvData</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span> <span class="n">radio</span><span class="p">.</span><span class="nf">available</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">radio</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Value</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">recvData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span> <span class="n">now</span> <span class="o">-</span> <span class="n">lastRecvTime</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//ResetData();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;x: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;, y: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_y</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="result-1">result<a class="anchor" href="#result-1">#</a></h4>
-<p><img src="../image/n/ESP32-nRF24L01-09.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-09.png" alt="/image/n/ESP32-nRF24L01-09.png">
+
+  
+  
+</figure>
 <br>
 <br>
 <h3 id="nrf24l01--dual-joystick--dual-servomotors">nRF24L01 + dual joystick + dual Servomotors<a class="anchor" href="#nrf24l01--dual-joystick--dual-servomotors">#</a></h3>
 <h4 id="schematic-nrf24l01-dual-joystick-receiver-with-esp32">schematic: nRF24L01 dual joystick receiver with ESP32<a class="anchor" href="#schematic-nrf24l01-dual-joystick-receiver-with-esp32">#</a></h4>
-<p><img src="../image/n/ESP32-nRF24L01-10.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/ESP32-nRF24L01-10.png" alt="/image/n/ESP32-nRF24L01-10.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="pinmap-1">pinmap<a class="anchor" href="#pinmap-1">#</a></h5>
 <br>
 <h4 id="schematic-nrf24l01-dual-joystick-receiver-with-arduino">schematic: nRF24L01 dual joystick receiver with Arduino<a class="anchor" href="#schematic-nrf24l01-dual-joystick-receiver-with-arduino">#</a></h4>
-<p><img src="../image/n/UNO-nRF24L01-02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/UNO-nRF24L01-02.png" alt="/image/n/UNO-nRF24L01-02.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="pinmap-2">pinmap<a class="anchor" href="#pinmap-2">#</a></h5>
 <br>
 <h4 id="schematic-nrf24l01-dual-joystick-receiver-with-esp32-standalone">schematic: nRF24L01 dual joystick receiver with ESP32 (standalone)<a class="anchor" href="#schematic-nrf24l01-dual-joystick-receiver-with-esp32-standalone">#</a></h4>
-<p><img src="../image/n/esp32-nRF24L01-servo-02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/esp32-nRF24L01-servo-02.png" alt="/image/n/esp32-nRF24L01-servo-02.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="pinmap-3">pinmap<a class="anchor" href="#pinmap-3">#</a></h5>
 <br>
 <h4 id="schematic-nrf24l01-dual-joystick-receiver-with-arduino-standalone">schematic: nRF24L01 dual joystick receiver with Arduino (standalone)<a class="anchor" href="#schematic-nrf24l01-dual-joystick-receiver-with-arduino-standalone">#</a></h4>
-<p><img src="../image/n/UNO-nRF24L01-03.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/UNO-nRF24L01-03.png" alt="/image/n/UNO-nRF24L01-03.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="pinmap-4">pinmap<a class="anchor" href="#pinmap-4">#</a></h5>
 <br>
 <h4 id="sketch-nrf24l01-dual-joystick-receiver-with-arduino-standalone">sketch: nRF24L01 dual joystick receiver with Arduino (standalone)<a class="anchor" href="#sketch-nrf24l01-dual-joystick-receiver-with-arduino-standalone">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">9</span> ,<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> Value{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_x;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_y;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Value data;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ResetData</span>(){
-</span></span><span style="display:flex;"><span>  data.value_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">2800</span>;
-</span></span><span style="display:flex;"><span>  data.value_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2800</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servo_x;
-</span></span><span style="display:flex;"><span>Servo servo_y;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servo_pin_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servo_pin_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> angle_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> angle_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">openReadingPipe</span>(<span style="color:#ae81ff">1</span>, address);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setPALevel</span>(RF24_PA_LOW);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">startListening</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">attach</span>(servo_pin_x, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2400</span>);
-</span></span><span style="display:flex;"><span>  servo_y.<span style="color:#a6e22e">attach</span>(servo_pin_y, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2400</span>);
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>  servo_y.<span style="color:#a6e22e">write</span>(<span style="color:#ae81ff">10</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> lastRecvTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">recvData</span>(){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>( radio.<span style="color:#a6e22e">available</span>()){
-</span></span><span style="display:flex;"><span>    radio.<span style="color:#a6e22e">read</span>(<span style="color:#f92672">&amp;</span>data, <span style="color:#66d9ef">sizeof</span>(Value));
-</span></span><span style="display:flex;"><span>    lastRecvTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();  
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">recvData</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> now <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>( now <span style="color:#f92672">-</span> lastRecvTime <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>){
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ResetData</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rotate_xy</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rotate_xy</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;x: &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(data.value_x);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;, y: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(data.value_y);
-</span></span><span style="display:flex;"><span>  angle_x <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(data.value_x, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);
-</span></span><span style="display:flex;"><span>  angle_y <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(data.value_y, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">write</span>(angle_x);
-</span></span><span style="display:flex;"><span>  servo_y.<span style="color:#a6e22e">write</span>(angle_y);  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>); 
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Value</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Value</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ResetData</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span><span class="p">.</span><span class="n">value_x</span> <span class="o">=</span> <span class="mi">2800</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span><span class="p">.</span><span class="n">value_y</span> <span class="o">=</span> <span class="mi">2800</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servo_x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servo_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servo_pin_x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servo_pin_y</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">angle_x</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">angle_y</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">openReadingPipe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">startListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="n">servo_pin_x</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2400</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_y</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="n">servo_pin_y</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2400</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_y</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">recvData</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span> <span class="n">radio</span><span class="p">.</span><span class="nf">available</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">radio</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Value</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">recvData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span> <span class="n">now</span> <span class="o">-</span> <span class="n">lastRecvTime</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ResetData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">rotate_xy</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">rotate_xy</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;x: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;, y: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">angle_x</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">angle_y</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">angle_x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_y</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">angle_y</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <h4 id="sketch-for-esp32">sketch: for ESP32<a class="anchor" href="#sketch-for-esp32">#</a></h4>
 <h5 id="library-for-esp32">library for ESP32<a class="anchor" href="#library-for-esp32">#</a></h5>
 <p><strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong>&gt; <strong>라이브러리 관리</strong> 에서 &ldquo;<strong>esp32servo</strong>&rdquo; 검색</p>
-<p><img src="../image/n/esp32-nRF24L01-servo-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/n/esp32-nRF24L01-servo-01.png" alt="/image/n/esp32-nRF24L01-servo-01.png">
+
+  
+  
+</figure>
 <br>
 <h5 id="sketch-2">sketch<a class="anchor" href="#sketch-2">#</a></h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;SPI.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;RF24.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RF24 <span style="color:#a6e22e">radio</span>(<span style="color:#ae81ff">4</span> ,<span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> address <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234ABCDEFLL</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> Value{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_x;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint16_t</span> value_y;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Value data;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">void ResetData(){
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_x = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  data.value_y = 2800;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//Servo motor library for ESP32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ESP32Servo.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Servo servo_x;  <span style="color:#75715e">// create servo object to control a servo
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Servo servo_y;  <span style="color:#75715e">// 16 servo objects can be created on the ESP32
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> angle_x, angle_y;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> servo_xPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> servo_yPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// RecvTime
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> lastRecvTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">recvData</span>(){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>( radio.<span style="color:#a6e22e">available</span>()){
-</span></span><span style="display:flex;"><span>    radio.<span style="color:#a6e22e">read</span>(<span style="color:#f92672">&amp;</span>data, <span style="color:#66d9ef">sizeof</span>(Value));
-</span></span><span style="display:flex;"><span>    lastRecvTime <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();  
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">openReadingPipe</span>(<span style="color:#ae81ff">1</span>, address);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">setPALevel</span>(RF24_PA_LOW);
-</span></span><span style="display:flex;"><span>  radio.<span style="color:#a6e22e">startListening</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Allow allocation of all timers
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ESP32PWM<span style="color:#f92672">::</span><span style="color:#a6e22e">allocateTimer</span>(<span style="color:#ae81ff">0</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span><span style="color:#a6e22e">allocateTimer</span>(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span><span style="color:#a6e22e">allocateTimer</span>(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>  ESP32PWM<span style="color:#f92672">::</span><span style="color:#a6e22e">allocateTimer</span>(<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">setPeriodHertz</span>(<span style="color:#ae81ff">50</span>);    <span style="color:#75715e">// standard 50 hz servo
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servo_y.<span style="color:#a6e22e">setPeriodHertz</span>(<span style="color:#ae81ff">50</span>);
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">attach</span>(servo_xPin, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2500</span>); <span style="color:#75715e">// attaches the servo on pin 25 &amp; 32 to the servo object
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  servo_y.<span style="color:#a6e22e">attach</span>(servo_yPin, <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2500</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// using default min/max of 1000us and 2000us
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// different servos may require different min/max settings
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// for an accurate 0 to 180 sweep
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">recvData</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> now <span style="color:#f92672">=</span> <span style="color:#a6e22e">millis</span>();
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>( now <span style="color:#f92672">-</span> lastRecvTime <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>){
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//ResetData();
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rotate_xy</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rotate_xy</span>() {
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;x: &#34;</span>); Serial.<span style="color:#a6e22e">print</span>(data.value_x);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;, y: &#34;</span>); Serial.<span style="color:#a6e22e">println</span>(data.value_y);
-</span></span><span style="display:flex;"><span>  angle_x <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(data.value_x, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);
-</span></span><span style="display:flex;"><span>  angle_y <span style="color:#f92672">=</span> <span style="color:#a6e22e">map</span>(data.value_y, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4095</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">180</span>);
-</span></span><span style="display:flex;"><span>  servo_x.<span style="color:#a6e22e">write</span>(angle_x);
-</span></span><span style="display:flex;"><span>  servo_y.<span style="color:#a6e22e">write</span>(angle_y);  
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">10</span>); 
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;RF24.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">RF24</span> <span class="nf">radio</span><span class="p">(</span><span class="mi">4</span> <span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="kt">long</span> <span class="n">address</span> <span class="o">=</span> <span class="mh">0x1234ABCDEFLL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Value</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint16_t</span> <span class="n">value_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Value</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">void ResetData(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_x = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">  data.value_y = 2800;
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//Servo motor library for ESP32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;ESP32Servo.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Servo</span> <span class="n">servo_x</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Servo</span> <span class="n">servo_y</span><span class="p">;</span>  <span class="c1">// 16 servo objects can be created on the ESP32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">angle_x</span><span class="p">,</span> <span class="n">angle_y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">servo_xPin</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">servo_yPin</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// RecvTime
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">recvData</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span> <span class="n">radio</span><span class="p">.</span><span class="nf">available</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">radio</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Value</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lastRecvTime</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">openReadingPipe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">setPALevel</span><span class="p">(</span><span class="n">RF24_PA_LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">radio</span><span class="p">.</span><span class="nf">startListening</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// Allow allocation of all timers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ESP32PWM</span><span class="o">::</span><span class="nf">allocateTimer</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="nf">allocateTimer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="nf">allocateTimer</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ESP32PWM</span><span class="o">::</span><span class="nf">allocateTimer</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">setPeriodHertz</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>    <span class="c1">// standard 50 hz servo
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servo_y</span><span class="p">.</span><span class="nf">setPeriodHertz</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="n">servo_xPin</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span> <span class="c1">// attaches the servo on pin 25 &amp; 32 to the servo object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">servo_y</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="n">servo_yPin</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// using default min/max of 1000us and 2000us
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// different servos may require different min/max settings
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// for an accurate 0 to 180 sweep
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">recvData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="nf">millis</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span> <span class="n">now</span> <span class="o">-</span> <span class="n">lastRecvTime</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//ResetData();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">rotate_xy</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">rotate_xy</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;x: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;, y: &#34;</span><span class="p">);</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">angle_x</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">angle_y</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">value_y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4095</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_x</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">angle_x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">servo_y</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">angle_y</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 </article>
  
       

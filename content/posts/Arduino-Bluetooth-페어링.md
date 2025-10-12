@@ -15,15 +15,15 @@ tags:
 
   HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 **Both NL & CR** 모드를 선택해주어야 하는 것입니다.
 
-![](/image/BT-01.jpg)
+{{< figure src="/image/BT-01.jpg" width="50%" class="center" >}}
 
 *   **안드로이드** : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)
 
-![](/image/BT-02.jpg)
+{{< figure src="/image/BT-02.jpg" width="50%" class="center" >}}
 
 >※ 요즘은 잘 사용하지 않지만, HC-05를 사용하기도 합니다. 생김새가 거의 비슷하지만, 몇가지 차이점이 있는데요. 보통 HC-06과 구별하기 위하여, HC-05에는 칩 위에 V형태로 체크를 해두거나, 화이트로 하얀색 점을 찍어두는 경우가 많습니다. 그리고, 가장 큰 차이점은 HC-05의 경우 6개의 핀이 모두 존재해요.
 >
->![](/image/BT-05.jpg)
+>{{< figure src="/image/BT-05.jpg" width="33%" class="center" >}}
 
 >※ 예전에는 HC-05는 Master, HC-06은 Slave로 나누어 쓰는 경우가 많았지만, HC-06의 버전이 1.7이상인 경우 Master, Slave를 선택하여 사용할 수 있게 되면서 HC-05는 잘 사용하지 않게 되었습니다.
 
@@ -45,7 +45,7 @@ tags:
 <br>
 
 ##### schematic
-![](/image/BT-03.jpg)
+{{< figure src="/image/BT-03.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -93,7 +93,7 @@ void loop()
 <br>
 
 ##### schematic
-![](/image/BT-04.jpg)
+{{< figure src="/image/BT-04.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -210,47 +210,47 @@ HC-06과의 페어링 과정을 보도록 하겠습니다. (다른 블루투스 
 <br>
 
 2) 위 스케치를 **사용하는 모듈에 맞게 선택하여** 아두이노에 업로드 한 상태에서 시리얼 모니터를 열면, Hello! 라는 글자가 뜹니다. (업로드한 스케치에 따라 Hello!는 안나올 수도 있음)
-![](/image/BT-06.jpg)
+{{< figure src="/image/BT-06.jpg" width="75%" class="center" >}}
 
 <br>
 
 3) AT를 입력하고,
-![](/image/BT-07.jpg)
+{{< figure src="/image/BT-07.jpg" width="75%" class="center" >}}
 
 <br>
 
 4) 전송을 누르면 OK가 뜹니다. 이것은 아두이노IDE를 통해 블루투스 모듈과 연결이 정상적으로 되었음을 의미해요.
-![](/image/BT-08.jpg)
+{{< figure src="/image/BT-08.jpg" width="75%" class="center" >}}
 
 <br>
 
 5) 블루투스 모듈ID를 설정해보겠습니다. SKS100이라는 ID로 지정하기 위해 **AT+NAMESKS100**이라고 입력한 뒤, 전송을 누릅니다. (모듈ID는 본인이 사용할 이름으로 바꾸어 지정합니다.)
-![](/image/BT-09.jpg)
+{{< figure src="/image/BT-09.jpg" width="75%" class="center" >}}
 
 <br>
 
 6) 그러면 OKsetname이라고 출력이 되면서, 블루투스 모듈ID가 SKS100으로 셋팅이 됩니다.
-![](/image/BT-09-1.jpg)
+{{< figure src="/image/BT-09-1.jpg" width="75%" class="center" >}}
 
 <br>
 
 7) 이번에는 페어링 암호 설정입니다. AT+PIN0000을 입력하고 전송을 누르면
-![](/image/BT-10.jpg)
+{{< figure src="/image/BT-10.jpg" width="75%" class="center" >}}
 
 <br>
 
 8) OKsetPIN이 출력되면서 페어링 암호가 0000으로 설정됩니다.
-![](/image/BT-11.jpg)
+{{< figure src="/image/BT-11.jpg" width="75%" class="center" >}}
 
 <br>
 
 9) 통신속도 설정입니다. HC-06은 주로 9600bps를 사용하며, 이를 위해 AT+BAUD4를 입력한 뒤 전송을 누릅니다. (HC-06의 경우 default 속도가 9600bps이므로 이 과정은 생략 가능하며, 다른 모듈을 사용하는 경우에는 각 모듈의 AT Command를 확인하여 통신속도를 변경해주어야 합니다.)
-![](/image/BT-12.jpg)
+{{< figure src="/image/BT-12.jpg" width="75%" class="center" >}}
 
 <br>
 
 10) OK9600이 출력되요.
-![](/image/BT-13.jpg)
+{{< figure src="/image/BT-13.jpg" width="75%" class="center" >}}
 
 <br>
 

@@ -19,7 +19,7 @@ DS18b20 온도 센서를 이용하여 온도를 측정한다.
 
 #### Pinout
 
-![](/image/DS18b20.png)
+{{< figure src="/image/DS18b20.png" width="33%" class="center" >}}
 
 <br>
 
@@ -28,21 +28,21 @@ DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5
 
 * 3가닥의 선에 브레드보드에 연결할 수 있는 핀을 납땜하고, 노란색선과 빨간색선의 연결부위에 4.7㏀ 저항을 추가로 납땜하여 연결한다.
 
-![](/image/ESP32-DS18b20-R01.png)
+{{< figure src="/image/ESP32-DS18b20-R01.png" width="75%" class="center" >}}
 
 * 수축튜브를 사용하여 연결부위를 절연한 뒤,
 
-![](/image/ESP32-DS18b20-R02.png)
+{{< figure src="/image/ESP32-DS18b20-R02.png" width="75%" class="center" >}}
 
 * 구경이 조금 더 큰 수축튜브를 사용하여 3가닥을 하나로 감싸 마무리한다.
 
-![](/image/ESP32-DS18b20-R03.png)
+{{< figure src="/image/ESP32-DS18b20-R03.png" width="75%" class="center" >}}
 
 <br>
 
 ##### Normal Mode
 
-![](/image/ds18b20-temperature-normal-mode.png)
+{{< figure src="/image/ds18b20-temperature-normal-mode.png" width="75%" class="center" >}}
 
 | DS18b20 | Yellow | Red  | Black |
 | ------- | ------ | ---- | ----- |
@@ -53,7 +53,7 @@ DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5
 
 ##### Parasite Mode
 
-![](/image/ds18b20-temperature.png)
+{{< figure src="/image/ds18b20-temperature.png" width="75%" class="center" >}}
 
 | DS18b20 |      | Yellow | Red  | Black |
 | ------- | ---- | ------ | ---- | ----- |
@@ -113,7 +113,7 @@ void loop() {
 <br>
 
 #### schematic: Normal Mode
-![](/image/ds18b20-temperature-normal-mode-tm1637.png)
+{{< figure src="/image/ds18b20-temperature-normal-mode-tm1637.png" width="100%" class="center" >}}
 
 <br>
 

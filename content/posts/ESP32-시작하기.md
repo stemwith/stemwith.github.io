@@ -5,7 +5,6 @@ date: 2019-10-19T15:22:37+09:00
 toc: true
 tags:
 ---
-
 ### ESP32 시작하기
 
 #### Driver 설치: 처음 설치하는 경우
@@ -31,7 +30,7 @@ https://www.arduino.cc/en/software
 
 1. Arduino IDE에서 **파일**\> **환경설정**\> **설정** (**File**\> **Preferences**\> **Settings**)
 
-![](/image/esp32-ide-01.jpg)
+{{< figure src="/image/esp32-ide-01.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -53,19 +52,19 @@ https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com
 
 2. **툴**\> **보드**\> **보드 매니저**... **Tools**\> **Board**\> **Board Manager**...
 
-![](/image/esp32-ide-02.jpg)
+{{< figure src="/image/esp32-ide-02.jpg" width="75%" class="center" >}}
 
 <br>
 
 3. 보드 매니저에서 "ESP32"를 검색하여 **INSTALL** (혹은 업데이트)
 
-![](/image/esp32-ide-03.jpg)
+{{< figure src="/image/esp32-ide-03.jpg" width="75%" class="center" >}}
 
 <br>
 
 4. ESP32를 컴퓨터에 연결한 뒤, **툴**\> **보드** 에서 ESP32 Dev Module 선택
 
-![](/image/esp32-ide-04.jpg)
+{{< figure src="/image/esp32-ide-04.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -108,7 +107,7 @@ void loop() {
 
 <br>
 
-![](/image/esp32-example-01.png)
+{{< figure src="/image/esp32-example-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -126,13 +125,13 @@ void loop() {
 
 <br>
 
-![](/image/upload-code-esp32-arduino-2-1.png)
+{{< figure src="/image/upload-code-esp32-arduino-2-1.png" width="75%" class="center" >}}
 
 <br>
 
 ##### Serial Monitor
 
-![](/image/Arduino-2-0-Serial-Monitor-ESP32.png)
+{{< figure src="/image/Arduino-2-0-Serial-Monitor-ESP32.png" width="75%" class="center" >}}
 
 <br>
 
@@ -140,7 +139,7 @@ void loop() {
 
 예제 선택: **파일** \> **예제** \> **WiFi (ESP32)** \> **WiFiScan**
 
-![](/image/esp32-ide-05.png)
+{{< figure src="/image/esp32-ide-05.png" width="75%" class="center" >}}
 
 ※ 주의: ESP32보드를 연결한 상태에서만 위 예제를 선택할 수 있다.
 
@@ -150,7 +149,7 @@ void loop() {
 
 아두이노에 비하여 업로드 시간이 많이 걸린다. "업로드 완료"라는 메세지가 나타날때까지 잠시 기다린다.
 
-![](/image/esp32-ide-06.png)
+{{< figure src="/image/esp32-ide-06.png" width="75%" class="center" >}}
 
 <br>
 
@@ -158,7 +157,7 @@ void loop() {
 
 아두이노 IDE의 시리얼 모니터를 열고 Baud rate를 115200으로 설정하면 주변의 접속 가능한 WiFi의 SSID가 표시된다. 여기까지 진행이 되면 ESP32가 잘 설치된 것이다.
 
-![](/image/esp32-ide-07.png)
+{{< figure src="/image/esp32-ide-07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -172,7 +171,7 @@ void loop() {
 *   일부 ESP32 보드의 경우 새로운 스케치를 업로드 할 때마다 “**ENABLE**”버튼을 눌러 ESP32를 다시 시작해야 하는 경우도 있는데, 이런 문제가 발생하는 보드의 경우 새 스케치를 업로드 할 때마다 해당 버튼 순서(BOOT-EN)를 반복해야합니다.
 *   이러한 문제를 해결하기 위해서는 ESP32보드의 **EN핀**과 **GND**를 10uF 컨덴서를 사용하여 연결해주면 된다.
 
-![](/image/esp32-ide-08.png)
+{{< figure src="/image/esp32-ide-08.png" width="50%" class="center" >}}
 
 2. **Mac OS X & Linux**
 
@@ -182,7 +181,7 @@ void loop() {
 
 * **Arduino**\> **Preferences**\> **Sketchbook Location**에 표기되어 있는 폴더를 복사하여 해당 디렉토리로 진입한 후,
 
-![](/image/esp32-ide-09.png)
+{{< figure src="/image/esp32-ide-09.png" width="75%" class="center" >}}
 
 * **Hardware** 폴더 안에 있는 **espressif** 폴더를 삭제한다.
 
@@ -200,19 +199,19 @@ void loop() {
 
 PWM(Pulse Width Modulation) 그림과 같은 주기적인 펄스 신호를 생성하고 1로 되어있는 시간과 0으로되어있는 시간의 비율 (듀티 비)를 바꿈으로써 전송 전력을 변화시킨다.
 
-![](/image/esp32-pwm-01.png)
+{{< figure src="/image/esp32-pwm-01.png" width="75%" class="center" >}}
 
 <br>
 
 duty 값은 한 주기 내에서 ON 시간과 OFF 시간의 '비율'을 결정하는 값이다. PWM 주파수가 다르면 같은 duty 값이라도 ON 되어 있는 시간이 달라진다. 다만 전체적으로 ON 시간의 합과 OFF 시간의 합의 비율은 동일하다.
 
-![](/image/esp32-pwm-02.png)
+{{< figure src="/image/esp32-pwm-02.png" width="75%" class="center" >}}
 
 <br>
 
 이런 방법을 LED의 점등에 적용하면, 1의 값을 갖는 시간이 짧을 수록 사람 눈에는 LED가 어둡게 보이고, 1의 값을 갖는 시간이 길 수록 밝아 보이게 된다.
 
-![](/image/esp32-pwm-03.png)
+{{< figure src="/image/esp32-pwm-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -279,7 +278,7 @@ PWM 신호 주파수를 설정한다. (LED의 경우 5000Hz의 주파수를 사�
 
 #### schematic
 
-![](/image/esp32-example-01.png)
+{{< figure src="/image/esp32-example-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -331,7 +330,7 @@ void loop(){
 
 #### schematic
 
-![](/image/esp32-example-02.png)
+{{< figure src="/image/esp32-example-02.png" width="75%" class="center" >}}
 
 <br>
 

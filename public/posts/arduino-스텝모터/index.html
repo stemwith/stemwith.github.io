@@ -18,17 +18,38 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
 정격전압: 5VDC
 
 
 기어비: 1/64
-$$
-\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
-$$
+
+
+\[   \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64 \]
 
 
 
 
+
+
+
+
+  
+
+  
+  
 
 
 스트라이드 각도
@@ -54,16 +75,141 @@ Frequency: 100Hz
 
 
 
+
+
+
+
+
+  
+
+  
+  
+
+
 schematic#
-">
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+Pin Map#
+
+  
+      
+          모터드라이브
+          아두이노
+      
+  
+  
+      
+          INT1
+          11
+      
+      
+          INT2
+          10
+      
+      
+          INT3
+          9
+      
+      
+          INT4
+          8
+      
+      
+          GND
+          GND
+      
+      
+          VCC
+          5V
+      
+  
+
+
+sketch: 예제1#
+#include &lt;Stepper.h&gt;
+
+// 2048:한바퀴(360도), 1024:반바퀴(180도)...
+// datasheet를 통해 스트라이드 각도를 계산한 값을 사용
+const int stepsPerRevolution = 2048;
+
+// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
+
+void setup() {
+  myStepper.setSpeed(14); 
+}
+
+void loop() {
+  // 시계 반대 방향으로 한바퀴 회전
+  myStepper.step(stepsPerRevolution);
+  delay(500);
+
+  // 시계 방향으로 한바퀴 회전
+  myStepper.step(-stepsPerRevolution);
+  delay(500);
+}
+Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
+
+모터 드라이브에 연결되는 순서에 유의한다! (IN1, IN3, IN2, IN4 순서임!)
+
+
+myStepper.setSpeed(14);
+
+아두이노 보드의 5V 전원 사용시 16이 최대값.
+16 이상은 안정적으로 회전이 안되며, 17을 넣으면 한바퀴 돌고 정지. 18을 넣으면 돌지 않음
+
+
+
+
+sketch: 예제2#
+#include &lt;Stepper.h&gt;
+
+// 2048:한바퀴(360도), 1024:반바퀴(180도), 64:11.25도
+const int stepsPerRevolution = 64;
+
+// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
+
+void setup() {
+  myStepper.setSpeed(16);
+}
+
+void loop() {
+  
+  // 시계 반대 방향으로 한바퀴 회전
+  // 64 * 32 = 2048 한바퀴 =&gt; 11.25도씩 32번 회전 (360도)
+  for(int i=0; i&lt;32; i&#43;&#43;) {  
+    myStepper.step(stepsPerRevolution);
+  }
+  delay(500);
+
+  // 시계 방향으로 한바퀴 회전
+  // -64 * 32 = 2048 한바퀴 =&gt; -11.25도씩 32번 회전 (-360도)
+  for(int i=0; i&lt;32; i&#43;&#43;) {
+    myStepper.step(-stepsPerRevolution);
+  }
+  delay(500);
+}">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/posts/arduino-%EC%8A%A4%ED%85%9D%EB%AA%A8%ED%84%B0/">
   <meta property="og:site_name" content="stemwith">
   <meta property="og:title" content="Arduino, 스텝모터">
   <meta property="og:description" content="스텝모터 (Step Motor)#펄스 모양의 전압에 의해 일정 각도(스텝 수) 만큼 회전하는 모터. 회전 각도는 입력 펄스 신호의 수에 비례하고, 회전 속도는 입력 펄스 신호의 주파수에 비례한다. 스텝모터 28BYJ-48#정격전압: 5VDC
-기어비: 1/64 $$ \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64 $$
-스트라이드 각도 스펙상 5.625º / 64 = 0.087890625 그러므로, 360º / 0.087890625 = 4096 스텝 실제로는 11.25º / 64 = 0.17578125 그러므로, 360º / 0.17578125 = 2048 스텝으로 1회전 (이 값이 중요함!) Frequency: 100Hz 토크: 34.3mN,m 모터드라이브 ULN2003#schematic#">
+기어비: 1/64
+\[ \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64 \]스트라이드 각도 스펙상 5.625º / 64 = 0.087890625 그러므로, 360º / 0.087890625 = 4096 스텝 실제로는 11.25º / 64 = 0.17578125 그러므로, 360º / 0.17578125 = 2048 스텝으로 1회전 (이 값이 중요함!) Frequency: 100Hz 토크: 34.3mN,m 모터드라이브 ULN2003#schematic#Pin Map#모터드라이브 아두이노 INT1 11 INT2 10 INT3 9 INT4 8 GND GND VCC 5V sketch: 예제1##include &lt;Stepper.h&gt; // 2048:한바퀴(360도), 1024:반바퀴(180도)... // datasheet를 통해 스트라이드 각도를 계산한 값을 사용 const int stepsPerRevolution = 2048; // 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4 Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8); void setup() { myStepper.setSpeed(14); } void loop() { // 시계 반대 방향으로 한바퀴 회전 myStepper.step(stepsPerRevolution); delay(500); // 시계 방향으로 한바퀴 회전 myStepper.step(-stepsPerRevolution); delay(500); } Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8); 모터 드라이브에 연결되는 순서에 유의한다! (IN1, IN3, IN2, IN4 순서임!) myStepper.setSpeed(14); 아두이노 보드의 5V 전원 사용시 16이 최대값. 16 이상은 안정적으로 회전이 안되며, 17을 넣으면 한바퀴 돌고 정지. 18을 넣으면 돌지 않음 sketch: 예제2##include &lt;Stepper.h&gt; // 2048:한바퀴(360도), 1024:반바퀴(180도), 64:11.25도 const int stepsPerRevolution = 64; // 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4 Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8); void setup() { myStepper.setSpeed(16); } void loop() { // 시계 반대 방향으로 한바퀴 회전 // 64 * 32 = 2048 한바퀴 =&gt; 11.25도씩 32번 회전 (360도) for(int i=0; i&lt;32; i&#43;&#43;) { myStepper.step(stepsPerRevolution); } delay(500); // 시계 방향으로 한바퀴 회전 // -64 * 32 = 2048 한바퀴 =&gt; -11.25도씩 32번 회전 (-360도) for(int i=0; i&lt;32; i&#43;&#43;) { myStepper.step(-stepsPerRevolution); } delay(500); }">
   <meta property="og:locale" content="ko_kr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -75,11 +221,11 @@ schematic#
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/arduino-%EC%8A%A4%ED%85%9D%EB%AA%A8%ED%84%B0/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -227,21 +373,52 @@ schematic#
 </ul>
 <br>
 <h4 id="스텝모터-28byj-48">스텝모터 28BYJ-48<a class="anchor" href="#%ec%8a%a4%ed%85%9d%eb%aa%a8%ed%84%b0-28byj-48">#</a></h4>
-<p><img src="/image/s/Step-Motor-02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/s/Step-Motor-02.png" alt="/image/s/Step-Motor-02.png">
+
+  
+  
+</figure>
 <ul>
 <li>
 <p>정격전압: 5VDC</p>
 </li>
 <li>
-<p>기어비: 1/64
-$$
-\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
-$$</p>
+<p>기어비: 1/64</p>
 </li>
 </ul>
-<figure class="center"><img src="/image/s/Step-Motor-01.png" width="80%">
-</figure>
+<span>\[   \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64 \]</span><link rel="stylesheet" href="/katex/katex.min.css" /><script defer src="/katex/katex.min.js"></script><script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body, {&#34;delimiters&#34;:[{&#34;left&#34;:&#34;$$&#34;,&#34;right&#34;:&#34;$$&#34;,&#34;display&#34;:true},{&#34;left&#34;:&#34;\\(&#34;,&#34;right&#34;:&#34;\\)&#34;,&#34;display&#34;:false},{&#34;left&#34;:&#34;\\[&#34;,&#34;right&#34;:&#34;\\]&#34;,&#34;display&#34;:true}]});"></script>
 
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/s/Step-Motor-01.png" alt="/image/s/Step-Motor-01.png">
+
+  
+  
+</figure>
 <ul>
 <li>스트라이드 각도
 <ul>
@@ -262,12 +439,46 @@ $$</p>
 </ul>
 <br>
 <h4 id="모터드라이브-uln2003">모터드라이브 ULN2003<a class="anchor" href="#%eb%aa%a8%ed%84%b0%eb%93%9c%eb%9d%bc%ec%9d%b4%eb%b8%8c-uln2003">#</a></h4>
-<figure class="center"><img src="/image/s/Step-Motor-03.png" width="67%">
-</figure>
 
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 67%;">
+
+  <img src="/image/s/Step-Motor-03.png" alt="/image/s/Step-Motor-03.png">
+
+  
+  
+</figure>
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/s/UNO-step-01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/s/UNO-step-01.png" alt="/image/s/UNO-step-01.png">
+
+  
+  
+</figure>
 <h4 id="pin-map">Pin Map<a class="anchor" href="#pin-map">#</a></h4>
 <table>
   <thead>
@@ -305,28 +516,28 @@ $$</p>
 </table>
 <br>
 <h4 id="sketch-예제1">sketch: 예제1<a class="anchor" href="#sketch-%ec%98%88%ec%a0%9c1">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Stepper.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2048:한바퀴(360도), 1024:반바퀴(180도)...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// datasheet를 통해 스트라이드 각도를 계산한 값을 사용
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> stepsPerRevolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">2048</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Stepper <span style="color:#a6e22e">myStepper</span>(stepsPerRevolution, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">8</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  myStepper.<span style="color:#a6e22e">setSpeed</span>(<span style="color:#ae81ff">14</span>); 
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 시계 반대 방향으로 한바퀴 회전
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  myStepper.<span style="color:#a6e22e">step</span>(stepsPerRevolution);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 시계 방향으로 한바퀴 회전
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  myStepper.<span style="color:#a6e22e">step</span>(<span style="color:#f92672">-</span>stepsPerRevolution);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Stepper.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2048:한바퀴(360도), 1024:반바퀴(180도)...
+</span></span></span><span class="line"><span class="cl"><span class="c1">// datasheet를 통해 스트라이드 각도를 계산한 값을 사용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Stepper</span> <span class="nf">myStepper</span><span class="p">(</span><span class="n">stepsPerRevolution</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">myStepper</span><span class="p">.</span><span class="nf">setSpeed</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 시계 반대 방향으로 한바퀴 회전
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">myStepper</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">stepsPerRevolution</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 시계 방향으로 한바퀴 회전
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">myStepper</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="o">-</span><span class="n">stepsPerRevolution</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><ul>
 <li>Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
 <ul>
 <li>모터 드라이브에 연결되는 순서에 유의한다! (<strong>IN1, IN3, IN2, IN4</strong> 순서임!)</li>
@@ -341,34 +552,34 @@ $$</p>
 </ul>
 <br>
 <h4 id="sketch-예제2">sketch: 예제2<a class="anchor" href="#sketch-%ec%98%88%ec%a0%9c2">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Stepper.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2048:한바퀴(360도), 1024:반바퀴(180도), 64:11.25도
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> stepsPerRevolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Stepper <span style="color:#a6e22e">myStepper</span>(stepsPerRevolution, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">8</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>  myStepper.<span style="color:#a6e22e">setSpeed</span>(<span style="color:#ae81ff">16</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 시계 반대 방향으로 한바퀴 회전
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 64 * 32 = 2048 한바퀴 =&gt; 11.25도씩 32번 회전 (360도)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>) {  
-</span></span><span style="display:flex;"><span>    myStepper.<span style="color:#a6e22e">step</span>(stepsPerRevolution);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 시계 방향으로 한바퀴 회전
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// -64 * 32 = 2048 한바퀴 =&gt; -11.25도씩 32번 회전 (-360도)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    myStepper.<span style="color:#a6e22e">step</span>(<span style="color:#f92672">-</span>stepsPerRevolution);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">500</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Stepper.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2048:한바퀴(360도), 1024:반바퀴(180도), 64:11.25도
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Stepper</span> <span class="nf">myStepper</span><span class="p">(</span><span class="n">stepsPerRevolution</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">myStepper</span><span class="p">.</span><span class="nf">setSpeed</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// 시계 반대 방향으로 한바퀴 회전
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 64 * 32 = 2048 한바퀴 =&gt; 11.25도씩 32번 회전 (360도)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">32</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">myStepper</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">stepsPerRevolution</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 시계 방향으로 한바퀴 회전
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// -64 * 32 = 2048 한바퀴 =&gt; -11.25도씩 32번 회전 (-360도)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">32</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myStepper</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="o">-</span><span class="n">stepsPerRevolution</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 </article>
  
       

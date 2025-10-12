@@ -5,7 +5,6 @@ date: 2019-10-30T18:27:53+09:00
 toc: true
 tags: ["rc"]
 ---
-
 ### 4WD Bluetooth
 
 지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.
@@ -14,7 +13,7 @@ tags: ["rc"]
 
 #### schematic
 
-![](/image/4wd-bt-17.png)
+{{< figure src="/image/4wd-bt-17.png" width="100%" class="center" >}}
 
 <br>
 
@@ -130,7 +129,7 @@ tags: ["rc"]
 
 #### schematic
 
-![](/image/4wd-bt-18.png)
+{{< figure src="/image/4wd-bt-18.png" width="100%" class="center" >}}
 
 <br>
 

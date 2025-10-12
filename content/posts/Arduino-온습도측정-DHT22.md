@@ -12,7 +12,7 @@ DHT22 센서를 이용하여 온도와 습도를 측정한다.
 
 | 센서 | DHT11                         | DHT22 (AM2302)                                               |
 | ---- | ----------------------------- | ------------------------------------------------------------ |
-| 사진 | ![DHT11](/image/dht22-02.png) | {{< figure src="/image/dht22-01.png" class="center" >}} |
+| 사진 | {{< figure src="/image/dht22-02.png" alt="DHT11" width="75%" class="center" >}} | {{< figure src="/image/dht22-01.png" width="75%" class="center" >}} |
 | 온도 | 0 ~ 50℃ (오차범위 ±2℃)        | -40 ~ 100℃ (오차범위 ±0.5℃) (해상도 0.1℃)                    |
 | 습도 | 20 ~ 90% (오차범위 ±5%)       | 0 ~ 100% (오차범위 ±2~5%) (해상도 0.1%)                      |
 
@@ -27,7 +27,7 @@ DHT22 센서를 이용하여 온도와 습도를 측정한다.
 <br>
 
 #### schematic
-![](/image/dht22-05.png)
+{{< figure src="/image/dht22-05.png" width="75%" class="center" >}}
 
 <br>
 
@@ -40,7 +40,7 @@ DHT22 센서를 이용하여 온도와 습도를 측정한다.
   
   - Groove Temperature And Humidity Sensor (by Seeed Studio) 설치
   
-    ![](/image/dht22-07.png)
+    {{< figure src="/image/dht22-07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -50,11 +50,11 @@ DHT22 센서를 이용하여 온도와 습도를 측정한다.
 
 * 먼저 DHT sensor library (by Adafruit)를 검색하여 설치를 클릭합니다.
 
-  ![](/image/dht22-03.png)
+  {{< figure src="/image/dht22-03.png" width="75%" class="center" >}}
 
 - 그러면 Dependencies for library DHT sensor library 창이 나타나는데, 이때 Install all을 클릭하면 2개의 라이브러리가 동시에 설치됩니다.
 
-  ![](/image/dht22-04.png)
+  {{< figure src="/image/dht22-04.png" width="75%" class="center" >}}
 
 두 개의 라이브러리를 설치하기만 하면 되기때문에, 순서가 바뀌어도 관계없습니다.
 
@@ -106,7 +106,7 @@ void loop() {
 
 #### schematic
 
-![](/image/dht22-06.png)
+{{< figure src="/image/dht22-06.png" width="75%" class="center" >}}
 
 <br>
 

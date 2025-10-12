@@ -35,7 +35,7 @@ Used to detect radioactivity.
 <br>
 
 #### schematic (for standalone)
-![](/image/Geiger-Counter.png)
+{{< figure src="/image/Geiger-Counter.png" width="100%" class="center" >}}
 
 | GM Monule    | GND  | 5V   | VIN  |       |      |      |           |
 | ------------ | ---- | ---- | ---- | ----- | ---- | ---- | --------- |
@@ -317,7 +317,7 @@ CPM값은 사용하는 GM tube의 종류에 따라 다르게 측정된다. 왜�
 
 #### Radiation Cartooon
 
-![](/image/RADIATION-Poster-Cartoon.jpg)
+{{< figure src="/image/RADIATION-Poster-Cartoon.jpg" width="75%" class="center" >}}
 
 <br>
 

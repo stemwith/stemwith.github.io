@@ -12,13 +12,13 @@ tags:
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리**> **nRF24L01** 검색한 후, **RF24 by TMRh20, Avamander** 설치
 
-![](/image/n/ESP32-nRF24L01-02.png)
+{{< figure src="/image/n/ESP32-nRF24L01-02.png" width="75%" class="center" >}}
 
 <br>
 
 #### schematic: nRF24L01 receiver with ESP32
 
-![](/image/n/ESP32-nRF24L01-01.png)
+{{< figure src="/image/n/ESP32-nRF24L01-01.png" width="75%" class="center" >}}
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
@@ -188,7 +188,7 @@ void loop() {
 
 ##### schematic
 
-![](/image/n/ESP32-nRF24L01-01.png)
+{{< figure src="/image/n/ESP32-nRF24L01-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -237,7 +237,7 @@ void loop() {
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
-![](/image/n/ESP32-nRF24L01-03.png)
+{{< figure src="/image/n/ESP32-nRF24L01-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -246,19 +246,19 @@ void loop() {
 * ESP32를 외부전원을 통해 동작시키려면, ESP32의 5V/GND 단자를 사용하여 5~12V의 전압(최적 전압은 6~7V)을 공급하여야 한다.
 * 18650 소켓에 F단자를 납땜하여 연결한다. (**M단자는 서로 맞닿을 경우 과열 위험이 있으므로 사용금지!**)
 
-![](/image/n/ESP32-nRF24L01-04.png)
+{{< figure src="/image/n/ESP32-nRF24L01-04.png" width="75%" class="center" >}}
 
 <br>
 
 * DC-DC 5V 승압 모듈에 아래 그림과 같이 납땜하여 연결한다. (USB단자는 사용하지 않음)
 
-![](/image/n/ESP32-nRF24L01-06.png)
+{{< figure src="/image/n/ESP32-nRF24L01-06.png" width="75%" class="center" >}}
 
 <br>
 
 ※ USB단자가 있는 5V 승압 모듈을 사용하였지만, USB단자가 없는 승압모듈을 사용하면 더 깔끔하게 제작 가능하다.
 
-![](/image/n/ESP32-nRF24L01-05.png)
+{{< figure src="/image/n/ESP32-nRF24L01-05.png" width="75%" class="center" >}}
 
 <br>
 
@@ -291,11 +291,11 @@ void loop() {
 
 * 먼저 **DHT sensor library (by Adafruit)**를 검색하여 **설치**를 누르면,
 
-  ![](/image/dht22-03.png)
+  {{< figure src="/image/dht22-03.png" width="75%" class="center" >}}
 
 - **Dependencies for library DHT sensor library** 창이 나오면 **Install all**을 클릭하여 2개의 라이브러리를 동시에 설치
 
-  ![](/image/dht22-04.png)
+  {{< figure src="/image/dht22-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -377,7 +377,7 @@ void loop() {
 
 #### result
 
-![](/image/n/ESP32-nRF24L01-07.png)
+{{< figure src="/image/n/ESP32-nRF24L01-07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -395,7 +395,7 @@ void loop() {
 
 하나의 조이스틱으로도 일반적인 조정이 가능하지만, 시판되는 조정기의 경우 dual joystick(혹은 dual channel)을 사용하는 형태가 많으므로, 여기서도 이와 같은 형태의 transmitter를 만들어 보자.
 
-![](/image/n/ESP32-nRF24L01-08.png)
+{{< figure src="/image/n/ESP32-nRF24L01-08.png" width="75%" class="center" >}}
 
 * 위 그림에서는 18650을 DC 컨버터를 사용하여 5V핀에 입력하고 있음.
 
@@ -493,7 +493,7 @@ const int Jstick_y_pin = 32;           // Forward_Back GPIO32
 
 ##### schematic: nRF24L01 receiver with ESP32
 
-![](/image/n/ESP32-nRF24L01-01.png)
+{{< figure src="/image/n/ESP32-nRF24L01-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -547,7 +547,7 @@ void loop() {
 
 #### result
 
-![](/image/n/ESP32-nRF24L01-09.png)
+{{< figure src="/image/n/ESP32-nRF24L01-09.png" width="75%" class="center" >}}
 
 <br>
 
@@ -559,7 +559,7 @@ void loop() {
 
 ##### schematic: nRF24L01 receiver with ESP32, Dual Joystick 
 
-![](/image/n/ESP32-nRF24L01-10.png)
+{{< figure src="/image/n/ESP32-nRF24L01-10.png" width="75%" class="center" >}}
 
 * MG996R과 같이 전류 사용량이 큰 서보 모터를 2개 이상 사용하는 경우, ESP32의 5V pin에서 공급하는 전류량이 부족하여 서보모터 동작이 원활치 않을 수 있다. 이런 경우에는 아래와 같이 외부 전원을 사용하여야 한다.
 
@@ -578,7 +578,7 @@ void loop() {
 
 ##### schematic: nRF24L01 receiver with ESP32, Dual Joystick, External Power (standalone)
 
-![](/image/n/esp32-nRF24L01-servo-02.png)
+{{< figure src="/image/n/esp32-nRF24L01-servo-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -590,7 +590,7 @@ void loop() {
 
   | HW-514 HC v0.2                                               | Specification                                                |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | {{< figure src="/image/n/esp32-nRF24L01-servo-03.png" width="50%" class="center" >}} | Input voltage: 5-36V (6.5V 미만 입력시 디스플레이 동작안됨) <br/><br/>Output voltage: 1.25-32V continuously adjustable<br/>Output current: adjustable, up to 5A (4.5A 이내 권장)<br/>Output power: 75W max (50W 이내 권장)<br/> <br/>Conversion efficiency: up to 96%<br/> <br/>Working frequency: 180KHz<br/>Short circuit protection: yes<br/>Over-temperature protection<br/>Input reverse polarity protection: None,<br/>(필요시 고전류 다이오드를 입력단에 사용)<br/> <br/>Module Size: 68.2 * 38.8 * 15 (mm) |
+  | {{< figure src="/image/n/esp32-nRF24L01-servo-03.png" width="75%" class="center" >}} | Input voltage: 5-36V (6.5V 미만 입력시 디스플레이 동작안됨) <br/><br/>Output voltage: 1.25-32V continuously adjustable<br/>Output current: adjustable, up to 5A (4.5A 이내 권장)<br/>Output power: 75W max (50W 이내 권장)<br/> <br/>Conversion efficiency: up to 96%<br/> <br/>Working frequency: 180KHz<br/>Short circuit protection: yes<br/>Over-temperature protection<br/>Input reverse polarity protection: None,<br/>(필요시 고전류 다이오드를 입력단에 사용)<br/> <br/>Module Size: 68.2 * 38.8 * 15 (mm) |
 
   * 왼쪽 가변저항으로 출력 전압을 5V 조정 (오른쪽 가변저항은 출력 전류를 조정)
 
@@ -622,7 +622,7 @@ void loop() {
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리** 에서 "**esp32servo**" 검색 
 
-![](/image/n/esp32-nRF24L01-servo-01.png)
+{{< figure src="/image/n/esp32-nRF24L01-servo-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -719,7 +719,7 @@ void rotate_xy() {
 
 * 이를 기준으로 조이스틱의 값에 따른 대략적인 형태를 생각해보면 (아래의 원 그림에 2개의 조이스틱 값을 모두 나타냄)
 
-  ![](/image/s/ESP32-2servo-02.png)
+  {{< figure src="/image/s/ESP32-2servo-02.png" width="75%" class="center" >}}
 
 * x축 조이스틱 값이
 

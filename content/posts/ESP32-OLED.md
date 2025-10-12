@@ -14,8 +14,8 @@ ESP32나 Arduino에서 사용할 수 있는  oled의 종류는 매우 많지만,
 
 | I2C                                | SPI                                |
 | ---------------------------------- | ---------------------------------- |
-| ![](/image/u/u8g2-oled-i2c-01.png) | ![](/image/u/u8g2-oled-spi-01.png) |
-| ![](/image/u/u8g2-oled-i2c-02.png) | ![](/image/u/u8g2-oled-spi-02.png) |
+| {{< figure src="/image/u/u8g2-oled-i2c-01.png" width="75%" class="center" >}} | {{< figure src="/image/u/u8g2-oled-spi-01.png" width="75%" class="center" >}} |
+| {{< figure src="/image/u/u8g2-oled-i2c-02.png" width="75%" class="center" >}} | {{< figure src="/image/u/u8g2-oled-spi-02.png" width="75%" class="center" >}} |
 
 이밖에도 U8g2 라이브러리에서 사용가능한 다양한 oled의 종류를 아래 링크에서 확인할 수 있다.
 
@@ -48,7 +48,7 @@ ESP32나 Arduino에서 사용할 수 있는  oled의 종류는 매우 많지만,
 * SW_SPI 연결시에는 스케치에서 지정하는 GPIO핀에 연결한다.
 * HW_SPI로 연결할 때의 회로도는 아래 그림과 같다.
 
-![](/image/u/u8g2-oled-spi-03.png)
+{{< figure src="/image/u/u8g2-oled-spi-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -123,7 +123,7 @@ U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 26, /* data=*/ 
 
 #### schematic
 
-![](/image/u/u8g2-oled-i2c-03.png)
+{{< figure src="/image/u/u8g2-oled-i2c-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -171,7 +171,7 @@ ESP32나 Arduino에서 OLED를 사용을 위한 대표적인 라이브러리는 
 * **스케치**> **라이브러리 포함하기**> **라이브러리 관리**> **u8g2** 검색 후 **설치** 클릭
 
 
-![](/image/u/u8g2-01.png)
+{{< figure src="/image/u/u8g2-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -377,7 +377,7 @@ void loop(void)
 
 * 다운로드 받은 나눔고딕 폰트 파일을 **"u8g2 라이브러리 폴더"**에 넣는다.
 
-  ![](/image/u/u8g2-02.png)
+  {{< figure src="/image/u/u8g2-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -385,7 +385,7 @@ void loop(void)
 
   아래 그림과 같이 아두이노 IDE에서 **파일**> **환경설정** 에서 **스케치북 위치**를 확인한 후,
 
-![](/image/u/u8g2-03.png)
+{{< figure src="/image/u/u8g2-03.png" width="75%" class="center" >}}
 
 ​		**(스케치북 위치)/libraries/U8g2/src/** 폴더를 찾아, 폰트 파일을 넣는다.
 
@@ -485,19 +485,19 @@ OLED의 해상도(128×64)에 맞추어 그림이나 로고를 출력해보자. 
 
 * 윈도우에서 **그림판**을 연다. (그림판3D 아님!) : **시작**> **Windows 보조프로그램**> **그림판**
 
-  ![](/image/u/u8g2-bitmap-01.png)
+  {{< figure src="/image/u/u8g2-bitmap-01.png" width="50%" class="center" >}}
 
 <br>
 
 * 그림판 하단에 불러온 그림의 실제 픽셀수가 나타납니다. (픽셀수 오른쪽의 % 수치는 화면상에서 보이는 확대/축소 비율이므로, 여기서는 신경쓰지 않는다.)
 
-  ![](/image/u/u8g2-bitmap-02.png)
+  {{< figure src="/image/u/u8g2-bitmap-02.png" width="75%" class="center" >}}
 
 <br>
 
 * **Ctrl-A를 눌러 전체 그림을 선택**하면 그림 겉테두리에 점선이 표시되는데, 이때 (파란색 동그라미 표시된) **사진 오른쪽 상단 모서리**의 포인트를 마우스로 클릭하여 픽셀사이즈를 **원본 그림의 비율에 맞추어** 128x64 이하로 조정한다. 예시에서는 1000x1000px, 즉 1:1의 비율 그림이므로 64x64로 조정하였다. 캔버스 크기를 나타내는 1000x1000px 왼쪽에, 축소되는 그림의 픽셀수가 나타나므로, 이를 확인하면서 픽셀수를 64x64로 조정하면 된다.
 
-  ![](/image/u/u8g2-bitmap-03.png)
+  {{< figure src="/image/u/u8g2-bitmap-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -517,31 +517,31 @@ OLED의 해상도(128×64)에 맞추어 그림이나 로고를 출력해보자. 
 
 * 메뉴에서 **파일**> **속성**> 을 클릭한 뒤
 
-  ![](/image/u/u8g2-bitmap-04.png)
+  {{< figure src="/image/u/u8g2-bitmap-04.png" width="33%" class="center" >}}
 
 <br>
 
 * 이미지 속성에서 단위를 픽셀로 지정하고, 너비와 높이를 oled의 전체 픽셀 사이즈(128x64)로 조정한다. 
 
-  ![](/image/u/u8g2-bitmap-05.png)
+  {{< figure src="/image/u/u8g2-bitmap-05.png" width="50%" class="center" >}}
 
 <br>
 
 * 그림판에 128x64 크기의 캔버스가 나타난다. (화면상에 나타나는 크기가 너무 작아 확대/축소 비율을 100%로 조정함)
 
-  ![](/image/u/u8g2-bitmap-06.png)
+  {{< figure src="/image/u/u8g2-bitmap-06.png" width="75%" class="center" >}}
 
 <br>
 
 * 위 상태에서 **Ctrl-v**를 클릭하여, 클립보드에 복사한 그림을 붙여넣기 한다.
 
-  ![](/image/u/u8g2-bitmap-07.png)
+  {{< figure src="/image/u/u8g2-bitmap-07.png" width="75%" class="center" >}}
 
 <br>
 
 * 붙여넣은 그림을 마우스로 클릭하여 위치를 조정한다. 추가로 그림판의 텍스트 기능을 사용하여 글씨를 넣어보았다.
 
-  ![](/image/u/u8g2-bitmap-08.png)
+  {{< figure src="/image/u/u8g2-bitmap-08.png" width="75%" class="center" >}}
 
 <br>
 
@@ -549,19 +549,19 @@ OLED의 해상도(128×64)에 맞추어 그림이나 로고를 출력해보자. 
 
 * 이제 작업한 파일을 1-bit 비트맵 bmp 파일로 저장한다. **파일**> **다른 이름으로 저장**> **BMP 그림** 을 클릭한 뒤,
 
-  ![](/image/u/u8g2-bitmap-09.png))
+  {{< figure src="/image/u/u8g2-bitmap-09.png)" width="75%" class="center" >}}
 
 <br>
 
 * 저장할 경로와 파일이름을 지정한 뒤, 파일 형식을 **단색 비트맵(*.bmp; *dlb)**으로 지정하여 저장한다. (사진 품질 저하에 대한 경고를 확인하면 최종 저장 된다.)
 
-  ![](/image/u/u8g2-bitmap-10.png)
+  {{< figure src="/image/u/u8g2-bitmap-10.png" width="75%" class="center" >}}
 
 <br>
 
 * 최종 결과물은 다음과 같다. ([어피치 로고 bmp 파일 다운로드](/attach/apeach.bmp))
 
-  ![](/image/u/u8g2-bitmap-11.png)
+  {{< figure src="/image/u/u8g2-bitmap-11.png" width="75%" class="center" >}}
 
 <br>
 
@@ -588,7 +588,7 @@ OLED의 해상도(128×64)에 맞추어 그림이나 로고를 출력해보자. 
 
   **File**> **Load image**> 를 클릭하여 위에서 제작한 단색 bmp 파일을 연다.
 
-  ![](/image/u/u8g2-bitmap-12.png)
+  {{< figure src="/image/u/u8g2-bitmap-12.png" width="75%" class="center" >}}
 
 <br>
 
@@ -601,7 +601,7 @@ OLED의 해상도(128×64)에 맞추어 그림이나 로고를 출력해보자. 
 
 * **File**> **Save output**> 를 클릭하여 파일을 저장한다. 이때 파일 형식을 별도로 지정하지 않으며, 사용할 파일이름에 **.h** 또는 **.txt** 를 덧붙여 구분하여도 된다. 예시에서는 [apeach.h](../attach/apeach.h) 로 지정하였다.
 
-  ![](/image/u/u8g2-bitmap-13.png)
+  {{< figure src="/image/u/u8g2-bitmap-13.png" width="75%" class="center" >}}
 
 <br>
 
@@ -887,7 +887,7 @@ void loop(void)
 
 ##### schematic
 
-![](/image/u/u8g2-DS18b20-01.png)
+{{< figure src="/image/u/u8g2-DS18b20-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -1112,7 +1112,7 @@ String getTime(unsigned long ttime) {
 
 ##### result
 
-![](/image/u/u8g2-bitmap-14.png)
+{{< figure src="/image/u/u8g2-bitmap-14.png" width="75%" class="center" >}}
 
 <br>
 
@@ -1158,7 +1158,7 @@ String getTime(unsigned long ttime) {
 
     **툴**> **ESP32 Sketch Data Upload** 항목이 만들어진다.
 
-    ![](/image/ESP32-OLED-02.png)
+    {{< figure src="/image/ESP32-OLED-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -1178,7 +1178,7 @@ String getTime(unsigned long ttime) {
 | SCL        | 22    | A5              |
 | SDA        | 21    | A4              |
 
-![](/image/ESP32-OLED-03.png)
+{{< figure src="/image/ESP32-OLED-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -1280,7 +1280,7 @@ void loop() {
 
 #### schematic
 
-![](/image/ESP32-OLED-04.png)
+{{< figure src="/image/ESP32-OLED-04.png" width="75%" class="center" >}}
 
 | OLED (I2C) | ESP32  | DS18b20 | 4.7kΩ |
 | ---------- | ------ | ------- | ----- |

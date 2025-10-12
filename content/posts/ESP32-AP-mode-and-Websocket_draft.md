@@ -110,7 +110,7 @@ WebSocket을 활용하기 이전에는, 일반적인 HTML 방식이나 AJAX(Asyn
 
 ESP32에서는 Markus Sattler가 만든 [Websockets](https://github.com/Links2004/arduinoWebSockets)라는 라이브러리를 통해 구현합니다.
 
-![](/image/websocket01.png)
+{{< figure src="/image/websocket01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -389,21 +389,21 @@ String형태로 지정된 자바스크립트를 포함하는 html 페이지를 �
 
 - Arduino IDE의 오른쪽 상단에 있는 작은 아래방향 화살표 클릭한 뒤 **New Tab** 선택
 
-  ![](/image/websocket02.png)
+  {{< figure src="/image/websocket02.png" width="75%" class="center" >}}
 
 - 콘솔의 텍스트 상자에 분리하여 저장할 html 파일이름을 입력한 뒤 확인 클릭
 
   - 확장자는 .h로 사용 (※ 단, **.html** 확장자는 사용할 수 없음)
 
-  ![](/image/websocket03.png)
+  {{< figure src="/image/websocket03.png" width="75%" class="center" >}}
 
 - Arduino IDE에 새로운 탭이 열리면, html_header와 html_main을 포함한 두개의 String 문을 복사하여 mainpage.h 탭에 붙여넣기 한 뒤 저장 (스케치가 위치한 폴더에 별도로 저장됨)
 
-  ![](/image/websocket04.png)
+  {{< figure src="/image/websocket04.png" width="75%" class="center" >}}
 
 - 분리된 html 파일을 메인 스케치에 include문을 사용하여 삽입한 뒤 저장
 
-  ![](/image/websocket05.png)
+  {{< figure src="/image/websocket05.png" width="75%" class="center" >}}
 
 - Arduino IDE에서 메인 스케치를 열면, 별도의 탭에 분리된 html 파일도 함께 열림
 
@@ -454,6 +454,6 @@ void updateSensors(){
 
 - 결과 확인
 
-  ![](../image/websocket06.png)
+  {{< figure src="/image/websocket06.png" width="50%" class="center" >}}
 
   실시간으로 센서값이 변경되는 것을 확인할 수 있습니다.

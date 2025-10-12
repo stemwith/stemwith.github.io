@@ -4,20 +4,19 @@ categories: ["Arduino"]
 date: 2021-10-10T18:27:53+09:00
 draft: true
 ---
-
 ### nRF24L01
 
 #### library
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리**> **nRF24L01** 검색한 후, **RF24 by TMRh20, Avamander** 설치
 
-![](../image/n/ESP32-nRF24L01-02.png)
+{{< figure src="/image/n/ESP32-nRF24L01-02.png" width="75%" class="center" >}}
 
 <br>
 
 #### schematic: nRF24L01 receiver with ESP32
 
-![](../image/n/ESP32-nRF24L01-01.png)
+{{< figure src="/image/n/ESP32-nRF24L01-01.png" width="75%" class="center" >}}
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
@@ -37,7 +36,7 @@ draft: true
 
 #### schematic: nRF24L01 receiver with Arduino Uno
 
-![](../image/n/UNO-nRF24L01-01.png)
+{{< figure src="/image/n/UNO-nRF24L01-01.png" width="75%" class="center" >}}
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
@@ -137,11 +136,11 @@ int temphumi[2];
 
 * 먼저 **DHT sensor library (by Adafruit)**를 검색하여 **설치**를 누르면,
 
-  ![](../image/dht22-03.png)
+  {{< figure src="/image/dht22-03.png" width="75%" class="center" >}}
 
 - **Dependencies for library DHT sensor library** 창이 나오면 **Install all**을 클릭하여 2개의 라이브러리를 동시에 설치
 
-  ![](../image/dht22-04.png)
+  {{< figure src="/image/dht22-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -228,7 +227,7 @@ void loop() {
 
 ※ nRF24L01 모듈에 따라 10uF 캐페시터가 없으면 통신이 안되는 경우가 있음. 이런 경우에만 사용할 것.
 
-![](../image/n/ESP32-nRF24L01-03.png)
+{{< figure src="/image/n/ESP32-nRF24L01-03.png" width="100%" class="center" >}}
 
 <br>
 
@@ -241,19 +240,19 @@ void loop() {
 
 * 18650 소켓에 F단자를 납땜하여 연결한다. (**M단자는 서로 맞닿을 경우 과열 위험이 있으므로 사용금지!**)
 
-![](../image/n/ESP32-nRF24L01-04.png)
+{{< figure src="/image/n/ESP32-nRF24L01-04.png" width="75%" class="center" >}}
 
 <br>
 
 * DC-DC 5V 승압 모듈에 아래 그림과 같이 납땜하여 연결한다. (USB단자는 사용하지 않음)
 
-![](../image/n/ESP32-nRF24L01-06.png)
+{{< figure src="/image/n/ESP32-nRF24L01-06.png" width="50%" class="center" >}}
 
 <br>
 
 ※ USB단자가 있는 5V 승압 모듈을 사용하였지만, USB단자가 없는 승압모듈을 사용하면 더 깔끔하게 제작 가능하다.
 
-![](../image/n/ESP32-nRF24L01-05.png)
+{{< figure src="/image/n/ESP32-nRF24L01-05.png" width="50%" class="center" >}}
 
 <br>
 
@@ -270,7 +269,7 @@ void loop() {
 
 #### result
 
-![](../image/n/ESP32-nRF24L01-07.png)
+{{< figure src="/image/n/ESP32-nRF24L01-07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -286,7 +285,7 @@ void loop() {
 
 하나의 조이스틱으로도 일반적인 조정이 가능하지만 시판되는 조정기의 경우 dual joystick(혹은 dual channel)을 사용하는 형태가 많으므로, 여기서도 이와 같은 형태의 transmitter를 만들어 보자.
 
-![](../image/n/ESP32-nRF24L01-08.png)
+{{< figure src="/image/n/ESP32-nRF24L01-08.png" width="100%" class="center" >}}
 
 <br>
 
@@ -381,7 +380,7 @@ const int Jstick_y_pin = 32;           // Forward_Back GPIO32
 
 #### schematic: nRF24L01 receiver with ESP32
 
-![](../image/n/ESP32-nRF24L01-01.png)
+{{< figure src="/image/n/ESP32-nRF24L01-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -389,7 +388,7 @@ const int Jstick_y_pin = 32;           // Forward_Back GPIO32
 
 위에서 사용한 Arduino UNO receiver와 동일함
 
-![](../image/n/UNO-nRF24L01-01.png)
+{{< figure src="/image/n/UNO-nRF24L01-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -450,7 +449,7 @@ void loop() {
 
 #### result
 
-![](../image/n/ESP32-nRF24L01-09.png)
+{{< figure src="/image/n/ESP32-nRF24L01-09.png" width="75%" class="center" >}}
 
 <br>
 
@@ -460,7 +459,7 @@ void loop() {
 
 #### schematic: nRF24L01 dual joystick receiver with ESP32
 
-![](../image/n/ESP32-nRF24L01-10.png)
+{{< figure src="/image/n/ESP32-nRF24L01-10.png" width="75%" class="center" >}}
 
 <br>
 
@@ -472,7 +471,7 @@ void loop() {
 
 #### schematic: nRF24L01 dual joystick receiver with Arduino
 
-![](../image/n/UNO-nRF24L01-02.png)
+{{< figure src="/image/n/UNO-nRF24L01-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -484,7 +483,7 @@ void loop() {
 
 #### schematic: nRF24L01 dual joystick receiver with ESP32 (standalone)
 
-![](../image/n/esp32-nRF24L01-servo-02.png)
+{{< figure src="/image/n/esp32-nRF24L01-servo-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -496,7 +495,7 @@ void loop() {
 
 #### schematic: nRF24L01 dual joystick receiver with Arduino (standalone)
 
-![](../image/n/UNO-nRF24L01-03.png)
+{{< figure src="/image/n/UNO-nRF24L01-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -590,7 +589,7 @@ void rotate_xy() {
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리** 에서 "**esp32servo**" 검색 
 
-![](../image/n/esp32-nRF24L01-servo-01.png)
+{{< figure src="/image/n/esp32-nRF24L01-servo-01.png" width="75%" class="center" >}}
 
 <br>
 

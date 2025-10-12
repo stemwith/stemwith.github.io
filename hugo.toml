@@ -46,6 +46,9 @@ googleAnalytics = "G-128DRYVCRT"
     [markup.goldmark.renderer]
       # true로 설정해야 KaTeX가 생성하는 HTML가 페이지에 표시됩니다.
       unsafe = true
+  [markup.highlight]
+    # KaTeX와 충돌을 피하기 위한 권장 설정입니다.
+    noClasses = false
 
 [outputs]
   home = ["HTML", "RSS"] # JSON을 제거하고 HTML과 RSS만 남깁니다.

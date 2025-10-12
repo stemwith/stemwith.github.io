@@ -12,7 +12,7 @@ tags:
 
 #### Button
 
-{{< figure src="/image/d/drone2_01.png" class="center" >}}
+{{< figure src="/image/d/drone2_01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -28,11 +28,11 @@ tags:
 
 ② Yaw, Roll 트림을 동시에 서로 안쪽으로 민 상태로 전원버튼을 누르면, Bootloader로 진입함
 
-{{< figure src="/image/d/drone2_02.png" class="center" >}}
+{{< figure src="/image/d/drone2_02.png" width="75%" class="center" >}}
 
 ③ TaranisQ X7 하단커버을 열고 miniUSB포트를 이용하여 PC와 연결하면,
 
-{{< figure src="/image/d/drone2_03.png" class="center" >}}
+{{< figure src="/image/d/drone2_03.png" width="75%" class="center" >}}
 
 * Taranis 드라이브와 USB 드라이브 폴더가 열림 (USB 드라이버는 조정기에 삽입되어 있는 miniSD카드를 의미)
 
@@ -65,35 +65,35 @@ tags:
 
   (조정기를 킬 때 나타나는 이미지를 companion 제공 이미지로 바꿀 수 있음)
 
-⑧ 좌측메뉴 두 번째의 Read Models and Settings from Radio 클릭 {{< figure src="/image/d/drone2_04.png" class="center" >}}
+⑧ 좌측메뉴 두 번째의 Read Models and Settings from Radio 클릭 {{< figure src="/image/d/drone2_04.png" width="10%" class="center" >}}
 
 * 기존에 입력해두었던 수신기 리스트 백업
 
-⑨ 상단메뉴의 Download 클릭 {{< figure src="/image/d/drone2_05.png" class="center" >}}
+⑨ 상단메뉴의 Download 클릭 {{< figure src="/image/d/drone2_05.png" width="10%" class="center" >}}
 
 * 다운로드 경로 지정한 뒤 확인
 
 ⑩ 다운로드가 완료되면 확인
 
-{{< figure src="/image/d/drone2_06.png" class="center" >}}
+{{< figure src="/image/d/drone2_06.png" width="75%" class="center" >}}
 
-⑪ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 {{< figure src="/image/d/drone2_07.png" class="center" >}}
+⑪ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 {{< figure src="/image/d/drone2_07.png" width="10%" class="center" >}}
 
-{{< figure src="/image/d/drone2_08.png" class="center" >}}
+{{< figure src="/image/d/drone2_08.png" width="50%" class="center" >}}
 
 ⑫ 업데이트 하려는 범위에 버전이 맞는 지 확인 한 후, Write to TX 클릭. Flashing Done 이 표시되면 Close
 
-{{< figure src="/image/d/drone2_09.png" class="center" >}}
+{{< figure src="/image/d/drone2_09.png" width="75%" class="center" >}}
 
-⑬ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 {{< figure src="/image/d/drone2_10.png" class="center" >}}
+⑬ 좌측메뉴 밑에서 세 번째 Write Firmware to Radio 클릭 {{< figure src="/image/d/drone2_10.png" width="10%" class="center" >}}
 
-{{< figure src="/image/d/drone2_11.png" class="center" >}}
+{{< figure src="/image/d/drone2_11.png" width="50%" class="center" >}}
 
 * Check Firmware compatibility 체크한 후 Write to RX 클릭 (백업했던 기존 수신기 등록자료 업데이트)
 
 ⑭ USB선 제거
 
-{{< figure src="/image/d/drone2_12.png" class="center" >}}
+{{< figure src="/image/d/drone2_12.png" width="50%" class="center" >}}
 
 * 스크린에 업데이트한 펌웨어 버전이 표시되면 완료
 * 다이얼을 돌려 Exit 선택 후 Enter 버튼
@@ -145,7 +145,7 @@ tags:
 
 | X8R                                                     | 핀레일 (위:S, 중간:+, 아래:-)                          |
 | ------------------------------------------------------- | ------------------------------------------------------ |
-| {{< figure src="/image/d/drone2_13.png" style="zoom: 50%;" class="center" >}} | {{< figure src="/image/d/drone2_14.png" width="67%" class="center" >}} |
+| {{< figure src="/image/d/drone2_13.png" width="75%" class="center" >}} | {{< figure src="/image/d/drone2_14.png" width="67%" class="center" >}} |
 
 <br>
 
@@ -153,21 +153,21 @@ tags:
 
 ① 조종기 전원을 켜기(LCD 위쪽의 전원 버튼 5초간 누르기) (스로틀은 아래쪽으로 두어야 함)
 
-{{< figure src="/image/d/drone2_15.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone2_15.png" width="75%" class="center" >}}
 
 ② 메뉴 버튼(≡) 짧게 누르기
 
-{{< figure src="/image/d/drone2_16.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone2_16.png" width="75%" class="center" >}}
 
 ③ Page 버튼을 한번 누르고,
 
-{{< figure src="/image/d/drone2_17.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone2_17.png" width="75%" class="center" >}}
 
 ④ Enter 버튼을 누른 뒤
 
 ⑤ 다이얼을 돌려 알파벳이나 숫자를 골른 뒤, 엔터 버튼을 눌러 모델 이름을 한글자씩 정해준다. 소문자를 고른 뒤 엔터 버튼을 길게 누르면, 대문자가 나타남
 
-{{< figure src="/image/d/drone2_18.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone2_18.png" width="75%" class="center" >}}
 
 <br>
 
@@ -175,11 +175,11 @@ tags:
 
 ① Mode 4(D16) 설정 → 1-8ch S-bus, 9-16ch (1-8번 포트를 통한) Conventional Channel out
 
-{{< figure src="/image/d/drone2_19.png" class="center" >}}
+{{< figure src="/image/d/drone2_19.png" width="75%" class="center" >}}
 
 ② CH1&CH2, CH3&CH4 signal 핀을 아래 사진와 같이 점퍼를 사용하여 쇼트시킨다.
 
-{{< figure src="/image/d/drone2_20.png" class="center" >}}
+{{< figure src="/image/d/drone2_20.png" width="75%" class="center" >}}
 
 ③ 조종기의 SETUP 메뉴에서 다이얼을 돌려 Internal RF 메뉴가 나올 때까지 아래쪽으로 내려감
 
@@ -196,7 +196,7 @@ tags:
 
 * CH1-16 선택시 전송속도 18ms
 
-{{< figure src="/image/d/drone2_21.png" class="center" >}}
+{{< figure src="/image/d/drone2_21.png" width="75%" class="center" >}}
 
 ⑥ Internal RF> RxNum (or Receiver)
 
@@ -204,13 +204,13 @@ tags:
 
 * [Bnd] 누르면 텔레메트리 선택창이 나옴
 
-{{< figure src="/image/d/drone2_22.png" class="center" >}}
+{{< figure src="/image/d/drone2_22.png" width="75%" class="center" >}}
 
 * Ch9-16 Telem ON 선택하면, “띠리릭” 소리가 나면서 바인딩을 준비함
 
 ⑦ X8R 수신기 ‘F/S’ 버튼을 누르고 있는 상태에서,
 
-{{< figure src="/image/d/drone2_23.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone2_23.png" width="50%" class="center" >}}
 
 ⑧ X8R에 전원을 연결
 
@@ -218,7 +218,7 @@ tags:
 
 * 혹은 4-10V 외부 배터리를 X8R (+),(-)에 연결 (중간 레일 (+)극, 아래쪽 레일 (-)극)
 
-{{< figure src="/image/d/drone2_24.png" class="center" >}}
+{{< figure src="/image/d/drone2_24.png" width="75%" class="center" >}}
 
 ⑨ F/S 버튼 아래쪽의 LED 녹색빨간색이 점멸 (이 상태는 조종기와 연결이 되었음을 의미)
 
@@ -304,11 +304,11 @@ External RF는 CROSSFIRE(CRSF) 수신기 (40km이상 장거리 수신)이 필요
 
 * 메뉴 짧게> Page 10번 눌러서 12페이지에 TELEMETRY
 
-{{< figure src="/image/d/drone2_25.png" class="center" >}}
+{{< figure src="/image/d/drone2_25.png" width="75%" class="center" >}}
 
 * TELEMETRY> Sensors> Discover new sensors 선택
 
-{{< figure src="/image/d/drone2_26.png" class="center" >}}
+{{< figure src="/image/d/drone2_26.png" width="75%" class="center" >}}
 
 ​       센서가 발견되면 Stop Discovery, Exit 버튼을 눌러서 빠져나감
 
@@ -332,12 +332,12 @@ External RF는 CROSSFIRE(CRSF) 수신기 (40km이상 장거리 수신)이 필요
 
 #### FrSky 수신기 리스트
 
-{{< figure src="/image/d/drone2_29.png" class="center" >}}
+{{< figure src="/image/d/drone2_29.png" width="100%" class="center" >}}
 
 <br>
 
 #### FrSky RX8R 수신기 메뉴얼
 
-{{< figure src="/image/d/drone2_30.png" class="center" >}}
+{{< figure src="/image/d/drone2_30.png" width="75%" class="center" >}}
 
-{{< figure src="/image/d/drone2_31.png" class="center" >}}
+{{< figure src="/image/d/drone2_31.png" width="75%" class="center" >}}

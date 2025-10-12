@@ -61,7 +61,7 @@ BLYNK_READ(V5) { //Blynk app has something on V5
 
 * Virtual Pin을 통하여 일정 주기로 하드웨어로부터 센서값을 전송하고, 이때마다 Blynk가 값을 받아들인다.
 
-![](/image/blynk-sensor.png)
+{{< figure src="/image/blynk-sensor.png" width="75%" class="center" >}}
 
 <br>
 

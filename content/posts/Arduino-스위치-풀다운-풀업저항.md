@@ -8,7 +8,7 @@ tags:
 
 ### Tact Switch
 
-![](/image/tact_switch.png)
+{{< figure src="/image/tact_switch.png" width="75%" class="center" >}}
 
 <br>
 
@@ -25,7 +25,7 @@ tags:
 
 **저항(10k 이상)을 GND에 연결**한 경우: Pull-down 회로
 
-![](/image/switch01.png)
+{{< figure src="/image/switch01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -65,7 +65,7 @@ void loop() {
 
 **저항(10k 이상)을 VCC(5V)에 연결**한 경우: Pull-up 회로
 
-![](/image/switch02.png)
+{{< figure src="/image/switch02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -116,19 +116,19 @@ void loop() {
 
 * **(아래 그림대로 연결 절대 금지!)** 위 그림 2개를 조합하여, 회로를 만든다고 가정하면
 
-![](/image/switch05.png)
+{{< figure src="/image/switch05.png" width="50%" class="center" >}}
 
 스위치를 누르면 HIGH, 스위치를 누르지 않으면 LOW ?
 
 * (**그림대로 연결 절대 금지!**) 그러나 위 그림과 같이 연결하면 또다른 심각한 문제가 발생한다.
 
-![](/image/switch06.png)
+{{< figure src="/image/switch06.png" width="50%" class="center" >}}
 
 * 스위치를 누르는 순간, 5V와 GND가 직접 연결되어 전기적으로 합선(쇼트)이 되기때문에 아두이노 보드가 망가지거나 심한 경우, 아두이노가 연결된 컴퓨터가 망가질 수도 있다.
 
 * 이 그림은 마치 건전지 양극을 도선으로 그대로 연결한 것과 마찬가지인 상황이며, 실제 건전지에 이와 같은 방법으로 선을 연결하면 건전지가 과열되어 녹거나 심하면 불이 날수도 있다.
 
-![](/image/switch07.png)
+{{< figure src="/image/switch07.png" width="50%" class="center" >}}
 
 <br>
 
@@ -136,7 +136,7 @@ void loop() {
 
 * 이런 문제를 해결하려면, 양극의 사이에 저항을 하나 넣어서 전류의 흐름을 방해하면 된다. 
 
-![](/image/switch08.png)
+{{< figure src="/image/switch08.png" width="50%" class="center" >}}
 
 <br>
 
@@ -164,7 +164,7 @@ void loop() {
 
 #### schematic
 
-![](/image/switch04.png)
+{{< figure src="/image/switch04.png" width="50%" class="center" >}}
 
  <br>
 
@@ -203,7 +203,7 @@ void loop() {
 
 #### schematic
 
-![](/image/switch10.png)
+{{< figure src="/image/switch10.png" width="50%" class="center" >}}
 
 <br>
 

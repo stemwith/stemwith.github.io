@@ -10,6 +10,19 @@ https://github.com/alex-shpak/hugo-book
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,
 
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
 학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 16학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면 79학년,  고등을 선택하면 10~12학년을 선택할 수 있는 목록이 표시되도록 하는 것을 의미합니다. 또 학년마다 학급수가 다르기 때문에 각 학년을 선택하였을 때, 그 학년의 학급수만큼 학급 목록이 뜨도록 하면 더 좋겠죠. 이렇게 상황에 따라 목록이 유동적으로 표시되도록 하면, 데이터를 취합하는 입장에서 오류를 줄일 수 있는 상황을 기대할 수 있습니다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
@@ -29,11 +42,11 @@ https://github.com/alex-shpak/hugo-book
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/%EC%97%91%EC%85%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%A0%ED%9A%A8%EC%84%B1%EA%B2%80%EC%82%AC-%EB%8F%99%EC%A0%81%EB%B2%94%EC%9C%84%EC%84%A4%EC%A0%95/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -179,7 +192,25 @@ https://github.com/alex-shpak/hugo-book
 
 
   <div class="book-post-content markdown-inner"><p>데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,</p>
-<p><img src="/image/dynamic01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 33%;">
+
+  <img src="/image/dynamic01.png" alt="/image/dynamic01.png">
+
+  
+  
+</figure>
 <p>학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1<del>6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면 7</del>9학년,  고등을 선택하면 10~12학년을 선택할 수 있는 목록이 표시되도록 하는 것을 의미합니다. 또 학년마다 학급수가 다르기 때문에 각 학년을 선택하였을 때, 그 학년의 학급수만큼 학급 목록이 뜨도록 하면 더 좋겠죠. 이렇게 상황에 따라 목록이 유동적으로 표시되도록 하면, 데이터를 취합하는 입장에서 오류를 줄일 수 있는 상황을 기대할 수 있습니다.</p>
 <br>
 <br>
@@ -189,12 +220,48 @@ https://github.com/alex-shpak/hugo-book
 <li>학교급에 따른 학년범위 설정 :  초등은 1<del>6학년, 중등은 7</del>9학년, 고등은 10~12학년, 국제와 유치는 학년개념이 없으므로 그대로 국제와 유치로 설정</li>
 <li>학년에 따른 학급범위 설정 : 국제는 국제반, 유치는 토끼/사슴/기린반으로 나뉘고 그밖의 1~12학년까지 각 학년별 학급수를 나타냅니다.</li>
 </ul>
-<p><img src="/image/dynamic02.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 100%;">
+
+  <img src="/image/dynamic02.png" alt="/image/dynamic02.png">
+
+  
+  
+</figure>
 <br>
 <br>
 <h3 id="이름-만들기">이름 만들기<a class="anchor" href="#%ec%9d%b4%eb%a6%84-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a></h3>
 <p>예를 들어서 설명하는 것이 가장 좋을 것 같네요. <strong>수식</strong>&gt; <strong>이름 관리자</strong>를 클릭한 후 <strong>새로 만들기</strong>를 클릭</p>
-<p><img src="/image/dynamic03.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic03.png" alt="/image/dynamic03.png">
+
+  
+  
+</figure>
 <ul>
 <li>이름 : <strong>학교급_초등</strong></li>
 <li>참조 대상 : <strong>설정!$C$3:$C$8</strong></li>
@@ -214,7 +281,25 @@ https://github.com/alex-shpak/hugo-book
 <br>
 <h3 id="적용">적용<a class="anchor" href="#%ec%a0%81%ec%9a%a9">#</a></h3>
 <p>실제 적용될 부분을 만듭니다. 여기서는 J4~L6 부분이 되겠네요.</p>
-<p><img src="/image/dynamic04.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 100%;">
+
+  <img src="/image/dynamic04.png" alt="/image/dynamic04.png">
+
+  
+  
+</figure>
 <br>
 <h3 id="데이터-유효성-검사">데이터 유효성 검사<a class="anchor" href="#%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%9c%a0%ed%9a%a8%ec%84%b1-%ea%b2%80%ec%82%ac">#</a></h3>
 <h4 id="학교급">학교급<a class="anchor" href="#%ed%95%99%ea%b5%90%ea%b8%89">#</a></h4>
@@ -222,7 +307,25 @@ https://github.com/alex-shpak/hugo-book
 <li>J4셀 : <strong>학교급</strong>이라는 제목을 쓰고</li>
 <li>J5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
 </ol>
-<p><img src="/image/dynamic05.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic05.png" alt="/image/dynamic05.png">
+
+  
+  
+</figure>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
 <li>원본 : <strong>국제,유치,초등,중등,고등</strong></li>
@@ -236,7 +339,25 @@ https://github.com/alex-shpak/hugo-book
 <li>K4셀 : <strong>학년</strong>이라는 제목을 쓰고</li>
 <li>K5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
 </ol>
-<p><img src="/image/dynamic06.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic06.png" alt="/image/dynamic06.png">
+
+  
+  
+</figure>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
 <li>원본 : <strong>=INDIRECT($J$6)</strong>
@@ -246,7 +367,25 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
-<p><img src="/image/dynamic07.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic07.png" alt="/image/dynamic07.png">
+
+  
+  
+</figure>
 <ol start="3">
 <li>K6셀 : <strong>=&ldquo;학교급_&rdquo;&amp;$K$5</strong> (K5셀이 <strong>6</strong>으로 선택이 되면, <strong>학년6_반</strong> 으로 바꿔주는 수식입니다.)</li>
 </ol>
@@ -256,7 +395,25 @@ https://github.com/alex-shpak/hugo-book
 <li>L4셀 : <strong>반</strong>이라는 제목을 쓰고</li>
 <li>L5셀 : <strong>데이터</strong>&gt; <strong>데이터 유효성 검사</strong>를 클릭한 뒤</li>
 </ol>
-<p><img src="/image/dynamic08.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic08.png" alt="/image/dynamic08.png">
+
+  
+  
+</figure>
 <ul>
 <li>제한 대상 : <strong>목록</strong></li>
 <li>원본 : <strong>=INDIRECT($K$6)</strong>
@@ -266,7 +423,25 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
-<p><img src="/image/dynamic09.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/dynamic09.png" alt="/image/dynamic09.png">
+
+  
+  
+</figure>
 <ol start="3">
 <li>(선택사항) L6셀 : <strong>=K6&amp;L5</strong> (K6셀이 <strong>6</strong>, L5셀이 <strong>1</strong>로 선택이 되면, <strong>학년6_반1</strong> 과 같이 바꿔주는 수식입니다.)</li>
 </ol>

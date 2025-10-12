@@ -5,7 +5,6 @@ toc: true
 date: 2020-11-22T01:41:00+09:00
 tags:
 ---
-
 ### Solar Tracker 만들기
 
 팬(도리도리) & 틸트(끄덕끄덕)가 가능한 2축 서보모터 거치대와 2개의 서보모터를 사용하여 Solar Tracker를 만들어 보자.
@@ -14,7 +13,7 @@ tags:
 
 #### 단계1: Solar Tracker Frame 3D Printing
 
-![](/image/SolarTracker01.png)
+{{< figure src="/image/SolarTracker01.png" width="25%" class="center" >}}
 
 [.stl 파일](/attach/Sun_Tracker_Gnomon_B.stl)  [.gcode 파일](/attach/Sun_Tracker_Gnomon_B.gcode)
 
@@ -28,11 +27,11 @@ tags:
 
 ##### 조도센서 삽입
 
-![](/image/SolarTracker02.png)
+{{< figure src="/image/SolarTracker02.png" width="50%" class="center" >}}
 
 조도센서의 다리를 위에서 뚫은 구멍을 통해 넣은 뒤, 
 
-![](/image/SolarTracker03.png)
+{{< figure src="/image/SolarTracker03.png" width="50%" class="center" >}}
 
 뒤쪽에 글루건을 쏘아 고정시킨다. (조도센서는 극성을 구분할 필요가 없으므로, 서로 선이 맞닿지만 않으면 된다.)
 
@@ -44,29 +43,29 @@ tags:
 
 아래 그림과 같이 연결한다.
 
-![](/image/SolarTracker04.png)
+{{< figure src="/image/SolarTracker04.png" width="50%" class="center" >}}
 
 - 각 조도센서에 연결된 2개의 선 중 하나를 골라 10k 저항을 연결하고 한 뒤, 저항의 다른 쪽 끝을 모두 맞붙여서 GND에 연결한다.
 - 조도센서의 다른 한쪽 끝을 모두 맞붙여서 ESP32의 3.3V에 연결한다.
 
-![](/image/SolarTracker05.png)
+{{< figure src="/image/SolarTracker05.png" width="33%" class="center" >}}
 
 - GND와 3.3로 연결되는 선들이 서로 붙지 않도록 절연테이프를 붙여준다.
 
-  ![](/image/SolarTracker06.png)
+  {{< figure src="/image/SolarTracker06.png" width="33%" class="center" >}}
 
 - 각 조도센서와 10k 저항의 사이에 ESP32에 연결할 GPIO선을 하나씩 납땜하여 연결한다.
 
 
-![](/image/SolarTracker07.png)
+{{< figure src="/image/SolarTracker07.png" width="50%" class="center" >}}
 
 - ESP32의 3.3V와 GND에 연결할 선도 함께 납땜하여 연결한다.
 
-  ![](/image/SolarTracker08.png)
+  {{< figure src="/image/SolarTracker08.png" width="50%" class="center" >}}
 
 - 선 모양을 잡아 정리한다. (위 사진에는 하트 모양처럼 양 옆으로 선이 나와 있지만, 추후 거치대 장착을 위해서는 아래 사진처럼 모두 오무려주어야 한다.)
 
-  ![](/image/SolarTracker09.png)
+  {{< figure src="/image/SolarTracker09.png" width="50%" class="center" >}}
 
 <br>
 
@@ -74,13 +73,13 @@ tags:
 
 #### 단계3: 2축 서보모터 거치대에 장착하기
 
-![](/image/SolarTracker10.png)
+{{< figure src="/image/SolarTracker10.png" width="50%" class="center" >}}
 
 <br>
 
 ##### schematic
 
-![](/image/SolarTracker11.png)
+{{< figure src="/image/SolarTracker11.png" width="100%" class="center" >}}
 
 <br>
 
@@ -253,7 +252,7 @@ float volts = (referenceVolts/4095.0)*val*1000;
 <br>
 
 #### schematic
-![](/image/SolarMPPT01.png)
+{{< figure src="/image/SolarMPPT01.png" width="75%" class="center" >}}
 
 <br>
 

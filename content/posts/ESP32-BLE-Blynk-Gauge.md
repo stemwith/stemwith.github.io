@@ -5,7 +5,6 @@ date: 2019-10-23T21:33:48+09:00
 toc: true
 tags: ["iot"]
 ---
-
 ### ESP32에서 Blynk로 센서값 보내기 
 
 Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 저항값을 읽어 Blynk App에 전압(V), 저항(㏀) 값을 표시해본다. (ESP32 → Blynk App)
@@ -17,7 +16,7 @@ Blynk App의 GAUGE 위젯을 사용하여 ESP32에 연결된 Potentiometer의 �
 
 #### schematic
 
-![](/image/blynk-adc-01.png)
+{{< figure src="/image/blynk-adc-01.png" width="75%" class="center" >}}
 
 <br>
 

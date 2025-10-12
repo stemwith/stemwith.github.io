@@ -3,7 +3,6 @@ title: "드론 Part1 기체 조립"
 categories: ["drone"]
 date: 2021-08-01T18:27:53+09:00
 toc: true
-tags:
 ---
 
 <br>
@@ -12,7 +11,7 @@ tags:
 
 #### S500 기체 조립
 
-{{< figure src="/image/d/drone1_01.png" width="75%" class="center" >}}
+{{< figure src="/image/d/drone1_01.png" width="100%" class="center" >}}
 
 * 전원부: 아래 3가지 방법중 1가지 방법을 선택하여 구성 
   * S500 기판 오른쪽에 있는 (+), (-) 단자에 납을 크게 먹인 뒤, AWG12 와이어를 붙이고, 반대쪽 끝은 (사용할 LiPo 배터리의 단자 형태를 고려하여) XT60 Male 혹은 Deans (T plug) 단자를 납땝하여 연결한다.
@@ -43,25 +42,25 @@ tags:
 
 * 드론 날개에 모터 조립
 
-{{< figure src="/image/d/drone1_02.png" style="zoom: 25%;" class="center" >}}
+{{< figure src="/image/d/drone1_02.png" width="75%" class="center" >}}
 
 * 모터에 ESC를 연결한 후, 케이블타이를 이용하여 선을 정리한다.
 
-{{< figure src="/image/d/drone1_03.png" style="zoom: 25%;" class="center" >}}
+{{< figure src="/image/d/drone1_03.png" width="75%" class="center" >}}
 
 * (위 그림에서는 하지 않았으나) 길이를 맞춰 짧게 자른 뒤 연결하는 것이 좋음. ESC와 모터선을 짧게 잘라 재연결하는 경우, 아래와 같은 3.5파이 바나나잭을 사용한다. 일반적으로 모터에 바나나잭 male 단자를 사용하며, ESC에는 female 단자를 사용한다.
 
-{{< figure src="/image/d/drone1_05.png" style="zoom: 50%;" class="center" >}}
+{{< figure src="/image/d/drone1_05.png" width="33%" class="center" >}}
 
 * 이후에 드론 지지대와 랜딩스키드를 설치한다.
 
-{{< figure src="/image/d/drone1_04.png" style="zoom: 100%;" class="center" >}}
+{{< figure src="/image/d/drone1_04.png" width="75%" class="center" >}}
 
-{{< figure src="/image/d/drone1_06.png" style="zoom: 33%;" class="center" >}}
+{{< figure src="/image/d/drone1_06.png" width="75%" class="center" >}}
 
 * 배터리 설치 가이드 부착 (짐벌이 없으면 중앙에 설치하고, 짐벌을 설치할 예정이면 뒤쪽에 설치)
 
-{{< figure src="/image/d/drone1_07.png" class="center" >}}
+{{< figure src="/image/d/drone1_07.png" width="75%" class="center" >}}
 
 <br>
 
@@ -69,16 +68,16 @@ tags:
 
 * 수신기를 기체에 고정 (FrSky X8R의 경우 송수신기 바인딩에 사용하는 버튼이 수신기 윗면에 위치하므로, 바인딩을 먼저 한 후 설치하는 것을 추천!)
 
-{{< figure src="/image/d/drone1_08.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_08.png" width="75%" class="center" >}}
 
 * FrSky X8R의 S.Bus를 이용하는 경우
   * 아래 그림과 같이 픽스호크의 RC단자에 순서대로 연결한다. (※SB단자를 사용하는 것이 아님)
 
-{{< figure src="/image/d/drone1_09.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_09.png" width="75%" class="center" >}}
 
 * Devo RX701과 PWM to PPM encoder를 이용하는 경우 (선 색깔은 제품별로 다를 수 있음)
 
-{{< figure src="/image/d/drone1_10.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_10.png" width="50%" class="center" >}}
 
 ​		
 
@@ -102,27 +101,27 @@ tags:
 
 * 상판을 올려 조립하고
 
-{{< figure src="/image/d/drone1_11.png" class="center" >}}
+{{< figure src="/image/d/drone1_11.png" width="75%" class="center" >}}
 
 * FC (픽스호크 등) 및 댐퍼를 설치한다. (댐퍼 크기가 제조사마다 달라서 나사로 고정이 안되는 경우가 있으며, 이럴 경우 케이블 타이를 사용하여 고정하여야 함)
 
-{{< figure src="/image/d/drone1_12.png" class="center" >}}
+{{< figure src="/image/d/drone1_12.png" width="75%" class="center" >}}
 
 * GPS 지지대를 이용하여 GPS 설치
 
-{{< figure src="/image/d/drone1_13.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_13.png" width="50%" class="center" >}}
 
 * 부저 연결
 
-{{< figure src="/image/d/drone1_15.png" style="zoom: 33%;" class="center" >}}
+{{< figure src="/image/d/drone1_15.png" width="75%" class="center" >}}
 
 * 스위치 연결
 
-{{< figure src="/image/d/drone1_16.png" width="33%" class="center" >}}
+{{< figure src="/image/d/drone1_16.png" width="75%" class="center" >}}
 
 * 픽스호크 상단 커넥터에 각 장치(전원, GPS(I2C&GPS 커넥터), 스위치, 부저 등)들을 연결한다.
 
-{{< figure src="/image/d/drone1_14.png" class="center" >}}
+{{< figure src="/image/d/drone1_14.png" width="75%" class="center" >}}
 
 <br>
 
@@ -134,7 +133,7 @@ tags:
 
 #### 후면 (수신기 및 ESC signal 연결)
 
-{{< figure src="/image/d/drone1_17.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_17.png" width="75%" class="center" >}}
 
 * Ⅰ : RC (Radio Control receiver input) ; 수신기 연결
 
@@ -152,13 +151,13 @@ tags:
 
 * 현재 운용중인 픽스호크의 후면 결선한 모습 (X8R 수신기: 파란색(-), 보라색(+), 초록색(signal))
 
-{{< figure src="/image/d/drone1_18.png" style="zoom: 33%;" class="center" >}}
+{{< figure src="/image/d/drone1_18.png" width="75%" class="center" >}}
 
 <br>
 
 #### 상단
 
-{{< figure src="/image/d/drone1_19.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_19.png" width="33%" class="center" >}}
 
 * 1 Spektrum DSM receiver
 
@@ -184,7 +183,7 @@ tags:
 
 * **12 I2C: GPS(Compass) module** or I2C splitter (I2C 포트 부족시 splitter 연결 가능)
 
-{{< figure src="/image/d/drone1_20.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_20.png" width="50%" class="center" >}}
 
 * 13 ADC (AnalogtoDigitalconverter6.6V)
 
@@ -196,7 +195,7 @@ tags:
 
 #### 측면
 
-{{< figure src="/image/d/drone1_21.png" class="center" >}}
+{{< figure src="/image/d/drone1_21.png" width="75%" class="center" >}}
 
 * 1 Input/Output reset button
 
@@ -214,7 +213,7 @@ tags:
 
 #### 프롭 회전 방향
 
-{{< figure src="/image/d/drone1_22.png" width="125%" class="center" >}}               {{< figure src="/image/d/drone1_23.png" width="125%" class="center" >}}
+{{< figure src="/image/d/drone1_22.png" width="50%" class="center" >}}               {{< figure src="/image/d/drone1_23.png" width="50%" class="center" >}}
 
 <br>
 
@@ -222,11 +221,11 @@ tags:
 
 * 프롭의 높은쪽으로 회전하는 경우: **양력 발생 (상승)**
 
- {{< figure src="/image/d/drone1_24.png" width="150%" class="center" >}}
+ {{< figure src="/image/d/drone1_24.png" width="75%" class="center" >}}
 
 * 프롭의 낮은쪽으로 회전하는 경우: **양력 감소 (하강)**
 
-{{< figure src="/image/d/drone1_25.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_25.png" width="75%" class="center" >}}
 
 * 프롭의 형태
 
@@ -236,7 +235,7 @@ tags:
 
 * 모터, 프롭, 캡너트 사용방법
 
-{{< figure src="/image/d/drone1_28.png" class="center" >}}
+{{< figure src="/image/d/drone1_28.png" width="75%" class="center" >}}
 
 |                  | 1,2번                                       | 3,4번                                        |
 | ---------------- | ------------------------------------------- | -------------------------------------------- |
@@ -271,7 +270,7 @@ tags:
 
 #### 픽스호크용 BEC
 
-{{< figure src="/image/d/drone1_30.png" width="150%" class="center" >}}
+{{< figure src="/image/d/drone1_30.png" width="50%" class="center" >}}
 
 * 입력전압: 2S~6S(최대 28V)
 
@@ -302,4 +301,4 @@ tags:
 
 LiPo 4S 14.8V 4200mAh 90C / XT60
 
-{{< figure src="/image/d/drone1_31.png" class="center" >}}
+{{< figure src="/image/d/drone1_31.png" width="50%" class="center" >}}

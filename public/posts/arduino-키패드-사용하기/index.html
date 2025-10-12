@@ -14,6 +14,19 @@ https://github.com/alex-shpak/hugo-book
 schematic#
 
 
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
 Pin Map#
 
   
@@ -86,11 +99,11 @@ schematic#Pin Map#Arduino Keypad 일부 Keypad의 경우 2 1 8 3 2 7 4 3 6 5 4
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -237,7 +250,25 @@ schematic#Pin Map#Arduino Keypad 일부 Keypad의 경우 2 1 8 3 2 7 4 3 6 5 4
 <p>키패드 입력값을 시리얼 모니터로 출력해보자.</p>
 <br>
 <h4 id="schematic">schematic<a class="anchor" href="#schematic">#</a></h4>
-<p><img src="/image/keypad-01.jpg" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 50%;">
+
+  <img src="/image/keypad-01.jpg" alt="/image/keypad-01.jpg">
+
+  
+  
+</figure>
 <br>
 <h4 id="pin-map">Pin Map<a class="anchor" href="#pin-map">#</a></h4>
 <table>
@@ -302,38 +333,38 @@ schematic#Pin Map#Arduino Keypad 일부 Keypad의 경우 2 1 8 3 2 7 4 3 6 5 4
 <li>Keypad by Mark Stanley, Alexander Brevig 라이브러리 설치</li>
 </ul>
 <p>2. <strong>스케치</strong>&gt; <strong>라이브러리 포함하기</strong> 에서 Keypad를 선택하면</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Keypad.h&gt;</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Keypad.h&gt;</span></span></span></code></pre></div><ul>
 <li>라이브러리가 스케치에 추가된다.</li>
 </ul>
 <br>
 <br>
 <h3 id="sketch">sketch<a class="anchor" href="#sketch">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Keypad.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> byte ROWS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;      <span style="color:#75715e">//배열
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> byte COLS <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;      <span style="color:#75715e">//배열
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> keys[ROWS][COLS] <span style="color:#f92672">=</span> { <span style="color:#75715e">//배열
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  {<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>,<span style="color:#e6db74">&#39;A&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;4&#39;</span>,<span style="color:#e6db74">&#39;5&#39;</span>,<span style="color:#e6db74">&#39;6&#39;</span>,<span style="color:#e6db74">&#39;B&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;7&#39;</span>,<span style="color:#e6db74">&#39;8&#39;</span>,<span style="color:#e6db74">&#39;9&#39;</span>,<span style="color:#e6db74">&#39;C&#39;</span>},
-</span></span><span style="display:flex;"><span>  {<span style="color:#e6db74">&#39;*&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;#&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>byte rowPins[ROWS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>}; <span style="color:#75715e">//핀 지정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>byte colPins[COLS] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>}; <span style="color:#75715e">//핀 지정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>Keypad keypad <span style="color:#f92672">=</span> <span style="color:#a6e22e">Keypad</span>( <span style="color:#a6e22e">makeKeymap</span>(keys), rowPins, colPins, ROWS, COLS );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>(){
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">9600</span>);  <span style="color:#75715e">//시리얼 통신 9600
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>(){
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> key <span style="color:#f92672">=</span> keypad.<span style="color:#a6e22e">getKey</span>();  <span style="color:#75715e">//읽어온 값을 key에 저장
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (key){
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(key);  <span style="color:#75715e">//key값을 시리얼 모니터에 출력한다
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Keypad.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">byte</span> <span class="n">ROWS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>      <span class="c1">//배열
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="n">byte</span> <span class="n">COLS</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>      <span class="c1">//배열
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">keys</span><span class="p">[</span><span class="n">ROWS</span><span class="p">][</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">//배열
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="sc">&#39;A&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="sc">&#39;6&#39;</span><span class="p">,</span><span class="sc">&#39;B&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;7&#39;</span><span class="p">,</span><span class="sc">&#39;8&#39;</span><span class="p">,</span><span class="sc">&#39;9&#39;</span><span class="p">,</span><span class="sc">&#39;C&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="sc">&#39;*&#39;</span><span class="p">,</span><span class="sc">&#39;0&#39;</span><span class="p">,</span><span class="sc">&#39;#&#39;</span><span class="p">,</span><span class="sc">&#39;D&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">byte</span> <span class="n">rowPins</span><span class="p">[</span><span class="n">ROWS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span> <span class="c1">//핀 지정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">byte</span> <span class="n">colPins</span><span class="p">[</span><span class="n">COLS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span> <span class="c1">//핀 지정
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Keypad</span> <span class="n">keypad</span> <span class="o">=</span> <span class="nf">Keypad</span><span class="p">(</span> <span class="nf">makeKeymap</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">rowPins</span><span class="p">,</span> <span class="n">colPins</span><span class="p">,</span> <span class="n">ROWS</span><span class="p">,</span> <span class="n">COLS</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>  <span class="c1">//시리얼 통신 9600
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keypad</span><span class="p">.</span><span class="nf">getKey</span><span class="p">();</span>  <span class="c1">//읽어온 값을 key에 저장
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>  <span class="c1">//key값을 시리얼 모니터에 출력한다
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <p><strong>툴</strong>&gt; <strong>시리얼 모니터</strong>(혹은 Ctrl-Shift-M) 에서 확인한다.</p>
 </div>
 </article>

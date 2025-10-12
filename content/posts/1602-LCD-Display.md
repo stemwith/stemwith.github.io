@@ -11,7 +11,7 @@ tags:
 
 ### schematic
 
-![](/image/1602-01.jpg)
+{{< figure src="/image/1602-01.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -19,7 +19,7 @@ tags:
 
 백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 **LCD 3번핀을 3.3㏀ 거쳐서 GND로 연결**(혹은 1㏀ 3개를 직렬연결) 하거나, 아래 회로와 같이 가변 저항을 사용하면 백라이트의 밝기를 적절히 조절할 수도 있다.
 
-![](/image/1602-02.jpg)
+{{< figure src="/image/1602-02.jpg" width="75%" class="center" >}}
 
 
 
@@ -146,7 +146,7 @@ void loop() {
 
 
 #### schematic
-![](/image/1602-03.jpg)
+{{< figure src="/image/1602-03.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -222,7 +222,7 @@ void loop() {
 
 #### schematic
 
-![](/image/1602-04.jpg)
+{{< figure src="/image/1602-04.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -278,7 +278,7 @@ DHT11 센서를 사용하면 온도와 습도를 동시에 측정할 수 있다.
 
 #### schematic
 
-![](/image/1602-05.jpg)
+{{< figure src="/image/1602-05.jpg" width="75%" class="center" >}}
 
 <br>
 

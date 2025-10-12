@@ -10,7 +10,7 @@ tags:
 
 #### schematic
 
-![](/image/1602lcd.png)
+{{< figure src="/image/1602lcd.png" width="75%" class="center" >}}
 
 <br>
 
@@ -97,7 +97,7 @@ void loop() {
 
 #### schematic
 
-![](/image/1602lcd-ds18b20.png)
+{{< figure src="/image/1602lcd-ds18b20.png" width="75%" class="center" >}}
 
 <br>
 

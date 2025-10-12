@@ -18,7 +18,7 @@ Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보
 
 #### schematic
 
-![](/image/blynk-pwm-01.png)
+{{< figure src="/image/blynk-pwm-01.png" width="75%" class="center" >}}
 
 ※ LED모듈을 사용하는 경우 저항이 필요없다.
 
@@ -203,5 +203,5 @@ Slide값에 따라 LED의 밝기가 조절된다.
 
 8. Slider를 조절하는 동안 Arduino IDE의 시리얼 모니터값을 확인해볼 수 있다.
 
-![](/image/blynk-pwm-16.png)
+{{< figure src="/image/blynk-pwm-16.png" width="75%" class="center" >}}
 

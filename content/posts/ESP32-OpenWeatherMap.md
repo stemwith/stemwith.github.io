@@ -5,7 +5,6 @@ date: 2019-11-19T18:27:53+09:00
 toc: true
 tags: ["iot"]
 ---
-
 ### OpenWeatherMap.org
 
 [OpenWeatherMap]( https://openweathermap.org/ )은 세계 각 지역의 현재 날씨, 예보, 과거 날씨 데이터를 제공하는 사이트입니다. (몇가지 제약이 있긴 하지만) 회원가입을 통해서 API Key를 생성하고 이를 통해 무료로 실시간 날씨 정보를 얻을 수 있습니다.
@@ -32,33 +31,33 @@ tags: ["iot"]
 
 1. Sign Up을 클릭하여 회원가입을 하고,
 
-   ![](/image/owm-api-01.png)
+   {{< figure src="/image/owm-api-01.png" width="75%" class="center" >}}
 
    <br>
 
-   ![](/image/owm-api-02.png)
+   {{< figure src="/image/owm-api-02.png" width="75%" class="center" >}}
 
    <br>
 
 2. Sign In을 클릭하여 로그인한 뒤, API Keys를 누릅니다.
 
-   ![](/image/owm-api-03.png)
+   {{< figure src="/image/owm-api-03.png" width="75%" class="center" >}}
 
    <br>
 
-   ![](/image/owm-api-04.png)
+   {{< figure src="/image/owm-api-04.png" width="75%" class="center" >}}
 
    <br>
 
 3.  Default로 지정되어 있는 Key를 복사하거나, 새로운 Key를 생성합니다.
 
-   ![](/image/owm-api-05.png)
+   {{< figure src="/image/owm-api-05.png" width="75%" class="center" >}}
 
 <br>
 
 4. API Key를 이용하는 방법은 메인홈페이지 메뉴의 API 탭을 누른뒤, 얻고자 하는 날씨정보(예를 들어 Current weather data)의 [**API doc**](https://openweathermap.org/api)을 참고하세요.
 
-   ![](/image/owm-api-06.png)
+   {{< figure src="/image/owm-api-06.png" width="75%" class="center" >}}
 
 5. 먼저 인터넷 브라우저를 통해 날씨정보가 어떻게 출력되는지 알아보기위하여 아래 홈페이지 주소에 접속해봅니다. 이때 주소의 끝부분에 있는 YOUR_API_KEY 대신 본인의 API Key를 입력합니다.
 
@@ -196,13 +195,13 @@ void loop() {
 
 > 스케치 맨 아래라인의 delay 명령으로 인해 10초마다 1번씩 data를 출력합니다. 단, OpenWeatherMap free service의 update time이 2시간 이하로 되어 있으므로, 자료 갱신이 매 출력시마다 진행되지는 않습니다.
 
-![](/image/owm-01.png)
+{{< figure src="/image/owm-01.png" width="75%" class="center" >}}
 
 <br>
 
 Firefox 등의 몇몇 인터넷 브라우저에서는 JSON 데이터를 보다 직관적으로 이해할 수 있도록 계층별로 나누어 출력해주기도 합니다.
 
-![](/image/owm-02.png)
+{{< figure src="/image/owm-02.png" width="50%" class="center" >}}
 
 <br>
 
@@ -220,11 +219,11 @@ ArduinoJson (by Benoit Blanchon) 라이브러리 (version 6)를 설치합니다.
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리**
 
-![](/image/json-01.png)
+{{< figure src="/image/json-01.png" width="75%" class="center" >}}
 
 <br>
 
-![](/image/json-02.png)
+{{< figure src="/image/json-02.png" width="75%" class="center" >}}
 
 <br>
 
@@ -248,7 +247,7 @@ https://api.openweathermap.org/data/2.5/weather?q=Shanghai,CN&units=metric&APPID
 
 3. https://arduinojson.org/assistant 에 접속한 뒤, **Input**란에 있는 내용을 모두 지우고 복사한 JSON데이터를 붙여넣기하면, Memory pool size가 자동으로 계산됩니다.
 
-![](/image/owm-04.png)
+{{< figure src="/image/owm-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -266,7 +265,7 @@ const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT
 
 1. Memory pool size가 출력된 화면의 아래쪽에 Parsing program도 함께 출력됩니다.
 
-![](/image/owm-05.png)
+{{< figure src="/image/owm-05.png" width="75%" class="center" >}}
 
 <br>
 
@@ -302,7 +301,7 @@ sys_sunset = sys_sunset + timezone;
 
 6. UNIX Timestamp로 표기되는 시간을 일반적인 날짜, 시간으로 표기되도록 변환해줍니다. 이를 위해서 timelib.h 파일을 이용해야하는데, 이 파일은 Time 라이브러리(by Michael Margolis)에 포함되어 있지요. 그러므로 라이브러리 매니저를 통해 Time라이브러리를 찾아 설치해줍니다.
 
-   ![](/image/owm-10.png)
+   {{< figure src="/image/owm-10.png" width="75%" class="center" >}}
 
 ```C++
 year(dt), month(dt), day(dt), hour(dt), minute(dt), second(dt), weekday(dt));
@@ -515,7 +514,7 @@ void loop() {
 
 #### 출력 Data
 
-![](/image/owm-03.png)
+{{< figure src="/image/owm-03.png" width="75%" class="center" >}}
 
 <br>
 
@@ -527,16 +526,16 @@ void loop() {
 
 | ID   | Main         | Description                     | Icon                                                    |
 | ---- | ------------ | ------------------------------- | ------------------------------------------------------- |
-| 200  | Thunderstorm | thunderstorm with light rain    | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 201  | Thunderstorm | thunderstorm with rain          | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 202  | Thunderstorm | thunderstorm with heavy rain    | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 210  | Thunderstorm | light thunderstorm              | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 211  | Thunderstorm | thunderstorm                    | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 212  | Thunderstorm | heavy thunderstorm              | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 221  | Thunderstorm | ragged thunderstorm             | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 230  | Thunderstorm | thunderstorm with light drizzle | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 231  | Thunderstorm | thunderstorm with drizzle       | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
-| 232  | Thunderstorm | thunderstorm with heavy drizzle | ![img](http://openweathermap.org/img/wn/11d@2x.png) 11d |
+| 200  | Thunderstorm | thunderstorm with light rain    | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 201  | Thunderstorm | thunderstorm with rain          | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 202  | Thunderstorm | thunderstorm with heavy rain    | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 210  | Thunderstorm | light thunderstorm              | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 211  | Thunderstorm | thunderstorm                    | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 212  | Thunderstorm | heavy thunderstorm              | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 221  | Thunderstorm | ragged thunderstorm             | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 230  | Thunderstorm | thunderstorm with light drizzle | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 231  | Thunderstorm | thunderstorm with drizzle       | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
+| 232  | Thunderstorm | thunderstorm with heavy drizzle | {{< figure src="http://openweathermap.org/img/wn/11d@2x.png" alt="img" width="50%" class="center" >}} 11d |
 
 <br>
 
@@ -544,15 +543,15 @@ void loop() {
 
 | ID   | Main    | Description                   | Icon                                                    |
 | ---- | ------- | ----------------------------- | ------------------------------------------------------- |
-| 300  | Drizzle | light intensity drizzle       | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 301  | Drizzle | drizzle                       | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 302  | Drizzle | heavy intensity drizzle       | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 310  | Drizzle | light intensity drizzle rain  | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 311  | Drizzle | drizzle rain                  | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 312  | Drizzle | heavy intensity drizzle rain  | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 313  | Drizzle | shower rain and drizzle       | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 314  | Drizzle | heavy shower rain and drizzle | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 321  | Drizzle | shower drizzle                | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
+| 300  | Drizzle | light intensity drizzle       | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 301  | Drizzle | drizzle                       | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 302  | Drizzle | heavy intensity drizzle       | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 310  | Drizzle | light intensity drizzle rain  | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 311  | Drizzle | drizzle rain                  | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 312  | Drizzle | heavy intensity drizzle rain  | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 313  | Drizzle | shower rain and drizzle       | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 314  | Drizzle | heavy shower rain and drizzle | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 321  | Drizzle | shower drizzle                | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
 
 <br>
 
@@ -560,16 +559,16 @@ void loop() {
 
 | ID   | Main | Description                 | Icon                                                    |
 | ---- | ---- | --------------------------- | ------------------------------------------------------- |
-| 500  | Rain | light rain                  | ![img](http://openweathermap.org/img/wn/10d@2x.png) 10d |
-| 501  | Rain | moderate rain               | ![img](http://openweathermap.org/img/wn/10d@2x.png) 10d |
-| 502  | Rain | heavy intensity rain        | ![img](http://openweathermap.org/img/wn/10d@2x.png) 10d |
-| 503  | Rain | very heavy rain             | ![img](http://openweathermap.org/img/wn/10d@2x.png) 10d |
-| 504  | Rain | extreme rain                | ![img](http://openweathermap.org/img/wn/10d@2x.png) 10d |
-| 511  | Rain | freezing rain               | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 520  | Rain | light intensity shower rain | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 521  | Rain | shower rain                 | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 522  | Rain | heavy intensity shower rain | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
-| 531  | Rain | ragged shower rain          | ![img](http://openweathermap.org/img/wn/09d@2x.png) 09d |
+| 500  | Rain | light rain                  | {{< figure src="http://openweathermap.org/img/wn/10d@2x.png" alt="img" width="50%" class="center" >}} 10d |
+| 501  | Rain | moderate rain               | {{< figure src="http://openweathermap.org/img/wn/10d@2x.png" alt="img" width="50%" class="center" >}} 10d |
+| 502  | Rain | heavy intensity rain        | {{< figure src="http://openweathermap.org/img/wn/10d@2x.png" alt="img" width="50%" class="center" >}} 10d |
+| 503  | Rain | very heavy rain             | {{< figure src="http://openweathermap.org/img/wn/10d@2x.png" alt="img" width="50%" class="center" >}} 10d |
+| 504  | Rain | extreme rain                | {{< figure src="http://openweathermap.org/img/wn/10d@2x.png" alt="img" width="50%" class="center" >}} 10d |
+| 511  | Rain | freezing rain               | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 520  | Rain | light intensity shower rain | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 521  | Rain | shower rain                 | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 522  | Rain | heavy intensity shower rain | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
+| 531  | Rain | ragged shower rain          | {{< figure src="http://openweathermap.org/img/wn/09d@2x.png" alt="img" width="50%" class="center" >}} 09d |
 
 <br>
 
@@ -577,17 +576,17 @@ void loop() {
 
 | ID   | Main | Description         | Icon                                                    |
 | ---- | ---- | ------------------- | ------------------------------------------------------- |
-| 600  | Snow | light snow          | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 601  | Snow | Snow                | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 602  | Snow | Heavy snow          | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 611  | Snow | Sleet               | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 612  | Snow | Light shower sleet  | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 613  | Snow | Shower sleet        | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 615  | Snow | Light rain and snow | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 616  | Snow | Rain and snow       | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 620  | Snow | Light shower snow   | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 621  | Snow | Shower snow         | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
-| 622  | Snow | Heavy shower snow   | ![img](http://openweathermap.org/img/wn/13d@2x.png) 13d |
+| 600  | Snow | light snow          | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 601  | Snow | Snow                | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 602  | Snow | Heavy snow          | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 611  | Snow | Sleet               | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 612  | Snow | Light shower sleet  | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 613  | Snow | Shower sleet        | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 615  | Snow | Light rain and snow | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 616  | Snow | Rain and snow       | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 620  | Snow | Light shower snow   | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 621  | Snow | Shower snow         | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
+| 622  | Snow | Heavy shower snow   | {{< figure src="http://openweathermap.org/img/wn/13d@2x.png" alt="img" width="50%" class="center" >}} 13d |
 
 <br>
 
@@ -595,16 +594,16 @@ void loop() {
 
 | ID   | Main    | Description       | Icon                                                    |
 | ---- | ------- | ----------------- | ------------------------------------------------------- |
-| 701  | Mist    | mist              | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 711  | Smoke   | Smoke             | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 721  | Haze    | Haze              | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 731  | Dust    | sand/ dust whirls | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 741  | Fog     | fog               | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 751  | Sand    | sand              | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 761  | Dust    | dust              | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 762  | Ash     | volcanic ash      | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 771  | Squall  | squalls           | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
-| 781  | Tornado | tornado           | ![img](http://openweathermap.org/img/wn/50d@2x.png) 50d |
+| 701  | Mist    | mist              | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 711  | Smoke   | Smoke             | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 721  | Haze    | Haze              | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 731  | Dust    | sand/ dust whirls | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 741  | Fog     | fog               | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 751  | Sand    | sand              | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 761  | Dust    | dust              | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 762  | Ash     | volcanic ash      | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 771  | Squall  | squalls           | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
+| 781  | Tornado | tornado           | {{< figure src="http://openweathermap.org/img/wn/50d@2x.png" alt="img" width="50%" class="center" >}} 50d |
 
 <br>
 
@@ -612,7 +611,7 @@ void loop() {
 
 | ID   | Main  | Description | Icon                                                         |
 | ---- | ----- | ----------- | ------------------------------------------------------------ |
-| 800  | Clear | clear sky   | ![img](http://openweathermap.org/img/wn/01d@2x.png) 01d ![img](http://openweathermap.org/img/wn/01n@2x.png) 01n |
+| 800  | Clear | clear sky   | {{< figure src="http://openweathermap.org/img/wn/01d@2x.png" alt="img" width="50%" class="center" >}} 01n |
 
 <br>
 
@@ -620,10 +619,10 @@ void loop() {
 
 | ID   | Main   | Description              | Icon                                                         |
 | ---- | ------ | ------------------------ | ------------------------------------------------------------ |
-| 801  | Clouds | few clouds: 11-25%       | ![img](http://openweathermap.org/img/wn/02d@2x.png) 02d ![img](http://openweathermap.org/img/wn/02n@2x.png) 02n |
-| 802  | Clouds | scattered clouds: 25-50% | ![img](http://openweathermap.org/img/wn/03d@2x.png) 03d ![img](http://openweathermap.org/img/wn/03n@2x.png) 03n |
-| 803  | Clouds | broken clouds: 51-84%    | ![img](http://openweathermap.org/img/wn/04d@2x.png) 04d ![img](http://openweathermap.org/img/wn/04n@2x.png) 04n |
-| 804  | Clouds | overcast clouds: 85-100% | ![img](http://openweathermap.org/img/wn/04d@2x.png) 04d ![img](http://openweathermap.org/img/wn/04n@2x.png) 04n |
+| 801  | Clouds | few clouds: 11-25%       | {{< figure src="http://openweathermap.org/img/wn/02d@2x.png" alt="img" width="50%" class="center" >}} 02n |
+| 802  | Clouds | scattered clouds: 25-50% | {{< figure src="http://openweathermap.org/img/wn/03d@2x.png" alt="img" width="50%" class="center" >}} 03n |
+| 803  | Clouds | broken clouds: 51-84%    | {{< figure src="http://openweathermap.org/img/wn/04d@2x.png" alt="img" width="50%" class="center" >}} 04n |
+| 804  | Clouds | overcast clouds: 85-100% | {{< figure src="http://openweathermap.org/img/wn/04d@2x.png" alt="img" width="50%" class="center" >}} 04n |
 
 <br>
 
@@ -635,7 +634,7 @@ Weather ID 801에 해당하는 아이콘 code가 02d이므로 URL을 다음과 �
 http://openweathermap.org/img/wn/10d.png
 ```
 
-![](http://openweathermap.org/img/wn/10d.png)
+{{< figure src="http://openweathermap.org/img/wn/10d.png" width="10%" class="center" >}}
 
 ICON크기를 크게 출력하고 싶은 경우에는 아이콘 code에 **@2x**를 덧붙입니다.
 
@@ -643,7 +642,7 @@ ICON크기를 크게 출력하고 싶은 경우에는 아이콘 code에 **@2x**�
 http://openweathermap.org/img/wn/10d@2x.png
 ```
 
-![](http://openweathermap.org/img/wn/10d@2x.png)
+{{< figure src="http://openweathermap.org/img/wn/10d@2x.png" width="10%" class="center" >}}
 
 <br>
 
@@ -665,7 +664,7 @@ http://openweathermap.org/img/wn/10d@2x.png
 
 #### schematic
 
-![](/image/owm-06.png)
+{{< figure src="/image/owm-06.png" width="75%" class="center" >}}
 
 <br>
 

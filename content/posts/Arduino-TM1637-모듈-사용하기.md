@@ -11,7 +11,7 @@ tags:
 
 #### schematic
 
-![](/image/tm1637-01.png)
+{{< figure src="/image/tm1637-01.png" width="75%" class="center" >}}
 
 | TM1637  | CLK  | DIO  | VCC  | GND  |
 | ------- | ---- | ---- | ---- | ---- |
@@ -24,13 +24,13 @@ tags:
 1. 파일> 새파일>
 2. **스케치**\> **라이브러리 포함하기**\> **라이브러리 관리**>
 
-![](/image/tm1637-02.png)
+{{< figure src="/image/tm1637-02.png" width="75%" class="center" >}}
 
 <br>
 
 3. 라이브러리 매니저 창이 뜨면, 검색란에 “tm1637"를 적어 넣음. tm1637관련 라이브러리가 5~6개정도 검색됨. TM1637 by Avishay Orpaz 라이브러리를 선택하여 설치
 
-![](/image/tm1637-03.png)
+{{< figure src="/image/tm1637-03.png" width="75%" class="center" >}}
 
 <br><br>
 

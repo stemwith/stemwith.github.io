@@ -32,7 +32,7 @@ tags:
 
 #### schematic
 
-![](/image/Buzzer01.png)
+{{< figure src="/image/Buzzer01.png" width="50%" class="center" >}}
 
 <br>
 
@@ -563,7 +563,7 @@ void loop() {
 
 #### schematic
 
-![](/image/switch11.png)
+{{< figure src="/image/switch11.png" width="50%" class="center" >}}
 
 <br>
 
@@ -599,7 +599,7 @@ void loop() {
 
 #### 과제
 
-2~3명의 학생이 모여 2~3 옥타브를 사용하는 피아노 연주곡 만들어보기
+2명의 학생이 모여 2옥타브를 사용하는 피아노 연주곡 만들어보기
 
 <br>
 

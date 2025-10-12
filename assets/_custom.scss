@@ -29,3 +29,43 @@ $font-family-korean: 'NanumSquareRound',
   max-width: 100%;
   width: auto;
 }
+
+/* figure 태그 기본 스타일 */
+figure {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  padding: 0;
+}
+
+/* class="center"가 적용된 figure를 중앙 정렬합니다. */
+figure.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* "left" 클래스를 가진 요소를 왼쪽으로 정렬 */
+figure.left {
+  margin-right: auto; /* 오른쪽 여백을 자동으로 채워 왼쪽으로 붙임 */
+  margin-left: 0;
+}
+
+/* "right" 클래스를 가진 요소를 오른쪽으로 정렬 */
+figure.right {
+  margin-left: auto; /* 왼쪽 여백을 자동으로 채워 오른쪽으로 붙임 */
+  margin-right: 0;
+}
+
+/* figure 내부의 이미지가 부모 너비에 꽉 차도록 설정 */
+figure img {
+  width: 100%;
+  height: auto; /* 이미지 비율 유지 */
+  display: block;
+}
+
+/* 캡션 스타일 (선택 사항) */
+figure figcaption {
+  text-align: center;
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}

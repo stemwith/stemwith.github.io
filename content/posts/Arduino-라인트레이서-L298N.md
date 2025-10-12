@@ -14,7 +14,7 @@ tags: ["rc"]
 
 라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.
 
-![](/image/LT-03.png)
+{{< figure src="/image/LT-03.png" width="33%" class="center" >}}
 
 *   장애물이 없는 경우: 1 반환
 *   센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환
@@ -29,7 +29,7 @@ tags: ["rc"]
 
 #### schematic
 
-![](/image/tcrt5000.png)
+{{< figure src="/image/tcrt5000.png" width="50%" class="center" >}}
 
 <br>
 
@@ -61,7 +61,7 @@ void loop() {
 
 아두이노에서 사용하는 대표적인 모터드라이브는 L298N, TB6612FNG 등이 있으며, 여기서는 2CH의 2A출력이 가능한 L298N을 사용하여 간단한 라인트레이서를 제작한다.
 
-![](/image/LT-01.png)
+{{< figure src="/image/LT-01.png" width="75%" class="center" >}}
 
 <br>
 
@@ -128,7 +128,7 @@ void loop() {
 
 아두이노 기초 실습용으로 많이 쓰이는 이름없는 중국산 모터이다.
 
-![](/image/LT-02.jpg)
+{{< figure src="/image/LT-02.jpg" width="50%" class="center" >}}
 
 | 기어비 48:1 | RPM(무부하) | 전류 mA (무부하) | 토크(kg·cm) |
 | ----------- | ----------- | ---------------- | ----------- |
@@ -142,7 +142,7 @@ void loop() {
 ### 프레임 조립
 
 #### 준비물
-![](/image/LT-04.png)
+{{< figure src="/image/LT-04.png" width="75%" class="center" >}}
 
 <br>
 
@@ -151,49 +151,49 @@ void loop() {
 
 1. 모터 4개와 M-F형태의 8가닥 리드선을 준비하고 모터에 리드선을 납땜할 준비를 합니다.
 
-![](/image/LT-05.jpg)
+{{< figure src="/image/LT-05.jpg" width="75%" class="center" >}}
 
 <br>
 
 2. DC모터를 보면 양쪽에 (+)(-)극을 연결하는 단자가 있습니다.
 
-![](/image/LT-06.jpg)
+{{< figure src="/image/LT-06.jpg" width="75%" class="center" >}}
 
 <br>
 
 3. 준비한 8가닥의 M-F리드선을 2가닥씩 묶어 4갈래로 전체 길이의 1/2의 길이만큼 나누어 준비한뒤,
 
-![](/image/LT-07.jpg)
+{{< figure src="/image/LT-07.jpg" width="75%" class="center" >}}
 
 <br>
 
 4. 2개의 가닥 중 한 부분을 모터의 (+)(-)단자에 끼우고,
 
-![](/image/LT-08.jpg)
+{{< figure src="/image/LT-08.jpg" width="75%" class="center" >}}
 
 <br>
 
 5. 각각을 납땜합니다. 총 4개의 모터를 납땜하여 아래 모습처럼 만듭니다.
 
-![](/image/LT-09.jpg)
+{{< figure src="/image/LT-09.jpg" width="75%" class="center" >}}
 
 <br>
 
   ※ (주의) 납땜시, 아래 그림처럼 리드선이 모터의 본체에 닿으면 안됩니다.
 
-![](/image/LT-10.jpg)
+{{< figure src="/image/LT-10.jpg" width="75%" class="center" >}}
 
 <br>
 
 ​     처음 납땜할 때부터 닿지 않도록 하는 것이 좋지만, 납땜을 이미 진행한 후에 리드선이 본체에 닿아 있다면 아래의 그림처럼 끝 부분을 살짝 휘어두거나, 니퍼로 잘라내도록 합니다.
 
-![](/image/LT-11.jpg)
+{{< figure src="/image/LT-11.jpg" width="75%" class="center" >}}
 
 <br>
 
 6. 외부 전원으로 사용할 건전지소켓을 준비합니다. (사진상에는 1.5V AA건전지 4개가 직렬로 연결되는 건전지소켓을 사용하였지만, 4개의 모터를 구동하기 위해서는 1.5V AA건전지를 6개 직렬로 연결하여 9V 전압을 사용하는 것을 추천합니다. 단, 9V사각전지(6F22) 1개로 사용하는 것은 전류가 약하므로 사용불가!)
 
-![](/image/LT-12.jpg)
+{{< figure src="/image/LT-12.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -203,99 +203,99 @@ void loop() {
 
 7. 건전지소켓의 리드선과 점퍼선을 붙여 떨어지지 않도록 단단히 납땜한 후,
 
-![](/image/LT-13.jpg)
+{{< figure src="/image/LT-13.jpg" width="75%" class="center" >}}
 
 <br>
 
 8. 합선되지 않도록 절연테이프나 열수축튜브로 각각을 잘 감싸둡니다.
 
-![](/image/LT-14.jpg)
+{{< figure src="/image/LT-14.jpg" width="75%" class="center" >}}
 
 <br>
 
 9. 이제 아크릴판을 준비합니다.
 
-![](/image/LT-15.jpg)
+{{< figure src="/image/LT-15.jpg" width="75%" class="center" >}}
 
 <br>
 
 10. 아래 그림의 Step1~2과정과 같이 모터를 고정할 아크릴 조각을 끼울 것입니다.
 
-![](/image/LT-16.png)
+{{< figure src="/image/LT-16.png" width="75%" class="center" >}}
 
 <br>
 
 ​    우선, 모터를 고정할 아크릴 조각 2개를 고정할 위치를 확인합니다. 총 4개의 모터를 고정할 것이므로 아크릴 조각 8개가 필요합니다.
 
-![](/image/LT-17.jpg)
+{{< figure src="/image/LT-17.jpg" width="75%" class="center" >}}
 
 <br>
 
 11. 모터고정 아크릴 조각을 아래 사진처럼 끼웁니다. 하나는 구멍에 집어 넣고, 나머지 하나는 측면의 홈에 살짝 걸쳐둡니다.
 
-![](/image/LT-18.jpg)
+{{< figure src="/image/LT-18.jpg" width="75%" class="center" >}}
 
 <br>
 
 12. 이제 모터를 설치하겠습니다.
 
-![](/image/LT-19.png)
+{{< figure src="/image/LT-19.png" width="75%" class="center" >}}
 
 <br>
 
-![](/image/LT-20.png)
+{{< figure src="/image/LT-20.png" width="75%" class="center" >}}
 
 <br>
 
 ​    나사와 너트를 2개씩 준비한 후
 
-![](/image/LT-21.jpg)
+{{< figure src="/image/LT-21.jpg" width="75%" class="center" >}}
 
 <br>
 
 ​    아크릴 조각 2개 사이에 모터를 위치시킨 후, 모터 몸체이 있는 나사 구멍에 나사 2개를 통과시켜
 
-![](/image/LT-22.jpg)
+{{< figure src="/image/LT-22.jpg" width="75%" class="center" >}}
 
 <br>
 
 ​    아래 사진 같이 고정합니다.
 
-![](/image/LT-23.jpg)
+{{< figure src="/image/LT-23.jpg" width="75%" class="center" >}}
 
 <br>
 
 13\. 모터를 고정한 후, 바퀴축의 안쪽 부분에 바퀴의 균형을 잡아줄 동그란 아크릴 조각을 끼워줍니다.
 
-![](/image/LT-24.jpg)
+{{< figure src="/image/LT-24.jpg" width="75%" class="center" >}}
 
 <br>
 
 ​     4개의 모터를 같은 방법으로 고정시켜 아래와 같은 형태를 만듭니다. 주의할 것은 모터의 단자가 위치한 은색부분의 모터본체 부분이 서로 맞닿는 형태로 조립을 해야 합니다.
 
-![](/image/LT-25.jpg)
+{{< figure src="/image/LT-25.jpg" width="50%" class="center" >}}
 
 <br>
 
 14. 바퀴를 끼웁니다.
 
-![](/image/LT-26.png)
+{{< figure src="/image/LT-26.png" width="75%" class="center" >}}
 
 <br>
 
 15. 금속기둥을 세우고 상판을 덮습니다. (아크릴상판이 없는 경우는 생략 가능)
 
-![](/image/LT-27.png)
+{{< figure src="/image/LT-27.png" width="75%" class="center" >}}
 
 <br>
 
-![](/image/LT-28.png)
+{{< figure src="/image/LT-28.png" width="75%" class="center" >}}
 
 <br>
 
 16. 기판 아래면에 모터가 위치하도록 위아래를 뒤집은 후에, 기판 윗면에 TCRT5000 IR Reflective Sensor, 아두이노, 브레드보드, L298N 모터드라이브, 9V 전지소켓을 차례대로 올리고 나사볼트와 절연테이프 등으로 고정합니다. 대략 아래 사진과 비슷하게 고정하면 됩니다.
 
-![](/image/LT-29.jpg)
+{{< figure src="/image/LT-29.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -306,7 +306,7 @@ void loop() {
 
 #### schematic
 
-![](/image/LT-30.png)
+{{< figure src="/image/LT-30.png" width="100%" class="center" >}}
 
 <br>
 

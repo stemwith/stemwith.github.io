@@ -5,7 +5,6 @@ date: 2018-09-08T18:27:53+09:00
 toc: true
 tags:
 ---
-
 ### 스텝모터 (Step Motor)
 
 * 펄스 모양의 전압에 의해 일정 각도(스텝 수) 만큼 회전하는 모터.
@@ -15,16 +14,16 @@ tags:
 
 #### 스텝모터 28BYJ-48
 
-![](/image/s/Step-Motor-02.png)
+{{< figure src="/image/s/Step-Motor-02.png" width="50%" class="center" >}}
 
 * 정격전압: 5VDC
 
 * 기어비: 1/64
-  $$
+``` katex
   \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
-  $$
+```
 
-{{< figure src="/image/s/Step-Motor-01.png" width="80%" class="center" >}}
+{{< figure src="/image/s/Step-Motor-01.png" width="50%" class="center" >}}
 
 * 스트라이드 각도
   * **스펙상 5.625º / 64** = 0.087890625
@@ -44,7 +43,7 @@ tags:
 
 #### schematic
 
-![](/image/s/UNO-step-01.png)
+{{< figure src="/image/s/UNO-step-01.png" width="75%" class="center" >}}
 
 
 

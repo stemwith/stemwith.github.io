@@ -6,12 +6,11 @@ mathjax: true
 toc: true
 tags:
 ---
-
 ### SG90, MG90S,  MG966R 서보모터
 
 #### datasheet
 
-![](/image/SG90_Datasheet.jpg)
+{{< figure src="/image/SG90_Datasheet.jpg" width="75%" class="center" >}}
 
 <br>
 
@@ -27,15 +26,13 @@ tags:
 
    * 그러므로, 전체 펄스 폭의 1/10만큼 HIGH 펄스가 주어지면 180º 회전을 한다.
 
-   * Resolution이 16비트라면 65535의 1/10에 해당하는 ~~6554~~의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.
+   * Resolution이 16비트라면 65535의 1/10에 해당하는 **6554** 의 값이 duty값으로 주어지면 서보모터는 180º 회전을 한다.
 
-   * ~~데이터 시트에 나온 스펙에 따라서, 16비트 해상도에서 duty값에 따른 회전 각도~~
+   * 데이터 시트에 나온 스펙에 따라서, 16비트 해상도에서 duty값에 따른 회전 각도
 
-     * ~~PWM 5% : 3277 → 0º~~
-
-     * ~~PWM 7.5% : 4915 → 90º~~
-
-     * ~~PWM 10% : 6554 → 180º~~
+     * PWM 5% : 3277 → 0º
+     * PWM 7.5% : 4915 → 90º
+     * PWM 10% : 6554 → 180º
 
        라고 생각했으나, 실제로는 이와 달랐다.
 
@@ -47,9 +44,9 @@ tags:
      * PWM 12.5% : 8191 → 180º
 
    * 즉, 각도에 따른 PWM값은 다음과 같이 지정한다.
-     $$
+     ``` katex
      PWM = 2^{16} \times 0.1 \times \frac{angle}{180} + 2^{16} \times 0.025 = 2^{16} \times 0.1 \times (\frac{angle}{180} + 0.25)
-     $$
+     ```
 
    * 그리고, 이 서보모터 스펙상 180도 회전을 하지만 PWM 값을 조절하면 최대 190도 정도까지는 회전한다. 
 
@@ -95,7 +92,7 @@ tags:
 
 #### schematic
 
-![](/image/SG90.png)
+{{< figure src="/image/SG90.png" width="75%" class="center" >}}
 
 <br>
 
@@ -209,13 +206,13 @@ SG90 서보 2개를 준비하고
 
 니퍼로 아래 빨간 동그라미로 표시한 부분의 크기에 맞추어, **서보모터 날개를 잘라낸 뒤**
 
-![](/image/servo-04.png)
+{{< figure src="/image/servo-04.png" width="75%" class="center" >}}
 
 아래 형태대로 조립한다.
 
-![](/image/servo-02.png)
+{{< figure src="/image/servo-02.png" width="33%" class="center" >}}
 
-![](/image/servo-03.png)
+{{< figure src="/image/servo-03.png" width="33%" class="center" >}}
 
 날개를 나사로 조인 부분에 순간접착제를 살짝 뿌려, 완전히 고정시킨다. (단, 서보모터의 회전축 부분에는 접착제가 뭍지 않도록 주의한다.)
 
@@ -223,7 +220,7 @@ SG90 서보 2개를 준비하고
 
 #### schematic
 
-![](/image/servo-05.png)
+{{< figure src="/image/servo-05.png" width="75%" class="center" >}}
 
 <br>
 
@@ -286,7 +283,7 @@ void servoWrite(int ch, int deg)
 
 #### schematic
 
-![](/image/ESP32_Joystick_2Servo.png)
+{{< figure src="/image/ESP32_Joystick_2Servo.png" width="75%" class="center" >}}
 
 <nr>
 
@@ -361,13 +358,13 @@ void PrintValue(){
 
 **스케치**> **라이브러리 포함하기**> **라이브러리 관리** 에서 "**esp32servo**" (by Kevin Harrington) 검색 후 설치
 
-![](/image/esp32-nRF24L01-servo-01.png)
+{{< figure src="/image/esp32-nRF24L01-servo-01.png" width="75%" class="center" >}}
 
 <br>
 
 #### schematic
 
-![](/image/servo-05.png)
+{{< figure src="/image/servo-05.png" width="75%" class="center" >}}
 
 <br>
 

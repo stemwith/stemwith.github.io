@@ -5,7 +5,6 @@ categories: ["arduino"]
 toc: true
 tags: ["iot"]
 ---
-
 ### Blynk 설정
 
 #### Blynk 라이브러리 설치
@@ -96,7 +95,7 @@ tags: ["iot"]
 ### 슬라이더 위젯을 이용한 LED 밝기 제어
 Built-in LED가 사용하는 13번핀은 PWM이 지원되지 않으므로, 11번핀을 사용한다.
 
-![](/image/BT-19.jpg)
+{{< figure src="/image/BT-19.jpg" width="75%" class="center" >}}
 
 <br>
 

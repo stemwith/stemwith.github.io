@@ -22,11 +22,11 @@ https://github.com/alex-shpak/hugo-book
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/categories/office/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -225,7 +225,25 @@ https://github.com/alex-shpak/hugo-book
 
 
     <div class="book-post-content"><p>데이터 유효성 검사를 할 때, 상황에 따라서 목록 구성이 다르게 표시되는 방법을 알아보겠습니다. 일단 다음의 경우를 예로 들면,</p>
-<p><img src="/image/dynamic01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/dynamic01.png" alt="/image/dynamic01.png">
+
+  
+  
+</figure>
 <p>학교급(초등, 중등, 고등 등)을 선택하였을 때, 초등을 선택하면 학년을 선택하는 셀에서 1<del>6학년까지 6개의 목록을 선택할 수 있도록 표시되고, 중등을 선택하면 7</del>9학년,  고등을 선택하면 10~12학년을 선택할 수 있는 목록이 표시되도록 하는 것을 의미합니다. 또 학년마다 학급수가 다르기 때문에 각 학년을 선택하였을 때, 그 학년의 학급수만큼 학급 목록이 뜨도록 하면 더 좋겠죠. 이렇게 상황에 따라 목록이 유동적으로 표시되도록 하면, 데이터를 취합하는 입장에서 오류를 줄일 수 있는 상황을 기대할 수 있습니다.</p></div>
   </article>
   
@@ -254,11 +272,29 @@ https://github.com/alex-shpak/hugo-book
     <div class="book-post-content"><p>1가지 조건으로 랭킹을 구하는 경우, rank.eq() 함수를 사용하면 되지만, 2가지 이상의 조건이 부합하는 경우에는 rank.eq() 함수로는 구할 수 없습니다. 이처럼 다중 조건이 주어졌을 때 랭킹을 구하는 방법입니다.</p>
 <br>
 <h3 id="예시">예시<a class="anchor" href="#%ec%98%88%ec%8b%9c">#</a></h3>
-<p><img src="/image/rank.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/rank.png" alt="/image/rank.png">
+
+  
+  
+</figure>
 <br>
 <p>위 예시에서 &lsquo;자격&rsquo;과 &lsquo;계열&rsquo; 조건에 따라 각각의 랭킹을 구하는 함수는</p>
 <p>3년인문 랭킹의 경우</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#f92672">=</span><span style="color:#a6e22e">IF</span>(<span style="color:#a6e22e">AND</span>(<span style="color:#960050;background-color:#1e0010">$</span>E3<span style="color:#f92672">=</span>L<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">$</span>F3<span style="color:#f92672">=</span>L<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>),<span style="color:#a6e22e">SUMPRODUCT</span>((<span style="color:#960050;background-color:#1e0010">$</span>E<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">$</span>E<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">27</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">$</span>E3)<span style="color:#f92672">*</span>(<span style="color:#960050;background-color:#1e0010">$</span>F<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">$</span>F<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">27</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">$</span>F3)<span style="color:#f92672">*</span>(<span style="color:#960050;background-color:#1e0010">$</span>J<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">3</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">$</span>J<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">27</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">$</span>J3))<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;&#34;</span>)</span></span></code></pre></div><p>입니다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="o">=</span><span class="nf">IF</span><span class="p">(</span><span class="nf">AND</span><span class="p">(</span><span class="err">$</span><span class="n">E3</span><span class="o">=</span><span class="n">L</span><span class="err">$</span><span class="mi">1</span><span class="p">,</span><span class="err">$</span><span class="n">F3</span><span class="o">=</span><span class="n">L</span><span class="err">$</span><span class="mi">2</span><span class="p">),</span><span class="nf">SUMPRODUCT</span><span class="p">((</span><span class="err">$</span><span class="n">E</span><span class="err">$</span><span class="mi">3</span><span class="o">:</span><span class="err">$</span><span class="n">E</span><span class="err">$</span><span class="mi">27</span><span class="o">=</span><span class="err">$</span><span class="n">E3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="err">$</span><span class="n">F</span><span class="err">$</span><span class="mi">3</span><span class="o">:</span><span class="err">$</span><span class="n">F</span><span class="err">$</span><span class="mi">27</span><span class="o">=</span><span class="err">$</span><span class="n">F3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="err">$</span><span class="n">J</span><span class="err">$</span><span class="mi">3</span><span class="o">:</span><span class="err">$</span><span class="n">J</span><span class="err">$</span><span class="mi">27</span><span class="o">&gt;</span><span class="err">$</span><span class="n">J3</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s">&#34;&#34;</span><span class="p">)</span></span></span></code></pre></div><p>입니다.</p>
 <br>
 <ul>
 <li>L1, L2에 &lsquo;3&rsquo;, &lsquo;인문&rsquo;이라는 조건을 넣고</li>
@@ -319,14 +355,190 @@ https://github.com/alex-shpak/hugo-book
 
 
     <div class="book-post-content"><p>아래와 같이 학년, 반, 번호를 채워 넣으려고 할 때, A3~A31셀이 빈 셀로 되어 있네요. 이럴때 모든 셀을 1학년을 나타내는 숫자 1을 채워 넣으려면 어떻게 해야 할까요? A2셀을 클릭하고 A31셀까지 아래쪽으로 쭉 드래그를 하면 되겠죠?</p>
-<p><img src="/image/equal01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal01.png" alt="/image/equal01.png">
+
+  
+  
+</figure>
 <br>
 <p>그런데, 문제는 &lsquo;반&rsquo;의 숫자를 넣을 B열입니다. 1~3반까지의 숫자가 나뉘어 있으므로 드래그를 세번 나누어서 해야 하는 것이죠. 세개의 반만 있으면 다행이지만, 학급수가 많다면 이것도 쉬운일이 아닙니다. 이럴때, 한번의 작업으로 빈셀을 채우는 방법을 알아보겠습니다.</p>
 <br>
 <ol>
 <li>먼저 A2~B31까지 블럭을 설정합니다.</li>
 </ol>
-<p><img src="/image/equal02.png" alt="" /></p></div>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal02.png" alt="/image/equal02.png">
+
+  
+  
+</figure>
+<br>
+<ol start="2">
+<li>이 상태에서 F5키를 누르고, 옵션을 클릭합니다.</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal03.png" alt="/image/equal03.png">
+
+  
+  
+</figure>
+<br>
+<ol start="3">
+<li>빈셀을 선택하고 확인을 클릭하면</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal04.png" alt="/image/equal04.png">
+
+  
+  
+</figure>
+<br>
+<ol start="4">
+<li>블럭으로 잡았던 부분이 빈셀로 바뀝니다.</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal05.png" alt="/image/equal05.png">
+
+  
+  
+</figure>
+<br>
+<ol start="5">
+<li>이 상태에서 &lsquo;<strong>=</strong>&rsquo; 을 누른 뒤</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal06.png" alt="/image/equal06.png">
+
+  
+  
+</figure>
+<br>
+<ol start="6">
+<li>키보드의 위화살표 키 (↑)를 눌러, 빈셀의 바로 위 셀을 가리키게 한 뒤</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal07.png" alt="/image/equal07.png">
+
+  
+  
+</figure>
+<br>
+<ol start="7">
+<li>곧바로 Ctrl-Enter를 누르면, 빈 셀이 모두 채워지게 됩니다.</li>
+</ol>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/equal08.png" alt="/image/equal08.png">
+
+  
+  
+</figure>
+<br>
+<p>※ 주의 할 점</p></div>
   </article>
   
 
