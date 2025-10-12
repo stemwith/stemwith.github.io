@@ -27,62 +27,80 @@
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-01.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-01.png" alt="/image/blynk-adc-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#define BLYNK_PRINT Serial
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#define BLYNK_USE_DIRECT_CONNECT
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BlynkSimpleEsp32_BLE.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BLEDevice.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BLEServer.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// You should get Auth Token in the Blynk App.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Go to the Project Settings (nut icon).
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;char&lt;/span&gt; auth[] &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;WUAeS6P57T3XNaIGyLK1-OUv........&amp;#34;&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Potentiometer Pin
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;#define PIN_POTENTIOMETER A0 &lt;/span&gt;&lt;span style="color:#75715e"&gt;// Potentiometer GPIO 36
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Resist, Voltage
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; value_Potentiometer; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; value_R;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;float&lt;/span&gt; value_V;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Debug console
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Serial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;115200&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Waiting for connections...&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// for Blynk 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;setDeviceName&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Blynk-t&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(auth);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; value_Potentiometer &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;analogRead&lt;/span&gt;(PIN_POTENTIOMETER); &lt;span style="color:#75715e"&gt;// 12bit ADC (0~4095)
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; value_V &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;map&lt;/span&gt;(value_Potentiometer, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4095&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3300&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// 0~3300mV
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; value_R &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;map&lt;/span&gt;(value_V, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3300&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;10000&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// 0~10kΩ
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;run&lt;/span&gt;();
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Resist : &amp;#34;&lt;/span&gt;); Serial.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(value_R); Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Ω&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Voltage: &amp;#34;&lt;/span&gt;); Serial.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(value_V); Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;mV&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;1000&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;BLYNK_READ&lt;/span&gt;(V1) &lt;span style="color:#75715e"&gt;// ESP32 -&amp;gt; widget virtual pin1
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;virtualWrite&lt;/span&gt;(V1, value_R);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;BLYNK_READ&lt;/span&gt;(V2) &lt;span style="color:#75715e"&gt;// ESP32 -&amp;gt; widget virtual pin1
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;virtualWrite&lt;/span&gt;(V2, value_V);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define BLYNK_PRINT Serial
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define BLYNK_USE_DIRECT_CONNECT
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BlynkSimpleEsp32_BLE.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BLEDevice.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BLEServer.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// You should get Auth Token in the Blynk App.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// Go to the Project Settings (nut icon).
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;WUAeS6P57T3XNaIGyLK1-OUv........&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// Potentiometer Pin
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define PIN_POTENTIOMETER A0 &lt;/span&gt;&lt;span class="c1"&gt;// Potentiometer GPIO 36
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// Resist, Voltage
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;value_Potentiometer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;value_R&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;value_V&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// Debug console
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;115200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Waiting for connections...&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// for Blynk 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setDeviceName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Blynk-t&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;value_Potentiometer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;analogRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PIN_POTENTIOMETER&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 12bit ADC (0~4095)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;value_V&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value_Potentiometer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4095&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 0~3300mV
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;value_R&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value_V&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 0~10kΩ
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Resist : &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value_R&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Ω&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Voltage: &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value_V&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;mV&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;BLYNK_READ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// ESP32 -&amp;gt; widget virtual pin1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;virtualWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value_R&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;BLYNK_READ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// ESP32 -&amp;gt; widget virtual pin1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;virtualWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value_V&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Blynk에서 2개의 Gauge를 사용하기 위해 BLYNK)READ(Vpin)을 2번 사용한다.&lt;/li&gt;
 &lt;li&gt;Blynk.virtualWrite(Vpin, value)를 통해 Blynk App의 Gauge 위젯에서 지정한 virtual pin에 value값을 표시한다.&lt;/li&gt;
 &lt;/ul&gt;
@@ -98,83 +116,275 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-02.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-02.png" alt="/image/blynk-adc-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;이메일로 발송된 토큰을 복사한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-03.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-03.png" alt="/image/blynk-adc-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;+버튼을 눌러 위젯을 추가할 수 있는 화면으로 진입한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-04.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-04.png" alt="/image/blynk-adc-04.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="4"&gt;
 &lt;li&gt;먼저 BLE 위젯을 선택하여 ESP32와 Blynk간의 통신 방법을 지정한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-05.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-05.png" alt="/image/blynk-adc-05.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="5"&gt;
 &lt;li&gt;블루투스 모양의 위젯 버튼을 눌러 Blynk와의 통신을 준비한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-06.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-06.png" alt="/image/blynk-adc-06.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="6"&gt;
 &lt;li&gt;Connect BLE device&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-07.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-07.png" alt="/image/blynk-adc-07.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;연결하고자 하는 BLE 장비를 선택하면,&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-08.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-08.png" alt="/image/blynk-adc-08.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="8"&gt;
 &lt;li&gt;연결 확인!&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-09.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-09.png" alt="/image/blynk-adc-09.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="9"&gt;
 &lt;li&gt;+버튼을 눌러 출력 위젯 2개를 추가한다. (Gauge, Labeled value)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-10.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-10.png" alt="/image/blynk-adc-10.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="10"&gt;
 &lt;li&gt;먼저 Gauge 위젯을 선택한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-11.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-11.png" alt="/image/blynk-adc-11.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="11"&gt;
 &lt;li&gt;Gauge 위젯이 추가되면 육각형 모양의 아이콘을 눌러 GAUGE Setting 화면으로 진입한다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-12.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-12.png" alt="/image/blynk-adc-12.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-13.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-13.png" alt="/image/blynk-adc-13.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="12"&gt;
 &lt;li&gt;설정화면에서 다음 4가지를 설정한다.
@@ -186,9 +396,25 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-14.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-14.png" alt="/image/blynk-adc-14.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="13"&gt;
 &lt;li&gt;Labeled Value 위젯을 추가하고, 다음과 같이 설정한다.
@@ -200,23 +426,71 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-15.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-15.png" alt="/image/blynk-adc-15.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="14"&gt;
 &lt;li&gt;상단의 뒤로가기 화살표를 눌러 프로젝트 바탕화면으로 돌아간다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-16.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-16.png" alt="/image/blynk-adc-16.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="15"&gt;
 &lt;li&gt;여기서 플레이버튼을 누르면,&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/blynk-adc-17.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-adc-17.png" alt="/image/blynk-adc-17.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;p&gt;저항과 전압의 측정이 시작된다. (시리얼 모니터에서도 관찰 가능)&lt;/p&gt;</description></item><item><title>esp32 BLE, Blynk Slider (PWM)</title><link>https://stemwith.github.io/posts/esp32-ble-blynk-slider-pwm/</link><pubDate>Tue, 22 Oct 2019 23:55:21 +0900</pubDate><guid>https://stemwith.github.io/posts/esp32-ble-blynk-slider-pwm/</guid><description>&lt;h3 id="esp32와-blynk에서의-pwm-사용"&gt;ESP32와 Blynk에서의 PWM 사용&lt;a class="anchor" href="#esp32%ec%99%80-blynk%ec%97%90%ec%84%9c%ec%9d%98-pwm-%ec%82%ac%ec%9a%a9"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Blynk app에서 Slider 위젯을 사용하여 App → ESP32로 PWM 신호를 보내 LED의 밝기를 조절해본다.&lt;/p&gt;
@@ -227,58 +501,76 @@
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/blynk-pwm-01.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-pwm-01.png" alt="/image/blynk-pwm-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;p&gt;※ LED모듈을 사용하는 경우 저항이 필요없다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#define BLYNK_PRINT Serial
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#define BLYNK_USE_DIRECT_CONNECT
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BlynkSimpleEsp32_BLE.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BLEDevice.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;BLEServer.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// You should get Auth Token in the Blynk App.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Go to the Project Settings (nut icon).
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;char&lt;/span&gt; auth[] &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&amp;#34;&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// setting PWM properties
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;#define LEDC_FREQ 5000 &lt;/span&gt;&lt;span style="color:#75715e"&gt;// Hz
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;#define LEDC_CHANNEL_0 0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#define LEDC_RESOLUTION 12 &lt;/span&gt;&lt;span style="color:#75715e"&gt;// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// led Pin
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; pin_ledR &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;19&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;BLYNK_WRITE&lt;/span&gt;(V5) &lt;span style="color:#75715e"&gt;// widget virtual pin5 -&amp;gt; ESP32
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; value_V5 &lt;span style="color:#f92672"&gt;=&lt;/span&gt; param.&lt;span style="color:#a6e22e"&gt;asInt&lt;/span&gt;();
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;ledcWrite&lt;/span&gt;(LEDC_CHANNEL_0, value_V5);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;V5 value: &amp;#34;&lt;/span&gt;); Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(value_V5);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Debug console
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Serial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;115200&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Waiting for connections...&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// configure LED PWM functionalitites
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ledcSetup&lt;/span&gt;(LEDC_CHANNEL_0, LEDC_FREQ, LEDC_RESOLUTION);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// attach the same channel to the GPIO to be controlled
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ledcAttachPin&lt;/span&gt;(pin_ledR, LEDC_CHANNEL_0);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// for Blynk 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;setDeviceName&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Blynk-t&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(auth);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;run&lt;/span&gt;();
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define BLYNK_PRINT Serial
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define BLYNK_USE_DIRECT_CONNECT
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BlynkSimpleEsp32_BLE.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BLEDevice.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;BLEServer.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// You should get Auth Token in the Blynk App.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// Go to the Project Settings (nut icon).
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;rc77E7UrbQHhoLE-LV1Ajxz20k8eLBrk&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// setting PWM properties
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define LEDC_FREQ 5000 &lt;/span&gt;&lt;span class="c1"&gt;// Hz
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define LEDC_CHANNEL_0 0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define LEDC_RESOLUTION 12 &lt;/span&gt;&lt;span class="c1"&gt;// 10bit (0~1023) 12bit(0~4095) 16bit(0~65535)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// led Pin
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pin_ledR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;BLYNK_WRITE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// widget virtual pin5 -&amp;gt; ESP32
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;value_V5&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;asInt&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;ledcWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LEDC_CHANNEL_0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value_V5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;V5 value: &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value_V5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// Debug console
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;115200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Waiting for connections...&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// configure LED PWM functionalitites
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;ledcSetup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LEDC_CHANNEL_0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LEDC_FREQ&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LEDC_RESOLUTION&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// attach the same channel to the GPIO to be controlled
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;ledcAttachPin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pin_ledR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LEDC_CHANNEL_0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// for Blynk 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setDeviceName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Blynk-t&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;h4 id="sketch-분석"&gt;sketch 분석&lt;a class="anchor" href="#sketch-%eb%b6%84%ec%84%9d"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Button 위젯 사용을 위해 사용하였던 예제 sketch에 다음의 라인을 추가하여야 한다.&lt;/p&gt;</description></item><item><title>esp32 BLE, Blynk Button</title><link>https://stemwith.github.io/posts/esp32-ble-blynk-button/</link><pubDate>Mon, 21 Oct 2019 23:12:58 +0900</pubDate><guid>https://stemwith.github.io/posts/esp32-ble-blynk-button/</guid><description>&lt;h3 id="blynk를-처음-사용하는-경우"&gt;Blynk를 처음 사용하는 경우&lt;a class="anchor" href="#blynk%eb%a5%bc-%ec%b2%98%ec%9d%8c-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="blynk-라이브러리-설치하기"&gt;Blynk 라이브러리 설치하기&lt;a class="anchor" href="#blynk-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h4&gt;
@@ -311,7 +603,26 @@
 &lt;br&gt;
 &lt;h3 id="버튼-위젯을-이용한-led-onoff-하기"&gt;버튼 위젯을 이용한 LED On/Off 하기&lt;a class="anchor" href="#%eb%b2%84%ed%8a%bc-%ec%9c%84%ec%a0%af%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-led-onoff-%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/blynk-01.png" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, Bluetooth, Blynk</title><link>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</link><pubDate>Sun, 20 Oct 2019 23:10:53 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</guid><description>&lt;h3 id="blynk-설정"&gt;Blynk 설정&lt;a class="anchor" href="#blynk-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/blynk-01.png" alt="/image/blynk-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;p&gt;※ RGB LED 모듈을 사용하는 경우에는 저항을 연결하지 않는다.&lt;/p&gt;</description></item><item><title>Arduino, Bluetooth, Blynk</title><link>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</link><pubDate>Sun, 20 Oct 2019 23:10:53 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</guid><description>&lt;h3 id="blynk-설정"&gt;Blynk 설정&lt;a class="anchor" href="#blynk-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="blynk-라이브러리-설치"&gt;Blynk 라이브러리 설치&lt;a class="anchor" href="#blynk-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%84%a4%ec%b9%98"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;docs.blynk.cc 접속 – Downloads – Blynk Library&lt;/li&gt;
@@ -468,41 +779,75 @@
 &lt;li&gt;Blynk에서 플레이버튼을 누른다.&lt;/li&gt;
 &lt;li&gt;값이 표시되는 것을 볼 수 있다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;BLYNK_READ&lt;/span&gt;(V5) { &lt;span style="color:#75715e"&gt;//Blynk app has something on V5
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; sensorData &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;analogRead&lt;/span&gt;(A0); &lt;span style="color:#75715e"&gt;//reading the sensor on A0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;virtualWrite&lt;/span&gt;(V5, sensorData); &lt;span style="color:#75715e"&gt;//sending to Blynk
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 코드는 매시간마다 Blynk가 &lt;code&gt;_READ&lt;/code&gt; 요청을 Virtual Pin V5에 보내도록 한다. A0핀에서 센서값을 읽은 후, Blynk에서 Virtual Pin V5에 되돌려 준다.&lt;/p&gt;</description></item><item><title>Bluetooth Serial Controller 앱</title><link>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</link><pubDate>Thu, 17 Oct 2019 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</guid><description>&lt;h3 id="bluetooth-시리얼-통신"&gt;Bluetooth 시리얼 통신&lt;a class="anchor" href="#bluetooth-%ec%8b%9c%eb%a6%ac%ec%96%bc-%ed%86%b5%ec%8b%a0"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;BLYNK_READ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;//Blynk app has something on V5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;sensorData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;analogRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//reading the sensor on A0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;virtualWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sensorData&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//sending to Blynk
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 코드는 매시간마다 Blynk가 &lt;code&gt;_READ&lt;/code&gt; 요청을 Virtual Pin V5에 보내도록 한다. A0핀에서 센서값을 읽은 후, Blynk에서 Virtual Pin V5에 되돌려 준다.&lt;/p&gt;</description></item><item><title>Bluetooth Serial Controller 앱</title><link>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</link><pubDate>Thu, 17 Oct 2019 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</guid><description>&lt;h3 id="bluetooth-시리얼-통신"&gt;Bluetooth 시리얼 통신&lt;a class="anchor" href="#bluetooth-%ec%8b%9c%eb%a6%ac%ec%96%bc-%ed%86%b5%ec%8b%a0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 &lt;a href="2018/10/09/Arduino-Bluetooth-%ed%8e%98%ec%96%b4%eb%a7%81"&gt;Bluetooth 페어링&lt;/a&gt; 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/BT-03.jpg" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BT-03.jpg" alt="/image/BT-03.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;SoftwareSerial.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;SoftwareSerial &lt;span style="color:#a6e22e"&gt;BTSerial&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;); &lt;span style="color:#75715e"&gt;//Connect HC-06 TX,RX 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;9600&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Hello!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// set the data rate for the BT port
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; BTSerial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;9600&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (BTSerial.&lt;span style="color:#a6e22e"&gt;available&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;write&lt;/span&gt;(BTSerial.&lt;span style="color:#a6e22e"&gt;read&lt;/span&gt;());
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (Serial.&lt;span style="color:#a6e22e"&gt;available&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; BTSerial.&lt;span style="color:#a6e22e"&gt;write&lt;/span&gt;(Serial.&lt;span style="color:#a6e22e"&gt;read&lt;/span&gt;());
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;SoftwareSerial.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="n"&gt;SoftwareSerial&lt;/span&gt; &lt;span class="nf"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//Connect HC-06 TX,RX 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Hello!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// set the data rate for the BT port
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="스마트폰에-bluetooth-serial-controller-앱-설치하기"&gt;스마트폰에 Bluetooth Serial Controller 앱 설치하기&lt;a class="anchor" href="#%ec%8a%a4%eb%a7%88%ed%8a%b8%ed%8f%b0%ec%97%90-bluetooth-serial-controller-%ec%95%b1-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;이제 Google Playstore를 통해서 스마트폰에 Bluetooth Serial Controller 앱을 설치합니다. (iOS는 유사한 프로그램으로 설치)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/BTserialapp-01.png"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BTserialapp-01.png" alt="/image/BTserialapp-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;p&gt;​ 비슷한 역할을 하는 수많은 앱들이 있는데, 여러 앱을 설치하고 사용해본 결과, 이 앱이 사용하기에 유연함을 갖고 있는 것 같더군요.&lt;/p&gt;</description></item></channel></rss>

@@ -14,262 +14,900 @@
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;전륜 회전축&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-14.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-14.png" alt="/image/r/ESP32-RC-Car-14.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;베어링(대)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-18.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-18.png" alt="/image/r/ESP32-RC-Car-18.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;3&lt;/td&gt;
  &lt;td style="text-align: center"&gt;스티어링 컵&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-08.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-08.png" alt="/image/r/ESP32-RC-Car-08.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;4&lt;/td&gt;
  &lt;td style="text-align: center"&gt;커플러 고정핀&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-16.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-16.png" alt="/image/r/ESP32-RC-Car-16.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;5&lt;/td&gt;
  &lt;td style="text-align: center"&gt;베어링(중)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-19.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-19.png" alt="/image/r/ESP32-RC-Car-19.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;6&lt;/td&gt;
  &lt;td style="text-align: center"&gt;(전륜) 육각 커플러&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-15.png" width="80%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 80%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-15.png" alt="/image/r/ESP32-RC-Car-15.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;7&lt;/td&gt;
  &lt;td style="text-align: center"&gt;휠&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-01.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-01.png" alt="/image/r/ESP32-RC-Car-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;4&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;8&lt;/td&gt;
  &lt;td style="text-align: center"&gt;나이록 너트(M4)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-22.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-22.png" alt="/image/r/ESP32-RC-Car-22.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;9&lt;/td&gt;
  &lt;td style="text-align: center"&gt;십자형 육각 복스&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-17.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-17.png" alt="/image/r/ESP32-RC-Car-17.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;10&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼 조인트 커넥팅 로드&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-09.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-09.png" alt="/image/r/ESP32-RC-Car-09.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;홀 간격 80.5mm 유지&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;11&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼 조인트 커넥팅 로드&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-35.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-35.png" alt="/image/r/ESP32-RC-Car-35.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;홀 간격 51mm 유지&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;12&lt;/td&gt;
  &lt;td style="text-align: center"&gt;서보모터&lt;br&gt;MG996R&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-54.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-54.png" alt="/image/r/ESP32-RC-Car-54.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;13&lt;/td&gt;
  &lt;td style="text-align: center"&gt;ㄴ자 서보모터 브라켓&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-11.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-11.png" alt="/image/r/ESP32-RC-Car-11.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;14&lt;/td&gt;
  &lt;td style="text-align: center"&gt;휠 베이스 고정판&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-12.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-12.png" alt="/image/r/ESP32-RC-Car-12.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;15&lt;/td&gt;
  &lt;td style="text-align: center"&gt;서보 혼&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-25.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-25.png" alt="/image/r/ESP32-RC-Car-25.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;(볼트 포함)&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;16&lt;/td&gt;
  &lt;td style="text-align: center"&gt;나이록 너트&lt;br&gt;(M2.5)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-23.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-23.png" alt="/image/r/ESP32-RC-Car-23.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;17&lt;/td&gt;
  &lt;td style="text-align: center"&gt;샤시 하판&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-03.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-03.png" alt="/image/r/ESP32-RC-Car-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;18&lt;/td&gt;
  &lt;td style="text-align: center"&gt;DC엔코더 모터 &amp;amp; 커넥터&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-04.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-04.png" alt="/image/r/ESP32-RC-Car-04.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;19&lt;/td&gt;
  &lt;td style="text-align: center"&gt;모터 브라켓&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-07.png" width="67%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 67%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-07.png" alt="/image/r/ESP32-RC-Car-07.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;20&lt;/td&gt;
  &lt;td style="text-align: center"&gt;샤프트&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-10.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-10.png" alt="/image/r/ESP32-RC-Car-10.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;21&lt;/td&gt;
  &lt;td style="text-align: center"&gt;써클립&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-24.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-24.png" alt="/image/r/ESP32-RC-Car-24.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;22&lt;/td&gt;
  &lt;td style="text-align: center"&gt;샤프트 베어링&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-21.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-21.png" alt="/image/r/ESP32-RC-Car-21.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;4&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;23&lt;/td&gt;
  &lt;td style="text-align: center"&gt;기어&lt;br&gt;(무두볼트(Set Screw) 포함)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-05.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-05.png" alt="/image/r/ESP32-RC-Car-05.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;24&lt;/td&gt;
  &lt;td style="text-align: center"&gt;육각 샤프트 커플링 커넥터&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-06.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-06.png" alt="/image/r/ESP32-RC-Car-06.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;25&lt;/td&gt;
  &lt;td style="text-align: center"&gt;범퍼&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-02.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-02.png" alt="/image/r/ESP32-RC-Car-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;26&lt;/td&gt;
  &lt;td style="text-align: center"&gt;샤시 상판&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-34.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-34.png" alt="/image/r/ESP32-RC-Car-34.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;27&lt;/td&gt;
  &lt;td style="text-align: center"&gt;락스위치&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-20.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-20.png" alt="/image/r/ESP32-RC-Car-20.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;28&lt;/td&gt;
  &lt;td style="text-align: center"&gt;황동 육각 스터드&lt;br&gt;(M3×22mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-26.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-26.png" alt="/image/r/ESP32-RC-Car-26.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;6&lt;/td&gt;
  &lt;td style="text-align: center"&gt;휠 베이스 고정용 4개, 상판 고정용 2개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;29&lt;/td&gt;
  &lt;td style="text-align: center"&gt;황동 육각 스터드&lt;br/&gt;(M3×16mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-27.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-27.png" alt="/image/r/ESP32-RC-Car-27.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;범퍼 고정용 2개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;30&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼트&lt;br/&gt;(Pan head, M4×6mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-32.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-32.png" alt="/image/r/ESP32-RC-Car-32.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;6&lt;/td&gt;
  &lt;td style="text-align: center"&gt;모터 브라켓과 샤시 하판 고정용 6개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;31&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼트&lt;br&gt;(Bind-Washer head, M3×6mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-28.png" alt="" /&gt; &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-28.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-28.png" alt="/image/r/ESP32-RC-Car-28.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;10&lt;/td&gt;
  &lt;td style="text-align: center"&gt;서보모터와 서보모터 브라켓 고정용 4개, 서보모터 브라켓과 샤시하판 고정용 4개, 범퍼 고정용 2개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;32&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼트&lt;br&gt;(Bind head, M3×8mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-30.png" alt="`" /&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-30.png" alt="" /&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-30.png" alt="" /&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-30.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-30.png" alt="/image/r/ESP32-RC-Car-30.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;14&lt;/td&gt;
  &lt;td style="text-align: center"&gt;육각 스터드 고정용 12개, 범퍼 고정용 2개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;33&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼트&lt;br/&gt;(Pan head, M2.5×10mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-29.png" alt="" /&gt; &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-29.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-29.png" alt="/image/r/ESP32-RC-Car-29.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;7&lt;/td&gt;
  &lt;td style="text-align: center"&gt;커넥팅 로드 연결용 3개, 휠 베이스 연결용 4개&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;34&lt;/td&gt;
  &lt;td style="text-align: center"&gt;볼트&lt;br&gt;(Flat head, M2.5×5mm)&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-31.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-31.png" alt="/image/r/ESP32-RC-Car-31.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;4&lt;/td&gt;
  &lt;td style="text-align: center"&gt;모터와 모터브라켓 고정&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;35&lt;/td&gt;
  &lt;td style="text-align: center"&gt;육각렌치&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-33.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-33.png" alt="/image/r/ESP32-RC-Car-33.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;1&lt;/td&gt;
  &lt;td style="text-align: center"&gt;기어 무두볼트용&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;36&lt;/td&gt;
  &lt;td style="text-align: center"&gt;저항&lt;br&gt;1K or 5.1K&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-13.png" alt="" /&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/r/ESP32-RC-Car-13.png" alt="/image/r/ESP32-RC-Car-13.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;2&lt;/td&gt;
  &lt;td style="text-align: center"&gt;(선택사항) 인코더 풀업저항&lt;/td&gt;
  &lt;/tr&gt;
@@ -300,18 +938,50 @@
  &lt;thead&gt;
  &lt;tr&gt;
  &lt;th style="text-align: center"&gt;VM&lt;br/&gt;VCC&lt;br/&gt;GND(*)&lt;br/&gt;AOUT1&lt;br/&gt;AOUT2&lt;br/&gt;BOUT2&lt;br/&gt;BOUT1&lt;br/&gt;GND&lt;/th&gt;
- &lt;th style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/t/tb6612fng-01.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/t/tb6612fng-01.png" alt="/image/t/tb6612fng-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/th&gt;
  &lt;th style="text-align: center"&gt;PWMA&lt;br/&gt;AIN2&lt;br/&gt;AIN1&lt;br/&gt;STBY&lt;br/&gt;BIN1&lt;br/&gt;BIN2&lt;br/&gt;PWMB&lt;br/&gt;GND&lt;/th&gt;
  &lt;/tr&gt;
  &lt;/thead&gt;
  &lt;tbody&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/t/tb6612fng-02.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/t/tb6612fng-02.png" alt="/image/t/tb6612fng-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
@@ -322,18 +992,50 @@
  &lt;thead&gt;
  &lt;tr&gt;
  &lt;th style="text-align: center"&gt;GND&lt;br/&gt;VCC&lt;br/&gt;AOUT1&lt;br/&gt;AOUT2&lt;br/&gt;BOUT2&lt;br/&gt;BOUT1&lt;br/&gt;VM&lt;br/&gt;GND&lt;/th&gt;
- &lt;th style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/t/tb6612fng-03.png" width="75%"&gt;
-&lt;/figure&gt;
-&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/t/tb6612fng-03.png" alt="/image/t/tb6612fng-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/th&gt;
  &lt;th style="text-align: center"&gt;PWMA&lt;br/&gt;AIN2&lt;br/&gt;AIN1&lt;br/&gt;NC (=STBY)&lt;br/&gt;BIN1&lt;br/&gt;BIN2&lt;br/&gt;PWMB&lt;br/&gt;GND&lt;/th&gt;
  &lt;/tr&gt;
  &lt;/thead&gt;
  &lt;tbody&gt;
  &lt;tr&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/t/tb6612fng-04.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/t/tb6612fng-04.png" alt="/image/t/tb6612fng-04.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
@@ -358,7 +1060,25 @@
 &lt;p&gt;지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-17.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 100%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-17.png" alt="/image/4wd-bt-17.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h3 id="bluetooth-serial-controller-설정"&gt;Bluetooth Serial Controller 설정&lt;a class="anchor" href="#bluetooth-serial-controller-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.&lt;/p&gt;
@@ -366,114 +1086,370 @@
 &lt;ol&gt;
 &lt;li&gt;먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.) 아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-01.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-01.png" alt="/image/4wd-bt-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-02.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-02.png" alt="/image/4wd-bt-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-03.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-03.png" alt="/image/4wd-bt-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="4"&gt;
 &lt;li&gt;그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-04.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-04.png" alt="/image/4wd-bt-04.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="5"&gt;
 &lt;li&gt;다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-05.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-05.png" alt="/image/4wd-bt-05.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="6"&gt;
 &lt;li&gt;button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &amp;lsquo;전진&amp;rsquo;, &amp;lsquo;왼쪽&amp;rsquo;, &amp;lsquo;정지&amp;rsquo;, &amp;lsquo;오른쪽&amp;rsquo;, &amp;lsquo;후진&amp;rsquo;이라고 이름을 붙여줍니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-06.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-06.png" alt="/image/4wd-bt-06.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;다시 PREFERENCE에서 Command를 누르세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-07.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-07.png" alt="/image/4wd-bt-07.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="8"&gt;
 &lt;li&gt;Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &amp;lsquo;F&amp;rsquo;, &amp;lsquo;L&amp;rsquo;, &amp;lsquo;O&amp;rsquo;, &amp;lsquo;R&amp;rsquo;, &amp;lsquo;B&amp;rsquo;이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-08.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-08.png" alt="/image/4wd-bt-08.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="9"&gt;
 &lt;li&gt;이제 Visibility로 갑니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-09.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-09.png" alt="/image/4wd-bt-09.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="10"&gt;
 &lt;li&gt;여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-10.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-10.png" alt="/image/4wd-bt-10.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="11"&gt;
 &lt;li&gt;그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-11.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-11.png" alt="/image/4wd-bt-11.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="12"&gt;
 &lt;li&gt;이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-12.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-12.png" alt="/image/4wd-bt-12.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="13"&gt;
 &lt;li&gt;모듈ID인 SKS100을 누르면 페어링을 시도하고요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-13.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-13.png" alt="/image/4wd-bt-13.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="14"&gt;
 &lt;li&gt;만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-14.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-14.png" alt="/image/4wd-bt-14.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="15"&gt;
 &lt;li&gt;페어링을 시도하는 중이네요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-15.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-15.png" alt="/image/4wd-bt-15.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="16"&gt;
 &lt;li&gt;페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-16.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-16.png" alt="/image/4wd-bt-16.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="4wd-블루투스-초음파센서-자동차"&gt;4WD 블루투스 초음파센서 자동차&lt;a class="anchor" href="#4wd-%eb%b8%94%eb%a3%a8%ed%88%ac%ec%8a%a4-%ec%b4%88%ec%9d%8c%ed%8c%8c%ec%84%bc%ec%84%9c-%ec%9e%90%eb%8f%99%ec%b0%a8"&gt;#&lt;/a&gt;&lt;/h3&gt;
@@ -484,7 +1460,25 @@
 &lt;br&gt;
 &lt;h3 id="tcrt5000-ir-reflective-sensor"&gt;TCRT5000 IR reflective sensor&lt;a class="anchor" href="#tcrt5000-ir-reflective-sensor"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/LT-03.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/LT-03.png" alt="/image/LT-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;장애물이 없는 경우: 1 반환&lt;/li&gt;
 &lt;li&gt;센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환&lt;/li&gt;

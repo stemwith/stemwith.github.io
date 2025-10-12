@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Drone on stemwith</title><link>https://stemwith.github.io/categories/drone/</link><description>Recent content in Drone on stemwith</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 02 Aug 2021 18:27:53 +0900</lastBuildDate><atom:link href="https://stemwith.github.io/categories/drone/index.xml" rel="self" type="application/rss+xml"/><item><title>드론 Part2 조종기 FrSky TaranisQ X7 수신기 FrSky X8R</title><link>https://stemwith.github.io/posts/drone-%EC%A1%B0%EC%A2%85%EA%B8%B0-%EC%88%98%EC%8B%A0%EA%B8%B0/</link><pubDate>Mon, 02 Aug 2021 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/drone-%EC%A1%B0%EC%A2%85%EA%B8%B0-%EC%88%98%EC%8B%A0%EA%B8%B0/</guid><description>&lt;br&gt;
 &lt;h3 id="조종기-frsky-taranisq-x7"&gt;조종기 FrSky TaranisQ X7&lt;a class="anchor" href="#%ec%a1%b0%ec%a2%85%ea%b8%b0-frsky-taranisq-x7"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="button"&gt;Button&lt;a class="anchor" href="#button"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/d/drone2_01.png"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/d/drone2_01.png" alt="/image/d/drone2_01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="펌웨어-업데이트"&gt;펌웨어 업데이트&lt;a class="anchor" href="#%ed%8e%8c%ec%9b%a8%ec%96%b4-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;① 펌웨어 다운로드: &lt;a href="https://www.open-tx.org"&gt;https://www.open-tx.org&lt;/a&gt;&lt;/p&gt;
@@ -19,22 +35,70 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;② Yaw, Roll 트림을 동시에 서로 안쪽으로 민 상태로 전원버튼을 누르면, Bootloader로 진입함&lt;/p&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/d/drone2_02.png"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/d/drone2_02.png" alt="/image/d/drone2_02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;p&gt;③ TaranisQ X7 하단커버을 열고 miniUSB포트를 이용하여 PC와 연결하면,&lt;/p&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/d/drone2_03.png"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/d/drone2_03.png" alt="/image/d/drone2_03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;Taranis 드라이브와 USB 드라이브 폴더가 열림 (USB 드라이버는 조정기에 삽입되어 있는 miniSD카드를 의미)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;④ [한글 음성 파일 업데이트]&lt;/p&gt;</description></item><item><title>드론 Part1 기체 조립</title><link>https://stemwith.github.io/posts/drone-hardware/</link><pubDate>Sun, 01 Aug 2021 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/drone-hardware/</guid><description>&lt;br&gt;
 &lt;h3 id="드론-조립"&gt;드론 조립&lt;a class="anchor" href="#%eb%93%9c%eb%a1%a0-%ec%a1%b0%eb%a6%bd"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="s500-기체-조립"&gt;S500 기체 조립&lt;a class="anchor" href="#s500-%ea%b8%b0%ec%b2%b4-%ec%a1%b0%eb%a6%bd"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/d/drone1_01.png" width="75%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 100%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/d/drone1_01.png" alt="/image/d/drone1_01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;전원부: 아래 3가지 방법중 1가지 방법을 선택하여 구성&lt;/p&gt;
@@ -55,7 +119,25 @@
 &lt;li&gt;항력&lt;/li&gt;
 &lt;li&gt;중력&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/Drone-01.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Drone-01.png" alt="/image/Drone-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="헬리콥터의-토크와-반토크"&gt;헬리콥터의 토크와 반토크&lt;a class="anchor" href="#%ed%97%ac%eb%a6%ac%ec%bd%a5%ed%84%b0%ec%9d%98-%ed%86%a0%ed%81%ac%ec%99%80-%eb%b0%98%ed%86%a0%ed%81%ac"&gt;#&lt;/a&gt;&lt;/h3&gt;

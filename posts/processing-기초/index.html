@@ -114,171 +114,171 @@ schematic#
 예제2 : 마우스와 키보드 이벤트 void setup() { size(400,400); } void draw() { } void mousePressed() { if(mouseButton == LEFT) { println("left button Pressed!"); } else if(mouseButton == RIGHT) { println("right button Pressed!"); } else if(mouseButton == CENTER) { println("center button Pressed!"); } } void keyPressed() { println("key Pressed!"); // Key event println(key); // Key String println(keyCode); // ASCII Code } void mouseReleased() { println("button Released!"); } void keyReleased() { println("key Released!"); } void mouseClicked() { println("button Clicked!"); } void mouseMoved() { println("mouse Moved!"); } void mouseDragged() { println("mouse Dragged!"); } void mouseWheel() { println("mouse Wheel!"); }
 예제3 : 마우스 움직이는 대로 원 그리기 void setup() { size(400,400); } void draw() { } void mouseMoved() { ellipse(mouseX,mouseY,50,50); }
 예제4 : 자유선 그리기 void setup() { size(400,400); } void draw() { } void mouseMoved() { line(pmouseX,pmouseY,mouseX,mouseY); }
-Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기# schematic# 아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.'><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-11-30T18:27:53+09:00"><meta property="article:modified_time" content="2018-11-30T18:27:53+09:00"><title>Processing 기초 | stemwith</title><link rel=icon href=/favicon.ico><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/processing-%EA%B8%B0%EC%B4%88/><link rel=stylesheet href=/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.7b28fde92e12728045c6dd86a6143cfbb6f0314f78d5c6f255b169b94b485a86.js integrity="sha256-eyj96S4ScoBFxt2GphQ8+7bwMU941cbyVbFpuUtIWoY=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
+Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기# schematic# 아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.'><meta property="og:locale" content="ko_kr"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-11-30T18:27:53+09:00"><meta property="article:modified_time" content="2018-11-30T18:27:53+09:00"><title>Processing 기초 | stemwith</title><link rel=icon href=/favicon.ico><link rel=manifest href=/manifest.json><link rel=canonical href=https://stemwith.github.io/posts/processing-%EA%B8%B0%EC%B4%88/><link rel=stylesheet href=/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.48a89e4be341d639de74b0f5b5a0b5ad125313b71f6faa18dd992cd4721b044e.js integrity="sha256-SKieS+NB1jnedLD1taC1rRJTE7cfb6oY3Zks1HIbBE4=" crossorigin=anonymous></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-128DRYVCRT")}</script></head><body dir=ltr class="book-kind-page book-type-posts"><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><img src=/og_image.png alt=Logo></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/icons/menu.svg class=book-icon alt=Menu></label><h3>Processing 기초</h3><label for=toc-control><img src=/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><ul><li><a href=#processing-sketch-예제>processing sketch 예제</a></li><li><a href=#arduino와-processing을-통해-arduino-보드의-기본-led-blink-하기>Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기</a></li><li><a href=#processing으로-led-제어하기>Processing으로 led 제어하기</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1>Processing 기초</h1><div class="flex align-center text-small book-post-date"><img src=/icons/calendar.svg class=book-icon alt>
-<span>November 30, 2018</span></div><div class=text-small><a href=/categories/arduino/>Arduino</a></div><div class="book-post-content markdown-inner"><ul><li>processing.org 에서 다운로드 (<a href=https://processing.org/download/>다운로드 페이지</a>)</li><li>arduino sketch는 C++기반이고, processing sketch는 java기반입니다.</li></ul><br><h3 id=processing-sketch-예제>processing sketch 예제<a class=anchor href=#processing-sketch-%ec%98%88%ec%a0%9c>#</a></h3><ol><li>예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>  background(100);        <span style=color:#75715e>// background(0,255,0);</span>
-</span></span><span style=display:flex><span>  strokeWeight(10);       <span style=color:#75715e>// dot/line width</span>
-</span></span><span style=display:flex><span>  stroke(0,255,0,100);    <span style=color:#75715e>// dot/line color and transparency, noStroke();</span>
-</span></span><span style=display:flex><span>  point(200,200);         <span style=color:#75715e>// draw dot</span>
-</span></span><span style=display:flex><span>  line(0,0,200,150);      <span style=color:#75715e>// draw line</span>
-</span></span><span style=display:flex><span>  ellipse(300,300,50,80); <span style=color:#75715e>// draw circle(x,y,xr,yr)</span>
-</span></span><span style=display:flex><span>  fill(0);                <span style=color:#75715e>// rect/text color, nofill();</span>
-</span></span><span style=display:flex><span>  rect(100,250,150,300);  <span style=color:#75715e>// draw rectangle(x1,y1,x2,y2)</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  textSize(20);
-</span></span><span style=display:flex><span>  PFont font <span style=color:#f92672>=</span> createFont(<span style=color:#e6db74>&#34;NanumGothic&#34;</span>, 32);
-</span></span><span style=display:flex><span>  textFont(font);
-</span></span><span style=display:flex><span>  text(<span style=color:#e6db74>&#34;Hello World!&#34;</span>,200,100); <span style=color:#75715e>// text(string,x1,y2)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  PImage img <span style=color:#f92672>=</span> loadImage(<span style=color:#e6db74>&#34;sks.jpg&#34;</span>);  <span style=color:#75715e>// file in &#39;/sketch_XXXXXXa/data/&#39; folder</span>
-</span></span><span style=display:flex><span>  image(img,20,50);       <span style=color:#75715e>// image(img,x,y,width,height);</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><ol start=2><li>예제2 : 마우스와 키보드 이벤트</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mousePressed</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(mouseButton <span style=color:#f92672>==</span> LEFT) {
-</span></span><span style=display:flex><span>    println(<span style=color:#e6db74>&#34;left button Pressed!&#34;</span>);
-</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(mouseButton <span style=color:#f92672>==</span> RIGHT) {
-</span></span><span style=display:flex><span>    println(<span style=color:#e6db74>&#34;right button Pressed!&#34;</span>);
-</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(mouseButton <span style=color:#f92672>==</span> CENTER) {
-</span></span><span style=display:flex><span>    println(<span style=color:#e6db74>&#34;center button Pressed!&#34;</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>keyPressed</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;key Pressed!&#34;</span>);   <span style=color:#75715e>// Key event</span>
-</span></span><span style=display:flex><span>  println(key);              <span style=color:#75715e>// Key String</span>
-</span></span><span style=display:flex><span>  println(keyCode);          <span style=color:#75715e>// ASCII Code</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseReleased</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;button Released!&#34;</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>keyReleased</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;key Released!&#34;</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseClicked</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;button Clicked!&#34;</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseMoved</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;mouse Moved!&#34;</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseDragged</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;mouse Dragged!&#34;</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseWheel</span>() {
-</span></span><span style=display:flex><span>  println(<span style=color:#e6db74>&#34;mouse Wheel!&#34;</span>);
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><ol start=3><li>예제3 : 마우스 움직이는 대로 원 그리기</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {  
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseMoved</span>() {
-</span></span><span style=display:flex><span>  ellipse(mouseX,mouseY,50,50);  
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><ol start=4><li>예제4 : 자유선 그리기</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {  
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseMoved</span>() {
-</span></span><span style=display:flex><span>  line(pmouseX,pmouseY,mouseX,mouseY);  
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><br><h3 id=arduino와-processing을-통해-arduino-보드의-기본-led-blink-하기>Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기<a class=anchor href=#arduino%ec%99%80-processing%ec%9d%84-%ed%86%b5%ed%95%b4-arduino-%eb%b3%b4%eb%93%9c%ec%9d%98-%ea%b8%b0%eb%b3%b8-led-blink-%ed%95%98%ea%b8%b0>#</a></h3><h4 id=schematic>schematic<a class=anchor href=#schematic>#</a></h4><p>아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.</p><br><h4 id=library-등록>library 등록<a class=anchor href=#library-%eb%93%b1%eb%a1%9d>#</a></h4><ol><li><p>아두이노 사이트에서 프로세싱 라이브러리를 다운받은 후</p></li><li><p>압축을 풀었을 때 나오는 arduino폴더를 c:\Users\userID\processing\libraries\ 폴더에 복사한다.</p></li><li><p>프로세싱 프로그램에서 <code>스케치</code> → <code>내부라이브러리</code> → <code>Arduino (firmata)</code>를 선택하면,</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span>import cc.arduino.<span style=color:#f92672>*</span>;
-</span></span><span style=display:flex><span>import org.firmata.<span style=color:#f92672>*</span>;
-</span></span><span style=display:flex><span>import processing.serial.<span style=color:#f92672>*</span>;</span></span></code></pre></div><p>가 등록된다.</p><br><h4 id=processing-sketch>processing sketch<a class=anchor href=#processing-sketch>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#f92672>import</span> cc.arduino.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> org.firmata.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> processing.serial.*;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Arduino arduino;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> ledPin <span style=color:#f92672>=</span> 13;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>  println(Arduino.<span style=color:#a6e22e>list</span>());
-</span></span><span style=display:flex><span>  arduino <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Arduino(<span style=color:#66d9ef>this</span>, Arduino.<span style=color:#a6e22e>list</span>()<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span>, 57600); <span style=color:#75715e>// Arduino.list()[0] or &#34;COM3&#34;</span>
-</span></span><span style=display:flex><span>  arduino.<span style=color:#a6e22e>pinMode</span>(ledPin, Arduino.<span style=color:#a6e22e>OUTPUT</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>  arduino.<span style=color:#a6e22e>digitalWrite</span>(ledPin, Arduino.<span style=color:#a6e22e>HIGH</span>);
-</span></span><span style=display:flex><span>  delay(1000);
-</span></span><span style=display:flex><span>  arduino.<span style=color:#a6e22e>digitalWrite</span>(ledPin, Arduino.<span style=color:#a6e22e>LOW</span>);
-</span></span><span style=display:flex><span>  delay(1000);
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h4 id=arduino-sketch>arduino sketch<a class=anchor href=#arduino-sketch>#</a></h4><ol><li><p>arduino IDE에서 <code>파일</code> → <code>예제</code> → <code>firmata</code> → <code>standard firmata</code>를 불러들인 후</p></li><li><p>컴파일하고 업로드한다.</p></li></ol><br><h4 id=processing에서-실행하기>processing에서 실행하기<a class=anchor href=#processing%ec%97%90%ec%84%9c-%ec%8b%a4%ed%96%89%ed%95%98%ea%b8%b0>#</a></h4><ol><li><p>processing에서 실행버튼을 눌러 실행해보기</p></li><li><p><code>파일</code> → <code>어플리케이션으로 내보내기</code>를 선택하여 윈도우, Mac, Linux용 실행파일을 만들어보기</p></li></ol><p>※ 어플리케이션으로 내보내기를 하기전에 processing sketch를 저장하여야 한다.</p><br><br><h3 id=processing으로-led-제어하기>Processing으로 led 제어하기<a class=anchor href=#processing%ec%9c%bc%eb%a1%9c-led-%ec%a0%9c%ec%96%b4%ed%95%98%ea%b8%b0>#</a></h3><h4 id=processing-sketch--사각형-스위치>processing sketch : 사각형 스위치<a class=anchor href=#processing-sketch--%ec%82%ac%ea%b0%81%ed%98%95-%ec%8a%a4%ec%9c%84%ec%b9%98>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#f92672>import</span> cc.arduino.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> org.firmata.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> processing.serial.*;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Arduino arduino;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> ledPin <span style=color:#f92672>=</span> 13;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>  background(0);
-</span></span><span style=display:flex><span>  fill(255);
-</span></span><span style=display:flex><span>  noStroke();
-</span></span><span style=display:flex><span>  rect(width<span style=color:#f92672>/</span>2, 0, width<span style=color:#f92672>/</span>2, height);
-</span></span><span style=display:flex><span>  text(<span style=color:#e6db74>&#34;LED OFF&#34;</span>, 30, 30);
-</span></span><span style=display:flex><span>  fill(0, 0, 0);
-</span></span><span style=display:flex><span>  text(<span style=color:#e6db74>&#34;LED ON&#34;</span>, 230, 30);
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  println(Arduino.<span style=color:#a6e22e>list</span>());
-</span></span><span style=display:flex><span>  arduino <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Arduino(<span style=color:#66d9ef>this</span>, Arduino.<span style=color:#a6e22e>list</span>()<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span>, 57600);
-</span></span><span style=display:flex><span>  arduino.<span style=color:#a6e22e>pinMode</span>(ledPin, Arduino.<span style=color:#a6e22e>OUTPUT</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseMoved</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(mouseX <span style=color:#f92672>&lt;</span> width<span style=color:#f92672>/</span>2) {
-</span></span><span style=display:flex><span>    arduino.<span style=color:#a6e22e>digitalWrite</span>(ledPin, Arduino.<span style=color:#a6e22e>LOW</span>);
-</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>    arduino.<span style=color:#a6e22e>digitalWrite</span>(ledPin, Arduino.<span style=color:#a6e22e>HIGH</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}</span></span></code></pre></div><br><h4 id=processing-sketch--그라데이션-가변저항>processing sketch : 그라데이션 가변저항<a class=anchor href=#processing-sketch--%ea%b7%b8%eb%9d%bc%eb%8d%b0%ec%9d%b4%ec%85%98-%ea%b0%80%eb%b3%80%ec%a0%80%ed%95%ad>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#f92672>import</span> cc.arduino.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> org.firmata.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> processing.serial.*;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Arduino arduino;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> ledPin <span style=color:#f92672>=</span> 13;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setup</span>() {
-</span></span><span style=display:flex><span>  size(400,400);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>0; i<span style=color:#f92672>&lt;</span>width; i<span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    stroke(map(i, 0, width<span style=color:#f92672>-</span>1, 0, 255)); <span style=color:#75715e>// 색깔을 점차 변화시키면서</span>
-</span></span><span style=display:flex><span>    line(i, 0, i, height);              <span style=color:#75715e>// 선을 그려, 그라데이션 효과를 만들어 냄</span>
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  println(Arduino.<span style=color:#a6e22e>list</span>());
-</span></span><span style=display:flex><span>  arduino <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Arduino(<span style=color:#66d9ef>this</span>, Arduino.<span style=color:#a6e22e>list</span>()<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span>, 57600);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>draw</span>() {
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mouseMoved</span>() {
-</span></span><span style=display:flex><span>  arduino.<span style=color:#a6e22e>analogWrite</span>(ledPin, <span style=color:#66d9ef>int</span>(map(mouseX, 0, width<span style=color:#f92672>-</span>1, 0, 255)));
-</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="hexo icarus 테마로 Github 블로그 만들기">
+<span>November 30, 2018</span></div><div class=text-small><a href=/categories/arduino/>Arduino</a></div><div class="book-post-content markdown-inner"><ul><li>processing.org 에서 다운로드 (<a href=https://processing.org/download/>다운로드 페이지</a>)</li><li>arduino sketch는 C++기반이고, processing sketch는 java기반입니다.</li></ul><br><h3 id=processing-sketch-예제>processing sketch 예제<a class=anchor href=#processing-sketch-%ec%98%88%ec%a0%9c>#</a></h3><ol><li>예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>background</span><span class=p>(</span><span class=n>100</span><span class=p>);</span><span class=w>        </span><span class=c1>// background(0,255,0);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>strokeWeight</span><span class=p>(</span><span class=n>10</span><span class=p>);</span><span class=w>       </span><span class=c1>// dot/line width</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>stroke</span><span class=p>(</span><span class=n>0</span><span class=p>,</span><span class=n>255</span><span class=p>,</span><span class=n>0</span><span class=p>,</span><span class=n>100</span><span class=p>);</span><span class=w>    </span><span class=c1>// dot/line color and transparency, noStroke();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>point</span><span class=p>(</span><span class=n>200</span><span class=p>,</span><span class=n>200</span><span class=p>);</span><span class=w>         </span><span class=c1>// draw dot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>line</span><span class=p>(</span><span class=n>0</span><span class=p>,</span><span class=n>0</span><span class=p>,</span><span class=n>200</span><span class=p>,</span><span class=n>150</span><span class=p>);</span><span class=w>      </span><span class=c1>// draw line</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>ellipse</span><span class=p>(</span><span class=n>300</span><span class=p>,</span><span class=n>300</span><span class=p>,</span><span class=n>50</span><span class=p>,</span><span class=n>80</span><span class=p>);</span><span class=w> </span><span class=c1>// draw circle(x,y,xr,yr)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>fill</span><span class=p>(</span><span class=n>0</span><span class=p>);</span><span class=w>                </span><span class=c1>// rect/text color, nofill();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>rect</span><span class=p>(</span><span class=n>100</span><span class=p>,</span><span class=n>250</span><span class=p>,</span><span class=n>150</span><span class=p>,</span><span class=n>300</span><span class=p>);</span><span class=w>  </span><span class=c1>// draw rectangle(x1,y1,x2,y2)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>textSize</span><span class=p>(</span><span class=n>20</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>PFont</span><span class=w> </span><span class=n>font</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>createFont</span><span class=p>(</span><span class=s>&#34;NanumGothic&#34;</span><span class=p>,</span><span class=w> </span><span class=n>32</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>textFont</span><span class=p>(</span><span class=n>font</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>text</span><span class=p>(</span><span class=s>&#34;Hello World!&#34;</span><span class=p>,</span><span class=n>200</span><span class=p>,</span><span class=n>100</span><span class=p>);</span><span class=w> </span><span class=c1>// text(string,x1,y2)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>PImage</span><span class=w> </span><span class=n>img</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>loadImage</span><span class=p>(</span><span class=s>&#34;sks.jpg&#34;</span><span class=p>);</span><span class=w>  </span><span class=c1>// file in &#39;/sketch_XXXXXXa/data/&#39; folder</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>image</span><span class=p>(</span><span class=n>img</span><span class=p>,</span><span class=n>20</span><span class=p>,</span><span class=n>50</span><span class=p>);</span><span class=w>       </span><span class=c1>// image(img,x,y,width,height);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><ol start=2><li>예제2 : 마우스와 키보드 이벤트</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mousePressed</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=p>(</span><span class=n>mouseButton</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>LEFT</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;left button Pressed!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=k>if</span><span class=p>(</span><span class=n>mouseButton</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>RIGHT</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;right button Pressed!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=k>if</span><span class=p>(</span><span class=n>mouseButton</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>CENTER</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;center button Pressed!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>keyPressed</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;key Pressed!&#34;</span><span class=p>);</span><span class=w>   </span><span class=c1>// Key event</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=n>key</span><span class=p>);</span><span class=w>              </span><span class=c1>// Key String</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=n>keyCode</span><span class=p>);</span><span class=w>          </span><span class=c1>// ASCII Code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseReleased</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;button Released!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>keyReleased</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;key Released!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseClicked</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;button Clicked!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseMoved</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;mouse Moved!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseDragged</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;mouse Dragged!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseWheel</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=s>&#34;mouse Wheel!&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><ol start=3><li>예제3 : 마우스 움직이는 대로 원 그리기</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseMoved</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>ellipse</span><span class=p>(</span><span class=n>mouseX</span><span class=p>,</span><span class=n>mouseY</span><span class=p>,</span><span class=n>50</span><span class=p>,</span><span class=n>50</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><ol start=4><li>예제4 : 자유선 그리기</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseMoved</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>line</span><span class=p>(</span><span class=n>pmouseX</span><span class=p>,</span><span class=n>pmouseY</span><span class=p>,</span><span class=n>mouseX</span><span class=p>,</span><span class=n>mouseY</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><br><h3 id=arduino와-processing을-통해-arduino-보드의-기본-led-blink-하기>Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기<a class=anchor href=#arduino%ec%99%80-processing%ec%9d%84-%ed%86%b5%ed%95%b4-arduino-%eb%b3%b4%eb%93%9c%ec%9d%98-%ea%b8%b0%eb%b3%b8-led-blink-%ed%95%98%ea%b8%b0>#</a></h3><h4 id=schematic>schematic<a class=anchor href=#schematic>#</a></h4><p>아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.</p><br><h4 id=library-등록>library 등록<a class=anchor href=#library-%eb%93%b1%eb%a1%9d>#</a></h4><ol><li><p>아두이노 사이트에서 프로세싱 라이브러리를 다운받은 후</p></li><li><p>압축을 풀었을 때 나오는 arduino폴더를 c:\Users\userID\processing\libraries\ 폴더에 복사한다.</p></li><li><p>프로세싱 프로그램에서 <code>스케치</code> → <code>내부라이브러리</code> → <code>Arduino (firmata)</code>를 선택하면,</p></li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=cl><span class=n>import</span> <span class=n>cc</span><span class=p>.</span><span class=n>arduino</span><span class=p>.</span><span class=o>*</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>import</span> <span class=n>org</span><span class=p>.</span><span class=n>firmata</span><span class=p>.</span><span class=o>*</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>import</span> <span class=n>processing</span><span class=p>.</span><span class=n>serial</span><span class=p>.</span><span class=o>*</span><span class=p>;</span></span></span></code></pre></div><p>가 등록된다.</p><br><h4 id=processing-sketch>processing sketch<a class=anchor href=#processing-sketch>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>cc.arduino.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>org.firmata.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>processing.serial.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>Arduino</span><span class=w> </span><span class=n>arduino</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>int</span><span class=w> </span><span class=n>ledPin</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>13</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>Arduino</span><span class=p>(</span><span class=k>this</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>()</span><span class=o>[</span><span class=n>0</span><span class=o>]</span><span class=p>,</span><span class=w> </span><span class=n>57600</span><span class=p>);</span><span class=w> </span><span class=c1>// Arduino.list()[0] or &#34;COM3&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=p>.</span><span class=na>pinMode</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>OUTPUT</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=p>.</span><span class=na>digitalWrite</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>HIGH</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>delay</span><span class=p>(</span><span class=n>1000</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=p>.</span><span class=na>digitalWrite</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>LOW</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>delay</span><span class=p>(</span><span class=n>1000</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><h4 id=arduino-sketch>arduino sketch<a class=anchor href=#arduino-sketch>#</a></h4><ol><li><p>arduino IDE에서 <code>파일</code> → <code>예제</code> → <code>firmata</code> → <code>standard firmata</code>를 불러들인 후</p></li><li><p>컴파일하고 업로드한다.</p></li></ol><br><h4 id=processing에서-실행하기>processing에서 실행하기<a class=anchor href=#processing%ec%97%90%ec%84%9c-%ec%8b%a4%ed%96%89%ed%95%98%ea%b8%b0>#</a></h4><ol><li><p>processing에서 실행버튼을 눌러 실행해보기</p></li><li><p><code>파일</code> → <code>어플리케이션으로 내보내기</code>를 선택하여 윈도우, Mac, Linux용 실행파일을 만들어보기</p></li></ol><p>※ 어플리케이션으로 내보내기를 하기전에 processing sketch를 저장하여야 한다.</p><br><br><h3 id=processing으로-led-제어하기>Processing으로 led 제어하기<a class=anchor href=#processing%ec%9c%bc%eb%a1%9c-led-%ec%a0%9c%ec%96%b4%ed%95%98%ea%b8%b0>#</a></h3><h4 id=processing-sketch--사각형-스위치>processing sketch : 사각형 스위치<a class=anchor href=#processing-sketch--%ec%82%ac%ea%b0%81%ed%98%95-%ec%8a%a4%ec%9c%84%ec%b9%98>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>cc.arduino.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>org.firmata.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>processing.serial.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>Arduino</span><span class=w> </span><span class=n>arduino</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>int</span><span class=w> </span><span class=n>ledPin</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>13</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>background</span><span class=p>(</span><span class=n>0</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>fill</span><span class=p>(</span><span class=n>255</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>noStroke</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>rect</span><span class=p>(</span><span class=n>width</span><span class=o>/</span><span class=n>2</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>width</span><span class=o>/</span><span class=n>2</span><span class=p>,</span><span class=w> </span><span class=n>height</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>text</span><span class=p>(</span><span class=s>&#34;LED OFF&#34;</span><span class=p>,</span><span class=w> </span><span class=n>30</span><span class=p>,</span><span class=w> </span><span class=n>30</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>fill</span><span class=p>(</span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>text</span><span class=p>(</span><span class=s>&#34;LED ON&#34;</span><span class=p>,</span><span class=w> </span><span class=n>230</span><span class=p>,</span><span class=w> </span><span class=n>30</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>Arduino</span><span class=p>(</span><span class=k>this</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>()</span><span class=o>[</span><span class=n>0</span><span class=o>]</span><span class=p>,</span><span class=w> </span><span class=n>57600</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=p>.</span><span class=na>pinMode</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>OUTPUT</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseMoved</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=p>(</span><span class=n>mouseX</span><span class=w> </span><span class=o>&lt;</span><span class=w> </span><span class=n>width</span><span class=o>/</span><span class=n>2</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>arduino</span><span class=p>.</span><span class=na>digitalWrite</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>LOW</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>arduino</span><span class=p>.</span><span class=na>digitalWrite</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>HIGH</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div><br><h4 id=processing-sketch--그라데이션-가변저항>processing sketch : 그라데이션 가변저항<a class=anchor href=#processing-sketch--%ea%b7%b8%eb%9d%bc%eb%8d%b0%ec%9d%b4%ec%85%98-%ea%b0%80%eb%b3%80%ec%a0%80%ed%95%ad>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=nn>cc.arduino.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>org.firmata.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>processing.serial.*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>Arduino</span><span class=w> </span><span class=n>arduino</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>int</span><span class=w> </span><span class=n>ledPin</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>13</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>setup</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>size</span><span class=p>(</span><span class=n>400</span><span class=p>,</span><span class=n>400</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>for</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>i</span><span class=o>=</span><span class=n>0</span><span class=p>;</span><span class=w> </span><span class=n>i</span><span class=o>&lt;</span><span class=n>width</span><span class=p>;</span><span class=w> </span><span class=n>i</span><span class=o>++</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>stroke</span><span class=p>(</span><span class=n>map</span><span class=p>(</span><span class=n>i</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>width</span><span class=o>-</span><span class=n>1</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>255</span><span class=p>));</span><span class=w> </span><span class=c1>// 색깔을 점차 변화시키면서</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>line</span><span class=p>(</span><span class=n>i</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>i</span><span class=p>,</span><span class=w> </span><span class=n>height</span><span class=p>);</span><span class=w>              </span><span class=c1>// 선을 그려, 그라데이션 효과를 만들어 냄</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>println</span><span class=p>(</span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>new</span><span class=w> </span><span class=n>Arduino</span><span class=p>(</span><span class=k>this</span><span class=p>,</span><span class=w> </span><span class=n>Arduino</span><span class=p>.</span><span class=na>list</span><span class=p>()</span><span class=o>[</span><span class=n>0</span><span class=o>]</span><span class=p>,</span><span class=w> </span><span class=n>57600</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>draw</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kt>void</span><span class=w> </span><span class=nf>mouseMoved</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>arduino</span><span class=p>.</span><span class=na>analogWrite</span><span class=p>(</span><span class=n>ledPin</span><span class=p>,</span><span class=w> </span><span class=kt>int</span><span class=p>(</span><span class=n>map</span><span class=p>(</span><span class=n>mouseX</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>width</span><span class=o>-</span><span class=n>1</span><span class=p>,</span><span class=w> </span><span class=n>0</span><span class=p>,</span><span class=w> </span><span class=n>255</span><span class=p>)));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></div></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a href=/posts/hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="flex align-center"><img src=/icons/backward.svg class=book-icon alt=Previous title="hexo icarus 테마로 Github 블로그 만들기">
 <span>hexo icarus 테마로 Github 블로그 만들기</span></a></div><div><a href=/posts/%EB%93%9C%EB%A1%A0%EC%9D%98-%EB%B9%84%ED%96%89-%EC%9B%90%EB%A6%AC/ class="flex align-center"><span>드론의 비행 원리</span>
 <img src=/icons/forward.svg class=book-icon alt=Next title="드론의 비행 원리"></a></div></div><div class=book-comments></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#processing-sketch-예제>processing sketch 예제</a></li><li><a href=#arduino와-processing을-통해-arduino-보드의-기본-led-blink-하기>Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기</a></li><li><a href=#processing으로-led-제어하기>Processing으로 led 제어하기</a></li></ul></li></ul></nav></div></aside></main></body></html>

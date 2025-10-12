@@ -2,7 +2,25 @@
 &lt;p&gt;지금까지 배운 RC카, 블루투스 모듈 사용법, 컨트롤러 사용법을 종합하여 Bluetooth로 조종하는 4WD를 만들어 보겠습니다. IR리모트를 사용한 RC카를 베이스로 하여 IR수신부를 빼고, 블루투스 모듈인 HC-06만 연결하면 됩니다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-17.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 100%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-17.png" alt="/image/4wd-bt-17.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h3 id="bluetooth-serial-controller-설정"&gt;Bluetooth Serial Controller 설정&lt;a class="anchor" href="#bluetooth-serial-controller-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;여기서는 4WD를 블루투스로 조종하기 위한 콘트롤러를 만들어 봅니다.&lt;/p&gt;
@@ -10,114 +28,370 @@
 &lt;ol&gt;
 &lt;li&gt;먼저 Bluetooth Serial Controller를 실행시키세요. (블루투스 페어링이나 앱 설치방법은 이전의 글을 참고하세요.) 아래화면은 TERMINAL Mode인 상태입니다. 여기서 스페너 모양 아이콘을 눌러 PREFERCE로 진입하세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-01.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-01.png" alt="/image/4wd-bt-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;PREFERENCE 화면에서 아무곳이나 누른 뒤, 위로 스크롤하여&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-02.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-02.png" alt="/image/4wd-bt-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;9 BUTTON MODE를 활성화 시키고, TERMINAL MODE를 꺼주세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-03.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-03.png" alt="/image/4wd-bt-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="4"&gt;
 &lt;li&gt;그러면 이런 화면이 나타납니다. 이제 각각의 버튼을 정의해보겠습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-04.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-04.png" alt="/image/4wd-bt-04.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="5"&gt;
 &lt;li&gt;다시 스페너 모양 아이콘을 눌러 PREFERENCE로 들어간 뒤, BUTTON-Name을 선택합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-05.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-05.png" alt="/image/4wd-bt-05.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="6"&gt;
 &lt;li&gt;button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &amp;lsquo;전진&amp;rsquo;, &amp;lsquo;왼쪽&amp;rsquo;, &amp;lsquo;정지&amp;rsquo;, &amp;lsquo;오른쪽&amp;rsquo;, &amp;lsquo;후진&amp;rsquo;이라고 이름을 붙여줍니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-06.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-06.png" alt="/image/4wd-bt-06.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;다시 PREFERENCE에서 Command를 누르세요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-07.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-07.png" alt="/image/4wd-bt-07.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="8"&gt;
 &lt;li&gt;Command에서 정의해주는 값이 제일 중요한데요. 각 버튼을 누를때, 아두이노로 전달되는 값을 정의해주는 것이기 때문입니다. button2, button4, button5, button6, button8을 각각 누른 뒤, 각 버튼 별로 &amp;lsquo;F&amp;rsquo;, &amp;lsquo;L&amp;rsquo;, &amp;lsquo;O&amp;rsquo;, &amp;lsquo;R&amp;rsquo;, &amp;lsquo;B&amp;rsquo;이라고 입력값을 넣어주세요. 이 값은 스케치 작성시 사용해야 하므로 꼭 기억해두어야 합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-08.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-08.png" alt="/image/4wd-bt-08.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="9"&gt;
 &lt;li&gt;이제 Visibility로 갑니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-09.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-09.png" alt="/image/4wd-bt-09.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="10"&gt;
 &lt;li&gt;여기서는 필요없는 버튼을 지워줄 수 있어요. 실제 사용되는 버튼에만 체크하고, 나머지 버튼은 체크 해제합니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-10.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-10.png" alt="/image/4wd-bt-10.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="11"&gt;
 &lt;li&gt;그러면, 아래와 같은 멋진 블루투스 컨트롤러가 나타납니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-11.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-11.png" alt="/image/4wd-bt-11.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="12"&gt;
 &lt;li&gt;이 상태에서 돋보기 모양 아이콘을 눌러 HC-06에 접속해 봅니다. 여기서부터는 블루투스 페어링 과정에서 설명했던 부분과 똑같습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-12.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-12.png" alt="/image/4wd-bt-12.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="13"&gt;
 &lt;li&gt;모듈ID인 SKS100을 누르면 페어링을 시도하고요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-13.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-13.png" alt="/image/4wd-bt-13.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="14"&gt;
 &lt;li&gt;만일 페어링할 모듈이 나타나지 않으면, Scan for devices로 모듈을 찾아 페어링을 해봅니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-14.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-14.png" alt="/image/4wd-bt-14.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="15"&gt;
 &lt;li&gt;페어링을 시도하는 중이네요.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-15.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-15.png" alt="/image/4wd-bt-15.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="16"&gt;
 &lt;li&gt;페어링 완료! 이제 컨트롤러 사용을 위한 모든 준비과정이 완료되었습니다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/4wd-bt-16.png" width="33%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/4wd-bt-16.png" alt="/image/4wd-bt-16.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="4wd-블루투스-초음파센서-자동차"&gt;4WD 블루투스 초음파센서 자동차&lt;a class="anchor" href="#4wd-%eb%b8%94%eb%a3%a8%ed%88%ac%ec%8a%a4-%ec%b4%88%ec%9d%8c%ed%8c%8c%ec%84%bc%ec%84%9c-%ec%9e%90%eb%8f%99%ec%b0%a8"&gt;#&lt;/a&gt;&lt;/h3&gt;
@@ -128,7 +402,25 @@
 &lt;br&gt;
 &lt;h3 id="tcrt5000-ir-reflective-sensor"&gt;TCRT5000 IR reflective sensor&lt;a class="anchor" href="#tcrt5000-ir-reflective-sensor"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;라인트레이서 제작시 가장 널리 사용되는 IR 센서이다. 감지하는 부분이 검은색으로 되어 있는 부분이라면 IR이 모두 흡수되고, 흰색으로 되어 있는 부분에서는 모두 반사되는 원리를 이용한다.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/LT-03.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/LT-03.png" alt="/image/LT-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;장애물이 없는 경우: 1 반환&lt;/li&gt;
 &lt;li&gt;센서와 12mm이내의 거리에 밝은색이 위치하는 경우: 0 반환&lt;/li&gt;
@@ -147,7 +439,49 @@
 &lt;p&gt;HC-06, HC-05는 아이폰에서 SPP(Serial Port Profile) 통신이 지원하지 않는 이유로 사용할 수 없습니다. 그러므로 아이폰으로 블루투스 통신을 하기 위해서는 MLT-BT-BT05, AT-09, CC2541, HM-10, HC-02, RN-42 같은 BLE(Bluetooth Low Energy) 모듈을 사용합니다. 연결방법이나 AT명령어 세트는 HC-06과 비슷해요. 주의 할 점은, 시리얼 모니터에서 &lt;strong&gt;Both NL &amp;amp; CR&lt;/strong&gt; 모드를 선택해주어야 하는 것입니다.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/BT-01.jpg" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, Bluetooth, Blynk</title><link>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</link><pubDate>Sun, 20 Oct 2019 23:10:53 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</guid><description>&lt;h3 id="blynk-설정"&gt;Blynk 설정&lt;a class="anchor" href="#blynk-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BT-01.jpg" alt="/image/BT-01.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;안드로이드&lt;/strong&gt; : HC-06(or HC-05) 블루투스 모듈 사용 (이 모듈은 아이폰에서 사용 불가)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BT-02.jpg" alt="/image/BT-02.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;blockquote class='book-hint '&gt;
+&lt;p&gt;※ 요즘은 잘 사용하지 않지만, HC-05를 사용하기도 합니다. 생김새가 거의 비슷하지만, 몇가지 차이점이 있는데요. 보통 HC-06과 구별하기 위하여, HC-05에는 칩 위에 V형태로 체크를 해두거나, 화이트로 하얀색 점을 찍어두는 경우가 많습니다. 그리고, 가장 큰 차이점은 HC-05의 경우 6개의 핀이 모두 존재해요.&lt;/p&gt;</description></item><item><title>Arduino, Bluetooth, Blynk</title><link>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</link><pubDate>Sun, 20 Oct 2019 23:10:53 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-bluetooth-blynk/</guid><description>&lt;h3 id="blynk-설정"&gt;Blynk 설정&lt;a class="anchor" href="#blynk-%ec%84%a4%ec%a0%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="blynk-라이브러리-설치"&gt;Blynk 라이브러리 설치&lt;a class="anchor" href="#blynk-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%84%a4%ec%b9%98"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;docs.blynk.cc 접속 – Downloads – Blynk Library&lt;/li&gt;
@@ -304,43 +638,77 @@
 &lt;li&gt;Blynk에서 플레이버튼을 누른다.&lt;/li&gt;
 &lt;li&gt;값이 표시되는 것을 볼 수 있다.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;BLYNK_READ&lt;/span&gt;(V5) { &lt;span style="color:#75715e"&gt;//Blynk app has something on V5
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; sensorData &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;analogRead&lt;/span&gt;(A0); &lt;span style="color:#75715e"&gt;//reading the sensor on A0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Blynk.&lt;span style="color:#a6e22e"&gt;virtualWrite&lt;/span&gt;(V5, sensorData); &lt;span style="color:#75715e"&gt;//sending to Blynk
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 코드는 매시간마다 Blynk가 &lt;code&gt;_READ&lt;/code&gt; 요청을 Virtual Pin V5에 보내도록 한다. A0핀에서 센서값을 읽은 후, Blynk에서 Virtual Pin V5에 되돌려 준다.&lt;/p&gt;</description></item><item><title>Bluetooth Serial Controller 앱</title><link>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</link><pubDate>Thu, 17 Oct 2019 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</guid><description>&lt;h3 id="bluetooth-시리얼-통신"&gt;Bluetooth 시리얼 통신&lt;a class="anchor" href="#bluetooth-%ec%8b%9c%eb%a6%ac%ec%96%bc-%ed%86%b5%ec%8b%a0"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;BLYNK_READ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;//Blynk app has something on V5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;sensorData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;analogRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//reading the sensor on A0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Blynk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;virtualWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sensorData&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//sending to Blynk
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이 코드는 매시간마다 Blynk가 &lt;code&gt;_READ&lt;/code&gt; 요청을 Virtual Pin V5에 보내도록 한다. A0핀에서 센서값을 읽은 후, Blynk에서 Virtual Pin V5에 되돌려 준다.&lt;/p&gt;</description></item><item><title>Bluetooth Serial Controller 앱</title><link>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</link><pubDate>Thu, 17 Oct 2019 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/bluetooth-%EC%8B%9C%EB%A6%AC%EC%96%BC-%ED%86%B5%EC%8B%A0/</guid><description>&lt;h3 id="bluetooth-시리얼-통신"&gt;Bluetooth 시리얼 통신&lt;a class="anchor" href="#bluetooth-%ec%8b%9c%eb%a6%ac%ec%96%bc-%ed%86%b5%ec%8b%a0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Bluetooth Serial Controller 앱을 통하여 아두이노와 스마트폰 간의 간단한 시리얼 통신을 해보겠습니다. 이를 위해서는 먼저 &lt;a href="2018/10/09/Arduino-Bluetooth-%ed%8e%98%ec%96%b4%eb%a7%81"&gt;Bluetooth 페어링&lt;/a&gt; 문서를 참고하여 블루투스 모듈과 스마트폰을 페어링 해두어야 합니다. 페어링이 완료된 후 시리얼 통신을 진행합니다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/BT-03.jpg" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BT-03.jpg" alt="/image/BT-03.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;SoftwareSerial.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;SoftwareSerial &lt;span style="color:#a6e22e"&gt;BTSerial&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;); &lt;span style="color:#75715e"&gt;//Connect HC-06 TX,RX 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;9600&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Hello!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// set the data rate for the BT port
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; BTSerial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;9600&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;()
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (BTSerial.&lt;span style="color:#a6e22e"&gt;available&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;write&lt;/span&gt;(BTSerial.&lt;span style="color:#a6e22e"&gt;read&lt;/span&gt;());
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (Serial.&lt;span style="color:#a6e22e"&gt;available&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; BTSerial.&lt;span style="color:#a6e22e"&gt;write&lt;/span&gt;(Serial.&lt;span style="color:#a6e22e"&gt;read&lt;/span&gt;());
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;SoftwareSerial.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="n"&gt;SoftwareSerial&lt;/span&gt; &lt;span class="nf"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//Connect HC-06 TX,RX 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Hello!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// set the data rate for the BT port
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;BTSerial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="스마트폰에-bluetooth-serial-controller-앱-설치하기"&gt;스마트폰에 Bluetooth Serial Controller 앱 설치하기&lt;a class="anchor" href="#%ec%8a%a4%eb%a7%88%ed%8a%b8%ed%8f%b0%ec%97%90-bluetooth-serial-controller-%ec%95%b1-%ec%84%a4%ec%b9%98%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;이제 Google Playstore를 통해서 스마트폰에 Bluetooth Serial Controller 앱을 설치합니다. (iOS는 유사한 프로그램으로 설치)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/BTserialapp-01.png"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/BTserialapp-01.png" alt="/image/BTserialapp-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;p&gt;​ 비슷한 역할을 하는 수많은 앱들이 있는데, 여러 앱을 설치하고 사용해본 결과, 이 앱이 사용하기에 유연함을 갖고 있는 것 같더군요.&lt;/p&gt;</description></item><item><title>Processing 기초</title><link>https://stemwith.github.io/posts/processing-%EA%B8%B0%EC%B4%88/</link><pubDate>Fri, 30 Nov 2018 18:27:53 +0900</pubDate><guid>https://stemwith.github.io/posts/processing-%EA%B8%B0%EC%B4%88/</guid><description>&lt;ul&gt;
 &lt;li&gt;processing.org 에서 다운로드 (&lt;a href="https://processing.org/download/"&gt;다운로드 페이지&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;arduino sketch는 C++기반이고, processing sketch는 java기반입니다.&lt;/li&gt;
@@ -350,117 +718,153 @@
 &lt;ol&gt;
 &lt;li&gt;예제1 : 프로세싱 윈도우 크기, 배경색, 점, 선, 사각형, 원, 텍스트, 폰트, 사진 입력&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; size(400,400);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; background(100); &lt;span style="color:#75715e"&gt;// background(0,255,0);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; strokeWeight(10); &lt;span style="color:#75715e"&gt;// dot/line width&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; stroke(0,255,0,100); &lt;span style="color:#75715e"&gt;// dot/line color and transparency, noStroke();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; point(200,200); &lt;span style="color:#75715e"&gt;// draw dot&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; line(0,0,200,150); &lt;span style="color:#75715e"&gt;// draw line&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ellipse(300,300,50,80); &lt;span style="color:#75715e"&gt;// draw circle(x,y,xr,yr)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; fill(0); &lt;span style="color:#75715e"&gt;// rect/text color, nofill();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; rect(100,250,150,300); &lt;span style="color:#75715e"&gt;// draw rectangle(x1,y1,x2,y2)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; textSize(20);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; PFont font &lt;span style="color:#f92672"&gt;=&lt;/span&gt; createFont(&lt;span style="color:#e6db74"&gt;&amp;#34;NanumGothic&amp;#34;&lt;/span&gt;, 32);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; textFont(font);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; text(&lt;span style="color:#e6db74"&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;,200,100); &lt;span style="color:#75715e"&gt;// text(string,x1,y2)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; PImage img &lt;span style="color:#f92672"&gt;=&lt;/span&gt; loadImage(&lt;span style="color:#e6db74"&gt;&amp;#34;sks.jpg&amp;#34;&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// file in &amp;#39;/sketch_XXXXXXa/data/&amp;#39; folder&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; image(img,20,50); &lt;span style="color:#75715e"&gt;// image(img,x,y,width,height);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;draw&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// background(0,255,0);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;strokeWeight&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// dot/line width&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// dot/line color and transparency, noStroke();&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// draw dot&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;150&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// draw line&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ellipse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;80&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// draw circle(x,y,xr,yr)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// rect/text color, nofill();&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;250&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;150&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;300&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// draw rectangle(x1,y1,x2,y2)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;textSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PFont&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;createFont&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;NanumGothic&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;32&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;textFont&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// text(string,x1,y2)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PImage&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;loadImage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;sks.jpg&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// file in &amp;#39;/sketch_XXXXXXa/data/&amp;#39; folder&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;50&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// image(img,x,y,width,height);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;예제2 : 마우스와 키보드 이벤트&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; size(400,400);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;draw&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mousePressed&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(mouseButton &lt;span style="color:#f92672"&gt;==&lt;/span&gt; LEFT) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;left button Pressed!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(mouseButton &lt;span style="color:#f92672"&gt;==&lt;/span&gt; RIGHT) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;right button Pressed!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(mouseButton &lt;span style="color:#f92672"&gt;==&lt;/span&gt; CENTER) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;center button Pressed!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;keyPressed&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;key Pressed!&amp;#34;&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// Key event&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(key); &lt;span style="color:#75715e"&gt;// Key String&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(keyCode); &lt;span style="color:#75715e"&gt;// ASCII Code&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseReleased&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;button Released!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;keyReleased&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;key Released!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseClicked&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;button Clicked!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseMoved&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;mouse Moved!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseDragged&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;mouse Dragged!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseWheel&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; println(&lt;span style="color:#e6db74"&gt;&amp;#34;mouse Wheel!&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mousePressed&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mouseButton&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LEFT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;left button Pressed!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mouseButton&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RIGHT&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;right button Pressed!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mouseButton&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;CENTER&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;center button Pressed!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;keyPressed&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;key Pressed!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// Key event&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// Key String&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyCode&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// ASCII Code&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseReleased&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;button Released!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;keyReleased&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;key Released!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseClicked&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;button Clicked!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseMoved&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;mouse Moved!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseDragged&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;mouse Dragged!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseWheel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;mouse Wheel!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;예제3 : 마우스 움직이는 대로 원 그리기&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; size(400,400);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;draw&lt;/span&gt;() { 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseMoved&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ellipse(mouseX,mouseY,50,50); 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseMoved&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ellipse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mouseX&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;mouseY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;50&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;ol start="4"&gt;
 &lt;li&gt;예제4 : 자유선 그리기&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; size(400,400);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;draw&lt;/span&gt;() { 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;mouseMoved&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; line(pmouseX,pmouseY,mouseX,mouseY); 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;400&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;mouseMoved&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pmouseX&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;pmouseY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;mouseX&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;mouseY&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="arduino와-processing을-통해-arduino-보드의-기본-led-blink-하기"&gt;Arduino와 Processing을 통해 arduino 보드의 기본 led blink 하기&lt;a class="anchor" href="#arduino%ec%99%80-processing%ec%9d%84-%ed%86%b5%ed%95%b4-arduino-%eb%b3%b4%eb%93%9c%ec%9d%98-%ea%b8%b0%eb%b3%b8-led-blink-%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;아두이노의 기본 LED를 사용할 것이므로 별도의 회로 연결없이 아두이노만 연결한다.&lt;/p&gt;</description></item><item><title>1602 LCD, 조도, 초음파, 온습도</title><link>https://stemwith.github.io/posts/1602-lcd-display/</link><pubDate>Tue, 02 Oct 2018 14:18:00 +0900</pubDate><guid>https://stemwith.github.io/posts/1602-lcd-display/</guid><description>&lt;p&gt;1602 LCD 중에서 (I2C 모듈이 추가되어 있지 않은) 가장 기본적인 형태, 즉 1602 LCD만 있는 상태에서의 출력방법을 알아보겠습니다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/1602-01.jpg" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/1602-01.jpg" alt="/image/1602-01.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="schematic--백라이트-밝기-조절-추가"&gt;schematic : 백라이트 밝기 조절 추가&lt;a class="anchor" href="#schematic--%eb%b0%b1%eb%9d%bc%ec%9d%b4%ed%8a%b8-%eb%b0%9d%ea%b8%b0-%ec%a1%b0%ec%a0%88-%ec%b6%94%ea%b0%80"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;백라이트를 사용하지 않으면 너무 어두워서 글자가 잘 보이지 않는다. 적당한 밝기의 백라이트 사용을 위해 &lt;strong&gt;LCD 3번핀을 3.3㏀ 거쳐서 GND로 연결&lt;/strong&gt;(혹은 1㏀ 3개를 직렬연결) 하거나, 아래 회로와 같이 가변 저항을 사용하면 백라이트의 밝기를 적절히 조절할 수도 있다.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/1602-02.jpg" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/1602-02.jpg" alt="/image/1602-02.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;h4 id="pin-map"&gt;Pin Map&lt;a class="anchor" href="#pin-map"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -587,21 +991,52 @@
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="스텝모터-28byj-48"&gt;스텝모터 28BYJ-48&lt;a class="anchor" href="#%ec%8a%a4%ed%85%9d%eb%aa%a8%ed%84%b0-28byj-48"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/s/Step-Motor-02.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/s/Step-Motor-02.png" alt="/image/s/Step-Motor-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;정격전압: 5VDC&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;기어비: 1/64
-$$
-\frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64
-$$&lt;/p&gt;
+&lt;p&gt;기어비: 1/64&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/s/Step-Motor-01.png" width="80%"&gt;
-&lt;/figure&gt;
+&lt;span&gt;\[ \frac {32}{9} \times \frac {22}{11} \times \frac {26}{9} \times \frac {31}{10} = 63.68395 \fallingdotseq 64 \]&lt;/span&gt;
 
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/s/Step-Motor-01.png" alt="/image/s/Step-Motor-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;스트라이드 각도
 &lt;ul&gt;
@@ -622,15 +1057,166 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="모터드라이브-uln2003"&gt;모터드라이브 ULN2003&lt;a class="anchor" href="#%eb%aa%a8%ed%84%b0%eb%93%9c%eb%9d%bc%ec%9d%b4%eb%b8%8c-uln2003"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/s/Step-Motor-03.png" width="67%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 67%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/s/Step-Motor-03.png" alt="/image/s/Step-Motor-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/s/UNO-step-01.png" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, 서보모터</title><link>https://stemwith.github.io/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/</link><pubDate>Sat, 08 Sep 2018 17:57:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/</guid><description>&lt;h3 id="서보모터-sg-90"&gt;서보모터 SG-90&lt;a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-sg-90"&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/servo-01.png" width="67%"&gt;
-&lt;/figure&gt;
 
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/s/UNO-step-01.png" alt="/image/s/UNO-step-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;h4 id="pin-map"&gt;Pin Map&lt;a class="anchor" href="#pin-map"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;모터드라이브&lt;/th&gt;
+ &lt;th&gt;아두이노&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INT1&lt;/td&gt;
+ &lt;td&gt;11&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INT2&lt;/td&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INT3&lt;/td&gt;
+ &lt;td&gt;9&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INT4&lt;/td&gt;
+ &lt;td&gt;8&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;GND&lt;/td&gt;
+ &lt;td&gt;GND&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;VCC&lt;/td&gt;
+ &lt;td&gt;5V&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;h4 id="sketch-예제1"&gt;sketch: 예제1&lt;a class="anchor" href="#sketch-%ec%98%88%ec%a0%9c1"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Stepper.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 2048:한바퀴(360도), 1024:반바퀴(180도)...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// datasheet를 통해 스트라이드 각도를 계산한 값을 사용
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="n"&gt;Stepper&lt;/span&gt; &lt;span class="nf"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setSpeed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 시계 반대 방향으로 한바퀴 회전
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;step&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 시계 방향으로 한바퀴 회전
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;step&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
+&lt;ul&gt;
+&lt;li&gt;모터 드라이브에 연결되는 순서에 유의한다! (&lt;strong&gt;IN1, IN3, IN2, IN4&lt;/strong&gt; 순서임!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;myStepper.setSpeed(14);
+&lt;ul&gt;
+&lt;li&gt;아두이노 보드의 5V 전원 사용시 16이 최대값.&lt;/li&gt;
+&lt;li&gt;16 이상은 안정적으로 회전이 안되며, 17을 넣으면 한바퀴 돌고 정지. 18을 넣으면 돌지 않음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4 id="sketch-예제2"&gt;sketch: 예제2&lt;a class="anchor" href="#sketch-%ec%98%88%ec%a0%9c2"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Stepper.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 2048:한바퀴(360도), 1024:반바퀴(180도), 64:11.25도
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 모터 드라이브에 연결된 핀 IN1, IN3, IN2, IN4
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="n"&gt;Stepper&lt;/span&gt; &lt;span class="nf"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setSpeed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 시계 반대 방향으로 한바퀴 회전
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;// 64 * 32 = 2048 한바퀴 =&amp;gt; 11.25도씩 32번 회전 (360도)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;step&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 시계 방향으로 한바퀴 회전
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;// -64 * 32 = 2048 한바퀴 =&amp;gt; -11.25도씩 32번 회전 (-360도)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;myStepper&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;step&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stepsPerRevolution&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Arduino, 서보모터</title><link>https://stemwith.github.io/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/</link><pubDate>Sat, 08 Sep 2018 17:57:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%EC%84%9C%EB%B3%B4%EB%AA%A8%ED%84%B0/</guid><description>&lt;h3 id="서보모터-sg-90"&gt;서보모터 SG-90&lt;a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-sg-90"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/servo-01.png" alt="/image/servo-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;모터드라이버, 회전센서, 모터, 제어회로가 내장된 기어 박스를 포함하고 있는 형태의 모터로, 스텝모터보다 힘이 강함&lt;/li&gt;
 &lt;li&gt;보통 선이 3가닥이며, 회전수와 각도 등의 움직임 제어가 가능&lt;/li&gt;
@@ -646,7 +1232,223 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/servo-02.jpg" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, 피에조 부저</title><link>https://stemwith.github.io/posts/arduino-piezo-buzzer/</link><pubDate>Fri, 07 Sep 2018 17:23:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-piezo-buzzer/</guid><description>&lt;h3 id="buzzer의-종류"&gt;Buzzer의 종류&lt;a class="anchor" href="#buzzer%ec%9d%98-%ec%a2%85%eb%a5%98"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/servo-02.jpg" alt="/image/servo-02.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;SG90&lt;/th&gt;
+ &lt;th&gt;Brown&lt;/th&gt;
+ &lt;th&gt;Red&lt;/th&gt;
+ &lt;th&gt;Orange&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Arduino&lt;/td&gt;
+ &lt;td&gt;GND&lt;/td&gt;
+ &lt;td&gt;5V&lt;/td&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;h4 id="sketch--서보모터-180º-회전-왕복하기"&gt;sketch : 서보모터 180º 회전 왕복하기&lt;a class="anchor" href="#sketch--%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-180%c2%ba-%ed%9a%8c%ec%a0%84-%ec%99%95%eb%b3%b5%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Servo.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// servomotor 선언
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;attach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// servomotor 핀 설정
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// pos값의 위치로 이동
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// 같은 방법으로 역회전
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;servomotor.write(숫자)를 사용할때, 숫자는 현재 위치에서의 ‘회전각’을 의미하는 것이 아니다!&lt;/li&gt;
+&lt;li&gt;초기 위치를 0º로 기준삼아, 표시된 숫자의 각도 위치로 이동하라는 의미이다. 예를들어서 servomotor.write(90)와 servomotor.write(30)을 연속으로 실행하면,
+&lt;ul&gt;
+&lt;li&gt;90도를 회전한 뒤, 추가로 30도를 회전하여 120도 위치에 있다 → ×&lt;/li&gt;
+&lt;li&gt;90도의 위치로 회전한 뒤, 역회전하여 (처음위치를 기준으로) 30도의 위치로 이동한다. → ○&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;단, servo.h 라이브러리를 사용하면, 스케치 내에서 analogWrite를 사용할 수 없다는 단점도 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4 id="sketch-시리얼모니터에서-각도값을-입력받아-회전시키기"&gt;sketch: 시리얼모니터에서 각도값을 입력받아 회전시키기&lt;a class="anchor" href="#sketch-%ec%8b%9c%eb%a6%ac%ec%96%bc%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90%ec%84%9c-%ea%b0%81%eb%8f%84%ea%b0%92%ec%9d%84-%ec%9e%85%eb%a0%a5%eb%b0%9b%ec%95%84-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Servo.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;attach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Serial 통신을 설정
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Servor Mortor&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt; &lt;span class="c1"&gt;// Serial 모니터창에 어떤 값이 들어오면 실행
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// Serial 모니터창에서 받은 값을 a에 넘겨줌
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;angle : &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;servomotor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// a값에 해당하는 각도의 위치로 이동
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="서보모터-sg-90-라이브러리-없이-사용하기"&gt;서보모터 SG-90: 라이브러리 없이 사용하기&lt;a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-sg-90-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%97%86%ec%9d%b4-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="for-sg90-with-arduino"&gt;for SG90 with Arduino&lt;a class="anchor" href="#for-sg90-with-arduino"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Frequency of that signal should be 50hz.&lt;/li&gt;
+&lt;li&gt;Its range is 544-2450 micro seconds for 0-180 degree angle.&lt;/li&gt;
+&lt;li&gt;Again its a little complex.&lt;/li&gt;
+&lt;li&gt;For example 0 degree signal will be something like 5 volts for 544 micro seconds and 0 volt for 19465.&lt;/li&gt;
+&lt;li&gt;highDelay
+&lt;ul&gt;
+&lt;li&gt;the time in which we want to keep voltage high on pin 10 and this unit is in micro seconds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;lowDelay
+&lt;ul&gt;
+&lt;li&gt;the time in which want to keep voltage zero across pin 10 again this unit is going to be in micro seconds&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;only HIGH part of signal wont operate servo. we have to send complete HIGH and LOW signal to make servo work.&lt;/li&gt;
+&lt;li&gt;deg_factor
+&lt;ul&gt;
+&lt;li&gt;signal range (2450 - 544) for SG90 divided by 180 which is equal to 10.6 something that we make 11 as an integer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Loop = 20000;
+&lt;ul&gt;
+&lt;li&gt;20000 micro seconds or 20 milli seconds is signal cycle or u can say total signal should be equal to 20 milli seconds including HIGH and LOW input. (50Hz)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;servoPin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// servo is connected to pin 10.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;initialDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;544&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lowDelay&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;deg_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;Loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;pinMode&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servoPin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;servoWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servoPin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;servoWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servoPin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;servoWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;duty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;initialDelay&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;duty&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;deg_factor&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// setting angle
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HIGH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delayMicroseconds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lowDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Loop&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LOW&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delayMicroseconds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lowDelay&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;h4 id="시리얼-모니터에-입력한-문자로-서보모터-회전시키기"&gt;시리얼 모니터에 입력한 문자로 서보모터 회전시키기&lt;a class="anchor" href="#%ec%8b%9c%eb%a6%ac%ec%96%bc-%eb%aa%a8%eb%8b%88%ed%84%b0%ec%97%90-%ec%9e%85%eb%a0%a5%ed%95%9c-%eb%ac%b8%ec%9e%90%eb%a1%9c-%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0-%ed%9a%8c%ec%a0%84%ec%8b%9c%ed%82%a4%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;servoPin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// servo is connected to pin 10.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;initialDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;544&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lowDelay&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// servo initial degree
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;deg_factor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;Loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;pinMode&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servoPin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;servoWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servoPin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;available&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;deg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;servoWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;duty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;initialDelay&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;duty&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;deg_factor&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// setting angle
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HIGH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delayMicroseconds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lowDelay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Loop&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;highDelay&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;servo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LOW&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delayMicroseconds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lowDelay&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;l 을 입력하면, 5도 좌회전하며, ll을 입력하면 10도 좌회전한다.&lt;/li&gt;
+&lt;li&gt;r 을 입력하면, 5도 우회전하며, rr을 입력하면 10도 우회전한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="서보모터와-인터럽트-동시에-사용하기"&gt;서보모터와 인터럽트 동시에 사용하기&lt;a class="anchor" href="#%ec%84%9c%eb%b3%b4%eb%aa%a8%ed%84%b0%ec%99%80-%ec%9d%b8%ed%84%b0%eb%9f%bd%ed%8a%b8-%eb%8f%99%ec%8b%9c%ec%97%90-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;서보모터가 180도 회전하는 동안, 스위치를 누르면 13번 LED가 토글되도록 만들어보자.&lt;/p&gt;</description></item><item><title>Arduino, 피에조 부저</title><link>https://stemwith.github.io/posts/arduino-piezo-buzzer/</link><pubDate>Fri, 07 Sep 2018 17:23:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-piezo-buzzer/</guid><description>&lt;h3 id="buzzer의-종류"&gt;Buzzer의 종류&lt;a class="anchor" href="#buzzer%ec%9d%98-%ec%a2%85%eb%a5%98"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -672,32 +1474,128 @@ $$&lt;/p&gt;
  &lt;td style="text-align: center"&gt;액티브 부저에 비해 저렴 (모듈 1개 0.8위안)&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-active.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-passive.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-active.png" alt="/image/Buzzer-active.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-passive.png" alt="/image/Buzzer-passive.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-active3.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-active3.png" alt="/image/Buzzer-active3.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-active1.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-active1.png" alt="/image/Buzzer-active1.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;td style="text-align: center"&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-active2.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
- &lt;td style="text-align: center"&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/Buzzer-passive2.png" width="50%"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-active2.png" alt="/image/Buzzer-active2.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer-passive2.png" alt="/image/Buzzer-passive2.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
@@ -712,11 +1610,61 @@ $$&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="active-buzzer"&gt;Active Buzzer&lt;a class="anchor" href="#active-buzzer"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/Buzzer01.png" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, 키패드 사용하기</title><link>https://stemwith.github.io/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link><pubDate>Fri, 07 Sep 2018 13:23:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid><description>&lt;h3 id="44-매트릭스-키보드"&gt;4×4 매트릭스 키보드&lt;a class="anchor" href="#44-%eb%a7%a4%ed%8a%b8%eb%a6%ad%ec%8a%a4-%ed%82%a4%eb%b3%b4%eb%93%9c"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/Buzzer01.png" alt="/image/Buzzer01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;br&gt;
+&lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;pinMode&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 11번 핀을 출력으로 설정
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HIGH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 11번 핀 부저 ON
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;digitalWrite&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LOW&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 11번 핀 부저 OFF
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;h4 id="과제"&gt;과제&lt;a class="anchor" href="#%ea%b3%bc%ec%a0%9c"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;tact 스위치를 누르면 액티브 부저 소리 울리기&lt;/p&gt;</description></item><item><title>Arduino, 키패드 사용하기</title><link>https://stemwith.github.io/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link><pubDate>Fri, 07 Sep 2018 13:23:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%ED%82%A4%ED%8C%A8%EB%93%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid><description>&lt;h3 id="44-매트릭스-키보드"&gt;4×4 매트릭스 키보드&lt;a class="anchor" href="#44-%eb%a7%a4%ed%8a%b8%eb%a6%ad%ec%8a%a4-%ed%82%a4%eb%b3%b4%eb%93%9c"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;키패드 입력값을 시리얼 모니터로 출력해보자.&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/keypad-01.jpg" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/keypad-01.jpg" alt="/image/keypad-01.jpg"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="pin-map"&gt;Pin Map&lt;a class="anchor" href="#pin-map"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;table&gt;
@@ -775,17 +1723,67 @@ $$&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="기본-사용법"&gt;기본 사용법&lt;a class="anchor" href="#%ea%b8%b0%eb%b3%b8-%ec%82%ac%ec%9a%a9%eb%b2%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/remote.png" width="80%"&gt;
-&lt;/figure&gt;
- &lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/remote-controller.png"&gt;
- &lt;/figure&gt;
-&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/remote.png" alt="/image/remote.png"&gt;
+
+ 
+ 
+&lt;/figure&gt; 
+ 
+ 
+ 
+ 
+ 
+ 
+ &lt;figure
+ 
+ class="center"
+ 
+ 
+ style="width: 15%;"&gt;
+ 
+ &lt;img src="https://stemwith.github.io/image/remote-controller.png" alt="/image/remote-controller.png"&gt;
+ 
+ 
+ 
+ &lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;위 그림에서 IR 리시버에 있는 핀은, IR모듈이 아닌 단일 부품형태의 리시버 일때 핀의 순서이다.&lt;/p&gt;
 &lt;br&gt;
 &lt;h5 id="ir-리시버-모듈을-사용하는-경우"&gt;IR 리시버 모듈을 사용하는 경우&lt;a class="anchor" href="#ir-%eb%a6%ac%ec%8b%9c%eb%b2%84-%eb%aa%a8%eb%93%88%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%ea%b2%bd%ec%9a%b0"&gt;#&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;아두이노 학습용으로 판매하는 IR 리시버는 브레드보드에 바로 붙일 수 있도록 조그만 PCB가 달린 모듈의 형태로 판매되는 경우가 많으며, 이 경우에는 PCB보드에 써있는 글씨를 보고 각 핀에 맞게 아두이노에 연결해야한다. 문제는 PCB에 어느 핀인지를 나타내는 글자가 잘 안보인다는 것!&lt;/p&gt;</description></item><item><title>Arduino, 1602 LCD (I2C)</title><link>https://stemwith.github.io/posts/arduino-1602-lcd-i2c/</link><pubDate>Mon, 03 Sep 2018 00:42:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-1602-lcd-i2c/</guid><description>&lt;h3 id="1602-lcd-i2c"&gt;1602 LCD (I2C)&lt;a class="anchor" href="#1602-lcd-i2c"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/1602lcd.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/1602lcd.png" alt="/image/1602lcd.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -816,41 +1814,41 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// I2C 1602 LCD (연결핀을 바꿀 수 없음)
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// VCC-5V / GND-GND / SDA-A4 / SCL-A5
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;Wire.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;LiquidCrystal_I2C.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// i2c address 는 칩에 따라 0x20~0x27 혹은 0x3F값을 가짐
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;LiquidCrystal_I2C &lt;span style="color:#a6e22e"&gt;lcd&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;0x27&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;16&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;); 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; lcd.&lt;span style="color:#a6e22e"&gt;init&lt;/span&gt;(); &lt;span style="color:#75715e"&gt;// lcd 초기화
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; lcd.&lt;span style="color:#a6e22e"&gt;backlight&lt;/span&gt;();
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; lcd.&lt;span style="color:#a6e22e"&gt;print&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;I Love Steam!!&amp;#34;&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// LCD창에 메시지 출력
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;1000&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 문자열의 길이 13개를 왼쪽으로 스크롤
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; pCount &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; pCount &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;13&lt;/span&gt;; pCount&lt;span style="color:#f92672"&gt;++&lt;/span&gt;) { 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; lcd.&lt;span style="color:#a6e22e"&gt;scrollDisplayLeft&lt;/span&gt;(); &lt;span style="color:#75715e"&gt;// 왼쪽으로 스크롤
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;700&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 문자열 길이 13열 + 기본 16열 = 29개 위치를 오른쪽으로 스크롤
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; pCount &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; pCount &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;29&lt;/span&gt;; pCount&lt;span style="color:#f92672"&gt;++&lt;/span&gt;) { 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; lcd.&lt;span style="color:#a6e22e"&gt;scrollDisplayRight&lt;/span&gt;(); &lt;span style="color:#75715e"&gt;// 오른쪽으로 스크롤
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;700&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 왼쪽으로 16개 위치 스크롤하여 처음 위치로 이동
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; pCount &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; pCount &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;16&lt;/span&gt;; pCount&lt;span style="color:#f92672"&gt;++&lt;/span&gt;) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; lcd.&lt;span style="color:#a6e22e"&gt;scrollDisplayLeft&lt;/span&gt;(); &lt;span style="color:#75715e"&gt;// 왼쪽으로 스크롤
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;700&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;delay&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;1000&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// I2C 1602 LCD (연결핀을 바꿀 수 없음)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// VCC-5V / GND-GND / SDA-A4 / SCL-A5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Wire.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;LiquidCrystal_I2C.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// i2c address 는 칩에 따라 0x20~0x27 혹은 0x3F값을 가짐
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="n"&gt;LiquidCrystal_I2C&lt;/span&gt; &lt;span class="nf"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mh"&gt;0x27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// lcd 초기화
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;backlight&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;I Love Steam!!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// LCD창에 메시지 출력
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 문자열의 길이 13개를 왼쪽으로 스크롤
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;scrollDisplayLeft&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 왼쪽으로 스크롤
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;700&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 문자열 길이 13열 + 기본 16열 = 29개 위치를 오른쪽으로 스크롤
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;scrollDisplayRight&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 오른쪽으로 스크롤
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;700&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 왼쪽으로 16개 위치 스크롤하여 처음 위치로 이동
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pCount&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;scrollDisplayLeft&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 왼쪽으로 스크롤
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;700&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;h4 id="주의사항"&gt;주의사항&lt;a class="anchor" href="#%ec%a3%bc%ec%9d%98%ec%82%ac%ed%95%ad"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
@@ -869,10 +1867,91 @@ $$&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="1602-lcd에-ds18b20-온도센서-값-출력하기"&gt;1602 LCD에 DS18b20 온도센서 값 출력하기&lt;a class="anchor" href="#1602-lcd%ec%97%90-ds18b20-%ec%98%a8%eb%8f%84%ec%84%bc%ec%84%9c-%ea%b0%92-%ec%b6%9c%eb%a0%a5%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="schematic-1"&gt;schematic&lt;a class="anchor" href="#schematic-1"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/1602lcd-ds18b20.png" alt="" /&gt;&lt;/p&gt;</description></item><item><title>Arduino, TM1637 모듈 사용하기</title><link>https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link><pubDate>Sun, 02 Sep 2018 20:04:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid><description>&lt;h3 id="tm1637"&gt;TM1637&lt;a class="anchor" href="#tm1637"&gt;#&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/1602lcd-ds18b20.png" alt="/image/1602lcd-ds18b20.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;br&gt;
+&lt;h4 id="sketch-1"&gt;sketch&lt;a class="anchor" href="#sketch-1"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// DS18b20 Temperature Sensor
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;OneWire.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;DallasTemperature.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define TEMP_PIN 2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;OneWire&lt;/span&gt; &lt;span class="nf"&gt;oneWire&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TEMP_PIN&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;DallasTemperature&lt;/span&gt; &lt;span class="nf"&gt;sensors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;oneWire&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;celciusTemperature&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// I2C 1602 LCD (연결핀을 바꿀 수 없음)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// VCC-5V / GND-GND / SDA-A4 / SCL-A5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Wire.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;LiquidCrystal_I2C.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// i2c address 는 칩에 따라 0x27, 0x3F값을 가짐
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="n"&gt;LiquidCrystal_I2C&lt;/span&gt; &lt;span class="nf"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mh"&gt;0x27&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;DallasTemperature IC Control&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// Start up the Temperature Sensor library
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;sensors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// lcd 초기화
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;backlight&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;sensors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;requestTemperatures&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;celciusTemperature&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sensors&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;getTempCByIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Temperature is: &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;celciusTemperature&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setCursor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Temperature : &amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;setCursor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;celciusTemperature&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;*C&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Arduino, TM1637 모듈 사용하기</title><link>https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link><pubDate>Sun, 02 Sep 2018 20:04:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-tm1637-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid><description>&lt;h3 id="tm1637"&gt;TM1637&lt;a class="anchor" href="#tm1637"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/tm1637-01.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/tm1637-01.png" alt="/image/tm1637-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -899,12 +1978,48 @@ $$&lt;/p&gt;
 &lt;li&gt;파일&amp;gt; 새파일&amp;gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;스케치&lt;/strong&gt;&amp;gt; &lt;strong&gt;라이브러리 포함하기&lt;/strong&gt;&amp;gt; &lt;strong&gt;라이브러리 관리&lt;/strong&gt;&amp;gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/tm1637-02.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/tm1637-02.png" alt="/image/tm1637-02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;라이브러리 매니저 창이 뜨면, 검색란에 “tm1637&amp;quot;를 적어 넣음. tm1637관련 라이브러리가 5~6개정도 검색됨. TM1637 by Avishay Orpaz 라이브러리를 선택하여 설치&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/tm1637-03.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/tm1637-03.png" alt="/image/tm1637-03.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h3 id="tm1637-숫자-표기-방법"&gt;TM1637 숫자 표기 방법&lt;a class="anchor" href="#tm1637-%ec%88%ab%ec%9e%90-%ed%91%9c%ea%b8%b0-%eb%b0%a9%eb%b2%95"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;for TM1637 by Avishay Orpaz library 
@@ -929,10 +2044,44 @@ $$&lt;/p&gt;
  &lt;tbody&gt;
  &lt;tr&gt;
  &lt;td&gt;사진&lt;/td&gt;
- &lt;td&gt;&lt;img src="https://stemwith.github.io/image/dht22-02.png" alt="DHT11" /&gt;&lt;/td&gt;
- &lt;td&gt;&lt;figure class="center"&gt;&lt;img src="https://stemwith.github.io/image/dht22-01.png"&gt;
-&lt;/figure&gt;
-&lt;/td&gt;
+ &lt;td&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/dht22-02.png" alt="DHT11"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
+ &lt;td&gt;
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/dht22-01.png" alt="/image/dht22-01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;&lt;/td&gt;
  &lt;/tr&gt;
  &lt;tr&gt;
  &lt;td&gt;온도&lt;/td&gt;
@@ -968,7 +2117,25 @@ $$&lt;/p&gt;
 &lt;/table&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/dht22-05.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/dht22-05.png" alt="/image/dht22-05.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h4 id="라이브러리-준비하기"&gt;라이브러리 준비하기&lt;a class="anchor" href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-%ec%a4%80%eb%b9%84%ed%95%98%ea%b8%b0"&gt;#&lt;/a&gt;&lt;/h4&gt;
@@ -985,11 +2152,47 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h4 id="pinout"&gt;Pinout&lt;a class="anchor" href="#pinout"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/DS18b20.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 33%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/DS18b20.png" alt="/image/DS18b20.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;DS18b20 센서는 두 가지 연결방법을 제공하는데, 하나는 VCC를 5V에 연결하는 Normal Mode이고 다른 하나는 VCC를 GND에 연결하는 Parasite Mode이다. 두가지 방법 모두 지원되지만 (경험상) Normal를 추천하며 (원인은 잘 모르겠지만) Parasite Mode에서는 온도센서가 작동이 되지 않는 경우도 가끔 있었다. 회로 구성을 위해 &lt;strong&gt;4.7㏀ 저항 1개&lt;/strong&gt;가 필요하며 Normal Mode 구성을 위해 다음 그림과 같이 연결한다.&lt;/p&gt;</description></item><item><title>Arduino 스위치, 풀다운저항, 풀업저항</title><link>https://stemwith.github.io/posts/arduino-%EC%8A%A4%EC%9C%84%EC%B9%98-%ED%92%80%EB%8B%A4%EC%9A%B4-%ED%92%80%EC%97%85%EC%A0%80%ED%95%AD/</link><pubDate>Sat, 01 Sep 2018 16:01:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%EC%8A%A4%EC%9C%84%EC%B9%98-%ED%92%80%EB%8B%A4%EC%9A%B4-%ED%92%80%EC%97%85%EC%A0%80%ED%95%AD/</guid><description>&lt;h3 id="tact-switch"&gt;Tact Switch&lt;a class="anchor" href="#tact-switch"&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/tact_switch.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/tact_switch.png" alt="/image/tact_switch.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h3 id="pull-down"&gt;Pull-down&lt;a class="anchor" href="#pull-down"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;table&gt;
@@ -1016,25 +2219,43 @@ $$&lt;/p&gt;
 &lt;br&gt;
 &lt;h4 id="schematic"&gt;schematic&lt;a class="anchor" href="#schematic"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;저항(10k 이상)을 GND에 연결&lt;/strong&gt;한 경우: Pull-down 회로&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/switch01.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/switch01.png" alt="/image/switch01.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h4 id="sketch"&gt;sketch&lt;a class="anchor" href="#sketch"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; switch_R &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setup&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;pinMode&lt;/span&gt;(switch_R, INPUT);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Serial.&lt;span style="color:#a6e22e"&gt;begin&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;9600&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;loop&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;digitalRead&lt;/span&gt;(switch_R);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt;(i &lt;span style="color:#f92672"&gt;==&lt;/span&gt; HIGH) { &lt;span style="color:#75715e"&gt;// 스위치를 누르면
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; { &lt;span style="color:#75715e"&gt;// 스위치에서 손을 떼면
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; Serial.&lt;span style="color:#a6e22e"&gt;println&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;0&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;switch_R&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;pinMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;switch_R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;INPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;digitalRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;switch_R&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;HIGH&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 스위치를 누르면
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 스위치에서 손을 떼면
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
 &lt;h3 id="pull-up"&gt;Pull-up&lt;a class="anchor" href="#pull-up"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -1059,12 +2280,88 @@ $$&lt;/p&gt;
 &lt;/table&gt;
 &lt;br&gt;
 &lt;h4 id="schematic-1"&gt;schematic&lt;a class="anchor" href="#schematic-1"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;저항(10k 이상)을 VCC(5V)에 연결&lt;/strong&gt;한 경우: Pull-up 회로&lt;/p&gt;</description></item><item><title>Arduino 시작하기, RGB LED, PWM</title><link>https://stemwith.github.io/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</link><pubDate>Sat, 01 Sep 2018 16:00:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</guid><description>&lt;h2 id="arduino"&gt;Arduino&lt;a class="anchor" href="#arduino"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/arduino-01uno.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;저항(10k 이상)을 VCC(5V)에 연결&lt;/strong&gt;한 경우: Pull-up 회로&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/switch02.png" alt="/image/switch02.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
+&lt;br&gt;
+&lt;h4 id="sketch-1"&gt;sketch&lt;a class="anchor" href="#sketch-1"&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;switch_R&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;pinMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;switch_R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;INPUT&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9600&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;digitalRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;switch_R&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;HIGH&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 스위치를 누르면
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 스위치에서 손을 떼면
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="스위치를-사용할-때-풀다운-or-풀업-저항을-구성해야-하는-이유"&gt;스위치를 사용할 때, 풀다운 or 풀업 저항을 구성해야 하는 이유&lt;a class="anchor" href="#%ec%8a%a4%ec%9c%84%ec%b9%98%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%eb%95%8c-%ed%92%80%eb%8b%a4%ec%9a%b4-or-%ed%92%80%ec%97%85-%ec%a0%80%ed%95%ad%ec%9d%84-%ea%b5%ac%ec%84%b1%ed%95%b4%ec%95%bc-%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0"&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;출처: &lt;a href="https://blog.xcoda.net/77"&gt;풀업(Pull-up)저항, 풀다운(Pull-down)저항 (악보쓰는 프로그래머)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Arduino 시작하기, RGB LED, PWM</title><link>https://stemwith.github.io/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</link><pubDate>Sat, 01 Sep 2018 16:00:00 +0900</pubDate><guid>https://stemwith.github.io/posts/arduino-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</guid><description>&lt;h2 id="arduino"&gt;Arduino&lt;a class="anchor" href="#arduino"&gt;#&lt;/a&gt;&lt;/h2&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 50%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/arduino-01uno.png" alt="/image/arduino-01uno.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;br&gt;
 &lt;h3 id="pinout"&gt;Pinout&lt;a class="anchor" href="#pinout"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="digital--analog"&gt;Digital &amp;amp; Analog&lt;a class="anchor" href="#digital--analog"&gt;#&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://stemwith.github.io/image/arduino-02unopin.png" alt="" /&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;figure
+ 
+ class="center"
+
+ 
+ style="width: 75%;"&gt;
+
+ &lt;img src="https://stemwith.github.io/image/arduino-02unopin.png" alt="/image/arduino-02unopin.png"&gt;
+
+ 
+ 
+&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;Digital
 &lt;ul&gt;

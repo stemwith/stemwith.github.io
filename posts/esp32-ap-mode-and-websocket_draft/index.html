@@ -63,11 +63,11 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 <link rel="icon" href="/favicon.ico" >
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="http://localhost:1313/posts/esp32-ap-mode-and-websocket_draft/">
-<link rel="stylesheet" href="/book.min.b1622c146328a2cf2c7a184d8bfba1bc306e71c4e8b8a9a41d56992264175bc9.css" integrity="sha256-sWIsFGMoos8sehhNi/uhvDBuccTouKmkHVaZImQXW8k=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.4a9d0c155a0e6c344df12063be3cf2ab65cdfeee91d3cab693d1e82931923740.css" integrity="sha256-Sp0MFVoObDRN8SBjvjzyq2XN/u6R08q2k9HoKTGSN0A=" crossorigin="anonymous">
 
 
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a51994453e5fa3809f7eaaf6143af9de9b67838bac6ba6a9fe161e0559cc2672.js" integrity="sha256-pRmURT5fo4Cffqr2FDr53ptng4usa6ap/hYeBVnMJnI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.aaeb00f59d8b1e7d01cbd820188270f12285a8297c6fb702d9b898f76d7f65b9.js" integrity="sha256-qusA9Z2LHn0By9ggGIJw8SKFqCl8b7cC2biY921/Zbk=" crossorigin="anonymous"></script>
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-128DRYVCRT"></script>
       <script>
@@ -273,15 +273,15 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 <ul>
 <li>과학실에서 모둠별로 별도의 ESP32를 이용한다면, 각 모둠에서 사용하는 ESP32를 구분할 수 있도록 ssid에 각 모둠의 번호를 적어두는 것이 좋을 것입니다. 동일한 ssid가 설정되면 다른 모둠의 데이터 값을 받을 수 있으므로, 반드시 구분짓도록 안내해야 합니다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> ssid <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ESP32-AP-x&#34;</span>;      <span style="color:#75715e">// max 63 characters, x is team number
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123456789&#34;</span>;   <span style="color:#75715e">// min 8 characters 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s">&#34;ESP32-AP-x&#34;</span><span class="p">;</span>      <span class="c1">// max 63 characters, x is team number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#34;123456789&#34;</span><span class="p">;</span>   <span class="c1">// min 8 characters 
 </span></span></span></code></pre></div></li>
 <li>
 <p>AP mode 실행: 위의 설정에 의해 다음의 라인을 통해 AP mode를 실행합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>WiFi.<span style="color:#a6e22e">softAP</span>(ssid, password);</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">WiFi</span><span class="p">.</span><span class="nf">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span></span></span></code></pre></div></li>
 <li>
 <p>AP mode 실행 옵션: ssid, password 이외의 다양한 옵션을 추가할 경우에는 아래의 방법으로 설정하고 AP mode를 실행합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>WiFi.<span style="color:#a6e22e">softAP</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> ssid, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> password, <span style="color:#66d9ef">int</span> channel, <span style="color:#66d9ef">int</span> ssid_hidden, <span style="color:#66d9ef">int</span> max_connection)</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">WiFi</span><span class="p">.</span><span class="nf">softAP</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ssid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">password</span><span class="p">,</span> <span class="kt">int</span> <span class="n">channel</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ssid_hidden</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_connection</span><span class="p">)</span></span></span></code></pre></div><ul>
 <li>channel: Wi-Fi channel number (1-13)</li>
 <li>ssid_hidden: (0 = broadcast SSID, 1 = hide SSID)</li>
 <li>max_connection: maximum simultaneous connected clients (1-4)</li>
@@ -289,9 +289,9 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 </li>
 <li>
 <p>AP mode 실행시 ESP32에 부여된 IP는 다음의 방법으로 확인할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>IPAddress IP <span style="color:#f92672">=</span> WiFi.<span style="color:#a6e22e">softAPIP</span>();
-</span></span><span style="display:flex;"><span>Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;AP IP address: &#34;</span>);
-</span></span><span style="display:flex;"><span>Serial.<span style="color:#a6e22e">println</span>(IP);</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">IPAddress</span> <span class="n">IP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="nf">softAPIP</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;AP IP address: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">IP</span><span class="p">);</span></span></span></code></pre></div><ul>
 <li>AP mode를 사용할 경우, ESP32는 기본적으로 <strong>192.168.4.1</strong>의 주소를 부여 받습니다.</li>
 </ul>
 </li>
@@ -312,193 +312,211 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 <br>
 <h4 id="라이브러리">라이브러리<a class="anchor" href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac">#</a></h4>
 <p>ESP32에서는 Markus Sattler가 만든 <a href="https://github.com/Links2004/arduinoWebSockets">Websockets</a>라는 라이브러리를 통해 구현합니다.</p>
-<p><img src="/image/websocket01.png" alt="" /></p>
+
+
+
+
+
+
+
+<figure
+  
+  class="center"
+
+  
+  style="width: 75%;">
+
+  <img src="/image/websocket01.png" alt="/image/websocket01.png">
+
+  
+  
+</figure>
 <br>
 <br>
 <h4 id="sketch-전체">sketch: 전체<a class="anchor" href="#sketch-%ec%a0%84%ec%b2%b4">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// and a content-type so the client knows what&#39;s coming, then a blank line:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String html_header <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HTTP/1.1 200 OK</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">Content-Type: text/html</span><span style="color:#ae81ff">\r\n\r\n</span><span style="color:#e6db74">&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// HTTP main page
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String html_main <span style="color:#f92672">=</span> R<span style="color:#e6db74">&#34;=====(</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;!</span>DOCTYPE html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>head<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>meta name<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>viewport<span style="color:#960050;background-color:#1e0010">&#39;</span> content<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>width<span style="color:#f92672">=</span>device<span style="color:#f92672">-</span>width, initial<span style="color:#f92672">-</span>scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>meta charset<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>utf<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>style<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    body     { font<span style="color:#f92672">-</span>size:<span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>;} 
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span>main    { display: table; width: <span style="color:#ae81ff">300</span>px; margin: <span style="color:#66d9ef">auto</span>;  padding: <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px; border: <span style="color:#ae81ff">3</span>px solid blue; border<span style="color:#f92672">-</span>radius: <span style="color:#ae81ff">10</span>px; text<span style="color:#f92672">-</span>align:center;} 
-</span></span><span style="display:flex;"><span>    p        { font<span style="color:#f92672">-</span>size: <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/</span>style<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>title<span style="color:#f92672">&gt;</span>ESP32 Websockets Sensor Monitor<span style="color:#f92672">&lt;/</span>title<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>head<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>body<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>div id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>main<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>h3<span style="color:#f92672">&gt;</span>ESP32 Websockets Monitor<span style="color:#f92672">&lt;/</span>h3<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>div id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>content<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Potentiometer1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer1<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Ohm<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Potentiometer2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer2<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Ohm<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Touch Sensor   <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>touch<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Value<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Brightness     <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>brightness<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Value<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Data <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>recData<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/</span>div<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>br <span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/</span>div<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>body<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>script<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  var Socket;
-</span></span><span style="display:flex;"><span>    function <span style="color:#a6e22e">init</span>() {
-</span></span><span style="display:flex;"><span>      Socket <span style="color:#f92672">=</span> new <span style="color:#a6e22e">WebSocket</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>ws:<span style="color:#75715e">//&#39; + window.location.hostname + &#39;:81/&#39;);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      Socket.onmessage <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(event) { <span style="color:#a6e22e">processReceivedCommand</span>(event); };
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  function <span style="color:#a6e22e">processReceivedCommand</span>(evt) {
-</span></span><span style="display:flex;"><span>    var data <span style="color:#f92672">=</span> evt.data;
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>recData<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> data;
-</span></span><span style="display:flex;"><span>    var tmp <span style="color:#f92672">=</span> data.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;|&#39;</span>);
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer1<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">0</span>];  
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer2<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">1</span>];
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>touch<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">2</span>];
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>brightness<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">3</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//consol.log(evt.data);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  function <span style="color:#a6e22e">sendText</span>(data) { Socket.<span style="color:#a6e22e">send</span>(data); }
-</span></span><span style="display:flex;"><span>  window.onload <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(e) { <span style="color:#a6e22e">init</span>(); }
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#f92672">=====</span><span style="color:#e6db74">&#34;;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;WiFi.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;WiFiClient.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;WiFiAP.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;WebSocketsServer.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sensors are connected to GPIO 32~35
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> potPin1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">34</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> potPin2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">33</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> touPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">35</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> briPin <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// variable for storing the potentiometer value
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> potentiometer1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> potentiometer2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> touch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> brightness <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Set these to your desired credentials.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ssid <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ESP32-AP&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123456789&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>WiFiServer <span style="color:#a6e22e">server</span>(<span style="color:#ae81ff">80</span>);
-</span></span><span style="display:flex;"><span>WebSocketsServer webSocket <span style="color:#f92672">=</span> <span style="color:#a6e22e">WebSocketsServer</span>(<span style="color:#ae81ff">81</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">begin</span>(<span style="color:#ae81ff">115200</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>();
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Configuring access point...&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// You can remove the password parameter if you want the AP to be open.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  WiFi.<span style="color:#a6e22e">softAP</span>(ssid, password);
-</span></span><span style="display:flex;"><span>  IPAddress myIP <span style="color:#f92672">=</span> WiFi.<span style="color:#a6e22e">softAPIP</span>();
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;AP IP address: &#34;</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(myIP);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// start a server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  server.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server started&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// start the websocket
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  webSocket.<span style="color:#a6e22e">begin</span>();
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;websocket started&#34;</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-</span></span><span style="display:flex;"><span>  Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// webSocketEvent is the function to call when there is a websocket event
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  webSocket.<span style="color:#a6e22e">onEvent</span>(webSocketEvent);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// check the websocket status.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  webSocket.<span style="color:#a6e22e">loop</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// listen for incoming clients
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  WiFiClient client <span style="color:#f92672">=</span> server.<span style="color:#a6e22e">available</span>();   
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// if you get a client,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (client) {
-</span></span><span style="display:flex;"><span>    client.<span style="color:#a6e22e">flush</span>();
-</span></span><span style="display:flex;"><span>    client.<span style="color:#a6e22e">print</span>( html_header );
-</span></span><span style="display:flex;"><span>    client.<span style="color:#a6e22e">print</span>( html_main ); 
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;New page served&#34;</span>);
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">updateSensors</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">updateSensors</span>(){
-</span></span><span style="display:flex;"><span>  potentiometer1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(potPin1);
-</span></span><span style="display:flex;"><span>  potentiometer2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(potPin2);
-</span></span><span style="display:flex;"><span>  touch <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(touPin);
-</span></span><span style="display:flex;"><span>  brightness <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(briPin);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> potentiometer1); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> potentiometer2); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> touch); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> brightness); 
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  webSocket.<span style="color:#a6e22e">broadcastTXT</span>(data); <span style="color:#75715e">// send the data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">println</span>(data);         <span style="color:#75715e">// display the data in the serial monitor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">webSocketEvent</span>(byte num, WStype_t type, <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span> payload, <span style="color:#66d9ef">size_t</span> length){
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>();
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;WStype = &#34;</span>);   Serial.<span style="color:#a6e22e">println</span>(type);  
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;WS payload = &#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> length; i<span style="color:#f92672">++</span>) { Serial.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) payload[i]); }
-</span></span><span style="display:flex;"><span>    Serial.<span style="color:#a6e22e">println</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// and a content-type so the client knows what&#39;s coming, then a blank line:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">html_header</span> <span class="o">=</span> <span class="s">&#34;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s">Content-Type: text/html</span><span class="se">\r\n\r\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// HTTP main page
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">html_main</span> <span class="o">=</span> <span class="n">R</span><span class="s">&#34;=====(</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="err">&#39;</span><span class="n">viewport</span><span class="err">&#39;</span> <span class="n">content</span><span class="o">=</span><span class="err">&#39;</span><span class="n">width</span><span class="o">=</span><span class="n">device</span><span class="o">-</span><span class="n">width</span><span class="p">,</span> <span class="n">initial</span><span class="o">-</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="err">&#39;</span><span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="err">&#39;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">body</span>     <span class="p">{</span> <span class="n">font</span><span class="o">-</span><span class="nl">size</span><span class="p">:</span><span class="mi">100</span><span class="o">%</span><span class="p">;}</span> 
+</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">main</span>    <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">width</span><span class="p">:</span> <span class="mi">300</span><span class="n">px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="k">auto</span><span class="p">;</span>  <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="mi">3</span><span class="n">px</span> <span class="n">solid</span> <span class="n">blue</span><span class="p">;</span> <span class="n">border</span><span class="o">-</span><span class="nl">radius</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span> <span class="n">text</span><span class="o">-</span><span class="nl">align</span><span class="p">:</span><span class="n">center</span><span class="p">;}</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">p</span>        <span class="p">{</span> <span class="n">font</span><span class="o">-</span><span class="nl">size</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">ESP32</span> <span class="n">Websockets</span> <span class="n">Sensor</span> <span class="n">Monitor</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">main</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">ESP32</span> <span class="n">Websockets</span> <span class="n">Monitor</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">content</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Potentiometer1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">potentiometer1</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Ohm</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Potentiometer2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">potentiometer2</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Ohm</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Touch</span> <span class="n">Sensor</span>   <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">touch</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Value</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Brightness</span>     <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">brightness</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Value</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Data</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">recData</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">br</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var</span> <span class="n">Socket</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Socket</span> <span class="o">=</span> <span class="n">new</span> <span class="nf">WebSocket</span><span class="p">(</span><span class="err">&#39;</span><span class="nl">ws</span><span class="p">:</span><span class="c1">//&#39; + window.location.hostname + &#39;:81/&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Socket</span><span class="p">.</span><span class="n">onmessage</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span> <span class="nf">processReceivedCommand</span><span class="p">(</span><span class="n">event</span><span class="p">);</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">function</span> <span class="nf">processReceivedCommand</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">recData</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sc">&#39;|&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">potentiometer1</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">potentiometer2</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">touch</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">brightness</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//consol.log(evt.data);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">function</span> <span class="nf">sendText</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span> <span class="n">Socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">window</span><span class="p">.</span><span class="n">onload</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="nf">init</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">=====</span><span class="s">&#34;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;WiFi.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;WiFiClient.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;WiFiAP.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;WebSocketsServer.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Sensors are connected to GPIO 32~35
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">potPin1</span> <span class="o">=</span> <span class="mi">34</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">potPin2</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">touPin</span> <span class="o">=</span> <span class="mi">35</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">briPin</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// variable for storing the potentiometer value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">potentiometer1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">potentiometer2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">touch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">brightness</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Set these to your desired credentials.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ssid</span> <span class="o">=</span> <span class="s">&#34;ESP32-AP&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">password</span> <span class="o">=</span> <span class="s">&#34;123456789&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">WiFiServer</span> <span class="nf">server</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">WebSocketsServer</span> <span class="n">webSocket</span> <span class="o">=</span> <span class="nf">WebSocketsServer</span><span class="p">(</span><span class="mi">81</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;Configuring access point...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// You can remove the password parameter if you want the AP to be open.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">WiFi</span><span class="p">.</span><span class="nf">softAP</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">IPAddress</span> <span class="n">myIP</span> <span class="o">=</span> <span class="n">WiFi</span><span class="p">.</span><span class="nf">softAPIP</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;AP IP address: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">myIP</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// start a server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">server</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;Server started&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// start the websocket
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">webSocket</span><span class="p">.</span><span class="nf">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;websocket started&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// webSocketEvent is the function to call when there is a websocket event
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">webSocket</span><span class="p">.</span><span class="nf">onEvent</span><span class="p">(</span><span class="n">webSocketEvent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// check the websocket status.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">webSocket</span><span class="p">.</span><span class="nf">loop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// listen for incoming clients
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">WiFiClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="nf">available</span><span class="p">();</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// if you get a client,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client</span><span class="p">.</span><span class="nf">flush</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span> <span class="n">html_header</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span> <span class="n">html_main</span> <span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;New page served&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">updateSensors</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">updateSensors</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">potentiometer1</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">potPin1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">potentiometer2</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">potPin2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">touch</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">touPin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">brightness</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">briPin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">potentiometer1</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">potentiometer2</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">touch</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">brightness</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">webSocket</span><span class="p">.</span><span class="nf">broadcastTXT</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// send the data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>         <span class="c1">// display the data in the serial monitor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">webSocketEvent</span><span class="p">(</span><span class="n">byte</span> <span class="n">num</span><span class="p">,</span> <span class="n">WStype_t</span> <span class="n">type</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">payload</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;WStype = &#34;</span><span class="p">);</span>   <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;WS payload = &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">Serial</span><span class="p">.</span><span class="nf">print</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><br>
 <br>
 <h4 id="part1-웹페이지">Part1: 웹페이지<a class="anchor" href="#part1-%ec%9b%b9%ed%8e%98%ec%9d%b4%ec%a7%80">#</a></h4>
 <h5 id="header">header<a class="anchor" href="#header">#</a></h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// and a content-type so the client knows what&#39;s coming, then a blank line:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String html_header <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HTTP/1.1 200 OK</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">Content-Type: text/html</span><span style="color:#ae81ff">\r\n\r\n</span><span style="color:#e6db74">&#34;</span>;</span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// and a content-type so the client knows what&#39;s coming, then a blank line:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">html_header</span> <span class="o">=</span> <span class="s">&#34;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s">Content-Type: text/html</span><span class="se">\r\n\r\n</span><span class="s">&#34;</span><span class="p">;</span></span></span></code></pre></div><br>
 <h5 id="main_head">main_head<a class="anchor" href="#main_head">#</a></h5>
 <ul>
 <li>style을 지정합니다.</li>
 <li>웹브라우저의 탭에 표기될 title을 지정합니다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// HTTP main page
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String html_main <span style="color:#f92672">=</span> R<span style="color:#e6db74">&#34;=====(</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;!</span>DOCTYPE html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>head<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>meta name<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>viewport<span style="color:#960050;background-color:#1e0010">&#39;</span> content<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>width<span style="color:#f92672">=</span>device<span style="color:#f92672">-</span>width, initial<span style="color:#f92672">-</span>scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>meta charset<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>utf<span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>style<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    body     { font<span style="color:#f92672">-</span>size:<span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>;} 
-</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">#</span>main    { display: table; width: <span style="color:#ae81ff">300</span>px; margin: <span style="color:#66d9ef">auto</span>;  padding: <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">10</span>px; border: <span style="color:#ae81ff">3</span>px solid blue; border<span style="color:#f92672">-</span>radius: <span style="color:#ae81ff">10</span>px; text<span style="color:#f92672">-</span>align:center;} 
-</span></span><span style="display:flex;"><span>    p        { font<span style="color:#f92672">-</span>size: <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>; }
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/</span>style<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>title<span style="color:#f92672">&gt;</span>ESP32 Websockets Sensor Monitor<span style="color:#f92672">&lt;/</span>title<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>head<span style="color:#f92672">&gt;</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// HTTP main page
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">html_main</span> <span class="o">=</span> <span class="n">R</span><span class="s">&#34;=====(</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">name</span><span class="o">=</span><span class="err">&#39;</span><span class="n">viewport</span><span class="err">&#39;</span> <span class="n">content</span><span class="o">=</span><span class="err">&#39;</span><span class="n">width</span><span class="o">=</span><span class="n">device</span><span class="o">-</span><span class="n">width</span><span class="p">,</span> <span class="n">initial</span><span class="o">-</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="err">&#39;</span><span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="err">&#39;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">body</span>     <span class="p">{</span> <span class="n">font</span><span class="o">-</span><span class="nl">size</span><span class="p">:</span><span class="mi">100</span><span class="o">%</span><span class="p">;}</span> 
+</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">main</span>    <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">width</span><span class="p">:</span> <span class="mi">300</span><span class="n">px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="k">auto</span><span class="p">;</span>  <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="mi">3</span><span class="n">px</span> <span class="n">solid</span> <span class="n">blue</span><span class="p">;</span> <span class="n">border</span><span class="o">-</span><span class="nl">radius</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span> <span class="n">text</span><span class="o">-</span><span class="nl">align</span><span class="p">:</span><span class="n">center</span><span class="p">;}</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">p</span>        <span class="p">{</span> <span class="n">font</span><span class="o">-</span><span class="nl">size</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">ESP32</span> <span class="n">Websockets</span> <span class="n">Sensor</span> <span class="n">Monitor</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span></span></span></code></pre></div><ul>
 <li>R은 <strong>이러한 구분 기호 사이의 모든 것을 원시 문자열로 처리</strong>하라는 것을 의미합니다. 즉, &ldquo;===== (     ) =====&ldquo;사이의 모든 것을 문자열로 처리합니다.
 <ul>
 <li>여기서 사용한 &lsquo;&rsquo;=====&lsquo;&lsquo;는 특정 범위 내에서 다른 형태로 바꿔서 사용하는 것이 가능합니다.
@@ -521,69 +539,141 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 <li>웹브라우저에 표기될 내용을 만듭니다.</li>
 <li>span id는 아두이노코드에서 사용하는 센서값 변수를 사용합니다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>body<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span>div id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>main<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>h3<span style="color:#f92672">&gt;</span>ESP32 Websockets Monitor<span style="color:#f92672">&lt;/</span>h3<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>div id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>content<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Potentiometer1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer1<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Ohm<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Potentiometer2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer2<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Ohm<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Touch Sensor   <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>touch<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Value<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Brightness     <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>brightness<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;</span> Value<span style="color:#f92672">&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span>p<span style="color:#f92672">&gt;</span>Data <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>recData<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">00</span><span style="color:#f92672">&lt;/</span>span<span style="color:#f92672">&gt;&lt;/</span>p<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/</span>div<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>br <span style="color:#f92672">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/</span>div<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>body<span style="color:#f92672">&gt;</span></span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">main</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">ESP32</span> <span class="n">Websockets</span> <span class="n">Monitor</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">content</span><span class="err">&#39;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Potentiometer1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">potentiometer1</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Ohm</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Potentiometer2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">potentiometer2</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Ohm</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Touch</span> <span class="n">Sensor</span>   <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">touch</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Value</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Brightness</span>     <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">brightness</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Value</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Data</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="n">recData</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="mo">00</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">br</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span></span></span></code></pre></div><br>
 <h5 id="javascript">JavaScript<a class="anchor" href="#javascript">#</a></h5>
 <ul>
 <li>데이터가 수신되어 Websocket 이벤트가 생기면 웹사이트의 자바스크립트를 통해 <strong>processReceivedCommand()</strong> 함수가 호출 됩니다. 이 함수는 수신된 데이터를 <strong>배열</strong> <strong>tmp</strong>로 분해한 다음 개별 배열 요소를 웹사이트의 각 부분에 복사합니다.</li>
 <li>데이터가 <strong>potentiometer1|potentiometer2|touch|brightness</strong> 형식으로 수신되면, 막대 문자를 기준으로 데이터를 tmp[] 배열로 분할하여 저장합니다. 분할 기준인 막대문자는 <strong>var tmp = data.split (‘|’)</strong> 문을 통해 지정합니다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>script<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  var Socket;
-</span></span><span style="display:flex;"><span>    function <span style="color:#a6e22e">init</span>() {
-</span></span><span style="display:flex;"><span>      Socket <span style="color:#f92672">=</span> new <span style="color:#a6e22e">WebSocket</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>ws:<span style="color:#75715e">//&#39; + window.location.hostname + &#39;:81/&#39;);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      Socket.onmessage <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(event) { <span style="color:#a6e22e">processReceivedCommand</span>(event); };
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  function <span style="color:#a6e22e">processReceivedCommand</span>(evt) {
-</span></span><span style="display:flex;"><span>    var data <span style="color:#f92672">=</span> evt.data;
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>recData<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> data;
-</span></span><span style="display:flex;"><span>    var tmp <span style="color:#f92672">=</span> data.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;|&#39;</span>);
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer1<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">0</span>];  
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>potentiometer2<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">1</span>];
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>touch<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">2</span>];
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span>brightness<span style="color:#960050;background-color:#1e0010">&#39;</span>).innerHTML <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">3</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//consol.log(evt.data);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  function <span style="color:#a6e22e">sendText</span>(data) { Socket.<span style="color:#a6e22e">send</span>(data); }
-</span></span><span style="display:flex;"><span>  window.onload <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(e) { <span style="color:#a6e22e">init</span>(); }
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>html<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#f92672">=====</span><span style="color:#e6db74">&#34;;</span></span></span></code></pre></div><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var</span> <span class="n">Socket</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Socket</span> <span class="o">=</span> <span class="n">new</span> <span class="nf">WebSocket</span><span class="p">(</span><span class="err">&#39;</span><span class="nl">ws</span><span class="p">:</span><span class="c1">//&#39; + window.location.hostname + &#39;:81/&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Socket</span><span class="p">.</span><span class="n">onmessage</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span> <span class="nf">processReceivedCommand</span><span class="p">(</span><span class="n">event</span><span class="p">);</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">function</span> <span class="nf">processReceivedCommand</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">recData</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sc">&#39;|&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">potentiometer1</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">potentiometer2</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">touch</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="err">&#39;</span><span class="n">brightness</span><span class="err">&#39;</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//consol.log(evt.data);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">function</span> <span class="nf">sendText</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span> <span class="n">Socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">window</span><span class="p">.</span><span class="n">onload</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="nf">init</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">=====</span><span class="s">&#34;;</span></span></span></code></pre></div><br>
 <h5 id="html-분리-선택사항">html 분리 (선택사항)<a class="anchor" href="#html-%eb%b6%84%eb%a6%ac-%ec%84%a0%ed%83%9d%ec%82%ac%ed%95%ad">#</a></h5>
 <p>String형태로 지정된 자바스크립트를 포함하는 html 페이지를 표현하는 코드의 전체 길이로 인해 스케치가 복잡해보이므로, 전체 스케치의 상단에 있는 html 부분을 분리해도 됩니다. 파일은 분리되지만 컴파일 될때마다 메인 스케치에 포함될 것입니다. (혹은 ESP32의 SPIFFS를 사용하여 별도의 파일 형태로 업로드해도 됩니다.)</p>
 <ul>
 <li>
 <p>Arduino IDE의 오른쪽 상단에 있는 작은 아래방향 화살표 클릭한 뒤 <strong>New Tab</strong> 선택</p>
-<p><img src="/image/websocket02.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/websocket02.png" alt="/image/websocket02.png">
+  
+    
+    
+  </figure>
 </li>
 <li>
 <p>콘솔의 텍스트 상자에 분리하여 저장할 html 파일이름을 입력한 뒤 확인 클릭</p>
 <ul>
 <li>확장자는 .h로 사용 (※ 단, <strong>.html</strong> 확장자는 사용할 수 없음)</li>
 </ul>
-<p><img src="/image/websocket03.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/websocket03.png" alt="/image/websocket03.png">
+  
+    
+    
+  </figure>
 </li>
 <li>
 <p>Arduino IDE에 새로운 탭이 열리면, html_header와 html_main을 포함한 두개의 String 문을 복사하여 mainpage.h 탭에 붙여넣기 한 뒤 저장 (스케치가 위치한 폴더에 별도로 저장됨)</p>
-<p><img src="/image/websocket04.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/websocket04.png" alt="/image/websocket04.png">
+  
+    
+    
+  </figure>
 </li>
 <li>
 <p>분리된 html 파일을 메인 스케치에 include문을 사용하여 삽입한 뒤 저장</p>
-<p><img src="/image/websocket05.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 75%;">
+  
+    <img src="/image/websocket05.png" alt="/image/websocket05.png">
+  
+    
+    
+  </figure>
 </li>
 <li>
 <p>Arduino IDE에서 메인 스케치를 열면, 별도의 탭에 분리된 html 파일도 함께 열림</p>
@@ -592,25 +682,25 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 <br>
 <br>
 <h4 id="part2-메인-스케치">Part2: 메인 스케치<a class="anchor" href="#part2-%eb%a9%94%ec%9d%b8-%ec%8a%a4%ec%bc%80%ec%b9%98">#</a></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">updateSensors</span>(){
-</span></span><span style="display:flex;"><span>  potentiometer1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(potPin1);
-</span></span><span style="display:flex;"><span>  potentiometer2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(potPin2);
-</span></span><span style="display:flex;"><span>  touch <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(touPin);
-</span></span><span style="display:flex;"><span>  brightness <span style="color:#f92672">=</span> <span style="color:#a6e22e">analogRead</span>(briPin);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> potentiometer1); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> potentiometer2); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> touch); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;|&#34;</span>); 
-</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">=</span> <span style="color:#a6e22e">String</span>(data <span style="color:#f92672">+</span> brightness); 
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  webSocket.<span style="color:#a6e22e">broadcastTXT</span>(data); <span style="color:#75715e">// send the data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Serial.<span style="color:#a6e22e">println</span>(data);         <span style="color:#75715e">// display the data in the serial monitor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">delay</span>(<span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">updateSensors</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">potentiometer1</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">potPin1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">potentiometer2</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">potPin2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">touch</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">touPin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">brightness</span> <span class="o">=</span> <span class="nf">analogRead</span><span class="p">(</span><span class="n">briPin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">potentiometer1</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">potentiometer2</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">touch</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="s">&#34;|&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">=</span> <span class="nf">String</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">brightness</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="n">webSocket</span><span class="p">.</span><span class="nf">broadcastTXT</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="c1">// send the data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>         <span class="c1">// display the data in the serial monitor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><ul>
 <li>센서값은 updateSensor() 함수를 통해 불러옵니다.</li>
 <li>4종류의 센서값을 막대 문자(&quot;|&quot;)를 사용하여 연결한 뒤, <strong>String</strong> 형식의 data 변수에 모두 저장한 뒤, **webSocket.broadcastTXT(data)**을 사용하여 html로 보냅니다. String 형식은 메모리를 많이 사용하는 단점이 있지만, chars에 비해 데이터 처리가 간단해지므로 유용하게 사용할 수 있다. 더구나 ESP32의 내장 메모리는 일반적인 경우 충분히 큰 편에 속한다.</li>
 </ul>
@@ -633,7 +723,25 @@ ESP32 통신모드 블루투스 wifi Station Mode wifi AP Mode 라우터 불필�
 </li>
 <li>
 <p>결과 확인</p>
-<p><img src="../image/websocket06.png" alt="" /></p>
+
+  
+  
+  
+  
+  
+  
+  <figure
+    
+    class="center"
+  
+    
+    style="width: 50%;">
+  
+    <img src="/image/websocket06.png" alt="/image/websocket06.png">
+  
+    
+    
+  </figure>
 <p>실시간으로 센서값이 변경되는 것을 확인할 수 있습니다.</p>
 </li>
 </ul>
