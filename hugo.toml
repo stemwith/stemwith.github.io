@@ -37,6 +37,11 @@ googleAnalytics = "G-128DRYVCRT"
   customCSS = ["_custom.scss"]
   math = true
 
+  js = [
+    "https://cdn.jsdelivr.net/npm/apexcharts",
+    "js/analytics-chart.js"
+  ]
+
 [module]
   [[module.imports]]
     #path = 'github.com/alex-shpak/hugo-book'
@@ -54,3 +59,4 @@ googleAnalytics = "G-128DRYVCRT"
   home = ["HTML", "RSS"] # JSON을 제거하고 HTML과 RSS만 남깁니다.
   page = ["HTML"]
   section = ["HTML", "RSS"]
+  
