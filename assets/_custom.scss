@@ -69,38 +69,3 @@ figure figcaption {
   color: #6c757d;
   margin-top: 0.5rem;
 }
-
-/* 카운터 */
-.analytics-container {
-  padding: 1rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--gray-300);
-  font-size: 0.85rem;
-}
-.analytics-container h4 {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--gray-600);
-  margin-bottom: 0.75rem;
-}
-.stat-group {
-  margin-bottom: 1rem;
-}
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--gray-500);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-.stat-value {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--gray-800);
-}
-.stat-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--gray-700);
-}
